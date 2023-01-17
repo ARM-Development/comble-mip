@@ -1,0 +1,27 @@
+title: Cookbook Template
+author: ARM Development Team
+logo: notebooks/images/arm_logo.png
+execute:
+  execute_notebooks: "off"
+parse:
+  myst_enable_extensions:
+    - html_image
+    - amsmath
+    - colon_fence
+    - deflist
+    - dollarmath
+    - html_admonition
+    - html_image
+    - replacements
+    - smartquotes
+    - substitution
+html:
+  comments:
+    hypothesis: true
+repository:
+  url: https://github.com/ARM-Development/arm-cookbook-template  # Online location of your book
+  path_to_book: notebooks  # Optional path to your book, relative to the repository root
+  branch: main  # Which branch of the repository should be used when creating links (optional)
+launch_buttons:
+  jupyterhub_url: https://jupyterhub.arm.gov
+  notebook_interface: jupyterlab

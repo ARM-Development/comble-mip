@@ -1,0 +1,20 @@
+name: arm-cookbook-dev
+channels:
+  - conda-forge
+  - defaults
+  - pyviz
+dependencies:
+  - python=3.9
+  - arm_pyart
+  - matplotlib
+  - jupyterlab
+  - cartopy
+  - numpy
+  - dask
+  - distributed
+  - xarray
+  - pandas
+  - fiona
+  - pip
+  - pip:
+    - -r doc-requirements.txt
