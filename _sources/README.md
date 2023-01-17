@@ -14,8 +14,8 @@ This ARM Cookbook covers ... (replace `...` with the main subject of your cookbo
 
 ### Contributors
 
-<a href="https://github.com/ARM-Development/arm-cookbook-template/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=ARM-Development/arm-cookbook-template" />
+<a href="https://github.com/ARM-Development/comble-mip/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=ARM-Development/comble-mip" />
 </a>
 
 ## Structure
