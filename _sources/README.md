@@ -1,4 +1,4 @@
-# (Replace_with_your_title) Cookbook
+# COMBLE Model-observation Intercomparison Project Cookbook
 
 [![Binder](http://binder.mypythia.org/badge_logo.svg)](http://binder.mypythia.org/v2/gh/ARM-Development/arm-cookbook-template/main?labpath=notebooks)
 
