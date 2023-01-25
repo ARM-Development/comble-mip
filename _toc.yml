@@ -3,6 +3,4 @@ root: README
 parts:
 - caption: Forcing Notebooks
   chapters:
-    - glob: notebooks/create_comble_sfc_forcing_era5ml_v1.6
-  chapters:
-    - glob: notebooks/create_comble_nudging_forcing_era5ml_v1.6
+    - glob: notebooks/forcing/*
