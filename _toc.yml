@@ -3,7 +3,4 @@ root: README
 parts:
 - caption: Notebooks
   chapters:
-    - glob: Notebooks/*
-- caption: Python Notebooks
-  chapters:
-  - file: create_comble_sfc_forcing_era5ml_v1.6
+    - glob: notebooks/create_comble_sfc_forcing_era5ml_v1.6
