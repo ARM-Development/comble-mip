@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Code to generate ONLY time-varying surface forcing based on backward trajectory and high-res sea ice satellite data for COMBLE LES/SCM intercomparison &#8212; COMBLE Model-Observation Intercomparison Project</title>
+    <title>Generate time-varying surface forcing &#8212; COMBLE Model-Observation Intercomparison Project</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -126,7 +126,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Code to generate ONLY time-varying surface forcing based on backward trajectory and high-res sea ice satellite data for COMBLE LES/SCM intercomparison
+   Generate time-varying surface forcing
   </a>
  </li>
 </ul>
@@ -308,139 +308,151 @@ title="Print to PDF"
     </div>
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#developed-by-tim-juliano-at-ncar-ral-originally-on-8-26-22">
-   Developed by Tim Juliano at NCAR/RAL originally on 8/26/22
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Generate time-varying surface forcing
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#v1-6-created-on-1-18-22">
-   v1.6 created on 1/18/22
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#code-to-generate-only-time-varying-surface-forcing-based-on-backward-trajectory-and-high-res-sea-ice-satellite-data-for-comble-les-scm-intercomparison">
+   Code to generate ONLY time-varying surface forcing based on backward trajectory and high-res sea ice satellite data for COMBLE LES/SCM intercomparison
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#we-have-the-option-of-starting-as-far-as-28-hours-before-arriving-at-andenes-03-12-20-at-14-utc">
-   We have the option of starting as far as 28 hours before arriving at Andenes (03/12/20 at 14 UTC)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#includes-lat-lon-correction-by-peng-wu-pnnl">
-   Includes lat/lon correction by Peng Wu (PNNL)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#import-libraries">
-   Import libraries
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#user-mods">
-   !!! User mods !!!
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#how-many-hours-before-ice-edge-do-you-want-to-start">
-     How many hours before ice edge do you want to start?
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#developed-by-tim-juliano-at-ncar-ral-originally-on-8-26-22">
+     Developed by Tim Juliano at NCAR/RAL originally on 8/26/22
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#note-t0-h-0-means-you-are-starting-approx-at-ice-edge-t0-h-10-means-you-are-starting-10-h-upstream-north-of-the-ice-edge">
-     Note: t0_h = 0 means you are starting approx. at ice edge, t0_h = 10 means you are starting 10 h upstream (north) of the ice edge
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#v1-6-created-on-1-18-22">
+     v1.6 created on 1/18/22
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#note-t0-h-must-be-an-integer">
-     Note: t0_h must be an integer
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#we-have-the-option-of-starting-as-far-as-28-hours-before-arriving-at-andenes-03-12-20-at-14-utc">
+     We have the option of starting as far as 28 hours before arriving at Andenes (03/12/20 at 14 UTC)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#includes-lat-lon-correction-by-peng-wu-pnnl">
+     Includes lat/lon correction by Peng Wu (PNNL)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#import-libraries">
+     Import libraries
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#user-mods">
+     !!! User mods !!!
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#how-many-hours-before-ice-edge-do-you-want-to-start">
+       How many hours before ice edge do you want to start?
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#note-t0-h-0-means-you-are-starting-approx-at-ice-edge-t0-h-10-means-you-are-starting-10-h-upstream-north-of-the-ice-edge">
+       Note: t0_h = 0 means you are starting approx. at ice edge, t0_h = 10 means you are starting 10 h upstream (north) of the ice edge
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#note-t0-h-must-be-an-integer">
+       Note: t0_h must be an integer
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#set-some-things">
+     Set some things
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#forcing-netcdf-name-and-delete-file-if-already-exists">
+     Forcing NetCDF name and delete file if already exists
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#get-les-domain-locations">
+     Get LES domain locations
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#calculate-sea-ice-concentration-along-trajectory">
+     Calculate sea ice concentration along trajectory
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#read-in-data-from-era5-backtrajectory-netcdf">
+     Read in data from ERA5 backtrajectory (netCDF)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reverse-time-dimension-of-2d-arrays-as-well-as-sfc-pressure-and-sst-so-that-beginning-of-backward-trajectory-is-in-first-position">
+     Reverse time dimension of 2D arrays, as well as sfc pressure and sst, so that beginning of backward trajectory is in first position
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#unmask-sst-field-and-get-index-according-to-t0-h-furthest-north-we-can-go-is-28h-after-backtrajectory-initialization-from-andenes-or-3-12-20-at-14-utc">
+     Unmask sst field and get index according to t0_h (furthest north we can go is 28h after backtrajectory initialization from Andenes, or 3/12/20 at 14 UTC)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#get-time-series-information-for-sfc-forcing">
+     Get time series information for sfc forcing
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-new-netcdf-file">
+     Create new netcdf file
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-dimensions">
+     Create dimensions
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-global-attributes">
+     Create global attributes
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-variables">
+     Create variables
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#dimensions">
+       Dimensions
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#time-varying-forcing-surface">
+       Time-varying forcing - surface
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#write-data">
+     Write data
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#add-times">
+     Add times
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#close-the-file">
+     Close the file
     </a>
    </li>
   </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#set-some-things">
-   Set some things
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#forcing-netcdf-name-and-delete-file-if-already-exists">
-   Forcing NetCDF name and delete file if already exists
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#get-les-domain-locations">
-   Get LES domain locations
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#calculate-sea-ice-concentration-along-trajectory">
-   Calculate sea ice concentration along trajectory
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#read-in-data-from-era5-backtrajectory-netcdf">
-   Read in data from ERA5 backtrajectory (netCDF)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#reverse-time-dimension-of-2d-arrays-as-well-as-sfc-pressure-and-sst-so-that-beginning-of-backward-trajectory-is-in-first-position">
-   Reverse time dimension of 2D arrays, as well as sfc pressure and sst, so that beginning of backward trajectory is in first position
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#unmask-sst-field-and-get-index-according-to-t0-h-furthest-north-we-can-go-is-28h-after-backtrajectory-initialization-from-andenes-or-3-12-20-at-14-utc">
-   Unmask sst field and get index according to t0_h (furthest north we can go is 28h after backtrajectory initialization from Andenes, or 3/12/20 at 14 UTC)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#get-time-series-information-for-sfc-forcing">
-   Get time series information for sfc forcing
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#create-new-netcdf-file">
-   Create new netcdf file
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#create-dimensions">
-   Create dimensions
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#create-global-attributes">
-   Create global attributes
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#create-variables">
-   Create variables
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#dimensions">
-     Dimensions
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#time-varying-forcing-surface">
-     Time-varying forcing - surface
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#write-data">
-   Write data
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#add-times">
-   Add times
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#close-the-file">
-   Close the file
-  </a>
  </li>
 </ul>
 
@@ -451,7 +463,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Code to generate ONLY time-varying surface forcing based on backward trajectory and high-res sea ice satellite data for COMBLE LES/SCM intercomparison</h1>
+                <h1>Generate time-varying surface forcing</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -461,139 +473,151 @@ title="Print to PDF"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#developed-by-tim-juliano-at-ncar-ral-originally-on-8-26-22">
-   Developed by Tim Juliano at NCAR/RAL originally on 8/26/22
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Generate time-varying surface forcing
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#v1-6-created-on-1-18-22">
-   v1.6 created on 1/18/22
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#code-to-generate-only-time-varying-surface-forcing-based-on-backward-trajectory-and-high-res-sea-ice-satellite-data-for-comble-les-scm-intercomparison">
+   Code to generate ONLY time-varying surface forcing based on backward trajectory and high-res sea ice satellite data for COMBLE LES/SCM intercomparison
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#we-have-the-option-of-starting-as-far-as-28-hours-before-arriving-at-andenes-03-12-20-at-14-utc">
-   We have the option of starting as far as 28 hours before arriving at Andenes (03/12/20 at 14 UTC)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#includes-lat-lon-correction-by-peng-wu-pnnl">
-   Includes lat/lon correction by Peng Wu (PNNL)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#import-libraries">
-   Import libraries
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#user-mods">
-   !!! User mods !!!
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#how-many-hours-before-ice-edge-do-you-want-to-start">
-     How many hours before ice edge do you want to start?
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#developed-by-tim-juliano-at-ncar-ral-originally-on-8-26-22">
+     Developed by Tim Juliano at NCAR/RAL originally on 8/26/22
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#note-t0-h-0-means-you-are-starting-approx-at-ice-edge-t0-h-10-means-you-are-starting-10-h-upstream-north-of-the-ice-edge">
-     Note: t0_h = 0 means you are starting approx. at ice edge, t0_h = 10 means you are starting 10 h upstream (north) of the ice edge
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#v1-6-created-on-1-18-22">
+     v1.6 created on 1/18/22
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#note-t0-h-must-be-an-integer">
-     Note: t0_h must be an integer
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#we-have-the-option-of-starting-as-far-as-28-hours-before-arriving-at-andenes-03-12-20-at-14-utc">
+     We have the option of starting as far as 28 hours before arriving at Andenes (03/12/20 at 14 UTC)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#includes-lat-lon-correction-by-peng-wu-pnnl">
+     Includes lat/lon correction by Peng Wu (PNNL)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#import-libraries">
+     Import libraries
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#user-mods">
+     !!! User mods !!!
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#how-many-hours-before-ice-edge-do-you-want-to-start">
+       How many hours before ice edge do you want to start?
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#note-t0-h-0-means-you-are-starting-approx-at-ice-edge-t0-h-10-means-you-are-starting-10-h-upstream-north-of-the-ice-edge">
+       Note: t0_h = 0 means you are starting approx. at ice edge, t0_h = 10 means you are starting 10 h upstream (north) of the ice edge
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#note-t0-h-must-be-an-integer">
+       Note: t0_h must be an integer
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#set-some-things">
+     Set some things
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#forcing-netcdf-name-and-delete-file-if-already-exists">
+     Forcing NetCDF name and delete file if already exists
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#get-les-domain-locations">
+     Get LES domain locations
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#calculate-sea-ice-concentration-along-trajectory">
+     Calculate sea ice concentration along trajectory
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#read-in-data-from-era5-backtrajectory-netcdf">
+     Read in data from ERA5 backtrajectory (netCDF)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reverse-time-dimension-of-2d-arrays-as-well-as-sfc-pressure-and-sst-so-that-beginning-of-backward-trajectory-is-in-first-position">
+     Reverse time dimension of 2D arrays, as well as sfc pressure and sst, so that beginning of backward trajectory is in first position
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#unmask-sst-field-and-get-index-according-to-t0-h-furthest-north-we-can-go-is-28h-after-backtrajectory-initialization-from-andenes-or-3-12-20-at-14-utc">
+     Unmask sst field and get index according to t0_h (furthest north we can go is 28h after backtrajectory initialization from Andenes, or 3/12/20 at 14 UTC)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#get-time-series-information-for-sfc-forcing">
+     Get time series information for sfc forcing
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-new-netcdf-file">
+     Create new netcdf file
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-dimensions">
+     Create dimensions
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-global-attributes">
+     Create global attributes
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-variables">
+     Create variables
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#dimensions">
+       Dimensions
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#time-varying-forcing-surface">
+       Time-varying forcing - surface
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#write-data">
+     Write data
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#add-times">
+     Add times
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#close-the-file">
+     Close the file
     </a>
    </li>
   </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#set-some-things">
-   Set some things
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#forcing-netcdf-name-and-delete-file-if-already-exists">
-   Forcing NetCDF name and delete file if already exists
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#get-les-domain-locations">
-   Get LES domain locations
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#calculate-sea-ice-concentration-along-trajectory">
-   Calculate sea ice concentration along trajectory
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#read-in-data-from-era5-backtrajectory-netcdf">
-   Read in data from ERA5 backtrajectory (netCDF)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#reverse-time-dimension-of-2d-arrays-as-well-as-sfc-pressure-and-sst-so-that-beginning-of-backward-trajectory-is-in-first-position">
-   Reverse time dimension of 2D arrays, as well as sfc pressure and sst, so that beginning of backward trajectory is in first position
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#unmask-sst-field-and-get-index-according-to-t0-h-furthest-north-we-can-go-is-28h-after-backtrajectory-initialization-from-andenes-or-3-12-20-at-14-utc">
-   Unmask sst field and get index according to t0_h (furthest north we can go is 28h after backtrajectory initialization from Andenes, or 3/12/20 at 14 UTC)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#get-time-series-information-for-sfc-forcing">
-   Get time series information for sfc forcing
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#create-new-netcdf-file">
-   Create new netcdf file
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#create-dimensions">
-   Create dimensions
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#create-global-attributes">
-   Create global attributes
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#create-variables">
-   Create variables
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#dimensions">
-     Dimensions
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#time-varying-forcing-surface">
-     Time-varying forcing - surface
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#write-data">
-   Write data
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#add-times">
-   Add times
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#close-the-file">
-   Close the file
-  </a>
  </li>
 </ul>
 
@@ -605,7 +629,10 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="code-to-generate-only-time-varying-surface-forcing-based-on-backward-trajectory-and-high-res-sea-ice-satellite-data-for-comble-les-scm-intercomparison">
+  <section class="tex2jax_ignore mathjax_ignore" id="generate-time-varying-surface-forcing">
+<h1>Generate time-varying surface forcing<a class="headerlink" href="#generate-time-varying-surface-forcing" title="Permalink to this headline">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="code-to-generate-only-time-varying-surface-forcing-based-on-backward-trajectory-and-high-res-sea-ice-satellite-data-for-comble-les-scm-intercomparison">
 <h1>Code to generate ONLY time-varying surface forcing based on backward trajectory and high-res sea ice satellite data for COMBLE LES/SCM intercomparison<a class="headerlink" href="#code-to-generate-only-time-varying-surface-forcing-based-on-backward-trajectory-and-high-res-sea-ice-satellite-data-for-comble-les-scm-intercomparison" title="Permalink to this headline">#</a></h1>
 <section id="developed-by-tim-juliano-at-ncar-ral-originally-on-8-26-22">
 <h2>Developed by Tim Juliano at NCAR/RAL originally on 8/26/22<a class="headerlink" href="#developed-by-tim-juliano-at-ncar-ral-originally-on-8-26-22" title="Permalink to this headline">#</a></h2>
