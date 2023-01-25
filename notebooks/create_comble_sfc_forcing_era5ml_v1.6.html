@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Code to generate ONLY time-varying surface forcing based on backward trajectory and high-res sea ice satellite data for COMBLE LES/SCM intercomparison &#8212; COMBLE Model-Observation Intercomparison Project</title>
+    <title>Generate time-varying surface forcing &#8212; COMBLE Model-Observation Intercomparison Project</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -121,7 +121,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Code to generate ONLY time-varying surface forcing based on backward trajectory and high-res sea ice satellite data for COMBLE LES/SCM intercomparison
+   Generate time-varying surface forcing
   </a>
  </li>
 </ul>
@@ -304,138 +304,145 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#developed-by-tim-juliano-at-ncar-ral-originally-on-8-26-22">
-   Developed by Tim Juliano at NCAR/RAL originally on 8/26/22
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#v1-6-created-on-1-18-22">
-   v1.6 created on 1/18/22
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#we-have-the-option-of-starting-as-far-as-28-hours-before-arriving-at-andenes-03-12-20-at-14-utc">
-   We have the option of starting as far as 28 hours before arriving at Andenes (03/12/20 at 14 UTC)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#includes-lat-lon-correction-by-peng-wu-pnnl">
-   Includes lat/lon correction by Peng Wu (PNNL)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#import-libraries">
-   Import libraries
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#user-mods">
-   !!! User mods !!!
+  <a class="reference internal nav-link" href="#code-to-generate-only-time-varying-surface-forcing-based-on-backward-trajectory-and-high-res-sea-ice-satellite-data-for-comble-les-scm-intercomparison">
+   Code to generate ONLY time-varying surface forcing based on backward trajectory and high-res sea ice satellite data for COMBLE LES/SCM intercomparison
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#how-many-hours-before-ice-edge-do-you-want-to-start">
-     How many hours before ice edge do you want to start?
+    <a class="reference internal nav-link" href="#developed-by-tim-juliano-at-ncar-ral-originally-on-8-26-22">
+     Developed by Tim Juliano at NCAR/RAL originally on 8/26/22
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#note-t0-h-0-means-you-are-starting-approx-at-ice-edge-t0-h-10-means-you-are-starting-10-h-upstream-north-of-the-ice-edge">
-     Note: t0_h = 0 means you are starting approx. at ice edge, t0_h = 10 means you are starting 10 h upstream (north) of the ice edge
+    <a class="reference internal nav-link" href="#v1-6-created-on-1-18-22">
+     v1.6 created on 1/18/22
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#note-t0-h-must-be-an-integer">
-     Note: t0_h must be an integer
+    <a class="reference internal nav-link" href="#we-have-the-option-of-starting-as-far-as-28-hours-before-arriving-at-andenes-03-12-20-at-14-utc">
+     We have the option of starting as far as 28 hours before arriving at Andenes (03/12/20 at 14 UTC)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#includes-lat-lon-correction-by-peng-wu-pnnl">
+     Includes lat/lon correction by Peng Wu (PNNL)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#import-libraries">
+     Import libraries
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#user-mods">
+     !!! User mods !!!
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#how-many-hours-before-ice-edge-do-you-want-to-start">
+       How many hours before ice edge do you want to start?
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#note-t0-h-0-means-you-are-starting-approx-at-ice-edge-t0-h-10-means-you-are-starting-10-h-upstream-north-of-the-ice-edge">
+       Note: t0_h = 0 means you are starting approx. at ice edge, t0_h = 10 means you are starting 10 h upstream (north) of the ice edge
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#note-t0-h-must-be-an-integer">
+       Note: t0_h must be an integer
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#set-some-things">
+     Set some things
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#forcing-netcdf-name-and-delete-file-if-already-exists">
+     Forcing NetCDF name and delete file if already exists
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#get-les-domain-locations">
+     Get LES domain locations
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#calculate-sea-ice-concentration-along-trajectory">
+     Calculate sea ice concentration along trajectory
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#read-in-data-from-era5-backtrajectory-netcdf">
+     Read in data from ERA5 backtrajectory (netCDF)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reverse-time-dimension-of-2d-arrays-as-well-as-sfc-pressure-and-sst-so-that-beginning-of-backward-trajectory-is-in-first-position">
+     Reverse time dimension of 2D arrays, as well as sfc pressure and sst, so that beginning of backward trajectory is in first position
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#unmask-sst-field-and-get-index-according-to-t0-h-furthest-north-we-can-go-is-28h-after-backtrajectory-initialization-from-andenes-or-3-12-20-at-14-utc">
+     Unmask sst field and get index according to t0_h (furthest north we can go is 28h after backtrajectory initialization from Andenes, or 3/12/20 at 14 UTC)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#get-time-series-information-for-sfc-forcing">
+     Get time series information for sfc forcing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-new-netcdf-file">
+     Create new netcdf file
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-dimensions">
+     Create dimensions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-global-attributes">
+     Create global attributes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-variables">
+     Create variables
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#dimensions">
+       Dimensions
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#time-varying-forcing-surface">
+       Time-varying forcing - surface
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#write-data">
+     Write data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#add-times">
+     Add times
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#close-the-file">
+     Close the file
     </a>
    </li>
   </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#set-some-things">
-   Set some things
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#forcing-netcdf-name-and-delete-file-if-already-exists">
-   Forcing NetCDF name and delete file if already exists
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#get-les-domain-locations">
-   Get LES domain locations
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#calculate-sea-ice-concentration-along-trajectory">
-   Calculate sea ice concentration along trajectory
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#read-in-data-from-era5-backtrajectory-netcdf">
-   Read in data from ERA5 backtrajectory (netCDF)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#reverse-time-dimension-of-2d-arrays-as-well-as-sfc-pressure-and-sst-so-that-beginning-of-backward-trajectory-is-in-first-position">
-   Reverse time dimension of 2D arrays, as well as sfc pressure and sst, so that beginning of backward trajectory is in first position
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#unmask-sst-field-and-get-index-according-to-t0-h-furthest-north-we-can-go-is-28h-after-backtrajectory-initialization-from-andenes-or-3-12-20-at-14-utc">
-   Unmask sst field and get index according to t0_h (furthest north we can go is 28h after backtrajectory initialization from Andenes, or 3/12/20 at 14 UTC)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#get-time-series-information-for-sfc-forcing">
-   Get time series information for sfc forcing
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#create-new-netcdf-file">
-   Create new netcdf file
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#create-dimensions">
-   Create dimensions
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#create-global-attributes">
-   Create global attributes
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#create-variables">
-   Create variables
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#dimensions">
-     Dimensions
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#time-varying-forcing-surface">
-     Time-varying forcing - surface
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#write-data">
-   Write data
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#add-times">
-   Add times
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#close-the-file">
-   Close the file
-  </a>
  </li>
 </ul>
 
@@ -446,7 +453,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Code to generate ONLY time-varying surface forcing based on backward trajectory and high-res sea ice satellite data for COMBLE LES/SCM intercomparison</h1>
+                <h1>Generate time-varying surface forcing</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -457,138 +464,145 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#developed-by-tim-juliano-at-ncar-ral-originally-on-8-26-22">
-   Developed by Tim Juliano at NCAR/RAL originally on 8/26/22
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#v1-6-created-on-1-18-22">
-   v1.6 created on 1/18/22
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#we-have-the-option-of-starting-as-far-as-28-hours-before-arriving-at-andenes-03-12-20-at-14-utc">
-   We have the option of starting as far as 28 hours before arriving at Andenes (03/12/20 at 14 UTC)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#includes-lat-lon-correction-by-peng-wu-pnnl">
-   Includes lat/lon correction by Peng Wu (PNNL)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#import-libraries">
-   Import libraries
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#user-mods">
-   !!! User mods !!!
+  <a class="reference internal nav-link" href="#code-to-generate-only-time-varying-surface-forcing-based-on-backward-trajectory-and-high-res-sea-ice-satellite-data-for-comble-les-scm-intercomparison">
+   Code to generate ONLY time-varying surface forcing based on backward trajectory and high-res sea ice satellite data for COMBLE LES/SCM intercomparison
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#how-many-hours-before-ice-edge-do-you-want-to-start">
-     How many hours before ice edge do you want to start?
+    <a class="reference internal nav-link" href="#developed-by-tim-juliano-at-ncar-ral-originally-on-8-26-22">
+     Developed by Tim Juliano at NCAR/RAL originally on 8/26/22
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#note-t0-h-0-means-you-are-starting-approx-at-ice-edge-t0-h-10-means-you-are-starting-10-h-upstream-north-of-the-ice-edge">
-     Note: t0_h = 0 means you are starting approx. at ice edge, t0_h = 10 means you are starting 10 h upstream (north) of the ice edge
+    <a class="reference internal nav-link" href="#v1-6-created-on-1-18-22">
+     v1.6 created on 1/18/22
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#note-t0-h-must-be-an-integer">
-     Note: t0_h must be an integer
+    <a class="reference internal nav-link" href="#we-have-the-option-of-starting-as-far-as-28-hours-before-arriving-at-andenes-03-12-20-at-14-utc">
+     We have the option of starting as far as 28 hours before arriving at Andenes (03/12/20 at 14 UTC)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#includes-lat-lon-correction-by-peng-wu-pnnl">
+     Includes lat/lon correction by Peng Wu (PNNL)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#import-libraries">
+     Import libraries
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#user-mods">
+     !!! User mods !!!
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#how-many-hours-before-ice-edge-do-you-want-to-start">
+       How many hours before ice edge do you want to start?
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#note-t0-h-0-means-you-are-starting-approx-at-ice-edge-t0-h-10-means-you-are-starting-10-h-upstream-north-of-the-ice-edge">
+       Note: t0_h = 0 means you are starting approx. at ice edge, t0_h = 10 means you are starting 10 h upstream (north) of the ice edge
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#note-t0-h-must-be-an-integer">
+       Note: t0_h must be an integer
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#set-some-things">
+     Set some things
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#forcing-netcdf-name-and-delete-file-if-already-exists">
+     Forcing NetCDF name and delete file if already exists
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#get-les-domain-locations">
+     Get LES domain locations
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#calculate-sea-ice-concentration-along-trajectory">
+     Calculate sea ice concentration along trajectory
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#read-in-data-from-era5-backtrajectory-netcdf">
+     Read in data from ERA5 backtrajectory (netCDF)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reverse-time-dimension-of-2d-arrays-as-well-as-sfc-pressure-and-sst-so-that-beginning-of-backward-trajectory-is-in-first-position">
+     Reverse time dimension of 2D arrays, as well as sfc pressure and sst, so that beginning of backward trajectory is in first position
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#unmask-sst-field-and-get-index-according-to-t0-h-furthest-north-we-can-go-is-28h-after-backtrajectory-initialization-from-andenes-or-3-12-20-at-14-utc">
+     Unmask sst field and get index according to t0_h (furthest north we can go is 28h after backtrajectory initialization from Andenes, or 3/12/20 at 14 UTC)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#get-time-series-information-for-sfc-forcing">
+     Get time series information for sfc forcing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-new-netcdf-file">
+     Create new netcdf file
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-dimensions">
+     Create dimensions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-global-attributes">
+     Create global attributes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-variables">
+     Create variables
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#dimensions">
+       Dimensions
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#time-varying-forcing-surface">
+       Time-varying forcing - surface
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#write-data">
+     Write data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#add-times">
+     Add times
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#close-the-file">
+     Close the file
     </a>
    </li>
   </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#set-some-things">
-   Set some things
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#forcing-netcdf-name-and-delete-file-if-already-exists">
-   Forcing NetCDF name and delete file if already exists
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#get-les-domain-locations">
-   Get LES domain locations
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#calculate-sea-ice-concentration-along-trajectory">
-   Calculate sea ice concentration along trajectory
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#read-in-data-from-era5-backtrajectory-netcdf">
-   Read in data from ERA5 backtrajectory (netCDF)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#reverse-time-dimension-of-2d-arrays-as-well-as-sfc-pressure-and-sst-so-that-beginning-of-backward-trajectory-is-in-first-position">
-   Reverse time dimension of 2D arrays, as well as sfc pressure and sst, so that beginning of backward trajectory is in first position
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#unmask-sst-field-and-get-index-according-to-t0-h-furthest-north-we-can-go-is-28h-after-backtrajectory-initialization-from-andenes-or-3-12-20-at-14-utc">
-   Unmask sst field and get index according to t0_h (furthest north we can go is 28h after backtrajectory initialization from Andenes, or 3/12/20 at 14 UTC)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#get-time-series-information-for-sfc-forcing">
-   Get time series information for sfc forcing
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#create-new-netcdf-file">
-   Create new netcdf file
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#create-dimensions">
-   Create dimensions
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#create-global-attributes">
-   Create global attributes
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#create-variables">
-   Create variables
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#dimensions">
-     Dimensions
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#time-varying-forcing-surface">
-     Time-varying forcing - surface
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#write-data">
-   Write data
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#add-times">
-   Add times
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#close-the-file">
-   Close the file
-  </a>
  </li>
 </ul>
 
@@ -600,22 +614,24 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="code-to-generate-only-time-varying-surface-forcing-based-on-backward-trajectory-and-high-res-sea-ice-satellite-data-for-comble-les-scm-intercomparison">
-<h1>Code to generate ONLY time-varying surface forcing based on backward trajectory and high-res sea ice satellite data for COMBLE LES/SCM intercomparison<a class="headerlink" href="#code-to-generate-only-time-varying-surface-forcing-based-on-backward-trajectory-and-high-res-sea-ice-satellite-data-for-comble-les-scm-intercomparison" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="generate-time-varying-surface-forcing">
+<h1>Generate time-varying surface forcing<a class="headerlink" href="#generate-time-varying-surface-forcing" title="Permalink to this headline">#</a></h1>
+<section id="code-to-generate-only-time-varying-surface-forcing-based-on-backward-trajectory-and-high-res-sea-ice-satellite-data-for-comble-les-scm-intercomparison">
+<h2>Code to generate ONLY time-varying surface forcing based on backward trajectory and high-res sea ice satellite data for COMBLE LES/SCM intercomparison<a class="headerlink" href="#code-to-generate-only-time-varying-surface-forcing-based-on-backward-trajectory-and-high-res-sea-ice-satellite-data-for-comble-les-scm-intercomparison" title="Permalink to this headline">#</a></h2>
 <section id="developed-by-tim-juliano-at-ncar-ral-originally-on-8-26-22">
-<h2>Developed by Tim Juliano at NCAR/RAL originally on 8/26/22<a class="headerlink" href="#developed-by-tim-juliano-at-ncar-ral-originally-on-8-26-22" title="Permalink to this headline">#</a></h2>
+<h3>Developed by Tim Juliano at NCAR/RAL originally on 8/26/22<a class="headerlink" href="#developed-by-tim-juliano-at-ncar-ral-originally-on-8-26-22" title="Permalink to this headline">#</a></h3>
 </section>
 <section id="v1-6-created-on-1-18-22">
-<h2>v1.6 created on 1/18/22<a class="headerlink" href="#v1-6-created-on-1-18-22" title="Permalink to this headline">#</a></h2>
+<h3>v1.6 created on 1/18/22<a class="headerlink" href="#v1-6-created-on-1-18-22" title="Permalink to this headline">#</a></h3>
 </section>
 <section id="we-have-the-option-of-starting-as-far-as-28-hours-before-arriving-at-andenes-03-12-20-at-14-utc">
-<h2>We have the option of starting as far as 28 hours before arriving at Andenes (03/12/20 at 14 UTC)<a class="headerlink" href="#we-have-the-option-of-starting-as-far-as-28-hours-before-arriving-at-andenes-03-12-20-at-14-utc" title="Permalink to this headline">#</a></h2>
+<h3>We have the option of starting as far as 28 hours before arriving at Andenes (03/12/20 at 14 UTC)<a class="headerlink" href="#we-have-the-option-of-starting-as-far-as-28-hours-before-arriving-at-andenes-03-12-20-at-14-utc" title="Permalink to this headline">#</a></h3>
 </section>
 <section id="includes-lat-lon-correction-by-peng-wu-pnnl">
-<h2>Includes lat/lon correction by Peng Wu (PNNL)<a class="headerlink" href="#includes-lat-lon-correction-by-peng-wu-pnnl" title="Permalink to this headline">#</a></h2>
+<h3>Includes lat/lon correction by Peng Wu (PNNL)<a class="headerlink" href="#includes-lat-lon-correction-by-peng-wu-pnnl" title="Permalink to this headline">#</a></h3>
 </section>
 <section id="import-libraries">
-<h2>Import libraries<a class="headerlink" href="#import-libraries" title="Permalink to this headline">#</a></h2>
+<h3>Import libraries<a class="headerlink" href="#import-libraries" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">netCDF4</span>
@@ -637,15 +653,15 @@ title="Print to PDF"
 </div>
 </section>
 <section id="user-mods">
-<h2>!!! User mods !!!<a class="headerlink" href="#user-mods" title="Permalink to this headline">#</a></h2>
+<h3>!!! User mods !!!<a class="headerlink" href="#user-mods" title="Permalink to this headline">#</a></h3>
 <section id="how-many-hours-before-ice-edge-do-you-want-to-start">
-<h3>How many hours before ice edge do you want to start?<a class="headerlink" href="#how-many-hours-before-ice-edge-do-you-want-to-start" title="Permalink to this headline">#</a></h3>
+<h4>How many hours before ice edge do you want to start?<a class="headerlink" href="#how-many-hours-before-ice-edge-do-you-want-to-start" title="Permalink to this headline">#</a></h4>
 </section>
 <section id="note-t0-h-0-means-you-are-starting-approx-at-ice-edge-t0-h-10-means-you-are-starting-10-h-upstream-north-of-the-ice-edge">
-<h3>Note: t0_h = 0 means you are starting approx. at ice edge, t0_h = 10 means you are starting 10 h upstream (north) of the ice edge<a class="headerlink" href="#note-t0-h-0-means-you-are-starting-approx-at-ice-edge-t0-h-10-means-you-are-starting-10-h-upstream-north-of-the-ice-edge" title="Permalink to this headline">#</a></h3>
+<h4>Note: t0_h = 0 means you are starting approx. at ice edge, t0_h = 10 means you are starting 10 h upstream (north) of the ice edge<a class="headerlink" href="#note-t0-h-0-means-you-are-starting-approx-at-ice-edge-t0-h-10-means-you-are-starting-10-h-upstream-north-of-the-ice-edge" title="Permalink to this headline">#</a></h4>
 </section>
 <section id="note-t0-h-must-be-an-integer">
-<h3>Note: t0_h must be an integer<a class="headerlink" href="#note-t0-h-must-be-an-integer" title="Permalink to this headline">#</a></h3>
+<h4>Note: t0_h must be an integer<a class="headerlink" href="#note-t0-h-must-be-an-integer" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t0_h</span> <span class="o">=</span> <span class="mi">10</span>
@@ -658,7 +674,7 @@ title="Print to PDF"
 </section>
 </section>
 <section id="set-some-things">
-<h2>Set some things<a class="headerlink" href="#set-some-things" title="Permalink to this headline">#</a></h2>
+<h3>Set some things<a class="headerlink" href="#set-some-things" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nhrs</span> <span class="o">=</span> <span class="mi">18</span> <span class="o">+</span> <span class="n">t0_h</span> <span class="o">+</span> <span class="mi">1</span> <span class="c1"># total number of simulation hours, including t0; default is from 2020-03-12 at 14 UTC to 2020-03-14 at 00 UTC</span>
@@ -682,7 +698,7 @@ title="Print to PDF"
 </div>
 </section>
 <section id="forcing-netcdf-name-and-delete-file-if-already-exists">
-<h2>Forcing NetCDF name and delete file if already exists<a class="headerlink" href="#forcing-netcdf-name-and-delete-file-if-already-exists" title="Permalink to this headline">#</a></h2>
+<h3>Forcing NetCDF name and delete file if already exists<a class="headerlink" href="#forcing-netcdf-name-and-delete-file-if-already-exists" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">savename</span> <span class="o">=</span> <span class="s1">&#39;COMBLE_INTERCOMPARISON_SFC_FORCING_ERA5ML_V1.6.nc&#39;</span>
@@ -701,7 +717,7 @@ title="Print to PDF"
 </div>
 </section>
 <section id="get-les-domain-locations">
-<h2>Get LES domain locations<a class="headerlink" href="#get-les-domain-locations" title="Permalink to this headline">#</a></h2>
+<h3>Get LES domain locations<a class="headerlink" href="#get-les-domain-locations" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fname</span> <span class="o">=</span> <span class="s1">&#39;LES_domain_location_28h_18Z_Mar13_2020.txt&#39;</span>
@@ -726,7 +742,7 @@ title="Print to PDF"
 </div>
 </section>
 <section id="calculate-sea-ice-concentration-along-trajectory">
-<h2>Calculate sea ice concentration along trajectory<a class="headerlink" href="#calculate-sea-ice-concentration-along-trajectory" title="Permalink to this headline">#</a></h2>
+<h3>Calculate sea ice concentration along trajectory<a class="headerlink" href="#calculate-sea-ice-concentration-along-trajectory" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sic_file</span> <span class="o">=</span> <span class="n">netCDF4</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="s1">&#39;Svalbard_asi-AMSR2-n10m-20200313_m.nc&#39;</span><span class="p">)</span>
@@ -759,7 +775,7 @@ title="Print to PDF"
 </div>
 </section>
 <section id="read-in-data-from-era5-backtrajectory-netcdf">
-<h2>Read in data from ERA5 backtrajectory (netCDF)<a class="headerlink" href="#read-in-data-from-era5-backtrajectory-netcdf" title="Permalink to this headline">#</a></h2>
+<h3>Read in data from ERA5 backtrajectory (netCDF)<a class="headerlink" href="#read-in-data-from-era5-backtrajectory-netcdf" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># File name</span>
@@ -789,7 +805,7 @@ title="Print to PDF"
 </div>
 </section>
 <section id="reverse-time-dimension-of-2d-arrays-as-well-as-sfc-pressure-and-sst-so-that-beginning-of-backward-trajectory-is-in-first-position">
-<h2>Reverse time dimension of 2D arrays, as well as sfc pressure and sst, so that beginning of backward trajectory is in first position<a class="headerlink" href="#reverse-time-dimension-of-2d-arrays-as-well-as-sfc-pressure-and-sst-so-that-beginning-of-backward-trajectory-is-in-first-position" title="Permalink to this headline">#</a></h2>
+<h3>Reverse time dimension of 2D arrays, as well as sfc pressure and sst, so that beginning of backward trajectory is in first position<a class="headerlink" href="#reverse-time-dimension-of-2d-arrays-as-well-as-sfc-pressure-and-sst-so-that-beginning-of-backward-trajectory-is-in-first-position" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#hgt = np.flip(hgt,axis=0)</span>
@@ -808,7 +824,7 @@ title="Print to PDF"
 </div>
 </section>
 <section id="unmask-sst-field-and-get-index-according-to-t0-h-furthest-north-we-can-go-is-28h-after-backtrajectory-initialization-from-andenes-or-3-12-20-at-14-utc">
-<h2>Unmask sst field and get index according to t0_h (furthest north we can go is 28h after backtrajectory initialization from Andenes, or 3/12/20 at 14 UTC)<a class="headerlink" href="#unmask-sst-field-and-get-index-according-to-t0-h-furthest-north-we-can-go-is-28h-after-backtrajectory-initialization-from-andenes-or-3-12-20-at-14-utc" title="Permalink to this headline">#</a></h2>
+<h3>Unmask sst field and get index according to t0_h (furthest north we can go is 28h after backtrajectory initialization from Andenes, or 3/12/20 at 14 UTC)<a class="headerlink" href="#unmask-sst-field-and-get-index-according-to-t0-h-furthest-north-we-can-go-is-28h-after-backtrajectory-initialization-from-andenes-or-3-12-20-at-14-utc" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sst_real</span> <span class="o">=</span> <span class="n">ma</span><span class="o">.</span><span class="n">getdata</span><span class="p">(</span><span class="n">sst</span><span class="p">)</span>
@@ -820,7 +836,7 @@ title="Print to PDF"
 </div>
 </section>
 <section id="get-time-series-information-for-sfc-forcing">
-<h2>Get time series information for sfc forcing<a class="headerlink" href="#get-time-series-information-for-sfc-forcing" title="Permalink to this headline">#</a></h2>
+<h3>Get time series information for sfc forcing<a class="headerlink" href="#get-time-series-information-for-sfc-forcing" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Interpolate SST</span>
@@ -1202,7 +1218,7 @@ Computed TSK for hour 28.0: 277.79 with SIC = 0.0 and SST = 277.79
 </div>
 </section>
 <section id="create-new-netcdf-file">
-<h2>Create new netcdf file<a class="headerlink" href="#create-new-netcdf-file" title="Permalink to this headline">#</a></h2>
+<h3>Create new netcdf file<a class="headerlink" href="#create-new-netcdf-file" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>  <span class="c1"># just to be safe, make sure dataset is not already open.</span>
@@ -1215,7 +1231,7 @@ Computed TSK for hour 28.0: 277.79 with SIC = 0.0 and SST = 277.79
 </div>
 </section>
 <section id="create-dimensions">
-<h2>Create dimensions<a class="headerlink" href="#create-dimensions" title="Permalink to this headline">#</a></h2>
+<h3>Create dimensions<a class="headerlink" href="#create-dimensions" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#levs = len(zgeoi)</span>
@@ -1236,7 +1252,7 @@ Computed TSK for hour 28.0: 277.79 with SIC = 0.0 and SST = 277.79
 </div>
 </section>
 <section id="create-global-attributes">
-<h2>Create global attributes<a class="headerlink" href="#create-global-attributes" title="Permalink to this headline">#</a></h2>
+<h3>Create global attributes<a class="headerlink" href="#create-global-attributes" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ncfile</span><span class="o">.</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Forcing and initial conditions for 13 March 2020 COMBLE intercomparison case&#39;</span>
@@ -1263,9 +1279,9 @@ Computed TSK for hour 28.0: 277.79 with SIC = 0.0 and SST = 277.79
 </div>
 </section>
 <section id="create-variables">
-<h2>Create variables<a class="headerlink" href="#create-variables" title="Permalink to this headline">#</a></h2>
+<h3>Create variables<a class="headerlink" href="#create-variables" title="Permalink to this headline">#</a></h3>
 <section id="dimensions">
-<h3>Dimensions<a class="headerlink" href="#dimensions" title="Permalink to this headline">#</a></h3>
+<h4>Dimensions<a class="headerlink" href="#dimensions" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#t0_time = ncfile.createVariable(&#39;t0&#39;, np.float32, (&#39;t0&#39;,))</span>
@@ -1297,7 +1313,7 @@ Computed TSK for hour 28.0: 277.79 with SIC = 0.0 and SST = 277.79
 </div>
 </section>
 <section id="time-varying-forcing-surface">
-<h3>Time-varying forcing - surface<a class="headerlink" href="#time-varying-forcing-surface" title="Permalink to this headline">#</a></h3>
+<h4>Time-varying forcing - surface<a class="headerlink" href="#time-varying-forcing-surface" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ts</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;ts&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,))</span>
@@ -1310,7 +1326,7 @@ Computed TSK for hour 28.0: 277.79 with SIC = 0.0 and SST = 277.79
 </section>
 </section>
 <section id="write-data">
-<h2>Write data<a class="headerlink" href="#write-data" title="Permalink to this headline">#</a></h2>
+<h3>Write data<a class="headerlink" href="#write-data" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ts</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">sst_ts</span>
@@ -1320,7 +1336,7 @@ Computed TSK for hour 28.0: 277.79 with SIC = 0.0 and SST = 277.79
 </div>
 </section>
 <section id="add-times">
-<h2>Add times<a class="headerlink" href="#add-times" title="Permalink to this headline">#</a></h2>
+<h3>Add times<a class="headerlink" href="#add-times" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dates</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1352,7 +1368,7 @@ Computed TSK for hour 28.0: 277.79 with SIC = 0.0 and SST = 277.79
 </div>
 </section>
 <section id="close-the-file">
-<h2>Close the file<a class="headerlink" href="#close-the-file" title="Permalink to this headline">#</a></h2>
+<h3>Close the file<a class="headerlink" href="#close-the-file" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># first print the Dataset object to see what we&#39;ve got</span>
@@ -1391,6 +1407,7 @@ Dataset is closed!
 </div>
 </div>
 </div>
+</section>
 </section>
 </section>
 
