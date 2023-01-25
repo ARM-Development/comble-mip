@@ -19,7 +19,7 @@ html:
   comments:
     hypothesis: true
 repository:
-  url: https://arm-development.github.io/comble-mip  # Online location of your book
+  url: https://github.com/ARM-Development/comble-mip  # Online location of your book
   branch: main  # Which branch of the repository should be used when creating links (optional)
 launch_buttons:
   jupyterhub_url: https://jupyterhub.arm.gov
