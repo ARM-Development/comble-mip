@@ -1,0 +1,1906 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Generate initial and time-varying nudging profiles &#8212; COMBLE Model-Observation Intercomparison Project</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/arm_logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">COMBLE Model-Observation Intercomparison Project</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../README.html">
+                    COMBLE Model-observation Intercomparison Project Cookbook
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Forcing Notebooks
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../create_comble_nudging_forcing_era5ml_v1.6.html">
+   Generate initial and time-varying nudging profiles
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/ARM-Development/comble-mip/main?urlpath=lab/tree/notebooks/forcing/create_comble_nudging_forcing_era5ml_v1.6.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://jupyterhub.arm.gov/hub/user-redirect/git-pull?repo=https%3A//github.com/ARM-Development/comble-mip&urlpath=lab/tree/comble-mip/notebooks/forcing/create_comble_nudging_forcing_era5ml_v1.6.ipynb&branch=main"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on JupyterHub"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="headerbtn__text-container">JupyterHub</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/notebooks/forcing/create_comble_nudging_forcing_era5ml_v1.6.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#code-to-generate-only-initial-and-time-varying-profile-forcing-based-on-backward-trajectory-for-comble-les-scm-intercomparison">
+   Code to generate ONLY initial and time-varying profile forcing based on backward trajectory for COMBLE LES/SCM intercomparison
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#developed-by-tim-juliano-at-ncar-ral-originally-on-8-26-22">
+     Developed by Tim Juliano at NCAR/RAL originally on 8/26/22
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#v1-6-created-on-1-18-22">
+     v1.6 created on 1/18/22
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#we-have-the-option-of-starting-as-far-as-28-hours-before-arriving-at-andenes-03-12-20-at-14-utc">
+     We have the option of starting as far as 28 hours before arriving at Andenes (03/12/20 at 14 UTC)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#includes-lat-lon-correction-by-peng-wu-pnnl">
+     Includes lat/lon correction by Peng Wu (PNNL)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#note-no-o3-information-in-file-right-now-will-add-later">
+       NOTE: NO O3 INFORMATION IN FILE RIGHT NOW, WILL ADD LATER
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#note-only-nudging-for-now-am-not-computing-geostrophic-wind-profiles">
+       NOTE: ONLY NUDGING FOR NOW, AM NOT COMPUTING GEOSTROPHIC WIND PROFILES
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#import-libraries">
+     Import libraries
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#user-mods">
+     !!! User mods !!!
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#how-many-hours-before-ice-edge-do-you-want-to-start">
+       How many hours before ice edge do you want to start?
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#note-t0-h-0-means-you-are-starting-approx-at-ice-edge-t0-h-10-means-you-are-starting-10-h-upstream-north-of-the-ice-edge">
+       Note: t0_h = 0 means you are starting approx. at ice edge, t0_h = 10 means you are starting 10 h upstream (north) of the ice edge
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#note-t0-h-must-be-an-integer">
+       Note: t0_h must be an integer
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#set-some-things">
+     Set some things
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#forcing-netcdf-name-and-delete-file-if-already-exists">
+     Forcing NetCDF name and delete file if already exists
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#get-les-domain-locations">
+     Get LES domain locations
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-vertical-grid">
+     Create vertical grid
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#vertical-grid-levels-defined-at-the-cell-faces">
+       160 vertical grid levels, defined at the cell faces
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#read-in-data-from-era5-backtrajectory-netcdf">
+     Read in data from ERA5 backtrajectory (netCDF)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#convert-units">
+     Convert units
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reverse-time-dimension-of-2d-arrays-as-well-as-sfc-pressure-and-sst-so-that-beginning-of-backward-trajectory-is-in-first-position">
+     Reverse time dimension of 2D arrays, as well as sfc pressure and sst, so that beginning of backward trajectory is in first position
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#unmask-sst-field-and-get-index-according-to-t0-h-furthest-north-we-can-go-is-28h-after-backtrajectory-initialization-from-andenes-or-3-12-20-at-14-utc">
+     Unmask sst field and get index according to t0_h (furthest north we can go is 28h after backtrajectory initialization from Andenes, or 3/12/20 at 14 UTC)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#calculate-sfc-potential-temperature">
+     Calculate sfc potential temperature
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#get-information-at-t0">
+     Get information at t0
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#extrapolate-o3-since-era5-only-goes-to-1-hpa-and-plot-versus-original-profile">
+     Extrapolate O3 since ERA5 only goes to 1 hPa and plot versus original profile
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#get-geostrophic-wind-forcing">
+     Get Geostrophic wind forcing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interpolate-extrapolate-ug-vg-to-native-era5-levels">
+     Interpolate/extrapolate Ug/Vg to native ERA5 levels
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interpolate-t0-profiles-nudging-profiles-and-geostrophic-wind-profiles-to-common-vertical-grid-for-simplicity">
+     Interpolate t0 profiles, nudging profiles, and geostrophic wind profiles to common vertical grid for simplicity
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#find-time-with-highest-first-level-and-get-vertical-grid">
+       Find time with highest first level and get vertical grid
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#do-the-linear-interpolation-of-time-varying-geostrophic-profiles-to-new-vertical-grid">
+       Do the linear interpolation of time-varying geostrophic profiles to new vertical grid
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#compare-original-and-interpolated-profiles-of-time-varying-geostrophic-wind-as-example-to-show-efficacy-of-method">
+       Compare original and interpolated profiles of time-varying geostrophic wind as example to show efficacy of method
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#do-the-linear-interpolation-for-initial-forcing-profiles">
+       Do the linear interpolation for initial forcing profiles
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#do-the-linear-interpolation-for-nudging-forcing-profiles">
+       Do the linear interpolation for nudging forcing profiles
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#compare-original-and-interpolated-intial-profiles-as-example-to-show-efficacy-of-method">
+       Compare original and interpolated intial profiles as example to show efficacy of method
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#compare-original-and-interpolated-nudging-profiles-as-example-to-show-efficacy-of-method">
+       Compare original and interpolated nudging profiles as example to show efficacy of method
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-new-netcdf-file">
+     Create new netcdf file
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-dimensions">
+     Create dimensions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-global-attributes">
+     Create global attributes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-variables">
+     Create variables
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#dimensions">
+       Dimensions
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#initial-profiles">
+       Initial profiles
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#initial-sfc-conditions">
+       Initial sfc conditions
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#time-varying-forcing-geostrophic">
+       Time-varying forcing - geostrophic
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#time-varying-forcing-nudging">
+       Time-varying forcing - nudging
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#misc">
+       Misc
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#write-data">
+     Write data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#add-times">
+     Add times
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#close-the-file">
+     Close the file
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Generate initial and time-varying nudging profiles</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#code-to-generate-only-initial-and-time-varying-profile-forcing-based-on-backward-trajectory-for-comble-les-scm-intercomparison">
+   Code to generate ONLY initial and time-varying profile forcing based on backward trajectory for COMBLE LES/SCM intercomparison
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#developed-by-tim-juliano-at-ncar-ral-originally-on-8-26-22">
+     Developed by Tim Juliano at NCAR/RAL originally on 8/26/22
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#v1-6-created-on-1-18-22">
+     v1.6 created on 1/18/22
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#we-have-the-option-of-starting-as-far-as-28-hours-before-arriving-at-andenes-03-12-20-at-14-utc">
+     We have the option of starting as far as 28 hours before arriving at Andenes (03/12/20 at 14 UTC)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#includes-lat-lon-correction-by-peng-wu-pnnl">
+     Includes lat/lon correction by Peng Wu (PNNL)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#note-no-o3-information-in-file-right-now-will-add-later">
+       NOTE: NO O3 INFORMATION IN FILE RIGHT NOW, WILL ADD LATER
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#note-only-nudging-for-now-am-not-computing-geostrophic-wind-profiles">
+       NOTE: ONLY NUDGING FOR NOW, AM NOT COMPUTING GEOSTROPHIC WIND PROFILES
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#import-libraries">
+     Import libraries
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#user-mods">
+     !!! User mods !!!
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#how-many-hours-before-ice-edge-do-you-want-to-start">
+       How many hours before ice edge do you want to start?
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#note-t0-h-0-means-you-are-starting-approx-at-ice-edge-t0-h-10-means-you-are-starting-10-h-upstream-north-of-the-ice-edge">
+       Note: t0_h = 0 means you are starting approx. at ice edge, t0_h = 10 means you are starting 10 h upstream (north) of the ice edge
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#note-t0-h-must-be-an-integer">
+       Note: t0_h must be an integer
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#set-some-things">
+     Set some things
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#forcing-netcdf-name-and-delete-file-if-already-exists">
+     Forcing NetCDF name and delete file if already exists
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#get-les-domain-locations">
+     Get LES domain locations
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-vertical-grid">
+     Create vertical grid
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#vertical-grid-levels-defined-at-the-cell-faces">
+       160 vertical grid levels, defined at the cell faces
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#read-in-data-from-era5-backtrajectory-netcdf">
+     Read in data from ERA5 backtrajectory (netCDF)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#convert-units">
+     Convert units
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reverse-time-dimension-of-2d-arrays-as-well-as-sfc-pressure-and-sst-so-that-beginning-of-backward-trajectory-is-in-first-position">
+     Reverse time dimension of 2D arrays, as well as sfc pressure and sst, so that beginning of backward trajectory is in first position
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#unmask-sst-field-and-get-index-according-to-t0-h-furthest-north-we-can-go-is-28h-after-backtrajectory-initialization-from-andenes-or-3-12-20-at-14-utc">
+     Unmask sst field and get index according to t0_h (furthest north we can go is 28h after backtrajectory initialization from Andenes, or 3/12/20 at 14 UTC)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#calculate-sfc-potential-temperature">
+     Calculate sfc potential temperature
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#get-information-at-t0">
+     Get information at t0
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#extrapolate-o3-since-era5-only-goes-to-1-hpa-and-plot-versus-original-profile">
+     Extrapolate O3 since ERA5 only goes to 1 hPa and plot versus original profile
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#get-geostrophic-wind-forcing">
+     Get Geostrophic wind forcing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interpolate-extrapolate-ug-vg-to-native-era5-levels">
+     Interpolate/extrapolate Ug/Vg to native ERA5 levels
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interpolate-t0-profiles-nudging-profiles-and-geostrophic-wind-profiles-to-common-vertical-grid-for-simplicity">
+     Interpolate t0 profiles, nudging profiles, and geostrophic wind profiles to common vertical grid for simplicity
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#find-time-with-highest-first-level-and-get-vertical-grid">
+       Find time with highest first level and get vertical grid
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#do-the-linear-interpolation-of-time-varying-geostrophic-profiles-to-new-vertical-grid">
+       Do the linear interpolation of time-varying geostrophic profiles to new vertical grid
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#compare-original-and-interpolated-profiles-of-time-varying-geostrophic-wind-as-example-to-show-efficacy-of-method">
+       Compare original and interpolated profiles of time-varying geostrophic wind as example to show efficacy of method
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#do-the-linear-interpolation-for-initial-forcing-profiles">
+       Do the linear interpolation for initial forcing profiles
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#do-the-linear-interpolation-for-nudging-forcing-profiles">
+       Do the linear interpolation for nudging forcing profiles
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#compare-original-and-interpolated-intial-profiles-as-example-to-show-efficacy-of-method">
+       Compare original and interpolated intial profiles as example to show efficacy of method
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#compare-original-and-interpolated-nudging-profiles-as-example-to-show-efficacy-of-method">
+       Compare original and interpolated nudging profiles as example to show efficacy of method
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-new-netcdf-file">
+     Create new netcdf file
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-dimensions">
+     Create dimensions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-global-attributes">
+     Create global attributes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-variables">
+     Create variables
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#dimensions">
+       Dimensions
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#initial-profiles">
+       Initial profiles
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#initial-sfc-conditions">
+       Initial sfc conditions
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#time-varying-forcing-geostrophic">
+       Time-varying forcing - geostrophic
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#time-varying-forcing-nudging">
+       Time-varying forcing - nudging
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#misc">
+       Misc
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#write-data">
+     Write data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#add-times">
+     Add times
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#close-the-file">
+     Close the file
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="generate-initial-and-time-varying-nudging-profiles">
+<h1>Generate initial and time-varying nudging profiles<a class="headerlink" href="#generate-initial-and-time-varying-nudging-profiles" title="Permalink to this headline">#</a></h1>
+<section id="code-to-generate-only-initial-and-time-varying-profile-forcing-based-on-backward-trajectory-for-comble-les-scm-intercomparison">
+<h2>Code to generate ONLY initial and time-varying profile forcing based on backward trajectory for COMBLE LES/SCM intercomparison<a class="headerlink" href="#code-to-generate-only-initial-and-time-varying-profile-forcing-based-on-backward-trajectory-for-comble-les-scm-intercomparison" title="Permalink to this headline">#</a></h2>
+<section id="developed-by-tim-juliano-at-ncar-ral-originally-on-8-26-22">
+<h3>Developed by Tim Juliano at NCAR/RAL originally on 8/26/22<a class="headerlink" href="#developed-by-tim-juliano-at-ncar-ral-originally-on-8-26-22" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="v1-6-created-on-1-18-22">
+<h3>v1.6 created on 1/18/22<a class="headerlink" href="#v1-6-created-on-1-18-22" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="we-have-the-option-of-starting-as-far-as-28-hours-before-arriving-at-andenes-03-12-20-at-14-utc">
+<h3>We have the option of starting as far as 28 hours before arriving at Andenes (03/12/20 at 14 UTC)<a class="headerlink" href="#we-have-the-option-of-starting-as-far-as-28-hours-before-arriving-at-andenes-03-12-20-at-14-utc" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="includes-lat-lon-correction-by-peng-wu-pnnl">
+<h3>Includes lat/lon correction by Peng Wu (PNNL)<a class="headerlink" href="#includes-lat-lon-correction-by-peng-wu-pnnl" title="Permalink to this headline">#</a></h3>
+<section id="note-no-o3-information-in-file-right-now-will-add-later">
+<h4>NOTE: NO O3 INFORMATION IN FILE RIGHT NOW, WILL ADD LATER<a class="headerlink" href="#note-no-o3-information-in-file-right-now-will-add-later" title="Permalink to this headline">#</a></h4>
+</section>
+<section id="note-only-nudging-for-now-am-not-computing-geostrophic-wind-profiles">
+<h4>NOTE: ONLY NUDGING FOR NOW, AM NOT COMPUTING GEOSTROPHIC WIND PROFILES<a class="headerlink" href="#note-only-nudging-for-now-am-not-computing-geostrophic-wind-profiles" title="Permalink to this headline">#</a></h4>
+</section>
+</section>
+<section id="import-libraries">
+<h3>Import libraries<a class="headerlink" href="#import-libraries" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">netCDF4</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">numpy.ma</span> <span class="k">as</span> <span class="nn">ma</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">netCDF4</span> <span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">date2num</span><span class="p">,</span><span class="n">num2date</span>
+<span class="kn">import</span> <span class="nn">datetime</span> <span class="k">as</span> <span class="nn">dt</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">interpolate</span>
+<span class="kn">import</span> <span class="nn">geopy.distance</span>
+<span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">gaussian_filter1d</span>
+<span class="kn">import</span> <span class="nn">gdal</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="user-mods">
+<h3>!!! User mods !!!<a class="headerlink" href="#user-mods" title="Permalink to this headline">#</a></h3>
+<section id="how-many-hours-before-ice-edge-do-you-want-to-start">
+<h4>How many hours before ice edge do you want to start?<a class="headerlink" href="#how-many-hours-before-ice-edge-do-you-want-to-start" title="Permalink to this headline">#</a></h4>
+</section>
+<section id="note-t0-h-0-means-you-are-starting-approx-at-ice-edge-t0-h-10-means-you-are-starting-10-h-upstream-north-of-the-ice-edge">
+<h4>Note: t0_h = 0 means you are starting approx. at ice edge, t0_h = 10 means you are starting 10 h upstream (north) of the ice edge<a class="headerlink" href="#note-t0-h-0-means-you-are-starting-approx-at-ice-edge-t0-h-10-means-you-are-starting-10-h-upstream-north-of-the-ice-edge" title="Permalink to this headline">#</a></h4>
+</section>
+<section id="note-t0-h-must-be-an-integer">
+<h4>Note: t0_h must be an integer<a class="headerlink" href="#note-t0-h-must-be-an-integer" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t0_h</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="k">if</span> <span class="n">t0_h</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">t0_h</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="s1">&#39;Error: Please set 0 &lt;= t0_h &gt;= 10&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="set-some-things">
+<h3>Set some things<a class="headerlink" href="#set-some-things" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nhrs</span> <span class="o">=</span> <span class="mi">18</span> <span class="o">+</span> <span class="n">t0_h</span> <span class="o">+</span> <span class="mi">1</span> <span class="c1"># total number of simulation hours, including t0; default is from 2020-03-12 at 14 UTC to 2020-03-14 at 00 UTC</span>
+<span class="k">if</span> <span class="n">t0_h</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">start_time</span> <span class="o">=</span> <span class="s1">&#39;2020-03-13 00:00:00&#39;</span>
+    <span class="n">start_day</span> <span class="o">=</span> <span class="mi">13</span>
+    <span class="n">start_hour</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">start_time</span> <span class="o">=</span> <span class="s1">&#39;2020-03-12 &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="mi">24</span><span class="o">-</span><span class="n">t0_h</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;:00:00&#39;</span>
+    <span class="n">start_day</span> <span class="o">=</span> <span class="mi">12</span>
+    <span class="n">start_hour</span> <span class="o">=</span> <span class="mi">24</span><span class="o">-</span><span class="n">t0_h</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Start time is: &#39;</span> <span class="o">+</span> <span class="n">start_time</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Start time is: 2020-03-12 14:00:00
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="forcing-netcdf-name-and-delete-file-if-already-exists">
+<h3>Forcing NetCDF name and delete file if already exists<a class="headerlink" href="#forcing-netcdf-name-and-delete-file-if-already-exists" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">savename</span> <span class="o">=</span> <span class="s1">&#39;COMBLE_INTERCOMPARISON_FORCING_ERA5ML_V1.6.nc&#39;</span>
+
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">savename</span><span class="p">):</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">savename</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The file &#39;</span> <span class="o">+</span> <span class="n">savename</span> <span class="o">+</span> <span class="s1">&#39; has been deleted successfully&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="get-les-domain-locations">
+<h3>Get LES domain locations<a class="headerlink" href="#get-les-domain-locations" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fname</span> <span class="o">=</span> <span class="s1">&#39;LES_domain_location_28h_18Z_Mar13_2020.txt&#39;</span>
+
+<span class="n">les_loc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span><span class="n">skiprows</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">les_hh</span> <span class="o">=</span> <span class="n">les_loc</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">les_hh_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">les_hh</span><span class="o">&gt;=-</span><span class="mf">1.</span><span class="o">*</span><span class="n">t0_h</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">les_lat</span> <span class="o">=</span> <span class="n">les_loc</span><span class="p">[</span><span class="n">les_hh_idx</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">les_lon</span> <span class="o">=</span> <span class="n">les_loc</span><span class="p">[</span><span class="n">les_hh_idx</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+
+<span class="n">les_lat_mid</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">les_lat</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">les_lon_mid</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">les_lon</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;LES domain mid point: &#39;</span> <span class="o">+</span> <span class="s1">&#39;lat=&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">les_lat_mid</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;N, lon=&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">les_lon_mid</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;E&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LES domain mid point: lat=77.6N, lon=8.6E
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="create-vertical-grid">
+<h3>Create vertical grid<a class="headerlink" href="#create-vertical-grid" title="Permalink to this headline">#</a></h3>
+<section id="vertical-grid-levels-defined-at-the-cell-faces">
+<h4>160 vertical grid levels, defined at the cell faces<a class="headerlink" href="#vertical-grid-levels-defined-at-the-cell-faces" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nz</span> <span class="o">=</span> <span class="mi">160</span>
+
+<span class="n">dz_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">nz</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">dz_grid</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">20.0</span>
+<span class="n">dz_grid</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">25.0</span>
+<span class="n">dz_grid</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mf">30.0</span>
+<span class="n">dz_grid</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mf">35.0</span>
+<span class="n">dz_grid</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">140</span><span class="p">]</span> <span class="o">=</span> <span class="mf">40.0</span>
+<span class="n">dz_grid</span><span class="p">[</span><span class="mi">140</span><span class="p">]</span> <span class="o">=</span> <span class="mf">60.0</span>
+<span class="n">dz_grid</span><span class="p">[</span><span class="mi">141</span><span class="p">:</span><span class="mi">157</span><span class="p">]</span> <span class="o">=</span> <span class="mf">80.0</span>
+<span class="n">dz_grid</span><span class="p">[</span><span class="mi">157</span><span class="p">]</span> <span class="o">=</span> <span class="mf">60.0</span>
+<span class="n">dz_grid</span><span class="p">[</span><span class="mi">158</span><span class="p">]</span> <span class="o">=</span> <span class="mf">50.0</span>
+
+<span class="n">z_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">nz</span><span class="p">)</span>
+<span class="n">z_grid</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">z_grid</span><span class="p">)):</span>
+    <span class="n">z_grid</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">z_grid</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">dz_grid</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="read-in-data-from-era5-backtrajectory-netcdf">
+<h3>Read in data from ERA5 backtrajectory (netCDF)<a class="headerlink" href="#read-in-data-from-era5-backtrajectory-netcdf" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># File name</span>
+<span class="n">fname</span> <span class="o">=</span> <span class="s1">&#39;theta_temp_rh_sh_uvw_sst_along_trajectory_era5ml_28h_end_2020-03-13-18.nc&#39;</span>
+
+<span class="c1"># Open dataset</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">netCDF4</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
+
+<span class="c1"># Read variables (1D arrays are time, 2D arrays are time x pressure level)</span>
+<span class="n">hours</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;Time&#39;</span><span class="p">][:]</span>
+<span class="n">lat</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;Latitude&#39;</span><span class="p">][:]</span>
+<span class="n">lon</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;Longitude&#39;</span><span class="p">][:]</span>
+<span class="n">pres</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;Pressure&#39;</span><span class="p">][:]</span>
+<span class="n">sfc_pres</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;SfcPres&#39;</span><span class="p">][:]</span>
+<span class="n">sst</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;SST&#39;</span><span class="p">][:]</span>
+<span class="n">hgt</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;GEOS_HT&#39;</span><span class="p">][:,:]</span>
+<span class="n">uwnd</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;U&#39;</span><span class="p">][:,:]</span>
+<span class="n">vwnd</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;V&#39;</span><span class="p">][:,:]</span>
+<span class="n">wwnd</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;W&#39;</span><span class="p">][:,:]</span>
+<span class="n">temp</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;Temp&#39;</span><span class="p">][:,:]</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;Theta&#39;</span><span class="p">][:,:]</span>
+<span class="n">qv</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;SH&#39;</span><span class="p">][:,:]</span>
+<span class="c1">#o3 = dataset.variables[&#39;O3&#39;][:,:]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="convert-units">
+<h3>Convert units<a class="headerlink" href="#convert-units" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sfc_pres_pa</span> <span class="o">=</span> <span class="n">sfc_pres</span><span class="o">/</span><span class="mf">100.</span>  <span class="c1"># Pa to hPa</span>
+<span class="n">pres_pa</span> <span class="o">=</span> <span class="n">pres</span><span class="o">*</span><span class="mf">100.</span>          <span class="c1"># hPa to Pa</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="reverse-time-dimension-of-2d-arrays-as-well-as-sfc-pressure-and-sst-so-that-beginning-of-backward-trajectory-is-in-first-position">
+<h3>Reverse time dimension of 2D arrays, as well as sfc pressure and sst, so that beginning of backward trajectory is in first position<a class="headerlink" href="#reverse-time-dimension-of-2d-arrays-as-well-as-sfc-pressure-and-sst-so-that-beginning-of-backward-trajectory-is-in-first-position" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hgt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">hgt</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">uwnd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">uwnd</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">vwnd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">vwnd</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">wwnd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">wwnd</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">temp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">temp</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">qv</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1">#o3 = np.flip(o3,axis=0)</span>
+<span class="n">sfc_pres_pa</span> <span class="o">=</span> <span class="n">sfc_pres_pa</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">sst</span> <span class="o">=</span> <span class="n">sst</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="unmask-sst-field-and-get-index-according-to-t0-h-furthest-north-we-can-go-is-28h-after-backtrajectory-initialization-from-andenes-or-3-12-20-at-14-utc">
+<h3>Unmask sst field and get index according to t0_h (furthest north we can go is 28h after backtrajectory initialization from Andenes, or 3/12/20 at 14 UTC)<a class="headerlink" href="#unmask-sst-field-and-get-index-according-to-t0-h-furthest-north-we-can-go-is-28h-after-backtrajectory-initialization-from-andenes-or-3-12-20-at-14-utc" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sst_real</span> <span class="o">=</span> <span class="n">ma</span><span class="o">.</span><span class="n">getdata</span><span class="p">(</span><span class="n">sst</span><span class="p">)</span>
+<span class="n">loopidx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">sst_real</span><span class="o">&gt;</span><span class="mf">0.0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">t0</span> <span class="o">=</span> <span class="n">loopidx</span><span class="p">[</span><span class="mi">10</span><span class="o">-</span><span class="n">t0_h</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="calculate-sfc-potential-temperature">
+<h3>Calculate sfc potential temperature<a class="headerlink" href="#calculate-sfc-potential-temperature" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">theta1000mb</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">sfc_theta</span> <span class="o">=</span> <span class="n">theta1000mb</span><span class="o">*</span><span class="nb">pow</span><span class="p">((</span><span class="mf">1000.</span><span class="o">/</span><span class="n">sfc_pres_pa</span><span class="p">),</span><span class="mf">0.286</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="get-information-at-t0">
+<h3>Get information at t0<a class="headerlink" href="#get-information-at-t0" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z1</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">pres_t0</span> <span class="o">=</span> <span class="n">pres_pa</span><span class="p">[</span><span class="n">z1</span><span class="p">:]</span>
+<span class="n">hgt_t0</span> <span class="o">=</span> <span class="n">hgt</span><span class="p">[</span><span class="n">t0</span><span class="p">,</span><span class="n">z1</span><span class="p">:]</span>
+<span class="n">uwnd_t0</span> <span class="o">=</span> <span class="n">uwnd</span><span class="p">[</span><span class="n">t0</span><span class="p">,</span><span class="n">z1</span><span class="p">:]</span>
+<span class="n">vwnd_t0</span> <span class="o">=</span> <span class="n">vwnd</span><span class="p">[</span><span class="n">t0</span><span class="p">,</span><span class="n">z1</span><span class="p">:]</span>
+<span class="n">wwnd_t0</span> <span class="o">=</span> <span class="n">wwnd</span><span class="p">[</span><span class="n">t0</span><span class="p">,</span><span class="n">z1</span><span class="p">:]</span>
+<span class="n">temp_t0</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="n">t0</span><span class="p">,</span><span class="n">z1</span><span class="p">:]</span>
+<span class="n">theta_t0</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="n">t0</span><span class="p">,</span><span class="n">z1</span><span class="p">:]</span>
+<span class="n">qv_t0</span> <span class="o">=</span> <span class="n">qv</span><span class="p">[</span><span class="n">t0</span><span class="p">,</span><span class="n">z1</span><span class="p">:]</span>
+<span class="c1">#o3_t0 = o3[t0,z1:]</span>
+
+<span class="n">ps_t0</span> <span class="o">=</span> <span class="n">sfc_pres_pa</span><span class="p">[</span><span class="n">t0</span><span class="p">]</span>
+<span class="n">thetas_t0</span> <span class="o">=</span> <span class="n">sfc_theta</span><span class="p">[</span><span class="n">t0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="extrapolate-o3-since-era5-only-goes-to-1-hpa-and-plot-versus-original-profile">
+<h3>Extrapolate O3 since ERA5 only goes to 1 hPa and plot versus original profile<a class="headerlink" href="#extrapolate-o3-since-era5-only-goes-to-1-hpa-and-plot-versus-original-profile" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add top pressure and o3 values - here we assume o3 goes to zero at 1e-4 Pa</span>
+<span class="c1">#pres_t0_add_top = np.insert(pres_t0,len(pres_t0),0.0001)</span>
+<span class="c1">#o3_t0_add_top = np.insert(o3_t0,len(o3_t0),0.0)</span>
+
+<span class="c1"># Add levels for extrapolation</span>
+<span class="c1">#pres_o3_extrap_levels = [90,80,70,60,50,30,10,5,1,0.5,0.1,0.01,0.001]</span>
+<span class="c1">#pres_t0_o3 = np.insert(pres_t0_add_top,-1,pres_o3_extrap_levels)</span>
+
+<span class="c1"># Do the extrapolation</span>
+<span class="c1">#f = interpolate.interp1d(pres_t0_add_top, o3_t0_add_top, kind=&#39;cubic&#39;)</span>
+<span class="c1">#o3_t0i = f(pres_t0_o3.data)</span>
+
+<span class="c1">#plt.figure()</span>
+<span class="c1">#plt.figure(figsize=(8,8))</span>
+
+<span class="c1">#var_plt1 = o3_t0</span>
+<span class="c1">#var_plt2 = o3_t0i</span>
+<span class="c1">#plt.plot(var_plt1,pres_t0,c=&#39;k&#39;,label=&#39;Original profile&#39;)</span>
+<span class="c1">#plt.plot(var_plt2,pres_t0_o3,c=&#39;r&#39;,ls=&#39;--&#39;,label=&#39;Extrapolated profile&#39;)</span>
+<span class="c1">#plt.legend()</span>
+<span class="c1">#plt.xlabel(&#39;Ozone (kg kg-1)&#39;)</span>
+<span class="c1">#plt.ylabel(&#39;Pressure (Pa)&#39;)</span>
+<span class="c1">#plt.yscale(&#39;log&#39;)</span>
+<span class="c1">#plt.gca().invert_yaxis()</span>
+
+<span class="c1">#plt.show()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="get-geostrophic-wind-forcing">
+<h3>Get Geostrophic wind forcing<a class="headerlink" href="#get-geostrophic-wind-forcing" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">do_geo</span> <span class="o">=</span> <span class="kc">False</span> <span class="c1"># TEMPORARY FLAG</span>
+<span class="k">if</span> <span class="n">do_geo</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="c1"># Read ERA5 file</span>
+    <span class="n">era5_geo_file</span> <span class="o">=</span> <span class="s1">&#39;/glade/scratch/tjuliano/doe_comble/wrf_asr_cao/WRF-ASR-CAO/scripts/era5/era5_mar13_case_larger.nc&#39;</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">netCDF4</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">era5_geo_file</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
+
+    <span class="n">zl</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;z&#39;</span><span class="p">][</span><span class="mi">22</span><span class="p">:</span><span class="mi">43</span><span class="p">,</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,:,:]</span> <span class="c1"># time, lev, lat, lon</span>
+    <span class="n">lonarrl</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">][:]</span>
+    <span class="n">latarrl</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">][:]</span>
+
+    <span class="n">latloc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">les_lat</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int16</span><span class="p">)</span>
+    <span class="n">lonloc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">les_lat</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int16</span><span class="p">)</span>
+    <span class="n">ugl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">les_lat</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">zl</span><span class="p">)[</span><span class="mi">1</span><span class="p">]])</span>
+    <span class="n">vgl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">les_lat</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">zl</span><span class="p">)[</span><span class="mi">1</span><span class="p">]])</span>
+    <span class="n">zhtl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">les_lat</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">zl</span><span class="p">)[</span><span class="mi">1</span><span class="p">]])</span>
+
+    <span class="n">omega</span> <span class="o">=</span> <span class="mf">7.2921e-5</span> <span class="c1"># angular velocity</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="mf">9.81</span> <span class="c1"># grav constant</span>
+    <span class="n">min_dx</span> <span class="o">=</span> <span class="mf">20.</span> <span class="c1"># minimum grid spacing (km) for discretization</span>
+    <span class="n">min_dy</span> <span class="o">=</span> <span class="mf">20.</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">les_lat</span><span class="p">)):</span>
+        <span class="n">hold</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">les_lat</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">latarrl</span><span class="p">)</span>
+        <span class="n">latloc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">hold</span><span class="p">)</span>
+        <span class="n">hold</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">les_lon</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">lonarrl</span><span class="p">)</span>   
+        <span class="n">lonloc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">hold</span><span class="p">)</span>
+
+        <span class="c1"># Coriolis parameter</span>
+        <span class="n">e</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">omega</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">les_lat</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">omega</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">les_lat</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+
+        <span class="c1"># Calc dx, dy</span>
+        <span class="n">offset1</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">offset2</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">coords_1</span> <span class="o">=</span> <span class="p">(</span><span class="n">latarrl</span><span class="p">[</span><span class="n">latloc</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="n">lonarrl</span><span class="p">[</span><span class="n">lonloc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">offset2</span><span class="p">])</span>
+        <span class="n">coords_2</span> <span class="o">=</span> <span class="p">(</span><span class="n">latarrl</span><span class="p">[</span><span class="n">latloc</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="n">lonarrl</span><span class="p">[</span><span class="n">lonloc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">offset2</span><span class="p">])</span>
+        <span class="n">dx</span> <span class="o">=</span> <span class="n">geopy</span><span class="o">.</span><span class="n">distance</span><span class="o">.</span><span class="n">geodesic</span><span class="p">(</span><span class="n">coords_1</span><span class="p">,</span> <span class="n">coords_2</span><span class="p">)</span><span class="o">.</span><span class="n">km</span>
+        <span class="n">coords_3</span> <span class="o">=</span> <span class="p">(</span><span class="n">latarrl</span><span class="p">[</span><span class="n">latloc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">offset1</span><span class="p">],</span> <span class="n">lonarrl</span><span class="p">[</span><span class="n">lonloc</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span>
+        <span class="n">coords_4</span> <span class="o">=</span> <span class="p">(</span><span class="n">latarrl</span><span class="p">[</span><span class="n">latloc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">offset1</span><span class="p">],</span> <span class="n">lonarrl</span><span class="p">[</span><span class="n">lonloc</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span>
+        <span class="n">dy</span> <span class="o">=</span> <span class="n">geopy</span><span class="o">.</span><span class="n">distance</span><span class="o">.</span><span class="n">geodesic</span><span class="p">(</span><span class="n">coords_3</span><span class="p">,</span> <span class="n">coords_4</span><span class="p">)</span><span class="o">.</span><span class="n">km</span>
+        <span class="k">while</span> <span class="n">dx</span> <span class="o">&lt;</span> <span class="n">min_dx</span><span class="p">:</span> <span class="c1"># we want at least min_dx km for our zonal discretization, which changes with time (latitude)</span>
+            <span class="n">offset2</span><span class="o">+=</span><span class="mi">1</span>
+            <span class="n">coords_1</span> <span class="o">=</span> <span class="p">(</span><span class="n">latarrl</span><span class="p">[</span><span class="n">latloc</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="n">lonarrl</span><span class="p">[</span><span class="n">lonloc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">offset2</span><span class="p">])</span>
+            <span class="n">coords_2</span> <span class="o">=</span> <span class="p">(</span><span class="n">latarrl</span><span class="p">[</span><span class="n">latloc</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="n">lonarrl</span><span class="p">[</span><span class="n">lonloc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">offset2</span><span class="p">])</span>
+            <span class="n">dx</span> <span class="o">=</span> <span class="n">geopy</span><span class="o">.</span><span class="n">distance</span><span class="o">.</span><span class="n">geodesic</span><span class="p">(</span><span class="n">coords_1</span><span class="p">,</span> <span class="n">coords_2</span><span class="p">)</span><span class="o">.</span><span class="n">km</span>
+        <span class="k">while</span> <span class="n">dy</span> <span class="o">&lt;</span> <span class="n">min_dy</span><span class="p">:</span> <span class="c1"># we want at least min_dy km for our meridional discretization, which stays mostly constant with time (latitude)</span>
+            <span class="n">offset1</span><span class="o">+=</span><span class="mi">1</span>
+            <span class="n">coords_3</span> <span class="o">=</span> <span class="p">(</span><span class="n">latarrl</span><span class="p">[</span><span class="n">latloc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">offset1</span><span class="p">],</span> <span class="n">lonarrl</span><span class="p">[</span><span class="n">lonloc</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span>
+            <span class="n">coords_4</span> <span class="o">=</span> <span class="p">(</span><span class="n">latarrl</span><span class="p">[</span><span class="n">latloc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">offset1</span><span class="p">],</span> <span class="n">lonarrl</span><span class="p">[</span><span class="n">lonloc</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span>
+            <span class="n">dy</span> <span class="o">=</span> <span class="n">geopy</span><span class="o">.</span><span class="n">distance</span><span class="o">.</span><span class="n">geodesic</span><span class="p">(</span><span class="n">coords_3</span><span class="p">,</span> <span class="n">coords_4</span><span class="p">)</span><span class="o">.</span><span class="n">km</span>
+
+        <span class="n">dx</span> <span class="o">=</span> <span class="n">dx</span><span class="o">*</span><span class="mf">1000.</span> <span class="c1"># km to m</span>
+        <span class="n">dy</span> <span class="o">=</span> <span class="n">dy</span><span class="o">*</span><span class="mf">1000.</span>
+
+        <span class="c1"># Calc Vg</span>
+        <span class="n">ugl</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">1.</span><span class="o">/</span><span class="n">f</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">zl</span><span class="p">[</span><span class="n">i</span><span class="p">,:,</span><span class="n">latloc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">offset1</span><span class="p">,</span><span class="n">lonloc</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">-</span><span class="n">zl</span><span class="p">[</span><span class="n">i</span><span class="p">,:,</span><span class="n">latloc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">offset1</span><span class="p">,</span><span class="n">lonloc</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span><span class="o">/</span><span class="n">dy</span>
+        <span class="n">vgl</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">f</span><span class="p">)</span>  <span class="o">*</span> <span class="p">(</span><span class="n">zl</span><span class="p">[</span><span class="n">i</span><span class="p">,:,</span><span class="n">latloc</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">lonloc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">offset2</span><span class="p">]</span><span class="o">-</span><span class="n">zl</span><span class="p">[</span><span class="n">i</span><span class="p">,:,</span><span class="n">latloc</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">lonloc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">offset2</span><span class="p">])</span><span class="o">/</span><span class="n">dx</span>
+        <span class="n">zhtl</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">zl</span><span class="p">[</span><span class="n">i</span><span class="p">,:,</span><span class="n">latloc</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">lonloc</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">/</span><span class="n">g</span>
+
+    <span class="n">ugeo</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">ugl</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">vgeo</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">vgl</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">zgeo</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">zhtl</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">ugeo</span> <span class="o">=</span> <span class="n">gaussian_filter1d</span><span class="p">(</span><span class="n">ugeo</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">vgeo</span> <span class="o">=</span> <span class="n">gaussian_filter1d</span><span class="p">(</span><span class="n">vgeo</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Geostrophic wind computed&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="interpolate-extrapolate-ug-vg-to-native-era5-levels">
+<h3>Interpolate/extrapolate Ug/Vg to native ERA5 levels<a class="headerlink" href="#interpolate-extrapolate-ug-vg-to-native-era5-levels" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">do_geo</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">ugeo_new</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">ugeo</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">hgt</span><span class="p">)[</span><span class="mi">1</span><span class="p">]])</span>
+    <span class="n">vgeo_new</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">ugeo</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">hgt</span><span class="p">)[</span><span class="mi">1</span><span class="p">]])</span>
+    <span class="n">zgeo_new</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">ugeo</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">hgt</span><span class="p">)[</span><span class="mi">1</span><span class="p">]])</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">les_lat</span><span class="p">)):</span>
+        <span class="n">zgeo_new</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">hgt</span><span class="p">[</span><span class="n">t0</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="n">z1</span><span class="p">:]</span>
+
+        <span class="n">f</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">zgeo</span><span class="p">[</span><span class="n">i</span><span class="p">,:],</span> <span class="n">ugeo</span><span class="p">[</span><span class="n">i</span><span class="p">,:],</span> <span class="n">bounds_error</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="s1">&#39;extrapolate&#39;</span><span class="p">)</span>
+        <span class="n">ugeo_new</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">zgeo_new</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+
+        <span class="n">f</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">zgeo</span><span class="p">[</span><span class="n">i</span><span class="p">,:],</span> <span class="n">vgeo</span><span class="p">[</span><span class="n">i</span><span class="p">,:],</span> <span class="n">bounds_error</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="s1">&#39;extrapolate&#39;</span><span class="p">)</span>
+        <span class="n">vgeo_new</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">zgeo_new</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+
+        <span class="c1">#print (&#39;!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!&#39;)</span>
+        <span class="c1">#print (zgeo[i,:],ugeo[i,:])</span>
+        <span class="c1">#print (new_levs,ugeo_new)</span>
+
+    <span class="c1"># Add top pressure and o3 values - here we assume o3 goes to zero at 1e-4 Pa</span>
+    <span class="c1">#pres_t0_add_top = np.insert(pres_t0,len(pres_t0),0.0001)</span>
+    <span class="c1">#o3_t0_add_top = np.insert(o3_t0,len(o3_t0),0.0)</span>
+
+    <span class="c1"># Add levels for extrapolation</span>
+    <span class="c1">#pres_o3_extrap_levels = [90,80,70,60,50,30,10,5,1,0.5,0.1,0.01,0.001]</span>
+    <span class="c1">#pres_t0_o3 = np.insert(pres_t0_add_top,-1,pres_o3_extrap_levels)</span>
+
+    <span class="c1"># Do the extrapolation</span>
+    <span class="c1">#f = interpolate.interp1d(pres_t0_add_top, o3_t0_add_top, kind=&#39;cubic&#39;)</span>
+    <span class="c1">#o3_t0i = f(pres_t0_o3.data)</span>
+
+    <span class="c1">#plt.figure()</span>
+    <span class="c1">#plt.figure(figsize=(8,8))</span>
+
+    <span class="c1">#var_plt1 = o3_t0</span>
+    <span class="c1">#var_plt2 = o3_t0i</span>
+    <span class="c1">#plt.plot(var_plt1,pres_t0,c=&#39;k&#39;,label=&#39;Original profile&#39;)</span>
+    <span class="c1">#plt.plot(var_plt2,pres_t0_o3,c=&#39;r&#39;,ls=&#39;--&#39;,label=&#39;Extrapolated profile&#39;)</span>
+    <span class="c1">#plt.legend()</span>
+    <span class="c1">#plt.xlabel(&#39;Ozone (kg kg-1)&#39;)</span>
+    <span class="c1">#plt.ylabel(&#39;Pressure (Pa)&#39;)</span>
+    <span class="c1">#plt.yscale(&#39;log&#39;)</span>
+    <span class="c1">#plt.gca().invert_yaxis()</span>
+
+    <span class="c1">#plt.show()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="interpolate-t0-profiles-nudging-profiles-and-geostrophic-wind-profiles-to-common-vertical-grid-for-simplicity">
+<h3>Interpolate t0 profiles, nudging profiles, and geostrophic wind profiles to common vertical grid for simplicity<a class="headerlink" href="#interpolate-t0-profiles-nudging-profiles-and-geostrophic-wind-profiles-to-common-vertical-grid-for-simplicity" title="Permalink to this headline">#</a></h3>
+<section id="find-time-with-highest-first-level-and-get-vertical-grid">
+<h4>Find time with highest first level and get vertical grid<a class="headerlink" href="#find-time-with-highest-first-level-and-get-vertical-grid" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">do_geo</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">zz1_geo</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">nhrs</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">pres_t0</span><span class="p">)])</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nhrs</span><span class="p">):</span>
+        <span class="n">zz1_geo</span><span class="p">[</span><span class="n">count</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">zgeo_new</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="n">count</span><span class="o">+=</span><span class="mi">1</span>
+
+    <span class="n">zz1_nudge</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">nhrs</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">pres_t0</span><span class="p">)])</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nhrs</span><span class="p">):</span>
+        <span class="n">zz1_nudge</span><span class="p">[</span><span class="n">count</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">hgt</span><span class="p">[</span><span class="n">t0</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="n">z1</span><span class="p">:]</span>
+
+        <span class="n">count</span><span class="o">+=</span><span class="mi">1</span>
+
+    <span class="n">zz1_geo_max_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">zz1_geo</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">zz1_nudge_max_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">zz1_nudge</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">zz1_geo_max</span> <span class="o">=</span> <span class="n">zz1_geo</span><span class="p">[</span><span class="n">zz1_geo_max_idx</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">zz1_nudge_max</span> <span class="o">=</span> <span class="n">zz1_nudge</span><span class="p">[</span><span class="n">zz1_nudge_max_idx</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">zz1_geo_max</span> <span class="o">&gt;</span> <span class="n">zz1_nudge_max</span><span class="p">:</span>
+        <span class="n">zgeoi</span> <span class="o">=</span> <span class="n">zz1_geo</span><span class="p">[</span><span class="n">zz1_geo_max_idx</span><span class="p">,</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">zgeoi</span> <span class="o">=</span> <span class="n">zz1_nudge</span><span class="p">[</span><span class="n">zz1_nudge_max_idx</span><span class="p">,</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">zz1_nudge</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">nhrs</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">pres_t0</span><span class="p">)])</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nhrs</span><span class="p">):</span>
+        <span class="n">zz1_nudge</span><span class="p">[</span><span class="n">count</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">hgt</span><span class="p">[</span><span class="n">t0</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="n">z1</span><span class="p">:]</span>
+
+        <span class="n">count</span><span class="o">+=</span><span class="mi">1</span>
+
+    <span class="n">zz1_nudge_max_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">zz1_nudge</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">zz1_nudge_max</span> <span class="o">=</span> <span class="n">zz1_nudge</span><span class="p">[</span><span class="n">zz1_nudge_max_idx</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">zgeoi</span> <span class="o">=</span> <span class="n">zz1_nudge</span><span class="p">[</span><span class="n">zz1_nudge_max_idx</span><span class="p">,</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;First level for all profiles = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">zgeoi</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">3</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39; m&#39;</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>First level for all profiles = 18.168 m
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="do-the-linear-interpolation-of-time-varying-geostrophic-profiles-to-new-vertical-grid">
+<h4>Do the linear interpolation of time-varying geostrophic profiles to new vertical grid<a class="headerlink" href="#do-the-linear-interpolation-of-time-varying-geostrophic-profiles-to-new-vertical-grid" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">do_geo</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">ugeoi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">nhrs</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">pres_t0</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">vgeoi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">nhrs</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">pres_t0</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nhrs</span><span class="p">):</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">zgeo_new</span><span class="p">[</span><span class="n">i</span><span class="p">,:],</span> <span class="n">ugeo_new</span><span class="p">[</span><span class="n">i</span><span class="p">,:])</span>
+        <span class="n">ugeoi</span><span class="p">[</span><span class="n">count</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">zgeoi</span><span class="p">)</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">zgeo_new</span><span class="p">[</span><span class="n">i</span><span class="p">,:],</span> <span class="n">vgeo_new</span><span class="p">[</span><span class="n">i</span><span class="p">,:])</span>
+        <span class="n">vgeoi</span><span class="p">[</span><span class="n">count</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">zgeoi</span><span class="p">)</span>
+
+        <span class="n">count</span><span class="o">+=</span><span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="compare-original-and-interpolated-profiles-of-time-varying-geostrophic-wind-as-example-to-show-efficacy-of-method">
+<h4>Compare original and interpolated profiles of time-varying geostrophic wind as example to show efficacy of method<a class="headerlink" href="#compare-original-and-interpolated-profiles-of-time-varying-geostrophic-wind-as-example-to-show-efficacy-of-method" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">zplt1</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">zplt2</span> <span class="o">=</span> <span class="n">nhrs</span><span class="o">-</span><span class="mi">3</span>
+<span class="n">zplt2b</span> <span class="o">=</span> <span class="mi">50</span>
+
+<span class="k">if</span> <span class="n">do_geo</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+
+    <span class="n">var_plt1</span> <span class="o">=</span> <span class="n">ugeo</span>
+    <span class="n">var_plt2</span> <span class="o">=</span> <span class="n">ugeoi</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nhrs</span><span class="p">):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">var_plt1</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">zplt1</span><span class="p">:</span><span class="n">zplt2</span><span class="p">],</span><span class="n">zgeo</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">zplt1</span><span class="p">:</span><span class="n">zplt2</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">var_plt2</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">zplt1</span><span class="p">:</span><span class="n">zplt2b</span><span class="p">],</span><span class="n">zgeoi</span><span class="p">[</span><span class="n">zplt1</span><span class="p">:</span><span class="n">zplt2b</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;U$_</span><span class="si">{g}</span><span class="s1">$-wind (m s-1)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Height ASL (m)&#39;</span><span class="p">)</span>
+
+    <span class="n">var_plt1</span> <span class="o">=</span> <span class="n">vgeo</span>
+    <span class="n">var_plt2</span> <span class="o">=</span> <span class="n">vgeoi</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nhrs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">var_plt1</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">zplt1</span><span class="p">:</span><span class="n">zplt2</span><span class="p">],</span><span class="n">zgeo</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">zplt1</span><span class="p">:</span><span class="n">zplt2</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Original profile&#39;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">var_plt2</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">zplt1</span><span class="p">:</span><span class="n">zplt2b</span><span class="p">],</span><span class="n">zgeoi</span><span class="p">[</span><span class="n">zplt1</span><span class="p">:</span><span class="n">zplt2b</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Interpolated profile&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">var_plt1</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">zplt1</span><span class="p">:</span><span class="n">zplt2</span><span class="p">],</span><span class="n">zgeo</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">zplt1</span><span class="p">:</span><span class="n">zplt2</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">var_plt2</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">zplt1</span><span class="p">:</span><span class="n">zplt2b</span><span class="p">],</span><span class="n">zgeoi</span><span class="p">[</span><span class="n">zplt1</span><span class="p">:</span><span class="n">zplt2b</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;V$_</span><span class="si">{g}</span><span class="s1">$-wind (m s-1)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="do-the-linear-interpolation-for-initial-forcing-profiles">
+<h4>Do the linear interpolation for initial forcing profiles<a class="headerlink" href="#do-the-linear-interpolation-for-initial-forcing-profiles" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">hgt_t0</span><span class="p">,</span> <span class="n">pres_t0</span><span class="p">)</span>
+<span class="n">pres_t0i</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">zgeoi</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">hgt_t0</span><span class="p">,</span> <span class="n">uwnd_t0</span><span class="p">)</span>
+<span class="n">uwnd_t0i</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">zgeoi</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">hgt_t0</span><span class="p">,</span> <span class="n">vwnd_t0</span><span class="p">)</span>
+<span class="n">vwnd_t0i</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">zgeoi</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">hgt_t0</span><span class="p">,</span> <span class="n">wwnd_t0</span><span class="p">)</span>
+<span class="n">wwnd_t0i</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">zgeoi</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">hgt_t0</span><span class="p">,</span> <span class="n">temp_t0</span><span class="p">)</span>
+<span class="n">temp_t0i</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">zgeoi</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">hgt_t0</span><span class="p">,</span> <span class="n">theta_t0</span><span class="p">)</span>
+<span class="n">theta_t0i</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">zgeoi</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">hgt_t0</span><span class="p">,</span> <span class="n">qv_t0</span><span class="p">)</span>
+<span class="n">qv_t0i</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">zgeoi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="do-the-linear-interpolation-for-nudging-forcing-profiles">
+<h4>Do the linear interpolation for nudging forcing profiles<a class="headerlink" href="#do-the-linear-interpolation-for-nudging-forcing-profiles" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">unudgei</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">nhrs</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">pres_t0</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">vnudgei</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">nhrs</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">pres_t0</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">do_t_qv_w</span> <span class="o">=</span> <span class="kc">True</span> <span class="c1"># temp flag for advection checks</span>
+<span class="k">if</span> <span class="n">do_t_qv_w</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">tnudgei</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">nhrs</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">pres_t0</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">qvnudgei</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">nhrs</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">pres_t0</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">wnudgei</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">nhrs</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">pres_t0</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nhrs</span><span class="p">):</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">hgt</span><span class="p">[</span><span class="n">t0</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="n">z1</span><span class="p">:],</span> <span class="n">uwnd</span><span class="p">[</span><span class="n">t0</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="n">z1</span><span class="p">:])</span>
+    <span class="n">unudgei</span><span class="p">[</span><span class="n">count</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">zgeoi</span><span class="p">)</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">hgt</span><span class="p">[</span><span class="n">t0</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="n">z1</span><span class="p">:],</span> <span class="n">vwnd</span><span class="p">[</span><span class="n">t0</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="n">z1</span><span class="p">:])</span>
+    <span class="n">vnudgei</span><span class="p">[</span><span class="n">count</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">zgeoi</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">do_t_qv_w</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">hgt</span><span class="p">[</span><span class="n">t0</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="n">z1</span><span class="p">:],</span> <span class="n">theta</span><span class="p">[</span><span class="n">t0</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="n">z1</span><span class="p">:])</span>
+        <span class="n">tnudgei</span><span class="p">[</span><span class="n">count</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">zgeoi</span><span class="p">)</span>
+        
+        <span class="n">f</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">hgt</span><span class="p">[</span><span class="n">t0</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="n">z1</span><span class="p">:],</span> <span class="n">qv</span><span class="p">[</span><span class="n">t0</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="n">z1</span><span class="p">:])</span>
+        <span class="n">qvnudgei</span><span class="p">[</span><span class="n">count</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">zgeoi</span><span class="p">)</span>
+        
+        <span class="n">f</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">hgt</span><span class="p">[</span><span class="n">t0</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="n">z1</span><span class="p">:],</span> <span class="n">wwnd</span><span class="p">[</span><span class="n">t0</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="n">z1</span><span class="p">:])</span>
+        <span class="n">wnudgei</span><span class="p">[</span><span class="n">count</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">zgeoi</span><span class="p">)</span>
+    
+    <span class="n">count</span><span class="o">+=</span><span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="compare-original-and-interpolated-intial-profiles-as-example-to-show-efficacy-of-method">
+<h4>Compare original and interpolated intial profiles as example to show efficacy of method<a class="headerlink" href="#compare-original-and-interpolated-intial-profiles-as-example-to-show-efficacy-of-method" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">zplt1</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">zplt2</span> <span class="o">=</span> <span class="mi">50</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+
+<span class="n">var_plt1</span> <span class="o">=</span> <span class="n">uwnd_t0</span>
+<span class="n">var_plt2</span> <span class="o">=</span> <span class="n">uwnd_t0i</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">131</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">var_plt1</span><span class="p">[</span><span class="n">zplt1</span><span class="p">:</span><span class="n">zplt2</span><span class="p">],</span><span class="n">hgt_t0</span><span class="p">[</span><span class="n">zplt1</span><span class="p">:</span><span class="n">zplt2</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">var_plt2</span><span class="p">[</span><span class="n">zplt1</span><span class="p">:</span><span class="n">zplt2</span><span class="p">],</span><span class="n">zgeoi</span><span class="p">[</span><span class="n">zplt1</span><span class="p">:</span><span class="n">zplt2</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;U-wind (m s-1)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Height ASL (m)&#39;</span><span class="p">)</span>
+
+<span class="n">var_plt1</span> <span class="o">=</span> <span class="n">vwnd_t0</span>
+<span class="n">var_plt2</span> <span class="o">=</span> <span class="n">vwnd_t0i</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">132</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">var_plt1</span><span class="p">[</span><span class="n">zplt1</span><span class="p">:</span><span class="n">zplt2</span><span class="p">],</span><span class="n">hgt_t0</span><span class="p">[</span><span class="n">zplt1</span><span class="p">:</span><span class="n">zplt2</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">var_plt2</span><span class="p">[</span><span class="n">zplt1</span><span class="p">:</span><span class="n">zplt2</span><span class="p">],</span><span class="n">zgeoi</span><span class="p">[</span><span class="n">zplt1</span><span class="p">:</span><span class="n">zplt2</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;V-wind (m s-1)&#39;</span><span class="p">)</span>
+        
+<span class="n">var_plt1</span> <span class="o">=</span> <span class="n">theta_t0</span>
+<span class="n">var_plt2</span> <span class="o">=</span> <span class="n">theta_t0i</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">133</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">var_plt1</span><span class="p">[</span><span class="n">zplt1</span><span class="p">:</span><span class="n">zplt2</span><span class="p">],</span><span class="n">hgt_t0</span><span class="p">[</span><span class="n">zplt1</span><span class="p">:</span><span class="n">zplt2</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Original profile&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">var_plt2</span><span class="p">[</span><span class="n">zplt1</span><span class="p">:</span><span class="n">zplt2</span><span class="p">],</span><span class="n">zgeoi</span><span class="p">[</span><span class="n">zplt1</span><span class="p">:</span><span class="n">zplt2</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Interpolated profile&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Potential Temperature (K)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 432x288 with 0 Axes&gt;
+</pre></div>
+</div>
+<img alt="../../_images/create_comble_nudging_forcing_era5ml_v1.6_43_11.png" src="../../_images/create_comble_nudging_forcing_era5ml_v1.6_43_11.png" />
+</div>
+</div>
+</section>
+<section id="compare-original-and-interpolated-nudging-profiles-as-example-to-show-efficacy-of-method">
+<h4>Compare original and interpolated nudging profiles as example to show efficacy of method<a class="headerlink" href="#compare-original-and-interpolated-nudging-profiles-as-example-to-show-efficacy-of-method" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">zplt1</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">zplt2</span> <span class="o">=</span> <span class="mi">50</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+
+<span class="n">var_plt1</span> <span class="o">=</span> <span class="n">uwnd</span>
+<span class="n">var_plt2</span> <span class="o">=</span> <span class="n">unudgei</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">131</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nhrs</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">var_plt1</span><span class="p">[</span><span class="n">t0</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="n">zplt1</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">zplt2</span><span class="p">],</span><span class="n">hgt</span><span class="p">[</span><span class="n">t0</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="n">zplt1</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">zplt2</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">var_plt2</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">zplt1</span><span class="p">:</span><span class="n">zplt2</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">zgeoi</span><span class="p">[</span><span class="n">zplt1</span><span class="p">:</span><span class="n">zplt2</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;U-wind (m s-1)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Height ASL (m)&#39;</span><span class="p">)</span>
+        
+<span class="n">var_plt1</span> <span class="o">=</span> <span class="n">vwnd</span>
+<span class="n">var_plt2</span> <span class="o">=</span> <span class="n">vnudgei</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">132</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nhrs</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">var_plt1</span><span class="p">[</span><span class="n">t0</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="n">zplt1</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">zplt2</span><span class="p">],</span><span class="n">hgt</span><span class="p">[</span><span class="n">t0</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="n">zplt1</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">zplt2</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Original profile&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">var_plt2</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">zplt1</span><span class="p">:</span><span class="n">zplt2</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">zgeoi</span><span class="p">[</span><span class="n">zplt1</span><span class="p">:</span><span class="n">zplt2</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Interpolated profile&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">var_plt1</span><span class="p">[</span><span class="n">t0</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="n">zplt1</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">zplt2</span><span class="p">],</span><span class="n">hgt</span><span class="p">[</span><span class="n">t0</span><span class="o">+</span><span class="n">i</span><span class="p">,</span><span class="n">zplt1</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">zplt2</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">var_plt2</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">zplt1</span><span class="p">:</span><span class="n">zplt2</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">zgeoi</span><span class="p">[</span><span class="n">zplt1</span><span class="p">:</span><span class="n">zplt2</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;V-wind (m s-1)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 432x288 with 0 Axes&gt;
+</pre></div>
+</div>
+<img alt="../../_images/create_comble_nudging_forcing_era5ml_v1.6_45_11.png" src="../../_images/create_comble_nudging_forcing_era5ml_v1.6_45_11.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="create-new-netcdf-file">
+<h3>Create new netcdf file<a class="headerlink" href="#create-new-netcdf-file" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>  <span class="c1"># just to be safe, make sure dataset is not already open.</span>
+<span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+<span class="n">ncfile</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="s1">&#39;./&#39;</span> <span class="o">+</span> <span class="n">savename</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span><span class="nb">format</span><span class="o">=</span><span class="s1">&#39;NETCDF3_CLASSIC&#39;</span><span class="p">)</span> 
+<span class="c1">#print(ncfile)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="create-dimensions">
+<h3>Create dimensions<a class="headerlink" href="#create-dimensions" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">levs</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">zgeoi</span><span class="p">)</span>
+<span class="c1">#levs_o3 = len(pres_t0_o3)</span>
+<span class="n">z_grid_levs</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">z_grid</span><span class="p">)</span>
+<span class="n">t0_dim</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s1">&#39;t0&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>     <span class="c1"># initial time axis</span>
+<span class="n">lat_dim</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s1">&#39;lat&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>     <span class="c1"># latitude axis</span>
+<span class="n">lon_dim</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s1">&#39;lon&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>     <span class="c1"># longitude axis</span>
+<span class="n">lev_dim</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s1">&#39;lev&#39;</span><span class="p">,</span> <span class="n">levs</span><span class="p">)</span>      <span class="c1"># level axis</span>
+<span class="c1">#pres_o3_dim = ncfile.createDimension(&#39;pres_o3&#39;, levs_o3)      # level axis for o3</span>
+<span class="n">zw_grid_dim</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s1">&#39;zw_grid&#39;</span><span class="p">,</span> <span class="n">z_grid_levs</span><span class="p">)</span>      <span class="c1"># zw_grid axis</span>
+<span class="n">time_dim</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>    <span class="c1"># unlimited axis (can be appended to)</span>
+<span class="c1">#for dim in ncfile.dimensions.items():</span>
+<span class="c1">#    print(dim)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="create-global-attributes">
+<h3>Create global attributes<a class="headerlink" href="#create-global-attributes" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ncfile</span><span class="o">.</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Forcing and initial conditions for 13 March 2020 COMBLE intercomparison case&#39;</span>
+<span class="n">ncfile</span><span class="o">.</span><span class="n">reference</span><span class="o">=</span><span class="s1">&#39;https://comble-intercomparison.readthedocs.io/en/latest/&#39;</span>
+<span class="n">ncfile</span><span class="o">.</span><span class="n">authors</span><span class="o">=</span><span class="s1">&#39;Timothy W. Juliano (NCAR/RAL, tjuliano@ucar.edu); Florian Tornow (NASA/GISS, ft2544@columbia.edu); Ann M. Fridlind (NASA/GISS, ann.fridlind@nasa.gov)&#39;</span>
+<span class="n">ncfile</span><span class="o">.</span><span class="n">version</span><span class="o">=</span><span class="s1">&#39;Created on 2022-11-21&#39;</span>
+<span class="n">ncfile</span><span class="o">.</span><span class="n">format_version</span><span class="o">=</span><span class="s1">&#39;DEPHY SCM format version 1.6&#39;</span>
+<span class="n">ncfile</span><span class="o">.</span><span class="n">script</span><span class="o">=</span><span class="s1">&#39;create_comble_forcing.ipynb&#39;</span>
+<span class="n">ncfile</span><span class="o">.</span><span class="n">startDate</span><span class="o">=</span><span class="n">start_time</span>
+<span class="n">ncfile</span><span class="o">.</span><span class="n">endDate</span><span class="o">=</span><span class="s1">&#39;2020-03-13 18:00:00&#39;</span>
+<span class="n">ncfile</span><span class="o">.</span><span class="n">force_geo</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">ncfile</span><span class="o">.</span><span class="n">surfaceType</span><span class="o">=</span><span class="s1">&#39;ocean&#39;</span>
+<span class="n">ncfile</span><span class="o">.</span><span class="n">surfaceForcing</span><span class="o">=</span><span class="s1">&#39;ts&#39;</span>
+<span class="n">ncfile</span><span class="o">.</span><span class="n">lat</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">les_lat_mid</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; deg N&#39;</span>
+<span class="n">ncfile</span><span class="o">.</span><span class="n">dx</span><span class="o">=</span><span class="s1">&#39;150 m&#39;</span>
+<span class="n">ncfile</span><span class="o">.</span><span class="n">dy</span><span class="o">=</span><span class="s1">&#39;150 m&#39;</span>
+<span class="n">ncfile</span><span class="o">.</span><span class="n">dz</span><span class="o">=</span><span class="s1">&#39;see zw_grid variable&#39;</span>
+<span class="n">ncfile</span><span class="o">.</span><span class="n">nx</span><span class="o">=</span><span class="s1">&#39;648&#39;</span>
+<span class="n">ncfile</span><span class="o">.</span><span class="n">ny</span><span class="o">=</span><span class="s1">&#39;648&#39;</span>
+<span class="n">ncfile</span><span class="o">.</span><span class="n">nz</span><span class="o">=</span><span class="s1">&#39;160&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="create-variables">
+<h3>Create variables<a class="headerlink" href="#create-variables" title="Permalink to this headline">#</a></h3>
+<section id="dimensions">
+<h4>Dimensions<a class="headerlink" href="#dimensions" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t0_time</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;t0&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;t0&#39;</span><span class="p">,))</span>
+<span class="n">t0_time</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;seconds since 2020-03-12 14:00:00&#39;</span>
+<span class="n">t0_time</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;Initial time&#39;</span>
+
+<span class="n">latitude</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;lat&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;lat&#39;</span><span class="p">,))</span>
+<span class="n">latitude</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;degrees_north&#39;</span>
+<span class="n">latitude</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;latitude&#39;</span>
+
+<span class="n">longitude</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;lon&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;lon&#39;</span><span class="p">,))</span>
+<span class="n">longitude</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;degrees_east&#39;</span>
+<span class="n">longitude</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;longitude&#39;</span>
+
+<span class="n">time</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,))</span>
+<span class="n">time</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;seconds since &#39;</span> <span class="o">+</span> <span class="n">start_time</span>
+<span class="n">time</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;time&#39;</span>
+
+<span class="n">lev</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;lev&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;lev&#39;</span><span class="p">,))</span>
+<span class="n">lev</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;m&#39;</span>
+<span class="n">lev</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;altitude&#39;</span>
+
+<span class="c1">#pressure_o3 = ncfile.createVariable(&#39;pres_o3&#39;, np.float64, (&#39;pres_o3&#39;,))</span>
+<span class="c1">#pressure_o3.units = &#39;Pa&#39;</span>
+<span class="c1">#pressure_o3.long_name = &#39;pressure for o3&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="initial-profiles">
+<h4>Initial profiles<a class="headerlink" href="#initial-profiles" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pressure</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;pressure&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;t0&#39;</span><span class="p">,</span><span class="s1">&#39;lev&#39;</span><span class="p">,</span><span class="s1">&#39;lat&#39;</span><span class="p">,</span><span class="s1">&#39;lon&#39;</span><span class="p">,))</span>
+<span class="n">pressure</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;Pa&#39;</span>
+<span class="n">pressure</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;pressure&#39;</span>
+
+<span class="n">u</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;u&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;t0&#39;</span><span class="p">,</span><span class="s1">&#39;lev&#39;</span><span class="p">,</span><span class="s1">&#39;lat&#39;</span><span class="p">,</span><span class="s1">&#39;lon&#39;</span><span class="p">,))</span>
+<span class="n">u</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;m s-1&#39;</span>
+<span class="n">u</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;zonal wind&#39;</span>
+
+<span class="n">v</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;v&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;t0&#39;</span><span class="p">,</span><span class="s1">&#39;lev&#39;</span><span class="p">,</span><span class="s1">&#39;lat&#39;</span><span class="p">,</span><span class="s1">&#39;lon&#39;</span><span class="p">,))</span>
+<span class="n">v</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;m s-1&#39;</span>
+<span class="n">v</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;meridional wind&#39;</span>
+
+<span class="n">temperature</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;temp&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;t0&#39;</span><span class="p">,</span><span class="s1">&#39;lev&#39;</span><span class="p">,</span><span class="s1">&#39;lat&#39;</span><span class="p">,</span><span class="s1">&#39;lon&#39;</span><span class="p">,))</span>
+<span class="n">temperature</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;K&#39;</span>
+<span class="n">temperature</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;temperature&#39;</span>
+
+<span class="n">ptemperature</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;theta&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;t0&#39;</span><span class="p">,</span><span class="s1">&#39;lev&#39;</span><span class="p">,</span><span class="s1">&#39;lat&#39;</span><span class="p">,</span><span class="s1">&#39;lon&#39;</span><span class="p">,))</span>
+<span class="n">ptemperature</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;K&#39;</span>
+<span class="n">ptemperature</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;potential temperature&#39;</span>
+
+<span class="n">qvapor</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;qv&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;t0&#39;</span><span class="p">,</span><span class="s1">&#39;lev&#39;</span><span class="p">,</span><span class="s1">&#39;lat&#39;</span><span class="p">,</span><span class="s1">&#39;lon&#39;</span><span class="p">,))</span>
+<span class="n">qvapor</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;kg kg-1&#39;</span>
+<span class="n">qvapor</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;specific humidity&#39;</span>
+
+<span class="c1">#ozone = ncfile.createVariable(&#39;o3&#39;, np.float64, (&#39;t0&#39;,&#39;pres_o3&#39;,&#39;lat&#39;,&#39;lon&#39;,))</span>
+<span class="c1">#ozone.units = &#39;kg kg-1&#39;</span>
+<span class="c1">#ozone.long_name = &#39;ozone mass mixing ratio&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="initial-sfc-conditions">
+<h4>Initial sfc conditions<a class="headerlink" href="#initial-sfc-conditions" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ps</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;ps&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;t0&#39;</span><span class="p">,</span><span class="s1">&#39;lat&#39;</span><span class="p">,</span><span class="s1">&#39;lon&#39;</span><span class="p">,))</span>
+<span class="n">ps</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;Pa&#39;</span>
+<span class="n">ps</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;surface pressure&#39;</span>
+
+<span class="n">thetas</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;thetas&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;t0&#39;</span><span class="p">,</span><span class="s1">&#39;lat&#39;</span><span class="p">,</span><span class="s1">&#39;lon&#39;</span><span class="p">,))</span>
+<span class="n">thetas</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;K&#39;</span>
+<span class="n">thetas</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;surface potential temperature&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="time-varying-forcing-geostrophic">
+<h4>Time-varying forcing - geostrophic<a class="headerlink" href="#time-varying-forcing-geostrophic" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">do_geo</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">ug</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;ug&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="s1">&#39;lev&#39;</span><span class="p">,))</span>
+    <span class="n">ug</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;m s-1&#39;</span>
+    <span class="n">ug</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;geostrophic zonal wind&#39;</span>
+
+    <span class="n">vg</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;vg&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="s1">&#39;lev&#39;</span><span class="p">,))</span>
+    <span class="n">vg</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;m s-1&#39;</span>
+    <span class="n">vg</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;geostrophic meridional wind&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="time-varying-forcing-nudging">
+<h4>Time-varying forcing - nudging<a class="headerlink" href="#time-varying-forcing-nudging" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u_nudging</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;u_nudging&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="s1">&#39;lev&#39;</span><span class="p">,))</span>
+<span class="n">u_nudging</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;m s-1&#39;</span>
+<span class="n">u_nudging</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;zonal wind profile for nudging&#39;</span>
+
+<span class="n">v_nudging</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;v_nudging&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="s1">&#39;lev&#39;</span><span class="p">,))</span>
+<span class="n">v_nudging</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;m s-1&#39;</span>
+<span class="n">v_nudging</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;meridional wind profile for nudging&#39;</span>
+
+<span class="k">if</span> <span class="n">do_t_qv_w</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">theta_nudging</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;theta_nudging&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="s1">&#39;lev&#39;</span><span class="p">,))</span>
+    <span class="n">theta_nudging</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;K&#39;</span>
+    <span class="n">theta_nudging</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;potential temperature profile for nudging&#39;</span>
+
+    <span class="n">qv_nudging</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;qv_nudging&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="s1">&#39;lev&#39;</span><span class="p">,))</span>
+    <span class="n">qv_nudging</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;kg kg-1&#39;</span>
+    <span class="n">qv_nudging</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;specific humidity profile for nudging&#39;</span>
+    
+    <span class="n">w_nudging</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;w_nudging&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="s1">&#39;lev&#39;</span><span class="p">,))</span>
+    <span class="n">w_nudging</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;Pa s-1&#39;</span>
+    <span class="n">w_nudging</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;vertical velocity for nudging&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="misc">
+<h4>Misc<a class="headerlink" href="#misc" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">zw_grid</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;zw_grid&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;zw_grid&#39;</span><span class="p">,))</span>
+<span class="n">zw_grid</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;m&#39;</span>
+<span class="n">zw_grid</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;grid altitude at cell faces&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="write-data">
+<h3>Write data<a class="headerlink" href="#write-data" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t0_time</span><span class="p">[:]</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">latitude</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">les_lat_mid</span>
+<span class="n">longitude</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">les_lon_mid</span>
+<span class="n">lev</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">zgeoi</span>
+<span class="n">zw_grid</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">z_grid</span>
+<span class="n">pressure</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">pres_t0i</span>
+<span class="c1">#pressure_o3[:] = pres_t0_o3</span>
+<span class="n">u</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">uwnd_t0i</span>
+<span class="n">v</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">vwnd_t0i</span>
+<span class="n">temperature</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">temp_t0i</span>
+<span class="n">ptemperature</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">theta_t0i</span>
+<span class="n">qvapor</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">qv_t0i</span>
+<span class="c1">#ozone[:] = o3_t0i</span>
+
+<span class="n">ps</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">ps_t0</span>
+<span class="n">thetas</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">thetas_t0</span>
+
+<span class="k">if</span> <span class="n">do_geo</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">ug</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">ugeoi</span>
+    <span class="n">vg</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">vgeoi</span>
+
+<span class="n">u_nudging</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">unudgei</span>
+<span class="n">v_nudging</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">vnudgei</span>
+
+<span class="k">if</span> <span class="n">do_t_qv_w</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">theta_nudging</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">tnudgei</span>
+    <span class="n">qv_nudging</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">qvnudgei</span>
+    <span class="n">w_nudging</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">wnudgei</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="add-times">
+<h3>Add times<a class="headerlink" href="#add-times" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dates</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nhrs</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">nhrs</span> <span class="o">==</span> <span class="mi">19</span><span class="p">:</span>
+        <span class="n">dates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="n">i</span><span class="p">))</span>
+        <span class="nb">print</span> <span class="p">(</span><span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="n">i</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">start_hour</span><span class="o">+</span><span class="n">i</span> <span class="o">&gt;</span> <span class="mi">23</span><span class="p">:</span>
+            <span class="n">dates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="n">start_hour</span><span class="o">+</span><span class="n">i</span><span class="o">-</span><span class="mi">24</span><span class="p">))</span>
+            <span class="nb">print</span> <span class="p">(</span><span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="n">start_hour</span><span class="o">+</span><span class="n">i</span><span class="o">-</span><span class="mi">24</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">dates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="n">start_hour</span><span class="o">+</span><span class="n">i</span><span class="p">))</span>
+            <span class="nb">print</span> <span class="p">(</span><span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="n">start_hour</span><span class="o">+</span><span class="n">i</span><span class="p">))</span>
+<span class="n">times</span> <span class="o">=</span> <span class="n">date2num</span><span class="p">(</span><span class="n">dates</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">units</span><span class="p">)</span>
+<span class="n">time</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">times</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2020-03-12 14:00:00
+2020-03-12 15:00:00
+2020-03-12 16:00:00
+2020-03-12 17:00:00
+2020-03-12 18:00:00
+2020-03-12 19:00:00
+2020-03-12 20:00:00
+2020-03-12 21:00:00
+2020-03-12 22:00:00
+2020-03-12 23:00:00
+2020-03-13 00:00:00
+2020-03-13 01:00:00
+2020-03-13 02:00:00
+2020-03-13 03:00:00
+2020-03-13 04:00:00
+2020-03-13 05:00:00
+2020-03-13 06:00:00
+2020-03-13 07:00:00
+2020-03-13 08:00:00
+2020-03-13 09:00:00
+2020-03-13 10:00:00
+2020-03-13 11:00:00
+2020-03-13 12:00:00
+2020-03-13 13:00:00
+2020-03-13 14:00:00
+2020-03-13 15:00:00
+2020-03-13 16:00:00
+2020-03-13 17:00:00
+2020-03-13 18:00:00
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="close-the-file">
+<h3>Close the file<a class="headerlink" href="#close-the-file" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># first print the Dataset object to see what we&#39;ve got</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ncfile</span><span class="p">)</span>
+<span class="c1"># close the Dataset.</span>
+<span class="n">ncfile</span><span class="o">.</span><span class="n">close</span><span class="p">();</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Dataset is closed!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;netCDF4._netCDF4.Dataset&#39;&gt;
+root group (NETCDF3_CLASSIC data model, file format NETCDF3):
+    title: Forcing and initial conditions for 13 March 2020 COMBLE intercomparison case
+    reference: https://comble-intercomparison.readthedocs.io/en/latest/
+    authors: Timothy W. Juliano (NCAR/RAL, tjuliano@ucar.edu); Florian Tornow (NASA/GISS, ft2544@columbia.edu); Ann M. Fridlind (NASA/GISS, ann.fridlind@nasa.gov)
+    version: Created on 2022-11-21
+    format_version: DEPHY SCM format version 1.6
+    script: create_comble_forcing.ipynb
+    startDate: 2020-03-12 14:00:00
+    endDate: 2020-03-13 18:00:00
+    force_geo: 1
+    surfaceType: ocean
+    surfaceForcing: ts
+    lat: 77.6 deg N
+    dx: 150 m
+    dy: 150 m
+    dz: see zw_grid variable
+    nx: 648
+    ny: 648
+    nz: 160
+    dimensions(sizes): t0(1), lat(1), lon(1), lev(136), zw_grid(160), time(29)
+    variables(dimensions): float32 t0(t0), float32 lat(lat), float32 lon(lon), float64 time(time), float64 lev(lev), float64 pressure(t0,lev,lat,lon), float64 u(t0,lev,lat,lon), float64 v(t0,lev,lat,lon), float64 temp(t0,lev,lat,lon), float64 theta(t0,lev,lat,lon), float64 qv(t0,lev,lat,lon), float64 ps(t0,lat,lon), float64 thetas(t0,lat,lon), float64 u_nudging(time,lev), float64 v_nudging(time,lev), float64 theta_nudging(time,lev), float64 qv_nudging(time,lev), float64 w_nudging(time,lev), float64 zw_grid(zw_grid)
+    groups: 
+Dataset is closed!
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./notebooks/forcing"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By ARM Development Team<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
