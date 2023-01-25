@@ -1,8 +1,8 @@
-title: Cookbook Template
+title: COMBLE Model-Observation Intercomparison Project
 author: ARM Development Team
 logo: notebooks/images/arm_logo.png
 execute:
-  execute_notebooks: force
+  execute_notebooks: "off"
 parse:
   myst_enable_extensions:
     - html_image
@@ -19,8 +19,7 @@ html:
   comments:
     hypothesis: true
 repository:
-  url: https://github.com/ARM-Development/arm-cookbook-template  # Online location of your book
-  path_to_book: notebooks  # Optional path to your book, relative to the repository root
+  url: https://arm-development.github.io/comble-mip  # Online location of your book
   branch: main  # Which branch of the repository should be used when creating links (optional)
 launch_buttons:
   jupyterhub_url: https://jupyterhub.arm.gov
