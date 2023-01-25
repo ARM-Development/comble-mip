@@ -2,7 +2,7 @@ title: Cookbook Template
 author: ARM Development Team
 logo: notebooks/images/arm_logo.png
 execute:
-  execute_notebooks: "off"
+  execute_notebooks: force
 parse:
   myst_enable_extensions:
     - html_image
