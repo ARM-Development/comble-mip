@@ -4,3 +4,6 @@ parts:
 - caption: Forcing Notebooks
   chapters:
     - glob: notebooks/forcing/*
+- caption: Conversion Notebooks
+  chapters:
+    - glob: notebooks/conversion/*
