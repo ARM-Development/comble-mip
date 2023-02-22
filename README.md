@@ -1,4 +1,4 @@
-# COMBLE Model-observation Intercomparison Project Cookbook
+# COMBLE Model-Observation Intercomparison Project Cookbook
 
 [![Binder](http://binder.mypythia.org/badge_logo.svg)](http://binder.mypythia.org/v2/gh/ARM-Development/arm-cookbook-template/main?labpath=notebooks)
 
