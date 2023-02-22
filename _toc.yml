@@ -1,7 +1,7 @@
 format: jb-book
 root: README
 parts:
-- caption: Forcing Notebooks
+- caption: DEPHY Forcing Notebooks
   chapters:
     - glob: notebooks/forcing/*
 - caption: Conversion Notebooks
