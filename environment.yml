@@ -1,4 +1,4 @@
-name: arm-cookbook-dev
+name: comble-mip-dev
 channels:
   - conda-forge
   - defaults
@@ -17,4 +17,5 @@ dependencies:
   - fiona
   - pip
   - pip:
+    - openpyxl==3.1.0
     - -r doc-requirements.txt
