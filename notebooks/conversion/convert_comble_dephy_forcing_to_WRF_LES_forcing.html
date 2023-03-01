@@ -1,49 +1,57 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Example: convert DEPHY forcing to WRF-LES forcing &#8212; COMBLE Model-Observation Intercomparison Project</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
 
-    
-  <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=4ec06e9971c5264fbd345897d5258098f11cc577" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=8bf782fb4ee92b3d3646425e50f299c4e1fd152d"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../_static/togglebutton.js"></script>
     <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -51,60 +59,268 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/conversion/convert_comble_dephy_forcing_to_WRF_LES_forcing';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Read Metadata Google Sheet" href="../setup/read-metadata-sheet.html" />
     <link rel="prev" title="Generate time-varying surface forcing" href="../forcing/create_comble_sfc_forcing.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
 
-    
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../README.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../../_static/arm_logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../_static/arm_logo.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
         
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../forcing/create_comble_nudging_forcing.html">
+                        Generate initial and time-varying nudging profiles
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../forcing/create_comble_sfc_forcing.html">
+                        Generate time-varying surface forcing
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Example: convert DEPHY forcing to WRF-LES forcing
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../setup/read-metadata-sheet.html">
+                        Read Metadata Google Sheet
+                      </a>
+                    </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
       
       
-      <img src="../../_static/arm_logo.png" class="logo" alt="logo">
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
       
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
       
-      <h1 class="site-logo" id="site-title">COMBLE Model-Observation Intercomparison Project</h1>
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../forcing/create_comble_nudging_forcing.html">
+                        Generate initial and time-varying nudging profiles
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../forcing/create_comble_sfc_forcing.html">
+                        Generate time-varying surface forcing
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Example: convert DEPHY forcing to WRF-LES forcing
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../setup/read-metadata-sheet.html">
+                        Read Metadata Google Sheet
+                      </a>
+                    </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item">
+  
+
+
+<a class="navbar-brand logo" href="../../README.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../../_static/arm_logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../_static/arm_logo.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    </div>
+    <div class="sidebar-start-items__item">
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -113,742 +329,425 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  DEPHY Forcing Notebooks
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">DEPHY Forcing Notebooks</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../forcing/create_comble_nudging_forcing.html">
-   Generate initial and time-varying nudging profiles
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../forcing/create_comble_sfc_forcing.html">
-   Generate time-varying surface forcing
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../forcing/create_comble_nudging_forcing.html">Generate initial and time-varying nudging profiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../forcing/create_comble_sfc_forcing.html">Generate time-varying surface forcing</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Conversion Notebooks
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Conversion Notebooks</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Example: convert DEPHY forcing to WRF-LES forcing
-  </a>
- </li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Example: convert DEPHY forcing to WRF-LES forcing</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Setup</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../setup/read-metadata-sheet.html">Read Metadata Google Sheet</a></li>
 </ul>
 
     </div>
-</nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
+</nav>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
+  </div>
+  
 
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
 
-          
+  
+  <div id="rtd-footer-container"></div>
 
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
+      </div>
+      <main id="main-content" class="bd-main">
         
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
 
 
 
 <div class="col py-1 d-flex header-article-main">
     <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
+        <label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" data-toggle="tooltip" data-placement="right" title="Toggle primary sidebar">
+            <span class="fa-solid fa-bars"></span>
+        </label>
     </div>
     <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/ARM-Development/comble-mip/main?urlpath=lab/tree/notebooks/conversion/convert_comble_dephy_forcing_to_WRF_LES_forcing.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
-  
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://jupyterhub.arm.gov/hub/user-redirect/git-pull?repo=https%3A//github.com/ARM-Development/comble-mip&urlpath=lab/tree/comble-mip/notebooks/conversion/convert_comble_dephy_forcing_to_WRF_LES_forcing.ipynb&branch=main"
-   class="headerbtn"
+  <ul class="dropdown-menu">
+      <li><a href="https://jupyterhub.arm.gov/hub/user-redirect/git-pull?repo=https%3A//github.com/ARM-Development/comble-mip&urlpath=lab/tree/comble-mip/notebooks/conversion/convert_comble_dephy_forcing_to_WRF_LES_forcing.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
 title="Launch on JupyterHub"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   
     <img src="../../_static/images/logo_jupyterhub.svg">
   </span>
-<span class="headerbtn__text-container">JupyterHub</span>
+<span class="btn__text-container">JupyterHub</span>
 </a>
-
-      </li>
+</a>
       
-    </ul>
-  </div>
+  </ul>
 </div>
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
+  class="btn btn-sm"
   data-toggle="tooltip"
 data-placement="bottom"
 title="Fullscreen mode"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../../_sources/notebooks/conversion/convert_comble_dephy_forcing_to_WRF_LES_forcing.ipynb"
-   class="headerbtn"
+  <ul class="dropdown-menu">
+      <li><a href="../../_sources/notebooks/conversion/convert_comble_dephy_forcing_to_WRF_LES_forcing.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
 title="Download source file"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.ipynb</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
-
-      </li>
+</a>
       
       <li>
-        
 <button onclick="printPdf(this)"
-  class="headerbtn"
+  class="btn btn-sm dropdown-item"
   data-toggle="tooltip"
 data-placement="left"
 title="Print to PDF"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-file-pdf"></i>
   </span>
-<span class="headerbtn__text-container">.pdf</span>
+<span class="btn__text-container">.pdf</span>
 </button>
-
-      </li>
+</a>
       
-    </ul>
-  </div>
+  </ul>
 </div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary" data-toggle="tooltip" data-placement="left" title="Toggle secondary sidebar">
+            <span class="fa-solid fa-list"></span>
+        </label>
     </div>
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Example: convert DEPHY forcing to WRF-LES forcing
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-to-read-comble-les-scm-dephy-forcing-files-and-write-input-files-for-wrf-les-ascii-netcdf">
-   Code to read COMBLE LES/SCM DEPHY forcing files and write input files for WRF LES (ASCII/NetCDF)
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#contributed-by-tim-juliano-from-ncar-ral-on-2-2-23">
-     Contributed by Tim Juliano from NCAR/RAL on 2/2/23
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#import-libraries">
-     Import libraries
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#begin-user-mods">
-     !!! BEGIN USER MODS !!!
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#how-many-hours-before-ice-edge-do-you-want-to-start">
-       How many hours before ice edge do you want to start?
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#note-t0-h-0-means-you-are-starting-approx-at-ice-edge-t0-h-10-means-you-are-starting-10-h-upstream-north-of-the-ice-edge">
-       Note: t0_h = 0 means you are starting approx. at ice edge, t0_h = 10 means you are starting 10 h upstream (north) of the ice edge
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#note-t0-h-must-be-an-integer">
-       Note: t0_h must be an integer
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#end-user-mods">
-     !!! END USER MODS !!!
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#set-some-things">
-     Set some things
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#read-forcing-file">
-     Read forcing file
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#write-input-sounding-file-for-wrf-les-in-ascii-format">
-     Write input sounding file for WRF LES in ASCII format
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#write-ozone-file-for-rrtmg">
-     Write ozone file for RRTMG
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#pressure-file">
-       Pressure file
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#ozone-file">
-       Ozone file
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#write-large-scale-forcing-file-for-wrf-les-in-netcdf-format">
-   Write large-scale forcing file for WRF LES in netCDF format
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#pressure-gradient-forcing-or-nudging">
-     Pressure gradient forcing or nudging?
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#read-forcing-winds-from-forcing-file">
-       Read forcing winds from forcing file
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#repeat-z-ls-1d-array-to-be-2d-array-for-writing">
-     Repeat z_ls 1D array to be 2D array for writing
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#compute-wind-forcing-tendency">
-     Compute wind forcing tendency
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#set-relaxation-time-scales-if-nudging">
-     Set relaxation time scales if nudging
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#forcing-netcdf-name-and-delete-file-if-already-exists">
-     Forcing NetCDF name and delete file if already exists
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#create-new-netcdf-file">
-     Create new netcdf file
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#create-dimensions">
-     Create dimensions
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#create-global-attributes">
-     Create global attributes
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#create-variables">
-     Create variables
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#dimensions">
-       Dimensions
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#add-times">
-     Add times
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#time-varying-wind-forcing-profiles">
-       Time-varying wind forcing profiles
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#write-data">
-     Write data
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#close-the-file">
-     Close the file
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#write-surface-forcing-file-for-wrf-les-in-netcdf-format">
-   Write surface forcing file for WRF LES in netCDF format
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#read-skin-temperature-from-forcing-file">
-     Read skin temperature from forcing file
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#compute-skin-temperature-tendency">
-     Compute skin temperature tendency
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     Forcing NetCDF name and delete file if already exists
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id2">
-     Create new netcdf file
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id3">
-     Create dimensions
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id4">
-     Create global attributes
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id5">
-     Create variables
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id6">
-       Dimensions
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id7">
-     Add times
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#time-varying-skin-temperature">
-       Time-varying skin temperature
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id8">
-     Write data
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id9">
-     Close the file
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#write-vertical-grid-file-for-wrf-les-in-ascii-format">
-   Write vertical grid file for WRF LES in ASCII format
-  </a>
- </li>
-</ul>
-
-    </nav>
-</div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Example: convert DEPHY forcing to WRF-LES forcing</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Example: convert DEPHY forcing to WRF-LES forcing
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-to-read-comble-les-scm-dephy-forcing-files-and-write-input-files-for-wrf-les-ascii-netcdf">
-   Code to read COMBLE LES/SCM DEPHY forcing files and write input files for WRF LES (ASCII/NetCDF)
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#contributed-by-tim-juliano-from-ncar-ral-on-2-2-23">
-     Contributed by Tim Juliano from NCAR/RAL on 2/2/23
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#import-libraries">
-     Import libraries
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#begin-user-mods">
-     !!! BEGIN USER MODS !!!
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#how-many-hours-before-ice-edge-do-you-want-to-start">
-       How many hours before ice edge do you want to start?
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#note-t0-h-0-means-you-are-starting-approx-at-ice-edge-t0-h-10-means-you-are-starting-10-h-upstream-north-of-the-ice-edge">
-       Note: t0_h = 0 means you are starting approx. at ice edge, t0_h = 10 means you are starting 10 h upstream (north) of the ice edge
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#note-t0-h-must-be-an-integer">
-       Note: t0_h must be an integer
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#end-user-mods">
-     !!! END USER MODS !!!
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#set-some-things">
-     Set some things
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#read-forcing-file">
-     Read forcing file
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#write-input-sounding-file-for-wrf-les-in-ascii-format">
-     Write input sounding file for WRF LES in ASCII format
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#write-ozone-file-for-rrtmg">
-     Write ozone file for RRTMG
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#pressure-file">
-       Pressure file
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#ozone-file">
-       Ozone file
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#write-large-scale-forcing-file-for-wrf-les-in-netcdf-format">
-   Write large-scale forcing file for WRF LES in netCDF format
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#pressure-gradient-forcing-or-nudging">
-     Pressure gradient forcing or nudging?
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#read-forcing-winds-from-forcing-file">
-       Read forcing winds from forcing file
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#repeat-z-ls-1d-array-to-be-2d-array-for-writing">
-     Repeat z_ls 1D array to be 2D array for writing
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#compute-wind-forcing-tendency">
-     Compute wind forcing tendency
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#set-relaxation-time-scales-if-nudging">
-     Set relaxation time scales if nudging
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#forcing-netcdf-name-and-delete-file-if-already-exists">
-     Forcing NetCDF name and delete file if already exists
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#create-new-netcdf-file">
-     Create new netcdf file
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#create-dimensions">
-     Create dimensions
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#create-global-attributes">
-     Create global attributes
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#create-variables">
-     Create variables
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#dimensions">
-       Dimensions
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#add-times">
-     Add times
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#time-varying-wind-forcing-profiles">
-       Time-varying wind forcing profiles
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#write-data">
-     Write data
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#close-the-file">
-     Close the file
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#write-surface-forcing-file-for-wrf-les-in-netcdf-format">
-   Write surface forcing file for WRF LES in netCDF format
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#read-skin-temperature-from-forcing-file">
-     Read skin temperature from forcing file
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#compute-skin-temperature-tendency">
-     Compute skin temperature tendency
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     Forcing NetCDF name and delete file if already exists
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id2">
-     Create new netcdf file
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id3">
-     Create dimensions
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id4">
-     Create global attributes
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id5">
-     Create variables
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id6">
-       Dimensions
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id7">
-     Add times
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#time-varying-skin-temperature">
-       Time-varying skin temperature
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id8">
-     Write data
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id9">
-     Close the file
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#write-vertical-grid-file-for-wrf-les-in-ascii-format">
-   Write vertical grid file for WRF LES in ASCII format
-  </a>
- </li>
-</ul>
-
-                        </nav>
-                    </div>
-                </div>
             </div>
-            <main id="main-content" role="main">
-                
-              <div>
-                
+            
+            
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Example: convert DEPHY forcing to WRF-LES forcing</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Example: convert DEPHY forcing to WRF-LES forcing
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#code-to-read-comble-les-scm-dephy-forcing-files-and-write-input-files-for-wrf-les-ascii-netcdf">
+   Code to read COMBLE LES/SCM DEPHY forcing files and write input files for WRF LES (ASCII/NetCDF)
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#contributed-by-tim-juliano-from-ncar-ral-on-2-2-23">
+     Contributed by Tim Juliano from NCAR/RAL on 2/2/23
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#import-libraries">
+     Import libraries
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#begin-user-mods">
+     !!! BEGIN USER MODS !!!
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#how-many-hours-before-ice-edge-do-you-want-to-start">
+       How many hours before ice edge do you want to start?
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#note-t0-h-0-means-you-are-starting-approx-at-ice-edge-t0-h-10-means-you-are-starting-10-h-upstream-north-of-the-ice-edge">
+       Note: t0_h = 0 means you are starting approx. at ice edge, t0_h = 10 means you are starting 10 h upstream (north) of the ice edge
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#note-t0-h-must-be-an-integer">
+       Note: t0_h must be an integer
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#end-user-mods">
+     !!! END USER MODS !!!
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#set-some-things">
+     Set some things
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#read-forcing-file">
+     Read forcing file
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#write-input-sounding-file-for-wrf-les-in-ascii-format">
+     Write input sounding file for WRF LES in ASCII format
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#write-ozone-file-for-rrtmg">
+     Write ozone file for RRTMG
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#pressure-file">
+       Pressure file
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#ozone-file">
+       Ozone file
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#write-large-scale-forcing-file-for-wrf-les-in-netcdf-format">
+   Write large-scale forcing file for WRF LES in netCDF format
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pressure-gradient-forcing-or-nudging">
+     Pressure gradient forcing or nudging?
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#read-forcing-winds-from-forcing-file">
+       Read forcing winds from forcing file
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#repeat-z-ls-1d-array-to-be-2d-array-for-writing">
+     Repeat z_ls 1D array to be 2D array for writing
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#compute-wind-forcing-tendency">
+     Compute wind forcing tendency
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#set-relaxation-time-scales-if-nudging">
+     Set relaxation time scales if nudging
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#forcing-netcdf-name-and-delete-file-if-already-exists">
+     Forcing NetCDF name and delete file if already exists
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-new-netcdf-file">
+     Create new netcdf file
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-dimensions">
+     Create dimensions
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-global-attributes">
+     Create global attributes
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-variables">
+     Create variables
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#dimensions">
+       Dimensions
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#add-times">
+     Add times
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#time-varying-wind-forcing-profiles">
+       Time-varying wind forcing profiles
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#write-data">
+     Write data
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#close-the-file">
+     Close the file
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#write-surface-forcing-file-for-wrf-les-in-netcdf-format">
+   Write surface forcing file for WRF LES in netCDF format
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#read-skin-temperature-from-forcing-file">
+     Read skin temperature from forcing file
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#compute-skin-temperature-tendency">
+     Compute skin temperature tendency
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Forcing NetCDF name and delete file if already exists
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Create new netcdf file
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     Create dimensions
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     Create global attributes
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     Create variables
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id6">
+       Dimensions
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     Add times
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#time-varying-skin-temperature">
+       Time-varying skin temperature
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     Write data
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id9">
+     Close the file
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#write-vertical-grid-file-for-wrf-les-in-ascii-format">
+   Write vertical grid file for WRF LES in ASCII format
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+            <article class="bd-article" role="main">
+              
   <section class="tex2jax_ignore mathjax_ignore" id="example-convert-dephy-forcing-to-wrf-les-forcing">
-<h1>Example: convert DEPHY forcing to WRF-LES forcing<a class="headerlink" href="#example-convert-dephy-forcing-to-wrf-les-forcing" title="Permalink to this headline">#</a></h1>
+<h1>Example: convert DEPHY forcing to WRF-LES forcing<a class="headerlink" href="#example-convert-dephy-forcing-to-wrf-les-forcing" title="Permalink to this heading">#</a></h1>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="code-to-read-comble-les-scm-dephy-forcing-files-and-write-input-files-for-wrf-les-ascii-netcdf">
-<h1>Code to read COMBLE LES/SCM DEPHY forcing files and write input files for WRF LES (ASCII/NetCDF)<a class="headerlink" href="#code-to-read-comble-les-scm-dephy-forcing-files-and-write-input-files-for-wrf-les-ascii-netcdf" title="Permalink to this headline">#</a></h1>
+<h1>Code to read COMBLE LES/SCM DEPHY forcing files and write input files for WRF LES (ASCII/NetCDF)<a class="headerlink" href="#code-to-read-comble-les-scm-dephy-forcing-files-and-write-input-files-for-wrf-les-ascii-netcdf" title="Permalink to this heading">#</a></h1>
 <section id="contributed-by-tim-juliano-from-ncar-ral-on-2-2-23">
-<h2>Contributed by Tim Juliano from NCAR/RAL on 2/2/23<a class="headerlink" href="#contributed-by-tim-juliano-from-ncar-ral-on-2-2-23" title="Permalink to this headline">#</a></h2>
+<h2>Contributed by Tim Juliano from NCAR/RAL on 2/2/23<a class="headerlink" href="#contributed-by-tim-juliano-from-ncar-ral-on-2-2-23" title="Permalink to this heading">#</a></h2>
 </section>
 <section id="import-libraries">
-<h2>Import libraries<a class="headerlink" href="#import-libraries" title="Permalink to this headline">#</a></h2>
+<h2>Import libraries<a class="headerlink" href="#import-libraries" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
@@ -864,15 +763,15 @@ title="Print to PDF"
 </div>
 </section>
 <section id="begin-user-mods">
-<h2>!!! BEGIN USER MODS !!!<a class="headerlink" href="#begin-user-mods" title="Permalink to this headline">#</a></h2>
+<h2>!!! BEGIN USER MODS !!!<a class="headerlink" href="#begin-user-mods" title="Permalink to this heading">#</a></h2>
 <section id="how-many-hours-before-ice-edge-do-you-want-to-start">
-<h3>How many hours before ice edge do you want to start?<a class="headerlink" href="#how-many-hours-before-ice-edge-do-you-want-to-start" title="Permalink to this headline">#</a></h3>
+<h3>How many hours before ice edge do you want to start?<a class="headerlink" href="#how-many-hours-before-ice-edge-do-you-want-to-start" title="Permalink to this heading">#</a></h3>
 </section>
 <section id="note-t0-h-0-means-you-are-starting-approx-at-ice-edge-t0-h-10-means-you-are-starting-10-h-upstream-north-of-the-ice-edge">
-<h3>Note: t0_h = 0 means you are starting approx. at ice edge, t0_h = 10 means you are starting 10 h upstream (north) of the ice edge<a class="headerlink" href="#note-t0-h-0-means-you-are-starting-approx-at-ice-edge-t0-h-10-means-you-are-starting-10-h-upstream-north-of-the-ice-edge" title="Permalink to this headline">#</a></h3>
+<h3>Note: t0_h = 0 means you are starting approx. at ice edge, t0_h = 10 means you are starting 10 h upstream (north) of the ice edge<a class="headerlink" href="#note-t0-h-0-means-you-are-starting-approx-at-ice-edge-t0-h-10-means-you-are-starting-10-h-upstream-north-of-the-ice-edge" title="Permalink to this heading">#</a></h3>
 </section>
 <section id="note-t0-h-must-be-an-integer">
-<h3>Note: t0_h must be an integer<a class="headerlink" href="#note-t0-h-must-be-an-integer" title="Permalink to this headline">#</a></h3>
+<h3>Note: t0_h must be an integer<a class="headerlink" href="#note-t0-h-must-be-an-integer" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t0_h</span> <span class="o">=</span> <span class="mi">10</span>
@@ -885,10 +784,10 @@ title="Print to PDF"
 </section>
 </section>
 <section id="end-user-mods">
-<h2>!!! END USER MODS !!!<a class="headerlink" href="#end-user-mods" title="Permalink to this headline">#</a></h2>
+<h2>!!! END USER MODS !!!<a class="headerlink" href="#end-user-mods" title="Permalink to this heading">#</a></h2>
 </section>
 <section id="set-some-things">
-<h2>Set some things<a class="headerlink" href="#set-some-things" title="Permalink to this headline">#</a></h2>
+<h2>Set some things<a class="headerlink" href="#set-some-things" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nhrs</span> <span class="o">=</span> <span class="mi">18</span> <span class="o">+</span> <span class="n">t0_h</span> <span class="o">+</span> <span class="mi">1</span> <span class="c1"># total number of simulation hours, including t0; default is from 2020-03-12 at 14 UTC to 2020-03-14 at 00 UTC</span>
@@ -912,7 +811,7 @@ title="Print to PDF"
 </div>
 </section>
 <section id="read-forcing-file">
-<h2>Read forcing file<a class="headerlink" href="#read-forcing-file" title="Permalink to this headline">#</a></h2>
+<h2>Read forcing file<a class="headerlink" href="#read-forcing-file" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dephy_filename</span> <span class="o">=</span> <span class="s1">&#39;../forcing/COMBLE_INTERCOMPARISON_NUDGING_FORCING.nc&#39;</span>
@@ -1268,7 +1167,7 @@ dl.xr-attrs {
 </div>
 </section>
 <section id="write-input-sounding-file-for-wrf-les-in-ascii-format">
-<h2>Write input sounding file for WRF LES in ASCII format<a class="headerlink" href="#write-input-sounding-file-for-wrf-les-in-ascii-format" title="Permalink to this headline">#</a></h2>
+<h2>Write input sounding file for WRF LES in ASCII format<a class="headerlink" href="#write-input-sounding-file-for-wrf-les-in-ascii-format" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># use a list to accumulate output ASCII lines</span>
@@ -1307,9 +1206,9 @@ dl.xr-attrs {
 </div>
 </section>
 <section id="write-ozone-file-for-rrtmg">
-<h2>Write ozone file for RRTMG<a class="headerlink" href="#write-ozone-file-for-rrtmg" title="Permalink to this headline">#</a></h2>
+<h2>Write ozone file for RRTMG<a class="headerlink" href="#write-ozone-file-for-rrtmg" title="Permalink to this heading">#</a></h2>
 <section id="pressure-file">
-<h3>Pressure file<a class="headerlink" href="#pressure-file" title="Permalink to this headline">#</a></h3>
+<h3>Pressure file<a class="headerlink" href="#pressure-file" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># use a list to accumulate output ASCII lines</span>
@@ -1338,7 +1237,7 @@ dl.xr-attrs {
 </div>
 </section>
 <section id="ozone-file">
-<h3>Ozone file<a class="headerlink" href="#ozone-file" title="Permalink to this headline">#</a></h3>
+<h3>Ozone file<a class="headerlink" href="#ozone-file" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># use a list to accumulate output ASCII lines</span>
@@ -1374,9 +1273,9 @@ dl.xr-attrs {
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="write-large-scale-forcing-file-for-wrf-les-in-netcdf-format">
-<h1>Write large-scale forcing file for WRF LES in netCDF format<a class="headerlink" href="#write-large-scale-forcing-file-for-wrf-les-in-netcdf-format" title="Permalink to this headline">#</a></h1>
+<h1>Write large-scale forcing file for WRF LES in netCDF format<a class="headerlink" href="#write-large-scale-forcing-file-for-wrf-les-in-netcdf-format" title="Permalink to this heading">#</a></h1>
 <section id="pressure-gradient-forcing-or-nudging">
-<h2>Pressure gradient forcing or nudging?<a class="headerlink" href="#pressure-gradient-forcing-or-nudging" title="Permalink to this headline">#</a></h2>
+<h2>Pressure gradient forcing or nudging?<a class="headerlink" href="#pressure-gradient-forcing-or-nudging" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ls_forcing</span> <span class="o">=</span> <span class="s1">&#39;nudging&#39;</span>
@@ -1385,7 +1284,7 @@ dl.xr-attrs {
 </div>
 </div>
 <section id="read-forcing-winds-from-forcing-file">
-<h3>Read forcing winds from forcing file<a class="headerlink" href="#read-forcing-winds-from-forcing-file" title="Permalink to this headline">#</a></h3>
+<h3>Read forcing winds from forcing file<a class="headerlink" href="#read-forcing-winds-from-forcing-file" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">ls_forcing</span> <span class="o">==</span> <span class="s1">&#39;geostrophic&#39;</span><span class="p">:</span>
@@ -1404,7 +1303,7 @@ dl.xr-attrs {
 </section>
 </section>
 <section id="repeat-z-ls-1d-array-to-be-2d-array-for-writing">
-<h2>Repeat z_ls 1D array to be 2D array for writing<a class="headerlink" href="#repeat-z-ls-1d-array-to-be-2d-array-for-writing" title="Permalink to this headline">#</a></h2>
+<h2>Repeat z_ls 1D array to be 2D array for writing<a class="headerlink" href="#repeat-z-ls-1d-array-to-be-2d-array-for-writing" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nhrs</span> <span class="o">=</span> <span class="n">dephy</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span>
@@ -1415,7 +1314,7 @@ dl.xr-attrs {
 </div>
 </section>
 <section id="compute-wind-forcing-tendency">
-<h2>Compute wind forcing tendency<a class="headerlink" href="#compute-wind-forcing-tendency" title="Permalink to this headline">#</a></h2>
+<h2>Compute wind forcing tendency<a class="headerlink" href="#compute-wind-forcing-tendency" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">delt</span> <span class="o">=</span> <span class="mf">60.</span><span class="o">*</span><span class="mf">60.</span> <span class="c1"># time between profiles (s)</span>
@@ -1436,7 +1335,7 @@ dl.xr-attrs {
 </div>
 </section>
 <section id="set-relaxation-time-scales-if-nudging">
-<h2>Set relaxation time scales if nudging<a class="headerlink" href="#set-relaxation-time-scales-if-nudging" title="Permalink to this headline">#</a></h2>
+<h2>Set relaxation time scales if nudging<a class="headerlink" href="#set-relaxation-time-scales-if-nudging" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">ls_forcing</span> <span class="o">==</span> <span class="s1">&#39;nudging&#39;</span><span class="p">:</span>
@@ -1456,7 +1355,7 @@ dl.xr-attrs {
 </div>
 </section>
 <section id="forcing-netcdf-name-and-delete-file-if-already-exists">
-<h2>Forcing NetCDF name and delete file if already exists<a class="headerlink" href="#forcing-netcdf-name-and-delete-file-if-already-exists" title="Permalink to this headline">#</a></h2>
+<h2>Forcing NetCDF name and delete file if already exists<a class="headerlink" href="#forcing-netcdf-name-and-delete-file-if-already-exists" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">savename</span> <span class="o">=</span> <span class="s1">&#39;input_ls_forcing.nc&#39;</span>
@@ -1470,7 +1369,7 @@ dl.xr-attrs {
 </div>
 </section>
 <section id="create-new-netcdf-file">
-<h2>Create new netcdf file<a class="headerlink" href="#create-new-netcdf-file" title="Permalink to this headline">#</a></h2>
+<h2>Create new netcdf file<a class="headerlink" href="#create-new-netcdf-file" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>  <span class="c1"># just to be safe, make sure dataset is not already open.</span>
@@ -1483,7 +1382,7 @@ dl.xr-attrs {
 </div>
 </section>
 <section id="create-dimensions">
-<h2>Create dimensions<a class="headerlink" href="#create-dimensions" title="Permalink to this headline">#</a></h2>
+<h2>Create dimensions<a class="headerlink" href="#create-dimensions" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">levs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">u_force</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
@@ -1496,7 +1395,7 @@ dl.xr-attrs {
 </div>
 </section>
 <section id="create-global-attributes">
-<h2>Create global attributes<a class="headerlink" href="#create-global-attributes" title="Permalink to this headline">#</a></h2>
+<h2>Create global attributes<a class="headerlink" href="#create-global-attributes" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ncfile</span><span class="o">.</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;AUXILIARY FORCING FOR CRM&#39;</span>
@@ -1506,9 +1405,9 @@ dl.xr-attrs {
 </div>
 </section>
 <section id="create-variables">
-<h2>Create variables<a class="headerlink" href="#create-variables" title="Permalink to this headline">#</a></h2>
+<h2>Create variables<a class="headerlink" href="#create-variables" title="Permalink to this heading">#</a></h2>
 <section id="dimensions">
-<h3>Dimensions<a class="headerlink" href="#dimensions" title="Permalink to this headline">#</a></h3>
+<h3>Dimensions<a class="headerlink" href="#dimensions" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">time</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;Times&#39;</span><span class="p">,</span> <span class="s1">&#39;S1&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">,</span><span class="s1">&#39;DateStrLen&#39;</span><span class="p">,))</span>
@@ -1519,7 +1418,7 @@ dl.xr-attrs {
 </section>
 </section>
 <section id="add-times">
-<h2>Add times<a class="headerlink" href="#add-times" title="Permalink to this headline">#</a></h2>
+<h2>Add times<a class="headerlink" href="#add-times" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#dates = []</span>
@@ -1551,7 +1450,7 @@ dl.xr-attrs {
 </div>
 </div>
 <section id="time-varying-wind-forcing-profiles">
-<h3>Time-varying wind forcing profiles<a class="headerlink" href="#time-varying-wind-forcing-profiles" title="Permalink to this headline">#</a></h3>
+<h3>Time-varying wind forcing profiles<a class="headerlink" href="#time-varying-wind-forcing-profiles" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u_ls</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;U_LS&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">,</span><span class="s1">&#39;force_layers&#39;</span><span class="p">,),</span><span class="n">fill_value</span><span class="o">=-</span><span class="mf">999.</span><span class="p">)</span>
@@ -1610,7 +1509,7 @@ dl.xr-attrs {
 </section>
 </section>
 <section id="write-data">
-<h2>Write data<a class="headerlink" href="#write-data" title="Permalink to this headline">#</a></h2>
+<h2>Write data<a class="headerlink" href="#write-data" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u_ls</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">u_force</span>
@@ -1627,7 +1526,7 @@ dl.xr-attrs {
 </div>
 </section>
 <section id="close-the-file">
-<h2>Close the file<a class="headerlink" href="#close-the-file" title="Permalink to this headline">#</a></h2>
+<h2>Close the file<a class="headerlink" href="#close-the-file" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># first print the Dataset object to see what we&#39;ve got</span>
@@ -1652,9 +1551,9 @@ Dataset is closed!
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="write-surface-forcing-file-for-wrf-les-in-netcdf-format">
-<h1>Write surface forcing file for WRF LES in netCDF format<a class="headerlink" href="#write-surface-forcing-file-for-wrf-les-in-netcdf-format" title="Permalink to this headline">#</a></h1>
+<h1>Write surface forcing file for WRF LES in netCDF format<a class="headerlink" href="#write-surface-forcing-file-for-wrf-les-in-netcdf-format" title="Permalink to this heading">#</a></h1>
 <section id="read-skin-temperature-from-forcing-file">
-<h2>Read skin temperature from forcing file<a class="headerlink" href="#read-skin-temperature-from-forcing-file" title="Permalink to this headline">#</a></h2>
+<h2>Read skin temperature from forcing file<a class="headerlink" href="#read-skin-temperature-from-forcing-file" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ts_arr</span> <span class="o">=</span> <span class="n">dephy_sfc</span><span class="p">[</span><span class="s1">&#39;ts&#39;</span><span class="p">][:]</span><span class="o">.</span><span class="n">values</span> <span class="c1"># K</span>
@@ -1665,7 +1564,7 @@ Dataset is closed!
 </div>
 </section>
 <section id="compute-skin-temperature-tendency">
-<h2>Compute skin temperature tendency<a class="headerlink" href="#compute-skin-temperature-tendency" title="Permalink to this headline">#</a></h2>
+<h2>Compute skin temperature tendency<a class="headerlink" href="#compute-skin-temperature-tendency" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">delt</span> <span class="o">=</span> <span class="mf">5.</span><span class="o">*</span><span class="mf">60.</span> <span class="c1"># time between profiles (s)</span>
@@ -1680,7 +1579,7 @@ Dataset is closed!
 </div>
 </section>
 <section id="id1">
-<h2>Forcing NetCDF name and delete file if already exists<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<h2>Forcing NetCDF name and delete file if already exists<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">savename</span> <span class="o">=</span> <span class="s1">&#39;input_sfc_forcing.nc&#39;</span>
@@ -1694,7 +1593,7 @@ Dataset is closed!
 </div>
 </section>
 <section id="id2">
-<h2>Create new netcdf file<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<h2>Create new netcdf file<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>  <span class="c1"># just to be safe, make sure dataset is not already open.</span>
@@ -1707,7 +1606,7 @@ Dataset is closed!
 </div>
 </section>
 <section id="id3">
-<h2>Create dimensions<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
+<h2>Create dimensions<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">time_dim</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>    <span class="c1"># unlimited axis (can be appended to)</span>
@@ -1718,7 +1617,7 @@ Dataset is closed!
 </div>
 </section>
 <section id="id4">
-<h2>Create global attributes<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h2>
+<h2>Create global attributes<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ncfile</span><span class="o">.</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;AUXILIARY FORCING FOR CRM&#39;</span>
@@ -1728,9 +1627,9 @@ Dataset is closed!
 </div>
 </section>
 <section id="id5">
-<h2>Create variables<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h2>
+<h2>Create variables<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
 <section id="id6">
-<h3>Dimensions<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h3>
+<h3>Dimensions<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">time</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;Times&#39;</span><span class="p">,</span> <span class="s1">&#39;S1&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">,</span><span class="s1">&#39;DateStrLen&#39;</span><span class="p">,))</span>
@@ -1741,7 +1640,7 @@ Dataset is closed!
 </section>
 </section>
 <section id="id7">
-<h2>Add times<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h2>
+<h2>Add times<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">curr_hh</span> <span class="o">=</span> <span class="n">start_hour</span>
@@ -1770,7 +1669,7 @@ Dataset is closed!
 </div>
 </div>
 <section id="time-varying-skin-temperature">
-<h3>Time-varying skin temperature<a class="headerlink" href="#time-varying-skin-temperature" title="Permalink to this headline">#</a></h3>
+<h3>Time-varying skin temperature<a class="headerlink" href="#time-varying-skin-temperature" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pre_tsk</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;PRE_TSK&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">,),</span><span class="n">fill_value</span><span class="o">=-</span><span class="mf">999.</span><span class="p">)</span>
@@ -1793,7 +1692,7 @@ Dataset is closed!
 </section>
 </section>
 <section id="id8">
-<h2>Write data<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h2>
+<h2>Write data<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pre_tsk</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">ts_arr</span>
@@ -1804,7 +1703,7 @@ Dataset is closed!
 </div>
 </section>
 <section id="id9">
-<h2>Close the file<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h2>
+<h2>Close the file<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># first print the Dataset object to see what we&#39;ve got</span>
@@ -1829,7 +1728,7 @@ Dataset is closed!
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="write-vertical-grid-file-for-wrf-les-in-ascii-format">
-<h1>Write vertical grid file for WRF LES in ASCII format<a class="headerlink" href="#write-vertical-grid-file-for-wrf-les-in-ascii-format" title="Permalink to this headline">#</a></h1>
+<h1>Write vertical grid file for WRF LES in ASCII format<a class="headerlink" href="#write-vertical-grid-file-for-wrf-les-in-ascii-format" title="Permalink to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create vertical grid file contents as list</span>
@@ -1870,43 +1769,345 @@ Dataset is closed!
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
-              
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
+            </article>
+            
+
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../forcing/create_comble_sfc_forcing.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Generate time-varying surface forcing</p>
-        </div>
-    </a>
+  <a class='left-prev' id="prev-link" href="../forcing/create_comble_sfc_forcing.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Generate time-varying surface forcing</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="../setup/read-metadata-sheet.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Read Metadata Google Sheet</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
 </div>
             </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
   
-    By ARM Development Team<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
-    
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Example: convert DEPHY forcing to WRF-LES forcing
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#code-to-read-comble-les-scm-dephy-forcing-files-and-write-input-files-for-wrf-les-ascii-netcdf">
+   Code to read COMBLE LES/SCM DEPHY forcing files and write input files for WRF LES (ASCII/NetCDF)
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#contributed-by-tim-juliano-from-ncar-ral-on-2-2-23">
+     Contributed by Tim Juliano from NCAR/RAL on 2/2/23
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#import-libraries">
+     Import libraries
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#begin-user-mods">
+     !!! BEGIN USER MODS !!!
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#how-many-hours-before-ice-edge-do-you-want-to-start">
+       How many hours before ice edge do you want to start?
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#note-t0-h-0-means-you-are-starting-approx-at-ice-edge-t0-h-10-means-you-are-starting-10-h-upstream-north-of-the-ice-edge">
+       Note: t0_h = 0 means you are starting approx. at ice edge, t0_h = 10 means you are starting 10 h upstream (north) of the ice edge
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#note-t0-h-must-be-an-integer">
+       Note: t0_h must be an integer
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#end-user-mods">
+     !!! END USER MODS !!!
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#set-some-things">
+     Set some things
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#read-forcing-file">
+     Read forcing file
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#write-input-sounding-file-for-wrf-les-in-ascii-format">
+     Write input sounding file for WRF LES in ASCII format
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#write-ozone-file-for-rrtmg">
+     Write ozone file for RRTMG
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#pressure-file">
+       Pressure file
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#ozone-file">
+       Ozone file
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#write-large-scale-forcing-file-for-wrf-les-in-netcdf-format">
+   Write large-scale forcing file for WRF LES in netCDF format
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pressure-gradient-forcing-or-nudging">
+     Pressure gradient forcing or nudging?
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#read-forcing-winds-from-forcing-file">
+       Read forcing winds from forcing file
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#repeat-z-ls-1d-array-to-be-2d-array-for-writing">
+     Repeat z_ls 1D array to be 2D array for writing
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#compute-wind-forcing-tendency">
+     Compute wind forcing tendency
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#set-relaxation-time-scales-if-nudging">
+     Set relaxation time scales if nudging
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#forcing-netcdf-name-and-delete-file-if-already-exists">
+     Forcing NetCDF name and delete file if already exists
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-new-netcdf-file">
+     Create new netcdf file
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-dimensions">
+     Create dimensions
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-global-attributes">
+     Create global attributes
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-variables">
+     Create variables
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#dimensions">
+       Dimensions
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#add-times">
+     Add times
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#time-varying-wind-forcing-profiles">
+       Time-varying wind forcing profiles
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#write-data">
+     Write data
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#close-the-file">
+     Close the file
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#write-surface-forcing-file-for-wrf-les-in-netcdf-format">
+   Write surface forcing file for WRF LES in netCDF format
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#read-skin-temperature-from-forcing-file">
+     Read skin temperature from forcing file
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#compute-skin-temperature-tendency">
+     Compute skin temperature tendency
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Forcing NetCDF name and delete file if already exists
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Create new netcdf file
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     Create dimensions
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     Create global attributes
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     Create variables
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id6">
+       Dimensions
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     Add times
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#time-varying-skin-temperature">
+       Time-varying skin temperature
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     Write data
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id9">
+     Close the file
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#write-vertical-grid-file-for-wrf-les-in-ascii-format">
+   Write vertical grid file for WRF LES in ASCII format
+  </a>
+ </li>
+</ul>
+
+</nav>
 </div>
 
-
-      </div>
-    </div>
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+<div class="bd-footer-content__inner container">
   
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <div class="footer-item">
+    
+<p class="component-author">
+By ARM Development Team
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2022.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+Last updated on None.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </div>
+        </footer>
+        
+
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
 
   </body>
 </html>
