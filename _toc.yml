@@ -7,3 +7,6 @@ parts:
 - caption: Conversion Notebooks
   chapters:
     - glob: notebooks/conversion/*
+- caption: Model Setup
+  chapters:
+    - glob: notebooks/setup/*
