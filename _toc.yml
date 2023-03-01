@@ -8,4 +8,5 @@ parts:
   chapters:
     - glob: notebooks/conversion/*
 - caption: Model Setup
+  chapters:
     - glob: notebooks/setup/*
