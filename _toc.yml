@@ -1,6 +1,9 @@
 format: jb-book
 root: README
 parts:
+- caption: Participants
+  chapters:
+    - glob: notebooks/participants/*
 - caption: DEPHY Forcing Notebooks
   chapters:
     - glob: notebooks/forcing/*
