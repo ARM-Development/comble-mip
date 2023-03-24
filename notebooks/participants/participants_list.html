@@ -398,6 +398,7 @@ document.write(`
                             <span class="s1">&#39;1h0BDDCCJTfIsdvHHNFyA17bpsNAL7405GG69IkC8qJs&#39;</span> <span class="o">+</span>
                             <span class="s1">&#39;/export?gid=0&amp;format=xlsx&#39;</span><span class="p">,</span>
                             <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Models&#39;</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_colwidth&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 <span class="n">model_list</span>
 </pre></div>
 </div>
@@ -438,7 +439,7 @@ document.write(`
       <td>tjuliano@ucar.edu</td>
       <td>WRF, CCPP-SCM</td>
       <td>Both</td>
-      <td>Mesoscale cloud organization, turbulence-micro...</td>
+      <td>Mesoscale cloud organization, turbulence-microphysics interactions</td>
       <td>NaN</td>
     </tr>
     <tr>
@@ -458,27 +459,27 @@ document.write(`
       <td>ft2544@columbia.edu</td>
       <td>DHARMA LES, GISS ModelE3 SCM</td>
       <td>Both</td>
-      <td>Cloud-aerosol interaction, mixed-phase cloud m...</td>
+      <td>Cloud-aerosol interaction, mixed-phase cloud microphysics, overcast-to-broken cloud transition</td>
       <td>NaN</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>Roel Neggers, Jan Chylik, Fredrik Jansson, Ste...</td>
+      <td>Roel Neggers, Jan Chylik, Fredrik Jansson, Stephan de Roode</td>
       <td>University of Cologne, TU Delft</td>
-      <td>neggers@meteo.uni-koeln.de, jchylik@uni-koeln....</td>
+      <td>neggers@meteo.uni-koeln.de, jchylik@uni-koeln.de, F.R.Jansson@tudelft.nl, S.R.deRoode@tudelft.nl</td>
       <td>DALES</td>
       <td>Both</td>
-      <td>Cloud-aerosol-turbulence interactions, Spatial...</td>
+      <td>Cloud-aerosol-turbulence interactions, Spatial organization, Air mass transitions</td>
       <td>NaN</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Gunilla Svensson, Michael Tjernström, Annica E...</td>
-      <td>Stockholm University, Chalmers Technical Unive...</td>
-      <td>gunilla@misu.su.se, michaelt@misu.su.se, annic...</td>
+      <td>Gunilla Svensson, Michael Tjernström, Annica Ekman, Luisa Ickes, Hannah Frostenberg</td>
+      <td>Stockholm University, Chalmers Technical University</td>
+      <td>gunilla@misu.su.se, michaelt@misu.su.se, annica@misu.su.se, luisa.ickes@chalmers.se, hannah.frostenberg@chalmers.se</td>
       <td>AOSCM and MIMICA</td>
       <td>Both</td>
-      <td>Airmass transformations, turbulence, aerosols ...</td>
+      <td>Airmass transformations, turbulence, aerosols and cloud dynamics and microphysics</td>
       <td>NaN</td>
     </tr>
     <tr>
@@ -489,7 +490,7 @@ document.write(`
       <td>--</td>
       <td>--</td>
       <td>cloud transitions in a mixed-phase environment</td>
-      <td>primarily interested from the point of view of...</td>
+      <td>primarily interested from the point of view of CAESAR success</td>
     </tr>
     <tr>
       <th>6</th>
@@ -508,7 +509,7 @@ document.write(`
       <td>kkchandr@ucar.edu, morrison@ucar.edu</td>
       <td>CM1</td>
       <td>LES</td>
-      <td>Microphysics-turbulence interactions, microphy...</td>
+      <td>Microphysics-turbulence interactions, microphysical processes, cloud dynamics, mesoscale organization</td>
       <td>Goal is to run with Lagrangian microphysics (SDM)</td>
     </tr>
     <tr>
@@ -528,7 +529,7 @@ document.write(`
       <td>zheng7@llnl.gov</td>
       <td>DP-SCREAM</td>
       <td>SCM</td>
-      <td>Cloud mesoscale organization, cloud transition...</td>
+      <td>Cloud mesoscale organization, cloud transition, mixed-phase cloud microphysical processes</td>
       <td>NaN</td>
     </tr>
     <tr>
@@ -538,7 +539,7 @@ document.write(`
       <td>pblossey@uw.edu</td>
       <td>SAM</td>
       <td>LES</td>
-      <td>Cloud-aerosol interactions and mesoscale organ...</td>
+      <td>Cloud-aerosol interactions and mesoscale organization, role of Aitken aerosols</td>
       <td>NaN</td>
     </tr>
     <tr>
@@ -548,8 +549,8 @@ document.write(`
       <td>cmcclus@ucar.edu</td>
       <td>SCAM</td>
       <td>SCM</td>
-      <td>Ice Nucleation; Marine aerosol; Mixed phase ae...</td>
-      <td>primarily interested for Southern Ocean contra...</td>
+      <td>Ice Nucleation; Marine aerosol; Mixed phase aerosol-cloud interactions</td>
+      <td>primarily interested for Southern Ocean contrast case that is well constrained</td>
     </tr>
     <tr>
       <th>12</th>
@@ -558,7 +559,7 @@ document.write(`
       <td>t.heus@csuohio.edu; g.raghunathan@csuohio.edu\n</td>
       <td>MicroHH</td>
       <td>LES</td>
-      <td>turbulence, cloud dynamics, model evaluation, ...</td>
+      <td>turbulence, cloud dynamics, model evaluation, contrast with EURECA</td>
       <td>NaN</td>
     </tr>
     <tr>
@@ -568,7 +569,7 @@ document.write(`
       <td>apossner@iau.uni-frankfurt.de</td>
       <td>ICON-LEM</td>
       <td>LES</td>
-      <td>cloud mesoscale organization, transitions, clo...</td>
+      <td>cloud mesoscale organization, transitions, cloud microphysics, secondary ice</td>
       <td>NaN</td>
     </tr>
     <tr>
@@ -578,7 +579,7 @@ document.write(`
       <td>hyunho.lee@kongju.ac.kr</td>
       <td>PALM</td>
       <td>LES</td>
-      <td>cloud-aerosol interactions, turbulence effects...</td>
+      <td>cloud-aerosol interactions, turbulence effects on microphysics</td>
       <td>NaN</td>
     </tr>
     <tr>
@@ -604,7 +605,7 @@ document.write(`
                             <span class="s1">&#39;1h0BDDCCJTfIsdvHHNFyA17bpsNAL7405GG69IkC8qJs&#39;</span> <span class="o">+</span>
                             <span class="s1">&#39;/export?gid=1705827066&amp;format=xlsx&#39;</span><span class="p">,</span>
                             <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Observations&#39;</span><span class="p">)</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_columns&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_colwidth&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 <span class="n">obs_list</span>
 </pre></div>
 </div>
@@ -684,7 +685,7 @@ document.write(`
       <td>NaN</td>
       <td>NaN</td>
       <td>VIIRS/MODIS</td>
-      <td>comparison of satellite cloud retrievals near ...</td>
+      <td>comparison of satellite cloud retrievals near Andenes to COMBLE observations</td>
       <td>NaN</td>
       <td>NaN</td>
     </tr>
@@ -692,9 +693,9 @@ document.write(`
       <th>5</th>
       <td>Pavlos Kollias, Zackary Mages</td>
       <td>SBU</td>
-      <td>pavlos.kollias@stonybrook.edu, zackary.mages@s...</td>
+      <td>pavlos.kollias@stonybrook.edu, zackary.mages@stonybrook.edu</td>
       <td>KAZR, MWR, Lidar</td>
-      <td>Vertical air motion, LWP, TKE, Hydrometeor typ...</td>
+      <td>Vertical air motion, LWP, TKE, Hydrometeor types (Parsivel)</td>
       <td>NaN</td>
       <td>NaN</td>
     </tr>
@@ -710,9 +711,9 @@ document.write(`
     </tr>
     <tr>
       <th>7</th>
-      <td>Florian Tornow, Greg Elsaesser, Tim Juliano, P...</td>
+      <td>Florian Tornow, Greg Elsaesser, Tim Juliano, Paquita Zuidema</td>
       <td>GISS</td>
-      <td>florian.tornow@nasa.gov, gregory.s.elsaesser@n...</td>
+      <td>florian.tornow@nasa.gov, gregory.s.elsaesser@nasa.gov</td>
       <td>satellite</td>
       <td>LWP (Lagrangian evolution)</td>
       <td>NaN</td>
@@ -724,7 +725,7 @@ document.write(`
       <td>UMBC</td>
       <td>zhibo.zhang@umbc.edu</td>
       <td>satellite</td>
-      <td>use satellite observations to understand the t...</td>
+      <td>use satellite observations to understand the transition of cloud phase in CAO clouds</td>
       <td>NaN</td>
       <td>mostly from the angle of climatology</td>
     </tr>
