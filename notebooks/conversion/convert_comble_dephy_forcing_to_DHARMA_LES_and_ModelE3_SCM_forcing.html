@@ -1,0 +1,1904 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Code to read COMBLE LES/SCM DEPHY forcing file and write input files for DHARMA LES (ASCII) and ModelE3 ESM SCM (NetCDF) examples &#8212; COMBLE Model-Observation Intercomparison Project</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/conversion/convert_comble_dephy_forcing_to_DHARMA_LES_and_ModelE3_SCM_forcing';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Example: convert DEPHY forcing to WRF-LES forcing" href="convert_comble_dephy_forcing_to_WRF_LES_forcing.html" />
+    <link rel="prev" title="Generate time-varying surface forcing" href="../forcing/create_comble_sfc_forcing.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../README.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/arm_logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/arm_logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../README.html">
+                    COMBLE Model-Observation Intercomparison Project Cookbook
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Participants</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../participants/participants_list.html">Read Participants List Google Sheet</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">DEPHY Forcing Notebooks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../forcing/create_comble_nudging_forcing.html">Generate initial and time-varying nudging profiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../forcing/create_comble_sfc_forcing.html">Generate time-varying surface forcing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Conversion Notebooks</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Code to read COMBLE LES/SCM DEPHY forcing file and write input files for DHARMA LES (ASCII) and ModelE3 ESM SCM (NetCDF) examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="convert_comble_dephy_forcing_to_WRF_LES_forcing.html">Example: convert DEPHY forcing to WRF-LES forcing</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Setup</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../setup/read-metadata-sheet.html">Read Metadata Google Sheet</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://jupyterhub.arm.gov/hub/user-redirect/git-pull?repo=https%3A//github.com/ARM-Development/comble-mip&urlpath=lab/tree/comble-mip/notebooks/conversion/convert_comble_dephy_forcing_to_DHARMA_LES_and_ModelE3_SCM_forcing.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onJupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/notebooks/conversion/convert_comble_dephy_forcing_to_DHARMA_LES_and_ModelE3_SCM_forcing.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Code to read COMBLE LES/SCM DEPHY forcing file and write input files for DHARMA LES (ASCII) and ModelE3 ESM SCM (NetCDF) examples</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contributed-by-ann-fridlind-from-nasa-giss-on-1-24-23">Contributed by Ann Fridlind from NASA/GISS on 1/24/23</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-libraries">Import libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-forcing-files">Read forcing files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#write-input-sounding-file-for-dharma-les-in-ascii-format">Write input sounding file for DHARMA LES in ASCII format</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#write-forcing-file-for-dharma-les-in-ascii-format">Write forcing file for DHARMA LES in ASCII format</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#write-vertical-grid-file-for-dharma-les-in-ascii-format">Write vertical grid file for DHARMA LES in ASCII format</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#write-initialization-file-for-modele3-scm-in-netcdf-format">Write initialization file for ModelE3 SCM in NetCDF format</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#write-forcing-file-for-modele3-scm-in-netcdf-format">Write forcing file for ModelE3 SCM in NetCDF format</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="code-to-read-comble-les-scm-dephy-forcing-file-and-write-input-files-for-dharma-les-ascii-and-modele3-esm-scm-netcdf-examples">
+<h1>Code to read COMBLE LES/SCM DEPHY forcing file and write input files for DHARMA LES (ASCII) and ModelE3 ESM SCM (NetCDF) examples<a class="headerlink" href="#code-to-read-comble-les-scm-dephy-forcing-file-and-write-input-files-for-dharma-les-ascii-and-modele3-esm-scm-netcdf-examples" title="Permalink to this heading">#</a></h1>
+<section id="contributed-by-ann-fridlind-from-nasa-giss-on-1-24-23">
+<h2>Contributed by Ann Fridlind from NASA/GISS on 1/24/23<a class="headerlink" href="#contributed-by-ann-fridlind-from-nasa-giss-on-1-24-23" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="import-libraries">
+<h2>Import libraries<a class="headerlink" href="#import-libraries" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">netCDF4</span>
+<span class="kn">from</span> <span class="nn">netCDF4</span> <span class="kn">import</span> <span class="n">Dataset</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="read-forcing-files">
+<h2>Read forcing files<a class="headerlink" href="#read-forcing-files" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dephy_filename</span> <span class="o">=</span> <span class="s1">&#39;COMBLE_INTERCOMPARISON_FORCING_GEO_ERA5ML_V1.6.nc&#39;</span>
+<span class="n">dephy</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">dephy_filename</span><span class="p">)</span>
+<span class="n">dephy</span> <span class="o">=</span> <span class="n">dephy</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span>
+<span class="n">dephy</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme=dark],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1F1F1F;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 20px 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: none;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: '►';
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: '▼';
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: '(';
+}
+
+.xr-dim-list:after {
+  content: ')';
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ',';
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2 {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.Dataset&gt;
+Dimensions:        (lev: 136, time: 25, zw_grid: 160)
+Coordinates:
+    t0             datetime64[ns] 2020-03-12T14:00:00
+    lat            float32 76.0
+    lon            float32 8.7
+  * time           (time) datetime64[ns] 2020-03-12T18:00:00 ... 2020-03-13T1...
+  * lev            (lev) float64 18.17 37.83 59.35 ... 6.851e+04 7.117e+04
+  * zw_grid        (zw_grid) float64 0.0 20.0 45.0 ... 6.89e+03 6.95e+03 7e+03
+Data variables: (12/15)
+    pressure       (lev) float64 1.011e+05 1.008e+05 1.005e+05 ... 3.625 2.417
+    u              (lev) float64 4.61 4.905 5.035 5.086 ... 21.57 19.07 15.31
+    v              (lev) float64 -16.4 -17.91 -18.92 ... -11.53 -14.97 -17.01
+    temp           (lev) float64 247.0 246.8 246.6 246.4 ... 226.1 220.4 214.0
+    theta          (lev) float64 247.1 247.2 247.2 ... 4.111e+03 4.504e+03
+    qv             (lev) float64 0.0003241 0.0003157 ... 1.497e-06 1.315e-06
+    ...             ...
+    vg             (time, lev) float64 -27.46 -27.38 -27.3 ... -40.54 -43.51
+    u_nudging      (time, lev) float64 4.61 4.905 5.035 ... 24.19 18.61 16.26
+    v_nudging      (time, lev) float64 -16.4 -17.91 -18.92 ... -14.24 -16.54
+    theta_nudging  (time, lev) float64 247.1 247.2 247.2 ... 3.994e+03 4.342e+03
+    qv_nudging     (time, lev) float64 0.0003241 0.0003157 ... 1.332e-06
+    w_nudging      (time, lev) float64 0.005745 0.001717 ... -5.816e-05
+Attributes: (12/18)
+    title:           Forcing and initial conditions for 13 March 2020 COMBLE ...
+    reference:       https://comble-intercomparison.readthedocs.io/en/latest/
+    authors:         Timothy W. Juliano (NCAR/RAL, tjuliano@ucar.edu); Floria...
+    version:         Created on 2023-02-10 for Gunilla Svensson
+    format_version:  DEPHY SCM format version 1.6
+    script:          create_comble_nudging_geo_forcing_era5ml_v1.6
+    ...              ...
+    dx:              150 m
+    dy:              150 m
+    dz:              see zw_grid variable
+    nx:              648
+    ny:              648
+    nz:              160</pre><div class='xr-wrap' hidden><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-e8df338f-c592-46ff-96c6-092f5e262710' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-e8df338f-c592-46ff-96c6-092f5e262710' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>lev</span>: 136</li><li><span class='xr-has-index'>time</span>: 25</li><li><span class='xr-has-index'>zw_grid</span>: 160</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-18812cb4-8f46-49da-8d5a-985ed622bc33' class='xr-section-summary-in' type='checkbox'  checked><label for='section-18812cb4-8f46-49da-8d5a-985ed622bc33' class='xr-section-summary' >Coordinates: <span>(6)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>t0</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>2020-03-12T14:00:00</div><input id='attrs-d1c1f8d9-4079-4baf-9daa-0c4d668e1b74' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-d1c1f8d9-4079-4baf-9daa-0c4d668e1b74' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-314851a0-43c6-4ff6-a426-65511ec6698b' class='xr-var-data-in' type='checkbox'><label for='data-314851a0-43c6-4ff6-a426-65511ec6698b' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Initial time</dd></dl></div><div class='xr-var-data'><pre>array(&#x27;2020-03-12T14:00:00.000000000&#x27;, dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>lat</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>76.0</div><input id='attrs-91e9946a-4ade-4ac3-9369-53021379ccef' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-91e9946a-4ade-4ac3-9369-53021379ccef' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-4d9e98b2-5a1d-4be8-b4be-b5291747df68' class='xr-var-data-in' type='checkbox'><label for='data-4d9e98b2-5a1d-4be8-b4be-b5291747df68' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>long_name :</span></dt><dd>latitude</dd></dl></div><div class='xr-var-data'><pre>array(76., dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>lon</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>8.7</div><input id='attrs-29397c47-f377-4c43-8ebc-49b9f347fc4f' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-29397c47-f377-4c43-8ebc-49b9f347fc4f' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-190b63a2-b816-4040-b339-5dc541ff0a82' class='xr-var-data-in' type='checkbox'><label for='data-190b63a2-b816-4040-b339-5dc541ff0a82' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>long_name :</span></dt><dd>longitude</dd></dl></div><div class='xr-var-data'><pre>array(8.7, dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>2020-03-12T18:00:00 ... 2020-03-...</div><input id='attrs-f96b20ac-5498-44fe-aa80-d8fc45b4baeb' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-f96b20ac-5498-44fe-aa80-d8fc45b4baeb' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-6e7813ac-0068-4fb7-a8a0-71c5d3a9f96e' class='xr-var-data-in' type='checkbox'><label for='data-6e7813ac-0068-4fb7-a8a0-71c5d3a9f96e' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>time</dd></dl></div><div class='xr-var-data'><pre>array([&#x27;2020-03-12T18:00:00.000000000&#x27;, &#x27;2020-03-12T19:00:00.000000000&#x27;,
+       &#x27;2020-03-12T20:00:00.000000000&#x27;, &#x27;2020-03-12T21:00:00.000000000&#x27;,
+       &#x27;2020-03-12T22:00:00.000000000&#x27;, &#x27;2020-03-12T23:00:00.000000000&#x27;,
+       &#x27;2020-03-13T00:00:00.000000000&#x27;, &#x27;2020-03-13T01:00:00.000000000&#x27;,
+       &#x27;2020-03-13T02:00:00.000000000&#x27;, &#x27;2020-03-13T03:00:00.000000000&#x27;,
+       &#x27;2020-03-13T04:00:00.000000000&#x27;, &#x27;2020-03-13T05:00:00.000000000&#x27;,
+       &#x27;2020-03-13T06:00:00.000000000&#x27;, &#x27;2020-03-13T07:00:00.000000000&#x27;,
+       &#x27;2020-03-13T08:00:00.000000000&#x27;, &#x27;2020-03-13T09:00:00.000000000&#x27;,
+       &#x27;2020-03-13T10:00:00.000000000&#x27;, &#x27;2020-03-13T11:00:00.000000000&#x27;,
+       &#x27;2020-03-13T12:00:00.000000000&#x27;, &#x27;2020-03-13T13:00:00.000000000&#x27;,
+       &#x27;2020-03-13T14:00:00.000000000&#x27;, &#x27;2020-03-13T15:00:00.000000000&#x27;,
+       &#x27;2020-03-13T16:00:00.000000000&#x27;, &#x27;2020-03-13T17:00:00.000000000&#x27;,
+       &#x27;2020-03-13T18:00:00.000000000&#x27;], dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lev</span></div><div class='xr-var-dims'>(lev)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>18.17 37.83 ... 6.851e+04 7.117e+04</div><input id='attrs-dabf6ae6-f3b8-4d0c-b6b7-ae49ecede17a' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-dabf6ae6-f3b8-4d0c-b6b7-ae49ecede17a' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-82728f77-7eed-4791-9aca-fd5237ebdd54' class='xr-var-data-in' type='checkbox'><label for='data-82728f77-7eed-4791-9aca-fd5237ebdd54' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>m</dd><dt><span>long_name :</span></dt><dd>altitude</dd></dl></div><div class='xr-var-data'><pre>array([1.816782e+01, 3.782916e+01, 5.935319e+01, 8.294096e+01, 1.086346e+02,
+       1.367628e+02, 1.674741e+02, 2.010063e+02, 2.375730e+02, 2.774709e+02,
+       3.209257e+02, 3.682437e+02, 4.197053e+02, 4.757075e+02, 5.365048e+02,
+       6.024136e+02, 6.738635e+02, 7.511887e+02, 8.347817e+02, 9.250150e+02,
+       1.022298e+03, 1.127041e+03, 1.239561e+03, 1.360284e+03, 1.489457e+03,
+       1.627387e+03, 1.774281e+03, 1.930384e+03, 2.095740e+03, 2.270393e+03,
+       2.454390e+03, 2.647544e+03, 2.849741e+03, 3.060666e+03, 3.279924e+03,
+       3.507041e+03, 3.741347e+03, 3.982109e+03, 4.228679e+03, 4.480789e+03,
+       4.737979e+03, 4.998744e+03, 5.260926e+03, 5.523062e+03, 5.784833e+03,
+       6.046449e+03, 6.308038e+03, 6.569511e+03, 6.830916e+03, 7.092836e+03,
+       7.355969e+03, 7.620921e+03, 7.887989e+03, 8.157416e+03, 8.429250e+03,
+       8.703817e+03, 8.981552e+03, 9.262709e+03, 9.547237e+03, 9.835029e+03,
+       1.012597e+04, 1.042006e+04, 1.071735e+04, 1.101775e+04, 1.132126e+04,
+       1.162780e+04, 1.193737e+04, 1.224987e+04, 1.256533e+04, 1.288393e+04,
+       1.320586e+04, 1.353123e+04, 1.386015e+04, 1.419257e+04, 1.452842e+04,
+       1.486750e+04, 1.520960e+04, 1.555429e+04, 1.590131e+04, 1.625055e+04,
+       1.660229e+04, 1.695752e+04, 1.731739e+04, 1.768290e+04, 1.805472e+04,
+       1.843347e+04, 1.881998e+04, 1.921534e+04, 1.962053e+04, 2.003612e+04,
+       2.046239e+04, 2.090005e+04, 2.134987e+04, 2.181240e+04, 2.228717e+04,
+       2.277341e+04, 2.327041e+04, 2.377819e+04, 2.429756e+04, 2.483020e+04,
+       2.537808e+04, 2.594251e+04, 2.652398e+04, 2.712280e+04, 2.773923e+04,
+       2.837417e+04, 2.902998e+04, 2.971072e+04, 3.041931e+04, 3.115628e+04,
+       3.192188e+04, 3.271719e+04, 3.354365e+04, 3.440225e+04, 3.529318e+04,
+       3.621700e+04, 3.717922e+04, 3.820551e+04, 3.932796e+04, 4.054117e+04,
+       4.181974e+04, 4.316560e+04, 4.459273e+04, 4.610270e+04, 4.769341e+04,
+       4.936202e+04, 5.110935e+04, 5.294293e+04, 5.486478e+04, 5.687202e+04,
+       5.897288e+04, 6.118527e+04, 6.351449e+04, 6.595727e+04, 6.851212e+04,
+       7.117090e+04])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>zw_grid</span></div><div class='xr-var-dims'>(zw_grid)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>0.0 20.0 45.0 ... 6.95e+03 7e+03</div><input id='attrs-952a38a0-a541-444a-a2d5-8ad995b9c24e' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-952a38a0-a541-444a-a2d5-8ad995b9c24e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-1b30fc6a-bb67-4fc1-b18c-6b788546bf1e' class='xr-var-data-in' type='checkbox'><label for='data-1b30fc6a-bb67-4fc1-b18c-6b788546bf1e' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>m</dd><dt><span>long_name :</span></dt><dd>grid altitude at cell faces</dd></dl></div><div class='xr-var-data'><pre>array([   0.,   20.,   45.,   75.,  110.,  150.,  190.,  230.,  270.,  310.,
+        350.,  390.,  430.,  470.,  510.,  550.,  590.,  630.,  670.,  710.,
+        750.,  790.,  830.,  870.,  910.,  950.,  990., 1030., 1070., 1110.,
+       1150., 1190., 1230., 1270., 1310., 1350., 1390., 1430., 1470., 1510.,
+       1550., 1590., 1630., 1670., 1710., 1750., 1790., 1830., 1870., 1910.,
+       1950., 1990., 2030., 2070., 2110., 2150., 2190., 2230., 2270., 2310.,
+       2350., 2390., 2430., 2470., 2510., 2550., 2590., 2630., 2670., 2710.,
+       2750., 2790., 2830., 2870., 2910., 2950., 2990., 3030., 3070., 3110.,
+       3150., 3190., 3230., 3270., 3310., 3350., 3390., 3430., 3470., 3510.,
+       3550., 3590., 3630., 3670., 3710., 3750., 3790., 3830., 3870., 3910.,
+       3950., 3990., 4030., 4070., 4110., 4150., 4190., 4230., 4270., 4310.,
+       4350., 4390., 4430., 4470., 4510., 4550., 4590., 4630., 4670., 4710.,
+       4750., 4790., 4830., 4870., 4910., 4950., 4990., 5030., 5070., 5110.,
+       5150., 5190., 5230., 5270., 5310., 5350., 5390., 5430., 5470., 5510.,
+       5550., 5610., 5690., 5770., 5850., 5930., 6010., 6090., 6170., 6250.,
+       6330., 6410., 6490., 6570., 6650., 6730., 6810., 6890., 6950., 7000.])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-4f182df6-8bd0-4eaf-b98a-5957b1a1e325' class='xr-section-summary-in' type='checkbox'  ><label for='section-4f182df6-8bd0-4eaf-b98a-5957b1a1e325' class='xr-section-summary' >Data variables: <span>(15)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>pressure</span></div><div class='xr-var-dims'>(lev)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-a8977723-9eee-4bf2-a2d7-031643268d59' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-a8977723-9eee-4bf2-a2d7-031643268d59' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-81f131b0-e01a-48cd-9af5-03613420e419' class='xr-var-data-in' type='checkbox'><label for='data-81f131b0-e01a-48cd-9af5-03613420e419' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>Pa</dd><dt><span>long_name :</span></dt><dd>pressure</dd></dl></div><div class='xr-var-data'><pre>array([1.010558e+05, 1.007814e+05, 1.004813e+05, 1.001528e+05, 9.979550e+04,
+       9.940543e+04, 9.898047e+04, 9.851769e+04, 9.801513e+04, 9.746846e+04,
+       9.687552e+04, 9.623309e+04, 9.553821e+04, 9.478650e+04, 9.397624e+04,
+       9.310513e+04, 9.216913e+04, 9.117167e+04, 9.011419e+04, 8.899584e+04,
+       8.781174e+04, 8.655722e+04, 8.523082e+04, 8.382913e+04, 8.235190e+04,
+       8.079962e+04, 7.917350e+04, 7.747522e+04, 7.570981e+04, 7.388127e+04,
+       7.199364e+04, 7.005445e+04, 6.806991e+04, 6.604833e+04, 6.399977e+04,
+       6.193396e+04, 5.986138e+04, 5.779208e+04, 5.573525e+04, 5.369699e+04,
+       5.168393e+04, 4.970884e+04, 4.778667e+04, 4.592528e+04, 4.412427e+04,
+       4.237977e+04, 4.068887e+04, 3.905067e+04, 3.746339e+04, 3.592233e+04,
+       3.442328e+04, 3.296315e+04, 3.154074e+04, 3.015559e+04, 2.880899e+04,
+       2.750125e+04, 2.623255e+04, 2.500457e+04, 2.381952e+04, 2.267860e+04,
+       2.158475e+04, 2.053231e+04, 1.952006e+04, 1.854792e+04, 1.761518e+04,
+       1.672048e+04, 1.586236e+04, 1.503976e+04, 1.425128e+04, 1.349528e+04,
+       1.277078e+04, 1.207859e+04, 1.141795e+04, 1.078599e+04, 1.018131e+04,
+       9.603459e+03, 9.052476e+03, 8.528127e+03, 8.029599e+03, 7.555924e+03,
+       7.106022e+03, 6.679543e+03, 6.273341e+03, 5.886411e+03, 5.517873e+03,
+       5.166740e+03, 4.831555e+03, 4.510810e+03, 4.203789e+03, 3.910462e+03,
+       3.631124e+03, 3.365773e+03, 3.114412e+03, 2.876903e+03, 2.653251e+03,
+       2.443368e+03, 2.247119e+03, 2.064110e+03, 1.893662e+03, 1.734703e+03,
+       1.586104e+03, 1.447096e+03, 1.317323e+03, 1.196617e+03, 1.084905e+03,
+       9.819679e+02, 8.889305e+02, 8.029956e+02, 7.233456e+02, 6.497413e+02,
+       5.820420e+02, 5.199850e+02, 4.637516e+02, 4.134417e+02, 3.670951e+02,
+       3.244113e+02, 2.849876e+02, 2.479508e+02, 2.133437e+02, 1.811448e+02,
+       1.523730e+02, 1.271480e+02, 1.050899e+02, 8.594598e+01, 6.952004e+01,
+       5.561368e+01, 4.397054e+01, 3.430628e+01, 2.638014e+01, 1.996850e+01,
+       1.485118e+01, 1.081799e+01, 7.703328e+00, 5.356133e+00, 3.625419e+00,
+       2.417266e+00])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>u</span></div><div class='xr-var-dims'>(lev)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-87d46b17-d826-49b2-b7ff-9becb61fb7f0' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-87d46b17-d826-49b2-b7ff-9becb61fb7f0' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-daa9b34e-1d95-44fe-b5fb-873f2751b046' class='xr-var-data-in' type='checkbox'><label for='data-daa9b34e-1d95-44fe-b5fb-873f2751b046' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>m s-1</dd><dt><span>long_name :</span></dt><dd>zonal wind</dd></dl></div><div class='xr-var-data'><pre>array([ 4.610159,  4.904548,  5.034807,  5.085913,  5.069554,  4.999359,
+        4.872608,  4.67777 ,  4.37558 ,  3.967672,  3.48416 ,  2.912267,
+        2.19127 ,  1.337375,  0.366724, -0.574206, -1.49553 , -1.911276,
+       -1.205806, -0.634035, -0.628107, -1.033513, -1.463947, -1.683183,
+       -1.701609, -1.637306, -1.567936, -1.487398, -1.31882 , -1.029348,
+       -0.711908, -0.57498 , -0.798494, -1.50246 , -2.227494, -2.415473,
+       -2.092821, -1.61448 , -1.276246, -1.233393, -1.440604, -1.631382,
+       -1.734195, -2.042353, -2.493665, -2.590048, -2.40785 , -2.458085,
+       -2.744191, -2.934572, -3.072868, -3.50977 , -4.111409, -4.262181,
+       -3.732835, -3.009132, -2.507081, -2.22534 , -1.667587, -1.044215,
+       -0.908396, -1.355768, -1.933805, -1.483603, -0.327091,  0.707359,
+        1.522155,  2.633919,  3.861229,  4.264549,  3.98703 ,  3.835946,
+        3.809274,  4.414592,  5.183007,  5.284914,  5.930922,  7.436013,
+        8.015167,  7.872314,  8.355394,  9.281891, 10.469137, 11.608347,
+       12.069232, 11.852388, 11.789125, 11.91365 , 12.23336 , 13.632201,
+       15.704815, 16.714263, 16.65117 , 17.144941, 18.663434, 20.365138,
+       21.650863, 22.213364, 22.954237, 24.849598, 26.936112, 27.382341,
+       26.017925, 24.647224, 24.80221 , 25.789474, 25.720701, 24.665194,
+       24.79875 , 26.084394, 27.759362, 29.375326, 31.762445, 31.195573,
+       29.821397, 29.508558, 30.777796, 32.115362, 36.031037, 40.139502,
+       39.884037, 32.793808, 28.939219, 31.313231, 35.2366  , 38.132382,
+       40.723663, 42.26721 , 40.484712, 35.232723, 29.401148, 25.456566,
+       22.716426, 21.566026, 19.072369, 15.311763])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>v</span></div><div class='xr-var-dims'>(lev)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-28b689df-c55c-4371-b482-05e37b922c6c' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-28b689df-c55c-4371-b482-05e37b922c6c' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-3f529f89-da50-4afe-a6f0-b8e2d4ec9256' class='xr-var-data-in' type='checkbox'><label for='data-3f529f89-da50-4afe-a6f0-b8e2d4ec9256' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>m s-1</dd><dt><span>long_name :</span></dt><dd>meridional wind</dd></dl></div><div class='xr-var-data'><pre>array([-16.404581, -17.911014, -18.916747, -19.755539, -20.509177, -21.216487,
+       -21.905028, -22.577482, -23.271481, -23.955339, -24.587706, -25.145974,
+       -25.65514 , -26.044023, -26.282494, -26.344019, -26.198673, -25.722147,
+       -25.946023, -26.744747, -27.419334, -27.717025, -27.778618, -27.828219,
+       -27.94616 , -28.100725, -28.184861, -28.092413, -27.79849 , -27.397189,
+       -27.075408, -26.989857, -26.957653, -26.502349, -25.302943, -23.763061,
+       -22.465341, -21.661884, -21.23872 , -20.925731, -20.515505, -19.931693,
+       -19.247399, -18.510925, -17.776665, -17.156717, -16.646902, -16.259891,
+       -16.0685  , -16.04247 , -16.05106 , -15.912882, -15.543834, -14.988015,
+       -14.368308, -13.894832, -13.670266, -13.255865, -12.386878, -11.525468,
+       -10.765658, -10.149059,  -9.339152,  -8.011459,  -6.695707,  -5.944585,
+        -5.748462,  -5.617144,  -5.67716 ,  -5.889251,  -5.799067,  -5.468559,
+        -4.780861,  -3.897933,  -3.815487,  -3.631665,  -2.479208,  -2.105745,
+        -2.788626,  -2.800869,  -2.355528,  -2.179388,  -2.217025,  -2.272797,
+        -2.164768,  -1.550274,  -0.919433,  -0.839062,  -0.564188,   0.054069,
+        -0.239111,  -1.243406,  -1.055303,   0.268015,   0.451718,  -0.971771,
+        -2.748049,  -3.503846,  -2.591441,  -1.036646,  -0.434254,  -1.167506,
+        -2.238802,  -2.587218,  -2.332059,  -1.986683,  -0.585611,   3.277354,
+         7.937908,  10.815305,  10.553791,   7.72019 ,   4.995623,   4.212955,
+         4.630215,   4.60418 ,   3.111153,   0.226694,  -2.340449,  -6.714065,
+       -10.131501,  -6.940562,   0.328087,   4.889395,   5.646824,   4.20215 ,
+         2.958073,   3.993863,   5.831824,   5.305836,   1.867658,  -2.318167,
+        -6.983919, -11.533882, -14.970929, -17.013648])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>temp</span></div><div class='xr-var-dims'>(lev)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-10e72de6-976d-4679-92cd-232fe1a51ebe' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-10e72de6-976d-4679-92cd-232fe1a51ebe' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-27fd508f-6c3f-4c31-8659-aa5e400713b1' class='xr-var-data-in' type='checkbox'><label for='data-27fd508f-6c3f-4c31-8659-aa5e400713b1' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>K</dd><dt><span>long_name :</span></dt><dd>temperature</dd></dl></div><div class='xr-var-data'><pre>array([246.972505, 246.825311, 246.645456, 246.445055, 246.224995, 245.986402,
+       245.727427, 245.453145, 245.170933, 244.886026, 244.590521, 244.249044,
+       243.922563, 243.642761, 243.489099, 243.245598, 243.547476, 245.334683,
+       247.74993 , 249.489156, 250.463431, 250.867857, 250.861815, 250.554067,
+       250.023213, 249.330011, 248.535299, 247.666105, 246.724515, 245.668068,
+       244.495831, 243.249049, 241.916978, 240.578545, 239.34137 , 238.121427,
+       236.792484, 235.401344, 234.106242, 232.904805, 231.670432, 230.280652,
+       228.670016, 226.84305 , 224.896306, 222.842822, 220.717017, 218.539586,
+       216.31246 , 214.110122, 211.958788, 209.880971, 207.89165 , 206.04173 ,
+       204.455349, 203.214395, 202.399997, 202.085545, 202.094154, 202.222918,
+       202.230764, 201.995496, 201.864787, 201.895803, 201.862265, 201.689033,
+       201.407529, 201.067869, 200.610235, 200.132131, 199.837486, 199.658764,
+       199.426396, 198.980873, 198.34675 , 197.866554, 197.565044, 197.175075,
+       196.686747, 196.154616, 195.628556, 195.392672, 195.536147, 195.885085,
+       196.308942, 196.607086, 196.515887, 196.189855, 196.003444, 196.074591,
+       196.418504, 197.173306, 198.307672, 199.562825, 200.727154, 201.82276 ,
+       203.051839, 204.597647, 206.347334, 208.003435, 209.414061, 210.676898,
+       212.083809, 214.044982, 216.909977, 220.725118, 224.928745, 228.737562,
+       232.074967, 235.74219 , 240.212459, 245.293668, 250.16776 , 253.068776,
+       254.757341, 255.35427 , 255.001381, 253.887525, 252.256081, 250.570847,
+       251.120707, 253.602737, 255.077948, 255.16595 , 254.634694, 253.642321,
+       252.275431, 250.294573, 247.21062 , 243.401413, 239.480195, 235.48823 ,
+       231.073085, 226.073858, 220.410866, 213.973003])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>theta</span></div><div class='xr-var-dims'>(lev)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-b6b1f9c9-ce14-4bb4-abf0-a7461f593777' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-b6b1f9c9-ce14-4bb4-abf0-a7461f593777' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-2601f228-e532-4465-91b4-7ef63c333872' class='xr-var-data-in' type='checkbox'><label for='data-2601f228-e532-4465-91b4-7ef63c333872' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>K</dd><dt><span>long_name :</span></dt><dd>potential temperature</dd></dl></div><div class='xr-var-data'><pre>array([ 247.142715,  247.187162,  247.21739 ,  247.247479,  247.278828,
+        247.315491,  247.35739 ,  247.412007,  247.48852 ,  247.595859,
+        247.728146,  247.852498,  248.033698,  248.308376,  248.760599,
+        249.173202,  250.203064,  252.823467,  256.16431 ,  258.883783,
+        260.890258,  262.386974,  263.539803,  264.46543 ,  265.247902,
+        265.953349,  266.64887 ,  267.36636 ,  268.108465,  268.83027 ,
+        269.531727,  270.255906,  270.990127,  271.820702,  272.866821,
+        274.03092 ,  275.162171,  276.306846,  277.644879,  279.17358 ,
+        280.739237,  282.175306,  283.372711,  284.313876,  285.110786,
+        285.778331,  286.360837,  286.880609,  287.340153,  287.845222,
+        288.441284,  289.169262,  290.057549,  291.185361,  292.73588 ,
+        294.842389,  297.644816,  301.273608,  305.484637,  309.983587,
+        314.40859 ,  318.562864,  322.990933,  327.79014 ,  332.60071 ,
+        337.297165,  341.928854,  346.576986,  351.137997,  355.785167,
+        360.888974,  366.345053,  371.854078,  377.112153,  382.159624,
+        387.651486,  393.642995,  399.607092,  405.518413,  411.484732,
+        417.621204,  424.572376,  432.579152,  441.311848,  450.515007,
+        459.752057,  468.424166,  476.912607,  486.151729,  496.480492,
+        507.992828,  521.12104 ,  535.868442,  551.614143,  567.802374,
+        584.498323,  602.297888,  621.802394,  642.759495,  664.347863,
+        686.173369,  708.618333,  732.727437,  760.030393,  791.946848,
+        828.91556 ,  869.348243,  910.355815,  951.756236,  996.978703,
+       1048.221645, 1104.974902, 1164.057174, 1217.506322, 1268.270658,
+       1316.813857, 1364.044413, 1412.31679 , 1465.265343, 1525.591786,
+       1606.992304, 1709.632971, 1816.045414, 1924.420536, 2040.772915,
+       2167.008885, 2305.345885, 2455.466027, 2614.39264 , 2787.487032,
+       2984.896051, 3213.468648, 3474.711363, 3771.982902, 4111.352779,
+       4503.573019])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>qv</span></div><div class='xr-var-dims'>(lev)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-5af5e605-ea86-4a23-98b2-c16901937110' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-5af5e605-ea86-4a23-98b2-c16901937110' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-e7a52e0d-aee8-489b-90a0-62cd347db430' class='xr-var-data-in' type='checkbox'><label for='data-e7a52e0d-aee8-489b-90a0-62cd347db430' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>kg kg-1</dd><dt><span>long_name :</span></dt><dd>specific humidity</dd></dl></div><div class='xr-var-data'><pre>array([3.241073e-04, 3.157025e-04, 3.133232e-04, 3.108222e-04, 3.086293e-04,
+       3.070001e-04, 3.051185e-04, 3.037787e-04, 2.999115e-04, 2.939795e-04,
+       2.894677e-04, 2.959408e-04, 3.021017e-04, 3.009213e-04, 2.780668e-04,
+       2.844641e-04, 3.059744e-04, 3.335346e-04, 3.521726e-04, 3.508944e-04,
+       3.259070e-04, 2.814565e-04, 2.280863e-04, 1.875451e-04, 1.737230e-04,
+       1.801453e-04, 1.972836e-04, 2.144248e-04, 2.254316e-04, 2.300815e-04,
+       2.294079e-04, 2.254344e-04, 2.317792e-04, 2.513581e-04, 2.477273e-04,
+       2.246024e-04, 1.996080e-04, 1.764242e-04, 1.590702e-04, 1.451295e-04,
+       1.318627e-04, 1.185282e-04, 1.019860e-04, 8.254696e-05, 6.452445e-05,
+       5.021299e-05, 4.027003e-05, 3.356963e-05, 2.769320e-05, 2.190336e-05,
+       1.703957e-05, 1.315651e-05, 1.001147e-05, 7.695079e-06, 6.273148e-06,
+       5.709151e-06, 5.942793e-06, 6.292930e-06, 7.000503e-06, 5.928004e-06,
+       5.096171e-06, 4.875722e-06, 4.630378e-06, 4.298492e-06, 3.966317e-06,
+       3.583691e-06, 3.257500e-06, 3.103084e-06, 2.991687e-06, 2.966695e-06,
+       2.966695e-06, 2.864529e-06, 2.864529e-06, 2.864529e-06, 2.864529e-06,
+       2.864529e-06, 2.864529e-06, 2.864529e-06, 2.864529e-06, 2.771001e-06,
+       2.762362e-06, 2.773140e-06, 2.864529e-06, 2.890917e-06, 2.999161e-06,
+       3.106270e-06, 3.212593e-06, 3.318568e-06, 3.424417e-06, 3.477528e-06,
+       3.533402e-06, 3.638459e-06, 3.742998e-06, 3.784028e-06, 3.784028e-06,
+       3.847618e-06, 3.886194e-06, 3.886194e-06, 3.886194e-06, 3.886194e-06,
+       3.886194e-06, 3.886194e-06, 3.886194e-06, 3.886194e-06, 3.886194e-06,
+       3.886194e-06, 3.886194e-06, 3.886194e-06, 3.886194e-06, 3.886194e-06,
+       3.856592e-06, 3.784028e-06, 3.784028e-06, 3.784028e-06, 3.784028e-06,
+       3.784028e-06, 3.784028e-06, 3.786116e-06, 3.876543e-06, 3.886194e-06,
+       3.886194e-06, 3.742760e-06, 3.550320e-06, 3.356610e-06, 3.273195e-06,
+       3.273195e-06, 3.227183e-06, 3.005381e-06, 2.614023e-06, 2.386581e-06,
+       2.426831e-06, 2.223801e-06, 1.842863e-06, 1.778307e-06, 1.497251e-06,
+       1.314532e-06])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>ps</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-629df357-855c-4f26-862d-e4c79f86b9ea' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-629df357-855c-4f26-862d-e4c79f86b9ea' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-0e2148f9-b01a-407c-81a5-86fa45cd686f' class='xr-var-data-in' type='checkbox'><label for='data-0e2148f9-b01a-407c-81a5-86fa45cd686f' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>Pa</dd><dt><span>long_name :</span></dt><dd>surface pressure</dd></dl></div><div class='xr-var-data'><pre>array(994.78186)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>thetas</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-aea1da05-6f8f-4af8-9f37-8f9e83715015' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-aea1da05-6f8f-4af8-9f37-8f9e83715015' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-4de2312d-c2df-47b2-b158-ffb6ac45cdcb' class='xr-var-data-in' type='checkbox'><label for='data-4de2312d-c2df-47b2-b158-ffb6ac45cdcb' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>K</dd><dt><span>long_name :</span></dt><dd>surface potential temperature</dd></dl></div><div class='xr-var-data'><pre>array(247.482437)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>ug</span></div><div class='xr-var-dims'>(time, lev)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-1e1f4271-4c7f-48fc-ba3a-8383d9c8a276' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-1e1f4271-4c7f-48fc-ba3a-8383d9c8a276' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-1ab94df0-604c-42d9-805d-4776ab08e7ae' class='xr-var-data-in' type='checkbox'><label for='data-1ab94df0-604c-42d9-805d-4776ab08e7ae' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>m s-1</dd><dt><span>long_name :</span></dt><dd>geostrophic zonal wind</dd></dl></div><div class='xr-var-data'><pre>array([[ -2.819558,  -2.834999,  -2.851903, ...,  58.547373,  60.611021,
+         62.75861 ],
+       [ -1.741507,  -1.746565,  -1.752103, ...,  60.350127,  62.265795,
+         64.259385],
+       [  0.973585,   0.951282,   0.926866, ...,  28.3092  ,  26.800076,
+         25.229567],
+       ...,
+       [  6.570777,   6.570789,   6.570803, ..., -10.469666, -14.481611,
+        -18.656748],
+       [  7.533574,   7.533184,   7.532757, ..., -30.184435, -35.740576,
+        -41.522721],
+       [  9.476649,   9.471734,   9.466352, ..., -28.49606 , -33.800035,
+        -39.319756]])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>vg</span></div><div class='xr-var-dims'>(time, lev)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-71f65633-19d0-4457-a98d-59f639b36458' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-71f65633-19d0-4457-a98d-59f639b36458' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-13d2b35b-5625-4a42-9e2d-1754a20c8e28' class='xr-var-data-in' type='checkbox'><label for='data-13d2b35b-5625-4a42-9e2d-1754a20c8e28' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>m s-1</dd><dt><span>long_name :</span></dt><dd>geostrophic meridional wind</dd></dl></div><div class='xr-var-data'><pre>array([[-27.459027, -27.384382, -27.302665, ...,   3.044624,   3.24429 ,
+          3.452077],
+       [-29.647764, -29.577717, -29.501034, ...,  -5.692448,  -6.278334,
+         -6.888051],
+       [-29.548283, -29.500922, -29.449074, ...,   9.848613,  11.118079,
+         12.439182],
+       ...,
+       [-15.088067, -15.087479, -15.086836, ...,  -0.948959,  -0.788777,
+         -0.62208 ],
+       [-13.19717 , -13.176859, -13.154623, ..., -23.054485, -24.798365,
+        -26.613179],
+       [-12.19626 , -12.216999, -12.239702, ..., -37.679355, -40.536941,
+        -43.510764]])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>u_nudging</span></div><div class='xr-var-dims'>(time, lev)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-dddf6c18-3e29-47f1-9806-fa157be10952' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-dddf6c18-3e29-47f1-9806-fa157be10952' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-efe33480-f513-47d2-9aa0-cf2bf72c7201' class='xr-var-data-in' type='checkbox'><label for='data-efe33480-f513-47d2-9aa0-cf2bf72c7201' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>m s-1</dd><dt><span>long_name :</span></dt><dd>zonal wind profile for nudging</dd></dl></div><div class='xr-var-data'><pre>array([[ 4.610159,  4.904548,  5.034807, ..., 21.566026, 19.072369, 15.311763],
+       [ 5.901181,  6.316157,  6.526334, ..., 22.061718, 20.194026, 16.623104],
+       [ 6.601397,  7.116095,  7.385586, ..., 22.270229, 21.102807, 18.019177],
+       ...,
+       [ 4.305482,  4.46714 ,  4.539468, ..., 23.27721 , 18.512237, 18.15156 ],
+       [ 3.785921,  3.990477,  4.08436 , ..., 24.876233, 19.930759, 18.813176],
+       [ 3.761155,  4.140608,  4.327044, ..., 24.185825, 18.610277, 16.261177]])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>v_nudging</span></div><div class='xr-var-dims'>(time, lev)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-40ad6a6e-2184-434a-a64b-b11b3bb774e3' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-40ad6a6e-2184-434a-a64b-b11b3bb774e3' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-c335e46f-5497-49d2-8869-88aa6b4114ad' class='xr-var-data-in' type='checkbox'><label for='data-c335e46f-5497-49d2-8869-88aa6b4114ad' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>m s-1</dd><dt><span>long_name :</span></dt><dd>meridional wind profile for nudging</dd></dl></div><div class='xr-var-data'><pre>array([[-16.404581, -17.911014, -18.916747, ..., -11.533882, -14.970929,
+        -17.013648],
+       [-16.856767, -18.409669, -19.452713, ..., -13.353369, -16.466374,
+        -18.34243 ],
+       [-16.862373, -18.530175, -19.636357, ..., -13.434388, -16.774181,
+        -19.013807],
+       ...,
+       [-12.095485, -12.622143, -12.882705, ...,  -5.112883,  -7.205347,
+        -10.397116],
+       [-11.406644, -12.000351, -12.279321, ...,  -9.311049, -11.445282,
+        -14.549743],
+       [ -8.429794,  -9.095281,  -9.42883 , ..., -12.831994, -14.235478,
+        -16.544537]])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>theta_nudging</span></div><div class='xr-var-dims'>(time, lev)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-8fc4cec0-fdb4-4c56-9109-269b329fa29b' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-8fc4cec0-fdb4-4c56-9109-269b329fa29b' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-50f14d94-f312-4cd1-88d8-2e227fffaf5d' class='xr-var-data-in' type='checkbox'><label for='data-50f14d94-f312-4cd1-88d8-2e227fffaf5d' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>K</dd><dt><span>long_name :</span></dt><dd>potential temperature profile for nudging</dd></dl></div><div class='xr-var-data'><pre>array([[ 247.142715,  247.187162,  247.21739 , ..., 3771.982902, 4111.352779,
+        4503.573019],
+       [ 246.678436,  246.734255,  246.771244, ..., 3752.753535, 4087.883393,
+        4481.703416],
+       [ 246.293125,  246.347749,  246.392353, ..., 3747.749296, 4082.832039,
+        4478.516046],
+       ...,
+       [ 270.362217,  270.146457,  270.028281, ..., 3651.240761, 3989.765993,
+        4343.241057],
+       [ 270.58077 ,  270.346439,  270.228223, ..., 3662.317502, 3999.336095,
+        4351.483558],
+       [ 270.269867,  270.120148,  270.058472, ..., 3662.531732, 3993.520017,
+        4341.818857]])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>qv_nudging</span></div><div class='xr-var-dims'>(time, lev)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-54acd29b-f798-4754-8f55-93d56e185615' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-54acd29b-f798-4754-8f55-93d56e185615' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-e1c16b11-bc77-4bce-8bba-c554f7fb813b' class='xr-var-data-in' type='checkbox'><label for='data-e1c16b11-bc77-4bce-8bba-c554f7fb813b' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>kg kg-1</dd><dt><span>long_name :</span></dt><dd>specific humidity profile for nudging</dd></dl></div><div class='xr-var-data'><pre>array([[3.241073e-04, 3.157025e-04, 3.133232e-04, ..., 1.778307e-06,
+        1.497251e-06, 1.314532e-06],
+       [3.080743e-04, 3.007390e-04, 2.973300e-04, ..., 1.788271e-06,
+        1.503108e-06, 1.317115e-06],
+       [2.981667e-04, 2.922407e-04, 2.873915e-04, ..., 1.786763e-06,
+        1.501794e-06, 1.316301e-06],
+       ...,
+       [2.010038e-03, 1.914100e-03, 1.869133e-03, ..., 1.740497e-06,
+        1.637271e-06, 1.331544e-06],
+       [2.098581e-03, 1.985637e-03, 1.937149e-03, ..., 1.739697e-06,
+        1.635591e-06, 1.331169e-06],
+       [2.307845e-03, 2.219368e-03, 2.176050e-03, ..., 1.740697e-06,
+        1.638530e-06, 1.332030e-06]])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>w_nudging</span></div><div class='xr-var-dims'>(time, lev)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-65dd0537-4cf0-44dd-a30e-7c8b39e9c2f4' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-65dd0537-4cf0-44dd-a30e-7c8b39e9c2f4' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-19f37de3-fe2e-4ad6-b1bc-1f6c6cb0805a' class='xr-var-data-in' type='checkbox'><label for='data-19f37de3-fe2e-4ad6-b1bc-1f6c6cb0805a' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>Pa s-1</dd><dt><span>long_name :</span></dt><dd>vertical velocity for nudging</dd></dl></div><div class='xr-var-data'><pre>array([[ 5.744911e-03,  1.716691e-03, -2.071091e-03, ..., -5.816413e-05,
+        -5.816413e-05, -5.816413e-05],
+       [-1.392342e-02, -1.534005e-02, -1.580743e-02, ..., -5.816413e-05,
+        -5.816413e-05, -5.816413e-05],
+       [-2.931587e-02, -3.230894e-02, -3.348565e-02, ..., -5.816413e-05,
+        -5.816413e-05, -5.816413e-05],
+       ...,
+       [ 1.675435e-02,  1.075777e-02,  3.713424e-03, ..., -5.816413e-05,
+        -5.816413e-05, -5.816413e-05],
+       [ 3.191972e-02,  2.330644e-02,  1.348790e-02, ..., -5.816413e-05,
+        -5.816413e-05, -5.816413e-05],
+       [-2.766569e-02, -6.601977e-02, -1.006682e-01, ..., -5.816413e-05,
+        -5.816413e-05, -5.816413e-05]])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-65234c54-b127-484f-85c0-87109144332b' class='xr-section-summary-in' type='checkbox'  ><label for='section-65234c54-b127-484f-85c0-87109144332b' class='xr-section-summary' >Attributes: <span>(18)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>title :</span></dt><dd>Forcing and initial conditions for 13 March 2020 COMBLE intercomparison case</dd><dt><span>reference :</span></dt><dd>https://comble-intercomparison.readthedocs.io/en/latest/</dd><dt><span>authors :</span></dt><dd>Timothy W. Juliano (NCAR/RAL, tjuliano@ucar.edu); Florian Tornow (NASA/GISS, ft2544@columbia.edu); Ann M. Fridlind (NASA/GISS, ann.fridlind@nasa.gov)</dd><dt><span>version :</span></dt><dd>Created on 2023-02-10 for Gunilla Svensson</dd><dt><span>format_version :</span></dt><dd>DEPHY SCM format version 1.6</dd><dt><span>script :</span></dt><dd>create_comble_nudging_geo_forcing_era5ml_v1.6</dd><dt><span>startDate :</span></dt><dd>2020-03-12 18:00:00</dd><dt><span>endDate :</span></dt><dd>2020-03-13 18:00:00</dd><dt><span>force_geo :</span></dt><dd>1</dd><dt><span>surfaceType :</span></dt><dd>ocean</dd><dt><span>surfaceForcing :</span></dt><dd>ts</dd><dt><span>lat :</span></dt><dd>76.0 deg N</dd><dt><span>dx :</span></dt><dd>150 m</dd><dt><span>dy :</span></dt><dd>150 m</dd><dt><span>dz :</span></dt><dd>see zw_grid variable</dd><dt><span>nx :</span></dt><dd>648</dd><dt><span>ny :</span></dt><dd>648</dd><dt><span>nz :</span></dt><dd>160</dd></dl></div></li></ul></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dephys_filename</span> <span class="o">=</span> <span class="s1">&#39;COMBLE_INTERCOMPARISON_SFC_FORCING_ERA5ML_V1.6.nc&#39;</span>
+<span class="n">dephys</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">dephys_filename</span><span class="p">)</span>
+<span class="n">dephys</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme=dark],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1F1F1F;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 20px 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: none;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: '►';
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: '▼';
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: '(';
+}
+
+.xr-dim-list:after {
+  content: ')';
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ',';
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2 {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.Dataset&gt;
+Dimensions:  (time: 337)
+Coordinates:
+  * time     (time) datetime64[ns] 2020-03-12T14:00:00 ... 2020-03-13T18:00:00
+Data variables:
+    ts       (time) float64 247.0 247.0 247.0 247.0 ... 278.2 278.0 277.9 277.8
+Attributes: (12/18)
+    title:           Forcing and initial conditions for 13 March 2020 COMBLE ...
+    reference:       https://comble-intercomparison.readthedocs.io/en/latest/
+    authors:         Timothy W. Juliano (NCAR/RAL, tjuliano@ucar.edu); Floria...
+    version:         Created on 2022-11-21
+    format_version:  DEPHY SCM format version 1.6
+    script:          create_comble_forcing.ipynb
+    ...              ...
+    dx:              150 m
+    dy:              150 m
+    dz:              see zw_grid variable
+    nx:              648
+    ny:              648
+    nz:              160</pre><div class='xr-wrap' hidden><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-93ccd56d-b39c-48cc-983c-ea6c7a037b63' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-93ccd56d-b39c-48cc-983c-ea6c7a037b63' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>time</span>: 337</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-145155c8-9d2f-4a18-936f-234d45d70188' class='xr-section-summary-in' type='checkbox'  checked><label for='section-145155c8-9d2f-4a18-936f-234d45d70188' class='xr-section-summary' >Coordinates: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>2020-03-12T14:00:00 ... 2020-03-...</div><input id='attrs-8b9e790e-537c-4f3f-bd5f-2cc36cdca08a' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-8b9e790e-537c-4f3f-bd5f-2cc36cdca08a' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-780e3737-b5c3-4a63-9c0b-3000207bdef6' class='xr-var-data-in' type='checkbox'><label for='data-780e3737-b5c3-4a63-9c0b-3000207bdef6' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>time</dd></dl></div><div class='xr-var-data'><pre>array([&#x27;2020-03-12T14:00:00.000000000&#x27;, &#x27;2020-03-12T14:05:00.000000000&#x27;,
+       &#x27;2020-03-12T14:10:00.000000000&#x27;, ..., &#x27;2020-03-13T17:50:00.000000000&#x27;,
+       &#x27;2020-03-13T17:55:00.000000000&#x27;, &#x27;2020-03-13T18:00:00.000000000&#x27;],
+      dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-5c18e04c-0329-4ac8-94fa-16a4ab926b35' class='xr-section-summary-in' type='checkbox'  checked><label for='section-5c18e04c-0329-4ac8-94fa-16a4ab926b35' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>ts</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-1b812453-54bf-4d22-a241-752d07507fea' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-1b812453-54bf-4d22-a241-752d07507fea' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-b30e0c34-634a-4c20-90bb-8b333130d37b' class='xr-var-data-in' type='checkbox'><label for='data-b30e0c34-634a-4c20-90bb-8b333130d37b' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>K</dd><dt><span>long_name :</span></dt><dd>surface temperature</dd></dl></div><div class='xr-var-data'><pre>array([247.      , 247.      , 247.      , ..., 278.045578, 277.917801,
+       277.790039])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-ef724ecb-1586-4e0d-9570-541200358f70' class='xr-section-summary-in' type='checkbox'  ><label for='section-ef724ecb-1586-4e0d-9570-541200358f70' class='xr-section-summary' >Attributes: <span>(18)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>title :</span></dt><dd>Forcing and initial conditions for 13 March 2020 COMBLE intercomparison case</dd><dt><span>reference :</span></dt><dd>https://comble-intercomparison.readthedocs.io/en/latest/</dd><dt><span>authors :</span></dt><dd>Timothy W. Juliano (NCAR/RAL, tjuliano@ucar.edu); Florian Tornow (NASA/GISS, ft2544@columbia.edu); Ann M. Fridlind (NASA/GISS, ann.fridlind@nasa.gov)</dd><dt><span>version :</span></dt><dd>Created on 2022-11-21</dd><dt><span>format_version :</span></dt><dd>DEPHY SCM format version 1.6</dd><dt><span>script :</span></dt><dd>create_comble_forcing.ipynb</dd><dt><span>startDate :</span></dt><dd>2020-03-12 14:00:00</dd><dt><span>endDate :</span></dt><dd>2020-03-13 18:00:00</dd><dt><span>force_geo :</span></dt><dd>1</dd><dt><span>surfaceType :</span></dt><dd>ocean</dd><dt><span>surfaceForcing :</span></dt><dd>ts</dd><dt><span>lat :</span></dt><dd>77.6 deg N</dd><dt><span>dx :</span></dt><dd>150 m</dd><dt><span>dy :</span></dt><dd>150 m</dd><dt><span>dz :</span></dt><dd>see zw_grid variable</dd><dt><span>nx :</span></dt><dd>648</dd><dt><span>ny :</span></dt><dd>648</dd><dt><span>nz :</span></dt><dd>160</dd></dl></div></li></ul></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># echo hourly values to enter into DHARMA input parameter file manually</span>
+<span class="n">dephys_h</span> <span class="o">=</span> <span class="n">dephys</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="s2">&quot;1H&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">nearest</span><span class="p">()</span>
+<span class="n">dephys_h</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">240</span><span class="p">,</span><span class="mi">280</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dephys</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">values</span><span class="p">,</span><span class="n">dephys</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dephys_h</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">values</span><span class="p">,</span><span class="n">dephys_h</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># test a more gradua increase in surface temperature</span>
+<span class="n">ts_new</span> <span class="o">=</span> <span class="n">dephys_h</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ts_new</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ts_new</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span> <span class="c1"># last value at 247.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ts_new</span><span class="p">[</span><span class="mi">19</span><span class="p">]</span> <span class="c1"># roughly halfway through</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t_int</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">13</span><span class="p">)</span>
+<span class="n">t_int</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">t_int</span><span class="p">,[</span><span class="mi">9</span><span class="p">,</span><span class="mi">13</span><span class="p">],[</span><span class="mf">247.</span><span class="p">,</span><span class="mf">275.2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ts_new</span><span class="p">[</span><span class="mi">9</span><span class="p">:</span><span class="mi">13</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">t_int</span><span class="p">,[</span><span class="mi">9</span><span class="p">,</span><span class="mi">13</span><span class="p">],[</span><span class="mf">247.</span><span class="p">,</span><span class="mf">275.2</span><span class="p">])</span>
+<span class="n">ts_new</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">240</span><span class="p">,</span><span class="mi">280</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dephys</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">values</span><span class="p">,</span><span class="n">dephys</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dephys_h</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">values</span><span class="p">,</span><span class="n">dephys_h</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dephys_h</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">values</span><span class="p">,</span><span class="n">ts_new</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="write-input-sounding-file-for-dharma-les-in-ascii-format">
+<h2>Write input sounding file for DHARMA LES in ASCII format<a class="headerlink" href="#write-input-sounding-file-for-dharma-les-in-ascii-format" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># use a list to accumulate output ASCII lines</span>
+<span class="n">lines_sounding</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># number of lines to be read</span>
+<span class="n">n_z</span> <span class="o">=</span> <span class="n">dephy</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="s1">&#39;lev&#39;</span><span class="p">]</span>
+<span class="n">str_firstline</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">n_z</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># number of heights after adding surface point below</span>
+<span class="n">lines_sounding</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">str_firstline</span><span class="p">)</span>
+
+<span class="c1"># arrays to be reported in columns</span>
+<span class="n">z_arr</span> <span class="o">=</span> <span class="n">dephy</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s1">&#39;lev&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">th_arr</span> <span class="o">=</span> <span class="n">dephy</span><span class="p">[</span><span class="s1">&#39;theta&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span> <span class="c1"># K</span>
+<span class="n">qt_arr</span> <span class="o">=</span> <span class="n">dephy</span><span class="p">[</span><span class="s1">&#39;qv&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span><span class="o">*</span><span class="mf">1000.</span> <span class="c1"># g/kg</span>
+<span class="n">u_arr</span> <span class="o">=</span> <span class="n">dephy</span><span class="p">[</span><span class="s1">&#39;u&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span> <span class="c1"># m/s</span>
+<span class="n">v_arr</span> <span class="o">=</span> <span class="n">dephy</span><span class="p">[</span><span class="s1">&#39;v&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span> <span class="c1"># m/s</span>
+
+<span class="c1"># add a surface point (required by DHARMA code)</span>
+<span class="n">z0_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span><span class="n">th_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">qt_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">u_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">v_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span> <span class="c1"># well-mixed assumption</span>
+<span class="n">str_z0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array2string</span><span class="p">(</span><span class="n">z0_arr</span><span class="p">,</span><span class="n">formatter</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;float_kind&#39;</span><span class="p">:</span><span class="k">lambda</span> <span class="n">z0_arr</span><span class="p">:</span><span class="s2">&quot;</span><span class="si">%12.4f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">z0_arr</span><span class="p">})[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">lines_sounding</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">str_z0</span><span class="p">)</span>                        
+
+<span class="k">for</span> <span class="n">kk</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_z</span><span class="p">):</span>
+    <span class="n">vars_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">z_arr</span><span class="p">[</span><span class="n">kk</span><span class="p">],</span><span class="n">th_arr</span><span class="p">[</span><span class="n">kk</span><span class="p">],</span><span class="n">qt_arr</span><span class="p">[</span><span class="n">kk</span><span class="p">],</span><span class="n">u_arr</span><span class="p">[</span><span class="n">kk</span><span class="p">],</span><span class="n">v_arr</span><span class="p">[</span><span class="n">kk</span><span class="p">]])</span>
+    <span class="n">str_vars</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array2string</span><span class="p">(</span><span class="n">vars_arr</span><span class="p">,</span><span class="n">formatter</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;float_kind&#39;</span><span class="p">:</span><span class="k">lambda</span> <span class="n">vars_arr</span><span class="p">:</span><span class="s2">&quot;</span><span class="si">%12.4f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">vars_arr</span><span class="p">})[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">lines_sounding</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">str_vars</span><span class="p">)</span>
+    
+<span class="n">str_headline</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="s1">&#39;      z(m)        th(K)     qt(g/kg)       u(m/s)       v(m/s)&#39;</span><span class="p">)</span>
+<span class="n">lines_sounding</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">str_headline</span><span class="p">)</span>
+
+<span class="c1"># write list contents to ASCII file</span>
+<span class="n">filename_sounding_LES</span> <span class="o">=</span> <span class="s1">&#39;DHARMA_LES_ASCII_comble.input_sounding&#39;</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename_sounding_LES</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;wt&#39;</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">sounding_file</span><span class="p">:</span>
+    <span class="n">sounding_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines_sounding</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="write-forcing-file-for-dharma-les-in-ascii-format">
+<h2>Write forcing file for DHARMA LES in ASCII format<a class="headerlink" href="#write-forcing-file-for-dharma-les-in-ascii-format" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create thermodynamic forcing file contents as list</span>
+<span class="n">lines_forcing</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># limit to bottom 8 km (e.g., subsidence invalid far aloft)</span>
+<span class="n">n_zf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">dephy</span><span class="o">.</span><span class="n">lev</span><span class="o">&lt;</span><span class="mf">8000.</span><span class="p">))</span>
+
+<span class="n">n_t</span> <span class="o">=</span> <span class="n">dephy</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span>
+<span class="n">str_firstline</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">n_zf</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">n_t</span><span class="p">)</span> <span class="c1"># extra line for z=0</span>
+<span class="n">lines_forcing</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">str_firstline</span><span class="p">)</span> <span class="c1"># number of heights, times</span>
+
+<span class="k">for</span> <span class="n">tt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_t</span><span class="p">):</span>
+    <span class="n">u_arr</span> <span class="o">=</span> <span class="n">dephy</span><span class="p">[</span><span class="s1">&#39;u_nudging&#39;</span><span class="p">][</span><span class="n">tt</span><span class="p">,:]</span><span class="o">.</span><span class="n">values</span> <span class="c1"># m/s</span>
+    <span class="n">v_arr</span> <span class="o">=</span> <span class="n">dephy</span><span class="p">[</span><span class="s1">&#39;v_nudging&#39;</span><span class="p">][</span><span class="n">tt</span><span class="p">,:]</span><span class="o">.</span><span class="n">values</span> <span class="c1"># m/s</span>
+    <span class="c1"># w_arr = np.zeros(n_zf) # dummy values for subsidence, th and qv forcing (not used)</span>
+    <span class="n">om_arr</span> <span class="o">=</span> <span class="n">dephy</span><span class="p">[</span><span class="s1">&#39;w_nudging&#39;</span><span class="p">][</span><span class="n">tt</span><span class="p">,:]</span><span class="o">.</span><span class="n">values</span> <span class="c1"># Pa/s</span>
+    <span class="n">p_arr</span> <span class="o">=</span> <span class="n">dephy</span><span class="p">[</span><span class="s1">&#39;pressure&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="c1"># Pa</span>
+    <span class="n">t_arr</span> <span class="o">=</span> <span class="n">dephy</span><span class="p">[</span><span class="s1">&#39;temp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="c1"># K</span>
+    <span class="n">qv_arr</span> <span class="o">=</span> <span class="n">dephy</span><span class="p">[</span><span class="s1">&#39;qv&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="c1"># kg/kg</span>
+    <span class="n">rho_arr</span> <span class="o">=</span> <span class="n">p_arr</span><span class="o">/</span><span class="p">(</span><span class="n">t_arr</span><span class="o">*</span><span class="mf">287.</span><span class="o">*</span><span class="p">(</span><span class="mf">1.</span><span class="o">+</span><span class="mf">0.608</span><span class="o">*</span><span class="n">qv_arr</span><span class="p">))</span> <span class="c1"># kg/m3</span>
+    <span class="n">w_arr</span> <span class="o">=</span> <span class="o">-</span><span class="n">om_arr</span><span class="o">/</span><span class="p">(</span><span class="mf">9.81</span><span class="o">*</span><span class="n">rho_arr</span><span class="o">.</span><span class="n">squeeze</span><span class="p">())</span><span class="o">*</span><span class="mf">100.</span> <span class="c1"># cm/s</span>
+    <span class="n">th_arr</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n_zf</span><span class="p">)</span>
+    <span class="n">qv_arr</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n_zf</span><span class="p">)</span> <span class="c1"># not used for nudging</span>
+    
+    <span class="n">z0_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span><span class="n">u_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">v_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+    <span class="n">str_z0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array2string</span><span class="p">(</span><span class="n">z0_arr</span><span class="p">,</span><span class="n">formatter</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;float_kind&#39;</span><span class="p">:</span><span class="k">lambda</span> <span class="n">z0_arr</span><span class="p">:</span><span class="s2">&quot;</span><span class="si">%10.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">z0_arr</span><span class="p">})[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">lines_forcing</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">str_z0</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">kk</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_zf</span><span class="p">):</span>
+        <span class="n">vars_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">z_arr</span><span class="p">[</span><span class="n">kk</span><span class="p">],</span><span class="n">w_arr</span><span class="p">[</span><span class="n">kk</span><span class="p">],</span><span class="n">th_arr</span><span class="p">[</span><span class="n">kk</span><span class="p">],</span><span class="n">qv_arr</span><span class="p">[</span><span class="n">kk</span><span class="p">],</span><span class="n">u_arr</span><span class="p">[</span><span class="n">kk</span><span class="p">],</span><span class="n">v_arr</span><span class="p">[</span><span class="n">kk</span><span class="p">]])</span>
+        <span class="n">str_vars</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array2string</span><span class="p">(</span><span class="n">vars_arr</span><span class="p">,</span><span class="n">formatter</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;float_kind&#39;</span><span class="p">:</span><span class="k">lambda</span> <span class="n">vars_arr</span><span class="p">:</span><span class="s2">&quot;</span><span class="si">%10.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">vars_arr</span><span class="p">})[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">lines_forcing</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">str_vars</span><span class="p">)</span>
+        
+    <span class="n">lines_forcing</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">tt</span><span class="p">))</span>
+    
+<span class="n">str_endlines1</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="s1">&#39;      z(m)    w(cm/s)      th(K)  qv(kg/kg)    u(m/s)    v(m/s)&#39;</span><span class="p">)</span>
+<span class="n">lines_forcing</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">str_endlines1</span><span class="p">)</span>
+
+<span class="n">str_endlines2</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="s1">&#39;time(h)&#39;</span><span class="p">)</span>
+<span class="n">lines_forcing</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">str_endlines2</span><span class="p">)</span>
+
+<span class="c1"># write list contents to ASCII file</span>
+<span class="n">filename_forcing_LES</span> <span class="o">=</span> <span class="s1">&#39;DHARMA_LES_ASCII_comble.input_forcing&#39;</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename_forcing_LES</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;wt&#39;</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">forcing_file</span><span class="p">:</span>
+    <span class="n">forcing_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines_forcing</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">7</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">w_arr</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span><span class="n">dephy</span><span class="p">[</span><span class="s1">&#39;lev&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">*</span><span class="mf">1e-3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">om_arr</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span><span class="n">dephy</span><span class="p">[</span><span class="s1">&#39;lev&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">*</span><span class="mf">1e-3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Cval</span> <span class="o">=</span> <span class="o">-</span><span class="mf">20.</span>
+<span class="n">inp</span> <span class="o">=</span> <span class="mf">0.25</span><span class="o">*</span><span class="p">(</span><span class="mf">0.44e-6</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.57</span><span class="o">*</span><span class="n">Cval</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.00228</span><span class="o">*</span><span class="n">Cval</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mf">0.113</span><span class="o">*</span><span class="n">Cval</span> <span class="o">-</span> <span class="mf">1.22213</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Cval</span><span class="p">,</span><span class="n">inp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="write-vertical-grid-file-for-dharma-les-in-ascii-format">
+<h2>Write vertical grid file for DHARMA LES in ASCII format<a class="headerlink" href="#write-vertical-grid-file-for-dharma-les-in-ascii-format" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create vertical grid file contents as list</span>
+<span class="n">lines_zw</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">n_zw</span> <span class="o">=</span> <span class="n">dephy</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="s1">&#39;zw_grid&#39;</span><span class="p">]</span> <span class="c1"># number of heights</span>
+<span class="n">lines_zw</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">n_zw</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">kk</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_zw</span><span class="p">):</span>
+    <span class="n">lines_zw</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">dephy</span><span class="p">[</span><span class="s1">&#39;zw_grid&#39;</span><span class="p">][</span><span class="n">kk</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">))</span>
+
+<span class="c1"># write vertical grid to ASCII file</span>
+<span class="n">filename_zw_LES</span> <span class="o">=</span> <span class="s1">&#39;DHARMA_LES_ASCII_comble.input_z&#39;</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename_zw_LES</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;wt&#39;</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">zw_file</span><span class="p">:</span>
+    <span class="n">zw_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines_zw</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="write-initialization-file-for-modele3-scm-in-netcdf-format">
+<h2>Write initialization file for ModelE3 SCM in NetCDF format<a class="headerlink" href="#write-initialization-file-for-modele3-scm-in-netcdf-format" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># open file with all components at initial time only</span>
+<span class="n">filename_init_SCM</span> <span class="o">=</span> <span class="s1">&#39;ModelE3_SCM_COMBLE_init.nc&#39;</span>
+<span class="n">scm_init</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="s1">&#39;./&#39;</span> <span class="o">+</span> <span class="n">filename_init_SCM</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span><span class="nb">format</span><span class="o">=</span><span class="s1">&#39;NETCDF3_CLASSIC&#39;</span><span class="p">)</span>
+
+<span class="c1"># create dimensions</span>
+<span class="n">lev_dim</span> <span class="o">=</span> <span class="n">scm_init</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s1">&#39;lev&#39;</span><span class="p">,</span> <span class="n">n_z</span><span class="p">)</span> <span class="c1"># level axis is pressure for SCM</span>
+<span class="n">time_dim</span> <span class="o">=</span> <span class="n">scm_init</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># initial time only</span>
+
+<span class="c1"># create variables</span>
+<span class="n">lev</span> <span class="o">=</span> <span class="n">scm_init</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;lev&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;lev&#39;</span><span class="p">,))</span>
+<span class="n">lev</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;air pressure&#39;</span>
+<span class="n">lev</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;mb&#39;</span>
+<span class="n">lev</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">dephy</span><span class="p">[</span><span class="s1">&#39;pressure&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+<span class="n">Ps</span> <span class="o">=</span> <span class="n">scm_init</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;Ps&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,))</span>
+<span class="n">Ps</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;surface pressure&#39;</span>
+<span class="n">Ps</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;mb&#39;</span>
+<span class="c1"># Ps[:] = dephy[&#39;ps&#39;].values</span>
+<span class="n">Ps</span><span class="p">[:]</span> <span class="o">=</span> <span class="mf">99407.19</span>
+
+<span class="n">T</span> <span class="o">=</span> <span class="n">scm_init</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;lev&#39;</span><span class="p">,))</span>
+<span class="n">T</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;air temperature&#39;</span>
+<span class="n">T</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;K&#39;</span>
+<span class="n">T</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">dephy</span><span class="p">[</span><span class="s1">&#39;temp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+<span class="n">Q</span> <span class="o">=</span> <span class="n">scm_init</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;Q&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;lev&#39;</span><span class="p">,))</span>
+<span class="n">Q</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;water vapor mixing ratio&#39;</span>
+<span class="n">Q</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;kg kg-1&#39;</span>
+<span class="n">Q</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">dephy</span><span class="p">[</span><span class="s1">&#39;qv&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+<span class="c1"># create time arrays</span>
+<span class="n">year</span> <span class="o">=</span> <span class="n">scm_init</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int16</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,))</span>
+<span class="n">year</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">dephy</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">year</span>
+<span class="n">month</span> <span class="o">=</span> <span class="n">scm_init</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int16</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,))</span>
+<span class="n">month</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">dephy</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">month</span>
+<span class="n">day</span> <span class="o">=</span> <span class="n">scm_init</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int16</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,))</span>
+<span class="n">day</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">dephy</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">day</span>
+<span class="n">hour</span> <span class="o">=</span> <span class="n">scm_init</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;hour&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int16</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,))</span>
+<span class="n">hour</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">dephy</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">hour</span>
+
+<span class="c1"># close and dump</span>
+<span class="n">scm_init</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="o">!</span>ncdump<span class="w"> </span>ModelE3_SCM_COMBLE_init.nc
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="write-forcing-file-for-modele3-scm-in-netcdf-format">
+<h2>Write forcing file for ModelE3 SCM in NetCDF format<a class="headerlink" href="#write-forcing-file-for-modele3-scm-in-netcdf-format" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># open forcing file with all components on same time dimension</span>
+<span class="n">filename_forcing_SCM</span> <span class="o">=</span> <span class="s1">&#39;ModelE3_SCM_COMBLE_force.nc&#39;</span>
+<span class="n">scm_force</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="s1">&#39;./&#39;</span> <span class="o">+</span> <span class="n">filename_forcing_SCM</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span><span class="nb">format</span><span class="o">=</span><span class="s1">&#39;NETCDF3_CLASSIC&#39;</span><span class="p">)</span>
+
+<span class="c1"># create dimensions</span>
+<span class="n">lev_dim</span> <span class="o">=</span> <span class="n">scm_force</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s1">&#39;lev&#39;</span><span class="p">,</span> <span class="n">n_z</span><span class="p">)</span> <span class="c1"># level axis is pressure for SCM</span>
+<span class="n">time_dim</span> <span class="o">=</span> <span class="n">scm_force</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">n_t</span><span class="p">)</span>
+
+<span class="c1"># create variables</span>
+<span class="n">lev</span> <span class="o">=</span> <span class="n">scm_force</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;lev&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;lev&#39;</span><span class="p">))</span>
+<span class="n">lev</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;air pressure&#39;</span>
+<span class="n">lev</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;mb&#39;</span>
+<span class="n">lev</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">dephy</span><span class="p">[</span><span class="s1">&#39;pressure&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+<span class="n">ts</span> <span class="o">=</span> <span class="n">scm_force</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;Tskin&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">))</span>
+<span class="n">ts</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;surface temperature&#39;</span>
+<span class="n">ts</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;K&#39;</span>
+<span class="n">ts</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">dephy</span><span class="p">[</span><span class="s1">&#39;ts&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+<span class="n">ug</span> <span class="o">=</span> <span class="n">scm_force</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;Ug&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="s1">&#39;lev&#39;</span><span class="p">,))</span>
+<span class="n">ug</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;m s-1&#39;</span>
+<span class="n">ug</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;geostrophic zonal wind&#39;</span>
+<span class="n">ug</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">dephy</span><span class="p">[</span><span class="s1">&#39;ug&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+<span class="n">vg</span> <span class="o">=</span> <span class="n">scm_force</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;Vg&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="s1">&#39;lev&#39;</span><span class="p">,))</span>
+<span class="n">vg</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;m s-1&#39;</span>
+<span class="n">vg</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;geostrophic meridional wind&#39;</span>
+<span class="n">vg</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">dephy</span><span class="p">[</span><span class="s1">&#39;vg&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+<span class="c1"># create time arrays</span>
+<span class="n">year</span> <span class="o">=</span> <span class="n">scm_force</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int16</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,))</span>
+<span class="n">year</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">dephy</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">year</span>
+<span class="n">month</span> <span class="o">=</span> <span class="n">scm_force</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int16</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,))</span>
+<span class="n">month</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">dephy</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">month</span>
+<span class="n">day</span> <span class="o">=</span> <span class="n">scm_force</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int16</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,))</span>
+<span class="n">day</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">dephy</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">day</span>
+<span class="n">hour</span> <span class="o">=</span> <span class="n">scm_force</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;hour&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int16</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,))</span>
+<span class="n">hour</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">dephy</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">hour</span>
+
+<span class="c1"># close</span>
+<span class="n">scm_force</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="o">!</span>ncdump<span class="w"> </span>ModelE3_SCM_COMBLE_force.nc
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks/conversion"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../forcing/create_comble_sfc_forcing.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Generate time-varying surface forcing</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="convert_comble_dephy_forcing_to_WRF_LES_forcing.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Example: convert DEPHY forcing to WRF-LES forcing</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contributed-by-ann-fridlind-from-nasa-giss-on-1-24-23">Contributed by Ann Fridlind from NASA/GISS on 1/24/23</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-libraries">Import libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-forcing-files">Read forcing files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#write-input-sounding-file-for-dharma-les-in-ascii-format">Write input sounding file for DHARMA LES in ASCII format</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#write-forcing-file-for-dharma-les-in-ascii-format">Write forcing file for DHARMA LES in ASCII format</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#write-vertical-grid-file-for-dharma-les-in-ascii-format">Write vertical grid file for DHARMA LES in ASCII format</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#write-initialization-file-for-modele3-scm-in-netcdf-format">Write initialization file for ModelE3 SCM in NetCDF format</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#write-forcing-file-for-modele3-scm-in-netcdf-format">Write forcing file for ModelE3 SCM in NetCDF format</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By ARM Development Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
