@@ -20,7 +20,7 @@ Examples scripts to convert model results back to DEPHY standard format prior to
 
 ## Visualization Tools
 
-Plotting scripts for comparison of your results with those submitted from other models. Submitted results are automatically made available to identified intercomparison participants on a shared ARM-Workbench drive.
+Plotting scripts to compare your results with those submitted from other models. Other submitted results are automatically made available to identified intercomparison participants on a shared ARM-Workbench drive.
 
 ## Authors
 
