@@ -12,11 +12,11 @@ Two files are provided in the DEPHY format, suitable for application to both LES
 
 ## Examples of Conversion from DEPHY Format to Input Formats Required by Specific LES and SCM Models
 
-Examples are provided to illustrate conversion of the DEPHY format to ASCII or other netCDF formats needed to drive specific models.
+Examples scripts to convert the DEPHY input format to ASCII or other netCDF formats needed to drive specific models.
 
 ## Examples of Conversion from Specific LES and SCM Model Output Formats back to DEPHY Format
 
-Examples are provided to illustrate conversion of outputs back to DEPHY standard format prior to submission.
+Examples scripts to convert model results back to DEPHY standard format prior to submission.
 
 ## Visualization Tools
 
