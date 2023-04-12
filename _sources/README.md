@@ -10,10 +10,18 @@ This website is used to host information about the upcoming Cold-Air Outbreaks i
 
 Two files are provided in the DEPHY format, suitable for application to both LES and SCM models: (1) initial and boundary conditions, and (2) surface skin temperature time series.
 
-## Example Conversion to LES and SCM Inputs
+## Examples of Conversion from DEPHY Format to Input Formats Required by Specific LES and SCM Models
 
-Link to example scripts here...
+Examples are provided to illustrate conversion of the DEPHY format to ASCII or other netCDF formats needed to drive specific models.
+
+## Examples of Conversion from Specific LES and SCM Model Output Formats back to DEPHY Format
+
+Examples are provided to illustrate conversion of outputs back to DEPHY standard format prior to submission.
+
+## Visualization Tools
+
+Plotting scripts for comparison of your results with those submitted from other models. Submitted results are automatically made available to identified intercomparison participants on a shared ARM-Workbench drive.
 
 ## Authors
 
-Tim Juliano, Florian Tornow, Ann Fridlind, Max Grover, Dr. Scott Collis, Dr. Monica Ihli
+Tim Juliano, Florian Tornow, Ann Fridlind, Max Grover, Scott Collis, Monica Ihli
