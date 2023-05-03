@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Read Participants List Google Sheet &#8212; COMBLE Model-Observation Intercomparison Project</title>
+    <title>Read Output List Google Sheet &#8212; COMBLE Model-Observation Intercomparison Project</title>
   
   
   
@@ -62,11 +62,10 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/participants/participants_list';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/output/output_list';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Generate initial and time-varying nudging profiles" href="../forcing/create_comble_nudging_forcing.html" />
-    <link rel="prev" title="COMBLE Model-Observation Intercomparison Project Cookbook" href="../../README.html" />
+    <link rel="prev" title="Read Metadata Google Sheet" href="../setup/read-metadata-sheet.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -158,8 +157,8 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Participants</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Read Participants List Google Sheet</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../participants/participants_list.html">Read Participants List Google Sheet</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">DEPHY Forcing Notebooks</span></p>
 <ul class="nav bd-sidenav">
@@ -180,8 +179,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../setup/read-metadata-sheet.html">Read Metadata Google Sheet</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Output</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../output/output_list.html">Read Output List Google Sheet</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Read Output List Google Sheet</a></li>
 </ul>
 
     </div>
@@ -236,7 +235,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://jupyterhub.arm.gov/hub/user-redirect/git-pull?repo=https%3A//github.com/ARM-Development/comble-mip&urlpath=lab/tree/comble-mip/notebooks/participants/participants_list.ipynb&branch=main" target="_blank"
+      <li><a href="https://jupyterhub.arm.gov/hub/user-redirect/git-pull?repo=https%3A//github.com/ARM-Development/comble-mip&urlpath=lab/tree/comble-mip/notebooks/output/output_list.ipynb&branch=main" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch onJupyterHub"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -267,7 +266,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../_sources/notebooks/participants/participants_list.ipynb" target="_blank"
+      <li><a href="../../_sources/notebooks/output/output_list.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -349,7 +348,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Read Participants List Google Sheet</h1>
+    <h1>Read Output List Google Sheet</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -361,8 +360,9 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-data-from-google-sheets">Read Data from Google Sheets</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interested-modeling-groups">Interested Modeling Groups</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interested-observational-groups">Interested Observational Groups</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-mean-variables">(1) Domain-Mean Variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-dimensional-fields">(2) Two-Dimensional Fields</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#three-dimensional-fields">(3) Three-Dimensional Fields</a></li>
 </ul>
             </nav>
         </div>
@@ -374,10 +374,12 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="read-participants-list-google-sheet">
-<h1>Read Participants List Google Sheet<a class="headerlink" href="#read-participants-list-google-sheet" title="Permalink to this heading">#</a></h1>
-<p>One of the key steps to planning a model intercomparison project (MIP) is determining who wants to participate.</p>
-<p>For this project, we solicited the community and requested that interested research groups sign up in a Google Spreadsheet. Let’s read that in!</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="read-output-list-google-sheet">
+<h1>Read Output List Google Sheet<a class="headerlink" href="#read-output-list-google-sheet" title="Permalink to this heading">#</a></h1>
+<p>Output variables are requested in three categories (latter two for LES only):</p>
+<p>(1) domain-wide quantities and statistics every 15 minutes <br />
+(2) 2D quantities every hour <br />
+(3) 3D variables at selected hours for comparison with satellite and ground-based observations</p>
 <section id="imports">
 <h2>Imports<a class="headerlink" href="#imports" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
@@ -392,19 +394,17 @@ document.write(`
 <h2>Read Data from Google Sheets<a class="headerlink" href="#read-data-from-google-sheets" title="Permalink to this heading">#</a></h2>
 <p>Here is a link to the document</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://docs.google.com/spreadsheets/d/1h0BDDCCJTfIsdvHHNFyA17bpsNAL7405GG69IkC8qJs/edit?usp=sharing">Google Sheets Document</a></p></li>
+<li><p><a class="reference external" href="https://docs.google.com/spreadsheets/d/1Vl8jYGviet7EtXZuQiitrx4NSkV1x27aJAhxxjBb9zI/edit?usp=sharing">Google Sheets Document</a></p></li>
 </ul>
 </section>
-<section id="interested-modeling-groups">
-<h2>Interested Modeling Groups<a class="headerlink" href="#interested-modeling-groups" title="Permalink to this heading">#</a></h2>
+<section id="domain-mean-variables">
+<h2>(1) Domain-Mean Variables<a class="headerlink" href="#domain-mean-variables" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_list</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;https://docs.google.com/spreadsheets/d/&#39;</span> <span class="o">+</span> 
-                            <span class="s1">&#39;1h0BDDCCJTfIsdvHHNFyA17bpsNAL7405GG69IkC8qJs&#39;</span> <span class="o">+</span>
-                            <span class="s1">&#39;/export?gid=0&amp;format=xlsx&#39;</span><span class="p">,</span>
-                            <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Models&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vars_mean_list</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;https://docs.google.com/spreadsheets/d/1Vl8jYGviet7EtXZuQiitrx4NSkV1x27aJAhxxjBb9zI/export?gid=0&amp;format=xlsx&#39;</span><span class="p">,</span>
+                              <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Mean&#39;</span><span class="p">)</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_colwidth&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-<span class="n">model_list</span>
+<span class="n">vars_mean_list</span>
 </pre></div>
 </div>
 </div>
@@ -427,191 +427,387 @@ document.write(`
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>Participant Name(s)</th>
-      <th>Affiliation</th>
-      <th>Email address</th>
-      <th>Modeling System(s)</th>
-      <th>LES, SCM, or Both?</th>
-      <th>Research Interest(s) / Area(s) of Expertise</th>
-      <th>Comments</th>
+      <th>standard_name</th>
+      <th>variable id</th>
+      <th>units</th>
+      <th>dimensions</th>
+      <th>comment</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>Tim Juliano, Branko Kosovic, Lulin Xue</td>
-      <td>NCAR</td>
-      <td>tjuliano@ucar.edu</td>
-      <td>WRF, CCPP-SCM</td>
-      <td>Both</td>
-      <td>Mesoscale cloud organization, turbulence-microphysics interactions</td>
-      <td>NaN</td>
+      <td>time</td>
+      <td>time</td>
+      <td>s</td>
+      <td>self</td>
+      <td>dimension, seconds since 2020-03-12 18:00:00</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Mikhail Ovchinnikov, Peng Wu</td>
-      <td>PNNL</td>
-      <td>mikhail.ovchinnikov@pnnl.gov</td>
-      <td>SAM</td>
-      <td>LES</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>height</td>
+      <td>zf</td>
+      <td>m</td>
+      <td>self</td>
+      <td>dimension, altitude of mid-level points above sea surface</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>Florian Tornow, Ann Fridlind, Andy Ackerman</td>
-      <td>NASA GISS</td>
-      <td>ft2544@columbia.edu</td>
-      <td>DHARMA LES, GISS ModelE3 SCM</td>
-      <td>Both</td>
-      <td>Cloud-aerosol interaction, mixed-phase cloud microphysics, overcast-to-broken cloud transition</td>
-      <td>NaN</td>
+      <td>air_pressure</td>
+      <td>pa</td>
+      <td>Pa</td>
+      <td>time, height</td>
+      <td>–</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>Roel Neggers, Jan Chylik, Fredrik Jansson, Stephan de Roode</td>
-      <td>University of Cologne, TU Delft</td>
-      <td>neggers@meteo.uni-koeln.de, jchylik@uni-koeln.de, F.R.Jansson@tudelft.nl, S.R.deRoode@tudelft.nl</td>
-      <td>DALES</td>
-      <td>Both</td>
-      <td>Cloud-aerosol-turbulence interactions, Spatial organization, Air mass transitions</td>
-      <td>NaN</td>
+      <td>air_volumic_mass</td>
+      <td>rho</td>
+      <td>kg m-3</td>
+      <td>time, height</td>
+      <td>–</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Gunilla Svensson, Michael Tjernström, Annica Ekman, Luisa Ickes, Hannah Frostenberg</td>
-      <td>Stockholm University, Chalmers Technical University</td>
-      <td>gunilla@misu.su.se, michaelt@misu.su.se, annica@misu.su.se, luisa.ickes@chalmers.se, hannah.frostenberg@chalmers.se</td>
-      <td>AOSCM and MIMICA</td>
-      <td>Both</td>
-      <td>Airmass transformations, turbulence, aerosols and cloud dynamics and microphysics</td>
-      <td>NaN</td>
+      <td>air_temperature</td>
+      <td>ta</td>
+      <td>K</td>
+      <td>time, height</td>
+      <td>–</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>Paquita Zuidema</td>
-      <td>U Mimai</td>
-      <td>pzuidema@miami.edu</td>
-      <td>--</td>
-      <td>--</td>
-      <td>cloud transitions in a mixed-phase environment</td>
-      <td>primarily interested from the point of view of CAESAR success</td>
+      <td>specific_humidity</td>
+      <td>qv</td>
+      <td>1</td>
+      <td>time, height</td>
+      <td>–</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>Martin Koehler</td>
-      <td>DWD</td>
-      <td>martin.koehler@dwd.de</td>
-      <td>NaN</td>
-      <td>SCM</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>total_water_content</td>
+      <td>qt</td>
+      <td>1</td>
+      <td>time, height</td>
+      <td>specific mass</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>Kamal Kant Chandrakar, Hugh Morrison</td>
-      <td>NCAR</td>
-      <td>kkchandr@ucar.edu, morrison@ucar.edu</td>
-      <td>CM1</td>
-      <td>LES</td>
-      <td>Microphysics-turbulence interactions, microphysical processes, cloud dynamics, mesoscale organization</td>
-      <td>Goal is to run with Lagrangian microphysics (SDM)</td>
+      <td>relative_humidity</td>
+      <td>hur</td>
+      <td>1</td>
+      <td>time, height</td>
+      <td>relative to liquid</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>Nicholas Szapiro</td>
-      <td>NCEP EMC/UMD</td>
-      <td>nick.szapiro@noaa.gov</td>
-      <td>CCPP-SCM</td>
-      <td>SCM</td>
-      <td>Model evaluation and development</td>
-      <td>NaN</td>
+      <td>eastward_wind</td>
+      <td>ua</td>
+      <td>m s-1</td>
+      <td>time, height</td>
+      <td>–</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>Xue Zheng</td>
-      <td>LLNL</td>
-      <td>zheng7@llnl.gov</td>
-      <td>DP-SCREAM</td>
-      <td>SCM</td>
-      <td>Cloud mesoscale organization, cloud transition, mixed-phase cloud microphysical processes</td>
-      <td>NaN</td>
+      <td>northward_wind</td>
+      <td>va</td>
+      <td>m s-1</td>
+      <td>time, height</td>
+      <td>–</td>
     </tr>
     <tr>
       <th>10</th>
-      <td>Peter Blossey</td>
-      <td>UW</td>
-      <td>pblossey@uw.edu</td>
-      <td>SAM</td>
-      <td>LES</td>
-      <td>Cloud-aerosol interactions and mesoscale organization, role of Aitken aerosols</td>
-      <td>NaN</td>
+      <td>upward_air_velocity</td>
+      <td>wa</td>
+      <td>m s-1</td>
+      <td>time, height</td>
+      <td>–</td>
     </tr>
     <tr>
       <th>11</th>
-      <td>Christina McCluskey</td>
-      <td>NCAR</td>
-      <td>cmcclus@ucar.edu</td>
-      <td>SCAM</td>
-      <td>SCM</td>
-      <td>Ice Nucleation; Marine aerosol; Mixed phase aerosol-cloud interactions</td>
-      <td>primarily interested for Southern Ocean contrast case that is well constrained</td>
+      <td>air_potential_temperature</td>
+      <td>theta</td>
+      <td>K</td>
+      <td>time, height</td>
+      <td>–</td>
     </tr>
     <tr>
       <th>12</th>
-      <td>Thijs Heus, Girish Raghunathan</td>
-      <td>Cleveland State University</td>
-      <td>t.heus@csuohio.edu; g.raghunathan@csuohio.edu\n</td>
-      <td>MicroHH</td>
-      <td>LES</td>
-      <td>turbulence, cloud dynamics, model evaluation, contrast with EURECA</td>
-      <td>NaN</td>
+      <td>specific_turbulent_kinetic_energy</td>
+      <td>tke</td>
+      <td>m2 s-2</td>
+      <td>time, height</td>
+      <td>sum of resolved and SGS</td>
     </tr>
     <tr>
       <th>13</th>
-      <td>Anna Possner</td>
-      <td>Goethe University Frankfurt</td>
-      <td>apossner@iau.uni-frankfurt.de</td>
-      <td>ICON-LEM</td>
-      <td>LES</td>
-      <td>cloud mesoscale organization, transitions, cloud microphysics, secondary ice</td>
-      <td>NaN</td>
+      <td>surface_upward_sensible_heat_flux</td>
+      <td>hfss</td>
+      <td>W m-2</td>
+      <td>time</td>
+      <td>–</td>
     </tr>
     <tr>
       <th>14</th>
-      <td>Hyunho Lee</td>
-      <td>Kongju National University</td>
-      <td>hyunho.lee@kongju.ac.kr</td>
-      <td>PALM</td>
-      <td>LES</td>
-      <td>cloud-aerosol interactions, turbulence effects on microphysics</td>
-      <td>NaN</td>
+      <td>surface_upward_latent_heat_flux</td>
+      <td>hfls</td>
+      <td>W m-2</td>
+      <td>time</td>
+      <td>–</td>
     </tr>
     <tr>
       <th>15</th>
-      <td>Qingfang Jiang</td>
-      <td>Naval Research Lab</td>
-      <td>qingfang.jiang@nrlmry.navy.mil</td>
-      <td>COAMPS</td>
-      <td>BOth</td>
-      <td>boundary layer clouds, CAO, surface fluxes</td>
-      <td>NaN</td>
+      <td>surface_pressure</td>
+      <td>ps</td>
+      <td>Pa</td>
+      <td>time</td>
+      <td>–</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>surface_temperature</td>
+      <td>ts</td>
+      <td>K</td>
+      <td>time</td>
+      <td>–</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>variance_of_upward_air_velocity</td>
+      <td>w2</td>
+      <td>m2 s-2</td>
+      <td>time, height</td>
+      <td>–</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>mass_fraction_of_cloud_liquid_water_in_air</td>
+      <td>ql</td>
+      <td>1</td>
+      <td>time, height</td>
+      <td>specific mass</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>mass_fraction_of_rain_water_in_air</td>
+      <td>qr</td>
+      <td>1</td>
+      <td>time, height</td>
+      <td>specific mass</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>cloud_area_fraction_in_atmospheric_layer</td>
+      <td>cl</td>
+      <td>1</td>
+      <td>time, height</td>
+      <td>liquid water threshold of 0.01 g/kg</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>cloud_area_fraction</td>
+      <td>clt</td>
+      <td>1</td>
+      <td>time</td>
+      <td>fraction of atmospheric columns with cloud optical thickness &gt; 2</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>precipitation_flux_at_surface</td>
+      <td>pr</td>
+      <td>kg m-2 s-1</td>
+      <td>time</td>
+      <td>–</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>precipitation_flux_in_air</td>
+      <td>prf</td>
+      <td>kg m-2 s-1</td>
+      <td>time, height</td>
+      <td>–</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>atmosphere_mass_content_of_cloud_water</td>
+      <td>cwp</td>
+      <td>kg m-2</td>
+      <td>time</td>
+      <td>scene; cloud water only</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>atmosphere_mass_content_of_liquid_water</td>
+      <td>lwp</td>
+      <td>kg m-2</td>
+      <td>time</td>
+      <td>scene; cloud and rain</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>atmosphere_mass_content_of_rain_water</td>
+      <td>rwp</td>
+      <td>kg m-2</td>
+      <td>time</td>
+      <td>scene</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>number_of_total_aerosol_in_air</td>
+      <td>nt</td>
+      <td>kg-1</td>
+      <td>time, height</td>
+      <td>–</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>number_of_dry_aerosol_in_air</td>
+      <td>na</td>
+      <td>kg-1</td>
+      <td>time, height</td>
+      <td>–</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>number_of_cloud_droplets_in_air</td>
+      <td>nc</td>
+      <td>kg-1</td>
+      <td>time, height</td>
+      <td>–</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>number_of_rain_droplets_in_air</td>
+      <td>nr</td>
+      <td>kg-1</td>
+      <td>time, height</td>
+      <td>–</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>effective_radius_of_cloud_droplets</td>
+      <td>cer</td>
+      <td>m</td>
+      <td>time, height</td>
+      <td>–</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>longwave_heating_rate_in_air</td>
+      <td>rlh</td>
+      <td>W kg-1</td>
+      <td>time, height</td>
+      <td>–</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>shortwave_heating_rate_in_air</td>
+      <td>rsh</td>
+      <td>W kg-1</td>
+      <td>time, height</td>
+      <td>–</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>downwelling_longwave_flux_in_air</td>
+      <td>rld</td>
+      <td>W m-2</td>
+      <td>time, height</td>
+      <td>–</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>upwelling_longwave_flux_in_air</td>
+      <td>rlu</td>
+      <td>W m-2</td>
+      <td>time, height</td>
+      <td>–</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>downwelling_shortwave_flux_in_air</td>
+      <td>rsd</td>
+      <td>W m-2</td>
+      <td>time, height</td>
+      <td>–</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>upwelling_shortwave_flux_in_air</td>
+      <td>rsu</td>
+      <td>W m-2</td>
+      <td>time, height</td>
+      <td>–</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>toa_incoming_shortwave_flux</td>
+      <td>rsdt</td>
+      <td>W m-2</td>
+      <td>time</td>
+      <td>–</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>toa_outgoing_shortwave_flux</td>
+      <td>rsut</td>
+      <td>W m-2</td>
+      <td>time</td>
+      <td>–</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>toa_outgoing_longwave_flux</td>
+      <td>rlut</td>
+      <td>W m-2</td>
+      <td>time</td>
+      <td>–</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>surface_downwelling_longwave_flux</td>
+      <td>rlds</td>
+      <td>W m-2</td>
+      <td>time</td>
+      <td>–</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>surface_upwelling_longwave_flux</td>
+      <td>rlus</td>
+      <td>W m-2</td>
+      <td>time</td>
+      <td>–</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>surface_downwelling_shortwave_flux</td>
+      <td>rsds</td>
+      <td>W m-2</td>
+      <td>time</td>
+      <td>–</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>surface_upwelling_shortwave_flux</td>
+      <td>rsus</td>
+      <td>W m-2</td>
+      <td>time</td>
+      <td>–</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
 </div>
 </section>
-<section id="interested-observational-groups">
-<h2>Interested Observational Groups<a class="headerlink" href="#interested-observational-groups" title="Permalink to this heading">#</a></h2>
+<section id="two-dimensional-fields">
+<h2>(2) Two-Dimensional Fields<a class="headerlink" href="#two-dimensional-fields" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">obs_list</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;https://docs.google.com/spreadsheets/d/&#39;</span> <span class="o">+</span> 
-                            <span class="s1">&#39;1h0BDDCCJTfIsdvHHNFyA17bpsNAL7405GG69IkC8qJs&#39;</span> <span class="o">+</span>
-                            <span class="s1">&#39;/export?gid=1705827066&amp;format=xlsx&#39;</span><span class="p">,</span>
-                            <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Observations&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vars_2d_list</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;https://docs.google.com/spreadsheets/d/1Vl8jYGviet7EtXZuQiitrx4NSkV1x27aJAhxxjBb9zI/export?gid=1756539842&amp;format=xlsx&#39;</span><span class="p">,</span>
+                              <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;2D&#39;</span><span class="p">)</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_colwidth&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-<span class="n">obs_list</span>
+<span class="n">vars_2d_list</span>
 </pre></div>
 </div>
 </div>
@@ -634,115 +830,304 @@ document.write(`
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>Participant Name(s)</th>
-      <th>Affiliation</th>
-      <th>Email address</th>
-      <th>Observational System(s)</th>
-      <th>Variables / Parameters / Products</th>
-      <th>Software / Post-processing</th>
-      <th>Comments</th>
+      <th>standard_name</th>
+      <th>variable id</th>
+      <th>units</th>
+      <th>dimensions</th>
+      <th>comment</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>Maria Cadeddu</td>
-      <td>DOE ANL</td>
-      <td>mcadeddu@anl.gov</td>
-      <td>MWR</td>
-      <td>LWP</td>
-      <td>independent evaluation of neural net</td>
-      <td>discuss with ARM mentor Maria Caddedu</td>
+      <td>time</td>
+      <td>time</td>
+      <td>s</td>
+      <td>self</td>
+      <td>dimension, seconds since 2020-03-12 18:00:00</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Damao Zhang</td>
-      <td>PNNL</td>
-      <td>damao.zhang@pnnl.gov</td>
-      <td>KAZR, MPL, MWR</td>
-      <td>2D cloud phase</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>x</td>
+      <td>x</td>
+      <td>m</td>
+      <td>self</td>
+      <td>dimension</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>David Turner</td>
-      <td>NOAA ESRL</td>
-      <td>NaN</td>
-      <td>AERI</td>
-      <td>refined T, q retrieval</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>y</td>
+      <td>y</td>
+      <td>m</td>
+      <td>self</td>
+      <td>dimension</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>KAZR</td>
-      <td>IWC</td>
-      <td>independent evaluation of ARM VAP</td>
-      <td>discuss with ARM mentor Damao Zhang</td>
+      <td>surface_upward_sensible_heat_flux</td>
+      <td>hfss</td>
+      <td>W m-2</td>
+      <td>time, x, y</td>
+      <td>–</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>VIIRS/MODIS</td>
-      <td>comparison of satellite cloud retrievals near Andenes to COMBLE observations</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>surface_upward_latent_heat_flux</td>
+      <td>hfls</td>
+      <td>W m-2</td>
+      <td>time, x, y</td>
+      <td>–</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>Pavlos Kollias, Zackary Mages</td>
-      <td>SBU</td>
-      <td>pavlos.kollias@stonybrook.edu, zackary.mages@stonybrook.edu</td>
-      <td>KAZR, MWR, Lidar</td>
-      <td>Vertical air motion, LWP, TKE, Hydrometeor types (Parsivel)</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>atmospheric_water_vapor_content</td>
+      <td>prw</td>
+      <td>kg m-2</td>
+      <td>time, x, y</td>
+      <td>–</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>Peng Wu, Mikhail Ovchinnikov</td>
-      <td>PNNL</td>
-      <td>peng.wu@pnnl.gov, Mikhail.Ovchinnikov@pnnl.gov</td>
-      <td>satellite</td>
-      <td>cloud organization, morphology</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>surface_eastward_wind</td>
+      <td>us</td>
+      <td>m s-1</td>
+      <td>time, x, y</td>
+      <td>–</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>Florian Tornow, Greg Elsaesser, Tim Juliano, Paquita Zuidema</td>
-      <td>GISS</td>
-      <td>florian.tornow@nasa.gov, gregory.s.elsaesser@nasa.gov</td>
-      <td>satellite</td>
-      <td>LWP (Lagrangian evolution)</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>surface_northward_wind</td>
+      <td>vs</td>
+      <td>m s-1</td>
+      <td>time, x, y</td>
+      <td>–</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>Zhibo Zhang</td>
-      <td>UMBC</td>
-      <td>zhibo.zhang@umbc.edu</td>
-      <td>satellite</td>
-      <td>use satellite observations to understand the transition of cloud phase in CAO clouds</td>
-      <td>NaN</td>
-      <td>mostly from the angle of climatology</td>
+      <td>inversion_height</td>
+      <td>zi</td>
+      <td>m</td>
+      <td>time, x, y</td>
+      <td>–</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>Christian Lackner, Tim Juliano, Bart Geerts</td>
-      <td>U Wyoming, NCAR</td>
-      <td>clackner@uwyo.edu</td>
-      <td>satellite (SAR)</td>
-      <td>10m wind speed</td>
+      <td>precipitation_flux_at_surface</td>
+      <td>pr</td>
+      <td>kg m-2 s-1</td>
+      <td>time, x, y</td>
       <td>NaN</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>atmosphere_mass_content_of_cloud_water</td>
+      <td>cwp</td>
+      <td>kg m-2</td>
+      <td>time, x, y</td>
+      <td>cloud water only</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>atmosphere_mass_content_of_liquid_water</td>
+      <td>lwp</td>
+      <td>kg m-2</td>
+      <td>time, x, y</td>
+      <td>both cloud and rain water</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>atmosphere_mass_content_of_rain_water</td>
+      <td>rwp</td>
+      <td>kg m-2</td>
+      <td>time, x, y</td>
+      <td>–</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>atmosphere_optical_thickness_due_to_cloud</td>
+      <td>optc</td>
+      <td>1</td>
+      <td>time, x, y</td>
+      <td>–</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>atmosphere_optical_thickness_due_to_rain</td>
+      <td>optr</td>
+      <td>1</td>
+      <td>time, x, y</td>
+      <td>–</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>cloud_top_altitude</td>
+      <td>zct</td>
+      <td>m</td>
+      <td>time, x, y</td>
+      <td>altitude of highest cloudy grid cell</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>cloud_base_altitude</td>
+      <td>zcb</td>
+      <td>m</td>
+      <td>time, x, y</td>
+      <td>altitude of lowest cloudy grid cell</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="three-dimensional-fields">
+<h2>(3) Three-Dimensional Fields<a class="headerlink" href="#three-dimensional-fields" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vars_3d_list</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;https://docs.google.com/spreadsheets/d/1Vl8jYGviet7EtXZuQiitrx4NSkV1x27aJAhxxjBb9zI/export?gid=1233994833&amp;format=xlsx&#39;</span><span class="p">,</span>
+                              <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;3D&#39;</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_colwidth&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">vars_3d_list</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>standard_name</th>
+      <th>variable id</th>
+      <th>units</th>
+      <th>dimensions</th>
+      <th>comment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>time</td>
+      <td>time</td>
+      <td>s</td>
+      <td>self</td>
+      <td>dimension, seconds since 2020-03-12 18:00:00</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>x</td>
+      <td>x</td>
+      <td>m</td>
+      <td>self</td>
+      <td>dimension</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>y</td>
+      <td>y</td>
+      <td>m</td>
+      <td>self</td>
+      <td>dimension</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>height</td>
+      <td>zf</td>
+      <td>m</td>
+      <td>self</td>
+      <td>dimension, altitude of mid-level points above sea surface</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>air_temperature</td>
+      <td>ta</td>
+      <td>K</td>
+      <td>time, height, x, y</td>
+      <td>–</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>specific_humidity</td>
+      <td>qv</td>
+      <td>1</td>
+      <td>time, height, x, y</td>
+      <td>–</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>eastward_wind</td>
+      <td>ua</td>
+      <td>m s-1</td>
+      <td>time, height, x, y</td>
+      <td>–</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>northward_wind</td>
+      <td>va</td>
+      <td>m s-1</td>
+      <td>time, height, x, y</td>
+      <td>–</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>upward_air_velocity</td>
+      <td>wa</td>
+      <td>m s-1</td>
+      <td>time, height, x, y</td>
+      <td>–</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>mass_fraction_of_cloud_liquid_water_in_air</td>
+      <td>ql</td>
+      <td>1</td>
+      <td>time, height, x, y</td>
       <td>NaN</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>mass_fraction_of_rain_water_in_air</td>
+      <td>qr</td>
+      <td>1</td>
+      <td>time, height, x, y</td>
+      <td>cloud water only</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>number_of_dry_aerosol_in_air</td>
+      <td>na</td>
+      <td>kg-1</td>
+      <td>time, height, x, y</td>
+      <td>both cloud and rain water</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>number_of_cloud_droplets_in_air</td>
+      <td>nc</td>
+      <td>kg-1</td>
+      <td>time, height, x, y</td>
+      <td>–</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>number_of_rain_droplets_in_air</td>
+      <td>nr</td>
+      <td>kg-1</td>
+      <td>time, height, x, y</td>
+      <td>–</td>
     </tr>
   </tbody>
 </table>
@@ -764,7 +1149,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./notebooks/participants"
+            path: "./notebooks/output"
         },
         predefinedOutput: true
     }
@@ -783,22 +1168,13 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../../README.html"
+       href="../setup/read-metadata-sheet.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">COMBLE Model-Observation Intercomparison Project Cookbook</p>
+        <p class="prev-next-title">Read Metadata Google Sheet</p>
       </div>
-    </a>
-    <a class="right-next"
-       href="../forcing/create_comble_nudging_forcing.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Generate initial and time-varying nudging profiles</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div></div>
   
@@ -820,8 +1196,9 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-data-from-google-sheets">Read Data from Google Sheets</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interested-modeling-groups">Interested Modeling Groups</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interested-observational-groups">Interested Observational Groups</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-mean-variables">(1) Domain-Mean Variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-dimensional-fields">(2) Two-Dimensional Fields</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#three-dimensional-fields">(3) Three-Dimensional Fields</a></li>
 </ul>
   </nav></div>
 
