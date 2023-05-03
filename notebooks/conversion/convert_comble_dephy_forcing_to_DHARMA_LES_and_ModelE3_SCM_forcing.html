@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Code to read COMBLE LES/SCM DEPHY forcing file and write input files for DHARMA LES (ASCII) and ModelE3 ESM SCM (NetCDF) examples &#8212; COMBLE Model-Observation Intercomparison Project</title>
+    <title>Example: convert DEPHY forcing to DHARMA and ModelE3 forcings &#8212; COMBLE Model-Observation Intercomparison Project</title>
   
   
   
@@ -168,7 +168,8 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Input Conversion Notebooks</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Code to read COMBLE LES/SCM DEPHY forcing file and write input files for DHARMA LES (ASCII) and ModelE3 ESM SCM (NetCDF) examples</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Example: convert DEPHY forcing to DHARMA and ModelE3 forcings</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="convert_comble_dephy_forcing_to_WRF_LES_forcing.html">Example: convert DEPHY forcing to WRF-LES forcing</a></li>
 
 
@@ -349,7 +350,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Code to read COMBLE LES/SCM DEPHY forcing file and write input files for DHARMA LES (ASCII) and ModelE3 ESM SCM (NetCDF) examples</h1>
+    <h1>Example: convert DEPHY forcing to DHARMA and ModelE3 forcings</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -359,6 +360,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Example: convert DEPHY forcing to DHARMA and ModelE3 forcings</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#code-to-read-comble-les-scm-dephy-forcing-file-and-write-input-files-for-dharma-les-ascii-and-modele3-esm-scm-netcdf-examples">Code to read COMBLE LES/SCM DEPHY forcing file and write input files for DHARMA LES (ASCII) and ModelE3 ESM SCM (NetCDF) examples</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contributed-by-ann-fridlind-from-nasa-giss-on-1-24-23">Contributed by Ann Fridlind from NASA/GISS on 1/24/23</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-libraries">Import libraries</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-forcing-files">Read forcing files</a></li>
@@ -368,6 +371,9 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#write-initialization-file-for-modele3-scm-in-netcdf-format">Write initialization file for ModelE3 SCM in NetCDF format</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#write-forcing-file-for-modele3-scm-in-netcdf-format">Write forcing file for ModelE3 SCM in NetCDF format</a></li>
 </ul>
+</li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -378,7 +384,10 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="code-to-read-comble-les-scm-dephy-forcing-file-and-write-input-files-for-dharma-les-ascii-and-modele3-esm-scm-netcdf-examples">
+  <section class="tex2jax_ignore mathjax_ignore" id="example-convert-dephy-forcing-to-dharma-and-modele3-forcings">
+<h1>Example: convert DEPHY forcing to DHARMA and ModelE3 forcings<a class="headerlink" href="#example-convert-dephy-forcing-to-dharma-and-modele3-forcings" title="Permalink to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="code-to-read-comble-les-scm-dephy-forcing-file-and-write-input-files-for-dharma-les-ascii-and-modele3-esm-scm-netcdf-examples">
 <h1>Code to read COMBLE LES/SCM DEPHY forcing file and write input files for DHARMA LES (ASCII) and ModelE3 ESM SCM (NetCDF) examples<a class="headerlink" href="#code-to-read-comble-les-scm-dephy-forcing-file-and-write-input-files-for-dharma-les-ascii-and-modele3-esm-scm-netcdf-examples" title="Permalink to this heading">#</a></h1>
 <section id="contributed-by-ann-fridlind-from-nasa-giss-on-1-24-23">
 <h2>Contributed by Ann Fridlind from NASA/GISS on 1/24/23<a class="headerlink" href="#contributed-by-ann-fridlind-from-nasa-giss-on-1-24-23" title="Permalink to this heading">#</a></h2>
@@ -1844,6 +1853,8 @@ Attributes: (12/18)
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Example: convert DEPHY forcing to DHARMA and ModelE3 forcings</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#code-to-read-comble-les-scm-dephy-forcing-file-and-write-input-files-for-dharma-les-ascii-and-modele3-esm-scm-netcdf-examples">Code to read COMBLE LES/SCM DEPHY forcing file and write input files for DHARMA LES (ASCII) and ModelE3 ESM SCM (NetCDF) examples</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contributed-by-ann-fridlind-from-nasa-giss-on-1-24-23">Contributed by Ann Fridlind from NASA/GISS on 1/24/23</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-libraries">Import libraries</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-forcing-files">Read forcing files</a></li>
@@ -1853,6 +1864,9 @@ Attributes: (12/18)
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#write-initialization-file-for-modele3-scm-in-netcdf-format">Write initialization file for ModelE3 SCM in NetCDF format</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#write-forcing-file-for-modele3-scm-in-netcdf-format">Write forcing file for ModelE3 SCM in NetCDF format</a></li>
 </ul>
+</li>
+</ul>
+
   </nav></div>
 
 </div></div>
