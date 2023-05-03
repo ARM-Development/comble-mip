@@ -13,3 +13,6 @@ parts:
 - caption: Model Setup
   chapters:
     - glob: notebooks/setup/*
+- caption: Model Output
+  chapters:
+    - glob: notebooks/output/*
