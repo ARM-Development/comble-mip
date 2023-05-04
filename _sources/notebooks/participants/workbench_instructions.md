@@ -1,27 +1,13 @@
-# COMBLE Model-Observation Intercomparison Project Cookbook
+# How to Apply for Elevated JupyterHub Access
 
-[![Binder](http://binder.mypythia.org/badge_logo.svg)](http://binder.mypythia.org/v2/gh/ARM-Development/arm-cookbook-template/main?labpath=notebooks)
+We will be using ARM's Workbench JupyterHub for the intercomparison, in order to evaluate the models with ARM observations and faciliate comparisons between models participating in the project.
 
-## Motivation
+If you are involved with the intercomparison, then please follow the instructions on [this](https://armcrf.servicenowservices.com/kb?id=kb_article_view&sys_kb_id=c512775a1b6e1510d2430f21f54bcb46) website to apply for access. You will need to log into your ARM ServiceNow account, which is the same as your ARM Data Discovery account.
 
-This website is used to host information about the upcoming Cold-Air Outbreaks in the Marine Boundary Layer Experiment (COMBLE) large-eddy simulation (LES) / single-column model (SCM) intercomparison efforts. The intercomparison will focus on the 13 March Cold-Air Outbreaks (CAO) event (Fig. 1). We welcome you to explore the website to learn more about the intercomparison framework and workflow.
+When filling out the form, be sure to complete the entries as follows:
 
-## Model Inputs
-
-Two files are provided in the DEPHY format, suitable for application to both LES and SCM models: (1) initial and boundary conditions, and (2) surface skin temperature time series.
-
-## Input Conversion Examples
-
-Example scripts to convert the DEPHY standard format to ASCII or other netCDF formats needed to drive specific models.
-
-## Output Conversion Examples
-
-Example scripts to convert specific model results back to the DEPHY standard format prior to submission.
-
-## Visualization Tools
-
-Plotting scripts to compare your results with those submitted from other models. Other submitted results are automatically made available to identified intercomparison participants on a shared ARM-Workbench drive.
-
-## Authors
-
-Tim Juliano, Florian Tornow, Ann Fridlind, Max Grover, Scott Collis, Monica Ihli
+* **Visitor Role**: *TBD*
+* **Resources**: *ARM Data Center Enhanced Jupyterhub Access*
+* **Justification**: *Participation in COMBLE-MIP LES/SCM Project*
+* **Start Date**: *Today's date*
+* **End Date**: *1 year from today's date*
