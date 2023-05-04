@@ -1,4 +1,4 @@
-# How to Apply for Elevated JupyterHub Access
+# Apply for Elevated JupyterHub Access
 
 We will be using ARM's Workbench JupyterHub for the intercomparison, in order to evaluate the models with ARM observations and faciliate comparisons between models participating in the project.
 
