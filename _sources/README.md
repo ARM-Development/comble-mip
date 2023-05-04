@@ -28,3 +28,9 @@ Plotting scripts to compare your results with those submitted from other models.
 ## Authors
 
 Tim Juliano, Florian Tornow, Ann Fridlind, Max Grover, Scott Collis, Monica Ihli
+
+Please contact Tim Juliano: tjuliano ((at)) ucar.edu OR Florian Tornow: ft2544 ((at)) columbia.edu for comments or questions about the model intercomparison project.
+
+```{attention}
+If you are interested in participating in the LES/SCM COMBLE intercomparison, please [sign up here](https://docs.google.com/spreadsheets/d/1h0BDDCCJTfIsdvHHNFyA17bpsNAL7405GG69IkC8qJs/edit?usp=sharing).
+```
