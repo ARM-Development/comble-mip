@@ -1,5 +1,7 @@
 # COMBLE Model-Observation Intercomparison Project Cookbook
 
+[![badge](https://img.shields.io/static/v1.svg?logo=Jupyter&label=ARM+JupyterHub&message=ACE+Environment&color=blue)](https://jupyterhub.arm.gov/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2FARM-Development%2Fcomble-mip&urlpath=%2Flab%2Fworkspaces%2Fauto%2Ftree%2Fdata%2Fhome&branch=main)
+
 ```{figure} figures/13march_case_overview.png
 
 (Left) MODIS visible satellite image of the 13 March CAO case. Colored lines show backward trajectories beginning at Andenes, Norway (denoted by the blue star) at altitudes of 500, 1000, and 2000 m ASL in cyan, yellow, and blue, respectively. (Right) Time series plots at Andenes, Norway highlighting the convective nature of cellular clouds, characterized by high reflectivity, strong vertical motions, liquid water pockets, and intense turbulence structures. 
