@@ -21,4 +21,4 @@ parts:
     - glob: notebooks/output/*
 - caption: Output Conversion Notebooks
   chapters:
-    - glob: notebooks/conversion-output/*
+    - glob: notebooks/conversion_output/*
