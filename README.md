@@ -1,6 +1,11 @@
 # COMBLE Model-Observation Intercomparison Project Cookbook
 
-[![Binder](http://binder.mypythia.org/badge_logo.svg)](http://binder.mypythia.org/v2/gh/ARM-Development/arm-cookbook-template/main?labpath=notebooks)
+[![badge](https://img.shields.io/static/v1.svg?logo=Jupyter&label=ARM+JupyterHub&message=ACE+Environment&color=blue)](https://jupyterhub.arm.gov/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2FARM-Development%2Fcomble-mip&urlpath=%2Flab%2Fworkspaces%2Fauto%2Ftree%2Fdata%2Fhome&branch=main)
+
+```{figure} figures/13march_case_overview.png
+
+(Left) MODIS visible satellite image of the 13 March CAO case. Colored lines show backward trajectories beginning at Andenes, Norway (denoted by the blue star) at altitudes of 500, 1000, and 2000 m ASL in cyan, yellow, and blue, respectively. (Right) Time series plots at Andenes, Norway highlighting the convective nature of cellular clouds, characterized by high reflectivity, strong vertical motions, liquid water pockets, and intense turbulence structures. 
+```
 
 ## Motivation
 
@@ -25,3 +30,9 @@ Plotting scripts to compare your results with those submitted from other models.
 ## Authors
 
 Tim Juliano, Florian Tornow, Ann Fridlind, Max Grover, Scott Collis, Monica Ihli
+
+Please contact Tim Juliano: tjuliano ((at)) ucar.edu OR Florian Tornow: ft2544 ((at)) columbia.edu for comments or questions about the model intercomparison project.
+
+```{attention}
+If you are interested in participating in the LES/SCM COMBLE intercomparison, please [sign up here](https://docs.google.com/spreadsheets/d/1h0BDDCCJTfIsdvHHNFyA17bpsNAL7405GG69IkC8qJs/edit?usp=sharing).
+```
