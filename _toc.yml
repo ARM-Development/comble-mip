@@ -22,3 +22,6 @@ parts:
 - caption: Output Conversion Notebooks
   chapters:
     - glob: notebooks/conversion_output/*
+- caption: Plot Results
+  chapters:
+    - glob: notebooks/plotting/*
