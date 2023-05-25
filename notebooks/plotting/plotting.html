@@ -390,19 +390,30 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## load all simulations located in subfolders of the given directory</span>
-
 <span class="n">var_vec_1d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;lwp&#39;</span><span class="p">,</span><span class="s1">&#39;rwp&#39;</span><span class="p">]</span>
-<span class="n">var_vec_2d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;qv&#39;</span><span class="p">,</span><span class="s1">&#39;theta&#39;</span><span class="p">]</span>
+<span class="n">var_vec_2d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ua&#39;</span><span class="p">,</span><span class="s1">&#39;va&#39;</span><span class="p">,</span><span class="s1">&#39;qv&#39;</span><span class="p">,</span><span class="s1">&#39;theta&#39;</span><span class="p">]</span> <span class="c1">#,&#39;va&#39;,&#39;qv&#39;,&#39;theta&#39;]</span>
+<span class="n">df_col_1d</span><span class="p">,</span><span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">)</span>
 
-<span class="n">df_col</span><span class="p">,</span><span class="n">df_col2</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">)</span>
+<span class="c1">## load ERA5 fields</span>
+<span class="n">era5_1d</span><span class="p">,</span> <span class="n">era5_2d</span> <span class="o">=</span> <span class="n">load_era5</span><span class="p">(</span><span class="n">PATH</span><span class="o">=</span><span class="s1">&#39;../../data_files/&#39;</span><span class="p">)</span>
+
+<span class="c1">## load radiosondes</span>
+<span class="n">rs_dat</span> <span class="o">=</span> <span class="n">load_rs</span><span class="p">(</span><span class="n">PATH</span><span class="o">=</span><span class="s1">&#39;../../data_files/&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/data/home/floriantornow/comble-mip/output_les/dharma/sandbox/init_geostrophic/DHARMA_LES_COMBLE-I.nc
-/data/home/floriantornow/comble-mip/output_les/dharma/sandbox/init_era5/DHARMA_LES_COMBLE-I.nc
-/data/home/floriantornow/comble-mip/output_les/dharma/sandbox/init_geostrophic/DHARMA_LES_COMBLE-I.nc
-/data/home/floriantornow/comble-mip/output_les/dharma/sandbox/init_era5/DHARMA_LES_COMBLE-I.nc
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>../../output_les/wrf/sandbox/init_geostrophic/WRF_LES_COMBLE-I.nc
+../../output_les/dharma/sandbox/init_geostrophic/DHARMA_LES_COMBLE-I.nc
+../../output_les/dharma/sandbox/init_era5/DHARMA_LES_COMBLE-I.nc
+../../output_les/wrf/sandbox/init_geostrophic/WRF_LES_COMBLE-I.nc
+../../output_les/dharma/sandbox/init_geostrophic/DHARMA_LES_COMBLE-I.nc
+../../output_les/dharma/sandbox/init_era5/DHARMA_LES_COMBLE-I.nc
+../../data_files/theta_temp_rh_sh_uvw_sst_along_trajectory_era5ml_28h_end_2020-03-13-18.nc
+../../data_files/anxsondewnpnM1.b1.20200313.052700.cdf
+../../data_files/anxsondewnpnM1.b1.20200313.112600.cdf
+../../data_files/anxsondewnpnM1.b1.20200313.172600.cdf
+../../data_files/anxsondewnpnM1.b1.20200313.232200.cdf
 </pre></div>
 </div>
 </div>
@@ -410,23 +421,29 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## plot all variables that have only time dependence</span>
-<span class="n">plot_1d</span><span class="p">(</span><span class="n">df_col</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">)</span>
+<span class="n">plot_1d</span><span class="p">(</span><span class="n">df_col_1d</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/785b69608a3549f7a562b6fa83304325ed668f78845404815db271c56bb12f1c.png" src="../../_images/785b69608a3549f7a562b6fa83304325ed668f78845404815db271c56bb12f1c.png" />
+<img alt="../../_images/0be51d1a5e92b46206b0efc9e1a5ff4878471eb4880e2b7f81ef09d87282581b.png" src="../../_images/0be51d1a5e92b46206b0efc9e1a5ff4878471eb4880e2b7f81ef09d87282581b.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## plot all variables that have time and height dependence</span>
-<span class="n">plot_2d</span><span class="p">(</span><span class="n">df_col2</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">])</span>
+<span class="c1">#plot_2d(df_col2,var_vec_2d,[2,6,18])</span>
+
+<span class="c1">## example where ERA5 and radiosonde are included</span>
+<span class="n">plot_2d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_2d</span><span class="p">,</span><span class="n">era5_2d</span><span class="p">,</span><span class="n">rs_dat</span><span class="p">]),</span><span class="n">var_vec_2d</span><span class="p">,[</span><span class="mi">4</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">18</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/da351495424b1377cdc9ef9ea3e1570fa3afd43bfe26dc4f1aa62e3a0ea00db5.png" src="../../_images/da351495424b1377cdc9ef9ea3e1570fa3afd43bfe26dc4f1aa62e3a0ea00db5.png" />
+<img alt="../../_images/3b6ea046c6b988c9e838fe6d0374bea48b4b7be7c0c144021e73182ec7abbde6.png" src="../../_images/3b6ea046c6b988c9e838fe6d0374bea48b4b7be7c0c144021e73182ec7abbde6.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x600 with 0 Axes&gt;
+</pre></div>
+</div>
 </div>
 </div>
 
