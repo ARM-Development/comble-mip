@@ -6,15 +6,29 @@ import pathlib
 import glob
 import os
 
+## for questions, please contact 
+## Florian Tornow: ft2544@columbia.edu
+## Tim Juliano: tjuliano@ucar.edu
+## Ann Fridlind: ann.fridlind@nasa.gov
 
 def sat_pres(x):
+    
+    ## compute saturation vapor pressure
+    ## __input__
+    ## x...temperature in degC
+    
     ## Bolton (1980), return in hPa
     return 6.112*np.exp(17.67*x/(243.5 + x))
     
-## load radiosonde obs
-# scan for all available ones
-def load_rs(case='20200313',t_filter = 1.,PATH='../../data_files/'):
 
+def load_rs(case='20200313',t_filter = 1.,PATH='../../data_files/'):
+    
+    ## load radiosonde obs
+    ## __input__
+    ## case........string of COMBLE date
+    ## t_filter....time window around arrival of trajectory (hours)
+    ## PATH........directory
+    
     direc = pathlib.Path(PATH)
     R_cp = 0.286 
     eps = 0.622
@@ -59,7 +73,11 @@ def load_rs(case='20200313',t_filter = 1.,PATH='../../data_files/'):
 
 def load_era5(case='20200313',PATH='../../data_files/'):
     
-    ## load ERA5 file
+    ## load ERA5 data along trajectory
+    ## __input__
+    ## case........string of COMBLE date
+    ## PATH........directory
+    
     if case =='20200313':
         fn = PATH + 'theta_temp_rh_sh_uvw_sst_along_trajectory_era5ml_28h_end_2020-03-13-18.nc'
         t_offset = 18.
@@ -68,9 +86,12 @@ def load_era5(case='20200313',PATH='../../data_files/'):
     ds = nc.Dataset(fn)
     
     ## extract 1D and 2D fields
-    var_vec_1d = ['SST']
-    var_vec_2d = ['U','V','W','Theta','GEOS_HT']
-    var_vec_2d_trans = ['ua','va','w','theta','zf']
+    var_vec_1d = ['SST','LatHtFlx','SenHtFlx']
+    var_vec_1d_trans = ['ts','hfls','hfss']
+    fact_1d = [1.,-1.,-1.]
+    
+    var_vec_2d = ['U','V','W','Theta','SH','GEOS_HT']
+    var_vec_2d_trans = ['ua','va','w','theta','qv','zf']
     group = 'ERA5'
     
     time = (ds.variables['Time'][:] + t_offset)*3600
@@ -78,7 +99,8 @@ def load_era5(case='20200313',PATH='../../data_files/'):
     
     p_df = pd.DataFrame({"class": [group]* len(time), "time":time}, index=time/3600)
     for vv in var_vec_1d:
-        p_df[vv] = ds.variables[vv][:]
+        vv_trans = var_vec_1d_trans[var_vec_1d.index(vv)]
+        p_df[vv_trans] = ds.variables[vv][:]*fact_1d[var_vec_1d.index(vv)]
        
     df_col2 = pd.DataFrame()
     for ii in range(len(pf)):
@@ -93,10 +115,15 @@ def load_era5(case='20200313',PATH='../../data_files/'):
     return p_df,df_col2        
 
 
-def load_sims(path,var_vec_1d,var_vec_2d):
+def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0):
     
-    #print(direc)
-    #print(var_vec)
+    ## load ERA5 data along trajectory
+    ## __input__
+    ## path..........directory (scanning all subdirectories)
+    ## var_vec_1d....variables with time dependence
+    ## var_vec_2d....variables with time and height dependence
+    ## t_shift.......time shift in case of processing error (hours)
+    
     direc = pathlib.Path(path)
     NCFILES = list(direc.rglob("*nc"))
     
@@ -140,11 +167,19 @@ def load_sims(path,var_vec_1d,var_vec_2d):
                 p_df2[vv] = ds.variables[vv][:,:][:,ii]
             df_col2 = pd.concat([df_col2,p_df2])
             
+    df_col['time']  = df_col['time'] + t_shift*3600.
+    df_col2['time'] = df_col2['time'] + t_shift*3600.
+    
     return df_col,df_col2
 
 
 def plot_1d(df_col,var_vec):
-
+    
+    ## plot variables with time dependence
+    ## __input__
+    ## df_col.....data frame containing simulations, reanalysis, and/or observations
+    ## var_vec....variables with time dependence
+    
     ## 1D plots
     plot_colors = ["#E69F00", "#56B4E9", "#009E73","#0072B2", "#D55E00", "#CC79A7","#F0E442"]
     
@@ -177,7 +212,7 @@ def plot_1d(df_col,var_vec):
     # Add a legend
     handles, labels = plt.gca().get_legend_handles_labels()
     by_label = dict(zip(labels, handles))
-    fig.legend(by_label.values(), by_label.keys(),loc='upper center')
+    fig.legend(by_label.values(), by_label.keys(),loc='upper center',ncol=2)
 
     fig.tight_layout()
     
@@ -187,16 +222,38 @@ def plot_1d(df_col,var_vec):
         top_offset = 0.0
         
     fig.subplots_adjust(top=0.85 + top_offset)
-    #                    wspace=0.0,
-    #                    hspace=0.4)
     
-    #fig.figure(figsize=(5,4*len(var_vec)))
     plt.show()
 
 
-def plot_2d(df_col2,var_vec,times,z_max = 5000.):
+def plot_2d(df_col2,var_vec,times,z_max = 6000.):
+    
+    ## plot variables with time and height dependence
+    ## __input__
+    ## df_col2....data frame containing simulations, reanalysis, and/or observations
+    ## var_vec....variables with time dependence
+    ## times......list with hours of interest
+    ## z_max......maximum altitude for plotting (meters)
     
     plot_colors = ["#E69F00", "#56B4E9", "#009E73","#0072B2", "#D55E00", "#CC79A7","#F0E442"]
+    
+    if 'ws' in var_vec:
+        if  'ua' in df_col2.columns and 'va' in df_col2.columns:
+            print('Computing wind speed')
+            df_col2['ws'] = np.sqrt(df_col2['ua']**2 + df_col2['va']**2)
+        else:
+            print('Please include ua and va!')
+            
+    if 'wd' in var_vec:
+        if  'ua' in df_col2.columns and 'va' in df_col2.columns:
+            print('Computing wind direction')
+            df_col2['ws'] = np.sqrt(df_col2['ua']**2 + df_col2['va']**2)
+            df_col2['wd'] = np.arctan2(df_col2['ua']/df_col2['ws'],df_col2['va']/df_col2['ws'])*180/np.pi
+
+            ## bring over on one side
+            df_col2.loc[df_col2['wd'] < 0,'wd'] = df_col2.loc[df_col2['wd'] < 0,'wd'] + 360
+        else:
+            print('Please include ua and va!')
 
     ## apply altitude filter
     df_col2 = df_col2[df_col2['zf'] < (z_max + 500)]
@@ -206,11 +263,13 @@ def plot_2d(df_col2,var_vec,times,z_max = 5000.):
     for tt in range(len(times)):
         df_sub = df_col2[round(df_col2.time) == times[tt]*3600.]    
         for label, df in df_col2.groupby('class'):
-            df = df[round(df.time) == times[tt]*3600.]  
+            df = df[round(df.time) == times[tt]*3600.]
+            #print(len(df))
             for ii in range(len(var_vec)):                
                 if len(var_vec) == 1 & len(times) == 1:
                     obj = axs
                 elif len(var_vec) == 1:
+                    axs = axs.flatten()
                     obj = axs[tt]
                 elif len(times) == 1:
                     obj = axs[ii]
@@ -230,7 +289,7 @@ def plot_2d(df_col2,var_vec,times,z_max = 5000.):
                 
     handles, labels = plt.gca().get_legend_handles_labels()
     by_label = dict(zip(labels, handles))
-    fig.legend(by_label.values(), by_label.keys(),loc='upper center',bbox_to_anchor=(0.5, 1.1))
+    fig.legend(by_label.values(), by_label.keys(),loc='upper center',bbox_to_anchor=(0.5, 1.1),ncol=2)
     
     fig.tight_layout()
     
