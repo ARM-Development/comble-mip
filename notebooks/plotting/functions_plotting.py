@@ -115,6 +115,37 @@ def load_era5(case='20200313',PATH='../../data_files/'):
     return p_df,df_col2        
 
 
+def load_real_wrf(PATH='../../data_files/'):
+    
+    ## load realistic WRF-LES output along trajectory
+    ## __input__
+    ## PATH........directory
+    
+    fn = PATH + 'REAL_WRF_LES_COMBLE-I.nc'
+
+    print(fn)
+    ds = nc.Dataset(fn)
+    time = ds.variables['time'][:]
+    zf   = ds.variables['zf'][:]
+    
+    ## extract 1D and 2D fields    
+    var_vec_2d = ['ua','va','theta']
+    var_vec_2d_trans = ['ua','va','theta']
+    group = 'REAL-WRF'
+    
+    df_col2 = pd.DataFrame()
+    for ii in range(len(zf)):
+        p_df2 = pd.DataFrame({"class": [group]* len(time), "time":time, "zf": zf[ii]}, index=time/3600)      
+        for vv in var_vec_2d:
+            vv_trans = var_vec_2d_trans[var_vec_2d.index(vv)]
+            p_df2[vv_trans] = ds.variables[vv][:,:][:,ii]
+        df_col2 = pd.concat([df_col2,p_df2])
+        
+    ds.close()
+
+    return df_col2        
+
+
 def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0):
     
     ## load ERA5 data along trajectory
