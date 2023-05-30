@@ -128,10 +128,19 @@ def load_real_wrf(PATH='../../data_files/'):
     time = ds.variables['time'][:]
     zf   = ds.variables['zf'][:]
     
-    ## extract 1D and 2D fields    
+    ## extract 1D and 2D fields
+    var_vec_1d = ['rmol','zi','ziol']
+    var_vec_1d_trans = ['rmol','zi','ziol']
+    fact_1d = [1.,1.,1.]
+    
     var_vec_2d = ['ua','va','theta']
     var_vec_2d_trans = ['ua','va','theta']
     group = 'REAL-WRF'
+    
+    p_df = pd.DataFrame({"class": [group]* len(time), "time":time}, index=time/3600)
+    for vv in var_vec_1d:
+        vv_trans = var_vec_1d_trans[var_vec_1d.index(vv)]
+        p_df[vv_trans] = ds.variables[vv][:]*fact_1d[var_vec_1d.index(vv)]
     
     df_col2 = pd.DataFrame()
     for ii in range(len(zf)):
@@ -143,7 +152,7 @@ def load_real_wrf(PATH='../../data_files/'):
         
     ds.close()
 
-    return df_col2        
+    return p_df,df_col2        
 
 
 def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0):
@@ -204,7 +213,7 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0):
     return df_col,df_col2
 
 
-def plot_1d(df_col,var_vec):
+def plot_1d(df_col,var_vec,marker=False):
     
     ## plot variables with time dependence
     ## __input__
@@ -224,6 +233,8 @@ def plot_1d(df_col,var_vec):
             else:
                 obj = axs[ii]
             obj.plot(df.time/3600,df[var_vec[ii]],label=label)
+            if marker:
+                obj.scatter(df.time/3600,df[var_vec[ii]])
             obj.grid(alpha=0.2)
         counter +=1
     
