@@ -1,6 +1,6 @@
 # COMBLE Model-Observation Intercomparison Project Cookbook
 
-[![badge](https://img.shields.io/static/v1.svg?logo=Jupyter&label=ARM+JupyterHub&message=ACE+Environment&color=blue)](https://jupyterhub.arm.gov/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2FARM-Development%2Fcomble-mip&urlpath=%2Flab%2Fworkspaces%2Fauto%2Ftree%2Fdata%2Fhome&branch=main)
+[![badge](https://img.shields.io/static/v1.svg?logo=Jupyter&label=ARM+JupyterHub&message=ACE+Environment&color=blue)](https://jupyterhub.arm.gov/hub/user-redirect/git-pull?repo=https%3A//github.com/ARM-Development/comble-mip&urlpath=lab/tree/comble-mip/../user-data-home/comble-mip/notebooks&branch=main)
 
 ```{figure} figures/13march_case_overview.png
 
