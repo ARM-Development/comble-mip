@@ -9,7 +9,7 @@
 
 ## Motivation
 
-This website hosts information about the Cold-Air Outbreaks in the Marine Boundary Layer Experiment (COMBLE) Model-Observation Intercomparison Project (MIP) for large-eddy simulation (LES) and single-column models (SCMs). The intercomparison focuses on a cold-air outbreak event observed over the Norwegian Sea on 13 March 2020 (Fig. 1) during the US Department of Energy's COMBLE field campaign [Geerts et al., 2023](https://journals.ametsoc.org/view/journals/bams/103/5/BAMS-D-21-0044.1.xml). We welcome you to explore the website to learn more about the COMBLE-MIP framework and workflow.
+This website hosts information about the Cold-Air Outbreaks in the Marine Boundary Layer Experiment (COMBLE) Model-Observation Intercomparison Project (MIP) for large-eddy simulation (LES) and single-column models (SCMs). The intercomparison focuses on a cold-air outbreak event observed over the Norwegian Sea on 13 March 2020 (Fig. 1) during the US Department of Energy's COMBLE field campaign [(Geerts et al., 2023)](https://journals.ametsoc.org/view/journals/bams/103/5/BAMS-D-21-0044.1.xml). We welcome you to explore the website to learn more about the COMBLE-MIP framework and workflow.
 
 ## Model Inputs
 
