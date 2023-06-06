@@ -13,7 +13,7 @@ This website is used to host information about the upcoming Cold-Air Outbreaks i
 
 ## Model Inputs
 
-Two files are provided in the DEPHY format, suitable for application to both LES and SCM models: (1) initial and boundary conditions, and (2) surface skin temperature time series.
+Two files are provided in the [DEPHY-SCM standard format](https://github.com/GdR-DEPHY/DEPHY-SCM) (see document link on README.md), suitable for application to both LES and SCM models.
 
 ## Input Conversion Examples
 
