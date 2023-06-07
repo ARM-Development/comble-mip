@@ -376,12 +376,10 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#we-have-the-option-of-starting-as-far-as-28-hours-before-arriving-at-andenes-03-12-20-at-14-utc">We have the option of starting as far as 28 hours before arriving at Andenes (03/12/20 at 14 UTC)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-libraries">Import libraries</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#begin-user-mods">!!! Begin user mods !!!</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-many-hours-before-ice-edge-do-you-want-to-start">1. How many hours before ice edge do you want to start?</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#note-value-0-means-you-are-starting-approx-at-ice-edge-value-10-means-you-are-starting-10-h-upstream-north-of-the-ice-edge">Note: Value == 0 means you are starting approx. at ice edge, Value == 10 means you are starting 10 h upstream (north) of the ice edge</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#note-value-must-be-an-integer">Note: Value must be an integer</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#note-t0-h-represents-simulation-start-time-t0-h-init-th-qv-represents-initial-theta-qv-profile-to-use-set-equivalent-if-everything-should-be-initialized-using-information-at-same-time">Note: t0_h represents simulation start time, t0_h_init_th_qv represents initial theta/qv profile to use; set equivalent if everything should be initialized using information at same time</a></li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-many-hours-before-ice-edge-do-you-want-to-start">1. How many hours before ice edge do you want to start?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#note-value-0-means-you-are-starting-approx-at-ice-edge-value-10-means-you-are-starting-10-h-upstream-north-of-the-ice-edge">Note: Value == 0 means you are starting approx. at ice edge, Value == 10 means you are starting 10 h upstream (north) of the ice edge</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#note-value-must-be-an-integer">Note: Value must be an integer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#note-t0-h-represents-simulation-start-time-t0-h-init-th-qv-represents-initial-theta-qv-profile-to-use-set-equivalent-if-everything-should-be-initialized-using-information-at-same-time">Note: t0_h represents simulation start time, t0_h_init_th_qv represents initial theta/qv profile to use; set equivalent if everything should be initialized using information at same time</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clobber-old-forcing-file">2. Clobber old forcing file?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#forcing-file-save-name">3. Forcing file save name</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#note-for-this-and-all-file-paths-include-directory-in-the-name">Note: For this and all file paths, include directory in the name</a></li>
@@ -400,12 +398,10 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-theta-and-qv-nudging-as-well-as-subsidence-to-forcing-file">11. Add theta and qv nudging, as well as subsidence, to forcing file?</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#end-user-mods">!!! End user mods !!!</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-some-things">Set some things</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#timings">Timings</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#constants-for-geostrophic-wind-calc">Constants for geostrophic wind calc</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#end-user-mods">!!! End user mods !!!</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-some-things">Set some things</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#timings">Timings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#constants-for-geostrophic-wind-calc">Constants for geostrophic wind calc</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#delete-forcing-file-if-already-exists">Delete forcing file if already exists</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-les-domain-locations">Get LES domain locations</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-vertical-grid">Create vertical grid</a><ul class="nav section-nav flex-column">
@@ -511,14 +507,15 @@ document.write(`
 <h2>!!! Begin user mods !!!<a class="headerlink" href="#begin-user-mods" title="Permalink to this heading">#</a></h2>
 <section id="how-many-hours-before-ice-edge-do-you-want-to-start">
 <h3>1. How many hours before ice edge do you want to start?<a class="headerlink" href="#how-many-hours-before-ice-edge-do-you-want-to-start" title="Permalink to this heading">#</a></h3>
+</section>
 <section id="note-value-0-means-you-are-starting-approx-at-ice-edge-value-10-means-you-are-starting-10-h-upstream-north-of-the-ice-edge">
-<h4>Note: Value == 0 means you are starting approx. at ice edge, Value == 10 means you are starting 10 h upstream (north) of the ice edge<a class="headerlink" href="#note-value-0-means-you-are-starting-approx-at-ice-edge-value-10-means-you-are-starting-10-h-upstream-north-of-the-ice-edge" title="Permalink to this heading">#</a></h4>
+<h3>Note: Value == 0 means you are starting approx. at ice edge, Value == 10 means you are starting 10 h upstream (north) of the ice edge<a class="headerlink" href="#note-value-0-means-you-are-starting-approx-at-ice-edge-value-10-means-you-are-starting-10-h-upstream-north-of-the-ice-edge" title="Permalink to this heading">#</a></h3>
 </section>
 <section id="note-value-must-be-an-integer">
-<h4>Note: Value must be an integer<a class="headerlink" href="#note-value-must-be-an-integer" title="Permalink to this heading">#</a></h4>
+<h3>Note: Value must be an integer<a class="headerlink" href="#note-value-must-be-an-integer" title="Permalink to this heading">#</a></h3>
 </section>
 <section id="note-t0-h-represents-simulation-start-time-t0-h-init-th-qv-represents-initial-theta-qv-profile-to-use-set-equivalent-if-everything-should-be-initialized-using-information-at-same-time">
-<h4>Note: t0_h represents simulation start time, t0_h_init_th_qv represents initial theta/qv profile to use; set equivalent if everything should be initialized using information at same time<a class="headerlink" href="#note-t0-h-represents-simulation-start-time-t0-h-init-th-qv-represents-initial-theta-qv-profile-to-use-set-equivalent-if-everything-should-be-initialized-using-information-at-same-time" title="Permalink to this heading">#</a></h4>
+<h3>Note: t0_h represents simulation start time, t0_h_init_th_qv represents initial theta/qv profile to use; set equivalent if everything should be initialized using information at same time<a class="headerlink" href="#note-t0-h-represents-simulation-start-time-t0-h-init-th-qv-represents-initial-theta-qv-profile-to-use-set-equivalent-if-everything-should-be-initialized-using-information-at-same-time" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t0_h</span> <span class="o">=</span> <span class="mi">2</span>
@@ -529,7 +526,6 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
 </section>
 <section id="clobber-old-forcing-file">
 <h3>2. Clobber old forcing file?<a class="headerlink" href="#clobber-old-forcing-file" title="Permalink to this heading">#</a></h3>
@@ -646,10 +642,11 @@ document.write(`
 </section>
 <section id="end-user-mods">
 <h2>!!! End user mods !!!<a class="headerlink" href="#end-user-mods" title="Permalink to this heading">#</a></h2>
+</section>
 <section id="set-some-things">
-<h3>Set some things<a class="headerlink" href="#set-some-things" title="Permalink to this heading">#</a></h3>
+<h2>Set some things<a class="headerlink" href="#set-some-things" title="Permalink to this heading">#</a></h2>
 <section id="timings">
-<h4>Timings<a class="headerlink" href="#timings" title="Permalink to this heading">#</a></h4>
+<h3>Timings<a class="headerlink" href="#timings" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nhrs</span> <span class="o">=</span> <span class="mi">18</span> <span class="o">+</span> <span class="n">t0_h</span> <span class="o">+</span> <span class="mi">1</span> <span class="c1"># total number of simulation hours, including t0</span>
@@ -673,7 +670,7 @@ document.write(`
 </div>
 </section>
 <section id="constants-for-geostrophic-wind-calc">
-<h4>Constants for geostrophic wind calc<a class="headerlink" href="#constants-for-geostrophic-wind-calc" title="Permalink to this heading">#</a></h4>
+<h3>Constants for geostrophic wind calc<a class="headerlink" href="#constants-for-geostrophic-wind-calc" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">do_geo</span><span class="p">:</span>
@@ -684,7 +681,6 @@ document.write(`
 </div>
 </div>
 </section>
-</section>
 <section id="delete-forcing-file-if-already-exists">
 <h3>Delete forcing file if already exists<a class="headerlink" href="#delete-forcing-file-if-already-exists" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
@@ -693,6 +689,11 @@ document.write(`
     <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">save_name</span><span class="p">):</span>
         <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">save_name</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The file &#39;</span> <span class="o">+</span> <span class="n">save_name</span> <span class="o">+</span> <span class="s1">&#39; has been deleted successfully&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The file COMBLE_INTERCOMPARISON_FORCING_V2.1.nc has been deleted successfully
 </pre></div>
 </div>
 </div>
@@ -1293,7 +1294,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x2b98a5f10a58&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x2b98a5a01940&gt;
 </pre></div>
 </div>
 <img alt="../../_images/e885c024d545a2fedac9224a904b6cfb0cac6c91d1875be982c6d12dbdf339e6.png" src="../../_images/e885c024d545a2fedac9224a904b6cfb0cac6c91d1875be982c6d12dbdf339e6.png" />
@@ -1319,7 +1320,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x2b98a5f7cd68&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x2b98a5d5f080&gt;
 </pre></div>
 </div>
 <img alt="../../_images/918bf0175e1a4f01cfce61a826a4261faaca0b6e8816f8d0436082a8316243c4.png" src="../../_images/918bf0175e1a4f01cfce61a826a4261faaca0b6e8816f8d0436082a8316243c4.png" />
@@ -1853,12 +1854,10 @@ Dataset is closed!
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#we-have-the-option-of-starting-as-far-as-28-hours-before-arriving-at-andenes-03-12-20-at-14-utc">We have the option of starting as far as 28 hours before arriving at Andenes (03/12/20 at 14 UTC)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-libraries">Import libraries</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#begin-user-mods">!!! Begin user mods !!!</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-many-hours-before-ice-edge-do-you-want-to-start">1. How many hours before ice edge do you want to start?</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#note-value-0-means-you-are-starting-approx-at-ice-edge-value-10-means-you-are-starting-10-h-upstream-north-of-the-ice-edge">Note: Value == 0 means you are starting approx. at ice edge, Value == 10 means you are starting 10 h upstream (north) of the ice edge</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#note-value-must-be-an-integer">Note: Value must be an integer</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#note-t0-h-represents-simulation-start-time-t0-h-init-th-qv-represents-initial-theta-qv-profile-to-use-set-equivalent-if-everything-should-be-initialized-using-information-at-same-time">Note: t0_h represents simulation start time, t0_h_init_th_qv represents initial theta/qv profile to use; set equivalent if everything should be initialized using information at same time</a></li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-many-hours-before-ice-edge-do-you-want-to-start">1. How many hours before ice edge do you want to start?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#note-value-0-means-you-are-starting-approx-at-ice-edge-value-10-means-you-are-starting-10-h-upstream-north-of-the-ice-edge">Note: Value == 0 means you are starting approx. at ice edge, Value == 10 means you are starting 10 h upstream (north) of the ice edge</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#note-value-must-be-an-integer">Note: Value must be an integer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#note-t0-h-represents-simulation-start-time-t0-h-init-th-qv-represents-initial-theta-qv-profile-to-use-set-equivalent-if-everything-should-be-initialized-using-information-at-same-time">Note: t0_h represents simulation start time, t0_h_init_th_qv represents initial theta/qv profile to use; set equivalent if everything should be initialized using information at same time</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clobber-old-forcing-file">2. Clobber old forcing file?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#forcing-file-save-name">3. Forcing file save name</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#note-for-this-and-all-file-paths-include-directory-in-the-name">Note: For this and all file paths, include directory in the name</a></li>
@@ -1877,12 +1876,10 @@ Dataset is closed!
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-theta-and-qv-nudging-as-well-as-subsidence-to-forcing-file">11. Add theta and qv nudging, as well as subsidence, to forcing file?</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#end-user-mods">!!! End user mods !!!</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-some-things">Set some things</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#timings">Timings</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#constants-for-geostrophic-wind-calc">Constants for geostrophic wind calc</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#end-user-mods">!!! End user mods !!!</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-some-things">Set some things</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#timings">Timings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#constants-for-geostrophic-wind-calc">Constants for geostrophic wind calc</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#delete-forcing-file-if-already-exists">Delete forcing file if already exists</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-les-domain-locations">Get LES domain locations</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-vertical-grid">Create vertical grid</a><ul class="nav section-nav flex-column">
