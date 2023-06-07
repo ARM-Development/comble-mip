@@ -6,7 +6,7 @@ If you are involved with the intercomparison, then please follow the instruction
 
 When filling out the form, be sure to complete the entries as follows:
 
-* **Visitor Role**: *TBD*
+* **Visitor Role**: *Collaborator*
 * **Resources**: *ARM Data Center Enhanced Jupyterhub Access*
 * **Justification**: *Participation in COMBLE-MIP LES/SCM Project*
 * **Start Date**: *Today's date*
