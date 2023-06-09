@@ -389,7 +389,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## load all simulations located in subfolders of the given directory</span>
-<span class="n">var_vec_1d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;lwp&#39;</span><span class="p">,</span><span class="s1">&#39;rwp&#39;</span><span class="p">,</span><span class="s1">&#39;ts&#39;</span><span class="p">,</span><span class="s1">&#39;hfss&#39;</span><span class="p">,</span><span class="s1">&#39;hfls&#39;</span><span class="p">]</span>
+<span class="n">var_vec_1d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;cwp&#39;</span><span class="p">,</span><span class="s1">&#39;rwp&#39;</span><span class="p">,</span><span class="s1">&#39;ts&#39;</span><span class="p">,</span><span class="s1">&#39;hfss&#39;</span><span class="p">,</span><span class="s1">&#39;hfls&#39;</span><span class="p">]</span>
 <span class="n">var_vec_2d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;theta&#39;</span><span class="p">,</span><span class="s1">&#39;qv&#39;</span><span class="p">,</span><span class="s1">&#39;ua&#39;</span><span class="p">,</span><span class="s1">&#39;va&#39;</span><span class="p">]</span>
 <span class="n">df_col_1d</span><span class="p">,</span><span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">)</span>
 
@@ -402,17 +402,33 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>../../output_les/wrf/sandbox/init_geostrophic/WRF_LES_COMBLE-I.nc
-../../output_les/dharma/sandbox/init_geostrophic/DHARMA_LES_COMBLE-I.nc
-../../output_les/dharma/sandbox/init_era5/DHARMA_LES_COMBLE-I.nc
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>../../output_les/wrf/sandbox/t-2h_geo/WRF_LES_COMBLE-I.nc
 ../../output_les/wrf/sandbox/init_geostrophic/WRF_LES_COMBLE-I.nc
-../../output_les/dharma/sandbox/init_geostrophic/DHARMA_LES_COMBLE-I.nc
+../../output_les/wrf/sandbox/t-2h_era5/WRF_LES_COMBLE-I.nc
+../../output_les/wrf/sandbox/t-5h_geo/WRF_LES_COMBLE-I.nc
+../../output_les/wrf/sandbox/Lx25km_dx200m/WRF_LES_COMBLE-I_Lx25km_dx200m.nc
+../../output_les/wrf/sandbox/Lx25km_dx100m/WRF_LES_COMBLE-I_Lx25km_dx100m.nc
 ../../output_les/dharma/sandbox/init_era5/DHARMA_LES_COMBLE-I.nc
+../../output_les/dharma/sandbox/Lx25km_dx200m_sub/DHARMA_LES_COMBLE-I.nc
+../../output_les/dharma/sandbox/Lx25km_dx100m/DHARMA_LES_COMBLE-I.nc
+../../output_les/dharma/sandbox/Lx25km_dx200m/DHARMA_LES_COMBLE-I.nc
+../../output_les/dharma/sandbox/init_geostrophic/DHARMA_LES_COMBLE-I.nc
+../../output_les/wrf/sandbox/t-2h_geo/WRF_LES_COMBLE-I.nc
+../../output_les/wrf/sandbox/init_geostrophic/WRF_LES_COMBLE-I.nc
+../../output_les/wrf/sandbox/t-2h_era5/WRF_LES_COMBLE-I.nc
+../../output_les/wrf/sandbox/t-5h_geo/WRF_LES_COMBLE-I.nc
+../../output_les/wrf/sandbox/Lx25km_dx200m/WRF_LES_COMBLE-I_Lx25km_dx200m.nc
+../../output_les/wrf/sandbox/Lx25km_dx100m/WRF_LES_COMBLE-I_Lx25km_dx100m.nc
+../../output_les/dharma/sandbox/init_era5/DHARMA_LES_COMBLE-I.nc
+../../output_les/dharma/sandbox/Lx25km_dx200m_sub/DHARMA_LES_COMBLE-I.nc
+../../output_les/dharma/sandbox/Lx25km_dx100m/DHARMA_LES_COMBLE-I.nc
+../../output_les/dharma/sandbox/Lx25km_dx200m/DHARMA_LES_COMBLE-I.nc
+../../output_les/dharma/sandbox/init_geostrophic/DHARMA_LES_COMBLE-I.nc
 ../../data_files/theta_temp_rh_sh_uvw_sst_along_trajectory_era5ml_28h_end_2020-03-13-18.nc
-../../data_files/anxsondewnpnM1.b1.20200313.052700.cdf
 ../../data_files/anxsondewnpnM1.b1.20200313.112600.cdf
-../../data_files/anxsondewnpnM1.b1.20200313.172600.cdf
+../../data_files/anxsondewnpnM1.b1.20200313.052700.cdf
 ../../data_files/anxsondewnpnM1.b1.20200313.232200.cdf
+../../data_files/anxsondewnpnM1.b1.20200313.172600.cdf
 </pre></div>
 </div>
 </div>
@@ -425,7 +441,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/b95a3fffd21cd185500567c063f4a7da8f67dcb395da0ce9a57bf21cc44900ee.png" src="../../_images/b95a3fffd21cd185500567c063f4a7da8f67dcb395da0ce9a57bf21cc44900ee.png" />
+<img alt="../../_images/4a425a143180d4f32986dc1ebcea37e818c74dc90e539a10a70aeaaa3a8416de.png" src="../../_images/4a425a143180d4f32986dc1ebcea37e818c74dc90e539a10a70aeaaa3a8416de.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -435,16 +451,6 @@ document.write(`
 
 <span class="c1">## example where ERA5 and radiosonde are included</span>
 <span class="n">plot_2d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_2d</span><span class="p">,</span><span class="n">era5_2d</span><span class="p">,</span><span class="n">rs_dat</span><span class="p">]),</span><span class="n">var_vec</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;theta&#39;</span><span class="p">,</span><span class="s1">&#39;ws&#39;</span><span class="p">,</span><span class="s1">&#39;wd&#39;</span><span class="p">],</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span><span class="n">z_max</span><span class="o">=</span><span class="mi">2500</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computing wind speed
-Computing wind direction
-</pre></div>
-</div>
-<img alt="../../_images/15e5a4b6c962a62d900aca2d5971df3d08d4b69c80bd62406203efe858e54aa5.png" src="../../_images/15e5a4b6c962a62d900aca2d5971df3d08d4b69c80bd62406203efe858e54aa5.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x600 with 0 Axes&gt;
 </pre></div>
 </div>
 </div>
