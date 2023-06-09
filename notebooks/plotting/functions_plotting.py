@@ -173,14 +173,14 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0):
         print(fn)
         ds = nc.Dataset(fn)
         time = ds.variables['time'][:]
-        lwp  = ds.variables['lwp'][:]
+        cwp  = ds.variables['cwp'][:]
         rwp  = ds.variables['rwp'][:]
         
         label_items = [x for x in fn.parts + direc.parts if x not in direc.parts]
         label_items = label_items[0:(len(label_items)-1)]
         group = "/".join(label_items)
         
-        #p_df = pd.DataFrame({"class": [group]* len(time), "time":time, "lwp": lwp, "rwp": rwp},index=time/3600)
+        #p_df = pd.DataFrame({"class": [group]* len(time), "time":time, "cwp": cwp, "rwp": rwp},index=time/3600)
         p_df = pd.DataFrame({"class": [group]* len(time), "time":time}, index=time/3600)
         for vv in var_vec_1d:
             p_df[vv] = ds.variables[vv][:]
