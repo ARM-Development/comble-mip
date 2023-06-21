@@ -155,6 +155,24 @@ def load_real_wrf(PATH='../../data_files/'):
     return p_df,df_col2        
 
 
+def load_sims_twj(path,subset,var_vec_1d,var_vec_2d,t_shift = 0):
+    
+    ## load ERA5 data along trajectory
+    ## __input__
+    ## path..........directory (scanning all subdirectories)
+    ## subset..........keyword to subset directories in path
+    ## var_vec_1d....variables with time dependence
+    ## var_vec_2d....variables with time and height dependence
+    ## t_shift.......time shift in case of processing error (hours)
+    
+    direc = sorted(glob.glob(path+"*/*/*"+subset+"*/*"))
+    print (path+"*/*"+subset+"*/*")
+    print (direc)
+    print (type(direc))
+    NCFILES = list(direc+"nc")
+    print (NCFILES)
+
+
 def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0):
     
     ## load ERA5 data along trajectory
@@ -175,16 +193,16 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0):
         time = ds.variables['time'][:]
         cwp  = ds.variables['cwp'][:]
         rwp  = ds.variables['rwp'][:]
-        
+
         label_items = [x for x in fn.parts + direc.parts if x not in direc.parts]
         label_items = label_items[0:(len(label_items)-1)]
         group = "/".join(label_items)
-        
+
         #p_df = pd.DataFrame({"class": [group]* len(time), "time":time, "cwp": cwp, "rwp": rwp},index=time/3600)
         p_df = pd.DataFrame({"class": [group]* len(time), "time":time}, index=time/3600)
         for vv in var_vec_1d:
             p_df[vv] = ds.variables[vv][:]
-        
+
         ds.close()
         df_col = pd.concat([df_col,p_df])
         
@@ -196,11 +214,11 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0):
         time = ds.variables['time'][:]
         zf   = ds.variables['zf'][:]
         qv   = ds.variables['qv'][:,:]
-    
+
         label_items = [x for x in fn.parts + direc.parts if x not in direc.parts]
         label_items = label_items[0:(len(label_items)-1)]
         group = "/".join(label_items)
-        
+
         for ii in range(len(zf)):
             p_df2 = pd.DataFrame({"class": [group]* len(time), "time":time, "zf": zf[ii]}, index=time/3600)      
             for vv in var_vec_2d:
