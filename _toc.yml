@@ -7,6 +7,7 @@ parts:
 - caption: How-To
   chapters:
     - glob: notebooks/howto/*
+    - file: CONTRIBUTING
 - caption: DEPHY Forcing Notebooks
   chapters:
     - glob: notebooks/forcing/*
