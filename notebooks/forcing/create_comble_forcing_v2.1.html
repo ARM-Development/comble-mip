@@ -368,23 +368,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#developed-by-tim-juliano-ncar-ral-ann-fridlind-nasa-giss-and-florian-tornow-nasa-giss-columbia-univ-with-substantial-contributions-by-peng-wu-pnnl-gunilla-svensson-stockholm-univ-and-andy-ackerman-nasa-giss">Developed by Tim Juliano (NCAR-RAL), Ann Fridlind (NASA-GISS), and Florian Tornow (NASA-GISS/Columbia Univ.) with substantial contributions by Peng Wu (PNNL), Gunilla Svensson (Stockholm Univ.), and Andy Ackerman (NASA-GISS)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#v2-1-created-on-6-6-23">v2.1 created on 6/6/23</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#based-on-era5-backward-trajectory-beginning-at-andenes-norway-03-13-20-at-18-utc">Based on ERA5 backward trajectory, beginning at Andenes, Norway (03/13/20 at 18 UTC)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#we-have-the-option-of-starting-as-far-as-28-hours-before-arriving-at-andenes-03-12-20-at-14-utc">We have the option of starting as far as 28 hours before arriving at Andenes (03/12/20 at 14 UTC)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-libraries">Import libraries</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#user-mods">User mods</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-many-hours-before-ice-edge-do-you-want-to-start">1. How many hours before ice edge do you want to start?</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#note-value-0-means-you-are-starting-approx-at-ice-edge-value-10-means-you-are-starting-10-h-upstream-north-of-the-ice-edge">Note: Value == 0 means you are starting approx. at ice edge, Value == 10 means you are starting 10 h upstream (north) of the ice edge</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#note-value-must-be-an-integer">Note: Value must be an integer</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#note-t0-h-represents-simulation-start-time-t0-h-init-th-qv-represents-initial-theta-qv-profile-to-use-set-equivalent-if-everything-should-be-initialized-using-information-at-same-time">Note: t0_h represents simulation start time, t0_h_init_th_qv represents initial theta/qv profile to use; set equivalent if everything should be initialized using information at same time</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clobber-old-forcing-file">2. Clobber old forcing file?</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#forcing-file-save-name">3. Forcing file save name</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#note-for-this-and-all-file-paths-include-directory-in-the-name">Note: For this and all file paths, include directory in the name</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#name-of-current-script-for-global-attribute">4. Name of current script for global attribute</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#note-can-use-ipynbname-library-to-automatically-generate-script-name-but-this-is-not-a-standard-library-so-skipping-for-now">Note: Can use ipynbname library to automatically generate script name, but this is not a standard library so skipping for now</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-domain-locations">5. LES domain locations</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#era5-backward-trajectory-met-file-name">6. ERA5 backward trajectory met file name</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#era5-backward-trajectory-ozone-file-name">7. ERA5 backward trajectory ozone file name</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-model-profiles-file-name">8. 1D model profiles file name</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sea-ice-concentration-file-name">9. Sea ice concentration file name</a></li>
@@ -465,18 +450,12 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="code-to-generate-initial-and-time-varying-profile-and-surface-forcing">
 <h1>Code to generate: initial and time-varying profile and surface forcing<a class="headerlink" href="#code-to-generate-initial-and-time-varying-profile-and-surface-forcing" title="Permalink to this heading">#</a></h1>
-<section id="developed-by-tim-juliano-ncar-ral-ann-fridlind-nasa-giss-and-florian-tornow-nasa-giss-columbia-univ-with-substantial-contributions-by-peng-wu-pnnl-gunilla-svensson-stockholm-univ-and-andy-ackerman-nasa-giss">
-<h2>Developed by Tim Juliano (NCAR-RAL), Ann Fridlind (NASA-GISS), and Florian Tornow (NASA-GISS/Columbia Univ.) with substantial contributions by Peng Wu (PNNL), Gunilla Svensson (Stockholm Univ.), and Andy Ackerman (NASA-GISS)<a class="headerlink" href="#developed-by-tim-juliano-ncar-ral-ann-fridlind-nasa-giss-and-florian-tornow-nasa-giss-columbia-univ-with-substantial-contributions-by-peng-wu-pnnl-gunilla-svensson-stockholm-univ-and-andy-ackerman-nasa-giss" title="Permalink to this heading">#</a></h2>
-</section>
-<section id="v2-1-created-on-6-6-23">
-<h2>v2.1 created on 6/6/23<a class="headerlink" href="#v2-1-created-on-6-6-23" title="Permalink to this heading">#</a></h2>
-</section>
-<section id="based-on-era5-backward-trajectory-beginning-at-andenes-norway-03-13-20-at-18-utc">
-<h2>Based on ERA5 backward trajectory, beginning at Andenes, Norway (03/13/20 at 18 UTC)<a class="headerlink" href="#based-on-era5-backward-trajectory-beginning-at-andenes-norway-03-13-20-at-18-utc" title="Permalink to this heading">#</a></h2>
-</section>
-<section id="we-have-the-option-of-starting-as-far-as-28-hours-before-arriving-at-andenes-03-12-20-at-14-utc">
-<h2>We have the option of starting as far as 28 hours before arriving at Andenes (03/12/20 at 14 UTC)<a class="headerlink" href="#we-have-the-option-of-starting-as-far-as-28-hours-before-arriving-at-andenes-03-12-20-at-14-utc" title="Permalink to this heading">#</a></h2>
-</section>
+<ul class="simple">
+<li><p>Developed by Tim Juliano (NCAR-RAL), Ann Fridlind (NASA-GISS), and Florian Tornow (NASA-GISS/Columbia Univ.) with substantial contributions by Peng Wu (PNNL), Gunilla Svensson (Stockholm Univ.), and Andy Ackerman (NASA-GISS)</p></li>
+<li><p>v2.1 created on 6/6/23</p></li>
+<li><p>Based on ERA5 backward trajectory, beginning at Andenes, Norway (03/13/20 at 18 UTC)</p></li>
+<li><p>We have the option of starting as far as 28 hours before arriving at Andenes (03/12/20 at 14 UTC)</p></li>
+</ul>
 <section id="import-libraries">
 <h2>Import libraries<a class="headerlink" href="#import-libraries" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
@@ -498,17 +477,14 @@ document.write(`
 </section>
 <section id="user-mods">
 <h2>User mods<a class="headerlink" href="#user-mods" title="Permalink to this heading">#</a></h2>
-<section id="how-many-hours-before-ice-edge-do-you-want-to-start">
-<h3>1. How many hours before ice edge do you want to start?<a class="headerlink" href="#how-many-hours-before-ice-edge-do-you-want-to-start" title="Permalink to this heading">#</a></h3>
-</section>
-<section id="note-value-0-means-you-are-starting-approx-at-ice-edge-value-10-means-you-are-starting-10-h-upstream-north-of-the-ice-edge">
-<h3>Note: Value == 0 means you are starting approx. at ice edge, Value == 10 means you are starting 10 h upstream (north) of the ice edge<a class="headerlink" href="#note-value-0-means-you-are-starting-approx-at-ice-edge-value-10-means-you-are-starting-10-h-upstream-north-of-the-ice-edge" title="Permalink to this heading">#</a></h3>
-</section>
-<section id="note-value-must-be-an-integer">
-<h3>Note: Value must be an integer<a class="headerlink" href="#note-value-must-be-an-integer" title="Permalink to this heading">#</a></h3>
-</section>
-<section id="note-t0-h-represents-simulation-start-time-t0-h-init-th-qv-represents-initial-theta-qv-profile-to-use-set-equivalent-if-everything-should-be-initialized-using-information-at-same-time">
-<h3>Note: t0_h represents simulation start time, t0_h_init_th_qv represents initial theta/qv profile to use; set equivalent if everything should be initialized using information at same time<a class="headerlink" href="#note-t0-h-represents-simulation-start-time-t0-h-init-th-qv-represents-initial-theta-qv-profile-to-use-set-equivalent-if-everything-should-be-initialized-using-information-at-same-time" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>How many hours before ice edge do you want to start?</p></li>
+</ol>
+<ul class="simple">
+<li><p>Note: Value == 0 means you are starting approx. at ice edge, Value == 10 means you are starting 10 h upstream (north) of the ice edge</p></li>
+<li><p>Note: Value must be an integer</p></li>
+<li><p>Note: t0_h represents simulation start time, t0_h_init_th_qv represents initial theta/qv profile to use; set equivalent if everything should be initialized using information at same time</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t0_h</span> <span class="o">=</span> <span class="mi">2</span>
@@ -519,9 +495,9 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
-<section id="clobber-old-forcing-file">
-<h3>2. Clobber old forcing file?<a class="headerlink" href="#clobber-old-forcing-file" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple" start="2">
+<li><p>Clobber old forcing file?</p></li>
+</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clobber_old_file</span> <span class="o">=</span> <span class="kc">True</span>
@@ -529,12 +505,12 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
-<section id="forcing-file-save-name">
-<h3>3. Forcing file save name<a class="headerlink" href="#forcing-file-save-name" title="Permalink to this heading">#</a></h3>
-</section>
-<section id="note-for-this-and-all-file-paths-include-directory-in-the-name">
-<h3>Note: For this and all file paths, include directory in the name<a class="headerlink" href="#note-for-this-and-all-file-paths-include-directory-in-the-name" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple" start="3">
+<li><p>Forcing file save name</p></li>
+</ol>
+<ul class="simple">
+<li><p>Note: For this and all file paths, include directory in the name</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">save_name</span> <span class="o">=</span> <span class="s1">&#39;COMBLE_INTERCOMPARISON_FORCING_V2.1.nc&#39;</span>
@@ -542,12 +518,12 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
-<section id="name-of-current-script-for-global-attribute">
-<h3>4. Name of current script for global attribute<a class="headerlink" href="#name-of-current-script-for-global-attribute" title="Permalink to this heading">#</a></h3>
-</section>
-<section id="note-can-use-ipynbname-library-to-automatically-generate-script-name-but-this-is-not-a-standard-library-so-skipping-for-now">
-<h3>Note: Can use ipynbname library to automatically generate script name, but this is not a standard library so skipping for now<a class="headerlink" href="#note-can-use-ipynbname-library-to-automatically-generate-script-name-but-this-is-not-a-standard-library-so-skipping-for-now" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple" start="4">
+<li><p>Name of current script for global attribute</p></li>
+</ol>
+<ul class="simple">
+<li><p>Note: Can use ipynbname library to automatically generate script name, but this is not a standard library so skipping for now</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">script_name</span> <span class="o">=</span> <span class="s1">&#39;create_comble_forcing_v2.1.ipynb&#39;</span>
@@ -555,9 +531,9 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
-<section id="les-domain-locations">
-<h3>5. LES domain locations<a class="headerlink" href="#les-domain-locations" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple" start="5">
+<li><p>LES domain locations</p></li>
+</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fname_les_domain</span> <span class="o">=</span> <span class="s1">&#39;LES_domain_location_28h_18Z_Mar13_2020.txt&#39;</span>
@@ -565,9 +541,9 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
-<section id="era5-backward-trajectory-met-file-name">
-<h3>6. ERA5 backward trajectory met file name<a class="headerlink" href="#era5-backward-trajectory-met-file-name" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple" start="6">
+<li><p>ERA5 backward trajectory met file name</p></li>
+</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fname_era5_met</span> <span class="o">=</span> <span class="s1">&#39;theta_temp_rh_sh_uvw_sst_along_trajectory_era5ml_28h_end_2020-03-13-18.nc&#39;</span>
@@ -575,7 +551,6 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
 <section id="era5-backward-trajectory-ozone-file-name">
 <h3>7. ERA5 backward trajectory ozone file name<a class="headerlink" href="#era5-backward-trajectory-ozone-file-name" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
@@ -1842,23 +1817,8 @@ Dataset is closed!
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#developed-by-tim-juliano-ncar-ral-ann-fridlind-nasa-giss-and-florian-tornow-nasa-giss-columbia-univ-with-substantial-contributions-by-peng-wu-pnnl-gunilla-svensson-stockholm-univ-and-andy-ackerman-nasa-giss">Developed by Tim Juliano (NCAR-RAL), Ann Fridlind (NASA-GISS), and Florian Tornow (NASA-GISS/Columbia Univ.) with substantial contributions by Peng Wu (PNNL), Gunilla Svensson (Stockholm Univ.), and Andy Ackerman (NASA-GISS)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#v2-1-created-on-6-6-23">v2.1 created on 6/6/23</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#based-on-era5-backward-trajectory-beginning-at-andenes-norway-03-13-20-at-18-utc">Based on ERA5 backward trajectory, beginning at Andenes, Norway (03/13/20 at 18 UTC)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#we-have-the-option-of-starting-as-far-as-28-hours-before-arriving-at-andenes-03-12-20-at-14-utc">We have the option of starting as far as 28 hours before arriving at Andenes (03/12/20 at 14 UTC)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-libraries">Import libraries</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#user-mods">User mods</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-many-hours-before-ice-edge-do-you-want-to-start">1. How many hours before ice edge do you want to start?</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#note-value-0-means-you-are-starting-approx-at-ice-edge-value-10-means-you-are-starting-10-h-upstream-north-of-the-ice-edge">Note: Value == 0 means you are starting approx. at ice edge, Value == 10 means you are starting 10 h upstream (north) of the ice edge</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#note-value-must-be-an-integer">Note: Value must be an integer</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#note-t0-h-represents-simulation-start-time-t0-h-init-th-qv-represents-initial-theta-qv-profile-to-use-set-equivalent-if-everything-should-be-initialized-using-information-at-same-time">Note: t0_h represents simulation start time, t0_h_init_th_qv represents initial theta/qv profile to use; set equivalent if everything should be initialized using information at same time</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clobber-old-forcing-file">2. Clobber old forcing file?</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#forcing-file-save-name">3. Forcing file save name</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#note-for-this-and-all-file-paths-include-directory-in-the-name">Note: For this and all file paths, include directory in the name</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#name-of-current-script-for-global-attribute">4. Name of current script for global attribute</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#note-can-use-ipynbname-library-to-automatically-generate-script-name-but-this-is-not-a-standard-library-so-skipping-for-now">Note: Can use ipynbname library to automatically generate script name, but this is not a standard library so skipping for now</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-domain-locations">5. LES domain locations</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#era5-backward-trajectory-met-file-name">6. ERA5 backward trajectory met file name</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#era5-backward-trajectory-ozone-file-name">7. ERA5 backward trajectory ozone file name</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-model-profiles-file-name">8. 1D model profiles file name</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sea-ice-concentration-file-name">9. Sea ice concentration file name</a></li>
