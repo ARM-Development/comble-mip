@@ -369,74 +369,16 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-libraries">Import libraries</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#user-mods">User mods</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#era5-backward-trajectory-ozone-file-name">7. ERA5 backward trajectory ozone file name</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-model-profiles-file-name">8. 1D model profiles file name</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sea-ice-concentration-file-name">9. Sea ice concentration file name</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#do-geostrophic-wind-calc-and-add-to-forcing-file-if-so-supply-era5-geopotential-height-file-name-and-minimum-grid-spacing-km-for-discretization">10. Do geostrophic wind calc and add to forcing file? If so, supply ERA5 geopotential height file name and minimum grid spacing (km) for discretization</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-theta-and-qv-nudging-as-well-as-subsidence-to-forcing-file">11. Add theta and qv nudging, as well as subsidence, to forcing file?</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-things-for-future-calculations">Set things for future calculations</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#note-no-need-for-user-to-modify-these-computed-automatically">Note: no need for user to modify these, computed automatically</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#timings">Timings</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#constants-for-geostrophic-wind-calc">Constants for geostrophic wind calc</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#delete-forcing-file-if-already-exists">Delete forcing file if already exists</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-les-domain-locations">Get LES domain locations</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-vertical-grid">Create vertical grid</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vertical-grid-levels-defined-at-the-cell-faces">160 vertical grid levels, defined at the cell faces</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-in-data-from-era5-backtrajectory-netcdf">Read in data from ERA5 backtrajectory (netCDF)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convert-units">Convert units</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reverse-time-dimension-of-2d-arrays-as-well-as-sfc-pressure-and-sst-so-that-beginning-of-backward-trajectory-is-in-first-position">Reverse time dimension of 2D arrays, as well as sfc pressure and sst, so that beginning of backward trajectory is in first position</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unmask-sst-field-and-get-index-according-to-t0-h-furthest-north-we-can-go-is-28h-after-backtrajectory-initialization-from-andenes-or-3-12-20-at-14-utc">Unmask sst field and get index according to t0_h (furthest north we can go is 28h after backtrajectory initialization from Andenes, or 3/12/20 at 14 UTC)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-sfc-potential-temperature">Calculate sfc potential temperature</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-information-at-t0">Get information at t0</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extrapolate-o3-since-era5-only-goes-to-1-hpa-and-plot-versus-original-profile">Extrapolate O3 since ERA5 only goes to 1 hPa and plot versus original profile</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#user-mods">User mods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-things-for-future-calculations">Set things for future calculations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-vertical-grid">Create vertical grid</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-in-data-from-era5-backtrajectory-netcdf">Read in data from ERA5 backtrajectory (netCDF)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-geostrophic-wind-forcing">Get Geostrophic wind forcing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolate-profiles">Interpolate profiles</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolate-extrapolate-ug-vg-to-native-era5-levels">Interpolate/extrapolate Ug/Vg to native ERA5 levels</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolate-t0-profiles-nudging-profiles-and-geostrophic-wind-profiles-to-common-vertical-grid-for-simplicity">Interpolate t0 profiles, nudging profiles, and geostrophic wind profiles to common vertical grid for simplicity</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#find-time-with-highest-first-level-and-get-vertical-grid">Find time with highest first level and get vertical grid</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#do-the-linear-interpolation-of-time-varying-geostrophic-profiles-to-new-vertical-grid">Do the linear interpolation of time-varying geostrophic profiles to new vertical grid</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-original-and-interpolated-profiles-of-time-varying-geostrophic-wind-as-example-to-show-efficacy-of-method">Compare original and interpolated profiles of time-varying geostrophic wind as example to show efficacy of method</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#do-the-linear-interpolation-for-initial-forcing-profiles">Do the linear interpolation for initial forcing profiles</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#do-the-linear-interpolation-for-nudging-forcing-profiles">Do the linear interpolation for nudging forcing profiles</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-original-and-interpolated-profiles-of-time-varying-nudging-wind-as-example-to-show-efficacy-of-method">Compare original and interpolated profiles of time-varying nudging wind as example to show efficacy of method</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shift-profiles-downward-according-to-anns-method">Shift profiles downward according to Ann’s method</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#smooth-shifted-initial-water-vapor-mixing-ratio-profile">Smooth shifted initial water vapor mixing ratio profile</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolate-profiles">Interpolate profiles</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shift-profiles-downward-according-to-anns-method">Shift profiles downward according to Ann’s method</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-1d-model-from-gunilla-svensson-approximate-deviation-from-geostrophy-and-add-offset-to-initial-geostrophic-winds-for-our-initial-wind-profile">Using 1D model from Gunilla Svensson, approximate deviation from geostrophy and add offset to initial geostrophic winds for our initial wind profile</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#do-surface-forcing">Do surface forcing</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-sea-ice-concentration-along-trajectory">Calculate sea ice concentration along trajectory</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-time-series-information-for-sfc-forcing">Get time series information for sfc forcing</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-new-netcdf-file">Create new netcdf file</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-dimensions">Create dimensions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-global-attributes">Create global attributes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-variables">Create variables</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dimensions">Dimensions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-profiles">Initial profiles</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-sfc-conditions">Initial sfc conditions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#time-varying-forcing-geostrophic">Time-varying forcing - geostrophic</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#time-varying-forcing-nudging">Time-varying forcing - nudging</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#time-varying-forcing-surface">Time-varying forcing - surface</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#time-varying-locations">Time-varying locations</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#misc">Misc</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#write-data">Write data</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-times">Add times</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#close-the-file">Close the file</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#do-surface-forcing">Do surface forcing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-new-netcdf-file">Create new netcdf file</a></li>
 </ul>
             </nav>
         </div>
@@ -551,8 +493,9 @@ document.write(`
 </div>
 </div>
 </div>
-<section id="era5-backward-trajectory-ozone-file-name">
-<h3>7. ERA5 backward trajectory ozone file name<a class="headerlink" href="#era5-backward-trajectory-ozone-file-name" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple" start="7">
+<li><p>ERA5 backward trajectory ozone file name</p></li>
+</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fname_era5_o3</span> <span class="o">=</span> <span class="s1">&#39;ERA5_forcing_along_trajectory_end_2020-03-13-18.nc&#39;</span>
@@ -560,9 +503,9 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
-<section id="d-model-profiles-file-name">
-<h3>8. 1D model profiles file name<a class="headerlink" href="#d-model-profiles-file-name" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple" start="8">
+<li><p>1D model profiles file name</p></li>
+</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">profiles_1d_model</span> <span class="o">=</span> <span class="s1">&#39;u_v_theta_z.txt&#39;</span>
@@ -570,9 +513,9 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
-<section id="sea-ice-concentration-file-name">
-<h3>9. Sea ice concentration file name<a class="headerlink" href="#sea-ice-concentration-file-name" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple" start="9">
+<li><p>Sea ice concentration file name</p></li>
+</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fname_sic</span> <span class="o">=</span> <span class="s1">&#39;Svalbard_asi-AMSR2-n10m-20200313_m.nc&#39;</span>
@@ -580,9 +523,9 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
-<section id="do-geostrophic-wind-calc-and-add-to-forcing-file-if-so-supply-era5-geopotential-height-file-name-and-minimum-grid-spacing-km-for-discretization">
-<h3>10. Do geostrophic wind calc and add to forcing file? If so, supply ERA5 geopotential height file name and minimum grid spacing (km) for discretization<a class="headerlink" href="#do-geostrophic-wind-calc-and-add-to-forcing-file-if-so-supply-era5-geopotential-height-file-name-and-minimum-grid-spacing-km-for-discretization" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple" start="10">
+<li><p>Do geostrophic wind calc and add to forcing file? If so, supply ERA5 geopotential height file name and minimum grid spacing (km) for discretization</p></li>
+</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">do_geo</span> <span class="o">=</span> <span class="kc">True</span>
@@ -594,9 +537,9 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
-<section id="add-theta-and-qv-nudging-as-well-as-subsidence-to-forcing-file">
-<h3>11. Add theta and qv nudging, as well as subsidence, to forcing file?<a class="headerlink" href="#add-theta-and-qv-nudging-as-well-as-subsidence-to-forcing-file" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple" start="11">
+<li><p>Add theta and qv nudging, as well as subsidence, to forcing file?</p></li>
+</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">do_u_v_nudge</span> <span class="o">=</span> <span class="kc">True</span>
@@ -607,14 +550,14 @@ document.write(`
 </div>
 </div>
 </section>
-</section>
 <section id="set-things-for-future-calculations">
 <h2>Set things for future calculations<a class="headerlink" href="#set-things-for-future-calculations" title="Permalink to this heading">#</a></h2>
-<section id="note-no-need-for-user-to-modify-these-computed-automatically">
-<h3>Note: no need for user to modify these, computed automatically<a class="headerlink" href="#note-no-need-for-user-to-modify-these-computed-automatically" title="Permalink to this heading">#</a></h3>
-</section>
-<section id="timings">
-<h3>Timings<a class="headerlink" href="#timings" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Note: no need for user to modify these, computed automatically</p></li>
+</ul>
+<ul class="simple">
+<li><p>Timings</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nhrs</span> <span class="o">=</span> <span class="mi">18</span> <span class="o">+</span> <span class="n">t0_h</span> <span class="o">+</span> <span class="mi">1</span> <span class="c1"># total number of simulation hours, including t0</span>
@@ -636,9 +579,9 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
-<section id="constants-for-geostrophic-wind-calc">
-<h3>Constants for geostrophic wind calc<a class="headerlink" href="#constants-for-geostrophic-wind-calc" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Constants for geostrophic wind calc</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">do_geo</span><span class="p">:</span>
@@ -648,9 +591,9 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
-<section id="delete-forcing-file-if-already-exists">
-<h3>Delete forcing file if already exists<a class="headerlink" href="#delete-forcing-file-if-already-exists" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Delete forcing file if already exists</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">clobber_old_file</span><span class="p">:</span>
@@ -666,9 +609,9 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
-<section id="get-les-domain-locations">
-<h3>Get LES domain locations<a class="headerlink" href="#get-les-domain-locations" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Get LES domain locations</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">les_loc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">fname_les_domain</span><span class="p">,</span><span class="n">skiprows</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -692,11 +635,11 @@ document.write(`
 </div>
 </div>
 </section>
-</section>
 <section id="create-vertical-grid">
 <h2>Create vertical grid<a class="headerlink" href="#create-vertical-grid" title="Permalink to this heading">#</a></h2>
-<section id="vertical-grid-levels-defined-at-the-cell-faces">
-<h3>160 vertical grid levels, defined at the cell faces<a class="headerlink" href="#vertical-grid-levels-defined-at-the-cell-faces" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>160 vertical grid levels, defined at the cell faces</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nz</span> <span class="o">=</span> <span class="mi">160</span>
@@ -720,7 +663,6 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
 </section>
 <section id="read-in-data-from-era5-backtrajectory-netcdf">
 <h2>Read in data from ERA5 backtrajectory (netCDF)<a class="headerlink" href="#read-in-data-from-era5-backtrajectory-netcdf" title="Permalink to this heading">#</a></h2>
@@ -754,8 +696,9 @@ document.write(`
 </div>
 </div>
 </div>
-<section id="convert-units">
-<h3>Convert units<a class="headerlink" href="#convert-units" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Convert units</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sfc_pres_pa</span> <span class="o">=</span> <span class="n">sfc_pres</span><span class="o">/</span><span class="mf">100.</span>  <span class="c1"># Pa to hPa</span>
@@ -765,9 +708,9 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
-<section id="reverse-time-dimension-of-2d-arrays-as-well-as-sfc-pressure-and-sst-so-that-beginning-of-backward-trajectory-is-in-first-position">
-<h3>Reverse time dimension of 2D arrays, as well as sfc pressure and sst, so that beginning of backward trajectory is in first position<a class="headerlink" href="#reverse-time-dimension-of-2d-arrays-as-well-as-sfc-pressure-and-sst-so-that-beginning-of-backward-trajectory-is-in-first-position" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Reverse time dimension of 2D arrays, as well as sfc pressure and sst, so that beginning of backward trajectory is in first position</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hgt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">hgt</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -784,9 +727,9 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
-<section id="unmask-sst-field-and-get-index-according-to-t0-h-furthest-north-we-can-go-is-28h-after-backtrajectory-initialization-from-andenes-or-3-12-20-at-14-utc">
-<h3>Unmask sst field and get index according to t0_h (furthest north we can go is 28h after backtrajectory initialization from Andenes, or 3/12/20 at 14 UTC)<a class="headerlink" href="#unmask-sst-field-and-get-index-according-to-t0-h-furthest-north-we-can-go-is-28h-after-backtrajectory-initialization-from-andenes-or-3-12-20-at-14-utc" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Unmask sst field and get index according to t0_h (furthest north we can go is 28h after backtrajectory initialization from Andenes, or 3/12/20 at 14 UTC)</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sst_real</span> <span class="o">=</span> <span class="n">ma</span><span class="o">.</span><span class="n">getdata</span><span class="p">(</span><span class="n">sst</span><span class="p">)</span>
@@ -797,9 +740,9 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
-<section id="calculate-sfc-potential-temperature">
-<h3>Calculate sfc potential temperature<a class="headerlink" href="#calculate-sfc-potential-temperature" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Calculate sfc potential temperature</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">theta1000mb</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
@@ -808,9 +751,9 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
-<section id="get-information-at-t0">
-<h3>Get information at t0<a class="headerlink" href="#get-information-at-t0" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Get information at t0</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z1</span> <span class="o">=</span> <span class="mi">0</span>
@@ -834,9 +777,9 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
-<section id="extrapolate-o3-since-era5-only-goes-to-1-hpa-and-plot-versus-original-profile">
-<h3>Extrapolate O3 since ERA5 only goes to 1 hPa and plot versus original profile<a class="headerlink" href="#extrapolate-o3-since-era5-only-goes-to-1-hpa-and-plot-versus-original-profile" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Extrapolate O3 since ERA5 only goes to 1 hPa and plot versus original profile</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add top pressure and o3 value - here we assume o3 goes to zero at 1e-4 Pa</span>
@@ -875,7 +818,6 @@ document.write(`
 <img alt="../../_images/8c9f6146fede7f3591789241cfef3f1b2008204fbccb20a1eca1735df1834290.png" src="../../_images/8c9f6146fede7f3591789241cfef3f1b2008204fbccb20a1eca1735df1834290.png" />
 </div>
 </div>
-</section>
 </section>
 <section id="get-geostrophic-wind-forcing">
 <h2>Get Geostrophic wind forcing<a class="headerlink" href="#get-geostrophic-wind-forcing" title="Permalink to this heading">#</a></h2>
@@ -953,8 +895,9 @@ document.write(`
 </section>
 <section id="interpolate-profiles">
 <h2>Interpolate profiles<a class="headerlink" href="#interpolate-profiles" title="Permalink to this heading">#</a></h2>
-<section id="interpolate-extrapolate-ug-vg-to-native-era5-levels">
-<h3>Interpolate/extrapolate Ug/Vg to native ERA5 levels<a class="headerlink" href="#interpolate-extrapolate-ug-vg-to-native-era5-levels" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Interpolate/extrapolate Ug/Vg to native ERA5 levels</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">do_geo</span><span class="p">:</span>
@@ -973,12 +916,10 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
-<section id="interpolate-t0-profiles-nudging-profiles-and-geostrophic-wind-profiles-to-common-vertical-grid-for-simplicity">
-<h3>Interpolate t0 profiles, nudging profiles, and geostrophic wind profiles to common vertical grid for simplicity<a class="headerlink" href="#interpolate-t0-profiles-nudging-profiles-and-geostrophic-wind-profiles-to-common-vertical-grid-for-simplicity" title="Permalink to this heading">#</a></h3>
-</section>
-<section id="find-time-with-highest-first-level-and-get-vertical-grid">
-<h3>Find time with highest first level and get vertical grid<a class="headerlink" href="#find-time-with-highest-first-level-and-get-vertical-grid" title="Permalink to this heading">#</a></h3>
+<p>Interpolate t0 profiles, nudging profiles, and geostrophic wind profiles to common vertical grid for simplicity</p>
+<ul class="simple">
+<li><p>Find time with highest first level and get vertical grid</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">do_geo</span><span class="p">:</span>
@@ -1064,9 +1005,9 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
-<section id="do-the-linear-interpolation-of-time-varying-geostrophic-profiles-to-new-vertical-grid">
-<h3>Do the linear interpolation of time-varying geostrophic profiles to new vertical grid<a class="headerlink" href="#do-the-linear-interpolation-of-time-varying-geostrophic-profiles-to-new-vertical-grid" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Do the linear interpolation of time-varying geostrophic profiles to new vertical grid</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">do_geo</span><span class="p">:</span>
@@ -1084,9 +1025,9 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
-<section id="compare-original-and-interpolated-profiles-of-time-varying-geostrophic-wind-as-example-to-show-efficacy-of-method">
-<h3>Compare original and interpolated profiles of time-varying geostrophic wind as example to show efficacy of method<a class="headerlink" href="#compare-original-and-interpolated-profiles-of-time-varying-geostrophic-wind-as-example-to-show-efficacy-of-method" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Compare original and interpolated profiles of time-varying geostrophic wind as example to show efficacy of method</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">zplt1</span> <span class="o">=</span> <span class="mi">0</span>
@@ -1129,9 +1070,9 @@ document.write(`
 <img alt="../../_images/0369d3606b317f2ce5dd1dc3360376bb452b3d2fe22f634d45ef446ce6dbbdce.png" src="../../_images/0369d3606b317f2ce5dd1dc3360376bb452b3d2fe22f634d45ef446ce6dbbdce.png" />
 </div>
 </div>
-</section>
-<section id="do-the-linear-interpolation-for-initial-forcing-profiles">
-<h3>Do the linear interpolation for initial forcing profiles<a class="headerlink" href="#do-the-linear-interpolation-for-initial-forcing-profiles" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Do the linear interpolation for initial forcing profiles</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">hgt_t0</span><span class="p">,</span> <span class="n">pres_t0</span><span class="p">)</span>
@@ -1154,9 +1095,9 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
-<section id="do-the-linear-interpolation-for-nudging-forcing-profiles">
-<h3>Do the linear interpolation for nudging forcing profiles<a class="headerlink" href="#do-the-linear-interpolation-for-nudging-forcing-profiles" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Do the linear interpolation for nudging forcing profiles</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">do_u_v_nudge</span><span class="p">:</span>
@@ -1191,9 +1132,9 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
-<section id="compare-original-and-interpolated-profiles-of-time-varying-nudging-wind-as-example-to-show-efficacy-of-method">
-<h3>Compare original and interpolated profiles of time-varying nudging wind as example to show efficacy of method<a class="headerlink" href="#compare-original-and-interpolated-profiles-of-time-varying-nudging-wind-as-example-to-show-efficacy-of-method" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Compare original and interpolated profiles of time-varying nudging wind as example to show efficacy of method</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">zplt1</span> <span class="o">=</span> <span class="mi">0</span>
@@ -1232,7 +1173,6 @@ document.write(`
 <img alt="../../_images/c488e36bbeda0f7500e225a070e6d8d4779a9934951ed5bf0358c9dc0bc95fc5.png" src="../../_images/c488e36bbeda0f7500e225a070e6d8d4779a9934951ed5bf0358c9dc0bc95fc5.png" />
 </div>
 </div>
-</section>
 </section>
 <section id="shift-profiles-downward-according-to-anns-method">
 <h2>Shift profiles downward according to Ann’s method<a class="headerlink" href="#shift-profiles-downward-according-to-anns-method" title="Permalink to this heading">#</a></h2>
@@ -1273,8 +1213,9 @@ document.write(`
 <img alt="../../_images/e885c024d545a2fedac9224a904b6cfb0cac6c91d1875be982c6d12dbdf339e6.png" src="../../_images/e885c024d545a2fedac9224a904b6cfb0cac6c91d1875be982c6d12dbdf339e6.png" />
 </div>
 </div>
-<section id="smooth-shifted-initial-water-vapor-mixing-ratio-profile">
-<h3>Smooth shifted initial water vapor mixing ratio profile<a class="headerlink" href="#smooth-shifted-initial-water-vapor-mixing-ratio-profile" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Smooth shifted initial water vapor mixing ratio profile</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qv_t0i_mod</span> <span class="o">=</span> <span class="n">qv_t0i</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -1297,7 +1238,6 @@ document.write(`
 <img alt="../../_images/918bf0175e1a4f01cfce61a826a4261faaca0b6e8816f8d0436082a8316243c4.png" src="../../_images/918bf0175e1a4f01cfce61a826a4261faaca0b6e8816f8d0436082a8316243c4.png" />
 </div>
 </div>
-</section>
 </section>
 <section id="using-1d-model-from-gunilla-svensson-approximate-deviation-from-geostrophy-and-add-offset-to-initial-geostrophic-winds-for-our-initial-wind-profile">
 <h2>Using 1D model from Gunilla Svensson, approximate deviation from geostrophy and add offset to initial geostrophic winds for our initial wind profile<a class="headerlink" href="#using-1d-model-from-gunilla-svensson-approximate-deviation-from-geostrophy-and-add-offset-to-initial-geostrophic-winds-for-our-initial-wind-profile" title="Permalink to this heading">#</a></h2>
@@ -1337,8 +1277,9 @@ document.write(`
 </section>
 <section id="do-surface-forcing">
 <h2>Do surface forcing<a class="headerlink" href="#do-surface-forcing" title="Permalink to this heading">#</a></h2>
-<section id="calculate-sea-ice-concentration-along-trajectory">
-<h3>Calculate sea ice concentration along trajectory<a class="headerlink" href="#calculate-sea-ice-concentration-along-trajectory" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Calculate sea ice concentration along trajectory</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sic_file</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">fname_sic</span><span class="p">)</span>
@@ -1357,9 +1298,9 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
-<section id="get-time-series-information-for-sfc-forcing">
-<h3>Get time series information for sfc forcing<a class="headerlink" href="#get-time-series-information-for-sfc-forcing" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Get time series information for sfc forcing</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print statements?</span>
@@ -1394,7 +1335,6 @@ document.write(`
 </div>
 </div>
 </section>
-</section>
 <section id="create-new-netcdf-file">
 <h2>Create new netcdf file<a class="headerlink" href="#create-new-netcdf-file" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
@@ -1406,8 +1346,9 @@ document.write(`
 </div>
 </div>
 </div>
-<section id="create-dimensions">
-<h3>Create dimensions<a class="headerlink" href="#create-dimensions" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Create dimensions</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">levs</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">zgeoi_shift</span><span class="p">)</span>
@@ -1422,9 +1363,9 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
-<section id="create-global-attributes">
-<h3>Create global attributes<a class="headerlink" href="#create-global-attributes" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Create global attributes</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ncfile</span><span class="o">.</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Forcing and initial conditions for 13 March 2020 COMBLE intercomparison case&#39;</span>
@@ -1458,12 +1399,10 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
-<section id="create-variables">
-<h3>Create variables<a class="headerlink" href="#create-variables" title="Permalink to this heading">#</a></h3>
-</section>
-<section id="dimensions">
-<h3>Dimensions<a class="headerlink" href="#dimensions" title="Permalink to this heading">#</a></h3>
+<p>Create variables</p>
+<ul class="simple">
+<li><p>Dimensions</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t0_time</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;t0&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;t0&#39;</span><span class="p">,))</span>
@@ -1489,9 +1428,9 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
-<section id="initial-profiles">
-<h3>Initial profiles<a class="headerlink" href="#initial-profiles" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Initial profiles</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pressure</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;pressure&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;t0&#39;</span><span class="p">,</span><span class="s1">&#39;lev&#39;</span><span class="p">,</span><span class="s1">&#39;lat&#39;</span><span class="p">,</span><span class="s1">&#39;lon&#39;</span><span class="p">,))</span>
@@ -1525,9 +1464,9 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
-<section id="initial-sfc-conditions">
-<h3>Initial sfc conditions<a class="headerlink" href="#initial-sfc-conditions" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Initial sfc conditions</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ps</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;ps&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;t0&#39;</span><span class="p">,</span><span class="s1">&#39;lat&#39;</span><span class="p">,</span><span class="s1">&#39;lon&#39;</span><span class="p">,))</span>
@@ -1541,9 +1480,9 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
-<section id="time-varying-forcing-geostrophic">
-<h3>Time-varying forcing - geostrophic<a class="headerlink" href="#time-varying-forcing-geostrophic" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Time-varying forcing - geostrophic</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">do_geo</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
@@ -1558,9 +1497,9 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
-<section id="time-varying-forcing-nudging">
-<h3>Time-varying forcing - nudging<a class="headerlink" href="#time-varying-forcing-nudging" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Time-varying forcing - nudging</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">do_u_v_nudge</span><span class="p">:</span>
@@ -1589,9 +1528,9 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
-<section id="time-varying-forcing-surface">
-<h3>Time-varying forcing - surface<a class="headerlink" href="#time-varying-forcing-surface" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Time-varying forcing - surface</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ts</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;ts&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,))</span>
@@ -1601,9 +1540,9 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
-<section id="time-varying-locations">
-<h3>Time-varying locations<a class="headerlink" href="#time-varying-locations" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Time-varying locations</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">latitude_arr</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;lat_ref&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,))</span>
@@ -1617,9 +1556,9 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
-<section id="misc">
-<h3>Misc<a class="headerlink" href="#misc" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Misc</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">zw_grid</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;zw_grid&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;zw_grid&#39;</span><span class="p">,))</span>
@@ -1629,9 +1568,9 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
-<section id="write-data">
-<h3>Write data<a class="headerlink" href="#write-data" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Write data</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t0_time</span><span class="p">[:]</span> <span class="o">=</span> <span class="mf">0.0</span>
@@ -1672,9 +1611,9 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
-<section id="add-times">
-<h3>Add times<a class="headerlink" href="#add-times" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Add times</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dates</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1699,9 +1638,9 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
-<section id="close-the-file">
-<h3>Close the file<a class="headerlink" href="#close-the-file" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Close the file</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># first print the Dataset object to see what we&#39;ve got</span>
@@ -1746,7 +1685,6 @@ Dataset is closed!
 </div>
 </div>
 </div>
-</section>
 </section>
 </section>
 
@@ -1818,74 +1756,16 @@ Dataset is closed!
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-libraries">Import libraries</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#user-mods">User mods</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#era5-backward-trajectory-ozone-file-name">7. ERA5 backward trajectory ozone file name</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-model-profiles-file-name">8. 1D model profiles file name</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sea-ice-concentration-file-name">9. Sea ice concentration file name</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#do-geostrophic-wind-calc-and-add-to-forcing-file-if-so-supply-era5-geopotential-height-file-name-and-minimum-grid-spacing-km-for-discretization">10. Do geostrophic wind calc and add to forcing file? If so, supply ERA5 geopotential height file name and minimum grid spacing (km) for discretization</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-theta-and-qv-nudging-as-well-as-subsidence-to-forcing-file">11. Add theta and qv nudging, as well as subsidence, to forcing file?</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-things-for-future-calculations">Set things for future calculations</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#note-no-need-for-user-to-modify-these-computed-automatically">Note: no need for user to modify these, computed automatically</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#timings">Timings</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#constants-for-geostrophic-wind-calc">Constants for geostrophic wind calc</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#delete-forcing-file-if-already-exists">Delete forcing file if already exists</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-les-domain-locations">Get LES domain locations</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-vertical-grid">Create vertical grid</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vertical-grid-levels-defined-at-the-cell-faces">160 vertical grid levels, defined at the cell faces</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-in-data-from-era5-backtrajectory-netcdf">Read in data from ERA5 backtrajectory (netCDF)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convert-units">Convert units</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reverse-time-dimension-of-2d-arrays-as-well-as-sfc-pressure-and-sst-so-that-beginning-of-backward-trajectory-is-in-first-position">Reverse time dimension of 2D arrays, as well as sfc pressure and sst, so that beginning of backward trajectory is in first position</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unmask-sst-field-and-get-index-according-to-t0-h-furthest-north-we-can-go-is-28h-after-backtrajectory-initialization-from-andenes-or-3-12-20-at-14-utc">Unmask sst field and get index according to t0_h (furthest north we can go is 28h after backtrajectory initialization from Andenes, or 3/12/20 at 14 UTC)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-sfc-potential-temperature">Calculate sfc potential temperature</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-information-at-t0">Get information at t0</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extrapolate-o3-since-era5-only-goes-to-1-hpa-and-plot-versus-original-profile">Extrapolate O3 since ERA5 only goes to 1 hPa and plot versus original profile</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#user-mods">User mods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-things-for-future-calculations">Set things for future calculations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-vertical-grid">Create vertical grid</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-in-data-from-era5-backtrajectory-netcdf">Read in data from ERA5 backtrajectory (netCDF)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-geostrophic-wind-forcing">Get Geostrophic wind forcing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolate-profiles">Interpolate profiles</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolate-extrapolate-ug-vg-to-native-era5-levels">Interpolate/extrapolate Ug/Vg to native ERA5 levels</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolate-t0-profiles-nudging-profiles-and-geostrophic-wind-profiles-to-common-vertical-grid-for-simplicity">Interpolate t0 profiles, nudging profiles, and geostrophic wind profiles to common vertical grid for simplicity</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#find-time-with-highest-first-level-and-get-vertical-grid">Find time with highest first level and get vertical grid</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#do-the-linear-interpolation-of-time-varying-geostrophic-profiles-to-new-vertical-grid">Do the linear interpolation of time-varying geostrophic profiles to new vertical grid</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-original-and-interpolated-profiles-of-time-varying-geostrophic-wind-as-example-to-show-efficacy-of-method">Compare original and interpolated profiles of time-varying geostrophic wind as example to show efficacy of method</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#do-the-linear-interpolation-for-initial-forcing-profiles">Do the linear interpolation for initial forcing profiles</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#do-the-linear-interpolation-for-nudging-forcing-profiles">Do the linear interpolation for nudging forcing profiles</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-original-and-interpolated-profiles-of-time-varying-nudging-wind-as-example-to-show-efficacy-of-method">Compare original and interpolated profiles of time-varying nudging wind as example to show efficacy of method</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shift-profiles-downward-according-to-anns-method">Shift profiles downward according to Ann’s method</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#smooth-shifted-initial-water-vapor-mixing-ratio-profile">Smooth shifted initial water vapor mixing ratio profile</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolate-profiles">Interpolate profiles</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shift-profiles-downward-according-to-anns-method">Shift profiles downward according to Ann’s method</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-1d-model-from-gunilla-svensson-approximate-deviation-from-geostrophy-and-add-offset-to-initial-geostrophic-winds-for-our-initial-wind-profile">Using 1D model from Gunilla Svensson, approximate deviation from geostrophy and add offset to initial geostrophic winds for our initial wind profile</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#do-surface-forcing">Do surface forcing</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-sea-ice-concentration-along-trajectory">Calculate sea ice concentration along trajectory</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-time-series-information-for-sfc-forcing">Get time series information for sfc forcing</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-new-netcdf-file">Create new netcdf file</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-dimensions">Create dimensions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-global-attributes">Create global attributes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-variables">Create variables</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dimensions">Dimensions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-profiles">Initial profiles</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-sfc-conditions">Initial sfc conditions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#time-varying-forcing-geostrophic">Time-varying forcing - geostrophic</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#time-varying-forcing-nudging">Time-varying forcing - nudging</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#time-varying-forcing-surface">Time-varying forcing - surface</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#time-varying-locations">Time-varying locations</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#misc">Misc</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#write-data">Write data</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-times">Add times</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#close-the-file">Close the file</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#do-surface-forcing">Do surface forcing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-new-netcdf-file">Create new netcdf file</a></li>
 </ul>
   </nav></div>
 
