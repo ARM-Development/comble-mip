@@ -390,7 +390,7 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## load all simulations located in subfolders of the given directory</span>
 <span class="n">var_vec_1d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;cwp&#39;</span><span class="p">,</span><span class="s1">&#39;rwp&#39;</span><span class="p">,</span><span class="s1">&#39;ts&#39;</span><span class="p">,</span><span class="s1">&#39;hfss&#39;</span><span class="p">,</span><span class="s1">&#39;hfls&#39;</span><span class="p">]</span>
 <span class="n">var_vec_2d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;theta&#39;</span><span class="p">,</span><span class="s1">&#39;qv&#39;</span><span class="p">,</span><span class="s1">&#39;ua&#39;</span><span class="p">,</span><span class="s1">&#39;va&#39;</span><span class="p">]</span>
-<span class="n">df_col_1d</span><span class="p">,</span><span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">df_col_1d</span><span class="p">,</span><span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="s1">&#39;Lx&#39;</span><span class="p">)</span>
 
 <span class="c1">## load ERA5 fields</span>
 <span class="n">era5_1d</span><span class="p">,</span> <span class="n">era5_2d</span> <span class="o">=</span> <span class="n">load_era5</span><span class="p">(</span><span class="n">PATH</span><span class="o">=</span><span class="s1">&#39;../../data_files/&#39;</span><span class="p">)</span>
@@ -401,33 +401,21 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>../../output_les/wrf/sandbox/t-2h_geo/WRF_LES_COMBLE-I.nc
-../../output_les/wrf/sandbox/init_geostrophic/WRF_LES_COMBLE-I.nc
-../../output_les/wrf/sandbox/t-2h_era5/WRF_LES_COMBLE-I.nc
-../../output_les/wrf/sandbox/t-5h_geo/WRF_LES_COMBLE-I.nc
-../../output_les/wrf/sandbox/Lx25km_dx200m/WRF_LES_COMBLE-I_Lx25km_dx200m.nc
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>../../output_les/wrf/sandbox/Lx25km_dx200m/WRF_LES_COMBLE-I_Lx25km_dx200m.nc
 ../../output_les/wrf/sandbox/Lx25km_dx100m/WRF_LES_COMBLE-I_Lx25km_dx100m.nc
-../../output_les/dharma/sandbox/init_era5/DHARMA_LES_COMBLE-I.nc
 ../../output_les/dharma/sandbox/Lx25km_dx200m_sub/DHARMA_LES_COMBLE-I.nc
 ../../output_les/dharma/sandbox/Lx25km_dx100m/DHARMA_LES_COMBLE-I.nc
 ../../output_les/dharma/sandbox/Lx25km_dx200m/DHARMA_LES_COMBLE-I.nc
-../../output_les/dharma/sandbox/init_geostrophic/DHARMA_LES_COMBLE-I.nc
-../../output_les/wrf/sandbox/t-2h_geo/WRF_LES_COMBLE-I.nc
-../../output_les/wrf/sandbox/init_geostrophic/WRF_LES_COMBLE-I.nc
-../../output_les/wrf/sandbox/t-2h_era5/WRF_LES_COMBLE-I.nc
-../../output_les/wrf/sandbox/t-5h_geo/WRF_LES_COMBLE-I.nc
 ../../output_les/wrf/sandbox/Lx25km_dx200m/WRF_LES_COMBLE-I_Lx25km_dx200m.nc
 ../../output_les/wrf/sandbox/Lx25km_dx100m/WRF_LES_COMBLE-I_Lx25km_dx100m.nc
-../../output_les/dharma/sandbox/init_era5/DHARMA_LES_COMBLE-I.nc
 ../../output_les/dharma/sandbox/Lx25km_dx200m_sub/DHARMA_LES_COMBLE-I.nc
 ../../output_les/dharma/sandbox/Lx25km_dx100m/DHARMA_LES_COMBLE-I.nc
 ../../output_les/dharma/sandbox/Lx25km_dx200m/DHARMA_LES_COMBLE-I.nc
-../../output_les/dharma/sandbox/init_geostrophic/DHARMA_LES_COMBLE-I.nc
 ../../data_files/theta_temp_rh_sh_uvw_sst_along_trajectory_era5ml_28h_end_2020-03-13-18.nc
-../../data_files/anxsondewnpnM1.b1.20200313.112600.cdf
-../../data_files/anxsondewnpnM1.b1.20200313.052700.cdf
-../../data_files/anxsondewnpnM1.b1.20200313.232200.cdf
 ../../data_files/anxsondewnpnM1.b1.20200313.172600.cdf
+../../data_files/anxsondewnpnM1.b1.20200313.232200.cdf
+../../data_files/anxsondewnpnM1.b1.20200313.052700.cdf
+../../data_files/anxsondewnpnM1.b1.20200313.112600.cdf
 </pre></div>
 </div>
 </div>
@@ -440,7 +428,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/1374439b03d92bdb84fd8dc13e8cdc0d98b23f39f173c2d6733fedf6acc8c894.png" src="../../_images/1374439b03d92bdb84fd8dc13e8cdc0d98b23f39f173c2d6733fedf6acc8c894.png" />
+<img alt="../../_images/d884aa7635f248c81b1d2f38d1ac4f934ad75bdb5becddb1d29d7d49d187e937.png" src="../../_images/d884aa7635f248c81b1d2f38d1ac4f934ad75bdb5becddb1d29d7d49d187e937.png" />
 </div>
 </div>
 <div class="cell docutils container">
