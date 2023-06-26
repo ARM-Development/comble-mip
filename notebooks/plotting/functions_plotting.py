@@ -155,7 +155,7 @@ def load_real_wrf(PATH='../../data_files/'):
     return p_df,df_col2 
 
 
-def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0):
+def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword=''):
     
     ## load ERA5 data along trajectory
     ## __input__
@@ -163,49 +163,59 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0):
     ## var_vec_1d....variables with time dependence
     ## var_vec_2d....variables with time and height dependence
     ## t_shift.......time shift in case of processing error (hours)
+    ## keyword.......search for subset of sims within path
     
     direc = pathlib.Path(path)
     NCFILES = list(direc.rglob("*nc"))
+    NCFILES_STR = [str(p) for p in pathlib.Path(path).rglob('*.nc')]
     
     ## variables that only have time as dimension
     df_col = pd.DataFrame()
+    count = 0
     for fn in NCFILES:
-        print(fn)
-        ds = nc.Dataset(fn)
-        time = ds.variables['time'][:]
-        cwp  = ds.variables['cwp'][:]
-        rwp  = ds.variables['rwp'][:]
-        
-        label_items = [x for x in fn.parts + direc.parts if x not in direc.parts]
-        label_items = label_items[0:(len(label_items)-1)]
-        group = "/".join(label_items)
-        
-        #p_df = pd.DataFrame({"class": [group]* len(time), "time":time, "cwp": cwp, "rwp": rwp},index=time/3600)
-        p_df = pd.DataFrame({"class": [group]* len(time), "time":time}, index=time/3600)
-        for vv in var_vec_1d:
-            p_df[vv] = ds.variables[vv][:]
-        
-        ds.close()
-        df_col = pd.concat([df_col,p_df])
+        if keyword in NCFILES_STR[count]:
+            print(fn)
+            ds = nc.Dataset(fn)
+            time = ds.variables['time'][:]
+            cwp  = ds.variables['cwp'][:]
+            rwp  = ds.variables['rwp'][:]
+
+            label_items = [x for x in fn.parts + direc.parts if x not in direc.parts]
+            label_items = label_items[0:(len(label_items)-1)]
+            group = "/".join(label_items)
+
+            #p_df = pd.DataFrame({"class": [group]* len(time), "time":time, "cwp": cwp, "rwp": rwp},index=time/3600)
+            p_df = pd.DataFrame({"class": [group]* len(time), "time":time}, index=time/3600)
+            for vv in var_vec_1d:
+                p_df[vv] = ds.variables[vv][:]
+
+            ds.close()
+            df_col = pd.concat([df_col,p_df])
+            
+        count+=1
         
     ## variables that have time and height as dimensions
     df_col2 = pd.DataFrame()
+    count = 0
     for fn in NCFILES:
-        print(fn)
-        ds = nc.Dataset(fn)
-        time = ds.variables['time'][:]
-        zf   = ds.variables['zf'][:]
-        qv   = ds.variables['qv'][:,:]
-    
-        label_items = [x for x in fn.parts + direc.parts if x not in direc.parts]
-        label_items = label_items[0:(len(label_items)-1)]
-        group = "/".join(label_items)
-        
-        for ii in range(len(zf)):
-            p_df2 = pd.DataFrame({"class": [group]* len(time), "time":time, "zf": zf[ii]}, index=time/3600)      
-            for vv in var_vec_2d:
-                p_df2[vv] = ds.variables[vv][:,:][:,ii]
-            df_col2 = pd.concat([df_col2,p_df2])
+        if keyword in NCFILES_STR[count]:
+            print(fn)
+            ds = nc.Dataset(fn)
+            time = ds.variables['time'][:]
+            zf   = ds.variables['zf'][:]
+            qv   = ds.variables['qv'][:,:]
+
+            label_items = [x for x in fn.parts + direc.parts if x not in direc.parts]
+            label_items = label_items[0:(len(label_items)-1)]
+            group = "/".join(label_items)
+
+            for ii in range(len(zf)):
+                p_df2 = pd.DataFrame({"class": [group]* len(time), "time":time, "zf": zf[ii]}, index=time/3600)      
+                for vv in var_vec_2d:
+                    p_df2[vv] = ds.variables[vv][:,:][:,ii]
+                df_col2 = pd.concat([df_col2,p_df2])
+            
+        count+=1
             
     df_col['time']  = df_col['time'] + t_shift*3600.
     df_col2['time'] = df_col2['time'] + t_shift*3600.
