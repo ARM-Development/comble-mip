@@ -25,4 +25,4 @@ parts:
     - glob: notebooks/conversion_output/*
 - caption: Plot Results
   chapters:
-    - glob: notebooks/plotting/*
+    - glob: notebooks/plotting/*.ipynb
