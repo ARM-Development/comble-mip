@@ -162,7 +162,7 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword=''):
     ## path..........directory (scanning all subdirectories)
     ## var_vec_1d....variables with time dependence
     ## var_vec_2d....variables with time and height dependence
-    ## t_shift.......time shift in case of processing error (hours)
+    ## t_shift.......time shift prior to ice edge
     ## keyword.......search for subset of sims within path
     
     direc = pathlib.Path(path)
@@ -177,8 +177,8 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword=''):
             print(fn)
             ds = nc.Dataset(fn)
             time = ds.variables['time'][:]
-            cwp  = ds.variables['cwp'][:]
-            rwp  = ds.variables['rwp'][:]
+            #cwp  = ds.variables['cwp'][:]
+            #rwp  = ds.variables['rwp'][:]
 
             label_items = [x for x in fn.parts + direc.parts if x not in direc.parts]
             label_items = label_items[0:(len(label_items)-1)]
