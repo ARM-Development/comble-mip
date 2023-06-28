@@ -84,7 +84,7 @@ Now that you have:
 You are ready to push your changes to the main repository on Github ([ARM-Development/comble-mip](https://github.com/ARM-Development/comble-mip))
 
 **You will need to generate a personal access token before pushing your change to Github**
-- Follow [these instructions](https://github.com/ARM-Development/comble-mip) to create your access token
+- Follow [these instructions](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic) to create your access token
 
 Once you have your token, you can run the following
 
