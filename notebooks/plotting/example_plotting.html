@@ -381,7 +381,7 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> functions_plotting.py
 
 <span class="c1">## select simulations to plot</span>
-<span class="n">sim_keyword</span> <span class="o">=</span> <span class="s1">&#39;Lx25km_dx200m&#39;</span>
+<span class="n">sim_keyword</span> <span class="o">=</span> <span class="s1">&#39;200m&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -409,7 +409,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## load all simulations located in subfolders of the given directory</span>
-<span class="n">var_vec_1d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ts&#39;</span><span class="p">,</span><span class="s1">&#39;hfss&#39;</span><span class="p">,</span><span class="s1">&#39;hfls&#39;</span><span class="p">]</span> <span class="c1"># variables with ERA5 (longer time axis)</span>
+<span class="n">var_vec_1d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hfss&#39;</span><span class="p">,</span><span class="s1">&#39;hfls&#39;</span><span class="p">,</span><span class="s1">&#39;ts&#39;</span><span class="p">]</span> <span class="c1"># variables with ERA5 (longer time axis)</span>
 <span class="n">var_vec_2d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;theta&#39;</span><span class="p">,</span><span class="s1">&#39;qv&#39;</span><span class="p">,</span><span class="s1">&#39;ua&#39;</span><span class="p">,</span><span class="s1">&#39;va&#39;</span><span class="p">]</span>
 <span class="n">df_col_1d</span><span class="p">,</span><span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword</span><span class="p">)</span>
 </pre></div>
@@ -417,9 +417,11 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>../../output_les/wrf/sandbox/Lx25km_dx200m/WRF_LES_COMBLE-I_Lx25km_dx200m.nc
+../../output_les/dharma/sandbox/Lx25km_dx200m_SWrad/DHARMA_LES_COMBLE-I.nc
 ../../output_les/dharma/sandbox/Lx25km_dx200m_sub/DHARMA_LES_COMBLE-I.nc
 ../../output_les/dharma/sandbox/Lx25km_dx200m/DHARMA_LES_COMBLE-I.nc
 ../../output_les/wrf/sandbox/Lx25km_dx200m/WRF_LES_COMBLE-I_Lx25km_dx200m.nc
+../../output_les/dharma/sandbox/Lx25km_dx200m_SWrad/DHARMA_LES_COMBLE-I.nc
 ../../output_les/dharma/sandbox/Lx25km_dx200m_sub/DHARMA_LES_COMBLE-I.nc
 ../../output_les/dharma/sandbox/Lx25km_dx200m/DHARMA_LES_COMBLE-I.nc
 </pre></div>
@@ -434,13 +436,13 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/39673f2f19f17e04fa84248af489648cf5d09f8871930875985c4b792dd11a2f.png" src="../../_images/39673f2f19f17e04fa84248af489648cf5d09f8871930875985c4b792dd11a2f.png" />
+<img alt="../../_images/fa006059a5aa7c265d8c844c0ee5ea7305fa59db17d595c88c94c90e697ad52b.png" src="../../_images/fa006059a5aa7c265d8c844c0ee5ea7305fa59db17d595c88c94c90e697ad52b.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## load all simulations located in subfolders of the given directory</span>
-<span class="n">var_vec_1d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;cwp&#39;</span><span class="p">,</span><span class="s1">&#39;rwp&#39;</span><span class="p">,</span><span class="s1">&#39;iwp&#39;</span><span class="p">,</span><span class="s1">&#39;rsdt&#39;</span><span class="p">,</span><span class="s1">&#39;rlds&#39;</span><span class="p">,</span><span class="s1">&#39;od&#39;</span><span class="p">,</span><span class="s1">&#39;zi&#39;</span><span class="p">]</span> <span class="c1"># variables without ERA5 (shorter time axis)</span>
+<span class="n">var_vec_1d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;cwp&#39;</span><span class="p">,</span><span class="s1">&#39;rwp&#39;</span><span class="p">,</span><span class="s1">&#39;iwp&#39;</span><span class="p">,</span><span class="s1">&#39;swp&#39;</span><span class="p">,</span><span class="s1">&#39;gwp&#39;</span><span class="p">]</span> <span class="c1"># variables without ERA5 (shorter time axis)</span>
 <span class="n">var_vec_2d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;theta&#39;</span><span class="p">,</span><span class="s1">&#39;qv&#39;</span><span class="p">,</span><span class="s1">&#39;ua&#39;</span><span class="p">,</span><span class="s1">&#39;va&#39;</span><span class="p">]</span>
 <span class="n">df_col_1d</span><span class="p">,</span><span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword</span><span class="p">)</span>
 </pre></div>
@@ -448,9 +450,11 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>../../output_les/wrf/sandbox/Lx25km_dx200m/WRF_LES_COMBLE-I_Lx25km_dx200m.nc
+../../output_les/dharma/sandbox/Lx25km_dx200m_SWrad/DHARMA_LES_COMBLE-I.nc
 ../../output_les/dharma/sandbox/Lx25km_dx200m_sub/DHARMA_LES_COMBLE-I.nc
 ../../output_les/dharma/sandbox/Lx25km_dx200m/DHARMA_LES_COMBLE-I.nc
 ../../output_les/wrf/sandbox/Lx25km_dx200m/WRF_LES_COMBLE-I_Lx25km_dx200m.nc
+../../output_les/dharma/sandbox/Lx25km_dx200m_SWrad/DHARMA_LES_COMBLE-I.nc
 ../../output_les/dharma/sandbox/Lx25km_dx200m_sub/DHARMA_LES_COMBLE-I.nc
 ../../output_les/dharma/sandbox/Lx25km_dx200m/DHARMA_LES_COMBLE-I.nc
 </pre></div>
@@ -465,7 +469,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/81000a879de23e3257c46356cd7e09728b8e5ae0ae8c5f23d711c54eb6dac6dc.png" src="../../_images/81000a879de23e3257c46356cd7e09728b8e5ae0ae8c5f23d711c54eb6dac6dc.png" />
+<img alt="../../_images/079fb138479a90e4dd8ffe1ca7491edb27441402c4cbbf9ba63a85fc6fb0b44f.png" src="../../_images/079fb138479a90e4dd8ffe1ca7491edb27441402c4cbbf9ba63a85fc6fb0b44f.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -483,7 +487,7 @@ document.write(`
 Computing wind direction
 </pre></div>
 </div>
-<img alt="../../_images/42ef029894e950e1426f9368e39eaeb3cbad700f1eaa4c59b77018cf434d31dd.png" src="../../_images/42ef029894e950e1426f9368e39eaeb3cbad700f1eaa4c59b77018cf434d31dd.png" />
+<img alt="../../_images/dcaad29a17d6b0f79102957b84619413e2df5da030a26368930b93e7db7afab2.png" src="../../_images/dcaad29a17d6b0f79102957b84619413e2df5da030a26368930b93e7db7afab2.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x600 with 0 Axes&gt;
 </pre></div>
 </div>
