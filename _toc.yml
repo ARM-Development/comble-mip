@@ -10,6 +10,7 @@ parts:
     - file: CONTRIBUTING
 - caption: Model Setup
   chapters:
+    - file: main_configuration
     - glob: notebooks/setup/*
 - caption: DEPHY Forcing Notebooks
   chapters:
