@@ -1,0 +1,17 @@
+# Main Model Configuration
+
+| Model component                      | Setting                                                                                                                                                                                         |
+|--------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Horizontal grid cell spacing         | Dx=Dy=100 m                                                                                                                                                                                     |
+| Horizontal domain dimensions/size    | Nx=Ny=256; Lx=Ly=25.6 km                                                                                                                                                                        |
+| Vertical grid                        | According to input forcing file specifications                                                                                                                                                  |
+| Domain top                           | 7 km                                                                                                                                                                                            |
+| Start/end times                      | 22 UTC on 12 March 2020<br>18 UTC on 13 March 2020                                                                                                                                              |
+| Initial profiles                     | Thermodynamic and kinematic soundings provided<br>- Variable names to use: _u_, _v_, _temp_, _theta_, _qv_                                                                                      |
+| Initial perturbations for LES        | Theta only: 0.1 K below 250 m                                                                                                                                                                   |
+| Surface forcing                      | 0-2 h: constant ice skin temperature (247.0 K) with roughness length of 1 mm<br>2–20 h: specified time-varying SST with roughness length following Charnock                                     |
+| Large-scale forcing                  | Time- and height-varying pressure gradient forcing via the geostrophic wind<br>- Variable names to use: _ug_ and _vg_<br>- Assume trajectory-averaged latitude for Coriolis: 74.5 N             |
+| Nudging                              | None (not required)                                                                                                                                                                             |
+| Subsidence                           | None (results are relatively insensitive)                                                                                                                                                       |
+| Radiation                            | Only interactive longwave<br>- Ozone sounding specified in input file<br>- CO2 = 420 ppm<br>- No solar radiation (results are relatively insensitive)                                           |
+| Diagnostic droplet and ice formation | Part I of MIP<br>- Nd = 20/cm3 (fixed)<br>- Ni = 25/L (minimum total) where qc+qr>1e-6 kg/kg and T<268.15 K<br>- Only other ice crystal formation mechanism active is homogeneous drop freezing |

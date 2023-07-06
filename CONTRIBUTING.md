@@ -7,7 +7,7 @@ For example, if you are running the "Convert DEPHY forcing to DHARMA and ModelE3
 
 ![Launch on Jupyterhub Image](notebooks/images/launch-on-jupyterhub.png)
 
-After logging in using your ARM username/password, and selecting the "Research Server", you will launch into your computing environment, with the selected notebook open.
+After logging in using your ARM username/password, and selecting the "Enhanced Science Server", you will launch into your computing environment, with the selected notebook open.
 
 ![Notebook on the Jupyterhub](notebooks/images/notebook-on-jupyterhub.png)
 
