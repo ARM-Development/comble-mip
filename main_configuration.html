@@ -369,13 +369,28 @@ document.write(`
 <td><p>22 UTC on 12 March 2020<br>18 UTC on 13 March 2020</p></td>
 </tr>
 <tr class="row-odd"><td><p>Initial profiles</p></td>
-<td><p>Thermodynamic and kinematic soundings provided, with the following variable names to be used as initial conditions: u, v, temp, theta, qv</p></td>
+<td><p>Thermodynamic and kinematic soundings provided<br>- Variable names to use: <em>u</em>, <em>v</em>, <em>temp</em>, <em>theta</em>, <em>qv</em></p></td>
 </tr>
 <tr class="row-even"><td><p>Initial perturbations for LES</p></td>
 <td><p>Theta only: 0.1 K below 250 m</p></td>
 </tr>
 <tr class="row-odd"><td><p>Surface forcing</p></td>
-<td><p>2–20h: specified SST in time with roughness height following Charnock</p></td>
+<td><p>0-2 h: constant ice skin temperature (247.0 K) with roughness length of 1 mm<br>2–20 h: specified time-varying SST with roughness length following Charnock</p></td>
+</tr>
+<tr class="row-even"><td><p>Large-scale forcing</p></td>
+<td><p>Time- and height-varying pressure gradient forcing via the geostrophic wind<br>- Variable names to use: <em>ug</em> and <em>vg</em><br>- Assume trajectory-averaged latitude for Coriolis: 74.5 N</p></td>
+</tr>
+<tr class="row-odd"><td><p>Nudging</p></td>
+<td><p>None (not required)</p></td>
+</tr>
+<tr class="row-even"><td><p>Subsidence</p></td>
+<td><p>None (results are relatively insensitive)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Radiation</p></td>
+<td><p>Only interactive longwave<br>- Ozone sounding specified in input file<br>- CO2 = 420 ppm<br>- No solar radiation (results are relatively insensitive)</p></td>
+</tr>
+<tr class="row-even"><td><p>Diagnostic droplet and ice formation</p></td>
+<td><p>Part I of MIP<br>- Nd = 20/cm3 (fixed)<br>- Ni = 25/L (minimum total) where qc+qr&gt;1e-6 kg/kg and T&lt;268.15 K<br>- Only other ice crystal formation mechanism active is homogeneous drop freezing</p></td>
 </tr>
 </tbody>
 </table>
