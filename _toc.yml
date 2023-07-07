@@ -10,7 +10,9 @@ parts:
     - file: CONTRIBUTING
 - caption: Model Setup
   chapters:
-    - glob: notebooks/setup/*
+    - file: main_configuration
+    - file: notebooks/setup/aerosol-specification.ipynb
+    - file: notebooks/setup/aerosol-inp-closure.ipynb
 - caption: DEPHY Forcing Notebooks
   chapters:
     - glob: notebooks/forcing/*
