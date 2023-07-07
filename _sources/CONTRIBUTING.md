@@ -87,7 +87,7 @@ You are ready to push your changes to the main repository on Github ([ARM-Develo
 - Follow [these instructions](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic) to create your access token
 - E-mail tjuliano@ucar.edu and ann.fridlind@nasa.gov to be added as a project contributor
 
-Once you have your token and have received and accepted your invitation as a project contribution on GitHub, you can run the following
+Once you have your token and have received and accepted your invitation as a project contributor on GitHub, you can run the following
 
 ```bash
 git push
