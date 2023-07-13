@@ -62,11 +62,9 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/setup/aerosol-inp-closure';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/setup/aerosol-inp_closure';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Code to generate: initial and time-varying profile and surface forcing" href="../forcing/create_comble_forcing_v2.2.html" />
-    <link rel="prev" title="Aerosol specification" href="aerosol-specification.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -167,10 +165,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../../CONTRIBUTING.html">Contributers Guide</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Setup</span></p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../main_configuration.html">Main Model Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="aerosol-specification.html">Aerosol specification</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Aerosol-Ice Nucleating Particle Closure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aerosol-inp-closure.html">Aerosol-Ice Nucleating Particle Closure</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">DEPHY Forcing Notebooks</span></p>
 <ul class="nav bd-sidenav">
@@ -250,7 +248,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://jupyterhub.arm.gov/hub/user-redirect/git-pull?repo=https%3A//github.com/ARM-Development/comble-mip&urlpath=lab/tree/comble-mip/../user-data-home/comble-mip/notebooks/setup/aerosol-inp-closure.ipynb&branch=main" target="_blank"
+      <li><a href="https://jupyterhub.arm.gov/hub/user-redirect/git-pull?repo=https%3A//github.com/ARM-Development/comble-mip&urlpath=lab/tree/comble-mip/../user-data-home/comble-mip/notebooks/setup/aerosol-inp_closure.ipynb&branch=main" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch onJupyterHub"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -281,7 +279,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../_sources/notebooks/setup/aerosol-inp-closure.ipynb" target="_blank"
+      <li><a href="../../_sources/notebooks/setup/aerosol-inp_closure.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -407,7 +405,6 @@ document.write(`
 <p>The quickcalc module, based on the simplistic 1D aerosol-cloud model (Knopf et al., 2023), allows inputting the PSD information measured at COMBLE and Zeppelin locations to derive the number concentration of INPs for different immersion freezing parameterizations. These predicted INP number concentrations are then compared to locally measured INP number concentrations, thereby manifesting a closure exercise.</p>
 <p>For this initial closure exercise, we chose Zeppelin observations at 0 UTC March 13 and COMBLE observations at 18 UTC March 13. The ambient PSD measurements are applied to derive INP number concentrations under the assumption that all aerosol particles are sea spray aerosols (SSA) while halving the number concentration of particles in the accumulation mode and neglecting particles in the Aitken mode. For this closure exercise three different IMF parameterizations were evaluated: that include two parameterizations that are singular or deterministic (no time dependence and ice nucleates on special particles or sites) and one parameterization that is based on classical nucleation theory (CNT) where ice nucleation is treated stochastically, i.e., no special particles and nucleation proceeds randomly, and is time dependent: MC2018 (singular ice nucleation active sites-based parameterization of SSA, <a href="https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2017JD028033"> McCluskey et al., 2018</a>), AL2022 (singular ice nucleation active sites-based parameterization of SSA, <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9629709/"> Alpert et al., 2022</a>) and the water-activity based immersion freezing model (ABIFM) of SSA (CNT-based parameterization, <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9629709/"> Alpert et al., 2022</a>). Typically, these IMF parameterizations are uncertain by ±1-3 orders of magnitude. The results of this closure exercise can be seen <a href="https://drive.google.com/drive/folders/1j7x0LsrWGi4Q0P6wcjGHFhQwT6iqT4Dy?usp=sharing"> here</a>.</p>
 <p><img alt="Picture1.png" src="notebooks/setup/attachment:Picture1.png" /></p>
-<p><img alt="Picture2.png" src="notebooks/setup/attachment:Picture2.png" /></p>
 </section>
 <section id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">#</a></h2>
@@ -1069,24 +1066,6 @@ Attributes:
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="aerosol-specification.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Aerosol specification</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="../forcing/create_comble_forcing_v2.2.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Code to generate: initial and time-varying profile and surface forcing</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div></div>
   
 </div>
