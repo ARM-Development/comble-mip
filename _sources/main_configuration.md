@@ -1,4 +1,4 @@
-# Main Model Configuration
+# Main Model Configuration & Experiments
 
 | Model component                      | Setting                                                                                                                                                                                         |
 |--------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -16,9 +16,7 @@
 | Radiation                            | Only interactive longwave<br>- Ozone sounding specified in input file<br>- CO2 = 420 ppm<br>- No solar radiation (results are relatively insensitive)                                           |
 
 
-# Experiments
-
-| Name                                     | Setting                                                                                                                                                                                         |
+| Experiment Name                          | Setting                                                                                                                                                                                         |
 |------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | #1: Liquid only                          | Part I of MIP<br>- Nd = 20/cm3 (fixed)<br>- No ice                                                                                                                                              |
 | #2: Diagnostic droplet and ice formation | Part I of MIP<br>- Nd = 20/cm3 (fixed)<br>- Ni = 25/L (minimum total) where qc+qr>1e-6 kg/kg and T<268.15 K<br>- Only other ice crystal formation mechanism active is homogeneous drop freezing |
