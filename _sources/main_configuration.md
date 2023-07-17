@@ -3,7 +3,7 @@
 | Model component                      | Setting                                                                                                                                                                                         |
 |--------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Horizontal grid cell spacing         | Dx=Dy=100 m                                                                                                                                                                                     |
-| Horizontal domain dimensions/size    | Nx=Ny=256; Lx=Ly=25.6 km                                                                                                                                                                        |
+| Horizontal domain dimensions/size    | Preliminary: Nx=Ny=256; Lx=Ly=25.6 km<br>Production: Nx=Ny=256; Lx=Ly=25.6 km                                                                                                                   |
 | Vertical grid                        | According to input forcing file specifications                                                                                                                                                  |
 | Domain top                           | 7 km                                                                                                                                                                                            |
 | Start/end times                      | 22 UTC on 12 March 2020<br>18 UTC on 13 March 2020                                                                                                                                              |
@@ -14,4 +14,12 @@
 | Nudging                              | None (not required)                                                                                                                                                                             |
 | Subsidence                           | None (results are relatively insensitive)                                                                                                                                                       |
 | Radiation                            | Only interactive longwave<br>- Ozone sounding specified in input file<br>- CO2 = 420 ppm<br>- No solar radiation (results are relatively insensitive)                                           |
-| Diagnostic droplet and ice formation | Part I of MIP<br>- Nd = 20/cm3 (fixed)<br>- Ni = 25/L (minimum total) where qc+qr>1e-6 kg/kg and T<268.15 K<br>- Only other ice crystal formation mechanism active is homogeneous drop freezing |
+
+
+# Experiments
+
+| Name                                     | Setting                                                                                                                                                                                         |
+|------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| #1: Liquid only                          | Part I of MIP<br>- Nd = 20/cm3 (fixed)<br>- No ice                                                                                                                                              |
+| #2: Diagnostic droplet and ice formation | Part I of MIP<br>- Nd = 20/cm3 (fixed)<br>- Ni = 25/L (minimum total) where qc+qr>1e-6 kg/kg and T<268.15 K<br>- Only other ice crystal formation mechanism active is homogeneous drop freezing |
+| #3: Prognostic aerosol                   | Part II of MIP<br>See [Aerosol specification](https://arm-development.github.io/comble-mip/notebooks/setup/aerosol-specification.html) and [Aerosol-Ice Nucleating Particle Closure](https://arm-development.github.io/comble-mip/notebooks/setup/aerosol-inp-closure.html) pages for detailed information |

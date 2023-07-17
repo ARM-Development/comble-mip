@@ -169,6 +169,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Setup</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Main Model Configuration</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="notebooks/setup/aerosol-specification.html">Aerosol specification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/setup/aerosol-inp-closure.html">Aerosol-Ice Nucleating Particle Closure</a></li>
 </ul>
@@ -319,7 +320,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -335,6 +338,16 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Main Model Configuration</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#experiments">Experiments</a></li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -357,7 +370,7 @@ document.write(`
 <td><p>Dx=Dy=100 m</p></td>
 </tr>
 <tr class="row-odd"><td><p>Horizontal domain dimensions/size</p></td>
-<td><p>Nx=Ny=256; Lx=Ly=25.6 km</p></td>
+<td><p>Preliminary: Nx=Ny=256; Lx=Ly=25.6 km<br>Production: Nx=Ny=256; Lx=Ly=25.6 km</p></td>
 </tr>
 <tr class="row-even"><td><p>Vertical grid</p></td>
 <td><p>According to input forcing file specifications</p></td>
@@ -389,8 +402,26 @@ document.write(`
 <tr class="row-odd"><td><p>Radiation</p></td>
 <td><p>Only interactive longwave<br>- Ozone sounding specified in input file<br>- CO2 = 420 ppm<br>- No solar radiation (results are relatively insensitive)</p></td>
 </tr>
-<tr class="row-even"><td><p>Diagnostic droplet and ice formation</p></td>
+</tbody>
+</table>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="experiments">
+<h1>Experiments<a class="headerlink" href="#experiments" title="Permalink to this heading">#</a></h1>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Setting</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>#1: Liquid only</p></td>
+<td><p>Part I of MIP<br>- Nd = 20/cm3 (fixed)<br>- No ice</p></td>
+</tr>
+<tr class="row-odd"><td><p>#2: Diagnostic droplet and ice formation</p></td>
 <td><p>Part I of MIP<br>- Nd = 20/cm3 (fixed)<br>- Ni = 25/L (minimum total) where qc+qr&gt;1e-6 kg/kg and T&lt;268.15 K<br>- Only other ice crystal formation mechanism active is homogeneous drop freezing</p></td>
+</tr>
+<tr class="row-even"><td><p>#3: Prognostic aerosol</p></td>
+<td><p>Part II of MIP<br>See <a class="reference external" href="https://arm-development.github.io/comble-mip/notebooks/setup/aerosol-specification.html">Aerosol specification</a> and <a class="reference external" href="https://arm-development.github.io/comble-mip/notebooks/setup/aerosol-inp-closure.html">Aerosol-Ice Nucleating Particle Closure</a> pages for detailed information</p></td>
 </tr>
 </tbody>
 </table>
@@ -454,6 +485,22 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Main Model Configuration</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#experiments">Experiments</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
               
             
           </div>
