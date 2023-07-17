@@ -13,7 +13,7 @@ parts:
     - file: main_configuration
     - file: notebooks/setup/aerosol-specification.ipynb
     - file: notebooks/setup/aerosol-inp-closure.ipynb
-- caption: DEPHY Forcing Notebooks
+- caption: DEPHY Forcing Derivation
   chapters:
     - glob: notebooks/forcing/*
 - caption: Input Conversion Notebooks
