@@ -11,20 +11,18 @@ parts:
 - caption: Model Setup
   chapters:
     - file: main_configuration
-    - file: notebooks/setup/aerosol-specification.ipynb
-    - file: notebooks/setup/aerosol-inp-closure.ipynb
-- caption: DEPHY Forcing Derivation
-  chapters:
-    - glob: notebooks/forcing/*
+    - file: notebooks/output/output_list.ipynb
 - caption: Input Conversion Notebooks
   chapters:
     - glob: notebooks/conversion/*
-- caption: Model Output Requested
-  chapters:
-    - glob: notebooks/output/*
 - caption: Output Conversion Notebooks
   chapters:
     - glob: notebooks/conversion_output/*
 - caption: Plot Results
   chapters:
     - glob: notebooks/plotting/*
+- caption: Supporting Materials
+  chapters:
+    - file: notebooks/forcing/create_comble_forcing_v2.2.ipynb
+    - file: notebooks/setup/aerosol-specification.ipynb
+    - file: notebooks/setup/aerosol-inp-closure.ipynb
