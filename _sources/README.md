@@ -29,7 +29,11 @@ Plotting scripts to compare your results with those submitted from other models 
 
 ## Authors
 
-Tim Juliano, Florian Tornow, Ann Fridlind, Max Grover, Scott Collis, Monica Ihli
+Tim Juliano, Florian Tornow, Ann Fridlind - Intercomparison development
+
+Abigail Williams, Lynn Russell, Yijia Sun, Daniel Knopf - Aerosol analysis
+
+Max Grover, Scott Collis, Monica Ihli - Infrastructure development
 
 Please contact Tim Juliano: tjuliano ((at)) ucar.edu OR Florian Tornow: ft2544 ((at)) columbia.edu for comments or questions about the model intercomparison project.
 
