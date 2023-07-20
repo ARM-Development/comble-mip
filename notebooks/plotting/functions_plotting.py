@@ -5,6 +5,7 @@ import pandas as pd
 import pathlib
 import glob
 import os
+import csv
 
 ## for questions, please contact 
 ## Florian Tornow: ft2544@columbia.edu
@@ -20,6 +21,37 @@ def sat_pres(x):
     ## Bolton (1980), return in hPa
     return 6.112*np.exp(17.67*x/(243.5 + x))
     
+
+def load_maclwp(case='20200313',t_filter = 1.,PATH='../../data_files/'):
+    
+    ## load coincident MAC-LWP retrievals (Elsaesser et al., 2017)
+    ## __input__
+    ## case........string of COMBLE date
+    ## t_filter....time window around arrival of trajectory (hours)
+    ## PATH........directory
+    
+    if case == '20200313':
+        file = 'maclwp_2020-03-13_satdat2.csv'
+        t_off = 18.
+    
+    data = pd.read_csv(PATH + file)
+    data = data.loc[abs(data['tdiff']) <= t_filter]
+    data['time'] = (data['time.rel'] + t_off)*3600.
+    data.index = data['time']
+    #time = data['time'][:]
+    
+    #pd.DataFrame({"class": ['MAC-LWP']* len(time), "time":time}, index=time)
+    
+    #print(data.time)
+    
+    #data_mac = pd.DataFrame({"class": ['MAC-LWP'] * len(time), "time":time}, index=time)
+    #data_mac['lwp_bu'] = data['lwp'][:]/1000.
+    
+    data_mac = data
+    data_mac['lwp_bu'] = data['lwp'][:]/1000.
+    data_mac['class'] = data_mac['sat']
+    return data_mac
+
 
 def load_rs(case='20200313',t_filter = 1.,PATH='../../data_files/'):
     
@@ -234,15 +266,26 @@ def plot_1d(df_col,var_vec):
     plot_colors = ["#E69F00", "#56B4E9", "#009E73","#0072B2", "#D55E00", "#CC79A7","#F0E442"]
     
     counter = 0
-    
+    if 'lwp' in var_vec:
+        if  'rwp' in df_col.columns and 'cwp' in df_col.columns:
+            print('Computing Liquid Water Path')
+            df_col['lwp'] = df_col['rwp'] + df_col['cwp']
+        else:
+            print('Please include rwp and cwp!')
+        
     fig, axs = plt.subplots(len(var_vec),1,figsize=(5,1 + 2*len(var_vec)))
     for label, df in df_col.groupby('class'):
+        if label=='MAC-LWP':
+            df['lwp'] = df['lwp_bu']
         for ii in range(len(var_vec)):
             if len(var_vec) == 1:
                 obj = axs
             else:
                 obj = axs[ii]
-            obj.plot(df.time/3600,df[var_vec[ii]],label=label)
+            if label=='MAC-LWP':
+                obj.scatter(df.time/3600,df[var_vec[ii]],label=label)
+            else:
+                obj.plot(df.time/3600,df[var_vec[ii]],label=label)
             obj.grid(alpha=0.2)
         counter +=1
     
