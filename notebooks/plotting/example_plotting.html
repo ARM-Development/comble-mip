@@ -379,7 +379,7 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> functions_plotting.py
 
 <span class="c1">## select simulations to plot</span>
-<span class="n">sim_keyword</span> <span class="o">=</span> <span class="s1">&#39;200m&#39;</span>
+<span class="n">sim_keyword</span> <span class="o">=</span> <span class="s1">&#39;100m&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -391,15 +391,18 @@ document.write(`
 
 <span class="c1">## load radiosondes</span>
 <span class="n">rs_dat</span> <span class="o">=</span> <span class="n">load_rs</span><span class="p">(</span><span class="n">PATH</span><span class="o">=</span><span class="s1">&#39;../../data_files/&#39;</span><span class="p">,</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">6.</span><span class="p">)</span>
+
+<span class="c1">## load MAC-LWP</span>
+<span class="n">maclwp_dat</span> <span class="o">=</span> <span class="n">load_maclwp</span><span class="p">(</span><span class="n">PATH</span><span class="o">=</span><span class="s1">&#39;../../data_files/&#39;</span><span class="p">,</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>../../data_files/theta_temp_rh_sh_uvw_sst_along_trajectory_era5ml_28h_end_2020-03-13-18.nc
-../../data_files/anxsondewnpnM1.b1.20200313.112600.cdf
-../../data_files/anxsondewnpnM1.b1.20200313.052700.cdf
-../../data_files/anxsondewnpnM1.b1.20200313.232200.cdf
 ../../data_files/anxsondewnpnM1.b1.20200313.172600.cdf
+../../data_files/anxsondewnpnM1.b1.20200313.232200.cdf
+../../data_files/anxsondewnpnM1.b1.20200313.052700.cdf
+../../data_files/anxsondewnpnM1.b1.20200313.112600.cdf
 </pre></div>
 </div>
 </div>
@@ -447,14 +450,12 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>../../output_les/wrf/sandbox/Lx25km_dx200m/WRF_LES_COMBLE-I_Lx25km_dx200m.nc
-../../output_les/dharma/sandbox/Lx25km_dx200m_SWrad/DHARMA_LES_COMBLE-I.nc
-../../output_les/dharma/sandbox/Lx25km_dx200m_sub/DHARMA_LES_COMBLE-I.nc
-../../output_les/dharma/sandbox/Lx25km_dx200m/DHARMA_LES_COMBLE-I.nc
-../../output_les/wrf/sandbox/Lx25km_dx200m/WRF_LES_COMBLE-I_Lx25km_dx200m.nc
-../../output_les/dharma/sandbox/Lx25km_dx200m_SWrad/DHARMA_LES_COMBLE-I.nc
-../../output_les/dharma/sandbox/Lx25km_dx200m_sub/DHARMA_LES_COMBLE-I.nc
-../../output_les/dharma/sandbox/Lx25km_dx200m/DHARMA_LES_COMBLE-I.nc
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>../../output_les/wrf/sandbox/Lx25km_dx100m/WRF_LES_COMBLE-I_Lx25km_dx100m.nc
+../../output_les/dharma/sandbox/Lx25km_dx100m/DHARMA_LES_COMBLE-I.nc
+../../output_les/dharma/sandbox/Lx25km_dx100m_progNa/DHARMA_LES_COMBLE-I.nc
+../../output_les/wrf/sandbox/Lx25km_dx100m/WRF_LES_COMBLE-I_Lx25km_dx100m.nc
+../../output_les/dharma/sandbox/Lx25km_dx100m/DHARMA_LES_COMBLE-I.nc
+../../output_les/dharma/sandbox/Lx25km_dx100m_progNa/DHARMA_LES_COMBLE-I.nc
 </pre></div>
 </div>
 </div>
@@ -462,12 +463,15 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## plot variables that have only time dependence</span>
-<span class="n">plot_1d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_1d</span><span class="p">,</span><span class="n">era5_1d</span><span class="p">]),</span><span class="n">var_vec_1d</span><span class="p">)</span>
+<span class="n">plot_1d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_1d</span><span class="p">,</span><span class="n">maclwp_dat</span><span class="p">]),[</span><span class="s1">&#39;lwp&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/079fb138479a90e4dd8ffe1ca7491edb27441402c4cbbf9ba63a85fc6fb0b44f.png" src="../../_images/079fb138479a90e4dd8ffe1ca7491edb27441402c4cbbf9ba63a85fc6fb0b44f.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computing Liquid Water Path
+</pre></div>
+</div>
+<img alt="../../_images/7f33cfac3fae3967b5c73c7fdcfb65f30556e39f691da9a84e566e14745df969.png" src="../../_images/7f33cfac3fae3967b5c73c7fdcfb65f30556e39f691da9a84e566e14745df969.png" />
 </div>
 </div>
 <div class="cell docutils container">
