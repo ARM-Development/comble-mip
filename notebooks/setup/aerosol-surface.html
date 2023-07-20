@@ -383,20 +383,6 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">TMP_COL</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
-<span class="k">for</span> <span class="n">cc</span> <span class="ow">in</span> <span class="n">clusters</span><span class="p">:</span>
-    <span class="n">dists</span> <span class="o">=</span> <span class="n">sort</span><span class="p">(</span><span class="n">COMP_3D</span><span class="p">[</span><span class="s1">&#39;u&#39;</span><span class="p">][</span><span class="n">cc</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">aa</span> <span class="ow">in</span> <span class="n">alts</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">dd</span> <span class="ow">in</span> <span class="n">dists</span><span class="p">:</span>
-            <span class="n">TMP</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="n">cc</span><span class="p">,</span><span class="n">aa</span><span class="p">,</span><span class="n">dd</span><span class="p">,</span><span class="n">COMP_3D</span><span class="p">[</span><span class="s1">&#39;u&#39;</span><span class="p">][</span><span class="n">cc</span><span class="p">][</span><span class="n">aa</span><span class="p">][</span><span class="n">dd</span><span class="p">],</span><span class="n">COMP_3D</span><span class="p">[</span><span class="s1">&#39;v&#39;</span><span class="p">][</span><span class="n">cc</span><span class="p">][</span><span class="n">aa</span><span class="p">][</span><span class="n">dd</span><span class="p">],</span><span class="n">COMP_3D</span><span class="p">[</span><span class="s1">&#39;w&#39;</span><span class="p">][</span><span class="n">cc</span><span class="p">][</span><span class="n">aa</span><span class="p">][</span><span class="n">dd</span><span class="p">],</span><span class="n">COMP_3D</span><span class="p">[</span><span class="s1">&#39;u_perp&#39;</span><span class="p">][</span><span class="n">cc</span><span class="p">][</span><span class="n">aa</span><span class="p">][</span><span class="n">dd</span><span class="p">],</span><span class="n">COMP_3D</span><span class="p">[</span><span class="s1">&#39;v_perp&#39;</span><span class="p">][</span><span class="n">cc</span><span class="p">][</span><span class="n">aa</span><span class="p">][</span><span class="n">dd</span><span class="p">],</span><span class="n">COMP_3D</span><span class="p">[</span><span class="s1">&#39;qv&#39;</span><span class="p">][</span><span class="n">cc</span><span class="p">][</span><span class="n">aa</span><span class="p">][</span><span class="n">dd</span><span class="p">],</span><span class="n">COMP_3D</span><span class="p">[</span><span class="s1">&#39;qc&#39;</span><span class="p">][</span><span class="n">cc</span><span class="p">][</span><span class="n">aa</span><span class="p">][</span><span class="n">dd</span><span class="p">],</span><span class="n">COMP_3D</span><span class="p">[</span><span class="s1">&#39;qr&#39;</span><span class="p">][</span><span class="n">cc</span><span class="p">][</span><span class="n">aa</span><span class="p">][</span><span class="n">dd</span><span class="p">],</span><span class="n">COMP_3D</span><span class="p">[</span><span class="s1">&#39;qic&#39;</span><span class="p">][</span><span class="n">cc</span><span class="p">][</span><span class="n">aa</span><span class="p">][</span><span class="n">dd</span><span class="p">],</span><span class="n">COMP_3D</span><span class="p">[</span><span class="s1">&#39;qid&#39;</span><span class="p">][</span><span class="n">cc</span><span class="p">][</span><span class="n">aa</span><span class="p">][</span><span class="n">dd</span><span class="p">],</span><span class="n">COMP_3D</span><span class="p">[</span><span class="s1">&#39;qif&#39;</span><span class="p">][</span><span class="n">cc</span><span class="p">][</span><span class="n">aa</span><span class="p">][</span><span class="n">dd</span><span class="p">]]],</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">,</span><span class="s1">&#39;z&#39;</span><span class="p">,</span><span class="s1">&#39;dist_side&#39;</span><span class="p">,</span><span class="s1">&#39;u&#39;</span><span class="p">,</span><span class="s1">&#39;v&#39;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">,</span><span class="s1">&#39;u_perp&#39;</span><span class="p">,</span><span class="s1">&#39;v_perp&#39;</span><span class="p">,</span><span class="s1">&#39;qv&#39;</span><span class="p">,</span><span class="s1">&#39;qc&#39;</span><span class="p">,</span><span class="s1">&#39;qr&#39;</span><span class="p">,</span><span class="s1">&#39;qic&#39;</span><span class="p">,</span><span class="s1">&#39;qid&#39;</span><span class="p">,</span><span class="s1">&#39;qif&#39;</span><span class="p">])</span>
-            <span class="n">TMP_COL</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">TMP_COL</span><span class="p">,</span><span class="n">TMP</span><span class="p">])</span>
-            
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## use coefficients by Jaegle et al. (2011) to generate a small data base of surface flux size distribution</span>
 <span class="n">SST</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="n">vh</span> <span class="o">=</span> <span class="mi">20</span>
@@ -433,122 +419,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">JAEGLE_DAT</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">JAEGLE_DAT</span><span class="p">[</span><span class="s1">&#39;Dp&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mf">0.1</span> <span class="o">-</span> <span class="n">STEP</span><span class="o">/</span><span class="mi">2</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Dp</th>
-      <th>FN</th>
-      <th>vh</th>
-      <th>SST</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0.1000</td>
-      <td>681.820949</td>
-      <td>20</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>0.1005</td>
-      <td>684.668523</td>
-      <td>20</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>0.1010</td>
-      <td>687.457141</td>
-      <td>20</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>0.1015</td>
-      <td>690.186851</td>
-      <td>20</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>0.1020</td>
-      <td>692.857717</td>
-      <td>20</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>3.9975</td>
-      <td>0.030547</td>
-      <td>20</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>3.9980</td>
-      <td>0.030539</td>
-      <td>20</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>3.9985</td>
-      <td>0.030532</td>
-      <td>20</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>3.9990</td>
-      <td>0.030524</td>
-      <td>20</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>3.9995</td>
-      <td>0.030516</td>
-      <td>20</td>
-      <td>5</td>
-    </tr>
-  </tbody>
-</table>
-<p>7800 rows × 4 columns</p>
-</div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## partition into two groups and integrate over size</span>
-
 <span class="k">def</span> <span class="nf">split_flux</span><span class="p">(</span><span class="n">DAT</span><span class="p">,</span><span class="n">D_s</span><span class="p">,</span><span class="n">STEP</span><span class="p">):</span>
     <span class="n">num_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">DAT</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">DAT</span><span class="p">[</span><span class="s1">&#39;Dp&#39;</span><span class="p">]</span> <span class="o">&lt;</span>  <span class="n">D_s</span> <span class="o">-</span> <span class="n">STEP</span><span class="o">/</span><span class="mi">2</span><span class="p">][</span><span class="s1">&#39;FN&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">((</span><span class="n">DAT</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">DAT</span><span class="p">[</span><span class="s1">&#39;Dp&#39;</span><span class="p">]</span> <span class="o">&lt;</span>  <span class="n">D_s</span> <span class="o">-</span> <span class="n">STEP</span><span class="o">/</span><span class="mi">2</span><span class="p">][</span><span class="s1">&#39;Dp&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">STEP</span><span class="p">)</span> <span class="o">/</span> <span class="n">DAT</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">DAT</span><span class="p">[</span><span class="s1">&#39;Dp&#39;</span><span class="p">]</span> <span class="o">&lt;</span>  <span class="n">D_s</span><span class="o">-</span> <span class="n">STEP</span><span class="o">/</span><span class="mi">2</span><span class="p">][</span><span class="s1">&#39;Dp&#39;</span><span class="p">]))</span>
     <span class="n">num_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">DAT</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">DAT</span><span class="p">[</span><span class="s1">&#39;Dp&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">D_s</span> <span class="o">-</span> <span class="n">STEP</span><span class="o">/</span><span class="mi">2</span><span class="p">][</span><span class="s1">&#39;FN&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">((</span><span class="n">DAT</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">DAT</span><span class="p">[</span><span class="s1">&#39;Dp&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">D_s</span> <span class="o">-</span> <span class="n">STEP</span><span class="o">/</span><span class="mi">2</span><span class="p">][</span><span class="s1">&#39;Dp&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">STEP</span><span class="p">)</span> <span class="o">/</span> <span class="n">DAT</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">DAT</span><span class="p">[</span><span class="s1">&#39;Dp&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">D_s</span> <span class="o">-</span> <span class="n">STEP</span><span class="o">/</span><span class="mi">2</span><span class="p">][</span><span class="s1">&#39;Dp&#39;</span><span class="p">]))</span>
@@ -571,7 +442,7 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">PARTITION_DAT</span><span class="p">[</span><span class="s1">&#39;D_split&#39;</span><span class="p">],</span><span class="n">PARTITION_DAT</span><span class="p">[</span><span class="s1">&#39;num_1&#39;</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Dp&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Fraction of Flux in smaller Mode&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Fraction of Number Flux in smaller Mode&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Partitioning of Surface Flux&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
