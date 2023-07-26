@@ -13,19 +13,38 @@ This website hosts information about the Cold-Air Outbreaks in the Marine Bounda
 
 ## Model Inputs
 
-A file containing model intialization and forcing information is provided in the [DEPHY-SCM standard format](https://github.com/GdR-DEPHY/DEPHY-SCM) (see document link on README.md), suitable for application to both LES and SCM setups.
+A [file](https://github.com/ARM-Development/comble-mip/blob/main/notebooks/forcing/COMBLE_INTERCOMPARISON_FORCING_V2.2.nc) containing model intialization and forcing information is provided in the [DEPHY-SCM standard format](https://github.com/GdR-DEPHY/DEPHY-SCM), suitable for application to both LES and SCM setups. The most recent version of the DEPHY standards may be found [here](https://docs.google.com/document/d/1eAWY-ELL5Ua6a9WIsv4ODHmLXvfgla5TNQAuAwNASo0).
 
-## Input Conversion Examples
+Detailed information about our requested model configuration may be found [here](https://arm-development.github.io/comble-mip/main_configuration.html).
 
-Example scripts to convert the DEPHY standard format to ASCII or other netCDF formats needed to drive specific models.
+## Python Notebooks
 
-## Output Conversion Examples
+We've developed several Jupyter Notebooks to reduce the burden on COMBLE MIP participants (and ourselves!):
+
+### Input Conversion Examples
+
+Example scripts to convert the DEPHY standard format to ASCII or other netCDF formats needed to drive specific models
+
+* [DEPHY forcing &rarr; DHARMA LES and ModelE3](https://arm-development.github.io/comble-mip/notebooks/conversion/convert_comble_dephy_forcing_to_DHARMA_LES_and_ModelE3_SCM_forcing.html)
+* [DEPHY forcing &rarr; WRF-LES](https://arm-development.github.io/comble-mip/notebooks/conversion/convert_comble_dephy_forcing_to_WRF_LES_forcing.html)
+
+### Output Conversion Examples
 
 Example scripts to convert specific model results back to the DEPHY standard format prior to submission.
 
-## Visualization Tools
+* [DHARMA LES output &rarr; DEPHY](https://arm-development.github.io/comble-mip/notebooks/conversion_output/convert_DHARMA_LES_output_to_dephy_format.html)
+* WRF-LES output &rarr; DEPHY (Coming soon...)
 
-Plotting scripts to compare your results with those submitted from other models and observations.
+### Visualization Tools
+
+[Plotting scripts](https://arm-development.github.io/comble-mip/notebooks/plotting/example_plotting.html) to compare your results with those submitted from other models and observations.
+
+---
+**NOTE**
+
+If you would like to contribute to the COMBLE MIP website by adding example scripts to convert to/from your host model or enhancing our plotting scripts, then please see the [Contributors Guide](https://arm-development.github.io/comble-mip/CONTRIBUTING.html).
+
+---
 
 ## Authors
 

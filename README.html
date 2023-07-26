@@ -340,9 +340,12 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivation">Motivation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-inputs">Model Inputs</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#input-conversion-examples">Input Conversion Examples</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#output-conversion-examples">Output Conversion Examples</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization-tools">Visualization Tools</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-notebooks">Python Notebooks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#input-conversion-examples">Input Conversion Examples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#output-conversion-examples">Output Conversion Examples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization-tools">Visualization Tools</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#authors">Authors</a></li>
 </ul>
             </nav>
@@ -370,20 +373,37 @@ document.write(`
 </section>
 <section id="model-inputs">
 <h2>Model Inputs<a class="headerlink" href="#model-inputs" title="Permalink to this heading">#</a></h2>
-<p>A file containing model intialization and forcing information is provided in the <a class="reference external" href="https://github.com/GdR-DEPHY/DEPHY-SCM">DEPHY-SCM standard format</a> (see document link on README.md), suitable for application to both LES and SCM setups.</p>
+<p>A <a class="reference external" href="https://github.com/ARM-Development/comble-mip/blob/main/notebooks/forcing/COMBLE_INTERCOMPARISON_FORCING_V2.2.nc">file</a> containing model intialization and forcing information is provided in the <a class="reference external" href="https://github.com/GdR-DEPHY/DEPHY-SCM">DEPHY-SCM standard format</a>, suitable for application to both LES and SCM setups. The most recent version of the DEPHY standards may be found <a class="reference external" href="https://docs.google.com/document/d/1eAWY-ELL5Ua6a9WIsv4ODHmLXvfgla5TNQAuAwNASo0">here</a>.</p>
+<p>Detailed information about our requested model configuration may be found <a class="reference external" href="https://arm-development.github.io/comble-mip/main_configuration.html">here</a>.</p>
 </section>
+<section id="python-notebooks">
+<h2>Python Notebooks<a class="headerlink" href="#python-notebooks" title="Permalink to this heading">#</a></h2>
+<p>We’ve developed several Jupyter Notebooks to reduce the burden on COMBLE MIP participants (and ourselves!):</p>
 <section id="input-conversion-examples">
-<h2>Input Conversion Examples<a class="headerlink" href="#input-conversion-examples" title="Permalink to this heading">#</a></h2>
-<p>Example scripts to convert the DEPHY standard format to ASCII or other netCDF formats needed to drive specific models.</p>
+<h3>Input Conversion Examples<a class="headerlink" href="#input-conversion-examples" title="Permalink to this heading">#</a></h3>
+<p>Example scripts to convert the DEPHY standard format to ASCII or other netCDF formats needed to drive specific models</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://arm-development.github.io/comble-mip/notebooks/conversion/convert_comble_dephy_forcing_to_DHARMA_LES_and_ModelE3_SCM_forcing.html">DEPHY forcing → DHARMA LES and ModelE3</a></p></li>
+<li><p><a class="reference external" href="https://arm-development.github.io/comble-mip/notebooks/conversion/convert_comble_dephy_forcing_to_WRF_LES_forcing.html">DEPHY forcing → WRF-LES</a></p></li>
+</ul>
 </section>
 <section id="output-conversion-examples">
-<h2>Output Conversion Examples<a class="headerlink" href="#output-conversion-examples" title="Permalink to this heading">#</a></h2>
+<h3>Output Conversion Examples<a class="headerlink" href="#output-conversion-examples" title="Permalink to this heading">#</a></h3>
 <p>Example scripts to convert specific model results back to the DEPHY standard format prior to submission.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://arm-development.github.io/comble-mip/notebooks/conversion_output/convert_DHARMA_LES_output_to_dephy_format.html">DHARMA LES output → DEPHY</a></p></li>
+<li><p>WRF-LES output → DEPHY (Coming soon…)</p></li>
+</ul>
 </section>
 <section id="visualization-tools">
-<h2>Visualization Tools<a class="headerlink" href="#visualization-tools" title="Permalink to this heading">#</a></h2>
-<p>Plotting scripts to compare your results with those submitted from other models and observations.</p>
+<h3>Visualization Tools<a class="headerlink" href="#visualization-tools" title="Permalink to this heading">#</a></h3>
+<p><a class="reference external" href="https://arm-development.github.io/comble-mip/notebooks/plotting/example_plotting.html">Plotting scripts</a> to compare your results with those submitted from other models and observations.</p>
+<hr class="docutils" />
+<p><strong>NOTE</strong></p>
+<p>If you would like to contribute to the COMBLE MIP website by adding example scripts to convert to/from your host model or enhancing our plotting scripts, then please see the <a class="reference external" href="https://arm-development.github.io/comble-mip/CONTRIBUTING.html">Contributors Guide</a>.</p>
 </section>
+</section>
+<hr class="docutils" />
 <section id="authors">
 <h2>Authors<a class="headerlink" href="#authors" title="Permalink to this heading">#</a></h2>
 <p>Tim Juliano, Florian Tornow, Ann Fridlind - Intercomparison development</p>
@@ -471,9 +491,12 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivation">Motivation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-inputs">Model Inputs</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#input-conversion-examples">Input Conversion Examples</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#output-conversion-examples">Output Conversion Examples</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization-tools">Visualization Tools</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-notebooks">Python Notebooks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#input-conversion-examples">Input Conversion Examples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#output-conversion-examples">Output Conversion Examples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization-tools">Visualization Tools</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#authors">Authors</a></li>
 </ul>
   </nav></div>
