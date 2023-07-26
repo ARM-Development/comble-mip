@@ -354,40 +354,25 @@ document.write(`
 <td><p>Dx=Dy=100 m</p></td>
 </tr>
 <tr class="row-odd"><td><p>Horizontal domain dimensions/size</p></td>
-<td><p>Preliminary: Nx=Ny=256; Lx=Ly=25.6 km<br>Production: Nx=Ny=1280; Lx=Ly=128 km</p></td>
-</tr>
-<tr class="row-even"><td><p>Vertical grid</p></td>
-<td><p>According to input forcing file specifications</p></td>
-</tr>
-<tr class="row-odd"><td><p>Domain top</p></td>
-<td><p>7 km</p></td>
-</tr>
-<tr class="row-even"><td><p>Start/end times</p></td>
-<td><p>22 UTC on 12 March 2020<br>18 UTC on 13 March 2020</p></td>
-</tr>
-<tr class="row-odd"><td><p>Initial profiles</p></td>
-<td><p>Thermodynamic and kinematic soundings provided<br>- Variable names to use: <em>u</em>, <em>v</em>, <em>temp</em>, <em>theta</em>, <em>qv</em></p></td>
-</tr>
-<tr class="row-even"><td><p>Initial perturbations for LES</p></td>
-<td><p>Theta only: 0.1 K below 250 m</p></td>
-</tr>
-<tr class="row-odd"><td><p>Surface forcing</p></td>
-<td><p>0-2 h: constant ice skin temperature (247.0 K) with roughness length of 1 mm<br>2–20 h: specified time-varying SST with roughness length following Charnock</p></td>
-</tr>
-<tr class="row-even"><td><p>Large-scale forcing</p></td>
-<td><p>Time- and height-varying pressure gradient forcing via the geostrophic wind<br>- Variable names to use: <em>ug</em> and <em>vg</em><br>- Assume trajectory-averaged latitude for Coriolis: 74.5 N</p></td>
-</tr>
-<tr class="row-odd"><td><p>Nudging</p></td>
-<td><p>None (not required)</p></td>
-</tr>
-<tr class="row-even"><td><p>Subsidence</p></td>
-<td><p>None (results are relatively insensitive)</p></td>
-</tr>
-<tr class="row-odd"><td><p>Radiation</p></td>
-<td><p>Only interactive longwave<br>- Ozone sounding specified in input file<br>- CO2 = 420 ppm<br>- No solar radiation (results are relatively insensitive)</p></td>
+<td><p>Preliminary: Nx=Ny=256; Lx=Ly=25.6 km (required)<br>Production: Nx=Ny=1280; Lx=Ly=128 km (desired but not required)<br>Note: if you are unable to perform the “Production”-sized domain, then we will</p></td>
 </tr>
 </tbody>
 </table>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>                                    accept smaller domain configurations                                                                                                                                                             |
+</pre></div>
+</div>
+<p>| Vertical grid                        | According to input forcing file specifications                                                                                                                                                  |
+| Domain top                           | 7 km                                                                                                                                                                                            |
+| Start/end times                      | 22 UTC on 12 March 2020<br>18 UTC on 13 March 2020                                                                                                                                              |
+| Initial profiles                     | Thermodynamic and kinematic soundings provided<br>- Variable names to use: <em>u</em>, <em>v</em>, <em>temp</em>, <em>theta</em>, <em>qv</em>                                                                                      |
+| Initial perturbations for LES        | Theta only: 0.1 K below 250 m                                                                                                                                                                   |
+| Surface forcing                      | 0-2 h: constant ice skin temperature (247.0 K) with roughness length of 1 mm<br>2–20 h: specified time-varying SST with roughness length following Charnock                                     |
+| Large-scale forcing                  | Time- and height-varying pressure gradient forcing via the geostrophic wind<br>- Variable names to use: <em>ug</em> and <em>vg</em><br>- Assume trajectory-averaged latitude for Coriolis: 74.5 N             |
+| Nudging                              | None (not required)                                                                                                                                                                             |
+| Subsidence                           | None (results are relatively insensitive)                                                                                                                                                       |
+| Radiation                            | Only interactive longwave<br>- Ozone sounding specified in input file<br>- CO2 = 420 ppm<br>- No solar radiation (results are relatively insensitive)                                           |
+| Aerosol &amp; microphysics: Part I       | -Liquid only<br>–Nd = 20/cm3 (fixed)<br>–No ice<br>-Diagnostic droplet and ice formation<br>–Nd = 20/cm3 (fixed)<br>–Ni = 25/L (minimum total) where qc+qr&gt;1e-6 kg/kg and T&lt;268.15
+K<br>–Only other ice crystal formation mechanism active is homogeneous drop freezing                                                                                                           |</p>
 <table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Experiment Name</p></th>
