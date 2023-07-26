@@ -23,7 +23,7 @@ We've developed several Jupyter Notebooks to reduce the burden on COMBLE MIP par
 
 ### Input Conversion Examples
 
-Example scripts to convert the DEPHY standard format to ASCII or other netCDF formats needed to drive specific models
+Example scripts to convert the DEPHY standard format to ASCII or other netCDF formats needed to drive specific models.
 
 * [DEPHY forcing &rarr; DHARMA LES and ModelE3](https://arm-development.github.io/comble-mip/notebooks/conversion/convert_comble_dephy_forcing_to_DHARMA_LES_and_ModelE3_SCM_forcing.html)
 * [DEPHY forcing &rarr; WRF-LES](https://arm-development.github.io/comble-mip/notebooks/conversion/convert_comble_dephy_forcing_to_WRF_LES_forcing.html)
@@ -39,12 +39,9 @@ Example scripts to convert specific model results back to the DEPHY standard for
 
 [Plotting scripts](https://arm-development.github.io/comble-mip/notebooks/plotting/example_plotting.html) to compare your results with those submitted from other models and observations.
 
----
-**NOTE**
-
+```{note}
 If you would like to contribute to the COMBLE MIP website by adding example scripts to convert to/from your host model or enhancing our plotting scripts, then please see the [Contributors Guide](https://arm-development.github.io/comble-mip/CONTRIBUTING.html).
-
----
+```
 
 ## Authors
 
