@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Main Model Configuration &#8212; COMBLE Model-Observation Intercomparison Project</title>
+    <title>Timeline &#8212; COMBLE Model-Observation Intercomparison Project</title>
   
   
   
@@ -62,11 +62,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'main_configuration';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'timeline';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Requested Model Outputs" href="notebooks/output/output_list.html" />
-    <link rel="prev" title="Contributers Guide" href="CONTRIBUTING.html" />
+    <link rel="next" title="Example: convert DEPHY forcing to DHARMA and ModelE3 formats" href="notebooks/conversion/convert_comble_dephy_forcing_to_DHARMA_LES_and_ModelE3_SCM_forcing.html" />
+    <link rel="prev" title="Requested Model Outputs" href="notebooks/output/output_list.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -168,9 +168,9 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Setup &amp; Timeline</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Main Model Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main_configuration.html">Main Model Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/output/output_list.html">Requested Model Outputs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="timeline.html">Timeline</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Timeline</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Input Conversion Notebooks</span></p>
 <ul class="nav bd-sidenav">
@@ -245,7 +245,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="_sources/main_configuration.md" target="_blank"
+      <li><a href="_sources/timeline.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -325,7 +325,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Main Model Configuration</h1>
+    <h1>Timeline</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -339,63 +339,30 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="main-model-configuration">
-<h1>Main Model Configuration<a class="headerlink" href="#main-model-configuration" title="Permalink to this heading">#</a></h1>
-<div class="admonition attention">
-<p class="admonition-title">Attention</p>
-<p>The most up-to-date DEPHY forcing file (V2.2) may be found <a class="reference external" href="https://github.com/ARM-Development/comble-mip/blob/main/notebooks/forcing/COMBLE_INTERCOMPARISON_FORCING_V2.2.nc">here</a>.</p>
-</div>
+  <section class="tex2jax_ignore mathjax_ignore" id="timeline">
+<h1>Timeline<a class="headerlink" href="#timeline" title="Permalink to this heading">#</a></h1>
 <table class="table">
 <thead>
-<tr class="row-odd"><th class="head"><p>Model component</p></th>
-<th class="head"><p>Setting</p></th>
+<tr class="row-odd"><th class="head"><p>Stage</p></th>
+<th class="head"><p>Product</p></th>
+<th class="head"><p>Due Date</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>Horizontal grid cell spacing</p></td>
-<td><p>Dx=Dy=100 m</p></td>
+<tr class="row-even"><td><p>Phase I</p></td>
+<td><p>- SCM/small-domain LES, liquid-only<br>- SCM/small-domain LES with ice<br>- Large domain LES with ice</p></td>
+<td><p>Nov. 15, 2023<br>Nov. 15, 2023<br>Feb. 1, 2024</p></td>
 </tr>
-<tr class="row-odd"><td><p>Horizontal domain dimensions/size</p></td>
-<td><p>Preliminary: Nx=Ny=256; Lx=Ly=25.6 km (required)<br>Production: Nx=Ny=1280; Lx=Ly=128 km (desired but not required)<br>- Note: if you are unable to perform the “Production”-sized domain, then we will accept smaller domain configurations</p></td>
-</tr>
-<tr class="row-even"><td><p>Vertical grid</p></td>
-<td><p>According to input forcing file specifications<br>- Variable name to use: <em>zw_grid</em></p></td>
-</tr>
-<tr class="row-odd"><td><p>Domain top</p></td>
-<td><p>7 km</p></td>
-</tr>
-<tr class="row-even"><td><p>Start/end times</p></td>
-<td><p>22 UTC on 12 March 2020<br>18 UTC on 13 March 2020</p></td>
-</tr>
-<tr class="row-odd"><td><p>Initial profiles</p></td>
-<td><p>Thermodynamic and kinematic soundings provided<br>- Variable names to use: <em>ps</em>, <em>thetas</em>, <em>lev</em>, <em>pressure</em>, <em>u</em>, <em>v</em>, <em>temp</em>, <em>theta</em>, <em>qv</em>, <em>o3</em></p></td>
-</tr>
-<tr class="row-even"><td><p>Initial perturbations for LES</p></td>
-<td><p>Theta only: 0.1 K below 250 m</p></td>
-</tr>
-<tr class="row-odd"><td><p>Surface forcing</p></td>
-<td><p>0-2 h: constant ice skin temperature (247.0 K)<br>2–20 h: specified time-varying SST<br>- Variable name to use: <em>ts</em><br>- Note: Compute surface fluxes interactively using roughness length following Charnock for the entirety of the simulation (results are relatively insensitive to reducing roughness length over ice)</p></td>
-</tr>
-<tr class="row-even"><td><p>Large-scale forcing</p></td>
-<td><p>Time- and height-varying pressure gradient forcing via the geostrophic wind<br>- Variable names to use: <em>ug</em> and <em>vg</em><br>- Assume trajectory-averaged latitude for Coriolis: 74.5 N</p></td>
-</tr>
-<tr class="row-odd"><td><p>Nudging</p></td>
-<td><p>None (not required)</p></td>
-</tr>
-<tr class="row-even"><td><p>Subsidence</p></td>
-<td><p>None (results are relatively insensitive)</p></td>
-</tr>
-<tr class="row-odd"><td><p>Radiation</p></td>
-<td><p>Only interactive longwave<br>- Ozone sounding specified in input file<br>- CO2 = 420 ppm<br>- No solar radiation (results are relatively insensitive)</p></td>
-</tr>
-<tr class="row-even"><td><p>Aerosol &amp; microphysics: Phase I</p></td>
-<td><p>(i) Liquid only<br>-Nd = 20/cm3 (fixed)<br>-No ice<br>(ii) Diagnostic droplet and ice formation<br>-Nd = 20/cm3 (fixed)<br>-Ni = 25/L (minimum total) where qc+qr&gt;1e-6 kg/kg and T&lt;268.15 K<br>-Only other ice crystal formation mechanism active is homogeneous drop freezing</p></td>
-</tr>
-<tr class="row-odd"><td><p>Aerosol &amp; microphysics: Phase II</p></td>
-<td><p>See <a class="reference external" href="https://arm-development.github.io/comble-mip/notebooks/setup/aerosol-specification.html">Aerosol specification</a> and <a class="reference external" href="https://arm-development.github.io/comble-mip/notebooks/setup/aerosol-inp-closure.html">Aerosol-Ice Nucleating Particle Closure</a> pages for detailed information</p></td>
+<tr class="row-odd"><td><p>Phase II</p></td>
+<td><p>- SCM/small-domain LES, liquid-only<br>- SCM/small-domain LES with ice<br>- Large domain LES with ice</p></td>
+<td><p>Nov. 15, 2023<br>Nov. 15, 2023<br>Feb. 1, 2024</p></td>
 </tr>
 </tbody>
 </table>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Ready to make your model outputs accessible to other MIP participants? Please refer to <a class="reference external" href="https://arm-development.github.io/comble-mip/CONTRIBUTING.html">this page</a> to learn how to upload your model outputs to the repository.</p>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -430,20 +397,20 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="CONTRIBUTING.html"
+       href="notebooks/output/output_list.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Contributers Guide</p>
+        <p class="prev-next-title">Requested Model Outputs</p>
       </div>
     </a>
     <a class="right-next"
-       href="notebooks/output/output_list.html"
+       href="notebooks/conversion/convert_comble_dephy_forcing_to_DHARMA_LES_and_ModelE3_SCM_forcing.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Requested Model Outputs</p>
+        <p class="prev-next-title">Example: convert DEPHY forcing to DHARMA and ModelE3 formats</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
