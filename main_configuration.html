@@ -355,7 +355,7 @@ document.write(`
 <td><p>Dx=Dy=100 m</p></td>
 </tr>
 <tr class="row-odd"><td><p>Horizontal domain dimensions/size</p></td>
-<td><p>Preliminary: Nx=Ny=256; Lx=Ly=25.6 km (required)<br>Production: Nx=Ny=1280; Lx=Ly=128 km (desired but not required)<br>Note: if you are unable to perform the “Production”-sized domain, then we will accept smaller domain configurations</p></td>
+<td><p>Preliminary: Nx=Ny=256; Lx=Ly=25.6 km (required)<br>Production: Nx=Ny=1280; Lx=Ly=128 km (desired but not required)<br>- Note: if you are unable to perform the “Production”-sized domain, then we will accept smaller domain configurations</p></td>
 </tr>
 <tr class="row-even"><td><p>Vertical grid</p></td>
 <td><p>According to input forcing file specifications</p></td>
@@ -373,7 +373,7 @@ document.write(`
 <td><p>Theta only: 0.1 K below 250 m</p></td>
 </tr>
 <tr class="row-odd"><td><p>Surface forcing</p></td>
-<td><p>0-2 h: constant ice skin temperature (247.0 K)<br>2–20 h: specified time-varying SST<br>Note: Compute surface fluxes interactively using roughness length following Charnock for the entirety of the simulation (results are relatively insensitive to reducing roughness length over ice)</p></td>
+<td><p>0-2 h: constant ice skin temperature (247.0 K)<br>2–20 h: specified time-varying SST<br>- Variable name to use: <em>ts</em><br>- Note: Compute surface fluxes interactively using roughness length following Charnock for the entirety of the simulation (results are relatively insensitive to reducing roughness length over ice)</p></td>
 </tr>
 <tr class="row-even"><td><p>Large-scale forcing</p></td>
 <td><p>Time- and height-varying pressure gradient forcing via the geostrophic wind<br>- Variable names to use: <em>ug</em> and <em>vg</em><br>- Assume trajectory-averaged latitude for Coriolis: 74.5 N</p></td>
