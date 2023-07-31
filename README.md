@@ -25,7 +25,7 @@ Detailed information about our requested model configuration may be found [here]
 
 ## Python Notebooks
 
-We've developed several Jupyter Notebooks to reduce the burden on COMBLE MIP participants (and ourselves!):
+We've developed several Jupyter Notebooks to reduce the burden on COMBLE MIP participants:
 
 ### Input Conversion Examples
 
