@@ -8,10 +8,11 @@ parts:
   chapters:
     - glob: notebooks/howto/*
     - file: CONTRIBUTING
-- caption: Model Setup
+- caption: Model Setup & Timeline
   chapters:
     - file: main_configuration
     - file: notebooks/output/output_list.ipynb
+    - file: timeline
 - caption: Input Conversion Notebooks
   chapters:
     - glob: notebooks/conversion/*
