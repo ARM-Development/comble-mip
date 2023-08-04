@@ -8,21 +8,22 @@ parts:
   chapters:
     - glob: notebooks/howto/*
     - file: CONTRIBUTING
-- caption: DEPHY Forcing Notebooks
+- caption: Model Setup & Timeline
   chapters:
-    - glob: notebooks/forcing/*
+    - file: main_configuration
+    - file: notebooks/output/output_list.ipynb
+    - file: timeline
 - caption: Input Conversion Notebooks
   chapters:
     - glob: notebooks/conversion/*
-- caption: Model Setup
-  chapters:
-    - glob: notebooks/setup/*
-- caption: Model Output Requested
-  chapters:
-    - glob: notebooks/output/*
 - caption: Output Conversion Notebooks
   chapters:
     - glob: notebooks/conversion_output/*
 - caption: Plot Results
   chapters:
     - glob: notebooks/plotting/*
+- caption: Supporting Materials
+  chapters:
+    - file: notebooks/forcing/create_comble_forcing_v2.2.ipynb
+    - file: notebooks/setup/aerosol-specification.ipynb
+    - file: notebooks/setup/aerosol-inp-closure.ipynb

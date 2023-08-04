@@ -7,7 +7,7 @@ For example, if you are running the "Convert DEPHY forcing to DHARMA and ModelE3
 
 ![Launch on Jupyterhub Image](notebooks/images/launch-on-jupyterhub.png)
 
-After logging in using your ARM username/password, and selecting the "Research Server", you will launch into your computing environment, with the selected notebook open.
+After logging in using your ARM username/password, and selecting the "Enhanced Science Server", you will launch into your computing environment, with the selected notebook open.
 
 ![Notebook on the Jupyterhub](notebooks/images/notebook-on-jupyterhub.png)
 
@@ -83,10 +83,11 @@ Now that you have:
 
 You are ready to push your changes to the main repository on Github ([ARM-Development/comble-mip](https://github.com/ARM-Development/comble-mip))
 
-**You will need to generate a personal access token before pushing your change to Github**
-- Follow [these instructions](https://github.com/ARM-Development/comble-mip) to create your access token
+**You will need to generate a personal access token and be added as a project contributor before pushing your change to Github**
+- Follow [these instructions](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic) to create your access token
+- E-mail tjuliano@ucar.edu and ann.fridlind@nasa.gov to be added as a project contributor
 
-Once you have your token, you can run the following
+Once you have your token and have received and accepted your invitation as a project contributor on GitHub, you can run the following
 
 ```bash
 git push
