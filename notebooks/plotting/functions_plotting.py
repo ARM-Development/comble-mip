@@ -22,6 +22,48 @@ def sat_pres(x):
     return 6.112*np.exp(17.67*x/(243.5 + x))
     
 
+def load_viirs(case='20200313',t_filter = 1.,PATH='../../data_files/'):
+    
+    ## load coincident MAC-LWP retrievals (Elsaesser et al., 2017)
+    ## __input__
+    ## case........string of COMBLE date
+    ## t_filter....time window around arrival of trajectory (hours)
+    ## PATH........directory
+    
+    if case == '20200313':
+        file = 'viirs_2020-03-13_satdat.csv'
+        t_off = 18.
+    
+    data = pd.read_csv(PATH + file)
+    data = data.loc[abs(data['tdiff']) <= t_filter]
+    data['time'] = (data['time.rel'] + t_off)*3600.
+    data.index = data['time']
+     
+    data['class'] = data['sat']
+    return data_mac
+
+
+def load_modis(case='20200313',t_filter = 1.,PATH='../../data_files/'):
+    
+    ## load coincident MAC-LWP retrievals (Elsaesser et al., 2017)
+    ## __input__
+    ## case........string of COMBLE date
+    ## t_filter....time window around arrival of trajectory (hours)
+    ## PATH........directory
+    
+    if case == '20200313':
+        file = 'modis_2020-03-13_satdat.csv'
+        t_off = 18.
+    
+    data = pd.read_csv(PATH + file)
+    data = data.loc[abs(data['tdiff']) <= t_filter]
+    data['time'] = (data['time.rel'] + t_off)*3600.
+    data.index = data['time']
+     
+    data['class'] = data['sat']
+    return data_mac
+
+
 def load_maclwp(case='20200313',t_filter = 1.,PATH='../../data_files/'):
     
     ## load coincident MAC-LWP retrievals (Elsaesser et al., 2017)
