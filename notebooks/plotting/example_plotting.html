@@ -392,15 +392,10 @@ document.write(`
 
 <span class="c1">## load MAC-LWP</span>
 <span class="n">maclwp_dat</span> <span class="o">=</span> <span class="n">load_maclwp</span><span class="p">(</span><span class="n">PATH</span><span class="o">=</span><span class="s1">&#39;../../data_files/&#39;</span><span class="p">,</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>../../data_files/theta_temp_rh_sh_uvw_sst_along_trajectory_era5ml_28h_end_2020-03-13-18.nc
-../../data_files/anxsondewnpnM1.b1.20200313.172600.cdf
-../../data_files/anxsondewnpnM1.b1.20200313.232200.cdf
-../../data_files/anxsondewnpnM1.b1.20200313.052700.cdf
-../../data_files/anxsondewnpnM1.b1.20200313.112600.cdf
+
+<span class="c1">## load MODIS and VIIRS retrievals</span>
+<span class="n">modis_dat</span> <span class="o">=</span> <span class="n">load_modis</span><span class="p">(</span><span class="n">PATH</span><span class="o">=</span><span class="s1">&#39;../../data_files/&#39;</span><span class="p">,</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">)</span>
+<span class="n">virrs_dat</span> <span class="o">=</span> <span class="n">load_viirs</span><span class="p">(</span><span class="n">PATH</span><span class="o">=</span><span class="s1">&#39;../../data_files/&#39;</span><span class="p">,</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
