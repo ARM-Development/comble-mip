@@ -37,10 +37,11 @@ def load_viirs(case='20200313',t_filter = 1.,PATH='../../data_files/'):
     data = pd.read_csv(PATH + file)
     data = data.loc[abs(data['tdiff']) <= t_filter]
     data['time'] = (data['time.rel'] + t_off)*3600.
+    data['zi'] = data['cth']
     data.index = data['time']
      
     data['class'] = data['sat']
-    return data_mac
+    return data
 
 
 def load_modis(case='20200313',t_filter = 1.,PATH='../../data_files/'):
@@ -58,10 +59,11 @@ def load_modis(case='20200313',t_filter = 1.,PATH='../../data_files/'):
     data = pd.read_csv(PATH + file)
     data = data.loc[abs(data['tdiff']) <= t_filter]
     data['time'] = (data['time.rel'] + t_off)*3600.
+    data['zi'] = data['cth']
     data.index = data['time']
      
     data['class'] = data['sat']
-    return data_mac
+    return data
 
 
 def load_maclwp(case='20200313',t_filter = 1.,PATH='../../data_files/'):
@@ -250,6 +252,7 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword=''):
         if keyword in NCFILES_STR[count]:
             print(fn)
             ds = nc.Dataset(fn)
+            #print(ds)
             time = ds.variables['time'][:]
             #cwp  = ds.variables['cwp'][:]
             #rwp  = ds.variables['rwp'][:]
@@ -324,7 +327,7 @@ def plot_1d(df_col,var_vec):
                 obj = axs
             else:
                 obj = axs[ii]
-            if label=='MAC-LWP':
+            if (label=='MAC-LWP') | (label=='MODIS') | (label=='VIIRS'):
                 obj.scatter(df.time/3600,df[var_vec[ii]],label=label)
             else:
                 obj.plot(df.time/3600,df[var_vec[ii]],label=label)
