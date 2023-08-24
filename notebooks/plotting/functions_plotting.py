@@ -22,7 +22,7 @@ def sat_pres(x):
     return 6.112*np.exp(17.67*x/(243.5 + x))
     
 
-def load_viirs(case='20200313',t_filter = 1.,PATH='../../data_files/'):
+def load_viirs(case='20200313',t_filter = 1.,sza_filter = 75.,PATH='../../data_files/'):
     
     ## load coincident MAC-LWP retrievals (Elsaesser et al., 2017)
     ## __input__
@@ -35,16 +35,30 @@ def load_viirs(case='20200313',t_filter = 1.,PATH='../../data_files/'):
         t_off = 18.
     
     data = pd.read_csv(PATH + file)
+    
+    ## exclude greater temperoral offsets
     data = data.loc[abs(data['tdiff']) <= t_filter]
+    
+    ## exclude bispectral retrievals under high SZA
+    data.loc[data['sza'] > sza_filter,['cod','cod.25','cod.75']] = np.nan 
+    
     data['time'] = (data['time.rel'] + t_off)*3600.
     data['zi'] = data['cth']
+    data['zi.25'] = data['cth.25']
+    data['zi.75'] = data['cth.75']
+    data['ctt'] = data['ctt'] - 273.15
+    data['ctt.25'] = data['ctt.25'] - 273.15
+    data['ctt.75'] = data['ctt.75'] - 273.15
+    
+    ## exclude spurious values (to be checked)
+    data = data.loc[data['ctt'] > -60]
     data.index = data['time']
      
     data['class'] = data['sat']
     return data
 
 
-def load_modis(case='20200313',t_filter = 1.,PATH='../../data_files/'):
+def load_modis(case='20200313',t_filter = 1.,sza_filter = 75.,PATH='../../data_files/'):
     
     ## load coincident MAC-LWP retrievals (Elsaesser et al., 2017)
     ## __input__
@@ -57,9 +71,17 @@ def load_modis(case='20200313',t_filter = 1.,PATH='../../data_files/'):
         t_off = 18.
     
     data = pd.read_csv(PATH + file)
+    
+    ## exclude greater temperoral offsets
     data = data.loc[abs(data['tdiff']) <= t_filter]
+    
+    ## exclude bispectral retrievals under high SZA
+    data.loc[data['sza'] > sza_filter,['cod','cod.25','cod.75']] = np.nan 
+    
     data['time'] = (data['time.rel'] + t_off)*3600.
     data['zi'] = data['cth']
+    data['zi.25'] = data['cth.25']
+    data['zi.75'] = data['cth.75']
     data.index = data['time']
      
     data['class'] = data['sat']
@@ -143,6 +165,7 @@ def load_rs(case='20200313',t_filter = 1.,PATH='../../data_files/'):
 
     ## for plotting purposes
     rs_col['time'] = time_near*3600.
+    rs_col['ta'] = rs_col['temp'] + 273.15
 
     return rs_col
 
@@ -294,6 +317,19 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword=''):
             
         count+=1
             
+    ## a simple cloud-top temperature
+    df_col['ctt'] = np.nan
+    for cc in np.unique(df_col['class']):
+        df_sub  = df_col.loc[df_col['class']==cc]
+        df_sub2 = df_col2.loc[df_col2['class']==cc]
+        #print(df_sub)
+        if 'ta' in df_col2.columns and 'zi' in df_col.columns:
+            for tt in df_sub['time']:
+                zi_step = df_sub.loc[df_sub['time'] == tt,'zi']
+                ta_step = df_sub2.loc[df_sub2['time'] == tt,['zf','ta']]
+                ta_step['zf_diff'] = np.abs(ta_step['zf'] - zi_step)
+                df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'ctt'] = min(ta_step.loc[ta_step.zf_diff == ta_step.zf_diff.min(),'ta']) - 273.15
+    
     df_col['time']  = df_col['time'] + t_shift*3600.
     df_col2['time'] = df_col2['time'] + t_shift*3600.
     
@@ -309,8 +345,10 @@ def plot_1d(df_col,var_vec):
     
     ## 1D plots
     plot_colors = ["#E69F00", "#56B4E9", "#009E73","#0072B2", "#D55E00", "#CC79A7","#F0E442"]
+    plot_symbol = ['s','o','D','1']
     
     counter = 0
+    counter_symbol = 0
     if 'lwp' in var_vec:
         if  'rwp' in df_col.columns and 'cwp' in df_col.columns:
             print('Computing Liquid Water Path')
@@ -328,7 +366,15 @@ def plot_1d(df_col,var_vec):
             else:
                 obj = axs[ii]
             if (label=='MAC-LWP') | (label=='MODIS') | (label=='VIIRS'):
-                obj.scatter(df.time/3600,df[var_vec[ii]],label=label)
+                obj.scatter(df.time/3600,df[var_vec[ii]],label=label,c='k',marker=plot_symbol[counter_symbol])
+                if (label=='MODIS') | (label=='VIIRS'):
+                    if np.count_nonzero(np.isnan(df[var_vec[ii]])) < len(df[var_vec[ii]]):
+                        error_1 = np.abs(df[var_vec[ii]] - df[var_vec[ii]+'.25'])
+                        error_2 = np.abs(df[var_vec[ii]+'.75'] - df[var_vec[ii]])
+                        error = [error_1,error_2]
+                        obj.errorbar(df.time/3600,df[var_vec[ii]],yerr=error,label=label,c='k',fmt=plot_symbol[counter_symbol])
+                if ii==len(var_vec)-1:
+                    counter_symbol +=1
             else:
                 obj.plot(df.time/3600,df[var_vec[ii]],label=label)
             obj.grid(alpha=0.2)
