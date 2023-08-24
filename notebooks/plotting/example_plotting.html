@@ -444,83 +444,15 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## load all simulations located in subfolders of the given directory</span>
 <span class="n">var_vec_1d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;cwp&#39;</span><span class="p">,</span><span class="s1">&#39;rwp&#39;</span><span class="p">,</span><span class="s1">&#39;iwp&#39;</span><span class="p">,</span><span class="s1">&#39;swp&#39;</span><span class="p">,</span><span class="s1">&#39;gwp&#39;</span><span class="p">,</span><span class="s1">&#39;cod&#39;</span><span class="p">,</span><span class="s1">&#39;zi&#39;</span><span class="p">]</span> <span class="c1"># variables without ERA5 (shorter time axis)</span>
-<span class="n">var_vec_2d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;theta&#39;</span><span class="p">,</span><span class="s1">&#39;qv&#39;</span><span class="p">,</span><span class="s1">&#39;ua&#39;</span><span class="p">,</span><span class="s1">&#39;va&#39;</span><span class="p">]</span>
+<span class="n">var_vec_2d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;theta&#39;</span><span class="p">,</span><span class="s1">&#39;qv&#39;</span><span class="p">,</span><span class="s1">&#39;ua&#39;</span><span class="p">,</span><span class="s1">&#39;va&#39;</span><span class="p">,</span><span class="s1">&#39;ta&#39;</span><span class="p">]</span>
 <span class="n">df_col_1d</span><span class="p">,</span><span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>../../output_les/dharma/sandbox/Lx25km_dx100m/DHARMA_LES_COMBLE-I.nc
-&lt;class &#39;netCDF4._netCDF4.Dataset&#39;&gt;
-root group (NETCDF3_CLASSIC data model, file format NETCDF3):
-    title: DHARMA LES results for COMBLE-MIP case: fixed Nd and Ni
-    reference: https://github.com/ARM-Development/comble-mip
-    authors: Ann Fridlind (ann.fridlind@nasa.gov) and Florian Tornow (florian.tornow@nasa.gov)
-    source: /data/home/fridlind/dharma/sandbox/case0313_diagn_ice25_miz_cfmip_dx100/10-20h/dharma.scalars.cdf
-    version: 2023-07-07 22:25:35
-    format_version: DEPHY SCM format version 1.6
-    script: convert_DHARMA_LES_output_to_dephy_format.ipynb
-    startDate: 2020-03-12T22:00:00Z
-    force_geo: 1
-    surfaceType: ocean (after spin-up)
-    surfaceForcing: ts (after spin-up)
-    lat: 73.0 deg N
-    dx: 100.0 m
-    dy: 100.0 m
-    dz: see zf variable
-    nx: 256
-    ny: 256
-    nz: 159
-    dimensions(sizes): zf(159), time(241)
-    variables(dimensions): float64 zf(zf), float64 time(time), float64 pa(time, zf), float64 rho(time, zf), float64 ta(time, zf), float64 qv(time, zf), float64 qt(time, zf), float64 hur(time, zf), float64 ua(time, zf), float64 va(time, zf), float64 wa(time, zf), float64 theta(time, zf), float64 tke_res(time, zf), float64 tke_sgs(time, zf), float64 hfss(time), float64 hfls(time), float64 ol(time), float64 ustar(time), float64 zi(time), float64 ps(time), float64 ts(time), float64 w2(time, zf), float64 qc(time, zf), float64 qr(time, zf), float64 qi(time, zf), float64 qs(time, zf), float64 qg(time, zf), float64 cl(time, zf), float64 clt(time), float64 pr(time), float64 prf(time, zf), float64 pri(time), float64 prfi(time, zf), float64 cwp(time), float64 rwp(time), float64 iwp(time), float64 swp(time), float64 gwp(time), float64 nt(time, zf), float64 na(time, zf), float64 nc(time, zf), float64 nr(time, zf), float64 ni(time, zf), float64 ns(time, zf), float64 ng(time, zf), float64 cer(time, zf), float64 cod(time), float64 od(time), float64 rlh(time, zf), float64 rld(time, zf), float64 rlu(time, zf), float64 rlut(time), float64 rlds(time), float64 rlus(time)
-    groups: 
 ../../output_les/dharma/sandbox/Lx25km_dx100m_progNa/DHARMA_LES_COMBLE-I.nc
-&lt;class &#39;netCDF4._netCDF4.Dataset&#39;&gt;
-root group (NETCDF3_CLASSIC data model, file format NETCDF3):
-    title: DHARMA LES results for COMBLE-MIP case: fixed Nd and Ni
-    reference: https://github.com/ARM-Development/comble-mip
-    authors: Ann Fridlind (ann.fridlind@nasa.gov) and Florian Tornow (florian.tornow@nasa.gov)
-    source: /data/home/fridlind/dharma/sandbox/case0313_progn_ice25_miz_cfmip_dx100/16h20m-20h/dharma.scalars.cdf
-    version: 2023-07-07 22:36:03
-    format_version: DEPHY SCM format version 1.6
-    script: convert_DHARMA_LES_output_to_dephy_format.ipynb
-    startDate: 2020-03-12T22:00:00Z
-    force_geo: 1
-    surfaceType: ocean (after spin-up)
-    surfaceForcing: ts (after spin-up)
-    lat: 73.0 deg N
-    dx: 100.0 m
-    dy: 100.0 m
-    dz: see zf variable
-    nx: 256
-    ny: 256
-    nz: 159
-    dimensions(sizes): zf(159), time(241)
-    variables(dimensions): float64 zf(zf), float64 time(time), float64 pa(time, zf), float64 rho(time, zf), float64 ta(time, zf), float64 qv(time, zf), float64 qt(time, zf), float64 hur(time, zf), float64 ua(time, zf), float64 va(time, zf), float64 wa(time, zf), float64 theta(time, zf), float64 tke_res(time, zf), float64 tke_sgs(time, zf), float64 hfss(time), float64 hfls(time), float64 ol(time), float64 ustar(time), float64 zi(time), float64 ps(time), float64 ts(time), float64 w2(time, zf), float64 qc(time, zf), float64 qr(time, zf), float64 qi(time, zf), float64 qs(time, zf), float64 qg(time, zf), float64 cl(time, zf), float64 clt(time), float64 pr(time), float64 prf(time, zf), float64 pri(time), float64 prfi(time, zf), float64 cwp(time), float64 rwp(time), float64 iwp(time), float64 swp(time), float64 gwp(time), float64 nt(time, zf), float64 na(time, zf), float64 nc(time, zf), float64 nr(time, zf), float64 ni(time, zf), float64 ns(time, zf), float64 ng(time, zf), float64 cer(time, zf), float64 cod(time), float64 od(time), float64 rlh(time, zf), float64 rld(time, zf), float64 rlu(time, zf), float64 rlut(time), float64 rlds(time), float64 rlus(time)
-    groups: 
 ../../output_les/wrf/sandbox/Lx25km_dx100m/WRF_LES_COMBLE-I_Lx25km_dx100m.nc
-&lt;class &#39;netCDF4._netCDF4.Dataset&#39;&gt;
-root group (NETCDF3_CLASSIC data model, file format NETCDF3):
-    title: WRF LES results for COMBLE-MIP case: fixed Nd and Ni
-    reference: https://github.com/ARM-Development/comble-mip
-    authors: Tim Juliano (tjuliano@ucar.edu)
-    version: 2023-06-27 16:45:04
-    format_version: DEPHY SCM format version 1.6
-    script: convert_WRF_LES_output_to_dephy_format.ipynb
-    startDate: 2020-03-12T22:00:00Z
-    force_geo: 1
-    surfaceType: ocean (after spin-up)
-    surfaceForcing: ts (after spin-up)
-    lat: 74.0 deg N
-    dx: 100.0 m
-    dy: 100.0 m
-    dz: see zf variable
-    nx: 256
-    ny: 256
-    nz: 159
-    dimensions(sizes): zf(159), time(241)
-    variables(dimensions): float64 zf(zf), float64 time(time), float64 pa(time, zf), float64 rho(time, zf), float64 ta(time, zf), float64 qv(time, zf), float64 qt(time, zf), float64 hur(time, zf), float64 ua(time, zf), float64 va(time, zf), float64 wa(time, zf), float64 theta(time, zf), float64 tke_res(time, zf), float64 tke_sgs(time, zf), float64 hfss(time), float64 hfls(time), float64 ol(time), float64 ustar(time), float64 zi(time), float64 ps(time), float64 ts(time), float64 w2(time, zf), float64 ql(time, zf), float64 qr(time, zf), float64 qi(time, zf), float64 qs(time, zf), float64 qg(time, zf), float64 cl(time, zf), float64 clt(time), float64 pr(time), float64 prf(time, zf), float64 pri(time), float64 prfi(time, zf), float64 cwp(time), float64 rwp(time), float64 iwp(time), float64 swp(time), float64 gwp(time), float64 nt(time, zf), float64 na(time, zf), float64 nc(time, zf), float64 nr(time, zf), float64 ni(time, zf), float64 ns(time, zf), float64 ng(time, zf), float64 cer(time, zf), float64 cod(time), float64 od(time), float64 rlh(time, zf), float64 rsh(time, zf), float64 rld(time, zf), float64 rlu(time, zf), float64 rsd(time, zf), float64 rsu(time, zf), float64 rsdt(time), float64 rsut(time), float64 rlut(time), float64 rlds(time), float64 rlus(time), float64 rsds(time), float64 rsus(time)
-    groups: 
 ../../output_les/dharma/sandbox/Lx25km_dx100m/DHARMA_LES_COMBLE-I.nc
 ../../output_les/dharma/sandbox/Lx25km_dx100m_progNa/DHARMA_LES_COMBLE-I.nc
 ../../output_les/wrf/sandbox/Lx25km_dx100m/WRF_LES_COMBLE-I_Lx25km_dx100m.nc
@@ -531,7 +463,7 @@ root group (NETCDF3_CLASSIC data model, file format NETCDF3):
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## plot variables that have only time dependence</span>
-<span class="n">plot_1d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_1d</span><span class="p">,</span><span class="n">maclwp_dat</span><span class="p">,</span><span class="n">modis_dat</span><span class="p">,</span><span class="n">viirs_dat</span><span class="p">]),[</span><span class="s1">&#39;lwp&#39;</span><span class="p">,</span><span class="s1">&#39;cod&#39;</span><span class="p">,</span><span class="s1">&#39;zi&#39;</span><span class="p">])</span>
+<span class="n">plot_1d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_1d</span><span class="p">,</span><span class="n">maclwp_dat</span><span class="p">,</span><span class="n">modis_dat</span><span class="p">,</span><span class="n">viirs_dat</span><span class="p">]),[</span><span class="s1">&#39;lwp&#39;</span><span class="p">,</span><span class="s1">&#39;cod&#39;</span><span class="p">,</span><span class="s1">&#39;ctt&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -539,7 +471,7 @@ root group (NETCDF3_CLASSIC data model, file format NETCDF3):
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computing Liquid Water Path
 </pre></div>
 </div>
-<img alt="../../_images/b2b71c492f8036f12fd9049829d838edefa10354145fa48d62489dc8d6be6310.png" src="../../_images/b2b71c492f8036f12fd9049829d838edefa10354145fa48d62489dc8d6be6310.png" />
+<img alt="../../_images/c5bdbdd57892693e1e92219bbc7f9e4bf74614e3a72249912ef5b18b8dc2f8b6.png" src="../../_images/c5bdbdd57892693e1e92219bbc7f9e4bf74614e3a72249912ef5b18b8dc2f8b6.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -557,7 +489,7 @@ root group (NETCDF3_CLASSIC data model, file format NETCDF3):
 Computing wind direction
 </pre></div>
 </div>
-<img alt="../../_images/dcaad29a17d6b0f79102957b84619413e2df5da030a26368930b93e7db7afab2.png" src="../../_images/dcaad29a17d6b0f79102957b84619413e2df5da030a26368930b93e7db7afab2.png" />
+<img alt="../../_images/01846ff3d3f608d620ac1df935041e8c0ee9fdbbd3c908d08c343a8ebdea61fc.png" src="../../_images/01846ff3d3f608d620ac1df935041e8c0ee9fdbbd3c908d08c343a8ebdea61fc.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x600 with 0 Axes&gt;
 </pre></div>
 </div>
