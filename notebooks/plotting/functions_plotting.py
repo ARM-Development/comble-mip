@@ -22,7 +22,7 @@ def sat_pres(x):
     return 6.112*np.exp(17.67*x/(243.5 + x))
     
 
-def load_viirs(case='20200313',t_filter = 1.,sza_filter = 75.,PATH='../../data_files/'):
+def load_viirs(case='20200313',t_filter = 1.,sza_filter = 80.,PATH='../../data_files/'):
     
     ## load coincident MAC-LWP retrievals (Elsaesser et al., 2017)
     ## __input__
@@ -50,6 +50,7 @@ def load_viirs(case='20200313',t_filter = 1.,sza_filter = 75.,PATH='../../data_f
     data['ctt.25'] = data['ctt.25'] - 273.15
     data['ctt.75'] = data['ctt.75'] - 273.15
     
+    #data['cod'] = data['cod.me']
     ## exclude spurious values (to be checked)
     data = data.loc[data['ctt'] > -60]
     data.index = data['time']
@@ -58,7 +59,7 @@ def load_viirs(case='20200313',t_filter = 1.,sza_filter = 75.,PATH='../../data_f
     return data
 
 
-def load_modis(case='20200313',t_filter = 1.,sza_filter = 75.,PATH='../../data_files/'):
+def load_modis(case='20200313',t_filter = 1.,sza_filter = 80.,PATH='../../data_files/'):
     
     ## load coincident MAC-LWP retrievals (Elsaesser et al., 2017)
     ## __input__
@@ -83,6 +84,7 @@ def load_modis(case='20200313',t_filter = 1.,sza_filter = 75.,PATH='../../data_f
     data['zi.25'] = data['cth.25']
     data['zi.75'] = data['cth.75']
     data.index = data['time']
+    #data['cod'] = data['cod.me']
      
     data['class'] = data['sat']
     return data
