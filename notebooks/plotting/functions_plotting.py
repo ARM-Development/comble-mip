@@ -51,8 +51,6 @@ def load_viirs(case='20200313',t_filter = 1.,sza_filter = 80.,PATH='../../data_f
     data['ctt.75'] = data['ctt.75'] - 273.15
     
     #data['cod'] = data['cod.me']
-    ## exclude spurious values (to be checked)
-    data = data.loc[data['ctt'] > -60]
     data.index = data['time']
      
     data['class'] = data['sat']
