@@ -21,6 +21,37 @@ def sat_pres(x):
     ## Bolton (1980), return in hPa
     return 6.112*np.exp(17.67*x/(243.5 + x))
     
+def load_ceres(case='20200313',t_filter = 1.,PATH='../../data_files/'):
+    
+    ## load coincident MAC-LWP retrievals (Elsaesser et al., 2017)
+    ## __input__
+    ## case........string of COMBLE date
+    ## t_filter....time window around arrival of trajectory (hours)
+    ## PATH........directory
+    
+    if case == '20200313':
+        file = 'viirs_2020-03-13_satdat.csv'
+        t_off = 18.
+    
+    data = pd.read_csv(PATH + file)
+    
+    ## exclude greater temperoral offsets
+    data = data.loc[abs(data['tdiff']) <= t_filter]
+    
+    ## exclude bispectral retrievals under high SZA
+    data['time'] = (data['time.rel'] + t_off)*3600.
+    ## placeholder for long- and shortwave flux nomenclature
+    #data['zi'] = data['swflx']
+    #data['zi.25'] = data['swflx.25']
+    #data['zi.75'] = data['swflx.75']
+    
+    #data['cod'] = data['cod.me']
+    data.index = data['time']
+     
+    data['class'] = data['sat']
+    return data
+
+
 
 def load_viirs(case='20200313',t_filter = 1.,sza_filter = 80.,PATH='../../data_files/'):
     
@@ -97,7 +128,7 @@ def load_maclwp(case='20200313',t_filter = 1.,PATH='../../data_files/'):
     ## PATH........directory
     
     if case == '20200313':
-        file = 'maclwp_2020-03-13_satdat2.csv'
+        file = 'maclwp_2020-03-13_satdat3.csv'
         t_off = 18.
     
     data = pd.read_csv(PATH + file)
@@ -115,6 +146,8 @@ def load_maclwp(case='20200313',t_filter = 1.,PATH='../../data_files/'):
     
     data_mac = data
     data_mac['lwp_bu'] = data['lwp'][:]/1000.
+    data_mac['lwp_bu.25'] = data['lwp.25'][:]/1000.
+    data_mac['lwp_bu.75'] = data['lwp.75'][:]/1000.
     data_mac['class'] = data_mac['sat']
     return data_mac
 
@@ -360,14 +393,16 @@ def plot_1d(df_col,var_vec):
     for label, df in df_col.groupby('class'):
         if label=='MAC-LWP':
             df['lwp'] = df['lwp_bu']
+            df['lwp.25'] = df['lwp_bu.25']
+            df['lwp.75'] = df['lwp_bu.75']
         for ii in range(len(var_vec)):
             if len(var_vec) == 1:
                 obj = axs
             else:
                 obj = axs[ii]
-            if (label=='MAC-LWP') | (label=='MODIS') | (label=='VIIRS'):
+            if (label=='MAC-LWP') | (label=='MODIS') | (label=='VIIRS') | (label=='CERES'):
                 obj.scatter(df.time/3600,df[var_vec[ii]],label=label,c='k',marker=plot_symbol[counter_symbol])
-                if (label=='MODIS') | (label=='VIIRS'):
+                if (label=='MAC-LWP') | (label=='VIIRS') | (label=='MODIS') | (label=='CERES'):
                     if np.count_nonzero(np.isnan(df[var_vec[ii]])) < len(df[var_vec[ii]]):
                         error_1 = np.abs(df[var_vec[ii]] - df[var_vec[ii]+'.25'])
                         error_2 = np.abs(df[var_vec[ii]+'.75'] - df[var_vec[ii]])
