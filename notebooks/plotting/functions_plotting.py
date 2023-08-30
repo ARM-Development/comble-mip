@@ -52,6 +52,37 @@ def load_ceres(case='20200313',t_filter = 1.,PATH='../../data_files/'):
     return data
 
 
+def load_sentinel(case='20200313',t_filter = 1.,sza_filter = 80.,PATH='../../data_files/'):
+    
+    ## load coincident MAC-LWP retrievals (Elsaesser et al., 2017)
+    ## __input__
+    ## case........string of COMBLE date
+    ## t_filter....time window around arrival of trajectory (hours)
+    ## PATH........directory
+    
+    if case == '20200313':
+        file = 'sentinel_2020-03-13_satdat.csv'
+        t_off = 18.
+    
+    data = pd.read_csv(PATH + file)
+    
+    ## exclude greater temperoral offsets
+    data = data.loc[abs(data['tdiff']) <= t_filter]
+    
+    ## exclude bispectral retrievals under high SZA
+    data.loc[data['sza'] > sza_filter,['cod','cod.25','cod.75']] = np.nan 
+    
+    data['time'] = (data['time.rel'] + t_off)*3600.
+    data['zi'] = data['cth']
+    data['zi.25'] = data['cth.25']
+    data['zi.75'] = data['cth.75']
+    
+    #data['cod'] = data['cod.me']
+    data.index = data['time']
+     
+    data['class'] = data['sat']
+    return data
+
 
 def load_viirs(case='20200313',t_filter = 1.,sza_filter = 80.,PATH='../../data_files/'):
     
@@ -378,7 +409,7 @@ def plot_1d(df_col,var_vec):
     
     ## 1D plots
     plot_colors = ["#E69F00", "#56B4E9", "#009E73","#0072B2", "#D55E00", "#CC79A7","#F0E442"]
-    plot_symbol = ['s','o','D','1']
+    plot_symbol = ['x','s','+','o','D','1']
     
     counter = 0
     counter_symbol = 0
@@ -400,9 +431,9 @@ def plot_1d(df_col,var_vec):
                 obj = axs
             else:
                 obj = axs[ii]
-            if (label=='MAC-LWP') | (label=='MODIS') | (label=='VIIRS') | (label=='CERES'):
+            if (label=='MAC-LWP') | (label=='MODIS') | (label=='VIIRS') | (label=='CERES') | (label=='SENTINEL'):
                 obj.scatter(df.time/3600,df[var_vec[ii]],label=label,c='k',marker=plot_symbol[counter_symbol])
-                if (label=='MAC-LWP') | (label=='VIIRS') | (label=='MODIS') | (label=='CERES'):
+                if (label=='MAC-LWP') | (label=='VIIRS') | (label=='MODIS') | (label=='CERES')| (label=='SENTINEL'):
                     if np.count_nonzero(np.isnan(df[var_vec[ii]])) < len(df[var_vec[ii]]):
                         error_1 = np.abs(df[var_vec[ii]] - df[var_vec[ii]+'.25'])
                         error_2 = np.abs(df[var_vec[ii]+'.75'] - df[var_vec[ii]])
