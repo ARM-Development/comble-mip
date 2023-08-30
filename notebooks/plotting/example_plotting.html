@@ -393,9 +393,10 @@ document.write(`
 <span class="c1">## load MAC-LWP</span>
 <span class="n">maclwp_dat</span> <span class="o">=</span> <span class="n">load_maclwp</span><span class="p">(</span><span class="n">PATH</span><span class="o">=</span><span class="s1">&#39;../../data_files/&#39;</span><span class="p">,</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">)</span>
 
-<span class="c1">## load MODIS and VIIRS retrievals</span>
-<span class="n">modis_dat</span> <span class="o">=</span> <span class="n">load_modis</span><span class="p">(</span><span class="n">PATH</span><span class="o">=</span><span class="s1">&#39;../../data_files/&#39;</span><span class="p">,</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">)</span>
-<span class="n">viirs_dat</span> <span class="o">=</span> <span class="n">load_viirs</span><span class="p">(</span><span class="n">PATH</span><span class="o">=</span><span class="s1">&#39;../../data_files/&#39;</span><span class="p">,</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">)</span>
+<span class="c1">## load MODIS, VIIRS, and SENTINEL retrievals</span>
+<span class="n">modis_dat</span>    <span class="o">=</span> <span class="n">load_modis</span><span class="p">(</span><span class="n">PATH</span><span class="o">=</span><span class="s1">&#39;../../data_files/&#39;</span><span class="p">,</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">)</span>
+<span class="n">viirs_dat</span>    <span class="o">=</span> <span class="n">load_viirs</span><span class="p">(</span><span class="n">PATH</span><span class="o">=</span><span class="s1">&#39;../../data_files/&#39;</span><span class="p">,</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">)</span>
+<span class="n">sentinel_dat</span> <span class="o">=</span> <span class="n">load_sentinel</span><span class="p">(</span><span class="n">PATH</span><span class="o">=</span><span class="s1">&#39;../../data_files/&#39;</span><span class="p">,</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">)</span>
 
 <span class="c1">## load CERES retrievals</span>
 <span class="n">ceres_dat</span> <span class="o">=</span> <span class="n">load_ceres</span><span class="p">(</span><span class="n">PATH</span><span class="o">=</span><span class="s1">&#39;../../data_files/&#39;</span><span class="p">,</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">)</span>
@@ -466,7 +467,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## plot variables that have only time dependence</span>
-<span class="n">plot_1d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_1d</span><span class="p">,</span><span class="n">maclwp_dat</span><span class="p">,</span><span class="n">modis_dat</span><span class="p">,</span><span class="n">viirs_dat</span><span class="p">]),[</span><span class="s1">&#39;lwp&#39;</span><span class="p">,</span><span class="s1">&#39;cod&#39;</span><span class="p">,</span><span class="s1">&#39;ctt&#39;</span><span class="p">,</span><span class="s1">&#39;zi&#39;</span><span class="p">])</span>
+<span class="n">plot_1d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_1d</span><span class="p">,</span><span class="n">maclwp_dat</span><span class="p">,</span><span class="n">modis_dat</span><span class="p">,</span><span class="n">viirs_dat</span><span class="p">,</span><span class="n">sentinel_dat</span><span class="p">]),[</span><span class="s1">&#39;lwp&#39;</span><span class="p">,</span><span class="s1">&#39;cod&#39;</span><span class="p">,</span><span class="s1">&#39;ctt&#39;</span><span class="p">,</span><span class="s1">&#39;zi&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -474,7 +475,7 @@ document.write(`
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computing Liquid Water Path
 </pre></div>
 </div>
-<img alt="../../_images/53d7e272226bddae4303322a3e94e3b88c2c604b0eb438eb63c2023286e5a934.png" src="../../_images/53d7e272226bddae4303322a3e94e3b88c2c604b0eb438eb63c2023286e5a934.png" />
+<img alt="../../_images/af25cb1d3ff2eecb6239c5e8937c876c4d549a68d7b2416cd10618bf98abcce3.png" src="../../_images/af25cb1d3ff2eecb6239c5e8937c876c4d549a68d7b2416cd10618bf98abcce3.png" />
 </div>
 </div>
 <div class="cell docutils container">
