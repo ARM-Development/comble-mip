@@ -1,6 +1,9 @@
 format: jb-book
 root: README
 parts:
+- caption: Project Information
+  chapters:
+    - file: goals_hypotheses
 - caption: Participants
   chapters:
     - glob: notebooks/participants/*
