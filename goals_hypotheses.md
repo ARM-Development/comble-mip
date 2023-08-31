@@ -1,4 +1,6 @@
-## Project Goals
+# Project Goals and Hypotheses
+
+## Goals
 The main focus of this COMBLE MIP is to evaluate the capability of LES and SCM simulations to reproduce the Lagrangian evolution (~1000 km distance) of Arctic convective mixed-phase cloud features under strong CAO conditions. We seek to understand the fundamental convective boundary layer and mixed-phase cloud properties, including the spread between state-of-the-art models, as well as explore which factors control mesoscale cloud organization and cloud physical properties in simulations under the observed conditions. Ground-based measurements taken during COMBLE, in addition to satellite observations, will be combined with various data analysis techniques to tackle the aforementioned goals.
 
 ## Questions & Hypotheses
