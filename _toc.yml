@@ -22,7 +22,7 @@ parts:
 - caption: Output Conversion Notebooks
   chapters:
     - glob: notebooks/conversion_output/*
-- caption: Plot Results
+- caption: Plotting and Analysis
   chapters:
     - glob: notebooks/plotting/*
 - caption: Supporting Materials
