@@ -16,4 +16,4 @@ EMC<sup>2</sup> can also be applied to the COMBLE-MIP LES outputs to simulate sa
 Direct comparison of the (top) observed attenuated backscatter from CALIOP with (bottom) simulated attenuated backscatter applying EMC{sup}`2` to the NASA DHARMA LES model.
 ```
 
-For the COMBLE-MIP, we will apply EMC<sup>2</sup> to participant's LES output fields. More details to come regarding which 3D output fields are required.
+For the COMBLE-MIP, we will apply EMC<sup>2</sup> to participants' LES output fields. More details to come regarding which 3D output fields are required.
