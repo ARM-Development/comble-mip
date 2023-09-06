@@ -1,6 +1,9 @@
 format: jb-book
 root: README
 parts:
+- caption: Project Information
+  chapters:
+    - file: goals_hypotheses
 - caption: Participants
   chapters:
     - glob: notebooks/participants/*
@@ -19,9 +22,10 @@ parts:
 - caption: Output Conversion Notebooks
   chapters:
     - glob: notebooks/conversion_output/*
-- caption: Plot Results
+- caption: Plotting and Analysis
   chapters:
-    - glob: notebooks/plotting/*
+    - file: notebooks/plotting/example_plotting.ipynb
+    - file: emc2
 - caption: Supporting Materials
   chapters:
     - file: notebooks/forcing/create_comble_forcing_v2.2.ipynb

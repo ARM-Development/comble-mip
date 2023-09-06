@@ -7,15 +7,13 @@
 (Left) MODIS visible satellite image over the Norwegian Sea region on 13 March 2020. Colored lines show backward trajectories from 18 UTC at Andenes, Norway (denoted by the blue star) at altitudes of 500, 1000, and 2000 m ASL in cyan, yellow, and blue, respectively. (Right) Vertically pointing radar, lidar, microwave radiometer, and meteorological measurements at Andenes highlight the convective nature of cellular clouds, characterized by high reflectivity, strong vertical motions, liquid water pockets, and intense turbulence structures. 
 ```
 
-## Background, Motivation, and Goals
+## Background & Motivation
 
 This website hosts information about the Cold-Air Outbreaks in the Marine Boundary Layer Experiment (COMBLE) Model-Observation Intercomparison Project (MIP) for large-eddy simulation (LES) and single-column models (SCMs). The intercomparison, which was initiated in late 2021, focuses on a cold-air outbreak event observed over the Norwegian Sea on 13 March 2020 (Fig. 1) during the US Department of Energy's COMBLE field campaign [(Geerts et al., 2023)](https://journals.ametsoc.org/view/journals/bams/103/5/BAMS-D-21-0044.1.xml). Despite the frequent occurrence of Arctic CAOs, numerical weather prediction models often have difficulty representing the convective boundary layer structure and turbulence, as well as mixed-phase cloud properties. Moreover, earth system models face similar challenges with respect to predicting mixed-phase cloud feedbacks and equilibrium climate sensitivity.
 
 In mid-2022, a [COMBLE MIP white paper](https://www.gewexevents.org/wp-content/uploads/COMBLE_white_paper.pdf) was accepted by the GEWEX Atmospheric System Study (GASS) panel, describing a two-phase project for LES and SCM models. In phase one, droplet and ice concentrations are specified. In phase two, the specification adds an observation-informed initial aerosol size distribution profile with modally specified composition and hygroscopicity, adequate for prognosing droplet activation and heterogeneous ice formation. The COMBLE MIP effort has been an early adopter of the [DOE ARM Data Workbench](https://armcrf.servicenowservices.com/kb?id=kb_search&kb_knowledge_base=d932abb71ba9d590094aebdbac4bcb8b) to support each stage of participation, in addition to providing access to the [DOE Cumulus HPC](https://www.arm.gov/capabilities/computing-resources) for computationally intensive forward-simulation for model evaluation against ground-based lidar and radar measurements at Andenes.
 
-The main focus of this COMBLE MIP is to evaluate the capability of LES and SCM simulations to reproduce the Lagrangian evolution (~1000 km distance) of Arctic convective mixed-phase cloud features under strong CAO conditions. We seek to understand the fundamental convective boundary layer and mixed-phase cloud properties, including the spread between state-of-the-art models, as well as explore which factors control mesoscale cloud organization and cloud physical properties in simulations under the observed conditions. Ground-based measurements taken during COMBLE, in addition to satellite observations, will be combined with various data analysis techniques to tackle the aforementioned goals.
-
-We welcome you to explore the website to learn more about the COMBLE-MIP framework and workflow.
+We welcome you to explore the website to learn more about the COMBLE-MIP project, including goals & hypotheses, modeling framework, and workflows.
 
 ## Model Inputs
 
@@ -39,7 +37,7 @@ Example scripts to convert the DEPHY standard format to ASCII or other netCDF fo
 Example scripts to convert specific model results back to the DEPHY standard format prior to submission.
 
 * [DHARMA LES output &rarr; DEPHY](https://arm-development.github.io/comble-mip/notebooks/conversion_output/convert_DHARMA_LES_output_to_dephy_format.html)
-* WRF-LES output &rarr; DEPHY (Coming soon...)
+* [WRF-LES output &rarr; DEPHY](https://arm-development.github.io/comble-mip/notebooks/conversion_output/convert_WRF_LES_output_to_dephy_format.html)
 
 ### Visualization Tools
 
