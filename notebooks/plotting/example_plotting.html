@@ -392,19 +392,27 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## load ERA5 fields</span>
 <span class="n">era5_1d</span><span class="p">,</span> <span class="n">era5_2d</span> <span class="o">=</span> <span class="n">load_era5</span><span class="p">(</span><span class="n">PATH</span><span class="o">=</span><span class="s1">&#39;../../data_files/&#39;</span><span class="p">)</span>
 
+<span class="c1">## load DOE ARM site statistics</span>
+<span class="n">kazrkollias_dat</span> <span class="o">=</span> <span class="n">load_kazrkollias</span><span class="p">()</span> 
+<span class="n">kazrclough_dat</span> <span class="o">=</span> <span class="n">load_kazrclough</span><span class="p">()</span> 
+<span class="n">aeri_dat</span> <span class="o">=</span> <span class="n">load_aeri</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">)</span>
+
 <span class="c1">## load radiosondes</span>
-<span class="n">rs_dat</span> <span class="o">=</span> <span class="n">load_rs</span><span class="p">(</span><span class="n">PATH</span><span class="o">=</span><span class="s1">&#39;../../data_files/&#39;</span><span class="p">,</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">6.</span><span class="p">)</span>
+<span class="n">rs_dat</span> <span class="o">=</span> <span class="n">load_rs</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">6.</span><span class="p">)</span>
 
 <span class="c1">## load MAC-LWP</span>
-<span class="n">maclwp_dat</span> <span class="o">=</span> <span class="n">load_maclwp</span><span class="p">(</span><span class="n">PATH</span><span class="o">=</span><span class="s1">&#39;../../data_files/&#39;</span><span class="p">,</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">)</span>
+<span class="n">maclwp_dat</span> <span class="o">=</span> <span class="n">load_maclwp</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">)</span> 
 
 <span class="c1">## load MODIS, VIIRS, and SENTINEL retrievals</span>
-<span class="n">modis_dat</span>    <span class="o">=</span> <span class="n">load_modis</span><span class="p">(</span><span class="n">PATH</span><span class="o">=</span><span class="s1">&#39;../../data_files/&#39;</span><span class="p">,</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">)</span>
-<span class="n">viirs_dat</span>    <span class="o">=</span> <span class="n">load_viirs</span><span class="p">(</span><span class="n">PATH</span><span class="o">=</span><span class="s1">&#39;../../data_files/&#39;</span><span class="p">,</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">)</span>
-<span class="n">sentinel_dat</span> <span class="o">=</span> <span class="n">load_sentinel</span><span class="p">(</span><span class="n">PATH</span><span class="o">=</span><span class="s1">&#39;../../data_files/&#39;</span><span class="p">,</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">)</span>
+<span class="n">modis_dat</span>    <span class="o">=</span> <span class="n">load_modis</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">,</span><span class="n">sza_filter</span> <span class="o">=</span> <span class="mf">75.</span><span class="p">)</span>
+<span class="n">viirs_dat</span>    <span class="o">=</span> <span class="n">load_viirs</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">,</span><span class="n">sza_filter</span> <span class="o">=</span> <span class="mf">75.</span><span class="p">)</span>
+<span class="n">sentinel_dat</span> <span class="o">=</span> <span class="n">load_sentinel</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">,</span><span class="n">sza_filter</span> <span class="o">=</span> <span class="mf">75.</span><span class="p">)</span>
 
 <span class="c1">## load CERES retrievals</span>
-<span class="n">ceres_dat</span> <span class="o">=</span> <span class="n">load_ceres</span><span class="p">(</span><span class="n">PATH</span><span class="o">=</span><span class="s1">&#39;../../data_files/&#39;</span><span class="p">,</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">)</span>
+<span class="n">ceres_dat</span> <span class="o">=</span> <span class="n">load_ceres</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">)</span>
+
+<span class="c1">## load CALIPSO retrievals (note the increased time window)</span>
+<span class="n">calipso_dat</span> <span class="o">=</span> <span class="n">load_calipso</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">3.</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -472,7 +480,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## plot variables that have only time dependence</span>
-<span class="n">plot_1d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_1d</span><span class="p">,</span><span class="n">maclwp_dat</span><span class="p">,</span><span class="n">modis_dat</span><span class="p">,</span><span class="n">viirs_dat</span><span class="p">,</span><span class="n">sentinel_dat</span><span class="p">]),[</span><span class="s1">&#39;lwp&#39;</span><span class="p">,</span><span class="s1">&#39;cod&#39;</span><span class="p">,</span><span class="s1">&#39;ctt&#39;</span><span class="p">,</span><span class="s1">&#39;zi&#39;</span><span class="p">])</span>
+<span class="n">plot_1d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_1d</span><span class="p">,</span><span class="n">maclwp_dat</span><span class="p">,</span><span class="n">modis_dat</span><span class="p">,</span><span class="n">viirs_dat</span><span class="p">,</span><span class="n">sentinel_dat</span><span class="p">,</span><span class="n">kazrkollias_dat</span><span class="p">,</span><span class="n">kazrclough_dat</span><span class="p">,</span><span class="n">calipso_dat</span><span class="p">]),[</span><span class="s1">&#39;iwp&#39;</span><span class="p">,</span><span class="s1">&#39;lwp&#39;</span><span class="p">,</span><span class="s1">&#39;cod&#39;</span><span class="p">,</span><span class="s1">&#39;ctt&#39;</span><span class="p">,</span><span class="s1">&#39;zi&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -480,7 +488,7 @@ document.write(`
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computing Liquid Water Path
 </pre></div>
 </div>
-<img alt="../../_images/af25cb1d3ff2eecb6239c5e8937c876c4d549a68d7b2416cd10618bf98abcce3.png" src="../../_images/af25cb1d3ff2eecb6239c5e8937c876c4d549a68d7b2416cd10618bf98abcce3.png" />
+<img alt="../../_images/64105d4b9573cd0e4c098ed4a3a3ed4c297036ff20cfb08a173b3d355e1358d3.png" src="../../_images/64105d4b9573cd0e4c098ed4a3a3ed4c297036ff20cfb08a173b3d355e1358d3.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -489,7 +497,7 @@ document.write(`
 <span class="c1">#plot_2d(df_col_2d,var_vec_2d,[0,3,6,9,12,15,18],z_max=6000)</span>
 
 <span class="c1">## example where ERA5 and radiosonde are included</span>
-<span class="n">plot_2d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_2d</span><span class="p">,</span><span class="n">era5_2d</span><span class="p">,</span><span class="n">rs_dat</span><span class="p">]),</span><span class="n">var_vec</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;theta&#39;</span><span class="p">,</span><span class="s1">&#39;qv&#39;</span><span class="p">,</span><span class="s1">&#39;ws&#39;</span><span class="p">,</span><span class="s1">&#39;wd&#39;</span><span class="p">],</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">18</span><span class="p">],</span><span class="n">z_max</span><span class="o">=</span><span class="mi">6000</span><span class="p">)</span>
+<span class="n">plot_2d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_2d</span><span class="p">,</span><span class="n">era5_2d</span><span class="p">,</span><span class="n">rs_dat</span><span class="p">,</span><span class="n">aeri_dat</span><span class="p">]),</span><span class="n">var_vec</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;theta&#39;</span><span class="p">,</span><span class="s1">&#39;qv&#39;</span><span class="p">,</span><span class="s1">&#39;ws&#39;</span><span class="p">,</span><span class="s1">&#39;wd&#39;</span><span class="p">],</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">18</span><span class="p">],</span><span class="n">z_max</span><span class="o">=</span><span class="mi">6000</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -498,7 +506,7 @@ document.write(`
 Computing wind direction
 </pre></div>
 </div>
-<img alt="../../_images/01846ff3d3f608d620ac1df935041e8c0ee9fdbbd3c908d08c343a8ebdea61fc.png" src="../../_images/01846ff3d3f608d620ac1df935041e8c0ee9fdbbd3c908d08c343a8ebdea61fc.png" />
+<img alt="../../_images/5bffdbd9ed3257d8a053ad36e82a6d866878f0eac836934b50e209b1d36b8d90.png" src="../../_images/5bffdbd9ed3257d8a053ad36e82a6d866878f0eac836934b50e209b1d36b8d90.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x600 with 0 Axes&gt;
 </pre></div>
 </div>
