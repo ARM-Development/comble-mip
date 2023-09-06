@@ -550,6 +550,7 @@ def plot_1d(df_col,var_vec):
     if len(var_vec) > 1:
         for ax in axs.flat:
             ax.set(xlabel='Time (h)', ylabel=var_vec[i_count])
+            ax.set_xlim([np.min(df_col.time)/3600 - 0.5, np.max(df_col.time)/3600 + 0.5])
             i_count += 1
         
         # Hide x labels and tick labels for top plots and y ticks for right plots.
