@@ -84,6 +84,33 @@ def load_calipso(case='20200313',t_filter = 1.,PATH='../../data_files/'):
     data['class'] = data['sat']
     return data
 
+def load_iwpgong(case='20200313',t_filter = 1.,sza_filter = 80.,PATH='../../data_files/'):
+    
+    ## load coincident MAC-LWP retrievals (Elsaesser et al., 2017)
+    ## __input__
+    ## case........string of COMBLE date
+    ## t_filter....time window around arrival of trajectory (hours)
+    ## PATH........directory
+    
+    if case == '20200313':
+        file = 'gongiwp_2020-03-13_satdat2.csv'
+        t_off = 18.
+    
+    data = pd.read_csv(PATH + file)
+    
+    ## exclude greater temperoral offsets
+    data = data.loc[abs(data['tdiff']) <= t_filter]
+        
+    data['time'] = (data['time.rel'] + t_off)*3600.
+    
+    data['iwp'] = data['iwp']/1000
+    data['iwp.25'] = data['iwp']/1000
+    data['iwp.75'] = data['iwp']/1000
+    data.index = data['time']
+     
+    data['class'] = data['sat']
+    return data
+
 def load_sentinel(case='20200313',t_filter = 1.,sza_filter = 80.,PATH='../../data_files/'):
     
     ## load coincident MAC-LWP retrievals (Elsaesser et al., 2017)
@@ -211,7 +238,7 @@ def load_maclwp(case='20200313',t_filter = 1.,PATH='../../data_files/'):
     data_mac['class'] = data_mac['sat']
     return data_mac
 
-def load_kazrkollias(case='20200313',PATH='../../data_files/'):
+def load_kazrkollias(case='20200313',PATH='../../data_files/',aux_dat=pd.DataFrame()):
     
     ## load coincident MAC-LWP retrievals (Elsaesser et al., 2017)
     ## __input__
@@ -233,6 +260,15 @@ def load_kazrkollias(case='20200313',PATH='../../data_files/'):
     data['lwp_bu.25'] = data['lwp.25'][:]/1000.
     data['lwp_bu.75'] = data['lwp.75'][:]/1000.
     data['class'] = data['source']
+    
+    if aux_dat.shape[0] > 0:
+        print('KAZR (Kollias): here using auxiliary field to estimate cloud-top temperature')
+        aux_dat['zdiff'] = np.abs(aux_dat['zf'] - np.float(data['zi']))
+        aux_dat['zdiff.25'] = np.abs(aux_dat['zf'] - np.float(data['zi.25']))
+        aux_dat['zdiff.75'] = np.abs(aux_dat['zf'] - np.float(data['zi.75']))
+        data['ctt'] = np.mean(aux_dat.loc[aux_dat['zdiff'] < 10,'ta']) - 273.15
+        data['ctt.25'] = np.mean(aux_dat.loc[aux_dat['zdiff.25'] < 10,'ta']) - 273.15
+        data['ctt.75'] = np.mean(aux_dat.loc[aux_dat['zdiff.75'] < 10,'ta']) - 273.15
     
     return data
 
@@ -508,7 +544,7 @@ def plot_1d(df_col,var_vec):
     
     ## 1D plots
     plot_colors = ["#E69F00", "#56B4E9", "#009E73","#0072B2", "#D55E00", "#CC79A7","#F0E442"]
-    plot_symbol = ['D','+','s','o','x','1','2']
+    plot_symbol = ['D','+','s','o','x','1','2','3']
     
     counter = 0
     counter_symbol = 0
@@ -530,7 +566,7 @@ def plot_1d(df_col,var_vec):
                 obj = axs
             else:
                 obj = axs[ii]
-            if (label=='MAC-LWP') | (label=='MODIS') | (label=='VIIRS') | (label=='CERES') | (label=='SENTINEL') | (label=='KAZR (Kollias)')| (label=='KAZR (Clough)')| (label=='CALIOP'):
+            if (label=='MAC-LWP') | (label=='MODIS') | (label=='VIIRS') | (label=='CERES') | (label=='SENTINEL') | (label=='KAZR (Kollias)')| (label=='KAZR (Clough)')| (label=='CALIOP')| (label=='ATMS'):
                 obj.scatter(df.time/3600,df[var_vec[ii]],label=label,c='k',marker=plot_symbol[counter_symbol])
                 if (label=='MAC-LWP') | (label=='VIIRS') | (label=='MODIS') | (label=='CERES')| (label=='SENTINEL') | (label=='KAZR (Kollias)')| (label=='KAZR (Clough)')| (label=='CALIOP'):
                     if np.count_nonzero(np.isnan(df[var_vec[ii]])) < len(df[var_vec[ii]]):
