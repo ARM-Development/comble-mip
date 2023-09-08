@@ -400,6 +400,7 @@ document.write(`
 <span class="n">kazrkollias_dat</span> <span class="o">=</span> <span class="n">load_kazrkollias</span><span class="p">(</span><span class="n">aux_dat</span><span class="o">=</span><span class="n">rs_dat</span><span class="p">)</span> <span class="c1">## here using radiosonde profiles to estimate CTT</span>
 <span class="n">kazrclough_dat</span> <span class="o">=</span> <span class="n">load_kazrclough</span><span class="p">()</span> 
 <span class="n">aeri_dat</span> <span class="o">=</span> <span class="n">load_aeri</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="n">radflux_dat</span> <span class="o">=</span> <span class="n">load_radflux</span><span class="p">()</span>
 
 <span class="c1">## load MAC-LWP</span>
 <span class="n">maclwp_dat</span> <span class="o">=</span> <span class="n">load_maclwp</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">)</span> 
@@ -485,8 +486,8 @@ KAZR (Kollias): here using auxiliary field to estimate cloud-top temperature
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## plot variables that have only time dependence</span>
 <span class="c1">#plot_1d(pd.concat([df_col_1d,maclwp_dat,modis_dat,viirs_dat,sentinel_dat,kazrkollias_dat,kazrclough_dat,calipso_dat,gongiwp_dat]),[&#39;zi&#39;,&#39;cod&#39;,&#39;lwp&#39;,&#39;iwp&#39;,&#39;ctt&#39;])</span>
 
-<span class="c1">## plot variables that have only time dependence (for now excluding imager retrievals that are SZA &gt; 70)</span>
-<span class="n">plot_1d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_1d</span><span class="p">,</span><span class="n">maclwp_dat</span><span class="p">,</span><span class="n">kazrkollias_dat</span><span class="p">,</span><span class="n">kazrclough_dat</span><span class="p">,</span><span class="n">calipso_dat</span><span class="p">,</span><span class="n">gongiwp_dat</span><span class="p">]),[</span><span class="s1">&#39;zi&#39;</span><span class="p">,</span><span class="s1">&#39;cod&#39;</span><span class="p">,</span><span class="s1">&#39;lwp&#39;</span><span class="p">,</span><span class="s1">&#39;iwp&#39;</span><span class="p">,</span><span class="s1">&#39;ctt&#39;</span><span class="p">])</span>
+<span class="c1">## plot variables that have only time dependence (for now excluding imager retrievals that are mostly SZA &gt; 70)</span>
+<span class="n">plot_1d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_1d</span><span class="p">,</span><span class="n">maclwp_dat</span><span class="p">,</span><span class="n">kazrkollias_dat</span><span class="p">,</span><span class="n">kazrclough_dat</span><span class="p">,</span><span class="n">calipso_dat</span><span class="p">,</span><span class="n">gongiwp_dat</span><span class="p">,</span><span class="n">radflux_dat</span><span class="p">]),[</span><span class="s1">&#39;zi&#39;</span><span class="p">,</span><span class="s1">&#39;cod&#39;</span><span class="p">,</span><span class="s1">&#39;lwp&#39;</span><span class="p">,</span><span class="s1">&#39;iwp&#39;</span><span class="p">,</span><span class="s1">&#39;ctt&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -494,7 +495,7 @@ KAZR (Kollias): here using auxiliary field to estimate cloud-top temperature
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computing Liquid Water Path
 </pre></div>
 </div>
-<img alt="../../_images/93004449910397651c282383078adec4acd208ef1aacf35cea857af2e3322c27.png" src="../../_images/93004449910397651c282383078adec4acd208ef1aacf35cea857af2e3322c27.png" />
+<img alt="../../_images/3874e6b34ec20361fd8a88600ccd306ae7498944b2b63a1248b6c6cd57f8dfee.png" src="../../_images/3874e6b34ec20361fd8a88600ccd306ae7498944b2b63a1248b6c6cd57f8dfee.png" />
 </div>
 </div>
 <div class="cell docutils container">
