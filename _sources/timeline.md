@@ -6,5 +6,5 @@ Ready to make your model outputs accessible to other MIP participants? Please re
 
 | Stage                                | Product                                                                                                   | Due Date                                                       |
 |--------------------------------------|-----------------------------------------------------------------------------------------------------------|----------------------------------------------------------------|
-| Phase I                              | - SCM/small-domain LES, liquid-only<br>- SCM/small-domain LES with ice<br>- Large domain LES with ice     | Nov. 15, 2023<br>Nov. 15, 2023<br>Feb. 1, 2024                 |
-| Phase II                             | - SCM/small-domain LES, liquid-only<br>- SCM/small-domain LES with ice<br>- Large domain LES with ice     | Nov. 15, 2023<br>Nov. 15, 2023<br>Feb. 1, 2024                 |
+| Phase I                              | - SCM/small-domain LES, liquid-only<br>- SCM/small-domain LES with ice<br>- Large domain LES with ice     | Dec. 15, 2023<br>Dec. 15, 2023<br>Mar. 1, 2024                 |
+| Phase II                             | - SCM/small-domain LES, liquid-only<br>- SCM/small-domain LES with ice<br>- Large domain LES with ice     | Jan. 15, 2023<br>Jan. 15, 2023<br>Apr. 1, 2024                 |
