@@ -11,7 +11,7 @@ parts:
   chapters:
     - glob: notebooks/howto/*
     - file: CONTRIBUTING
-- caption: Model Setup & Timeline
+- caption: Model Setup, Timeline, & File Naming
   chapters:
     - file: main_configuration
     - file: notebooks/output/output_list.ipynb
