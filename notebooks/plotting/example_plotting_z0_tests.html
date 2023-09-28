@@ -388,6 +388,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypothesis">Hypothesis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#approach">Approach</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sensitivities">Sensitivities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-results">Summary of Results</a></li>
 </ul>
             </nav>
         </div>
@@ -531,6 +532,23 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## print mean values for each time series</span>
+<span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">df</span> <span class="ow">in</span> <span class="n">df_col_1d</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;class&#39;</span><span class="p">):</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;z0&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;z0t&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;z0q&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>wrf/sandbox/z0_1 0.0007639845921761835 7.127002311665883e-06 7.127002311665883e-06
+wrf/sandbox/z0_2 0.0007619791493847235 7.618949649550206e-05 7.618949649550206e-05
+wrf/sandbox/z0_3 0.0006572614304133966 3.6846472822802134e-06 3.6846472822802134e-06
+wrf/sandbox/z0_4 0.0008962655447701696 5.477178466015522e-06 5.477178466015522e-06
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## plot the 1-d variables, plus ERA5 and radiosondes at Andenes</span>
 <span class="n">plot_2d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_2d</span><span class="p">,</span><span class="n">era5_2d</span><span class="p">,</span><span class="n">rs_dat</span><span class="p">,</span><span class="n">aeri_dat</span><span class="p">]),</span><span class="n">var_vec</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;theta&#39;</span><span class="p">,</span><span class="s1">&#39;qv&#39;</span><span class="p">,</span><span class="s1">&#39;ws&#39;</span><span class="p">,</span><span class="s1">&#39;wd&#39;</span><span class="p">],</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">18</span><span class="p">],</span><span class="n">z_max</span><span class="o">=</span><span class="mi">6000</span><span class="p">)</span>
 </pre></div>
@@ -581,6 +599,15 @@ Computing wind direction
 <img alt="../../_images/5a8a80241c5126349188957ab7227abf1189dcf0e8223cda3b46a8fd2ae13b36.png" src="../../_images/5a8a80241c5126349188957ab7227abf1189dcf0e8223cda3b46a8fd2ae13b36.png" />
 </div>
 </div>
+</section>
+<section id="summary-of-results">
+<h2>Summary of Results<a class="headerlink" href="#summary-of-results" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Choice of roughness length parameterization can have substantial impact on surface heat fluxes under the convective CAO conditions studied here (up to ~20-30% difference between <em>z0_2</em> and the other runs).</p></li>
+<li><p>In turn, the enhanced surface heat fluxes in <em>z0_2</em> lead to larger domain-averaged LWP and IWP values, with perhaps larger cells (as suggested by the greater fluctuations in values). Although, we are limited by domain size (Lx = Ly = 25.6 km) and cannot confidently say whether this is true.</p></li>
+<li><p>The assumption of z0t = z0q = 0.1*z0 may be unreasonable in this case, as <em>z0_1</em> suggests much smaller z0t and z0q values. However, lack of observations prevents us from coming to a conclusion on this topic.</p></li>
+<li><p>The fixed roughness lengths, which are used in <em>z0_4</em>, are reasonable approximations for those derived from <em>z0_1</em>, with relatively small differences apparent in the domain-mean (thermo)-dynamical and cloud fields.</p></li>
+</ul>
 </section>
 </section>
 
@@ -650,6 +677,7 @@ Computing wind direction
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypothesis">Hypothesis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#approach">Approach</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sensitivities">Sensitivities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-results">Summary of Results</a></li>
 </ul>
   </nav></div>
 
