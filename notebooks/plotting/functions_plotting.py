@@ -563,7 +563,7 @@ def plot_1d(df_col,var_vec,t0=-2.,t1=18.):
     ## t0.........starting plot time (h relative to ice edge)
     ## t1.........end plot time (h relative to ice edge)
     
-    t0 = t0*3600.
+    t0 = t0*3600. # convert h to s
     t1 = t1*3600.
     
     ## 1D plots
@@ -575,9 +575,7 @@ def plot_1d(df_col,var_vec,t0=-2.,t1=18.):
         
     fig, axs = plt.subplots(len(var_vec),1,figsize=(5,1 + 2*len(var_vec)))
     for label, df in df_col.groupby('class'):
-        #print (df)
         df = df[(df.time>t0) & (df.time<t1)]
-        #print (df)
         if (label=='MAC-LWP') | (label=='KAZR (Kollias)')| (label=='KAZR (Clough)'):
             df['lwp'] = df['lwp_bu']
             df['lwp.25'] = df['lwp_bu.25']
