@@ -25,6 +25,7 @@ parts:
 - caption: Plotting and Analysis
   chapters:
     - file: notebooks/plotting/example_plotting.ipynb
+    - file: notebooks/plotting/example_plotting_z0_tests.ipynb
     - file: emc2
 - caption: Supporting Materials
   chapters:
