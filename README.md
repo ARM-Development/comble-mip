@@ -29,7 +29,7 @@ We've developed several Jupyter Notebooks to reduce the burden on COMBLE MIP par
 
 Example scripts to convert the DEPHY standard format to ASCII or other netCDF formats needed to drive specific models.
 
-* [DEPHY forcing &rarr; DHARMA LES and ModelE3](https://arm-development.github.io/comble-mip/notebooks/conversion/convert_comble_dephy_forcing_to_DHARMA_LES_and_ModelE3_SCM_forcing.html)
+* [DEPHY forcing &rarr; DHARMA LES and ModelE3 SCM](https://arm-development.github.io/comble-mip/notebooks/conversion/convert_comble_dephy_forcing_to_DHARMA_LES_and_ModelE3_SCM_forcing.html)
 * [DEPHY forcing &rarr; WRF-LES](https://arm-development.github.io/comble-mip/notebooks/conversion/convert_comble_dephy_forcing_to_WRF_LES_forcing.html)
 
 ### Output Conversion Examples
@@ -37,6 +37,7 @@ Example scripts to convert the DEPHY standard format to ASCII or other netCDF fo
 Example scripts to convert specific model results back to the DEPHY standard format prior to submission.
 
 * [DHARMA LES output &rarr; DEPHY](https://arm-development.github.io/comble-mip/notebooks/conversion_output/convert_DHARMA_LES_output_to_dephy_format.html)
+* [ModelE3 SCM output &rarr; DEPHY](https://arm-development.github.io/comble-mip/notebooks/conversion_output/convert_ModelE3_SCM_output_to_dephy_format.html)
 * [WRF-LES output &rarr; DEPHY](https://arm-development.github.io/comble-mip/notebooks/conversion_output/convert_WRF_LES_output_to_dephy_format.html)
 
 ### Visualization Tools
