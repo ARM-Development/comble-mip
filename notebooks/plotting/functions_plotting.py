@@ -554,12 +554,17 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword=''):
     return df_col,df_col2
 
 
-def plot_1d(df_col,var_vec):
+def plot_1d(df_col,var_vec,t0=-2.,t1=18.):
     
     ## plot variables with time dependence
     ## __input__
     ## df_col.....data frame containing simulations, reanalysis, and/or observations
     ## var_vec....variables with time dependence
+    ## t0.........starting plot time (h relative to ice edge)
+    ## t1.........end plot time (h relative to ice edge)
+    
+    t0 = t0*3600.
+    t1 = t1*3600.
     
     ## 1D plots
     plot_colors = ["#E69F00", "#56B4E9", "#009E73","#0072B2", "#D55E00", "#CC79A7","#F0E442"]
@@ -567,15 +572,12 @@ def plot_1d(df_col,var_vec):
     
     counter = 0
     counter_symbol = 0
-    if 'lwp' in var_vec:
-        if  'rwp' in df_col.columns and 'cwp' in df_col.columns:
-            print('Computing Liquid Water Path')
-            df_col['lwp'] = df_col['rwp'] + df_col['cwp']
-        else:
-            print('Please include rwp and cwp!')
         
     fig, axs = plt.subplots(len(var_vec),1,figsize=(5,1 + 2*len(var_vec)))
     for label, df in df_col.groupby('class'):
+        #print (df)
+        df = df[(df.time>t0) & (df.time<t1)]
+        #print (df)
         if (label=='MAC-LWP') | (label=='KAZR (Kollias)')| (label=='KAZR (Clough)'):
             df['lwp'] = df['lwp_bu']
             df['lwp.25'] = df['lwp_bu.25']
@@ -605,7 +607,8 @@ def plot_1d(df_col,var_vec):
     if len(var_vec) > 1:
         for ax in axs.flat:
             ax.set(xlabel='Time (h)', ylabel=var_vec[i_count])
-            ax.set_xlim([np.min(df_col.time)/3600 - 0.5, np.max(df_col.time)/3600 + 0.5])
+            #ax.set_xlim([np.min(df_col.time)/3600 - 0.5, np.max(df_col.time)/3600 + 0.5])
+            ax.set_xlim(t0/3600. - 0.5, t1/3600. + 0.5)
             i_count += 1
         
         # Hide x labels and tick labels for top plots and y ticks for right plots.
@@ -653,7 +656,7 @@ def plot_2d(df_col2,var_vec,times,z_max = 6000.):
         if  'ua' in df_col2.columns and 'va' in df_col2.columns:
             print('Computing wind direction')
             df_col2['ws'] = np.sqrt(df_col2['ua']**2 + df_col2['va']**2)
-            df_col2['wd'] = np.arctan2(df_col2['ua']/df_col2['ws'],df_col2['va']/df_col2['ws'])*180/np.pi
+            df_col2['wd'] = np.arctan2(df_col2['ua']/df_col2['ws'],df_col2['va']/df_col2['ws'])*180/np.pi + 180.
 
             ## bring over on one side
             df_col2.loc[df_col2['wd'] < 0,'wd'] = df_col2.loc[df_col2['wd'] < 0,'wd'] + 360
@@ -680,7 +683,10 @@ def plot_2d(df_col2,var_vec,times,z_max = 6000.):
                     obj = axs[ii]
                 else:
                     obj = axs[ii,tt]
-                obj.plot(df[var_vec[ii]],df.zf,label=label)
+                if var_vec[ii] == 'wd':
+                    obj.scatter(df[var_vec[ii]],df.zf,s=5,label=label)
+                else:
+                    obj.plot(df[var_vec[ii]],df.zf,label=label)
                 obj.grid(alpha=0.2)
                 obj.set_ylim([0, z_max])
                 if ii==0:
