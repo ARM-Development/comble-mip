@@ -1,0 +1,742 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Sensitivity to roughness lengths (last updaed 9/28/23) &#8212; COMBLE Model-Observation Intercomparison Project</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/plotting/example_plotting_z0_tests';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../README.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/arm_logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/arm_logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../README.html">
+                    COMBLE Model-Observation Intercomparison Project Cookbook
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Project Information</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../goals_hypotheses.html">Goals and Hypotheses</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Participants</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../participants/participants_list.html">List of Planned Participants</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">How-To</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../howto/workbench_instructions.html">Apply for Elevated JupyterHub Access</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CONTRIBUTING.html">Contributers Guide</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Settings &amp; Logistics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../main_configuration.html">Main Model Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../output/output_list.html">Requested Model Outputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../timeline.html">Timeline &amp; File Naming Convention</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Input Conversion Notebooks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../conversion/convert_comble_dephy_forcing_to_DHARMA_LES_and_ModelE3_SCM_forcing.html">Example: convert DEPHY forcing to DHARMA LES and ModelE3 SCM formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../conversion/convert_comble_dephy_forcing_to_WRF_LES_forcing.html">Example: convert DEPHY forcing to WRF-LES forcing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Output Conversion Notebooks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../conversion_output/convert_DHARMA_LES_output_to_dephy_format.html">Example: convert DHARMA LES output to DEPHY format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../conversion_output/convert_ModelE3_SCM_output_to_dephy_format.html">Example: convert ModelE3 SCM output to DEPHY format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../conversion_output/convert_WRF_LES_output_to_dephy_format.html">Example: convert WRF-LES output to DEPHY format</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Plotting and Analysis</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="example_plotting.html">Example plotting script for COMBLE-MIP analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../emc2.html">The Earth Model Column Collaboratory (EMC<sup>2</sup>)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Supporting Materials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../forcing/create_comble_forcing_v2.2.html">DEPHY Forcing Derivation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../setup/aerosol-specification.html">Aerosol specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../setup/aerosol-inp-closure.html">Aerosol-Ice Nucleating Particle Closure</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://jupyterhub.arm.gov/hub/user-redirect/git-pull?repo=https%3A//github.com/ARM-Development/comble-mip&urlpath=lab/tree/comble-mip/../user-data-home/comble-mip/notebooks/plotting/example_plotting_z0_tests.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onJupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/notebooks/plotting/example_plotting_z0_tests.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Sensitivity to roughness lengths (last updaed 9/28/23)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#timothy-juliano-ncar-ral-and-andrew-ackerman-and-ann-fridlind-nasa-giss">Timothy Juliano (NCAR/RAL) and Andrew Ackerman and Ann Fridlind (NASA/GISS)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#special-thanks-to-dmitry-chechin-obukhov-institute-of-atmospheric-physics-for-motivating-this-work">Special thanks to Dmitry Chechin (Obukhov Institute of Atmospheric Physics) for motivating this work</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypothesis-momentum-z0-and-scalar-temperature-and-moisture-z0t-and-z0q-roughness-length-formulations-impact-cao-cloud-evolution-through-surface-momentum-and-heat-fluxes-because-these-events-are-strongly-surface-forced">Hypothesis: momentum (z0) and scalar [temperature and moisture (z0t and z0q)] roughness length formulations impact CAO cloud evolution through surface momentum and heat fluxes because these events are strongly surface-forced</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#approach-test-3-sets-of-formulations-and-derive-reasonable-set-for-comble-mip">Approach: test 3 sets of formulations and derive reasonable set for COMBLE-MIP</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#many-formulations-exist-for-z0-z0t-and-z0q-here-we-explore-just-a-few-of-the-more-well-known-formulations">Many formulations exist for z0, z0t, and z0q; here, we explore just a few of the more well-known formulations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#momentum-roughness-length-z0">1. Momentum roughness length (z0):</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#functional-form-and-a2-from-charnock-1955-qjrms-and-smith-1988-jgr">-&gt; Functional form and a2 from Charnock (1955, QJRMS) and Smith (1988, JGR)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a1-from-coare-3-5-edson-et-al-2013-jpo-eq-13-assuming-10-m-wind-speed-12-m-s">-&gt; a1 from COARE 3.5/Edson et al. (2013 JPO) (eq. 13, assuming 10 m wind speed = 12 m/s)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#where-a1-0-0154-a2-0-11-u-is-friction-velocity-g-is-acceleration-due-to-gravity-and-is-kinematic-viscosity">where a1 = 0.0154, a2 = 0.11, u* is friction velocity, g is acceleration due to gravity, and ν is kinematic viscosity</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scalar-roughness-lengths-z0t-and-z0q">2. Scalar roughness lengths (z0t and z0q):</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#functional-form-from-fairall-et-al-2003-jc-eq-28">-&gt; Functional form from Fairall et al. (2003, JC) (eq. 28)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#equation-is-valid-for-both-z0t-and-z0q">-&gt; Equation is valid for both z0t and z0q</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#where-rr-is-the-roughness-reynolds-number-rr-z0-x-u">where Rr is the roughness Reynolds number, Rr = z0 x u* / ν</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sensitivities">Sensitivities</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#z0-1-compute-z0-z0t-and-z0q-according-to-above-equations-constants">1. <em>z0_1</em>: Compute z0, z0t, and z0q according to above equations/constants</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#z0-2-compute-z0-according-to-above-equations-constants-and-set-z0t-z0q-0-1-z0">2. <em>z0_2</em>: Compute z0 according to above equations/constants and set z0t = z0q = 0.1*z0</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#z0-3-set-z0-z0t-and-z0q-according-to-constrain-intercomparison-case-z0-6-6-x-10-4-z0t-z0q-3-7-x-10-6">3. <em>z0_3</em>: Set z0, z0t, and z0q according to CONSTRAIN intercomparison case (z0 = 6.6 x 10^-4; z0t = z0q = 3.7 x 10^-6)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#z0-4-compute-constant-z0-z0t-and-z0q-values-from-z0-1-for-comble-mip-case-z0-9-0-x-10-4-z0t-z0q-5-5-x-10-6">4. <em>z0_4</em>: Compute constant z0, z0t, and z0q values from <em>z0_1</em> for COMBLE-MIP case (z0 = 9.0 x 10^-4; z0t = z0q = 5.5 x 10^-6)</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="sensitivity-to-roughness-lengths-last-updaed-9-28-23">
+<h1>Sensitivity to roughness lengths (last updaed 9/28/23)<a class="headerlink" href="#sensitivity-to-roughness-lengths-last-updaed-9-28-23" title="Permalink to this heading">#</a></h1>
+<section id="timothy-juliano-ncar-ral-and-andrew-ackerman-and-ann-fridlind-nasa-giss">
+<h2>Timothy Juliano (NCAR/RAL) and Andrew Ackerman and Ann Fridlind (NASA/GISS)<a class="headerlink" href="#timothy-juliano-ncar-ral-and-andrew-ackerman-and-ann-fridlind-nasa-giss" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="special-thanks-to-dmitry-chechin-obukhov-institute-of-atmospheric-physics-for-motivating-this-work">
+<h2>Special thanks to Dmitry Chechin (Obukhov Institute of Atmospheric Physics) for motivating this work<a class="headerlink" href="#special-thanks-to-dmitry-chechin-obukhov-institute-of-atmospheric-physics-for-motivating-this-work" title="Permalink to this heading">#</a></h2>
+<section id="hypothesis-momentum-z0-and-scalar-temperature-and-moisture-z0t-and-z0q-roughness-length-formulations-impact-cao-cloud-evolution-through-surface-momentum-and-heat-fluxes-because-these-events-are-strongly-surface-forced">
+<h3>Hypothesis: momentum (z0) and scalar [temperature and moisture (z0t and z0q)] roughness length formulations impact CAO cloud evolution through surface momentum and heat fluxes because these events are strongly surface-forced<a class="headerlink" href="#hypothesis-momentum-z0-and-scalar-temperature-and-moisture-z0t-and-z0q-roughness-length-formulations-impact-cao-cloud-evolution-through-surface-momentum-and-heat-fluxes-because-these-events-are-strongly-surface-forced" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="approach-test-3-sets-of-formulations-and-derive-reasonable-set-for-comble-mip">
+<h3>Approach: test 3 sets of formulations and derive reasonable set for COMBLE-MIP<a class="headerlink" href="#approach-test-3-sets-of-formulations-and-derive-reasonable-set-for-comble-mip" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="many-formulations-exist-for-z0-z0t-and-z0q-here-we-explore-just-a-few-of-the-more-well-known-formulations">
+<h3>Many formulations exist for z0, z0t, and z0q; here, we explore just a few of the more well-known formulations<a class="headerlink" href="#many-formulations-exist-for-z0-z0t-and-z0q-here-we-explore-just-a-few-of-the-more-well-known-formulations" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="momentum-roughness-length-z0">
+<h3>1. Momentum roughness length (z0):<a class="headerlink" href="#momentum-roughness-length-z0" title="Permalink to this heading">#</a></h3>
+<section id="functional-form-and-a2-from-charnock-1955-qjrms-and-smith-1988-jgr">
+<h4>-&gt; Functional form and a2 from Charnock (1955, QJRMS) and Smith (1988, JGR)<a class="headerlink" href="#functional-form-and-a2-from-charnock-1955-qjrms-and-smith-1988-jgr" title="Permalink to this heading">#</a></h4>
+</section>
+<section id="a1-from-coare-3-5-edson-et-al-2013-jpo-eq-13-assuming-10-m-wind-speed-12-m-s">
+<h4>-&gt; a1 from COARE 3.5/Edson et al. (2013 JPO) (eq. 13, assuming 10 m wind speed = 12 m/s)<a class="headerlink" href="#a1-from-coare-3-5-edson-et-al-2013-jpo-eq-13-assuming-10-m-wind-speed-12-m-s" title="Permalink to this heading">#</a></h4>
+<p><img alt="Momentum Roughness Length" src="../../_images/z0m_eq.png" /></p>
+</section>
+<section id="where-a1-0-0154-a2-0-11-u-is-friction-velocity-g-is-acceleration-due-to-gravity-and-is-kinematic-viscosity">
+<h4>where a1 = 0.0154, a2 = 0.11, u* is friction velocity, g is acceleration due to gravity, and ν is kinematic viscosity<a class="headerlink" href="#where-a1-0-0154-a2-0-11-u-is-friction-velocity-g-is-acceleration-due-to-gravity-and-is-kinematic-viscosity" title="Permalink to this heading">#</a></h4>
+</section>
+</section>
+<section id="scalar-roughness-lengths-z0t-and-z0q">
+<h3>2. Scalar roughness lengths (z0t and z0q):<a class="headerlink" href="#scalar-roughness-lengths-z0t-and-z0q" title="Permalink to this heading">#</a></h3>
+<section id="functional-form-from-fairall-et-al-2003-jc-eq-28">
+<h4>-&gt; Functional form from Fairall et al. (2003, JC) (eq. 28)<a class="headerlink" href="#functional-form-from-fairall-et-al-2003-jc-eq-28" title="Permalink to this heading">#</a></h4>
+</section>
+<section id="equation-is-valid-for-both-z0t-and-z0q">
+<h4>-&gt; Equation is valid for both z0t and z0q<a class="headerlink" href="#equation-is-valid-for-both-z0t-and-z0q" title="Permalink to this heading">#</a></h4>
+<p><img alt="Scalar Roughness Length" src="../../_images/z0t_q_eq.png" /></p>
+</section>
+<section id="where-rr-is-the-roughness-reynolds-number-rr-z0-x-u">
+<h4>where Rr is the roughness Reynolds number, Rr = z0 x u* / ν<a class="headerlink" href="#where-rr-is-the-roughness-reynolds-number-rr-z0-x-u" title="Permalink to this heading">#</a></h4>
+</section>
+</section>
+<section id="sensitivities">
+<h3>Sensitivities<a class="headerlink" href="#sensitivities" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="z0-1-compute-z0-z0t-and-z0q-according-to-above-equations-constants">
+<h3>1. <em>z0_1</em>: Compute z0, z0t, and z0q according to above equations/constants<a class="headerlink" href="#z0-1-compute-z0-z0t-and-z0q-according-to-above-equations-constants" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="z0-2-compute-z0-according-to-above-equations-constants-and-set-z0t-z0q-0-1-z0">
+<h3>2. <em>z0_2</em>: Compute z0 according to above equations/constants and set z0t = z0q = 0.1*z0<a class="headerlink" href="#z0-2-compute-z0-according-to-above-equations-constants-and-set-z0t-z0q-0-1-z0" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="z0-3-set-z0-z0t-and-z0q-according-to-constrain-intercomparison-case-z0-6-6-x-10-4-z0t-z0q-3-7-x-10-6">
+<h3>3. <em>z0_3</em>: Set z0, z0t, and z0q according to CONSTRAIN intercomparison case (z0 = 6.6 x 10^-4; z0t = z0q = 3.7 x 10^-6)<a class="headerlink" href="#z0-3-set-z0-z0t-and-z0q-according-to-constrain-intercomparison-case-z0-6-6-x-10-4-z0t-z0q-3-7-x-10-6" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="z0-4-compute-constant-z0-z0t-and-z0q-values-from-z0-1-for-comble-mip-case-z0-9-0-x-10-4-z0t-z0q-5-5-x-10-6">
+<h3>4. <em>z0_4</em>: Compute constant z0, z0t, and z0q values from <em>z0_1</em> for COMBLE-MIP case (z0 = 9.0 x 10^-4; z0t = z0q = 5.5 x 10^-6)<a class="headerlink" href="#z0-4-compute-constant-z0-z0t-and-z0q-values-from-z0-1-for-comble-mip-case-z0-9-0-x-10-4-z0t-z0q-5-5-x-10-6" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> functions_plotting.py
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## select simulations to plot</span>
+<span class="n">sim_keyword</span> <span class="o">=</span> <span class="s1">&#39;z0&#39;</span>
+
+<span class="c1">## load ERA5 fields</span>
+<span class="n">era5_1d</span><span class="p">,</span> <span class="n">era5_2d</span> <span class="o">=</span> <span class="n">load_era5</span><span class="p">(</span><span class="n">PATH</span><span class="o">=</span><span class="s1">&#39;../../data_files/&#39;</span><span class="p">)</span>
+
+<span class="c1">## load radiosondes</span>
+<span class="n">rs_dat</span> <span class="o">=</span> <span class="n">load_rs</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">6.</span><span class="p">)</span>
+
+<span class="c1">## load DOE ARM site statistics</span>
+<span class="n">aeri_dat</span> <span class="o">=</span> <span class="n">load_aeri</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">)</span>
+
+<span class="c1">## load MAC-LWP</span>
+<span class="n">maclwp_dat</span> <span class="o">=</span> <span class="n">load_maclwp</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">)</span> 
+<span class="n">gongiwp_dat</span> <span class="o">=</span> <span class="n">load_iwpgong</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">)</span>
+
+<span class="c1">## load CALIPSO retrievals (note the increased time window)</span>
+<span class="n">calipso_dat</span> <span class="o">=</span> <span class="n">load_calipso</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">3.</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>../../data_files/theta_temp_rh_sh_uvw_sst_along_trajectory_era5ml_28h_end_2020-03-13-18.nc
+../../data_files/anxsondewnpnM1.b1.20200313.172600.cdf
+../../data_files/anxsondewnpnM1.b1.20200313.232200.cdf
+../../data_files/anxsondewnpnM1.b1.20200313.052700.cdf
+../../data_files/anxsondewnpnM1.b1.20200313.112600.cdf
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## define (thermo-)dynamical variables that we want to plot</span>
+<span class="c1">## 1-d variables (time)</span>
+<span class="n">var_vec_1d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hfss&#39;</span><span class="p">,</span><span class="s1">&#39;hfls&#39;</span><span class="p">,</span><span class="s1">&#39;ustar&#39;</span><span class="p">,</span><span class="s1">&#39;z0&#39;</span><span class="p">,</span><span class="s1">&#39;z0t&#39;</span><span class="p">,</span><span class="s1">&#39;z0q&#39;</span><span class="p">]</span>
+<span class="c1">## hfss ---&gt; sfc sensible heat flux (W/m2)</span>
+<span class="c1">## hfls ---&gt; sfc latent heat flux (W/m2)</span>
+<span class="c1">## ustar --&gt; sfc friction velocity (m/s)</span>
+<span class="c1">## z0 -----&gt; momentum roughness length (m)</span>
+<span class="c1">## z0t ----&gt; temperature roughness length (m)</span>
+<span class="c1">## z0q ----&gt; moisture roughness length (m)</span>
+
+<span class="c1">## 2-d variables (time,height)</span>
+<span class="n">var_vec_2d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;theta&#39;</span><span class="p">,</span><span class="s1">&#39;qv&#39;</span><span class="p">,</span><span class="s1">&#39;ua&#39;</span><span class="p">,</span><span class="s1">&#39;va&#39;</span><span class="p">]</span>
+<span class="c1">## theta --&gt; potential temperature (K)</span>
+<span class="c1">## qv -----&gt; water vapor mixing ratio (kg/kg)</span>
+<span class="c1">## ua -----&gt; zonal wind speed (m/s)</span>
+<span class="c1">## va -----&gt; meridional wind speed (m/s)</span>
+
+<span class="c1">## load select variables from all simulations located in subfolders of the given directory</span>
+<span class="n">df_col_1d</span><span class="p">,</span><span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>../../output_les/wrf/sandbox/z0_3/WRF_LES_COMBLE-I_sens3.nc
+../../output_les/wrf/sandbox/z0_4/WRF_LES_COMBLE-I_sens4.nc
+../../output_les/wrf/sandbox/z0_2/WRF_LES_COMBLE-I_sens2.nc
+../../output_les/wrf/sandbox/z0_1/WRF_LES_COMBLE-I_sens1.nc
+../../output_les/wrf/sandbox/z0_3/WRF_LES_COMBLE-I_sens3.nc
+../../output_les/wrf/sandbox/z0_4/WRF_LES_COMBLE-I_sens4.nc
+../../output_les/wrf/sandbox/z0_2/WRF_LES_COMBLE-I_sens2.nc
+../../output_les/wrf/sandbox/z0_1/WRF_LES_COMBLE-I_sens1.nc
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## plot the 1-d variables</span>
+<span class="n">plot_1d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_1d</span><span class="p">,</span><span class="n">era5_1d</span><span class="p">]),</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">t0</span><span class="o">=-</span><span class="mf">1.</span><span class="p">,</span><span class="n">t1</span><span class="o">=</span><span class="mf">18.</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/001468b206b98e40e297f483b091e830567ff3e6b3ea9948f0012e60ddee250f.png" src="../../_images/001468b206b98e40e297f483b091e830567ff3e6b3ea9948f0012e60ddee250f.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## plot the 1-d variables, plus ERA5 and radiosondes at Andenes</span>
+<span class="n">plot_2d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_2d</span><span class="p">,</span><span class="n">era5_2d</span><span class="p">,</span><span class="n">rs_dat</span><span class="p">,</span><span class="n">aeri_dat</span><span class="p">]),</span><span class="n">var_vec</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;theta&#39;</span><span class="p">,</span><span class="s1">&#39;qv&#39;</span><span class="p">,</span><span class="s1">&#39;ws&#39;</span><span class="p">,</span><span class="s1">&#39;wd&#39;</span><span class="p">],</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">18</span><span class="p">],</span><span class="n">z_max</span><span class="o">=</span><span class="mi">6000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computing wind speed
+Computing wind direction
+</pre></div>
+</div>
+<img alt="../../_images/3374a3b56a1de0d56f51a9547ffe856a20bf3085db404ff4059eaedbca13e895.png" src="../../_images/3374a3b56a1de0d56f51a9547ffe856a20bf3085db404ff4059eaedbca13e895.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x600 with 0 Axes&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## define cloud variables that we want to plot</span>
+<span class="n">var_vec_1d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;lwp&#39;</span><span class="p">,</span><span class="s1">&#39;iwp&#39;</span><span class="p">]</span> <span class="c1"># variables without ERA5 (shorter time axis)</span>
+
+<span class="c1">## load select variables from all simulations located in subfolders of the given directory</span>
+<span class="n">df_col_1d</span><span class="p">,</span><span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>../../output_les/wrf/sandbox/z0_3/WRF_LES_COMBLE-I_sens3.nc
+../../output_les/wrf/sandbox/z0_4/WRF_LES_COMBLE-I_sens4.nc
+../../output_les/wrf/sandbox/z0_2/WRF_LES_COMBLE-I_sens2.nc
+../../output_les/wrf/sandbox/z0_1/WRF_LES_COMBLE-I_sens1.nc
+../../output_les/wrf/sandbox/z0_3/WRF_LES_COMBLE-I_sens3.nc
+../../output_les/wrf/sandbox/z0_4/WRF_LES_COMBLE-I_sens4.nc
+../../output_les/wrf/sandbox/z0_2/WRF_LES_COMBLE-I_sens2.nc
+../../output_les/wrf/sandbox/z0_1/WRF_LES_COMBLE-I_sens1.nc
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## plot LWP and IWP</span>
+<span class="n">plot_1d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_1d</span><span class="p">,</span><span class="n">maclwp_dat</span><span class="p">,</span><span class="n">calipso_dat</span><span class="p">,</span><span class="n">gongiwp_dat</span><span class="p">]),[</span><span class="s1">&#39;lwp&#39;</span><span class="p">,</span><span class="s1">&#39;iwp&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/5a8a80241c5126349188957ab7227abf1189dcf0e8223cda3b46a8fd2ae13b36.png" src="../../_images/5a8a80241c5126349188957ab7227abf1189dcf0e8223cda3b46a8fd2ae13b36.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks/plotting"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#timothy-juliano-ncar-ral-and-andrew-ackerman-and-ann-fridlind-nasa-giss">Timothy Juliano (NCAR/RAL) and Andrew Ackerman and Ann Fridlind (NASA/GISS)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#special-thanks-to-dmitry-chechin-obukhov-institute-of-atmospheric-physics-for-motivating-this-work">Special thanks to Dmitry Chechin (Obukhov Institute of Atmospheric Physics) for motivating this work</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypothesis-momentum-z0-and-scalar-temperature-and-moisture-z0t-and-z0q-roughness-length-formulations-impact-cao-cloud-evolution-through-surface-momentum-and-heat-fluxes-because-these-events-are-strongly-surface-forced">Hypothesis: momentum (z0) and scalar [temperature and moisture (z0t and z0q)] roughness length formulations impact CAO cloud evolution through surface momentum and heat fluxes because these events are strongly surface-forced</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#approach-test-3-sets-of-formulations-and-derive-reasonable-set-for-comble-mip">Approach: test 3 sets of formulations and derive reasonable set for COMBLE-MIP</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#many-formulations-exist-for-z0-z0t-and-z0q-here-we-explore-just-a-few-of-the-more-well-known-formulations">Many formulations exist for z0, z0t, and z0q; here, we explore just a few of the more well-known formulations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#momentum-roughness-length-z0">1. Momentum roughness length (z0):</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#functional-form-and-a2-from-charnock-1955-qjrms-and-smith-1988-jgr">-&gt; Functional form and a2 from Charnock (1955, QJRMS) and Smith (1988, JGR)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a1-from-coare-3-5-edson-et-al-2013-jpo-eq-13-assuming-10-m-wind-speed-12-m-s">-&gt; a1 from COARE 3.5/Edson et al. (2013 JPO) (eq. 13, assuming 10 m wind speed = 12 m/s)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#where-a1-0-0154-a2-0-11-u-is-friction-velocity-g-is-acceleration-due-to-gravity-and-is-kinematic-viscosity">where a1 = 0.0154, a2 = 0.11, u* is friction velocity, g is acceleration due to gravity, and ν is kinematic viscosity</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scalar-roughness-lengths-z0t-and-z0q">2. Scalar roughness lengths (z0t and z0q):</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#functional-form-from-fairall-et-al-2003-jc-eq-28">-&gt; Functional form from Fairall et al. (2003, JC) (eq. 28)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#equation-is-valid-for-both-z0t-and-z0q">-&gt; Equation is valid for both z0t and z0q</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#where-rr-is-the-roughness-reynolds-number-rr-z0-x-u">where Rr is the roughness Reynolds number, Rr = z0 x u* / ν</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sensitivities">Sensitivities</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#z0-1-compute-z0-z0t-and-z0q-according-to-above-equations-constants">1. <em>z0_1</em>: Compute z0, z0t, and z0q according to above equations/constants</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#z0-2-compute-z0-according-to-above-equations-constants-and-set-z0t-z0q-0-1-z0">2. <em>z0_2</em>: Compute z0 according to above equations/constants and set z0t = z0q = 0.1*z0</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#z0-3-set-z0-z0t-and-z0q-according-to-constrain-intercomparison-case-z0-6-6-x-10-4-z0t-z0q-3-7-x-10-6">3. <em>z0_3</em>: Set z0, z0t, and z0q according to CONSTRAIN intercomparison case (z0 = 6.6 x 10^-4; z0t = z0q = 3.7 x 10^-6)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#z0-4-compute-constant-z0-z0t-and-z0q-values-from-z0-1-for-comble-mip-case-z0-9-0-x-10-4-z0t-z0q-5-5-x-10-6">4. <em>z0_4</em>: Compute constant z0, z0t, and z0q values from <em>z0_1</em> for COMBLE-MIP case (z0 = 9.0 x 10^-4; z0t = z0q = 5.5 x 10^-6)</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By ARM Development Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
