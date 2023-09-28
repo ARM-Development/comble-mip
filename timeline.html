@@ -331,7 +331,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -347,6 +349,17 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#phase-1">Phase 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#phase-ii">Phase II</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#phase-ii-optional">Phase II (optional)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notes">Notes</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -362,32 +375,63 @@ document.write(`
 <p class="admonition-title">Attention</p>
 <p>Ready to make your model outputs accessible to other MIP participants? Please refer to <a class="reference external" href="https://arm-development.github.io/comble-mip/CONTRIBUTING.html">this page</a> to learn how to upload your model outputs to the repository.</p>
 </div>
+<section id="phase-1">
+<h2>Phase 1<a class="headerlink" href="#phase-1" title="Permalink to this heading">#</a></h2>
 <table class="table">
 <thead>
-<tr class="row-odd"><th class="head"><p>Stage</p></th>
-<th class="head"><p>Product</p></th>
-<th class="head"><p>File Naming Convention</p></th>
+<tr class="row-odd"><th class="head"><p>Product</p></th>
+<th class="head"><p>Simulation Name</p></th>
 <th class="head"><p>Due Date</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>Phase I</p></td>
-<td><p>SCM/small-domain LES, liquid-only<br>SCM/small-domain LES with ice<br>Large domain LES with ice</p></td>
-<td><p>Lx25_dx100_FixN_noice<br>Lx25_dx100_FixN<br>Lx125_dx100_FixN</p></td>
-<td><p>Dec. 15, 2023<br>Dec. 15, 2023<br>Mar. 1, 2024</p></td>
+<tr class="row-even"><td><p>SCM/small-domain LES, liquid-only<br>SCM/small-domain LES with ice<br>SCM/small-domain LES with ice, default roughness lengths*<br>Large domain LES with ice</p></td>
+<td><p>Lx25_dx100_FixN_noice<br>Lx25_dx100_FixN<br>Lx25_dx100_FixN_def_z0<br>Lx125_dx100_FixN</p></td>
+<td><p>Dec. 15, 2023<br>Dec. 15, 2023<br>Dec. 15, 2023<br><span style="color:red"><strong>TBD</strong></span>**</p></td>
 </tr>
-<tr class="row-odd"><td><p>Phase II</p></td>
-<td><p>SCM/small-domain LES, prognostic aerosol, diagnostic ice<br>SCM/small-domain LES, prognostic aerosol and ice<br>Large domain LES, prognostic aerosol and ice</p></td>
+</tbody>
+</table>
+</section>
+<section id="phase-ii">
+<h2>Phase II<a class="headerlink" href="#phase-ii" title="Permalink to this heading">#</a></h2>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Product</p></th>
+<th class="head"><p>Simulation Name</p></th>
+<th class="head"><p>Due Date</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>SCM/small-domain LES, prognostic aerosol, diagnostic ice<br>SCM/small-domain LES, prognostic aerosol and ice<br>Large domain LES, prognostic aerosol and ice</p></td>
 <td><p>Lx25_dx100_ProgNa<br>Lx25_dx100_ProgNaNi<br>Lx125_dx100_ProgNaNi</p></td>
-<td><p>Jan. 15, 2024<br>Jan. 15, 2024<br>Apr. 1, 2024</p></td>
+<td><p>Jan. 15, 2024<br>Jan. 15, 2024<br><span style="color:red"><strong>TBD</strong></span>**</p></td>
 </tr>
-<tr class="row-even"><td><p>Phase II (optional; all SCM/small-domain LES)</p></td>
-<td><p>Prognostic droplet, no ice<br>Prognostic droplet, diagnostic ice<br>Prognostic droplet and ice<br>Prognostic aerosol, no ice</p></td>
+</tbody>
+</table>
+</section>
+<section id="phase-ii-optional">
+<h2>Phase II (optional)<a class="headerlink" href="#phase-ii-optional" title="Permalink to this heading">#</a></h2>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Product</p></th>
+<th class="head"><p>Simulation Name</p></th>
+<th class="head"><p>Due Date</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Prognostic droplet, no ice<br>Prognostic droplet, diagnostic ice<br>Prognostic droplet and ice<br>Prognostic aerosol, no ice</p></td>
 <td><p>Lx25_dx100_ProgNc_noice<br>Lx25_dx100_ProgNc<br>Lx25_dx100_ProgNcNi<br>Lx25_dx100_ProgNa_noice</p></td>
 <td><p>Apr. 1, 2024<br>Apr. 1, 2024<br>Apr. 1, 2024<br>Apr. 1, 2024</p></td>
 </tr>
 </tbody>
 </table>
+</section>
+<section id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Permalink to this heading">#</a></h2>
+<p>*This simulation will use the default roughness length formulations in each host model. All other simulations will use the fixed roughness lengths as defined on the <a class="reference external" href="https://arm-development.github.io/comble-mip/main_configuration.html">Main Model Configuration page</a>.
+<br>
+**Given its high computational cost, we suggest that participants refrain from running this setup in case there are any last minute tweaks to the model forcing; for instance, large-scale forcing required to generate realistic roll structures.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -444,6 +488,23 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#phase-1">Phase 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#phase-ii">Phase II</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#phase-ii-optional">Phase II (optional)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notes">Notes</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
