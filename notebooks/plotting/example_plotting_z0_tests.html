@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Sensitivity to roughness lengths (last updaed 9/28/23) &#8212; COMBLE Model-Observation Intercomparison Project</title>
+    <title>Sensitivity to roughness lengths &#8212; COMBLE Model-Observation Intercomparison Project</title>
   
   
   
@@ -200,7 +200,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Plotting and Analysis</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="example_plotting.html">Example plotting script for COMBLE-MIP analysis</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Sensitivity to roughness lengths (last updaed 9/28/23)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Sensitivity to roughness lengths</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../emc2.html">The Earth Model Column Collaboratory (EMC<sup>2</sup>)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Supporting Materials</span></p>
@@ -375,7 +375,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Sensitivity to roughness lengths (last updaed 9/28/23)</h1>
+    <h1>Sensitivity to roughness lengths</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -385,30 +385,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#timothy-juliano-ncar-ral-and-andrew-ackerman-and-ann-fridlind-nasa-giss">Timothy Juliano (NCAR/RAL) and Andrew Ackerman and Ann Fridlind (NASA/GISS)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#special-thanks-to-dmitry-chechin-obukhov-institute-of-atmospheric-physics-for-motivating-this-work">Special thanks to Dmitry Chechin (Obukhov Institute of Atmospheric Physics) for motivating this work</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypothesis-momentum-z0-and-scalar-temperature-and-moisture-z0t-and-z0q-roughness-length-formulations-impact-cao-cloud-evolution-through-surface-momentum-and-heat-fluxes-because-these-events-are-strongly-surface-forced">Hypothesis: momentum (z0) and scalar [temperature and moisture (z0t and z0q)] roughness length formulations impact CAO cloud evolution through surface momentum and heat fluxes because these events are strongly surface-forced</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#approach-test-3-sets-of-formulations-and-derive-reasonable-set-for-comble-mip">Approach: test 3 sets of formulations and derive reasonable set for COMBLE-MIP</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#many-formulations-exist-for-z0-z0t-and-z0q-here-we-explore-just-a-few-of-the-more-well-known-formulations">Many formulations exist for z0, z0t, and z0q; here, we explore just a few of the more well-known formulations</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#momentum-roughness-length-z0">1. Momentum roughness length (z0):</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#functional-form-and-a2-from-charnock-1955-qjrms-and-smith-1988-jgr">-&gt; Functional form and a2 from Charnock (1955, QJRMS) and Smith (1988, JGR)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a1-from-coare-3-5-edson-et-al-2013-jpo-eq-13-assuming-10-m-wind-speed-12-m-s">-&gt; a1 from COARE 3.5/Edson et al. (2013 JPO) (eq. 13, assuming 10 m wind speed = 12 m/s)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#where-a1-0-0154-a2-0-11-u-is-friction-velocity-g-is-acceleration-due-to-gravity-and-is-kinematic-viscosity">where a1 = 0.0154, a2 = 0.11, u* is friction velocity, g is acceleration due to gravity, and ν is kinematic viscosity</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scalar-roughness-lengths-z0t-and-z0q">2. Scalar roughness lengths (z0t and z0q):</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#functional-form-from-fairall-et-al-2003-jc-eq-28">-&gt; Functional form from Fairall et al. (2003, JC) (eq. 28)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#equation-is-valid-for-both-z0t-and-z0q">-&gt; Equation is valid for both z0t and z0q</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#where-rr-is-the-roughness-reynolds-number-rr-z0-x-u">where Rr is the roughness Reynolds number, Rr = z0 x u* / ν</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sensitivities">Sensitivities</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#z0-1-compute-z0-z0t-and-z0q-according-to-above-equations-constants">1. <em>z0_1</em>: Compute z0, z0t, and z0q according to above equations/constants</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#z0-2-compute-z0-according-to-above-equations-constants-and-set-z0t-z0q-0-1-z0">2. <em>z0_2</em>: Compute z0 according to above equations/constants and set z0t = z0q = 0.1*z0</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#z0-3-set-z0-z0t-and-z0q-according-to-constrain-intercomparison-case-z0-6-6-x-10-4-z0t-z0q-3-7-x-10-6">3. <em>z0_3</em>: Set z0, z0t, and z0q according to CONSTRAIN intercomparison case (z0 = 6.6 x 10^-4; z0t = z0q = 3.7 x 10^-6)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#z0-4-compute-constant-z0-z0t-and-z0q-values-from-z0-1-for-comble-mip-case-z0-9-0-x-10-4-z0t-z0q-5-5-x-10-6">4. <em>z0_4</em>: Compute constant z0, z0t, and z0q values from <em>z0_1</em> for COMBLE-MIP case (z0 = 9.0 x 10^-4; z0t = z0q = 5.5 x 10^-6)</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypothesis">Hypothesis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#approach">Approach</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sensitivities">Sensitivities</a></li>
 </ul>
             </nav>
         </div>
@@ -420,62 +399,48 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="sensitivity-to-roughness-lengths-last-updaed-9-28-23">
-<h1>Sensitivity to roughness lengths (last updaed 9/28/23)<a class="headerlink" href="#sensitivity-to-roughness-lengths-last-updaed-9-28-23" title="Permalink to this heading">#</a></h1>
-<section id="timothy-juliano-ncar-ral-and-andrew-ackerman-and-ann-fridlind-nasa-giss">
-<h2>Timothy Juliano (NCAR/RAL) and Andrew Ackerman and Ann Fridlind (NASA/GISS)<a class="headerlink" href="#timothy-juliano-ncar-ral-and-andrew-ackerman-and-ann-fridlind-nasa-giss" title="Permalink to this heading">#</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="sensitivity-to-roughness-lengths">
+<h1>Sensitivity to roughness lengths<a class="headerlink" href="#sensitivity-to-roughness-lengths" title="Permalink to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Last updated 9/28/23 \</p></li>
+<li><p>Timothy Juliano (NCAR/RAL) and Andrew Ackerman and Ann Fridlind (NASA/GISS) \</p></li>
+<li><p>Special thanks to Dmitry Chechin (Obukhov Institute of Atmospheric Physics) for motivating this work</p></li>
+</ul>
+<section id="hypothesis">
+<h2>Hypothesis<a class="headerlink" href="#hypothesis" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Momentum (z0) and scalar [temperature and moisture (z0t and z0q)] roughness length formulations impact CAO cloud evolution through surface momentum and heat fluxes because these events are strongly surface-forced</p></li>
+</ul>
 </section>
-<section id="special-thanks-to-dmitry-chechin-obukhov-institute-of-atmospheric-physics-for-motivating-this-work">
-<h2>Special thanks to Dmitry Chechin (Obukhov Institute of Atmospheric Physics) for motivating this work<a class="headerlink" href="#special-thanks-to-dmitry-chechin-obukhov-institute-of-atmospheric-physics-for-motivating-this-work" title="Permalink to this heading">#</a></h2>
-<section id="hypothesis-momentum-z0-and-scalar-temperature-and-moisture-z0t-and-z0q-roughness-length-formulations-impact-cao-cloud-evolution-through-surface-momentum-and-heat-fluxes-because-these-events-are-strongly-surface-forced">
-<h3>Hypothesis: momentum (z0) and scalar [temperature and moisture (z0t and z0q)] roughness length formulations impact CAO cloud evolution through surface momentum and heat fluxes because these events are strongly surface-forced<a class="headerlink" href="#hypothesis-momentum-z0-and-scalar-temperature-and-moisture-z0t-and-z0q-roughness-length-formulations-impact-cao-cloud-evolution-through-surface-momentum-and-heat-fluxes-because-these-events-are-strongly-surface-forced" title="Permalink to this heading">#</a></h3>
-</section>
-<section id="approach-test-3-sets-of-formulations-and-derive-reasonable-set-for-comble-mip">
-<h3>Approach: test 3 sets of formulations and derive reasonable set for COMBLE-MIP<a class="headerlink" href="#approach-test-3-sets-of-formulations-and-derive-reasonable-set-for-comble-mip" title="Permalink to this heading">#</a></h3>
-</section>
-<section id="many-formulations-exist-for-z0-z0t-and-z0q-here-we-explore-just-a-few-of-the-more-well-known-formulations">
-<h3>Many formulations exist for z0, z0t, and z0q; here, we explore just a few of the more well-known formulations<a class="headerlink" href="#many-formulations-exist-for-z0-z0t-and-z0q-here-we-explore-just-a-few-of-the-more-well-known-formulations" title="Permalink to this heading">#</a></h3>
-</section>
-<section id="momentum-roughness-length-z0">
-<h3>1. Momentum roughness length (z0):<a class="headerlink" href="#momentum-roughness-length-z0" title="Permalink to this heading">#</a></h3>
-<section id="functional-form-and-a2-from-charnock-1955-qjrms-and-smith-1988-jgr">
-<h4>-&gt; Functional form and a2 from Charnock (1955, QJRMS) and Smith (1988, JGR)<a class="headerlink" href="#functional-form-and-a2-from-charnock-1955-qjrms-and-smith-1988-jgr" title="Permalink to this heading">#</a></h4>
-</section>
-<section id="a1-from-coare-3-5-edson-et-al-2013-jpo-eq-13-assuming-10-m-wind-speed-12-m-s">
-<h4>-&gt; a1 from COARE 3.5/Edson et al. (2013 JPO) (eq. 13, assuming 10 m wind speed = 12 m/s)<a class="headerlink" href="#a1-from-coare-3-5-edson-et-al-2013-jpo-eq-13-assuming-10-m-wind-speed-12-m-s" title="Permalink to this heading">#</a></h4>
+<section id="approach">
+<h2>Approach<a class="headerlink" href="#approach" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Test 3 sets of formulations and derive reasonable set for COMBLE-MIP</p></li>
+<li><p>Many formulations exist for z0, z0t, and z0q; here, we explore just a few of the more well-known formulations</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>Momentum roughness length (z0): <br />
+-&gt; Functional form and a2 from Charnock (1955, QJRMS) and Smith (1988, JGR) <br />
+-&gt; a1 from COARE 3.5/Edson et al. (2013 JPO) (eq. 13, assuming 10 m wind speed = 12 m/s)</p></li>
+</ol>
 <p><img alt="Momentum Roughness Length" src="../../_images/z0m_eq.png" /></p>
-</section>
-<section id="where-a1-0-0154-a2-0-11-u-is-friction-velocity-g-is-acceleration-due-to-gravity-and-is-kinematic-viscosity">
-<h4>where a1 = 0.0154, a2 = 0.11, u* is friction velocity, g is acceleration due to gravity, and ν is kinematic viscosity<a class="headerlink" href="#where-a1-0-0154-a2-0-11-u-is-friction-velocity-g-is-acceleration-due-to-gravity-and-is-kinematic-viscosity" title="Permalink to this heading">#</a></h4>
-</section>
-</section>
-<section id="scalar-roughness-lengths-z0t-and-z0q">
-<h3>2. Scalar roughness lengths (z0t and z0q):<a class="headerlink" href="#scalar-roughness-lengths-z0t-and-z0q" title="Permalink to this heading">#</a></h3>
-<section id="functional-form-from-fairall-et-al-2003-jc-eq-28">
-<h4>-&gt; Functional form from Fairall et al. (2003, JC) (eq. 28)<a class="headerlink" href="#functional-form-from-fairall-et-al-2003-jc-eq-28" title="Permalink to this heading">#</a></h4>
-</section>
-<section id="equation-is-valid-for-both-z0t-and-z0q">
-<h4>-&gt; Equation is valid for both z0t and z0q<a class="headerlink" href="#equation-is-valid-for-both-z0t-and-z0q" title="Permalink to this heading">#</a></h4>
+<p>where a1 = 0.0154, a2 = 0.11, u* is friction velocity, g is acceleration due to gravity, and ν is kinematic viscosity</p>
+<ol class="arabic simple" start="2">
+<li><p>Scalar roughness lengths (z0t and z0q): <br />
+-&gt; Functional form from Fairall et al. (2003, JC) (eq. 28) <br />
+-&gt; Equation is valid for both z0t and z0q</p></li>
+</ol>
 <p><img alt="Scalar Roughness Length" src="../../_images/z0t_q_eq.png" /></p>
-</section>
-<section id="where-rr-is-the-roughness-reynolds-number-rr-z0-x-u">
-<h4>where Rr is the roughness Reynolds number, Rr = z0 x u* / ν<a class="headerlink" href="#where-rr-is-the-roughness-reynolds-number-rr-z0-x-u" title="Permalink to this heading">#</a></h4>
-</section>
+<p>where Rr is the roughness Reynolds number, Rr = z0 x u* / ν</p>
 </section>
 <section id="sensitivities">
-<h3>Sensitivities<a class="headerlink" href="#sensitivities" title="Permalink to this heading">#</a></h3>
-</section>
-<section id="z0-1-compute-z0-z0t-and-z0q-according-to-above-equations-constants">
-<h3>1. <em>z0_1</em>: Compute z0, z0t, and z0q according to above equations/constants<a class="headerlink" href="#z0-1-compute-z0-z0t-and-z0q-according-to-above-equations-constants" title="Permalink to this heading">#</a></h3>
-</section>
-<section id="z0-2-compute-z0-according-to-above-equations-constants-and-set-z0t-z0q-0-1-z0">
-<h3>2. <em>z0_2</em>: Compute z0 according to above equations/constants and set z0t = z0q = 0.1*z0<a class="headerlink" href="#z0-2-compute-z0-according-to-above-equations-constants-and-set-z0t-z0q-0-1-z0" title="Permalink to this heading">#</a></h3>
-</section>
-<section id="z0-3-set-z0-z0t-and-z0q-according-to-constrain-intercomparison-case-z0-6-6-x-10-4-z0t-z0q-3-7-x-10-6">
-<h3>3. <em>z0_3</em>: Set z0, z0t, and z0q according to CONSTRAIN intercomparison case (z0 = 6.6 x 10^-4; z0t = z0q = 3.7 x 10^-6)<a class="headerlink" href="#z0-3-set-z0-z0t-and-z0q-according-to-constrain-intercomparison-case-z0-6-6-x-10-4-z0t-z0q-3-7-x-10-6" title="Permalink to this heading">#</a></h3>
-</section>
-<section id="z0-4-compute-constant-z0-z0t-and-z0q-values-from-z0-1-for-comble-mip-case-z0-9-0-x-10-4-z0t-z0q-5-5-x-10-6">
-<h3>4. <em>z0_4</em>: Compute constant z0, z0t, and z0q values from <em>z0_1</em> for COMBLE-MIP case (z0 = 9.0 x 10^-4; z0t = z0q = 5.5 x 10^-6)<a class="headerlink" href="#z0-4-compute-constant-z0-z0t-and-z0q-values-from-z0-1-for-comble-mip-case-z0-9-0-x-10-4-z0t-z0q-5-5-x-10-6" title="Permalink to this heading">#</a></h3>
+<h2>Sensitivities<a class="headerlink" href="#sensitivities" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><em>z0_1</em>: Compute z0, z0t, and z0q according to above equations/constants</p></li>
+<li><p><em>z0_2</em>: Compute z0 according to above equations/constants and set z0t = z0q = 0.1*z0</p></li>
+<li><p><em>z0_3</em>: Set z0, z0t, and z0q according to CONSTRAIN intercomparison case (z0 = 6.6 x 10^-4; z0t = z0q = 3.7 x 10^-6)</p></li>
+<li><p><em>z0_4</em>: Compute constant z0, z0t, and z0q values from <em>z0_1</em> for COMBLE-MIP case (z0 = 9.0 x 10^-4; z0t = z0q = 5.5 x 10^-6)</p></li>
+</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> functions_plotting.py
@@ -618,7 +583,6 @@ Computing wind direction
 </div>
 </section>
 </section>
-</section>
 
     <script type="text/x-thebe-config">
     {
@@ -683,30 +647,9 @@ Computing wind direction
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#timothy-juliano-ncar-ral-and-andrew-ackerman-and-ann-fridlind-nasa-giss">Timothy Juliano (NCAR/RAL) and Andrew Ackerman and Ann Fridlind (NASA/GISS)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#special-thanks-to-dmitry-chechin-obukhov-institute-of-atmospheric-physics-for-motivating-this-work">Special thanks to Dmitry Chechin (Obukhov Institute of Atmospheric Physics) for motivating this work</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hypothesis-momentum-z0-and-scalar-temperature-and-moisture-z0t-and-z0q-roughness-length-formulations-impact-cao-cloud-evolution-through-surface-momentum-and-heat-fluxes-because-these-events-are-strongly-surface-forced">Hypothesis: momentum (z0) and scalar [temperature and moisture (z0t and z0q)] roughness length formulations impact CAO cloud evolution through surface momentum and heat fluxes because these events are strongly surface-forced</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#approach-test-3-sets-of-formulations-and-derive-reasonable-set-for-comble-mip">Approach: test 3 sets of formulations and derive reasonable set for COMBLE-MIP</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#many-formulations-exist-for-z0-z0t-and-z0q-here-we-explore-just-a-few-of-the-more-well-known-formulations">Many formulations exist for z0, z0t, and z0q; here, we explore just a few of the more well-known formulations</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#momentum-roughness-length-z0">1. Momentum roughness length (z0):</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#functional-form-and-a2-from-charnock-1955-qjrms-and-smith-1988-jgr">-&gt; Functional form and a2 from Charnock (1955, QJRMS) and Smith (1988, JGR)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a1-from-coare-3-5-edson-et-al-2013-jpo-eq-13-assuming-10-m-wind-speed-12-m-s">-&gt; a1 from COARE 3.5/Edson et al. (2013 JPO) (eq. 13, assuming 10 m wind speed = 12 m/s)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#where-a1-0-0154-a2-0-11-u-is-friction-velocity-g-is-acceleration-due-to-gravity-and-is-kinematic-viscosity">where a1 = 0.0154, a2 = 0.11, u* is friction velocity, g is acceleration due to gravity, and ν is kinematic viscosity</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scalar-roughness-lengths-z0t-and-z0q">2. Scalar roughness lengths (z0t and z0q):</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#functional-form-from-fairall-et-al-2003-jc-eq-28">-&gt; Functional form from Fairall et al. (2003, JC) (eq. 28)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#equation-is-valid-for-both-z0t-and-z0q">-&gt; Equation is valid for both z0t and z0q</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#where-rr-is-the-roughness-reynolds-number-rr-z0-x-u">where Rr is the roughness Reynolds number, Rr = z0 x u* / ν</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sensitivities">Sensitivities</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#z0-1-compute-z0-z0t-and-z0q-according-to-above-equations-constants">1. <em>z0_1</em>: Compute z0, z0t, and z0q according to above equations/constants</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#z0-2-compute-z0-according-to-above-equations-constants-and-set-z0t-z0q-0-1-z0">2. <em>z0_2</em>: Compute z0 according to above equations/constants and set z0t = z0q = 0.1*z0</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#z0-3-set-z0-z0t-and-z0q-according-to-constrain-intercomparison-case-z0-6-6-x-10-4-z0t-z0q-3-7-x-10-6">3. <em>z0_3</em>: Set z0, z0t, and z0q according to CONSTRAIN intercomparison case (z0 = 6.6 x 10^-4; z0t = z0q = 3.7 x 10^-6)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#z0-4-compute-constant-z0-z0t-and-z0q-values-from-z0-1-for-comble-mip-case-z0-9-0-x-10-4-z0t-z0q-5-5-x-10-6">4. <em>z0_4</em>: Compute constant z0, z0t, and z0q values from <em>z0_1</em> for COMBLE-MIP case (z0 = 9.0 x 10^-4; z0t = z0q = 5.5 x 10^-6)</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypothesis">Hypothesis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#approach">Approach</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sensitivities">Sensitivities</a></li>
 </ul>
   </nav></div>
 
