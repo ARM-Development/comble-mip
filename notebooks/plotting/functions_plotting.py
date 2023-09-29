@@ -472,7 +472,7 @@ def load_real_wrf(PATH='../../data_files/'):
     return p_df,df_col2 
 
 
-def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword=''):
+def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0):
     
     ## load ERA5 data along trajectory
     ## __input__
@@ -487,6 +487,7 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword=''):
     NCFILES_STR = [str(p) for p in pathlib.Path(path).rglob('*.nc')]
     
     ## variables that only have time as dimension
+    print('Loading variables: f(time)')
     df_col = pd.DataFrame()
     count = 0
     for fn in NCFILES:
@@ -513,6 +514,7 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword=''):
         count+=1
         
     ## variables that have time and height as dimensions
+    print('Loading variables: f(time,height)')
     df_col2 = pd.DataFrame()
     count = 0
     for fn in NCFILES:
@@ -550,6 +552,13 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword=''):
     
     df_col['time']  = df_col['time'] + t_shift*3600.
     df_col2['time'] = df_col2['time'] + t_shift*3600.
+    
+    if(make_gray == 1):        
+        df_col['colflag']  = 'gray'
+        df_col2['colflag'] = 'gray'
+    else:
+        df_col['colflag']  = 'col'
+        df_col2['colflag'] = 'col'        
     
     return df_col,df_col2
 
@@ -595,8 +604,14 @@ def plot_1d(df_col,var_vec,t0=-2.,t1=18.):
                         obj.errorbar(df.time/3600,df[var_vec[ii]],yerr=error,label=label,c='k',fmt=plot_symbol[counter_symbol])
                 if ii==len(var_vec)-1:
                     counter_symbol +=1
-            else:
-                obj.plot(df.time/3600,df[var_vec[ii]],label=label)
+            else:                
+                ## eliminate doubles and only plot non-gray
+                if(len(df['colflag'].unique()) > 1):
+                    df = df[df['colflag'] == 'col']
+                if(df['colflag'].unique() == 'gray'):
+                    obj.plot(df.time/3600,df[var_vec[ii]],label=label,c='gray',zorder=1)
+                else:
+                    obj.plot(df.time/3600,df[var_vec[ii]],label=label,c=plot_colors[counter],zorder=2)
             obj.grid(alpha=0.2)
         counter +=1
     
@@ -655,7 +670,10 @@ def plot_2d(df_col2,var_vec,times,z_max = 6000.):
             print('Computing wind direction')
             df_col2['ws'] = np.sqrt(df_col2['ua']**2 + df_col2['va']**2)
             df_col2['wd'] = np.arctan2(df_col2['ua']/df_col2['ws'],df_col2['va']/df_col2['ws'])*180/np.pi + 180.
-
+            
+            ## for better plotting, set values < 2 NaN
+            df_col2.loc[df_col2['wd'] < 2,'wd'] = np.NAN
+            
             ## bring over on one side
             df_col2.loc[df_col2['wd'] < 0,'wd'] = df_col2.loc[df_col2['wd'] < 0,'wd'] + 360
         else:
@@ -665,9 +683,11 @@ def plot_2d(df_col2,var_vec,times,z_max = 6000.):
     df_col2 = df_col2[df_col2['zf'] < (z_max + 500)]
     
     counter = 0
+    counter_plot = 0
     fig, axs = plt.subplots(len(var_vec),len(times),figsize=(2*len(times),2 + 2*len(var_vec)))
     for tt in range(len(times)):
-        df_sub = df_col2[round(df_col2.time) == times[tt]*3600.]    
+        df_sub = df_col2[round(df_col2.time) == times[tt]*3600.]      
+        counter_plot = 0
         for label, df in df_col2.groupby('class'):
             df = df[round(df.time) == times[tt]*3600.]
             #print(len(df))
@@ -681,10 +701,13 @@ def plot_2d(df_col2,var_vec,times,z_max = 6000.):
                     obj = axs[ii]
                 else:
                     obj = axs[ii,tt]
-                if var_vec[ii] == 'wd':
-                    obj.scatter(df[var_vec[ii]],df.zf,s=5,label=label)
+                ## eliminate doubles and only plot non-gray
+                if(len(df['colflag'].unique()) > 1):
+                    df = df[df['colflag'] == 'col']
+                if(df['colflag'].unique() == 'gray'):
+                    obj.plot(df[var_vec[ii]],df.zf,label=label,c='gray',zorder=1)
                 else:
-                    obj.plot(df[var_vec[ii]],df.zf,label=label)
+                    obj.plot(df[var_vec[ii]],df.zf,label=label,c=plot_colors[counter_plot],zorder=2)
                 obj.grid(alpha=0.2)
                 obj.set_ylim([0, z_max])
                 if ii==0:
@@ -695,6 +718,7 @@ def plot_2d(df_col2,var_vec,times,z_max = 6000.):
                     obj.set(xlabel=var_vec[ii])
                     plt.setp(obj.get_yticklabels(), visible=False)
                 counter +=1
+            counter_plot +=1
                 
     handles, labels = plt.gca().get_legend_handles_labels()
     by_label = dict(zip(labels, handles))
