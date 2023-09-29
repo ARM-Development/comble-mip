@@ -581,6 +581,7 @@ def plot_1d(df_col,var_vec,t0=-2.,t1=18.):
     
     counter = 0
     counter_symbol = 0
+    counter_plot = 0
         
     fig, axs = plt.subplots(len(var_vec),1,figsize=(5,1 + 2*len(var_vec)))
     for label, df in df_col.groupby('class'):
@@ -611,10 +612,10 @@ def plot_1d(df_col,var_vec,t0=-2.,t1=18.):
                 if(df['colflag'].unique() == 'gray'):
                     obj.plot(df.time/3600,df[var_vec[ii]],label=label,c='gray',zorder=1)
                 else:
-                    obj.plot(df.time/3600,df[var_vec[ii]],label=label,c=plot_colors[counter],zorder=2)
+                    obj.plot(df.time/3600,df[var_vec[ii]],label=label,c=plot_colors[counter_plot],zorder=2)
             obj.grid(alpha=0.2)
         counter +=1
-    
+        if not (label=='MAC-LWP') | (label=='MODIS') | (label=='VIIRS') | (label=='CERES') | (label=='SENTINEL') | (label=='KAZR (Kollias)')| (label=='KAZR (Clough)')| (label=='CALIOP')| (label=='ATMS')| (label=='RADFLUX'): counter_plot +=1    
     i_count = 0
 
     if len(var_vec) > 1:
