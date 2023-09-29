@@ -4,6 +4,10 @@
 Ready to make your model outputs accessible to other MIP participants? Please refer to [this page](https://arm-development.github.io/comble-mip/CONTRIBUTING.html) to learn how to upload your model outputs to the repository.
 ```
 
+Processed model outputs are invited for commit to the GitHub repository under **/comble-mip/output_xxx/YOUR_MODEL_NAME/** where *xxx* can be *les* or *scm*. Within your model's subdirectory, you should place any intermediate or sensitivity simulations in a directory called **devel**. Once you are happy with your simulations for the specifications outlined in the tables below, you may host them in a directory called **sandbox**. While these can be committed and removed at any time, note that we expect **sandbox** simulations to be finalized by the dates listed below.
+
+We request that you name your simulations as outlined below so that they can be readily compared with other runs using the same test specification. Please add a prefix to each of the file names to distinguish between other models. For example, for the *SCM/small-domain LES, liquid-only* specification in Phase I, outputs from the DHARMA model should be named *DHARMA_Lx25_dx100_FixN_noice*.
+
 ## Phase 1
 | Product                                                                                                                                                      | Simulation Name                                                                        | Due Date                                                                                    |
 |--------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
