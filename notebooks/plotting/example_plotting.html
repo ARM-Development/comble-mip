@@ -394,7 +394,7 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> functions_plotting.py
 
 <span class="c1">## select simulations to plot</span>
-<span class="n">sim_keyword</span> <span class="o">=</span> <span class="s1">&#39;dx100m&#39;</span>
+<span class="n">sim_keyword</span> <span class="o">=</span> <span class="s1">&#39;dx100&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -432,10 +432,10 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>../../data_files/theta_temp_rh_sh_uvw_sst_along_trajectory_era5ml_28h_end_2020-03-13-18.nc
-../../data_files/anxsondewnpnM1.b1.20200313.232200.cdf
-../../data_files/anxsondewnpnM1.b1.20200313.172600.cdf
 ../../data_files/anxsondewnpnM1.b1.20200313.112600.cdf
 ../../data_files/anxsondewnpnM1.b1.20200313.052700.cdf
+../../data_files/anxsondewnpnM1.b1.20200313.232200.cdf
+../../data_files/anxsondewnpnM1.b1.20200313.172600.cdf
 KAZR (Kollias): here using auxiliary field to estimate cloud-top temperature
 </pre></div>
 </div>
@@ -452,9 +452,15 @@ KAZR (Kollias): here using auxiliary field to estimate cloud-top temperature
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time)
-../../output_les/wrf/sandbox/Lx25km_dx100m/WRF_LES_COMBLE-I_Lx25km_dx100m.nc
+../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_ProgNa.nc
+../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_FixN.nc
+../../output_les/wrf/sandbox/WRF_Lx25km_dx100_FixN.nc
+../../output_les/wrf/sandbox/WRF_Lx25km_dx100_FixN_noice.nc
 Loading variables: f(time,height)
-../../output_les/wrf/sandbox/Lx25km_dx100m/WRF_LES_COMBLE-I_Lx25km_dx100m.nc
+../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_ProgNa.nc
+../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_FixN.nc
+../../output_les/wrf/sandbox/WRF_Lx25km_dx100_FixN.nc
+../../output_les/wrf/sandbox/WRF_Lx25km_dx100_FixN_noice.nc
 </pre></div>
 </div>
 </div>
@@ -467,13 +473,13 @@ Loading variables: f(time,height)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/02ed0289d705725b827d023ccdf36a08606f4a33d888f724ef22be54f39c9a04.png" src="../../_images/02ed0289d705725b827d023ccdf36a08606f4a33d888f724ef22be54f39c9a04.png" />
+<img alt="../../_images/dc1caeacfb5bced0e99dc7c3b4e36080fe719e4d220e67150b31e7d3bc1d6888.png" src="../../_images/dc1caeacfb5bced0e99dc7c3b4e36080fe719e4d220e67150b31e7d3bc1d6888.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## load all simulations located in subfolders of the given directory</span>
-<span class="n">var_vec_1d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;cwp&#39;</span><span class="p">,</span><span class="s1">&#39;rwp&#39;</span><span class="p">,</span><span class="s1">&#39;iwp&#39;</span><span class="p">,</span><span class="s1">&#39;swp&#39;</span><span class="p">,</span><span class="s1">&#39;gwp&#39;</span><span class="p">,</span><span class="s1">&#39;cod&#39;</span><span class="p">,</span><span class="s1">&#39;zi&#39;</span><span class="p">]</span> <span class="c1"># variables without ERA5 (shorter time axis)</span>
+<span class="n">var_vec_1d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;lwp&#39;</span><span class="p">,</span><span class="s1">&#39;iwp&#39;</span><span class="p">,</span><span class="s1">&#39;swp&#39;</span><span class="p">,</span><span class="s1">&#39;gwp&#39;</span><span class="p">,</span><span class="s1">&#39;cod&#39;</span><span class="p">,</span><span class="s1">&#39;zi&#39;</span><span class="p">]</span> <span class="c1"># variables without ERA5 (shorter time axis)</span>
 <span class="n">var_vec_2d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;theta&#39;</span><span class="p">,</span><span class="s1">&#39;qv&#39;</span><span class="p">,</span><span class="s1">&#39;ua&#39;</span><span class="p">,</span><span class="s1">&#39;va&#39;</span><span class="p">,</span><span class="s1">&#39;ta&#39;</span><span class="p">]</span>
 <span class="n">df_col_1d</span><span class="p">,</span><span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword</span><span class="p">)</span>
 </pre></div>
@@ -481,9 +487,31 @@ Loading variables: f(time,height)
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time)
-../../output_les/wrf/sandbox/Lx25km_dx100m/WRF_LES_COMBLE-I_Lx25km_dx100m.nc
+../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_ProgNa.nc
+swp not found in ../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_ProgNa.nc
+gwp not found in ../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_ProgNa.nc
+cod not found in ../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_ProgNa.nc
+zi not found in ../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_ProgNa.nc
+../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_FixN.nc
+swp not found in ../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_FixN.nc
+gwp not found in ../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_FixN.nc
+cod not found in ../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_FixN.nc
+zi not found in ../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_FixN.nc
+../../output_les/wrf/sandbox/WRF_Lx25km_dx100_FixN.nc
+swp not found in ../../output_les/wrf/sandbox/WRF_Lx25km_dx100_FixN.nc
+gwp not found in ../../output_les/wrf/sandbox/WRF_Lx25km_dx100_FixN.nc
+cod not found in ../../output_les/wrf/sandbox/WRF_Lx25km_dx100_FixN.nc
+zi not found in ../../output_les/wrf/sandbox/WRF_Lx25km_dx100_FixN.nc
+../../output_les/wrf/sandbox/WRF_Lx25km_dx100_FixN_noice.nc
+swp not found in ../../output_les/wrf/sandbox/WRF_Lx25km_dx100_FixN_noice.nc
+gwp not found in ../../output_les/wrf/sandbox/WRF_Lx25km_dx100_FixN_noice.nc
+cod not found in ../../output_les/wrf/sandbox/WRF_Lx25km_dx100_FixN_noice.nc
+zi not found in ../../output_les/wrf/sandbox/WRF_Lx25km_dx100_FixN_noice.nc
 Loading variables: f(time,height)
-../../output_les/wrf/sandbox/Lx25km_dx100m/WRF_LES_COMBLE-I_Lx25km_dx100m.nc
+../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_ProgNa.nc
+../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_FixN.nc
+../../output_les/wrf/sandbox/WRF_Lx25km_dx100_FixN.nc
+../../output_les/wrf/sandbox/WRF_Lx25km_dx100_FixN_noice.nc
 </pre></div>
 </div>
 </div>
@@ -499,7 +527,7 @@ Loading variables: f(time,height)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/7aa17f046c42e2f5dc0f1f4f49659c8dba0e0ecb1620e7dab4f686c374149dbd.png" src="../../_images/7aa17f046c42e2f5dc0f1f4f49659c8dba0e0ecb1620e7dab4f686c374149dbd.png" />
+<img alt="../../_images/be5ec8a88f958001fa055f8cb7b483fcc7416f58ce488e9b234d635f90d2c37f.png" src="../../_images/be5ec8a88f958001fa055f8cb7b483fcc7416f58ce488e9b234d635f90d2c37f.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -517,7 +545,7 @@ Loading variables: f(time,height)
 Computing wind direction
 </pre></div>
 </div>
-<img alt="../../_images/28e2b4bfb807c9a8d089c269bb8d50d4040faa6210506985490674073f00731a.png" src="../../_images/28e2b4bfb807c9a8d089c269bb8d50d4040faa6210506985490674073f00731a.png" />
+<img alt="../../_images/3c5a0fc3fbbcf1f3e7bb3e33dbfbfaf5eec76131d05680681cd14c10935c4b03.png" src="../../_images/3c5a0fc3fbbcf1f3e7bb3e33dbfbfaf5eec76131d05680681cd14c10935c4b03.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x600 with 0 Axes&gt;
 </pre></div>
 </div>

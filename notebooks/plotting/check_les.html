@@ -392,10 +392,20 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> functions_plotting.py
 
 <span class="c1">## select (grayed out) simulations to plot</span>
-<span class="n">sim_keyword_gray</span> <span class="o">=</span> <span class="s1">&#39;wrf&#39;</span>
+<span class="n">sim_keyword_gray</span> <span class="o">=</span> <span class="s1">&#39;dharma/sandbox&#39;</span>
 
 <span class="c1">## select LES run(s) of interest</span>
-<span class="n">sim_keyword_col</span> <span class="o">=</span> <span class="s1">&#39;Lx25km_dx100m&#39;</span>
+<span class="n">sim_keyword_col</span> <span class="o">=</span> <span class="s1">&#39;WRF_Lx25km_dx100_FixN.&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vars_mean_list</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;https://docs.google.com/spreadsheets/d/1Vl8jYGviet7EtXZuQiitrx4NSkV1x27aJAhxxjBb9zI/export?gid=0&amp;format=xlsx&#39;</span><span class="p">,</span>
+                              <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Mean&#39;</span><span class="p">)</span>
+<span class="n">var_vec_1d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">variable_id</span><span class="p">[</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">==</span> <span class="s1">&#39;time&#39;</span><span class="p">])</span>
+<span class="n">var_vec_2d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">variable_id</span><span class="p">[</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">==</span> <span class="s1">&#39;time, height&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -403,8 +413,6 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## load all simulations located in subfolders of the given directory</span>
-<span class="n">var_vec_1d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hfss&#39;</span><span class="p">,</span><span class="s1">&#39;hfls&#39;</span><span class="p">,</span><span class="s1">&#39;ts&#39;</span><span class="p">]</span> 
-<span class="n">var_vec_2d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;theta&#39;</span><span class="p">,</span><span class="s1">&#39;qv&#39;</span><span class="p">,</span><span class="s1">&#39;ua&#39;</span><span class="p">,</span><span class="s1">&#39;va&#39;</span><span class="p">]</span>
 <span class="n">df_gray_1d</span><span class="p">,</span><span class="n">df_gray_2d</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword_gray</span><span class="p">,</span><span class="n">make_gray</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
 
 <span class="n">df_col_1d</span><span class="p">,</span><span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword_col</span><span class="p">)</span>
@@ -413,23 +421,15 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time)
-../../output_les/wrf/sandbox/z0_1/WRF_LES_COMBLE-I_sens1.nc
-../../output_les/wrf/sandbox/Lx25km_dx200m/WRF_LES_COMBLE-I_Lx25km_dx200m.nc
-../../output_les/wrf/sandbox/z0_2/WRF_LES_COMBLE-I_sens2.nc
-../../output_les/wrf/sandbox/Lx25km_dx100m/WRF_LES_COMBLE-I_Lx25km_dx100m.nc
-../../output_les/wrf/sandbox/z0_3/WRF_LES_COMBLE-I_sens3.nc
-../../output_les/wrf/sandbox/z0_4/WRF_LES_COMBLE-I_sens4.nc
+../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_ProgNa.nc
+../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_FixN.nc
 Loading variables: f(time,height)
-../../output_les/wrf/sandbox/z0_1/WRF_LES_COMBLE-I_sens1.nc
-../../output_les/wrf/sandbox/Lx25km_dx200m/WRF_LES_COMBLE-I_Lx25km_dx200m.nc
-../../output_les/wrf/sandbox/z0_2/WRF_LES_COMBLE-I_sens2.nc
-../../output_les/wrf/sandbox/Lx25km_dx100m/WRF_LES_COMBLE-I_Lx25km_dx100m.nc
-../../output_les/wrf/sandbox/z0_3/WRF_LES_COMBLE-I_sens3.nc
-../../output_les/wrf/sandbox/z0_4/WRF_LES_COMBLE-I_sens4.nc
+../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_ProgNa.nc
+../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_FixN.nc
 Loading variables: f(time)
-../../output_les/wrf/sandbox/Lx25km_dx100m/WRF_LES_COMBLE-I_Lx25km_dx100m.nc
+../../output_les/wrf/sandbox/WRF_Lx25km_dx100_FixN.nc
 Loading variables: f(time,height)
-../../output_les/wrf/sandbox/Lx25km_dx100m/WRF_LES_COMBLE-I_Lx25km_dx100m.nc
+../../output_les/wrf/sandbox/WRF_Lx25km_dx100_FixN.nc
 </pre></div>
 </div>
 </div>
@@ -442,22 +442,18 @@ Loading variables: f(time,height)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/f470b74e15cc0d3c5095d84e0cef48304719a22b851de00628378833fc2ad2ca.png" src="../../_images/f470b74e15cc0d3c5095d84e0cef48304719a22b851de00628378833fc2ad2ca.png" />
+<img alt="../../_images/247ed948b27a1e223fe2c68dab0f8fd743e05a83e145495f319c4787a1e250fd.png" src="../../_images/247ed948b27a1e223fe2c68dab0f8fd743e05a83e145495f319c4787a1e250fd.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## example where ERA5 and radiosonde are included</span>
-<span class="n">plot_2d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_gray_2d</span><span class="p">,</span><span class="n">df_col_2d</span><span class="p">]),</span><span class="n">var_vec</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;theta&#39;</span><span class="p">,</span><span class="s1">&#39;ws&#39;</span><span class="p">,</span><span class="s1">&#39;wd&#39;</span><span class="p">],</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">18</span><span class="p">],</span><span class="n">z_max</span><span class="o">=</span><span class="mi">6000</span><span class="p">)</span>
+<span class="n">plot_2d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_gray_2d</span><span class="p">,</span><span class="n">df_col_2d</span><span class="p">]),</span><span class="n">var_vec</span> <span class="o">=</span> <span class="n">var_vec_2d</span><span class="p">,</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">18</span><span class="p">],</span><span class="n">z_max</span><span class="o">=</span><span class="mi">6000</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computing wind speed
-Computing wind direction
-</pre></div>
-</div>
-<img alt="../../_images/b00082997cf68380df6c2f3d793da32922eac5da13ab8673b7002ae40eff67cd.png" src="../../_images/b00082997cf68380df6c2f3d793da32922eac5da13ab8673b7002ae40eff67cd.png" />
+<img alt="../../_images/4f0f49c065a4df287f0c369964858491234bd328dbbbd0ecc6c1184f64b58fba.png" src="../../_images/4f0f49c065a4df287f0c369964858491234bd328dbbbd0ecc6c1184f64b58fba.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x600 with 0 Axes&gt;
 </pre></div>
 </div>
