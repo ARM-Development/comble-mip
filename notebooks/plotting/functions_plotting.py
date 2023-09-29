@@ -500,13 +500,17 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0):
             #rwp  = ds.variables['rwp'][:]
 
             label_items = [x for x in fn.parts + direc.parts if x not in direc.parts]
-            label_items = label_items[0:(len(label_items)-1)]
+            #label_items = label_items[0:(len(label_items)-1)]
             group = "/".join(label_items)
 
             #p_df = pd.DataFrame({"class": [group]* len(time), "time":time, "cwp": cwp, "rwp": rwp},index=time/3600)
             p_df = pd.DataFrame({"class": [group]* len(time), "time":time}, index=time/3600)
             for vv in var_vec_1d:
-                p_df[vv] = ds.variables[vv][:]
+                if vv in ds.variables:
+                    p_df[vv] = ds.variables[vv][:]
+                else:
+                    print(vv + ' not found in ' + str(fn))
+                    p_df[vv] = np.NAN
 
             ds.close()
             df_col = pd.concat([df_col,p_df])
@@ -526,13 +530,17 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0):
             qv   = ds.variables['qv'][:,:]
 
             label_items = [x for x in fn.parts + direc.parts if x not in direc.parts]
-            label_items = label_items[0:(len(label_items)-1)]
+            #label_items = label_items[0:(len(label_items)-1)]
             group = "/".join(label_items)
 
             for ii in range(len(zf)):
                 p_df2 = pd.DataFrame({"class": [group]* len(time), "time":time, "zf": zf[ii]}, index=time/3600)      
                 for vv in var_vec_2d:
-                    p_df2[vv] = ds.variables[vv][:,:][:,ii]
+                    if vv in ds.variables:
+                        p_df2[vv] = ds.variables[vv][:,:][:,ii]
+                    else:
+                        if(ii==0): print(vv + ' not found in ' + str(fn))
+                        p_df2[vv] = np.NAN
                 df_col2 = pd.concat([df_col2,p_df2])
             
         count+=1
@@ -548,7 +556,7 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0):
                 zi_step = df_sub.loc[df_sub['time'] == tt,'zi']
                 ta_step = df_sub2.loc[df_sub2['time'] == tt,['zf','ta']]
                 ta_step['zf_diff'] = np.abs(ta_step['zf'] - zi_step)
-                df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'ctt'] = min(ta_step.loc[ta_step.zf_diff == ta_step.zf_diff.min(),'ta']) - 273.15
+                df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'ctt'] = min(ta_step.loc[ta_step.zf_diff == ta_step.zf_diff.min(),'ta'], default=np.NAN) - 273.15
     
     df_col['time']  = df_col['time'] + t_shift*3600.
     df_col2['time'] = df_col2['time'] + t_shift*3600.
@@ -615,7 +623,8 @@ def plot_1d(df_col,var_vec,t0=-2.,t1=18.):
                     obj.plot(df.time/3600,df[var_vec[ii]],label=label,c=plot_colors[counter_plot],zorder=2)
             obj.grid(alpha=0.2)
         counter +=1
-        if not (label=='MAC-LWP') | (label=='MODIS') | (label=='VIIRS') | (label=='CERES') | (label=='SENTINEL') | (label=='KAZR (Kollias)')| (label=='KAZR (Clough)')| (label=='CALIOP')| (label=='ATMS')| (label=='RADFLUX'): counter_plot +=1    
+        if not df['colflag'].unique() == 'gray':  counter_plot +=1
+        #if not (label=='MAC-LWP') | (label=='MODIS') | (label=='VIIRS') | (label=='CERES') | (label=='SENTINEL') | (label=='KAZR (Kollias)')| (label=='KAZR (Clough)')| (label=='CALIOP')| (label=='ATMS')| (label=='RADFLUX'): counter_plot +=1    
     i_count = 0
 
     if len(var_vec) > 1:
@@ -638,12 +647,13 @@ def plot_1d(df_col,var_vec,t0=-2.,t1=18.):
 
     fig.tight_layout()
     
-    if len(var_vec) < 2:
-        top_offset = -0.2
-    else:
-        top_offset = 0.0
+    w1 = 1/abs(1.01 - len(var_vec))
+    w2 = 1/abs(18.01 - len(var_vec))
+    ww1 = w1/(w1 + w2)
+    ww2 = w2/(w1 + w2)
+    top_offset = -0.2*ww1 + 0.12*ww2
         
-    fig.subplots_adjust(top=0.85 + top_offset)
+    fig.subplots_adjust(top=0.85 + top_offset) #base + top_offset)
     
     plt.show()
 
@@ -657,7 +667,7 @@ def plot_2d(df_col2,var_vec,times,z_max = 6000.):
     ## times......list with hours of interest
     ## z_max......maximum altitude for plotting (meters)
     
-    plot_colors = ["#E69F00", "#56B4E9", "#009E73","#0072B2", "#D55E00", "#CC79A7","#F0E442"]
+    plot_colors = ["#E69F00", "#56B4E9", "#009E73","#0072B2", "#D55E00", "#CC79A7","#F0E442",'black','gray']
     
     if 'ws' in var_vec:
         if  'ua' in df_col2.columns and 'va' in df_col2.columns:
@@ -719,7 +729,7 @@ def plot_2d(df_col2,var_vec,times,z_max = 6000.):
                     obj.set(xlabel=var_vec[ii])
                     plt.setp(obj.get_yticklabels(), visible=False)
                 counter +=1
-            counter_plot +=1
+            if not df['colflag'].unique() == 'gray': counter_plot +=1
                 
     handles, labels = plt.gca().get_legend_handles_labels()
     by_label = dict(zip(labels, handles))
@@ -727,12 +737,11 @@ def plot_2d(df_col2,var_vec,times,z_max = 6000.):
     
     fig.tight_layout()
     
-    if len(var_vec) < 3:
-        top_offset = -0.1
-    elif len(var_vec) < 2:
-        top_offset = -0.2
-    else:
-        top_offset = 0.0
+    w1 = 1/abs(1.01 - len(var_vec))
+    w2 = 1/abs(40.01 - len(var_vec))
+    ww1 = w1/(w1 + w2)
+    ww2 = w2/(w1 + w2)
+    top_offset = -0.2*ww1 + 0.19*ww2
         
     fig.subplots_adjust(top=0.9 + top_offset)
     
