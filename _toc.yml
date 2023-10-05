@@ -24,6 +24,7 @@ parts:
     - glob: notebooks/conversion_output/*
 - caption: Plotting and Analysis
   chapters:
+    - file: notebooks/plotting/check_les.ipynb
     - file: notebooks/plotting/example_plotting.ipynb
     - file: emc2
 - caption: Supporting Materials

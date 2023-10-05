@@ -483,7 +483,7 @@ def load_real_wrf(PATH='../../data_files/'):
     return p_df,df_col2 
 
 
-def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0):
+def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,drop_t0=True):
     
     ## load ERA5 data along trajectory
     ## __input__
@@ -492,6 +492,7 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0):
     ## var_vec_2d....variables with time and height dependence
     ## t_shift.......time shift prior to ice edge
     ## keyword.......search for subset of sims within path
+    ## drop_t0.......drop first time (initialization) when variables are null
     
     direc = pathlib.Path(path)
     NCFILES = list(direc.rglob("*nc"))
@@ -507,6 +508,15 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0):
             ds = nc.Dataset(fn)
             #print(ds)
             time = ds.variables['time'][:]
+            # drop first time
+            if drop_t0:
+                if time[0] == 0.:
+                    t0 = 1
+                else:
+                    t0 = 0
+            else:
+                t0 = 0
+            time = time[t0:]
             #cwp  = ds.variables['cwp'][:]
             #rwp  = ds.variables['rwp'][:]
 
@@ -518,7 +528,7 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0):
             p_df = pd.DataFrame({"class": [group]* len(time), "time":time}, index=time/3600)
             for vv in var_vec_1d:
                 if vv in ds.variables:
-                    p_df[vv] = ds.variables[vv][:]
+                    p_df[vv] = ds.variables[vv][t0:]
                 else:
                     print(vv + ' not found in ' + str(fn))
                     p_df[vv] = np.NAN
@@ -536,9 +546,9 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0):
         if keyword in NCFILES_STR[count]:
             print(fn)
             ds = nc.Dataset(fn)
-            time = ds.variables['time'][:]
-            zf   = ds.variables['zf'][:]
-            qv   = ds.variables['qv'][:,:]
+            time = ds.variables['time'][t0:]
+            zf   = ds.variables['zf'][t0:]
+            qv   = ds.variables['qv'][t0:,:]
             zf_ndim = zf.ndim
 
             label_items = [x for x in fn.parts + direc.parts if x not in direc.parts]
@@ -553,9 +563,9 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0):
                     #if(ii==0): print(vv)
                     if vv in ds.variables:
                         if(zf_ndim>1) & (vv=='pa'):
-                            p_df2[vv] = ds.variables[vv][:][ii]
+                            p_df2[vv] = ds.variables[vv][t0:][ii]
                         else:
-                            p_df2[vv] = ds.variables[vv][:,:][:,ii]
+                            p_df2[vv] = ds.variables[vv][t0:,:][:,ii]
                     else:
                         if(ii==0): print(vv + ' not found in ' + str(fn))
                         p_df2[vv] = np.NAN
@@ -589,7 +599,7 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0):
     return df_col,df_col2
 
 
-def plot_1d(df_col,var_vec,t0=-2.,t1=18.,longnames=[]):
+def plot_1d(df_col,var_vec,t0=-2.,t1=18.,longnames=[],units=[]):
     
     ## plot variables with time dependence
     ## __input__
@@ -597,6 +607,9 @@ def plot_1d(df_col,var_vec,t0=-2.,t1=18.,longnames=[]):
     ## var_vec....variables with time dependence
     ## t0.........starting plot time (h relative to ice edge)
     ## t1.........end plot time (h relative to ice edge)
+    ## longnames..full variable name
+    ## units......variable units
+    
     
     t0 = t0*3600. # convert h to s
     t1 = t1*3600.
@@ -643,7 +656,11 @@ def plot_1d(df_col,var_vec,t0=-2.,t1=18.,longnames=[]):
                     obj.plot(df.time/3600,df[var_vec[ii]],label=label,c=plot_colors[counter_plot],zorder=2)
             obj.grid(alpha=0.2)
             if (len(longnames)>0) & (counter==0):
-                obj.text(.01, .99, longnames[ii], ha='left', va='top', transform=obj.transAxes)
+                if units[ii] == 1:
+                    unit_str = " [-]"
+                else:
+                    unit_str = " [" + str(units[ii]) + "]"
+                obj.text(.01, .99, longnames[ii]+unit_str, ha='left', va='top', transform=obj.transAxes)
         counter +=1
         if not df['colflag'].unique() == 'gray':  counter_plot +=1
         if (label=='MAC-LWP') | (label=='MODIS') | (label=='VIIRS') | (label=='CERES') | (label=='SENTINEL') | (label=='KAZR (Kollias)')| (label=='KAZR (Clough)')| (label=='CALIOP')| (label=='ATMS')| (label=='RADFLUX'): counter_plot -=1    
@@ -680,7 +697,7 @@ def plot_1d(df_col,var_vec,t0=-2.,t1=18.,longnames=[]):
     plt.show()
 
 
-def plot_2d(df_col2,var_vec,times,z_max = 6000.):
+def plot_2d(df_col2,var_vec,times,z_max = 6000.,units=[]):
     
     ## plot variables with time and height dependence
     ## __input__
@@ -688,6 +705,7 @@ def plot_2d(df_col2,var_vec,times,z_max = 6000.):
     ## var_vec....variables with time dependence
     ## times......list with hours of interest
     ## z_max......maximum altitude for plotting (meters)
+    ## units......variable units
     
     plot_colors = ["#E69F00", "#56B4E9", "#009E73","#0072B2", "#D55E00", "#CC79A7","#F0E442",'black','gray']
     
@@ -745,10 +763,15 @@ def plot_2d(df_col2,var_vec,times,z_max = 6000.):
                 obj.set_ylim([0, z_max])
                 if ii==0:
                     obj.set_title(str(times[tt])+'h')
-                if tt==0:
-                    obj.set(ylabel='Altitude (m)', xlabel=var_vec[ii])
+                # set units string
+                if units[ii] == 1:
+                    unit_str = " [-]"
                 else:
-                    obj.set(xlabel=var_vec[ii])
+                    unit_str = " [" + str(units[ii]) + "]"
+                if tt==0:
+                    obj.set(ylabel='Altitude (m)', xlabel=var_vec[ii] + unit_str)
+                else:
+                    obj.set(xlabel=var_vec[ii] + unit_str)
                     plt.setp(obj.get_yticklabels(), visible=False)
                 counter +=1
             if not df['colflag'].unique() == 'gray': counter_plot +=1
