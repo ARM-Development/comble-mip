@@ -78,6 +78,9 @@ def load_calipso(case='20200313',t_filter = 1.,PATH='../../data_files/'):
     data['iwp.25'] = data['iwp.25']/1000
     data['iwp.75'] = data['iwp.75']/1000
     
+    data['od'] = data['cod']
+    data['od.25'] = data['cod.25']
+    data['od.75'] = data['cod.75']
     #data['cod'] = data['cod.me']
     data.index = data['time']
      
@@ -136,7 +139,9 @@ def load_sentinel(case='20200313',t_filter = 1.,sza_filter = 80.,PATH='../../dat
     data['zi.25'] = data['cth.25']
     data['zi.75'] = data['cth.75']
     
-    #data['cod'] = data['cod.me']
+    data['od'] = data['cod']
+    data['od.25'] = data['cod.25']
+    data['od.75'] = data['cod.75']
     data.index = data['time']
      
     data['class'] = data['sat']
@@ -171,6 +176,9 @@ def load_viirs(case='20200313',t_filter = 1.,sza_filter = 80.,PATH='../../data_f
     data['ctt.75'] = data['ctt.75'] - 273.15
     
     #data['cod'] = data['cod.me']
+    data['od'] = data['cod']
+    data['od.25'] = data['cod.25']
+    data['od.75'] = data['cod.75']
     data.index = data['time']
      
     data['class'] = data['sat']
@@ -202,6 +210,9 @@ def load_modis(case='20200313',t_filter = 1.,sza_filter = 80.,PATH='../../data_f
     data['zi.75'] = data['cth.75']
     data.index = data['time']
     #data['cod'] = data['cod.me']
+    data['od'] = data['cod']
+    data['od.25'] = data['cod.25']
+    data['od.75'] = data['cod.75']
      
     data['class'] = data['sat']
     return data
@@ -528,16 +539,23 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0):
             time = ds.variables['time'][:]
             zf   = ds.variables['zf'][:]
             qv   = ds.variables['qv'][:,:]
+            zf_ndim = zf.ndim
 
             label_items = [x for x in fn.parts + direc.parts if x not in direc.parts]
             #label_items = label_items[0:(len(label_items)-1)]
             group = "/".join(label_items)
 
             for ii in range(len(zf)):
+                if(zf_ndim > 1) & (ii==0):
+                    zf = zf[1,:]
                 p_df2 = pd.DataFrame({"class": [group]* len(time), "time":time, "zf": zf[ii]}, index=time/3600)      
                 for vv in var_vec_2d:
+                    #if(ii==0): print(vv)
                     if vv in ds.variables:
-                        p_df2[vv] = ds.variables[vv][:,:][:,ii]
+                        if(zf_ndim>1) & (vv=='pa'):
+                            p_df2[vv] = ds.variables[vv][:][ii]
+                        else:
+                            p_df2[vv] = ds.variables[vv][:,:][:,ii]
                     else:
                         if(ii==0): print(vv + ' not found in ' + str(fn))
                         p_df2[vv] = np.NAN
@@ -571,7 +589,7 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0):
     return df_col,df_col2
 
 
-def plot_1d(df_col,var_vec,t0=-2.,t1=18.):
+def plot_1d(df_col,var_vec,t0=-2.,t1=18.,longnames=[]):
     
     ## plot variables with time dependence
     ## __input__
@@ -585,7 +603,7 @@ def plot_1d(df_col,var_vec,t0=-2.,t1=18.):
     
     ## 1D plots
     plot_colors = ["#E69F00", "#56B4E9", "#009E73","#0072B2", "#D55E00", "#CC79A7","#F0E442"]
-    plot_symbol = ['D','+','s','o','x','1','2','3']
+    plot_symbol = ['+','x','s','o','D','1','2','3']
     
     counter = 0
     counter_symbol = 0
@@ -593,7 +611,7 @@ def plot_1d(df_col,var_vec,t0=-2.,t1=18.):
         
     fig, axs = plt.subplots(len(var_vec),1,figsize=(5,1 + 2*len(var_vec)))
     for label, df in df_col.groupby('class'):
-        df = df[(df.time>t0) & (df.time<t1)]
+        df = df[(df.time>=t0) & (df.time<=t1)]
         if (label=='MAC-LWP') | (label=='KAZR (Kollias)')| (label=='KAZR (Clough)'):
             df['lwp'] = df['lwp_bu']
             df['lwp.25'] = df['lwp_bu.25']
@@ -605,6 +623,8 @@ def plot_1d(df_col,var_vec,t0=-2.,t1=18.):
                 obj = axs[ii]
             if (label=='MAC-LWP') | (label=='MODIS') | (label=='VIIRS') | (label=='CERES') | (label=='SENTINEL') | (label=='KAZR (Kollias)')| (label=='KAZR (Clough)')| (label=='CALIOP')| (label=='ATMS')| (label=='RADFLUX'):
                 obj.scatter(df.time/3600,df[var_vec[ii]],label=label,c='k',marker=plot_symbol[counter_symbol])
+                #print(label)
+                #print(df[var_vec[ii]])
                 if (label=='MAC-LWP') | (label=='VIIRS') | (label=='MODIS') | (label=='CERES')| (label=='SENTINEL') | (label=='KAZR (Kollias)')| (label=='KAZR (Clough)')| (label=='CALIOP')| (label=='RADFLUX'):
                     if np.count_nonzero(np.isnan(df[var_vec[ii]])) < len(df[var_vec[ii]]):
                         error_1 = np.abs(df[var_vec[ii]] - df[var_vec[ii]+'.25'])
@@ -618,13 +638,15 @@ def plot_1d(df_col,var_vec,t0=-2.,t1=18.):
                 if(len(df['colflag'].unique()) > 1):
                     df = df[df['colflag'] == 'col']
                 if(df['colflag'].unique() == 'gray'):
-                    obj.plot(df.time/3600,df[var_vec[ii]],label=label,c='gray',zorder=1)
+                    obj.plot(df.time/3600,df[var_vec[ii]],label=label,c='gray',zorder=1,linewidth=3,alpha=0.7)
                 else:
                     obj.plot(df.time/3600,df[var_vec[ii]],label=label,c=plot_colors[counter_plot],zorder=2)
             obj.grid(alpha=0.2)
+            if (len(longnames)>0) & (counter==0):
+                obj.text(.01, .99, longnames[ii], ha='left', va='top', transform=obj.transAxes)
         counter +=1
         if not df['colflag'].unique() == 'gray':  counter_plot +=1
-        #if not (label=='MAC-LWP') | (label=='MODIS') | (label=='VIIRS') | (label=='CERES') | (label=='SENTINEL') | (label=='KAZR (Kollias)')| (label=='KAZR (Clough)')| (label=='CALIOP')| (label=='ATMS')| (label=='RADFLUX'): counter_plot +=1    
+        if (label=='MAC-LWP') | (label=='MODIS') | (label=='VIIRS') | (label=='CERES') | (label=='SENTINEL') | (label=='KAZR (Kollias)')| (label=='KAZR (Clough)')| (label=='CALIOP')| (label=='ATMS')| (label=='RADFLUX'): counter_plot -=1    
     i_count = 0
 
     if len(var_vec) > 1:
@@ -716,7 +738,7 @@ def plot_2d(df_col2,var_vec,times,z_max = 6000.):
                 if(len(df['colflag'].unique()) > 1):
                     df = df[df['colflag'] == 'col']
                 if(df['colflag'].unique() == 'gray'):
-                    obj.plot(df[var_vec[ii]],df.zf,label=label,c='gray',zorder=1)
+                    obj.plot(df[var_vec[ii]],df.zf,label=label,c='gray',zorder=1,linewidth=3,alpha=0.7)
                 else:
                     obj.plot(df[var_vec[ii]],df.zf,label=label,c=plot_colors[counter_plot],zorder=2)
                 obj.grid(alpha=0.2)
