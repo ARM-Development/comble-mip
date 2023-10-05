@@ -746,7 +746,7 @@ def plot_2d(df_col2,var_vec,times,z_max = 6000.):
                 if ii==0:
                     obj.set_title(str(times[tt])+'h')
                 if tt==0:
-                    obj.set(ylabel='Altitude (km)', xlabel=var_vec[ii])
+                    obj.set(ylabel='Altitude (m)', xlabel=var_vec[ii])
                 else:
                     obj.set(xlabel=var_vec[ii])
                     plt.setp(obj.get_yticklabels(), visible=False)
