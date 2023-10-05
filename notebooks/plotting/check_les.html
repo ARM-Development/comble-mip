@@ -387,15 +387,21 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="check-my-les-run">
 <h1>Check my LES run<a class="headerlink" href="#check-my-les-run" title="Permalink to this heading">#</a></h1>
+<ul class="simple">
+<li><p>The below notebook allows to compare a selected large-eddy or single column model simulation against a set of benchmark simulations (shown in gray).</p></li>
+<li><p>All requested 1D and 2D variables are here read and plotted. “load_sims” reports variable that are missing. Lines will not show, if a variable is missing or if it contains missing values.</p></li>
+<li><p>In case you find inconsistencies in the benchmark set or wish to expand the code, please contact Ann Fridlind (ann.fridlind&#64;nasa.gov), Timothy Juliano (tjuliano&#64;ucar.edu), and Florian Tornow (ft2544&#64;columbia.edu).</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> functions_plotting.py
 
 <span class="c1">## select (grayed out) simulations to plot</span>
-<span class="n">sim_keyword_gray</span> <span class="o">=</span> <span class="s1">&#39;dharma/sandbox&#39;</span>
+<span class="n">sim_keyword_gray</span> <span class="o">=</span> <span class="s1">&#39;dharma/sandbox/DHARMA_Lx25km_dx100_F&#39;</span>
 
 <span class="c1">## select LES run(s) of interest</span>
-<span class="n">sim_keyword_col</span> <span class="o">=</span> <span class="s1">&#39;WRF_Lx25km_dx100_FixN.&#39;</span>
+<span class="n">sim_keyword_col_les</span> <span class="o">=</span> <span class="s1">&#39;WRF_Lx25km_dx100_FixN.&#39;</span>
+<span class="n">sim_keyword_col_scm</span> <span class="o">=</span> <span class="s1">&#39;ModelE3-Phys_FixN.&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -404,8 +410,13 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vars_mean_list</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;https://docs.google.com/spreadsheets/d/1Vl8jYGviet7EtXZuQiitrx4NSkV1x27aJAhxxjBb9zI/export?gid=0&amp;format=xlsx&#39;</span><span class="p">,</span>
                               <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Mean&#39;</span><span class="p">)</span>
+
+<span class="c1">## short names</span>
 <span class="n">var_vec_1d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">variable_id</span><span class="p">[</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">==</span> <span class="s1">&#39;time&#39;</span><span class="p">])</span>
 <span class="n">var_vec_2d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">variable_id</span><span class="p">[</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">==</span> <span class="s1">&#39;time, height&#39;</span><span class="p">])</span>
+
+<span class="c1">## long names</span>
+<span class="n">var_vec_1d_long</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">standard_name</span><span class="p">[</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">==</span> <span class="s1">&#39;time&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -415,21 +426,36 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## load all simulations located in subfolders of the given directory</span>
 <span class="n">df_gray_1d</span><span class="p">,</span><span class="n">df_gray_2d</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword_gray</span><span class="p">,</span><span class="n">make_gray</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
 
-<span class="n">df_col_1d</span><span class="p">,</span><span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword_col</span><span class="p">)</span>
+<span class="c1">## example using LES</span>
+<span class="c1">#df_col_1d,df_col_2d = load_sims(&#39;../../output_les/&#39;,var_vec_1d,var_vec_2d,t_shift=-2,keyword=sim_keyword_col_les)</span>
+
+<span class="c1">## example using SCM</span>
+<span class="n">df_col_1d</span><span class="p">,</span><span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_scm/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword_col_scm</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time)
-../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_ProgNa.nc
 ../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_FixN.nc
 Loading variables: f(time,height)
-../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_ProgNa.nc
 ../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_FixN.nc
 Loading variables: f(time)
-../../output_les/wrf/sandbox/WRF_Lx25km_dx100_FixN.nc
+../../output_scm/modelE/sandbox/ModelE3-Phys_FixN.nc
+lwp not found in ../../output_scm/modelE/sandbox/ModelE3-Phys_FixN.nc
+clt not found in ../../output_scm/modelE/sandbox/ModelE3-Phys_FixN.nc
 Loading variables: f(time,height)
-../../output_les/wrf/sandbox/WRF_Lx25km_dx100_FixN.nc
+../../output_scm/modelE/sandbox/ModelE3-Phys_FixN.nc
+tke_res not found in ../../output_scm/modelE/sandbox/ModelE3-Phys_FixN.nc
+tke_sgs not found in ../../output_scm/modelE/sandbox/ModelE3-Phys_FixN.nc
+qic not found in ../../output_scm/modelE/sandbox/ModelE3-Phys_FixN.nc
+qis not found in ../../output_scm/modelE/sandbox/ModelE3-Phys_FixN.nc
+qig not found in ../../output_scm/modelE/sandbox/ModelE3-Phys_FixN.nc
+nlc not found in ../../output_scm/modelE/sandbox/ModelE3-Phys_FixN.nc
+nlr not found in ../../output_scm/modelE/sandbox/ModelE3-Phys_FixN.nc
+nic not found in ../../output_scm/modelE/sandbox/ModelE3-Phys_FixN.nc
+nis not found in ../../output_scm/modelE/sandbox/ModelE3-Phys_FixN.nc
+nig not found in ../../output_scm/modelE/sandbox/ModelE3-Phys_FixN.nc
+wthli not found in ../../output_scm/modelE/sandbox/ModelE3-Phys_FixN.nc
 </pre></div>
 </div>
 </div>
@@ -437,23 +463,23 @@ Loading variables: f(time,height)
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## plot variables that have only time dependence</span>
-<span class="n">plot_1d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_gray_1d</span><span class="p">,</span><span class="n">df_col_1d</span><span class="p">]),</span><span class="n">var_vec_1d</span><span class="p">)</span>
+<span class="n">plot_1d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_gray_1d</span><span class="p">,</span><span class="n">df_col_1d</span><span class="p">]),</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">longnames</span> <span class="o">=</span> <span class="n">var_vec_1d_long</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/247ed948b27a1e223fe2c68dab0f8fd743e05a83e145495f319c4787a1e250fd.png" src="../../_images/247ed948b27a1e223fe2c68dab0f8fd743e05a83e145495f319c4787a1e250fd.png" />
+<img alt="../../_images/b93fedadc3ab74226780da843ef0270c4041219a10091d6ceeb09b0d78ccbda6.png" src="../../_images/b93fedadc3ab74226780da843ef0270c4041219a10091d6ceeb09b0d78ccbda6.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## example where ERA5 and radiosonde are included</span>
-<span class="n">plot_2d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_gray_2d</span><span class="p">,</span><span class="n">df_col_2d</span><span class="p">]),</span><span class="n">var_vec</span> <span class="o">=</span> <span class="n">var_vec_2d</span><span class="p">,</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">18</span><span class="p">],</span><span class="n">z_max</span><span class="o">=</span><span class="mi">6000</span><span class="p">)</span>
+<span class="n">plot_2d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_gray_2d</span><span class="p">,</span><span class="n">df_col_2d</span><span class="p">]),</span><span class="n">var_vec</span> <span class="o">=</span> <span class="n">var_vec_2d</span><span class="p">,</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">18</span><span class="p">],</span><span class="n">z_max</span><span class="o">=</span><span class="mi">6000</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/4f0f49c065a4df287f0c369964858491234bd328dbbbd0ecc6c1184f64b58fba.png" src="../../_images/4f0f49c065a4df287f0c369964858491234bd328dbbbd0ecc6c1184f64b58fba.png" />
+<img alt="../../_images/853755c88631e6bac5483f31a8fe6d55a17708130a28ca3fca97113e376d3402.png" src="../../_images/853755c88631e6bac5483f31a8fe6d55a17708130a28ca3fca97113e376d3402.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x600 with 0 Axes&gt;
 </pre></div>
 </div>
