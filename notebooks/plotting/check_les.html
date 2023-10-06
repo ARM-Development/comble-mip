@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Check my LES/SCM run &#8212; COMBLE Model-Observation Intercomparison Project</title>
+    <title>Check my LES run &#8212; COMBLE Model-Observation Intercomparison Project</title>
   
   
   
@@ -199,7 +199,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Plotting and Analysis</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Check my LES/SCM run</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Check my LES run</a></li>
 <li class="toctree-l1"><a class="reference internal" href="example_plotting.html">Evaluation of LES against satellite and ground-based observations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../emc2.html">The Earth Model Column Collaboratory (EMC<sup>2</sup>)</a></li>
 </ul>
@@ -374,7 +374,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Check my LES/SCM run</h1>
+    <h1>Check my LES run</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -388,10 +388,10 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="check-my-les-scm-run">
-<h1>Check my LES/SCM run<a class="headerlink" href="#check-my-les-scm-run" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="check-my-les-run">
+<h1>Check my LES run<a class="headerlink" href="#check-my-les-run" title="Permalink to this heading">#</a></h1>
 <ul class="simple">
-<li><p>The below notebook allows to compare a selected large-eddy or single column model simulation against a set of benchmark simulations (shown in gray).</p></li>
+<li><p>The below notebook allows to compare a selected large-eddy simulation against a set of benchmark simulations (shown in gray).</p></li>
 <li><p>All requested 1D and 2D variables are here read and plotted. “load_sims” reports variable that are missing. Lines will not show, if a variable is missing or if it contains missing values.</p></li>
 <li><p>In case you find inconsistencies in the benchmark set or wish to expand the code, please contact Ann Fridlind (ann.fridlind&#64;nasa.gov), Timothy Juliano (tjuliano&#64;ucar.edu), and Florian Tornow (ft2544&#64;columbia.edu).</p></li>
 </ul>
@@ -404,7 +404,6 @@ document.write(`
 
 <span class="c1">## select LES run(s) of interest</span>
 <span class="n">sim_keyword_col_les</span> <span class="o">=</span> <span class="s1">&#39;WRF_Lx25_dx100_FixN.&#39;</span>
-<span class="n">sim_keyword_col_scm</span> <span class="o">=</span> <span class="s1">&#39;ModelE3-Phys_FixN.&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -435,37 +434,24 @@ document.write(`
 
 <span class="c1">## example using LES</span>
 <span class="n">df_col_1d_les</span><span class="p">,</span><span class="n">df_col_2d_les</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword_col_les</span><span class="p">)</span>
-
-<span class="c1">## example using SCM</span>
-<span class="n">df_col_1d_scm</span><span class="p">,</span><span class="n">df_col_2d_scm</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_scm/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword_col_scm</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time)
 ../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_FixN.nc
+lwpc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_FixN.nc
+lwpr not found in ../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_FixN.nc
 Loading variables: f(time,height)
 ../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_FixN.nc
+computing inversion height and cloud-top temperature
 Loading variables: f(time)
 ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+lwpc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+lwpr not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
 Loading variables: f(time,height)
 ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
-Loading variables: f(time)
-../../output_scm/modelE/sandbox/ModelE3-Phys_FixN.nc
-lwp not found in ../../output_scm/modelE/sandbox/ModelE3-Phys_FixN.nc
-clt not found in ../../output_scm/modelE/sandbox/ModelE3-Phys_FixN.nc
-Loading variables: f(time,height)
-../../output_scm/modelE/sandbox/ModelE3-Phys_FixN.nc
-tke_res not found in ../../output_scm/modelE/sandbox/ModelE3-Phys_FixN.nc
-tke_sgs not found in ../../output_scm/modelE/sandbox/ModelE3-Phys_FixN.nc
-qic not found in ../../output_scm/modelE/sandbox/ModelE3-Phys_FixN.nc
-qis not found in ../../output_scm/modelE/sandbox/ModelE3-Phys_FixN.nc
-qig not found in ../../output_scm/modelE/sandbox/ModelE3-Phys_FixN.nc
-nlc not found in ../../output_scm/modelE/sandbox/ModelE3-Phys_FixN.nc
-nlr not found in ../../output_scm/modelE/sandbox/ModelE3-Phys_FixN.nc
-nic not found in ../../output_scm/modelE/sandbox/ModelE3-Phys_FixN.nc
-nis not found in ../../output_scm/modelE/sandbox/ModelE3-Phys_FixN.nc
-nig not found in ../../output_scm/modelE/sandbox/ModelE3-Phys_FixN.nc
+computing inversion height and cloud-top temperature
 </pre></div>
 </div>
 </div>
@@ -473,23 +459,23 @@ nig not found in ../../output_scm/modelE/sandbox/ModelE3-Phys_FixN.nc
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## plot variables that have only time dependence</span>
-<span class="n">plot_1d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_gray_1d</span><span class="p">,</span><span class="n">df_col_1d_scm</span><span class="p">,</span><span class="n">df_col_1d_les</span><span class="p">]),</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">longnames</span><span class="o">=</span><span class="n">var_vec_1d_long</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="n">var_vec_1d_units</span><span class="p">)</span>
+<span class="n">plot_1d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_gray_1d</span><span class="p">,</span><span class="n">df_col_1d_les</span><span class="p">]),</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">longnames</span><span class="o">=</span><span class="n">var_vec_1d_long</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="n">var_vec_1d_units</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/d3580e18f71662e1a196604b0f7887358f086a3e75f6e510325bb68f65bd0ae5.png" src="../../_images/d3580e18f71662e1a196604b0f7887358f086a3e75f6e510325bb68f65bd0ae5.png" />
+<img alt="../../_images/7a8fcacd92a041a589118c1ae17776bfe29ff40e06121f59cce11dd2bbf89dd0.png" src="../../_images/7a8fcacd92a041a589118c1ae17776bfe29ff40e06121f59cce11dd2bbf89dd0.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## example where ERA5 and radiosonde are included</span>
-<span class="n">plot_2d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_gray_2d</span><span class="p">,</span><span class="n">df_col_2d_scm</span><span class="p">,</span><span class="n">df_col_2d_les</span><span class="p">]),</span><span class="n">var_vec</span> <span class="o">=</span> <span class="n">var_vec_2d</span><span class="p">,</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">18</span><span class="p">],</span><span class="n">z_max</span><span class="o">=</span><span class="mi">6000</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="n">var_vec_2d_units</span><span class="p">)</span>
+<span class="n">plot_2d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_gray_2d</span><span class="p">,</span><span class="n">df_col_2d_les</span><span class="p">]),</span><span class="n">var_vec</span> <span class="o">=</span> <span class="n">var_vec_2d</span><span class="p">,</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">18</span><span class="p">],</span><span class="n">z_max</span><span class="o">=</span><span class="mi">6000</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="n">var_vec_2d_units</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/6dc6062ff48863514abf01e79d573a88d6ecbd96963e7f3832987cd593e3ac82.png" src="../../_images/6dc6062ff48863514abf01e79d573a88d6ecbd96963e7f3832987cd593e3ac82.png" />
+<img alt="../../_images/635d331f2b056d82bbc320688e0c4e51b3d6ea76f364b8a5fc8441b9678165e2.png" src="../../_images/635d331f2b056d82bbc320688e0c4e51b3d6ea76f364b8a5fc8441b9678165e2.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x600 with 0 Axes&gt;
 </pre></div>
 </div>
