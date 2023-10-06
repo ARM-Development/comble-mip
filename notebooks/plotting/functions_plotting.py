@@ -492,7 +492,7 @@ def load_real_wrf(PATH='../../data_files/'):
     return p_df,df_col2 
 
 
-def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,drop_t0=True):
+def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,drop_t0=True,diag_zi_ctt=False):
     
     ## load ERA5 data along trajectory
     ## __input__
@@ -583,24 +583,24 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
         count+=1
             
     ## a simple inversion height and corresponding cloud-top temperature
-    print('computing inversion height and cloud-top temperature')
-    df_col['zi'] = np.nan
-    df_col['ctt'] = np.nan
-    for cc in np.unique(df_col['class']):
-        df_sub  = df_col.loc[df_col['class']==cc]
-        df_sub2 = df_col2.loc[df_col2['class']==cc]
-        #print(df_sub)
-        if 'ta' in df_col2.columns and 'theta' in df_col2.columns:
-            for tt in df_sub['time']:  
-                #zi_step = df_sub.loc[df_sub['time'] == tt,'zi']
-                ## diagnosing inversion height from theta profiles
-                theta_step = df_sub2.loc[df_sub2['time'] == tt,['zf','theta']]
-                zi_step = zi_diagnose(theta_step)
-                ## obtaining corresponding temperature at that level
-                ta_step = df_sub2.loc[df_sub2['time'] == tt,['zf','ta']]
-                ta_step['zf_diff'] = np.abs(ta_step['zf'] - zi_step)
-                df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'zi'] = zi_step
-                df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'ctt'] = min(ta_step.loc[ta_step.zf_diff == ta_step.zf_diff.min(),'ta'], default=np.NAN) - 273.15
+    if(diag_zi_ctt):
+        print('computing inversion height and cloud-top temperature')
+        df_col['zi'] = np.nan
+        df_col['ctt'] = np.nan
+        for cc in np.unique(df_col['class']):
+            df_sub  = df_col.loc[df_col['class']==cc]
+            df_sub2 = df_col2.loc[df_col2['class']==cc]
+            if 'ta' in df_col2.columns and 'theta' in df_col2.columns:
+                for tt in df_sub['time']:  
+                    #zi_step = df_sub.loc[df_sub['time'] == tt,'zi']
+                    ## diagnosing inversion height from theta profiles
+                    theta_step = df_sub2.loc[df_sub2['time'] == tt,['zf','theta']]
+                    zi_step = zi_diagnose(theta_step)
+                    ## obtaining corresponding temperature at that level
+                    ta_step = df_sub2.loc[df_sub2['time'] == tt,['zf','ta']]
+                    ta_step['zf_diff'] = np.abs(ta_step['zf'] - zi_step)
+                    df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'zi'] = zi_step
+                    df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'ctt'] = min(ta_step.loc[ta_step.zf_diff == ta_step.zf_diff.min(),'ta'], default=np.NAN) - 273.15
     
     df_col['time']  = df_col['time'] + t_shift*3600.
     df_col2['time'] = df_col2['time'] + t_shift*3600.
