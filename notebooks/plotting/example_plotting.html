@@ -462,6 +462,7 @@ KAZR (Kollias): here using auxiliary field to estimate cloud-top temperature
 Loading variables: f(time,height)
 ../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_ProgNa.nc
 ../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_FixN.nc
+computing inversion height and cloud-top temperature
 </pre></div>
 </div>
 </div>
@@ -474,7 +475,7 @@ Loading variables: f(time,height)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/6a597eb517a70ae93a6114dbc68c5e4ba50bc26ddce4d57f69f5180ad8ddee68.png" src="../../_images/6a597eb517a70ae93a6114dbc68c5e4ba50bc26ddce4d57f69f5180ad8ddee68.png" />
+<img alt="../../_images/8c8b332aab56849a19a96dadc9c35b2e2394822feb12e828bca8a8052c3d7ef3.png" src="../../_images/8c8b332aab56849a19a96dadc9c35b2e2394822feb12e828bca8a8052c3d7ef3.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -495,6 +496,7 @@ zi not found in ../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_FixN.nc
 Loading variables: f(time,height)
 ../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_ProgNa.nc
 ../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_FixN.nc
+computing inversion height and cloud-top temperature
 </pre></div>
 </div>
 </div>
@@ -502,15 +504,21 @@ Loading variables: f(time,height)
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## plot variables that have only time dependence</span>
-<span class="c1">#plot_1d(pd.concat([df_col_1d,maclwp_dat,modis_dat,viirs_dat,sentinel_dat,kazrkollias_dat,kazrclough_dat,calipso_dat,gongiwp_dat]),[&#39;zi&#39;,&#39;cod&#39;,&#39;lwp&#39;,&#39;iwp&#39;,&#39;ctt&#39;])</span>
+<span class="n">plot_1d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_1d</span><span class="p">,</span><span class="n">maclwp_dat</span><span class="p">,</span><span class="n">modis_dat</span><span class="p">,</span><span class="n">viirs_dat</span><span class="p">,</span><span class="n">sentinel_dat</span><span class="p">,</span><span class="n">kazrkollias_dat</span><span class="p">,</span><span class="n">kazrclough_dat</span><span class="p">,</span><span class="n">calipso_dat</span><span class="p">,</span><span class="n">radflux_dat</span><span class="p">]),[</span><span class="s1">&#39;zi&#39;</span><span class="p">,</span><span class="s1">&#39;od&#39;</span><span class="p">,</span><span class="s1">&#39;lwp&#39;</span><span class="p">,</span><span class="s1">&#39;iwp&#39;</span><span class="p">,</span><span class="s1">&#39;ctt&#39;</span><span class="p">])</span>
 
 <span class="c1">## plot variables that have only time dependence (for now excluding imager retrievals that are mostly SZA &gt; 70)</span>
-<span class="n">plot_1d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_1d</span><span class="p">,</span><span class="n">maclwp_dat</span><span class="p">,</span><span class="n">kazrkollias_dat</span><span class="p">,</span><span class="n">kazrclough_dat</span><span class="p">,</span><span class="n">calipso_dat</span><span class="p">,</span><span class="n">gongiwp_dat</span><span class="p">,</span><span class="n">radflux_dat</span><span class="p">]),[</span><span class="s1">&#39;od&#39;</span><span class="p">,</span><span class="s1">&#39;lwp&#39;</span><span class="p">,</span><span class="s1">&#39;iwp&#39;</span><span class="p">])</span> <span class="c1">#&#39;zi&#39;,&#39;od&#39;,&#39;lwp&#39;,&#39;iwp</span>
+<span class="c1">#plot_1d(pd.concat([df_col_1d,maclwp_dat,kazrkollias_dat,kazrclough_dat,calipso_dat,gongiwp_dat,radflux_dat]),[&#39;od&#39;,&#39;lwp&#39;,&#39;iwp&#39;]) #&#39;zi&#39;,&#39;od&#39;,&#39;lwp&#39;,&#39;iwp</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/7427d301c4d3cde035e2f52404904f0bedd8bf07de80a3f1bbc330c208f4ec65.png" src="../../_images/7427d301c4d3cde035e2f52404904f0bedd8bf07de80a3f1bbc330c208f4ec65.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/conda/lib/python3.10/site-packages/matplotlib/axes/_axes.py:1185: RuntimeWarning: All-NaN axis encountered
+  miny = np.nanmin(masked_verts[..., 1])
+/opt/conda/lib/python3.10/site-packages/matplotlib/axes/_axes.py:1186: RuntimeWarning: All-NaN axis encountered
+  maxy = np.nanmax(masked_verts[..., 1])
+</pre></div>
+</div>
+<img alt="../../_images/766d71e6abae8e67a7be1a61e616c1f01676a297f126a03e98bbed656015294b.png" src="../../_images/766d71e6abae8e67a7be1a61e616c1f01676a297f126a03e98bbed656015294b.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -519,7 +527,7 @@ Loading variables: f(time,height)
 <span class="c1">#plot_2d(df_col_2d,var_vec_2d,[0,3,6,9,12,15,18],z_max=6000)</span>
 
 <span class="c1">## example where ERA5 and radiosonde are included</span>
-<span class="n">plot_2d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_2d</span><span class="p">,</span><span class="n">era5_2d</span><span class="p">,</span><span class="n">rs_dat</span><span class="p">,</span><span class="n">aeri_dat</span><span class="p">]),</span><span class="n">var_vec</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ta&#39;</span><span class="p">,</span><span class="s1">&#39;theta&#39;</span><span class="p">,</span><span class="s1">&#39;qv&#39;</span><span class="p">,</span><span class="s1">&#39;ws&#39;</span><span class="p">,</span><span class="s1">&#39;wd&#39;</span><span class="p">],</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">18</span><span class="p">],</span><span class="n">z_max</span><span class="o">=</span><span class="mi">6000</span><span class="p">)</span>
+<span class="n">plot_2d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_2d</span><span class="p">,</span><span class="n">era5_2d</span><span class="p">,</span><span class="n">rs_dat</span><span class="p">,</span><span class="n">aeri_dat</span><span class="p">]),</span><span class="n">var_vec</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ta&#39;</span><span class="p">,</span><span class="s1">&#39;theta&#39;</span><span class="p">,</span><span class="s1">&#39;qv&#39;</span><span class="p">,</span><span class="s1">&#39;ws&#39;</span><span class="p">,</span><span class="s1">&#39;wd&#39;</span><span class="p">],</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">18</span><span class="p">],</span><span class="n">z_max</span><span class="o">=</span><span class="mi">6000</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -528,7 +536,7 @@ Loading variables: f(time,height)
 Computing wind direction
 </pre></div>
 </div>
-<img alt="../../_images/6163d046ac88595025aeaff5250abf045c1eeb7c2e76e01ff28bb5aa1d13a07a.png" src="../../_images/6163d046ac88595025aeaff5250abf045c1eeb7c2e76e01ff28bb5aa1d13a07a.png" />
+<img alt="../../_images/d7bae1e2e82296184a02403258f59c7f3183f9a0bfb3a67e7e5b9a1abf7dc456.png" src="../../_images/d7bae1e2e82296184a02403258f59c7f3183f9a0bfb3a67e7e5b9a1abf7dc456.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x600 with 0 Axes&gt;
 </pre></div>
 </div>
