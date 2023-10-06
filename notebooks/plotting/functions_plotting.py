@@ -413,6 +413,7 @@ def load_era5(case='20200313',PATH='../../data_files/'):
     ## case........string of COMBLE date
     ## PATH........directory
     
+    R_cp = 0.286 
     if case =='20200313':
         fn = PATH + 'theta_temp_rh_sh_uvw_sst_along_trajectory_era5ml_28h_end_2020-03-13-18.nc'
         t_offset = 18.
@@ -446,9 +447,10 @@ def load_era5(case='20200313',PATH='../../data_files/'):
         df_col2 = pd.concat([df_col2,p_df2])
         
     ds.close()
-
+    
+    df_col2['ta'] = (df_col2['theta'])*(1000./df_col2['pf'])**(-R_cp)
+    
     return p_df,df_col2        
-
 
 def load_real_wrf(PATH='../../data_files/'):
     
@@ -635,7 +637,7 @@ def zi_diagnose_slow(df_sub_2d):
         h_before = theta_step[(theta_step['zf']==hh)]['zf']
         theta_before = theta_step[(theta_step['zf']==hh)]['theta']
     theta_step['deriv'] = theta_step['d_th']/theta_step['d_zf']
-    #print(theta_step)
+    print(theta_step)
     
     return theta_step.loc[theta_step.deriv == theta_step.deriv.max(),'zfm']
 
