@@ -167,6 +167,9 @@ def load_viirs(case='20200313',t_filter = 1.,sza_filter = 80.,PATH='../../data_f
     ## exclude bispectral retrievals under high SZA
     data.loc[data['sza'] > sza_filter,['cod','cod.25','cod.75']] = np.nan 
     
+    ## exclude values obtained during high-cloud influence
+    data.loc[(data['time.rel'] + t_off) < 3,['ctt','cth']] = np.nan 
+    
     data['time'] = (data['time.rel'] + t_off)*3600.
     data['zi'] = data['cth']
     data['zi.25'] = data['cth.25']
@@ -203,6 +206,9 @@ def load_modis(case='20200313',t_filter = 1.,sza_filter = 80.,PATH='../../data_f
     
     ## exclude bispectral retrievals under high SZA
     data.loc[data['sza'] > sza_filter,['cod','cod.25','cod.75']] = np.nan 
+    
+    ## exclude values obtained during high-cloud influence
+    data.loc[(data['time.rel'] + t_off) < 3,['ctt','cth']] = np.nan 
     
     data['time'] = (data['time.rel'] + t_off)*3600.
     data['zi'] = data['cth']
@@ -322,6 +328,7 @@ def load_radflux(case='20200313',PATH='../../data_files/'):
     data['time'] = (data['time.rel'] + t_off)*3600.
     data.index = data['time']
     data['class'] = data['source']
+    data['od'] = data['cod']
     
     return data
 
@@ -573,17 +580,24 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
             
         count+=1
             
-    ## a simple cloud-top temperature
+    ## a simple inversion height and corresponding cloud-top temperature
+    print('computing inversion height and cloud-top temperature')
+    df_col['zi'] = np.nan
     df_col['ctt'] = np.nan
     for cc in np.unique(df_col['class']):
         df_sub  = df_col.loc[df_col['class']==cc]
         df_sub2 = df_col2.loc[df_col2['class']==cc]
         #print(df_sub)
-        if 'ta' in df_col2.columns and 'zi' in df_col.columns:
-            for tt in df_sub['time']:
-                zi_step = df_sub.loc[df_sub['time'] == tt,'zi']
+        if 'ta' in df_col2.columns and 'theta' in df_col2.columns:
+            for tt in df_sub['time']:  
+                #zi_step = df_sub.loc[df_sub['time'] == tt,'zi']
+                ## diagnosing inversion height from theta profiles
+                theta_step = df_sub2.loc[df_sub2['time'] == tt,['zf','theta']]
+                zi_step = zi_diagnose(theta_step)
+                ## obtaining corresponding temperature at that level
                 ta_step = df_sub2.loc[df_sub2['time'] == tt,['zf','ta']]
                 ta_step['zf_diff'] = np.abs(ta_step['zf'] - zi_step)
+                df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'zi'] = zi_step
                 df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'ctt'] = min(ta_step.loc[ta_step.zf_diff == ta_step.zf_diff.min(),'ta'], default=np.NAN) - 273.15
     
     df_col['time']  = df_col['time'] + t_shift*3600.
@@ -598,6 +612,32 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
     
     return df_col,df_col2
 
+def zi_diagnose(df_sub_2d):
+        
+    deriv_vec = pd.Series(df_sub_2d['theta']).diff() / pd.Series(df_sub_2d['zf']).diff()
+    
+    return df_sub_2d.loc[deriv_vec == deriv_vec.max(),'zf']
+
+def zi_diagnose_slow(df_sub_2d):
+    
+    theta_step = df_sub_2d
+    theta_step['d_zf'] = np.nan
+    theta_step['d_th'] = np.nan
+    theta_step['thm'] = np.nan
+    theta_step['zfm'] = np.nan
+    h_before = np.nan
+    theta_before = np.nan
+    for hh in theta_step['zf']:
+        theta_step.loc[(theta_step['zf']==hh),'d_zf'] = hh - h_before
+        theta_step.loc[(theta_step['zf']==hh),'d_th'] = theta_step[(theta_step['zf']==hh)]['theta'] - theta_before
+        theta_step.loc[(theta_step['zf']==hh),'thm'] = (theta_step[(theta_step['zf']==hh)]['theta'] + theta_before)/2 
+        theta_step.loc[(theta_step['zf']==hh),'zfm'] = (theta_step[(theta_step['zf']==hh)]['zf'] + h_before)/2 
+        h_before = theta_step[(theta_step['zf']==hh)]['zf']
+        theta_before = theta_step[(theta_step['zf']==hh)]['theta']
+    theta_step['deriv'] = theta_step['d_th']/theta_step['d_zf']
+    #print(theta_step)
+    
+    return theta_step.loc[theta_step.deriv == theta_step.deriv.max(),'zfm']
 
 def plot_1d(df_col,var_vec,t0=-2.,t1=18.,longnames=[],units=[]):
     
@@ -616,7 +656,7 @@ def plot_1d(df_col,var_vec,t0=-2.,t1=18.,longnames=[],units=[]):
     
     ## 1D plots
     plot_colors = ["#E69F00", "#56B4E9", "#009E73","#0072B2", "#D55E00", "#CC79A7","#F0E442"]
-    plot_symbol = ['+','x','s','o','D','1','2','3']
+    plot_symbol = ['D','x','s','o','+','1','2','3']
     
     counter = 0
     counter_symbol = 0
@@ -764,10 +804,13 @@ def plot_2d(df_col2,var_vec,times,z_max = 6000.,units=[]):
                 if ii==0:
                     obj.set_title(str(times[tt])+'h')
                 # set units string
-                if units[ii] == 1:
-                    unit_str = " [-]"
+                if(len(units)>0):
+                    if units[ii] == 1:
+                        unit_str = " [-]"
+                    else:
+                        unit_str = " [" + str(units[ii]) + "]"
                 else:
-                    unit_str = " [" + str(units[ii]) + "]"
+                    unit_str = ''
                 if tt==0:
                     obj.set(ylabel='Altitude (m)', xlabel=var_vec[ii] + unit_str)
                 else:
