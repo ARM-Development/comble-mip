@@ -399,7 +399,7 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> functions_plotting.py
 
 <span class="c1">## select simulations to plot</span>
-<span class="n">sim_keyword</span> <span class="o">=</span> <span class="s1">&#39;DHARMA_Lx25km_dx100&#39;</span>
+<span class="n">sim_keyword</span> <span class="o">=</span> <span class="s1">&#39;dx100&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -437,10 +437,10 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>../../data_files/theta_temp_rh_sh_uvw_sst_along_trajectory_era5ml_28h_end_2020-03-13-18.nc
-../../data_files/anxsondewnpnM1.b1.20200313.112600.cdf
-../../data_files/anxsondewnpnM1.b1.20200313.052700.cdf
 ../../data_files/anxsondewnpnM1.b1.20200313.232200.cdf
 ../../data_files/anxsondewnpnM1.b1.20200313.172600.cdf
+../../data_files/anxsondewnpnM1.b1.20200313.112600.cdf
+../../data_files/anxsondewnpnM1.b1.20200313.052700.cdf
 KAZR (Kollias): here using auxiliary field to estimate cloud-top temperature
 </pre></div>
 </div>
@@ -457,12 +457,17 @@ KAZR (Kollias): here using auxiliary field to estimate cloud-top temperature
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time)
-../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_ProgNa.nc
 ../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_FixN.nc
+../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_ProgNa.nc
+../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_z0.nc
+../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
 Loading variables: f(time,height)
-../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_ProgNa.nc
 ../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_FixN.nc
-computing inversion height and cloud-top temperature
+../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_ProgNa.nc
+../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_z0.nc
+../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
 </pre></div>
 </div>
 </div>
@@ -475,13 +480,13 @@ computing inversion height and cloud-top temperature
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/8c8b332aab56849a19a96dadc9c35b2e2394822feb12e828bca8a8052c3d7ef3.png" src="../../_images/8c8b332aab56849a19a96dadc9c35b2e2394822feb12e828bca8a8052c3d7ef3.png" />
+<img alt="../../_images/2e342c477427ba438da99fad98375c1f8a89647d58966629f3c306ddc8df9320.png" src="../../_images/2e342c477427ba438da99fad98375c1f8a89647d58966629f3c306ddc8df9320.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## load all simulations located in subfolders of the given directory</span>
-<span class="n">var_vec_1d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;lwp&#39;</span><span class="p">,</span><span class="s1">&#39;iwp&#39;</span><span class="p">,</span><span class="s1">&#39;od&#39;</span><span class="p">,</span><span class="s1">&#39;zi&#39;</span><span class="p">]</span> <span class="c1"># variables without ERA5 (shorter time axis)</span>
+<span class="n">var_vec_1d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;lwp&#39;</span><span class="p">,</span><span class="s1">&#39;iwp&#39;</span><span class="p">,</span><span class="s1">&#39;od&#39;</span><span class="p">]</span> <span class="c1"># variables without ERA5 (shorter time axis)</span>
 <span class="n">var_vec_2d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;theta&#39;</span><span class="p">,</span><span class="s1">&#39;qv&#39;</span><span class="p">,</span><span class="s1">&#39;ua&#39;</span><span class="p">,</span><span class="s1">&#39;va&#39;</span><span class="p">,</span><span class="s1">&#39;ta&#39;</span><span class="p">]</span>
 <span class="n">df_col_1d</span><span class="p">,</span><span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword</span><span class="p">,</span><span class="n">diag_zi_ctt</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
@@ -489,13 +494,19 @@ computing inversion height and cloud-top temperature
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time)
-../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_ProgNa.nc
-zi not found in ../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_ProgNa.nc
 ../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_FixN.nc
-zi not found in ../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_FixN.nc
+lwp not found in ../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_FixN.nc
+../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_ProgNa.nc
+lwp not found in ../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_ProgNa.nc
+../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_z0.nc
+../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
 Loading variables: f(time,height)
-../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_ProgNa.nc
 ../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_FixN.nc
+../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_ProgNa.nc
+../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_z0.nc
+../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
 computing inversion height and cloud-top temperature
 </pre></div>
 </div>
@@ -519,7 +530,7 @@ computing inversion height and cloud-top temperature
   maxy = np.nanmax(masked_verts[..., 1])
 </pre></div>
 </div>
-<img alt="../../_images/d796fe7e23a65a0804fb9d4e224bf25e6ccba17529b02a95776d9445ccbd1742.png" src="../../_images/d796fe7e23a65a0804fb9d4e224bf25e6ccba17529b02a95776d9445ccbd1742.png" />
+<img alt="../../_images/6b1b1372179fd2ee3c19fb222434664c82ef5e140d1c0e8fb15e70fc4bc8d982.png" src="../../_images/6b1b1372179fd2ee3c19fb222434664c82ef5e140d1c0e8fb15e70fc4bc8d982.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -528,7 +539,7 @@ computing inversion height and cloud-top temperature
 <span class="c1">#plot_2d(df_col_2d,var_vec_2d,[0,3,6,9,12,15,18],z_max=6000)</span>
 
 <span class="c1">## example where ERA5 and radiosonde are included</span>
-<span class="n">plot_2d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_2d</span><span class="p">,</span><span class="n">era5_2d</span><span class="p">,</span><span class="n">rs_dat</span><span class="p">,</span><span class="n">aeri_dat</span><span class="p">]),</span><span class="n">var_vec</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ta&#39;</span><span class="p">,</span><span class="s1">&#39;theta&#39;</span><span class="p">,</span><span class="s1">&#39;qv&#39;</span><span class="p">,</span><span class="s1">&#39;ws&#39;</span><span class="p">,</span><span class="s1">&#39;wd&#39;</span><span class="p">],</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">18</span><span class="p">],</span><span class="n">z_max</span><span class="o">=</span><span class="mi">6000</span><span class="p">)</span>
+<span class="n">plot_2d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_2d</span><span class="p">,</span><span class="n">era5_2d</span><span class="p">,</span><span class="n">rs_dat</span><span class="p">,</span><span class="n">aeri_dat</span><span class="p">]),</span><span class="n">var_vec</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ta&#39;</span><span class="p">,</span><span class="s1">&#39;theta&#39;</span><span class="p">,</span><span class="s1">&#39;qv&#39;</span><span class="p">,</span><span class="s1">&#39;ws&#39;</span><span class="p">,</span><span class="s1">&#39;wd&#39;</span><span class="p">],</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">18</span><span class="p">],</span><span class="n">z_max</span><span class="o">=</span><span class="mi">6000</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -537,7 +548,7 @@ computing inversion height and cloud-top temperature
 Computing wind direction
 </pre></div>
 </div>
-<img alt="../../_images/794ba526fb055d43d1a821cc8262fba4cbe5a654ee9218fbad8197f97f67c041.png" src="../../_images/794ba526fb055d43d1a821cc8262fba4cbe5a654ee9218fbad8197f97f67c041.png" />
+<img alt="../../_images/0399c37297c1b4b244196819cc15b0d12162f59d9395c97aa03149426b5035ee.png" src="../../_images/0399c37297c1b4b244196819cc15b0d12162f59d9395c97aa03149426b5035ee.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x600 with 0 Axes&gt;
 </pre></div>
 </div>
