@@ -614,11 +614,21 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
     
     return df_col,df_col2
 
-def zi_diagnose(df_sub_2d):
+#def zi_diagnose(df_sub_2d):
+#        
+#    deriv_vec = pd.Series(df_sub_2d['theta']).diff() / pd.Series(df_sub_2d['zf']).diff()
+#    
+#    return df_sub_2d.loc[deriv_vec == deriv_vec.max(),'zf']
+
+
+def zi_diagnose(df_sub_2dd):
         
-    deriv_vec = pd.Series(df_sub_2d['theta']).diff() / pd.Series(df_sub_2d['zf']).diff()
+    df_sub_2dd.index = df_sub_2dd['zf']
+    df_sub_2dd['zfm'] = df_sub_2dd['zf'] - pd.Series(df_sub_2dd['zf']).diff()/2
+    deriv_vec = pd.Series(df_sub_2dd['theta']).diff() / pd.Series(df_sub_2dd['zf']).diff()
     
-    return df_sub_2d.loc[deriv_vec == deriv_vec.max(),'zf']
+    return df_sub_2dd.loc[deriv_vec.idxmax(),'zfm']
+
 
 def zi_diagnose_slow(df_sub_2d):
     
