@@ -404,7 +404,7 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="sensitivity-to-roughness-lengths">
 <h1>Sensitivity to roughness lengths<a class="headerlink" href="#sensitivity-to-roughness-lengths" title="Permalink to this heading">#</a></h1>
 <ul class="simple">
-<li><p>Last updated 9/28/23</p></li>
+<li><p>Last updated 10/9/23</p></li>
 <li><p>Timothy Juliano (NCAR/RAL) and Andrew Ackerman and Ann Fridlind (NASA/GISS)</p></li>
 <li><p>Special thanks to Dmitry Chechin (Obukhov Institute of Atmospheric Physics) for motivating this work</p></li>
 </ul>
@@ -440,8 +440,9 @@ document.write(`
 <ol class="arabic simple">
 <li><p><em>z0_1</em>: Compute z0, z0t, and z0q according to above equations/constants</p></li>
 <li><p><em>z0_2</em>: Compute z0 according to above equations/constants and set z0t = z0q = 0.1*z0</p></li>
-<li><p><em>z0_3</em>: Set z0, z0t, and z0q according to CONSTRAIN intercomparison case (z0 = 6.6 x 10^-4; z0t = z0q = 3.7 x 10^-6)</p></li>
-<li><p><em>z0_4</em>: Compute constant z0, z0t, and z0q values from <em>z0_1</em> for COMBLE-MIP case (z0 = 9.0 x 10^-4; z0t = z0q = 5.5 x 10^-6)</p></li>
+<li><p><em>z0_3</em>: Set z0, z0t, and z0q according to CONSTRAIN intercomparison case (z0 = 6.6 x 10^-4 m; z0t = z0q = 3.7 x 10^-6 m)</p></li>
+<li><p><em>z0_4</em>: Compute constant z0, z0t, and z0q values from <em>z0_1</em> for COMBLE-MIP case (z0 = 9.0 x 10^-4 m; z0t = z0q = 5.5 x 10^-6 m) <br />
+–&gt; Note: DHARMA LES used z0t = z0q = 5.0 x 10^-6 m for <em>z0_4</em></p></li>
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -453,7 +454,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## select simulations to plot</span>
-<span class="n">sim_keyword</span> <span class="o">=</span> <span class="s1">&#39;z0&#39;</span>
+<span class="n">sim_keyword</span> <span class="o">=</span> <span class="s1">&#39;z0_&#39;</span>
 
 <span class="c1">## load ERA5 fields</span>
 <span class="n">era5_1d</span><span class="p">,</span> <span class="n">era5_2d</span> <span class="o">=</span> <span class="n">load_era5</span><span class="p">(</span><span class="n">PATH</span><span class="o">=</span><span class="s1">&#39;../../data_files/&#39;</span><span class="p">)</span>
@@ -466,7 +467,6 @@ document.write(`
 
 <span class="c1">## load MAC-LWP</span>
 <span class="n">maclwp_dat</span> <span class="o">=</span> <span class="n">load_maclwp</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">)</span> 
-<span class="n">gongiwp_dat</span> <span class="o">=</span> <span class="n">load_iwpgong</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">)</span>
 
 <span class="c1">## load CALIPSO retrievals (note the increased time window)</span>
 <span class="n">calipso_dat</span> <span class="o">=</span> <span class="n">load_calipso</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">3.</span><span class="p">)</span>
@@ -501,21 +501,48 @@ document.write(`
 <span class="c1">## qv -----&gt; water vapor mixing ratio (kg/kg)</span>
 <span class="c1">## ua -----&gt; zonal wind speed (m/s)</span>
 <span class="c1">## va -----&gt; meridional wind speed (m/s)</span>
-
-<span class="c1">## load select variables from all simulations located in subfolders of the given directory</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## load select variables from all simulations located in subfolders of the given directory</span>
 <span class="n">df_col_1d</span><span class="p">,</span><span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>../../output_les/wrf/sandbox/z0_3/WRF_LES_COMBLE-I_sens3.nc
-../../output_les/wrf/sandbox/z0_4/WRF_LES_COMBLE-I_sens4.nc
-../../output_les/wrf/sandbox/z0_2/WRF_LES_COMBLE-I_sens2.nc
-../../output_les/wrf/sandbox/z0_1/WRF_LES_COMBLE-I_sens1.nc
-../../output_les/wrf/sandbox/z0_3/WRF_LES_COMBLE-I_sens3.nc
-../../output_les/wrf/sandbox/z0_4/WRF_LES_COMBLE-I_sens4.nc
-../../output_les/wrf/sandbox/z0_2/WRF_LES_COMBLE-I_sens2.nc
-../../output_les/wrf/sandbox/z0_1/WRF_LES_COMBLE-I_sens1.nc
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time)
+../../output_les/wrf/devel/WRF_Lx25km_dx200_z0_2.nc
+../../output_les/wrf/devel/WRF_Lx25km_dx200_z0_3.nc
+../../output_les/wrf/devel/WRF_Lx25km_dx200_z0_1.nc
+../../output_les/wrf/devel/WRF_Lx25km_dx200_z0_4.nc
+../../output_les/dharma/devel/DHARMA_Lx25km_dx200_z0_2.nc
+z0 not found in ../../output_les/dharma/devel/DHARMA_Lx25km_dx200_z0_2.nc
+z0t not found in ../../output_les/dharma/devel/DHARMA_Lx25km_dx200_z0_2.nc
+z0q not found in ../../output_les/dharma/devel/DHARMA_Lx25km_dx200_z0_2.nc
+../../output_les/dharma/devel/DHARMA_Lx25km_dx200_z0_3.nc
+z0 not found in ../../output_les/dharma/devel/DHARMA_Lx25km_dx200_z0_3.nc
+z0t not found in ../../output_les/dharma/devel/DHARMA_Lx25km_dx200_z0_3.nc
+z0q not found in ../../output_les/dharma/devel/DHARMA_Lx25km_dx200_z0_3.nc
+../../output_les/dharma/devel/DHARMA_Lx25km_dx200_z0_1.nc
+z0 not found in ../../output_les/dharma/devel/DHARMA_Lx25km_dx200_z0_1.nc
+z0t not found in ../../output_les/dharma/devel/DHARMA_Lx25km_dx200_z0_1.nc
+z0q not found in ../../output_les/dharma/devel/DHARMA_Lx25km_dx200_z0_1.nc
+../../output_les/dharma/devel/DHARMA_Lx25km_dx200_z0_4.nc
+z0 not found in ../../output_les/dharma/devel/DHARMA_Lx25km_dx200_z0_4.nc
+z0t not found in ../../output_les/dharma/devel/DHARMA_Lx25km_dx200_z0_4.nc
+z0q not found in ../../output_les/dharma/devel/DHARMA_Lx25km_dx200_z0_4.nc
+Loading variables: f(time,height)
+../../output_les/wrf/devel/WRF_Lx25km_dx200_z0_2.nc
+../../output_les/wrf/devel/WRF_Lx25km_dx200_z0_3.nc
+../../output_les/wrf/devel/WRF_Lx25km_dx200_z0_1.nc
+../../output_les/wrf/devel/WRF_Lx25km_dx200_z0_4.nc
+../../output_les/dharma/devel/DHARMA_Lx25km_dx200_z0_2.nc
+../../output_les/dharma/devel/DHARMA_Lx25km_dx200_z0_3.nc
+../../output_les/dharma/devel/DHARMA_Lx25km_dx200_z0_1.nc
+../../output_les/dharma/devel/DHARMA_Lx25km_dx200_z0_4.nc
 </pre></div>
 </div>
 </div>
@@ -523,27 +550,32 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## plot the 1-d variables</span>
-<span class="n">plot_1d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_1d</span><span class="p">,</span><span class="n">era5_1d</span><span class="p">]),</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">t0</span><span class="o">=-</span><span class="mf">1.</span><span class="p">,</span><span class="n">t1</span><span class="o">=</span><span class="mf">18.</span><span class="p">)</span>
+<span class="n">plot_colors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;#56B4E9&quot;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="s1">&#39;magenta&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="s1">&#39;magenta&#39;</span><span class="p">]</span>
+<span class="n">plot_ls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="s1">&#39;--&#39;</span><span class="p">]</span>
+<span class="n">plot_1d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_1d</span><span class="p">,</span><span class="n">era5_1d</span><span class="p">]),</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">t0</span><span class="o">=-</span><span class="mf">1.</span><span class="p">,</span><span class="n">t1</span><span class="o">=</span><span class="mf">18.</span><span class="p">,</span><span class="n">plot_colors</span><span class="o">=</span><span class="n">plot_colors</span><span class="p">,</span><span class="n">plot_ls</span><span class="o">=</span><span class="n">plot_ls</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/001468b206b98e40e297f483b091e830567ff3e6b3ea9948f0012e60ddee250f.png" src="../../_images/001468b206b98e40e297f483b091e830567ff3e6b3ea9948f0012e60ddee250f.png" />
+<img alt="../../_images/aab97e35c6e7d71b8cca26e9041c36d12ea6d0055faba84ecaf5165f0dd69408.png" src="../../_images/aab97e35c6e7d71b8cca26e9041c36d12ea6d0055faba84ecaf5165f0dd69408.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## print mean values for each time series</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## print mean values for each time series from WRF</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Simulation                        | z0                 | z0t                 | z0q&#39;</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">df</span> <span class="ow">in</span> <span class="n">df_col_1d</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;class&#39;</span><span class="p">):</span>
-    <span class="nb">print</span> <span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;z0&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;z0t&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;z0q&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+    <span class="k">if</span> <span class="s1">&#39;WRF&#39;</span> <span class="ow">in</span> <span class="n">label</span><span class="p">:</span>
+        <span class="nb">print</span> <span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;z0&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;z0t&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;z0q&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>wrf/sandbox/z0_1 0.0007639845921761835 7.127002311665883e-06 7.127002311665883e-06
-wrf/sandbox/z0_2 0.0007619791493847235 7.618949649550206e-05 7.618949649550206e-05
-wrf/sandbox/z0_3 0.0006572614304133966 3.6846472822802134e-06 3.6846472822802134e-06
-wrf/sandbox/z0_4 0.0008962655447701696 5.477178466015522e-06 5.477178466015522e-06
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Simulation                        | z0                 | z0t                 | z0q
+wrf/devel/WRF_Lx25km_dx200_z0_1.nc 0.000767167861310251 7.1566981546311584e-06 7.1566981546311584e-06
+wrf/devel/WRF_Lx25km_dx200_z0_2.nc 0.0007651540625071599 7.65069527309e-05 7.65069527309e-05
+wrf/devel/WRF_Lx25km_dx200_z0_3.nc 0.0006600000197067857 3.6999999792897142e-06 3.6999999792897142e-06
+wrf/devel/WRF_Lx25km_dx200_z0_4.nc 0.0008999999845400453 5.500000042957254e-06 5.500000042957254e-06
 </pre></div>
 </div>
 </div>
@@ -551,7 +583,9 @@ wrf/sandbox/z0_4 0.0008962655447701696 5.477178466015522e-06 5.477178466015522e-
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## plot the 1-d variables, plus ERA5 and radiosondes at Andenes</span>
-<span class="n">plot_2d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_2d</span><span class="p">,</span><span class="n">era5_2d</span><span class="p">,</span><span class="n">rs_dat</span><span class="p">,</span><span class="n">aeri_dat</span><span class="p">]),</span><span class="n">var_vec</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;theta&#39;</span><span class="p">,</span><span class="s1">&#39;qv&#39;</span><span class="p">,</span><span class="s1">&#39;ws&#39;</span><span class="p">,</span><span class="s1">&#39;wd&#39;</span><span class="p">],</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">18</span><span class="p">],</span><span class="n">z_max</span><span class="o">=</span><span class="mi">6000</span><span class="p">)</span>
+<span class="n">plot_colors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;#E69F00&quot;</span><span class="p">,</span> <span class="s2">&quot;#56B4E9&quot;</span><span class="p">,</span> <span class="s2">&quot;#009E73&quot;</span><span class="p">,</span><span class="s2">&quot;#0072B2&quot;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="s1">&#39;magenta&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="s1">&#39;magenta&#39;</span><span class="p">]</span>
+<span class="n">plot_ls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="s1">&#39;--&#39;</span><span class="p">]</span>
+<span class="n">plot_2d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_2d</span><span class="p">,</span><span class="n">era5_2d</span><span class="p">,</span><span class="n">rs_dat</span><span class="p">,</span><span class="n">aeri_dat</span><span class="p">]),[</span><span class="s1">&#39;theta&#39;</span><span class="p">,</span><span class="s1">&#39;qv&#39;</span><span class="p">,</span><span class="s1">&#39;ws&#39;</span><span class="p">,</span><span class="s1">&#39;wd&#39;</span><span class="p">],</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">18</span><span class="p">],</span><span class="n">z_max</span><span class="o">=</span><span class="mi">6000</span><span class="p">,</span><span class="n">plot_colors</span><span class="o">=</span><span class="n">plot_colors</span><span class="p">,</span><span class="n">plot_ls</span><span class="o">=</span><span class="n">plot_ls</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -560,7 +594,7 @@ wrf/sandbox/z0_4 0.0008962655447701696 5.477178466015522e-06 5.477178466015522e-
 Computing wind direction
 </pre></div>
 </div>
-<img alt="../../_images/3374a3b56a1de0d56f51a9547ffe856a20bf3085db404ff4059eaedbca13e895.png" src="../../_images/3374a3b56a1de0d56f51a9547ffe856a20bf3085db404ff4059eaedbca13e895.png" />
+<img alt="../../_images/ec31c42efea41f233d6575ef1b26c6e7bd953d220ecf1f5e55e5efdc394767c3.png" src="../../_images/ec31c42efea41f233d6575ef1b26c6e7bd953d220ecf1f5e55e5efdc394767c3.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x600 with 0 Axes&gt;
 </pre></div>
 </div>
@@ -577,14 +611,24 @@ Computing wind direction
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>../../output_les/wrf/sandbox/z0_3/WRF_LES_COMBLE-I_sens3.nc
-../../output_les/wrf/sandbox/z0_4/WRF_LES_COMBLE-I_sens4.nc
-../../output_les/wrf/sandbox/z0_2/WRF_LES_COMBLE-I_sens2.nc
-../../output_les/wrf/sandbox/z0_1/WRF_LES_COMBLE-I_sens1.nc
-../../output_les/wrf/sandbox/z0_3/WRF_LES_COMBLE-I_sens3.nc
-../../output_les/wrf/sandbox/z0_4/WRF_LES_COMBLE-I_sens4.nc
-../../output_les/wrf/sandbox/z0_2/WRF_LES_COMBLE-I_sens2.nc
-../../output_les/wrf/sandbox/z0_1/WRF_LES_COMBLE-I_sens1.nc
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time)
+../../output_les/wrf/devel/WRF_Lx25km_dx200_z0_2.nc
+../../output_les/wrf/devel/WRF_Lx25km_dx200_z0_3.nc
+../../output_les/wrf/devel/WRF_Lx25km_dx200_z0_1.nc
+../../output_les/wrf/devel/WRF_Lx25km_dx200_z0_4.nc
+../../output_les/dharma/devel/DHARMA_Lx25km_dx200_z0_2.nc
+../../output_les/dharma/devel/DHARMA_Lx25km_dx200_z0_3.nc
+../../output_les/dharma/devel/DHARMA_Lx25km_dx200_z0_1.nc
+../../output_les/dharma/devel/DHARMA_Lx25km_dx200_z0_4.nc
+Loading variables: f(time,height)
+../../output_les/wrf/devel/WRF_Lx25km_dx200_z0_2.nc
+../../output_les/wrf/devel/WRF_Lx25km_dx200_z0_3.nc
+../../output_les/wrf/devel/WRF_Lx25km_dx200_z0_1.nc
+../../output_les/wrf/devel/WRF_Lx25km_dx200_z0_4.nc
+../../output_les/dharma/devel/DHARMA_Lx25km_dx200_z0_2.nc
+../../output_les/dharma/devel/DHARMA_Lx25km_dx200_z0_3.nc
+../../output_les/dharma/devel/DHARMA_Lx25km_dx200_z0_1.nc
+../../output_les/dharma/devel/DHARMA_Lx25km_dx200_z0_4.nc
 </pre></div>
 </div>
 </div>
@@ -592,12 +636,14 @@ Computing wind direction
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## plot LWP and IWP</span>
-<span class="n">plot_1d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_1d</span><span class="p">,</span><span class="n">maclwp_dat</span><span class="p">,</span><span class="n">calipso_dat</span><span class="p">,</span><span class="n">gongiwp_dat</span><span class="p">]),[</span><span class="s1">&#39;lwp&#39;</span><span class="p">,</span><span class="s1">&#39;iwp&#39;</span><span class="p">])</span>
+<span class="n">plot_colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="s1">&#39;magenta&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="s1">&#39;magenta&#39;</span><span class="p">]</span>
+<span class="n">plot_ls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="s1">&#39;--&#39;</span><span class="p">]</span>
+<span class="n">plot_1d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_1d</span><span class="p">,</span><span class="n">maclwp_dat</span><span class="p">,</span><span class="n">calipso_dat</span><span class="p">]),[</span><span class="s1">&#39;lwp&#39;</span><span class="p">,</span><span class="s1">&#39;iwp&#39;</span><span class="p">],</span><span class="n">plot_colors</span><span class="o">=</span><span class="n">plot_colors</span><span class="p">,</span><span class="n">plot_ls</span><span class="o">=</span><span class="n">plot_ls</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/5a8a80241c5126349188957ab7227abf1189dcf0e8223cda3b46a8fd2ae13b36.png" src="../../_images/5a8a80241c5126349188957ab7227abf1189dcf0e8223cda3b46a8fd2ae13b36.png" />
+<img alt="../../_images/c59047f4547f588e6a92d34bdf2230b39e5a2ca26fd9e316fe183abea400d846.png" src="../../_images/c59047f4547f588e6a92d34bdf2230b39e5a2ca26fd9e316fe183abea400d846.png" />
 </div>
 </div>
 </section>
