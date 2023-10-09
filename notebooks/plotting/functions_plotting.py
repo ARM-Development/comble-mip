@@ -651,24 +651,54 @@ def zi_diagnose_slow(df_sub_2d):
     
     return theta_step.loc[theta_step.deriv == theta_step.deriv.max(),'zfm']
 
-def plot_1d(df_col,var_vec,t0=-2.,t1=18.,longnames=[],units=[]):
+def plot_1d(df_col,var_vec,**kwargs):
     
     ## plot variables with time dependence
     ## __input__
-    ## df_col.....data frame containing simulations, reanalysis, and/or observations
-    ## var_vec....variables with time dependence
-    ## t0.........starting plot time (h relative to ice edge)
-    ## t1.........end plot time (h relative to ice edge)
-    ## longnames..full variable name
-    ## units......variable units
+    ## df_col.......data frame containing simulations, reanalysis, and/or observations
+    ## var_vec......variables with time dependence
+    ## t0...........starting plot time (h relative to ice edge)
+    ## t1...........end plot time (h relative to ice edge)
+    ## longnames....full variable name
+    ## units........variable units
+    ## plot_colors..list of colors for line plots
+    ## plot_ls......list of line styles for line plots
     
+    ############################
+    ######## SET KWARGS ########
+    ############################
+    if 't1' not in kwargs:
+        t1 = 18.
+    else:
+        t1 = kwargs.get('t1')
     
+    if 't0' not in kwargs:
+        t0 = -2.
+    else:
+        t0 = kwargs.get('t0')
+    
+    if 'longnames' in kwargs and 'units' in kwargs:
+        longnames = kwargs.get('longnames')
+        units = kwargs.get('units')
+    
+    if 'plot_colors' not in kwargs:
+        plot_colors = ["#E69F00", "#56B4E9", "#009E73","#0072B2", "#D55E00", "#CC79A7","#F0E442"]
+    else:
+        plot_colors = kwargs.get('plot_colors')
+        
+    if 'plot_ls' not in kwargs:
+        plot_ls = ['-','-','-','-','-','-','-','-','-']
+    else:
+        plot_ls = kwargs.get('plot_ls')
+    
+    ############################
+    ######## MAKE PLOTS ########
+    ############################
     t0 = t0*3600. # convert h to s
     t1 = t1*3600.
     
     ## 1D plots
-    plot_colors = ["#E69F00", "#56B4E9", "#009E73","#0072B2", "#D55E00", "#CC79A7","#F0E442"]
-    plot_symbol = ['D','x','s','o','+','1','2','3']
+    plot_symbol = ['+','x','s','o','D','1','2','3']
     
     counter = 0
     counter_symbol = 0
@@ -705,14 +735,16 @@ def plot_1d(df_col,var_vec,t0=-2.,t1=18.,longnames=[],units=[]):
                 if(df['colflag'].unique() == 'gray'):
                     obj.plot(df.time/3600,df[var_vec[ii]],label=label,c='gray',zorder=1,linewidth=3,alpha=0.7)
                 else:
-                    obj.plot(df.time/3600,df[var_vec[ii]],label=label,c=plot_colors[counter_plot],zorder=2)
+                    obj.plot(df.time/3600,df[var_vec[ii]],label=label,c=plot_colors[counter_plot],ls=plot_ls[counter_plot],zorder=2)
             obj.grid(alpha=0.2)
-            if (len(longnames)>0) & (counter==0):
-                if units[ii] == 1:
-                    unit_str = " [-]"
-                else:
-                    unit_str = " [" + str(units[ii]) + "]"
-                obj.text(.01, .99, longnames[ii]+unit_str, ha='left', va='top', transform=obj.transAxes)
+            # set units string
+            if 'longnames' in kwargs and 'units' in kwargs:
+                if (len(longnames)>0) & (counter==0):
+                    if units[ii] == 1:
+                        unit_str = " [-]"
+                    else:
+                        unit_str = " [" + str(units[ii]) + "]"
+                    obj.text(.01, .99, longnames[ii]+unit_str, ha='left', va='top', transform=obj.transAxes)
         counter +=1
         if not df['colflag'].unique() == 'gray':  counter_plot +=1
         if (label=='MAC-LWP') | (label=='MODIS') | (label=='VIIRS') | (label=='CERES') | (label=='SENTINEL') | (label=='KAZR (Kollias)')| (label=='KAZR (Clough)')| (label=='CALIOP')| (label=='ATMS')| (label=='RADFLUX'): counter_plot -=1    
@@ -749,7 +781,7 @@ def plot_1d(df_col,var_vec,t0=-2.,t1=18.,longnames=[],units=[]):
     plt.show()
 
 
-def plot_2d(df_col2,var_vec,times,z_max = 6000.,units=[]):
+def plot_2d(df_col2,var_vec,times,**kwargs):
     
     ## plot variables with time and height dependence
     ## __input__
@@ -757,10 +789,34 @@ def plot_2d(df_col2,var_vec,times,z_max = 6000.,units=[]):
     ## var_vec....variables with time dependence
     ## times......list with hours of interest
     ## z_max......maximum altitude for plotting (meters)
-    ## units......variable units
+    ## units........variable units
+    ## plot_colors..list of colors for line plots
+    ## plot_ls......list of line styles for line plots
     
-    plot_colors = ["#E69F00", "#56B4E9", "#009E73","#0072B2", "#D55E00", "#CC79A7","#F0E442",'black','gray']
+    ############################
+    ######## SET KWARGS ########
+    ############################
+    if 'z_max' not in kwargs:
+        z_max = 6000.
+    else:
+        z_max = kwargs.get('z_max')
     
+    if 'units' in kwargs:
+        units = kwargs.get('units')
+    
+    if 'plot_colors' not in kwargs:
+        plot_colors = ["#E69F00", "#56B4E9", "#009E73","#0072B2", "#D55E00", "#CC79A7","#F0E442",'black','gray']
+    else:
+        plot_colors = kwargs.get('plot_colors')
+        
+    if 'plot_ls' not in kwargs:
+        plot_ls = ['-','-','-','-','-','-','-','-','-']
+    else:
+        plot_ls = kwargs.get('plot_ls')
+    
+    ###################################
+    ######## COMPUTE WINDSPEED ########
+    ###################################
     if 'ws' in var_vec:
         if  'ua' in df_col2.columns and 'va' in df_col2.columns:
             print('Computing wind speed')
@@ -768,6 +824,9 @@ def plot_2d(df_col2,var_vec,times,z_max = 6000.,units=[]):
         else:
             print('Please include ua and va!')
             
+    ########################################
+    ######## COMPUTE WIND DIRECTION ########
+    ########################################
     if 'wd' in var_vec:
         if  'ua' in df_col2.columns and 'va' in df_col2.columns:
             print('Computing wind direction')
@@ -785,6 +844,9 @@ def plot_2d(df_col2,var_vec,times,z_max = 6000.,units=[]):
     ## apply altitude filter
     df_col2 = df_col2[df_col2['zf'] < (z_max + 500)]
     
+    ############################
+    ######## MAKE PLOTS ########
+    ############################
     counter = 0
     counter_plot = 0
     fig, axs = plt.subplots(len(var_vec),len(times),figsize=(2*len(times),2 + 2*len(var_vec)))
@@ -810,13 +872,13 @@ def plot_2d(df_col2,var_vec,times,z_max = 6000.,units=[]):
                 if(df['colflag'].unique() == 'gray'):
                     obj.plot(df[var_vec[ii]],df.zf,label=label,c='gray',zorder=1,linewidth=3,alpha=0.7)
                 else:
-                    obj.plot(df[var_vec[ii]],df.zf,label=label,c=plot_colors[counter_plot],zorder=2)
+                    obj.plot(df[var_vec[ii]],df.zf,label=label,c=plot_colors[counter_plot],ls=plot_ls[counter_plot],zorder=2)
                 obj.grid(alpha=0.2)
                 obj.set_ylim([0, z_max])
                 if ii==0:
                     obj.set_title(str(times[tt])+'h')
                 # set units string
-                if(len(units)>0):
+                if 'units' in kwargs:
                     if units[ii] == 1:
                         unit_str = " [-]"
                     else:
@@ -826,7 +888,6 @@ def plot_2d(df_col2,var_vec,times,z_max = 6000.,units=[]):
                 if tt==0:
                     obj.set(ylabel='Altitude (m)', xlabel=var_vec[ii] + unit_str)
                 else:
-                    obj.set(xlabel=var_vec[ii] + unit_str)
                     plt.setp(obj.get_yticklabels(), visible=False)
                 counter +=1
             if not df['colflag'].unique() == 'gray': counter_plot +=1
