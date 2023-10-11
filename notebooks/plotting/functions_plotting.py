@@ -333,7 +333,7 @@ def load_radflux(case='20200313',PATH='../../data_files/'):
     
     return data
 
-def load_aeri(case='20200313',t_filter = 1.,PATH='../../data_files/'): 
+def load_aeri(case='20200313',t_filter = 1.,PATH='../../data_files/'):
     
     if case == '20200313':
         file = 'aeri_2020-03-13_dat.csv'
@@ -372,20 +372,20 @@ def load_flux(case='20200313',t_filter = 1.,PATH='../../data_files/'):
     shf_ecor = ds.variables['ecor_shf'][:]
     
     p_df = pd.DataFrame({"class": ['Bulk'], "time":[time_near*3600]}, index=[time_near])
-    p_df['hfls']    = lhf_bulk[abs(time_bulk - time_near) <= t_filter].mean()
-    p_df['hfls.25'] = np.quantile(lhf_bulk[abs(time_bulk - time_near) <= t_filter],0.25)
-    p_df['hfls.75'] = np.quantile(lhf_bulk[abs(time_bulk - time_near) <= t_filter],0.75)
-    p_df['hfss']    = shf_bulk[abs(time_bulk - time_near) <= t_filter].mean()
-    p_df['hfss.25'] = np.quantile(shf_bulk[abs(time_bulk - time_near) <= t_filter],0.25)
-    p_df['hfss.75'] = np.quantile(shf_bulk[abs(time_bulk - time_near) <= t_filter],0.75)
+    p_df['hfls']    = lhf_bulk[(abs(time_bulk - time_near) <= t_filter) & (lhf_bulk > 0)].mean()
+    p_df['hfls.25'] = np.quantile(lhf_bulk[(abs(time_bulk - time_near) <= t_filter) & (lhf_bulk > 0)],0.25)
+    p_df['hfls.75'] = np.quantile(lhf_bulk[(abs(time_bulk - time_near) <= t_filter) & (lhf_bulk > 0)],0.75)
+    p_df['hfss']    = shf_bulk[(abs(time_bulk - time_near) <= t_filter) & (shf_bulk > 0)].mean()
+    p_df['hfss.25'] = np.quantile(shf_bulk[(abs(time_bulk - time_near) <= t_filter) & (shf_bulk > 0)],0.25)
+    p_df['hfss.75'] = np.quantile(shf_bulk[(abs(time_bulk - time_near) <= t_filter) & (shf_bulk > 0)],0.75)
     
     p_df_2 = pd.DataFrame({"class": ['ECOR'], "time":[time_near*3600]}, index=[time_near])
     p_df_2['hfls']   = lhf_ecor[(abs(time_ecor - time_near) <= t_filter) & (lhf_ecor > 0)].mean()
     p_df_2['hfls.25'] = np.quantile(lhf_ecor[(abs(time_ecor - time_near) <= t_filter) & (lhf_ecor > 0)],0.25)
     p_df_2['hfls.75'] = np.quantile(lhf_ecor[(abs(time_ecor - time_near) <= t_filter) & (lhf_ecor > 0)],0.75)
-    p_df_2['hfss']    = shf_ecor[abs(time_ecor - time_near) <= t_filter].mean()
-    p_df_2['hfss.25'] = np.quantile(shf_ecor[abs(time_ecor - time_near) <= t_filter],0.25)
-    p_df_2['hfss.75'] = np.quantile(shf_ecor[abs(time_ecor - time_near) <= t_filter],0.75)
+    p_df_2['hfss']    = shf_ecor[(abs(time_ecor - time_near) <= t_filter) & (shf_ecor > 0)].mean()
+    p_df_2['hfss.25'] = np.quantile(shf_ecor[(abs(time_ecor - time_near) <= t_filter) & (shf_ecor > 0)],0.25)
+    p_df_2['hfss.75'] = np.quantile(shf_ecor[(abs(time_ecor - time_near) <= t_filter) & (shf_ecor > 0)],0.75)
     
     return pd.concat([p_df,p_df_2])
     
