@@ -6,6 +6,7 @@ import pathlib
 import glob
 import os
 import csv
+import scipy
 
 ## for questions, please contact 
 ## Florian Tornow: ft2544@columbia.edu
@@ -354,6 +355,39 @@ def load_aeri(case='20200313',t_filter = 1.,PATH='../../data_files/'):
     data['class'] = 'AERI'
     
     return data
+
+def load_flux(case='20200313',t_filter = 1.,PATH='../../data_files/'):
+    
+    ## load ECOR and Bulk surface turbulent fluxes, obtained near Andenenes
+    if case == '20200313':
+        fn = 'bulk_aerodynamic_fluxes_031320.nc'
+        time_near = 18.
+    
+    ds = nc.Dataset(PATH + fn)
+    time_bulk = ds.variables['MINUTE_OF_DAY_BULK'][:]/60
+    time_ecor = ds.variables['MINUTE_OF_DAY_ECOR'][:]/60
+    lhf_bulk = ds.variables['bulk_lhf'][:]
+    shf_bulk = ds.variables['bulk_shf'][:]
+    lhf_ecor = ds.variables['ecor_lhf'][:]
+    shf_ecor = ds.variables['ecor_shf'][:]
+    
+    p_df = pd.DataFrame({"class": ['Bulk'], "time":[time_near*3600]}, index=[time_near])
+    p_df['hfls']    = lhf_bulk[abs(time_bulk - time_near) <= t_filter].mean()
+    p_df['hfls.25'] = np.quantile(lhf_bulk[abs(time_bulk - time_near) <= t_filter],0.25)
+    p_df['hfls.75'] = np.quantile(lhf_bulk[abs(time_bulk - time_near) <= t_filter],0.75)
+    p_df['hfss']    = shf_bulk[abs(time_bulk - time_near) <= t_filter].mean()
+    p_df['hfss.25'] = np.quantile(shf_bulk[abs(time_bulk - time_near) <= t_filter],0.25)
+    p_df['hfss.75'] = np.quantile(shf_bulk[abs(time_bulk - time_near) <= t_filter],0.75)
+    
+    p_df_2 = pd.DataFrame({"class": ['ECOR'], "time":[time_near*3600]}, index=[time_near])
+    p_df_2['hfls']   = lhf_ecor[(abs(time_ecor - time_near) <= t_filter) & (lhf_ecor > 0)].mean()
+    p_df_2['hfls.25'] = np.quantile(lhf_ecor[(abs(time_ecor - time_near) <= t_filter) & (lhf_ecor > 0)],0.25)
+    p_df_2['hfls.75'] = np.quantile(lhf_ecor[(abs(time_ecor - time_near) <= t_filter) & (lhf_ecor > 0)],0.75)
+    p_df_2['hfss']    = shf_ecor[abs(time_ecor - time_near) <= t_filter].mean()
+    p_df_2['hfss.25'] = np.quantile(shf_ecor[abs(time_ecor - time_near) <= t_filter],0.25)
+    p_df_2['hfss.75'] = np.quantile(shf_ecor[abs(time_ecor - time_near) <= t_filter],0.75)
+    
+    return pd.concat([p_df,p_df_2])
     
 def load_rs(case='20200313',t_filter = 1.,PATH='../../data_files/'):
     
@@ -686,11 +720,11 @@ def plot_1d(df_col,var_vec,t0=-2.,t1=18.,longnames=[],units=[]):
                 obj = axs
             else:
                 obj = axs[ii]
-            if (label=='MAC-LWP') | (label=='MODIS') | (label=='VIIRS') | (label=='CERES') | (label=='SENTINEL') | (label=='KAZR (Kollias)')| (label=='KAZR (Clough)')| (label=='CALIOP')| (label=='ATMS')| (label=='RADFLUX'):
+            if (label=='MAC-LWP') | (label=='MODIS') | (label=='VIIRS') | (label=='CERES') | (label=='SENTINEL') | (label=='KAZR (Kollias)')| (label=='KAZR (Clough)')| (label=='CALIOP')| (label=='ATMS')| (label=='RADFLUX') | (label=='Bulk')| (label=='ECOR'):
                 obj.scatter(df.time/3600,df[var_vec[ii]],label=label,c='k',marker=plot_symbol[counter_symbol])
                 #print(label)
                 #print(df[var_vec[ii]])
-                if (label=='MAC-LWP') | (label=='VIIRS') | (label=='MODIS') | (label=='CERES')| (label=='SENTINEL') | (label=='KAZR (Kollias)')| (label=='KAZR (Clough)')| (label=='CALIOP')| (label=='RADFLUX'):
+                if (label=='MAC-LWP') | (label=='VIIRS') | (label=='MODIS') | (label=='CERES')| (label=='SENTINEL') | (label=='KAZR (Kollias)')| (label=='KAZR (Clough)')| (label=='CALIOP')| (label=='RADFLUX')| (label=='Bulk')| (label=='ECOR'):
                     if np.count_nonzero(np.isnan(df[var_vec[ii]])) < len(df[var_vec[ii]]):
                         error_1 = np.abs(df[var_vec[ii]] - df[var_vec[ii]+'.25'])
                         error_2 = np.abs(df[var_vec[ii]+'.75'] - df[var_vec[ii]])
@@ -715,7 +749,7 @@ def plot_1d(df_col,var_vec,t0=-2.,t1=18.,longnames=[],units=[]):
                 obj.text(.01, .99, longnames[ii]+unit_str, ha='left', va='top', transform=obj.transAxes)
         counter +=1
         if not df['colflag'].unique() == 'gray':  counter_plot +=1
-        if (label=='MAC-LWP') | (label=='MODIS') | (label=='VIIRS') | (label=='CERES') | (label=='SENTINEL') | (label=='KAZR (Kollias)')| (label=='KAZR (Clough)')| (label=='CALIOP')| (label=='ATMS')| (label=='RADFLUX'): counter_plot -=1    
+        if (label=='MAC-LWP') | (label=='MODIS') | (label=='VIIRS') | (label=='CERES') | (label=='SENTINEL') | (label=='KAZR (Kollias)')| (label=='KAZR (Clough)')| (label=='CALIOP')| (label=='ATMS')| (label=='RADFLUX')| (label=='Bulk')| (label=='ECOR'): counter_plot -=1    
     i_count = 0
 
     if len(var_vec) > 1:
