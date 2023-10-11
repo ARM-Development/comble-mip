@@ -639,6 +639,10 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
     df_col['time']  = df_col['time'] + t_shift*3600.
     df_col2['time'] = df_col2['time'] + t_shift*3600.
     
+    ## obtain lwp if lwpc and lwpr are available
+    if 'lwpr' in df_col.columns and 'lwpc' in df_col.columns:
+        df_col['lwp'] = df_col['lwpr'] + df_col['lwpc']
+    
     if(make_gray == 1):        
         df_col['colflag']  = 'gray'
         df_col2['colflag'] = 'gray'
