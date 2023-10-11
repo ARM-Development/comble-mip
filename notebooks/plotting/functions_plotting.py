@@ -333,7 +333,7 @@ def load_radflux(case='20200313',PATH='../../data_files/'):
     
     return data
 
-def load_aeri(case='20200313',t_filter = 1.,PATH='../../data_files/'):
+def load_aeri(case='20200313',t_filter = 1.,PATH='../../data_files/'): 
     
     if case == '20200313':
         file = 'aeri_2020-03-13_dat.csv'
