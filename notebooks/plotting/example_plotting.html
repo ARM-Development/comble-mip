@@ -399,7 +399,7 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> functions_plotting.py
 
 <span class="c1">## select simulations to plot</span>
-<span class="n">sim_keyword</span> <span class="o">=</span> <span class="s1">&#39;dx100&#39;</span>
+<span class="n">sim_keyword</span> <span class="o">=</span> <span class="s1">&#39;dx100&#39;</span> 
 </pre></div>
 </div>
 </div>
@@ -417,6 +417,7 @@ document.write(`
 <span class="n">kazrclough_dat</span> <span class="o">=</span> <span class="n">load_kazrclough</span><span class="p">()</span> 
 <span class="n">aeri_dat</span> <span class="o">=</span> <span class="n">load_aeri</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">)</span>
 <span class="n">radflux_dat</span> <span class="o">=</span> <span class="n">load_radflux</span><span class="p">()</span>
+<span class="n">srfflux_dat</span> <span class="o">=</span> <span class="n">load_flux</span><span class="p">()</span>
 
 <span class="c1">## load MAC-LWP</span>
 <span class="n">maclwp_dat</span> <span class="o">=</span> <span class="n">load_maclwp</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">)</span> 
@@ -442,6 +443,24 @@ document.write(`
 ../../data_files/anxsondewnpnM1.b1.20200313.112600.cdf
 ../../data_files/anxsondewnpnM1.b1.20200313.052700.cdf
 KAZR (Kollias): here using auxiliary field to estimate cloud-top temperature
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/conda/lib/python3.10/site-packages/numpy/lib/function_base.py:4691: UserWarning: Warning: &#39;partition&#39; will ignore the &#39;mask&#39; of the MaskedArray.
+  arr.partition(
+/opt/conda/lib/python3.10/site-packages/numpy/lib/function_base.py:4691: UserWarning: Warning: &#39;partition&#39; will ignore the &#39;mask&#39; of the MaskedArray.
+  arr.partition(
+/opt/conda/lib/python3.10/site-packages/numpy/lib/function_base.py:4691: UserWarning: Warning: &#39;partition&#39; will ignore the &#39;mask&#39; of the MaskedArray.
+  arr.partition(
+/opt/conda/lib/python3.10/site-packages/numpy/lib/function_base.py:4691: UserWarning: Warning: &#39;partition&#39; will ignore the &#39;mask&#39; of the MaskedArray.
+  arr.partition(
+/opt/conda/lib/python3.10/site-packages/numpy/lib/function_base.py:4691: UserWarning: Warning: &#39;partition&#39; will ignore the &#39;mask&#39; of the MaskedArray.
+  arr.partition(
+/opt/conda/lib/python3.10/site-packages/numpy/lib/function_base.py:4691: UserWarning: Warning: &#39;partition&#39; will ignore the &#39;mask&#39; of the MaskedArray.
+  arr.partition(
+/opt/conda/lib/python3.10/site-packages/numpy/lib/function_base.py:4691: UserWarning: Warning: &#39;partition&#39; will ignore the &#39;mask&#39; of the MaskedArray.
+  arr.partition(
+/opt/conda/lib/python3.10/site-packages/numpy/lib/function_base.py:4691: UserWarning: Warning: &#39;partition&#39; will ignore the &#39;mask&#39; of the MaskedArray.
+  arr.partition(
 </pre></div>
 </div>
 </div>
@@ -475,12 +494,12 @@ Loading variables: f(time,height)
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## plot variables that have only time dependence</span>
-<span class="n">plot_1d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_1d</span><span class="p">,</span><span class="n">era5_1d</span><span class="p">]),</span><span class="n">var_vec_1d</span><span class="p">)</span>
+<span class="n">plot_1d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_1d</span><span class="p">,</span><span class="n">era5_1d</span><span class="p">,</span><span class="n">srfflux_dat</span><span class="p">]),</span><span class="n">var_vec_1d</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/2e342c477427ba438da99fad98375c1f8a89647d58966629f3c306ddc8df9320.png" src="../../_images/2e342c477427ba438da99fad98375c1f8a89647d58966629f3c306ddc8df9320.png" />
+<img alt="../../_images/83c04584e9d5400e32bda83b4190a3bbce077892c6a22352e0dcf68402960186.png" src="../../_images/83c04584e9d5400e32bda83b4190a3bbce077892c6a22352e0dcf68402960186.png" />
 </div>
 </div>
 <div class="cell docutils container">
