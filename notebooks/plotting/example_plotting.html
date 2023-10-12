@@ -445,24 +445,6 @@ document.write(`
 KAZR (Kollias): here using auxiliary field to estimate cloud-top temperature
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/conda/lib/python3.10/site-packages/numpy/lib/function_base.py:4691: UserWarning: Warning: &#39;partition&#39; will ignore the &#39;mask&#39; of the MaskedArray.
-  arr.partition(
-/opt/conda/lib/python3.10/site-packages/numpy/lib/function_base.py:4691: UserWarning: Warning: &#39;partition&#39; will ignore the &#39;mask&#39; of the MaskedArray.
-  arr.partition(
-/opt/conda/lib/python3.10/site-packages/numpy/lib/function_base.py:4691: UserWarning: Warning: &#39;partition&#39; will ignore the &#39;mask&#39; of the MaskedArray.
-  arr.partition(
-/opt/conda/lib/python3.10/site-packages/numpy/lib/function_base.py:4691: UserWarning: Warning: &#39;partition&#39; will ignore the &#39;mask&#39; of the MaskedArray.
-  arr.partition(
-/opt/conda/lib/python3.10/site-packages/numpy/lib/function_base.py:4691: UserWarning: Warning: &#39;partition&#39; will ignore the &#39;mask&#39; of the MaskedArray.
-  arr.partition(
-/opt/conda/lib/python3.10/site-packages/numpy/lib/function_base.py:4691: UserWarning: Warning: &#39;partition&#39; will ignore the &#39;mask&#39; of the MaskedArray.
-  arr.partition(
-/opt/conda/lib/python3.10/site-packages/numpy/lib/function_base.py:4691: UserWarning: Warning: &#39;partition&#39; will ignore the &#39;mask&#39; of the MaskedArray.
-  arr.partition(
-/opt/conda/lib/python3.10/site-packages/numpy/lib/function_base.py:4691: UserWarning: Warning: &#39;partition&#39; will ignore the &#39;mask&#39; of the MaskedArray.
-  arr.partition(
-</pre></div>
-</div>
 </div>
 </div>
 <div class="cell docutils container">
@@ -553,7 +535,7 @@ computing inversion height and cloud-top temperature
   maxy = np.nanmax(masked_verts[..., 1])
 </pre></div>
 </div>
-<img alt="../../_images/a44d3c0bfa6e9cc84d3cc30ce42eefc3b2a9da544a6a91ee86e3b76038c67730.png" src="../../_images/a44d3c0bfa6e9cc84d3cc30ce42eefc3b2a9da544a6a91ee86e3b76038c67730.png" />
+<img alt="../../_images/3c3469bbe1f513e81200b1ee5f19d4f73777e914b01ca52d2576e17837e4aede.png" src="../../_images/3c3469bbe1f513e81200b1ee5f19d4f73777e914b01ca52d2576e17837e4aede.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -562,7 +544,7 @@ computing inversion height and cloud-top temperature
 <span class="c1">#plot_2d(df_col_2d,var_vec_2d,[0,3,6,9,12,15,18],z_max=6000)</span>
 
 <span class="c1">## example where ERA5 and radiosonde are included</span>
-<span class="n">plot_2d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_2d</span><span class="p">,</span><span class="n">era5_2d</span><span class="p">,</span><span class="n">rs_dat</span><span class="p">]),</span><span class="n">var_vec</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ta&#39;</span><span class="p">,</span><span class="s1">&#39;theta&#39;</span><span class="p">,</span><span class="s1">&#39;qv&#39;</span><span class="p">,</span><span class="s1">&#39;ws&#39;</span><span class="p">,</span><span class="s1">&#39;wd&#39;</span><span class="p">],</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">18</span><span class="p">],</span><span class="n">z_max</span><span class="o">=</span><span class="mi">6000</span><span class="p">)</span>
+<span class="n">plot_2d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_2d</span><span class="p">,</span><span class="n">era5_2d</span><span class="p">,</span><span class="n">rs_dat</span><span class="p">,</span><span class="n">aeri_dat</span><span class="p">]),</span><span class="n">var_vec</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ta&#39;</span><span class="p">,</span><span class="s1">&#39;theta&#39;</span><span class="p">,</span><span class="s1">&#39;qv&#39;</span><span class="p">,</span><span class="s1">&#39;ws&#39;</span><span class="p">,</span><span class="s1">&#39;wd&#39;</span><span class="p">],</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">18</span><span class="p">],</span><span class="n">z_max</span><span class="o">=</span><span class="mi">6000</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -571,7 +553,7 @@ computing inversion height and cloud-top temperature
 Computing wind direction
 </pre></div>
 </div>
-<img alt="../../_images/33510c50d47a356e83710f38dc30d270cdbfaba5ef49aa5ffacf1a278baeac4b.png" src="../../_images/33510c50d47a356e83710f38dc30d270cdbfaba5ef49aa5ffacf1a278baeac4b.png" />
+<img alt="../../_images/57bcd3020834ccbcfabc72eab1c7506b22d6572850a429ed2f22d93925c04840.png" src="../../_images/57bcd3020834ccbcfabc72eab1c7506b22d6572850a429ed2f22d93925c04840.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x600 with 0 Axes&gt;
 </pre></div>
 </div>
