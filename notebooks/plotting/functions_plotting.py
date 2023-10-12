@@ -905,6 +905,8 @@ def plot_2d(df_col2,var_vec,times,**kwargs):
                 else:
                     obj = axs[ii,tt]
                 ## eliminate doubles and only plot non-gray
+                if('colflag' not in df.columns):
+                    df['colflag'] = 'col'
                 if(len(df['colflag'].unique()) > 1):
                     df = df[df['colflag'] == 'col']
                 if(df['colflag'].unique() == 'gray'):
