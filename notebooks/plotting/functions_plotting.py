@@ -366,10 +366,10 @@ def load_flux(case='20200313',t_filter = 1.,PATH='../../data_files/'):
     ds = nc.Dataset(PATH + fn)
     time_bulk = ds.variables['MINUTE_OF_DAY_BULK'][:]/60
     time_ecor = ds.variables['MINUTE_OF_DAY_ECOR'][:]/60
-    lhf_bulk = ds.variables['bulk_lhf'][:]
-    shf_bulk = ds.variables['bulk_shf'][:]
-    lhf_ecor = ds.variables['ecor_lhf'][:]
-    shf_ecor = ds.variables['ecor_shf'][:]
+    lhf_bulk = ds.variables['bulk_lhf'][:].data
+    shf_bulk = ds.variables['bulk_shf'][:].data
+    lhf_ecor = ds.variables['ecor_lhf'][:].data
+    shf_ecor = ds.variables['ecor_shf'][:].data
     
     p_df = pd.DataFrame({"class": ['Bulk'], "time":[time_near*3600]}, index=[time_near])
     p_df['hfls']    = lhf_bulk[(abs(time_bulk - time_near) <= t_filter) & (lhf_bulk > 0)].mean()
@@ -843,7 +843,8 @@ def plot_2d(df_col2,var_vec,times,**kwargs):
         units = kwargs.get('units')
     
     if 'plot_colors' not in kwargs:
-        plot_colors = ["#E69F00", "#56B4E9", "#009E73","#0072B2", "#D55E00", "#CC79A7","#F0E442",'black','gray']
+        plot_colors = ["#E69F00", "#56B4E9", "#009E73","#0072B2", "#D55E00", "#CC79A7","#F0E442",'black','gray','red','green']
+        plot_linetype = ['solid','dotted','dashed','dashdot']
     else:
         plot_colors = kwargs.get('plot_colors')
         
@@ -886,11 +887,11 @@ def plot_2d(df_col2,var_vec,times,**kwargs):
     ######## MAKE PLOTS ########
     ############################
     counter = 0
-    counter_plot = 0
     fig, axs = plt.subplots(len(var_vec),len(times),figsize=(2*len(times),2 + 2*len(var_vec)))
     for tt in range(len(times)):
         df_sub = df_col2[round(df_col2.time) == times[tt]*3600.]      
-        counter_plot = 0
+        counter_col = 0 
+        counter_line = 0
         for label, df in df_col2.groupby('class'):
             df = df[round(df.time) == times[tt]*3600.]
             #print(len(df))
@@ -910,7 +911,13 @@ def plot_2d(df_col2,var_vec,times,**kwargs):
                 if(df['colflag'].unique() == 'gray'):
                     obj.plot(df[var_vec[ii]],df.zf,label=label,c='gray',zorder=1,linewidth=3,alpha=0.7)
                 else:
-                    obj.plot(df[var_vec[ii]],df.zf,label=label,c=plot_colors[counter_plot],ls=plot_ls[counter_plot],zorder=2)
+                    pcol = plot_colors[counter_col]
+                    pline = 'solid'
+                    if(label=='ERA5'): pcol='black'
+                    if(label[0:5]=='Radio'): 
+                        pcol='grey'
+                        pline=plot_linetype[counter_line]
+                    obj.plot(df[var_vec[ii]],df.zf,label=label,c=pcol,ls=pline,zorder=2)
                 obj.grid(alpha=0.2)
                 obj.set_ylim([0, z_max])
                 if ii==0:
@@ -928,7 +935,9 @@ def plot_2d(df_col2,var_vec,times,**kwargs):
                 else:
                     plt.setp(obj.get_yticklabels(), visible=False)
                 counter +=1
-            if not df['colflag'].unique() == 'gray': counter_plot +=1
+            if not df['colflag'].unique() == 'gray': counter_col +=1
+            if (label=='ERA5') or (label[0:5]=='Radio'): counter_col -=1
+            if label[0:5]=='Radio': counter_line +=1
                 
     handles, labels = plt.gca().get_legend_handles_labels()
     by_label = dict(zip(labels, handles))
