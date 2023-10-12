@@ -410,7 +410,7 @@ document.write(`
 <span class="n">era5_1d</span><span class="p">,</span> <span class="n">era5_2d</span> <span class="o">=</span> <span class="n">load_era5</span><span class="p">(</span><span class="n">PATH</span><span class="o">=</span><span class="s1">&#39;../../data_files/&#39;</span><span class="p">)</span>
 
 <span class="c1">## load radiosondes</span>
-<span class="n">rs_dat</span> <span class="o">=</span> <span class="n">load_rs</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">6.</span><span class="p">)</span>
+<span class="n">rs_dat</span> <span class="o">=</span> <span class="n">load_rs</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">7.</span><span class="p">)</span>
 
 <span class="c1">## load DOE ARM site statistics</span>
 <span class="n">kazrkollias_dat</span> <span class="o">=</span> <span class="n">load_kazrkollias</span><span class="p">(</span><span class="n">aux_dat</span><span class="o">=</span><span class="n">rs_dat</span><span class="p">)</span> <span class="c1">## here using radiosonde profiles to estimate CTT</span>
@@ -562,7 +562,7 @@ computing inversion height and cloud-top temperature
 <span class="c1">#plot_2d(df_col_2d,var_vec_2d,[0,3,6,9,12,15,18],z_max=6000)</span>
 
 <span class="c1">## example where ERA5 and radiosonde are included</span>
-<span class="n">plot_2d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_2d</span><span class="p">,</span><span class="n">era5_2d</span><span class="p">,</span><span class="n">rs_dat</span><span class="p">,</span><span class="n">aeri_dat</span><span class="p">]),</span><span class="n">var_vec</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ta&#39;</span><span class="p">,</span><span class="s1">&#39;theta&#39;</span><span class="p">,</span><span class="s1">&#39;qv&#39;</span><span class="p">,</span><span class="s1">&#39;ws&#39;</span><span class="p">,</span><span class="s1">&#39;wd&#39;</span><span class="p">],</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">18</span><span class="p">],</span><span class="n">z_max</span><span class="o">=</span><span class="mi">6000</span><span class="p">)</span>
+<span class="n">plot_2d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_2d</span><span class="p">,</span><span class="n">era5_2d</span><span class="p">,</span><span class="n">rs_dat</span><span class="p">]),</span><span class="n">var_vec</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ta&#39;</span><span class="p">,</span><span class="s1">&#39;theta&#39;</span><span class="p">,</span><span class="s1">&#39;qv&#39;</span><span class="p">,</span><span class="s1">&#39;ws&#39;</span><span class="p">,</span><span class="s1">&#39;wd&#39;</span><span class="p">],</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">18</span><span class="p">],</span><span class="n">z_max</span><span class="o">=</span><span class="mi">6000</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -571,7 +571,7 @@ computing inversion height and cloud-top temperature
 Computing wind direction
 </pre></div>
 </div>
-<img alt="../../_images/0399c37297c1b4b244196819cc15b0d12162f59d9395c97aa03149426b5035ee.png" src="../../_images/0399c37297c1b4b244196819cc15b0d12162f59d9395c97aa03149426b5035ee.png" />
+<img alt="../../_images/33510c50d47a356e83710f38dc30d270cdbfaba5ef49aa5ffacf1a278baeac4b.png" src="../../_images/33510c50d47a356e83710f38dc30d270cdbfaba5ef49aa5ffacf1a278baeac4b.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x600 with 0 Axes&gt;
 </pre></div>
 </div>
