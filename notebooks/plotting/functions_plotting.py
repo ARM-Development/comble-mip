@@ -844,12 +844,11 @@ def plot_2d(df_col2,var_vec,times,**kwargs):
     
     if 'plot_colors' not in kwargs:
         plot_colors = ["#E69F00", "#56B4E9", "#009E73","#0072B2", "#D55E00", "#CC79A7","#F0E442",'black','gray','red','green']
-        plot_linetype = ['solid','dotted','dashed','dashdot']
     else:
         plot_colors = kwargs.get('plot_colors')
         
     if 'plot_ls' not in kwargs:
-        plot_ls = ['-','-','-','-','-','-','-','-','-']
+        plot_ls = ['solid','dotted','dashed','dashdot']
     else:
         plot_ls = kwargs.get('plot_ls')
     
@@ -916,7 +915,7 @@ def plot_2d(df_col2,var_vec,times,**kwargs):
                     if(label=='ERA5'): pcol='black'
                     if(label[0:5]=='Radio'): 
                         pcol='grey'
-                        pline=plot_linetype[counter_line]
+                        pline=plot_ls[counter_line]
                     obj.plot(df[var_vec[ii]],df.zf,label=label,c=pcol,ls=pline,zorder=2)
                 obj.grid(alpha=0.2)
                 obj.set_ylim([0, z_max])
