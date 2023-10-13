@@ -42,7 +42,11 @@ Example scripts to convert specific model results back to the DEPHY standard for
 
 ### Visualization Tools
 
-[Plotting scripts](https://arm-development.github.io/comble-mip/notebooks/plotting/example_plotting.html) to compare your results with those submitted from other models and observations.
+Example scripts to compare your results with those submitted from other models as well as with observations.
+
+* [Check your LES results](https://arm-development.github.io/comble-mip/notebooks/plotting/check_les.html)
+* [Check your SCM results](https://arm-development.github.io/comble-mip/notebooks/plotting/check_scm.html)
+* [Compare with observations](https://arm-development.github.io/comble-mip/notebooks/plotting/example_plotting.html)
 
 ```{note}
 If you would like to contribute to the COMBLE MIP website by adding example scripts to convert to/from your host model and/or enhancing our plotting scripts, then please see the [Contributors Guide](https://arm-development.github.io/comble-mip/CONTRIBUTING.html).
