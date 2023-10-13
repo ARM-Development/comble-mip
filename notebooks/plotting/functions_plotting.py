@@ -20,7 +20,7 @@ def sat_pres(x):
     ## x...temperature in degC
     
     ## Bolton (1980), return in hPa
-    return 6.112*np.exp(17.67*x/(243.5 + x))
+    return 6.112*np.exp(17.67*x/(243.5 + x)) 
     
 def load_ceres(case='20200313',t_filter = 1.,PATH='../../data_files/'):
     
