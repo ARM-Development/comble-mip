@@ -25,6 +25,7 @@ parts:
 - caption: Plotting and Analysis
   chapters:
     - file: notebooks/plotting/check_les.ipynb
+    - file: notebooks/plotting/check_scm.ipynb
     - file: notebooks/plotting/example_plotting.ipynb
     - file: emc2
 - caption: Supporting Materials
