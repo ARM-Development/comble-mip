@@ -397,7 +397,7 @@ document.write(`
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> functions_plotting.py
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> functions_plotting.py 
 
 <span class="c1">## select simulations to plot</span>
 <span class="n">sim_keyword</span> <span class="o">=</span> <span class="s1">&#39;dx100&#39;</span> 
@@ -414,11 +414,11 @@ document.write(`
 <span class="n">rs_dat</span> <span class="o">=</span> <span class="n">load_rs</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">7.</span><span class="p">)</span>
 
 <span class="c1">## load DOE ARM site statistics</span>
-<span class="n">kazrkollias_dat</span> <span class="o">=</span> <span class="n">load_kazrkollias</span><span class="p">(</span><span class="n">aux_dat</span><span class="o">=</span><span class="n">rs_dat</span><span class="p">)</span> <span class="c1">## here using radiosonde profiles to estimate CTT</span>
-<span class="n">kazrclough_dat</span> <span class="o">=</span> <span class="n">load_kazrclough</span><span class="p">()</span> 
+<span class="n">kazrkollias_dat</span> <span class="o">=</span> <span class="n">load_kazrkollias</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">6.</span><span class="p">,</span><span class="n">aux_dat</span><span class="o">=</span><span class="n">rs_dat</span><span class="p">)</span> <span class="c1">## here using radiosonde profiles to estimate CTT</span>
+<span class="n">kazrclough_dat</span> <span class="o">=</span> <span class="n">load_kazrclough</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">6.</span><span class="p">)</span> 
 <span class="n">aeri_dat</span> <span class="o">=</span> <span class="n">load_aeri</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">)</span>
-<span class="n">radflux_dat</span> <span class="o">=</span> <span class="n">load_radflux</span><span class="p">()</span>
-<span class="n">srfflux_dat</span> <span class="o">=</span> <span class="n">load_flux</span><span class="p">()</span>
+<span class="n">radflux_dat</span> <span class="o">=</span> <span class="n">load_radflux</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">6.</span><span class="p">)</span>
+<span class="n">srfflux_dat</span> <span class="o">=</span> <span class="n">load_flux</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">6.</span><span class="p">)</span>
 
 <span class="c1">## load MAC-LWP</span>
 <span class="n">maclwp_dat</span> <span class="o">=</span> <span class="n">load_maclwp</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">)</span> 
@@ -482,7 +482,7 @@ Loading variables: f(time,height)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/9b4140c0fcabb8fe21b5a479fb05b0502b3be7b5404609a07f38f4eafdee6e29.png" src="../../_images/9b4140c0fcabb8fe21b5a479fb05b0502b3be7b5404609a07f38f4eafdee6e29.png" />
+<img alt="../../_images/aabc7b8b33465149adbd635b5931bc1554f79e0bf5dccd491e758ff43dbf9597.png" src="../../_images/aabc7b8b33465149adbd635b5931bc1554f79e0bf5dccd491e758ff43dbf9597.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -499,14 +499,8 @@ Loading variables: f(time,height)
 ../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_FixN.nc
 ../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_ProgNa.nc
 ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
-lwpr not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
-lwpc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
 ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_z0.nc
-lwpr not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_z0.nc
-lwpc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_z0.nc
 ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
-lwpr not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
-lwpc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
 Loading variables: f(time,height)
 ../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_FixN.nc
 ../../output_les/dharma/sandbox/DHARMA_Lx25km_dx100_ProgNa.nc
@@ -536,7 +530,7 @@ computing inversion height and cloud-top temperature
   maxy = np.nanmax(masked_verts[..., 1])
 </pre></div>
 </div>
-<img alt="../../_images/3c3469bbe1f513e81200b1ee5f19d4f73777e914b01ca52d2576e17837e4aede.png" src="../../_images/3c3469bbe1f513e81200b1ee5f19d4f73777e914b01ca52d2576e17837e4aede.png" />
+<img alt="../../_images/e307186f94db8e51df68b1f345077638012aff6267ff40d95e98f7e41d57fb42.png" src="../../_images/e307186f94db8e51df68b1f345077638012aff6267ff40d95e98f7e41d57fb42.png" />
 </div>
 </div>
 <div class="cell docutils container">
