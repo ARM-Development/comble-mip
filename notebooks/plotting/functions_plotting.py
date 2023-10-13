@@ -256,7 +256,7 @@ def load_maclwp(case='20200313',t_filter = 1.,PATH='../../data_files/'):
     data_mac['class'] = data_mac['sat']
     return data_mac
 
-def load_kazrkollias(case='20200313',PATH='../../data_files/',aux_dat=pd.DataFrame()):
+def load_kazrkollias(case='20200313',t_filter = 1.,PATH='../../data_files/',aux_dat=pd.DataFrame()):
     
     ## load coincident MAC-LWP retrievals (Elsaesser et al., 2017)
     ## __input__
@@ -265,32 +265,32 @@ def load_kazrkollias(case='20200313',PATH='../../data_files/',aux_dat=pd.DataFra
     ## PATH........directory
     
     if case == '20200313':
-        file = 'kazr-kollias_2020-03-13_dat.csv'
+        file = 'kazr-kollias_2020-03-13_dat2.csv'
         t_off = 18.
     
     data = pd.read_csv(PATH + file)
-    data['time'] = (data['time.rel'] + t_off)*3600.
-    data.index = data['time']
-    data['zi'] = data['cth']
-    data['zi.25'] = data['cth.25']
-    data['zi.75'] = data['cth.75']
-    data['lwp_bu'] = data['lwp'][:]/1000.
-    data['lwp_bu.25'] = data['lwp.25'][:]/1000.
-    data['lwp_bu.75'] = data['lwp.75'][:]/1000.
-    data['class'] = data['source']
+    
+    p_df = pd.DataFrame({"class": ['Bulk'], "time":[t_off*3600]}, index=[t_off])
+    p_df['zi.25'] = np.quantile(data.loc[(abs(data['trel']) <= t_filter) & (data['cth']>0),'cth'],0.25)
+    p_df['zi']    = np.quantile(data.loc[(abs(data['trel']) <= t_filter) & (data['cth']>0),'cth'],0.50)
+    p_df['zi.75'] = np.quantile(data.loc[(abs(data['trel']) <= t_filter) & (data['cth']>0),'cth'],0.75)
+    p_df['lwp_bu.25'] = np.quantile(data.loc[(abs(data['trel']) <= t_filter) & (data['lwp']>=0),'lwp'],0.25)/1000
+    p_df['lwp_bu']    = np.quantile(data.loc[(abs(data['trel']) <= t_filter) & (data['lwp']>=0),'lwp'],0.50)/1000
+    p_df['lwp_bu.75'] = np.quantile(data.loc[(abs(data['trel']) <= t_filter) & (data['lwp']>=0),'lwp'],0.75)/1000
+    p_df['class'] = 'KAZR (Kollias)'
     
     if aux_dat.shape[0] > 0:
         print('KAZR (Kollias): here using auxiliary field to estimate cloud-top temperature')
-        aux_dat['zdiff'] = np.abs(aux_dat['zf'] - np.float(data['zi']))
-        aux_dat['zdiff.25'] = np.abs(aux_dat['zf'] - np.float(data['zi.25']))
-        aux_dat['zdiff.75'] = np.abs(aux_dat['zf'] - np.float(data['zi.75']))
-        data['ctt'] = np.mean(aux_dat.loc[aux_dat['zdiff'] < 10,'ta']) - 273.15
-        data['ctt.25'] = np.mean(aux_dat.loc[aux_dat['zdiff.25'] < 10,'ta']) - 273.15
-        data['ctt.75'] = np.mean(aux_dat.loc[aux_dat['zdiff.75'] < 10,'ta']) - 273.15
+        aux_dat['zdiff'] = np.abs(aux_dat['zf'] - np.float(p_df['zi']))
+        aux_dat['zdiff.25'] = np.abs(aux_dat['zf'] - np.float(p_df['zi.25']))
+        aux_dat['zdiff.75'] = np.abs(aux_dat['zf'] - np.float(p_df['zi.75']))
+        p_df['ctt'] = np.mean(aux_dat.loc[aux_dat['zdiff'] < 10,'ta']) - 273.15
+        p_df['ctt.25'] = np.mean(aux_dat.loc[aux_dat['zdiff.25'] < 10,'ta']) - 273.15
+        p_df['ctt.75'] = np.mean(aux_dat.loc[aux_dat['zdiff.75'] < 10,'ta']) - 273.15
     
-    return data
+    return p_df
 
-def load_kazrclough(case='20200313',PATH='../../data_files/'):
+def load_kazrclough(case='20200313',t_filter = 1.,PATH='../../data_files/'):
     
     ## load coincident MAC-LWP retrievals (Elsaesser et al., 2017)
     ## __input__
@@ -299,21 +299,21 @@ def load_kazrclough(case='20200313',PATH='../../data_files/'):
     ## PATH........directory
     
     if case == '20200313':
-        file = 'kazr-clough_2020-03-13_dat.csv'
+        file = 'kazr-clough_2020-03-13_dat2.csv'
         t_off = 18.
     
     data = pd.read_csv(PATH + file)
-    data['time'] = (data['time.rel'] + t_off)*3600.
-    data.index = data['time']
-    data['lwp_bu'] = data['lwp'][:]/1000.
-    data['lwp_bu.25'] = data['lwp.25'][:]/1000.
-    data['lwp_bu.75'] = data['lwp.75'][:]/1000.
-    data['class'] = data['source']
     
-    return data
+    p_df = pd.DataFrame({"class": ['Bulk'], "time":[t_off*3600]}, index=[t_off])
+    p_df['lwp_bu.25'] = np.quantile(data.loc[(abs(data['trel']) <= t_filter) & (data['lwp']>=0),'lwp'],0.25)/1000
+    p_df['lwp_bu']    = np.quantile(data.loc[(abs(data['trel']) <= t_filter) & (data['lwp']>=0),'lwp'],0.50)/1000
+    p_df['lwp_bu.75'] = np.quantile(data.loc[(abs(data['trel']) <= t_filter) & (data['lwp']>=0),'lwp'],0.75)/1000
+    p_df['class'] = 'KAZR (Clough)'
+    
+    return p_df
 
 
-def load_radflux(case='20200313',PATH='../../data_files/'):
+def load_radflux(case='20200313',t_filter = 1.,PATH='../../data_files/'):
     
     ## load coincident MAC-LWP retrievals (Elsaesser et al., 2017)
     ## __input__
@@ -322,16 +322,20 @@ def load_radflux(case='20200313',PATH='../../data_files/'):
     ## PATH........directory
     
     if case == '20200313':
-        file = 'radflux_2020-03-13_dat.csv'
+        file = 'radflux_2020-03-13_dat2.csv'
         t_off = 18.
     
     data = pd.read_csv(PATH + file)
-    data['time'] = (data['time.rel'] + t_off)*3600.
-    data.index = data['time']
-    data['class'] = data['source']
-    data['od'] = data['cod']
     
-    return data
+    p_df = pd.DataFrame({"class": ['Bulk'], "time":[t_off*3600]}, index=[t_off])
+    #p_df['od.25'] = np.quantile(data.loc[(abs(data['trel']) <= t_filter) & (data['cod']>=0),'cod'],0.25)/1000
+    #p_df['od']    = np.quantile(data.loc[(abs(data['trel']) <= t_filter) & (data['cod']>=0),'cod'],0.50)/1000
+    #p_df['od.75'] = np.quantile(data.loc[(abs(data['trel']) <= t_filter) & (data['cod']>=0),'cod'],0.75)/1000
+    
+    p_df['od']    = np.mean(data.loc[(abs(data['trel']) <= t_filter) & (data['cod']>=0),'cod'])
+    p_df['class'] = 'RADFLUX'
+    
+    return p_df
 
 def load_aeri(case='20200313',t_filter = 1.,PATH='../../data_files/'):
     
