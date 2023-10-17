@@ -34,3 +34,4 @@ parts:
     - file: notebooks/plotting/example_plotting_z0_tests.ipynb
     - file: notebooks/setup/aerosol-specification.ipynb
     - file: notebooks/setup/aerosol-inp-closure.ipynb
+    - file: notebooks/setup/aerosol-surface.ipynb
