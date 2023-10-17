@@ -66,6 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/setup/aerosol-surface';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Aerosol-Ice Nucleating Particle Closure" href="aerosol-inp-closure.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -203,11 +204,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../../emc2.html">The Earth Model Column Collaboratory (EMC<sup>2</sup>)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Supporting Materials</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../forcing/create_comble_forcing_v2.2.html">DEPHY Forcing Derivation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../plotting/example_plotting_z0_tests.html">Sensitivity to roughness lengths</a></li>
 <li class="toctree-l1"><a class="reference internal" href="aerosol-specification.html">Aerosol specification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="aerosol-inp-closure.html">Aerosol-Ice Nucleating Particle Closure</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Specifying Surface Aerosol Emissions for Simulations with Multi-Modal Aerosol</a></li>
 </ul>
 
     </div>
@@ -389,6 +391,13 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="specifying-surface-aerosol-emissions-for-simulations-with-multi-modal-aerosol">
 <h1>Specifying Surface Aerosol Emissions for Simulations with Multi-Modal Aerosol<a class="headerlink" href="#specifying-surface-aerosol-emissions-for-simulations-with-multi-modal-aerosol" title="Permalink to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Here we provide an approach to attribute size-resolved aerosol surface fluxes with individual aerosol modes used in LES and SCM</p></li>
+<li><p>Surface fluxes are taken from Jaegle et al. (2011) and aerosol modes determined from ground-based in-situ observations</p></li>
+<li><p>Aerosol modes help to obtain an aerosol diameter to split surface fluxes into two groups.</p></li>
+<li><p>Below approach delivers the fraction of total number flux (i.e., intergrated over all sizes) attributed to each of two modes</p></li>
+<li><p>While the total flux may change (e.g., from windspeed), the fraction remains constant.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -431,7 +440,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Surface Flux according to Jaegle et al. (2011)&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/d6f2d07dd90377679fe77cdaa99c5e77aa742409feef280ffa6c37af53e7803c.png" src="../../_images/d6f2d07dd90377679fe77cdaa99c5e77aa742409feef280ffa6c37af53e7803c.png" />
+<img alt="../../_images/a9e0bdcea298ce408c93a87f3b9afd1dffbf6701ab7e684f046ff11f0d92c3fe.png" src="../../_images/a9e0bdcea298ce408c93a87f3b9afd1dffbf6701ab7e684f046ff11f0d92c3fe.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -458,7 +467,7 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">PARTITION_DAT</span><span class="p">[</span><span class="s1">&#39;D_split&#39;</span><span class="p">],</span><span class="n">PARTITION_DAT</span><span class="p">[</span><span class="s1">&#39;num_1&#39;</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Dp&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;D_split&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Fraction of Number Flux in smaller Mode&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Partitioning of Surface Flux&#39;</span><span class="p">)</span>
 </pre></div>
@@ -468,7 +477,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Partitioning of Surface Flux&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/96444a341d596f0b464b6d9207a142d18cafb3c101f908cadc665733311f34de.png" src="../../_images/96444a341d596f0b464b6d9207a142d18cafb3c101f908cadc665733311f34de.png" />
+<img alt="../../_images/e6bf8f4d2e6323eab560632544c1e132d3b0e3c5d4c90c9e9a0639fb2970cf04.png" src="../../_images/e6bf8f4d2e6323eab560632544c1e132d3b0e3c5d4c90c9e9a0639fb2970cf04.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -481,6 +490,7 @@ document.write(`
 
 <span class="c1">## apply simple determination of splitting point based on middle mode</span>
 <span class="n">D_split</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">PSD_zsm</span><span class="p">[</span><span class="s1">&#39;D_g&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">1000</span><span class="p">)</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">PSD_zsm</span><span class="p">[</span><span class="s1">&#39;sigma_g&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]))</span><span class="o">/</span><span class="mi">1000</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Splitting modes at &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">D_split</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;um&#39;</span><span class="p">)</span>
 
 <span class="c1">## look up proportion of flux </span>
 <span class="n">PARTITION_DAT</span><span class="p">[</span><span class="s1">&#39;Dp_dist&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">PARTITION_DAT</span><span class="p">[</span><span class="s1">&#39;D_split&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">D_split</span><span class="p">)</span>
@@ -489,6 +499,9 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Splitting modes at0.57344um
+</pre></div>
+</div>
 <div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -510,8 +523,6 @@ document.write(`
       <th>num_1</th>
       <th>num_2</th>
       <th>D_split</th>
-      <th>D_split_log</th>
-      <th>D_split_log2</th>
       <th>Dp_dist</th>
     </tr>
   </thead>
@@ -521,13 +532,29 @@ document.write(`
       <td>0.98454</td>
       <td>0.01546</td>
       <td>0.573975</td>
-      <td>-0.55517</td>
-      <td>0.308214</td>
       <td>0.000535</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">PARTITION_DAT</span><span class="p">[</span><span class="s1">&#39;D_split&#39;</span><span class="p">],</span><span class="n">PARTITION_DAT</span><span class="p">[</span><span class="s1">&#39;num_1&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">D_split</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Splitting point determined from prevalent aerosol modes&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;D_split&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Fraction of Number Flux in smaller Mode&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Partitioning of Surface Flux&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Partitioning of Surface Flux&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/47002e97b4df0bf4886fef7923d14caad6bda53741fefe5da369683300461537.png" src="../../_images/47002e97b4df0bf4886fef7923d14caad6bda53741fefe5da369683300461537.png" />
+</div>
 </div>
 </section>
 
@@ -561,6 +588,15 @@ document.write(`
                 <footer class="prev-next-footer">
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="aerosol-inp-closure.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Aerosol-Ice Nucleating Particle Closure</p>
+      </div>
+    </a>
 </div>
                 </footer>
               
