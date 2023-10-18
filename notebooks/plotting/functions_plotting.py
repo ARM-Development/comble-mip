@@ -619,10 +619,17 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
                 df_col2 = pd.concat([df_col2,p_df2])
             
         count+=1
-            
+    
+    
+    lv = 2500*1000 #J/kg
+    li = 2800*1000 #J/kg
+    cp = 1.006*1000#J/kg/K
+    
     ## a simple inversion height and corresponding cloud-top temperature
     if(diag_zi_ctt):
         print('computing inversion height and cloud-top temperature')
+        if(('qlc' in df_col2.columns) & ('qic' in df_col2.columns)):  
+            print('using liquid(-ice) potential temperature')
         df_col['zi'] = np.nan
         df_col['ctt'] = np.nan
         for cc in np.unique(df_col['class']):
@@ -632,7 +639,17 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
                 for tt in df_sub['time']:  
                     #zi_step = df_sub.loc[df_sub['time'] == tt,'zi']
                     ## diagnosing inversion height from theta profiles
-                    theta_step = df_sub2.loc[df_sub2['time'] == tt,['zf','theta']]
+                    if(('qlc' in df_col2.columns) & ('qic' in df_col2.columns)):  
+                        theta_step = df_sub2.loc[df_sub2['time'] == tt,['zf','theta','qlc','qlr','qic','qis','qig']]
+                        theta_step['qic'] = theta_step['qic'].fillna(0)
+                        theta_step['qis'] = theta_step['qis'].fillna(0)
+                        theta_step['qig'] = theta_step['qig'].fillna(0)
+                        theta_step['theta'] = theta_step['theta'] - lv/cp*(theta_step['qlc'] + theta_step['qlr']) - li/cp*(theta_step['qic']+theta_step['qis']+theta_step['qig'])
+                    elif(('qlc' in df_col2.columns) & ('qlr' in df_col2.columns)):                          
+                        theta_step = df_sub2.loc[df_sub2['time'] == tt,['zf','theta','qlc','qlr']]
+                        theta_step['theta'] = theta_step['theta'] - lv/cp*(theta_step['qlc'] + theta_step['qlr']) 
+                    else:
+                        theta_step = df_sub2.loc[df_sub2['time'] == tt,['zf','theta']]
                     zi_step = zi_diagnose(theta_step)
                     ## obtaining corresponding temperature at that level
                     ta_step = df_sub2.loc[df_sub2['time'] == tt,['zf','ta']]
