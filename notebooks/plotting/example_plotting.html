@@ -211,6 +211,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../setup/aerosol-specification.html">Aerosol specification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../setup/aerosol-inp-closure.html">Aerosol-Ice Nucleating Particle Closure</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../setup/aerosol-surface.html">Specifying Surface Aerosol Emissions for Simulations with Multi-Modal Aerosol</a></li>
+
 </ul>
 
     </div>
@@ -490,7 +491,7 @@ Loading variables: f(time,height)
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## load all simulations located in subfolders of the given directory</span>
 <span class="n">var_vec_1d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;lwpr&#39;</span><span class="p">,</span><span class="s1">&#39;lwpc&#39;</span><span class="p">,</span><span class="s1">&#39;iwp&#39;</span><span class="p">,</span><span class="s1">&#39;od&#39;</span><span class="p">]</span> <span class="c1"># variables without ERA5 (shorter time axis)</span>
-<span class="n">var_vec_2d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;theta&#39;</span><span class="p">,</span><span class="s1">&#39;qv&#39;</span><span class="p">,</span><span class="s1">&#39;ua&#39;</span><span class="p">,</span><span class="s1">&#39;va&#39;</span><span class="p">,</span><span class="s1">&#39;ta&#39;</span><span class="p">]</span>
+<span class="n">var_vec_2d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;theta&#39;</span><span class="p">,</span><span class="s1">&#39;qv&#39;</span><span class="p">,</span><span class="s1">&#39;qlc&#39;</span><span class="p">,</span><span class="s1">&#39;qlr&#39;</span><span class="p">,</span><span class="s1">&#39;qic&#39;</span><span class="p">,</span><span class="s1">&#39;qis&#39;</span><span class="p">,</span><span class="s1">&#39;qig&#39;</span><span class="p">,</span><span class="s1">&#39;ua&#39;</span><span class="p">,</span><span class="s1">&#39;va&#39;</span><span class="p">,</span><span class="s1">&#39;ta&#39;</span><span class="p">]</span>
 <span class="n">df_col_1d</span><span class="p">,</span><span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword</span><span class="p">,</span><span class="n">diag_zi_ctt</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -509,6 +510,7 @@ Loading variables: f(time,height)
 ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_z0.nc
 ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
 computing inversion height and cloud-top temperature
+using liquid(-ice) potential temperature
 </pre></div>
 </div>
 </div>
@@ -531,7 +533,7 @@ computing inversion height and cloud-top temperature
   maxy = np.nanmax(masked_verts[..., 1])
 </pre></div>
 </div>
-<img alt="../../_images/e307186f94db8e51df68b1f345077638012aff6267ff40d95e98f7e41d57fb42.png" src="../../_images/e307186f94db8e51df68b1f345077638012aff6267ff40d95e98f7e41d57fb42.png" />
+<img alt="../../_images/728f66412161bf987b31d9b5195535673ea3383c68f55c753d865955e07397f8.png" src="../../_images/728f66412161bf987b31d9b5195535673ea3383c68f55c753d865955e07397f8.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -549,7 +551,7 @@ computing inversion height and cloud-top temperature
 Computing wind direction
 </pre></div>
 </div>
-<img alt="../../_images/57bcd3020834ccbcfabc72eab1c7506b22d6572850a429ed2f22d93925c04840.png" src="../../_images/57bcd3020834ccbcfabc72eab1c7506b22d6572850a429ed2f22d93925c04840.png" />
+<img alt="../../_images/824f5567dd4d4b80d9b1f0405c1243d9c4208ce037b543e61be15144d8bb3eae.png" src="../../_images/824f5567dd4d4b80d9b1f0405c1243d9c4208ce037b543e61be15144d8bb3eae.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x600 with 0 Axes&gt;
 </pre></div>
 </div>
