@@ -271,9 +271,9 @@ def load_kazrkollias(case='20200313',t_filter = 1.,PATH='../../data_files/',aux_
     data = pd.read_csv(PATH + file)
     
     p_df = pd.DataFrame({"class": ['Bulk'], "time":[t_off*3600]}, index=[t_off])
-    p_df['zi.25'] = np.quantile(data.loc[(abs(data['trel']) <= t_filter) & (data['cth']>0),'cth'],0.05)
+    p_df['zi.25'] = np.quantile(data.loc[(abs(data['trel']) <= t_filter) & (data['cth']>0),'cth'],0.25)
     p_df['zi']    = np.quantile(data.loc[(abs(data['trel']) <= t_filter) & (data['cth']>0),'cth'],0.50)
-    p_df['zi.75'] = np.quantile(data.loc[(abs(data['trel']) <= t_filter) & (data['cth']>0),'cth'],0.95)
+    p_df['zi.75'] = np.quantile(data.loc[(abs(data['trel']) <= t_filter) & (data['cth']>0),'cth'],0.75)
     p_df['lwp_bu.25'] = np.quantile(data.loc[(abs(data['trel']) <= t_filter) & (data['lwp']>=0),'lwp'],0.25)/1000
     p_df['lwp_bu']    = np.quantile(data.loc[(abs(data['trel']) <= t_filter) & (data['lwp']>=0),'lwp'],0.50)/1000
     p_df['lwp_bu.75'] = np.quantile(data.loc[(abs(data['trel']) <= t_filter) & (data['lwp']>=0),'lwp'],0.75)/1000
@@ -285,8 +285,8 @@ def load_kazrkollias(case='20200313',t_filter = 1.,PATH='../../data_files/',aux_
         aux_dat['zdiff.25'] = np.abs(aux_dat['zf'] - np.float(p_df['zi.25']))
         aux_dat['zdiff.75'] = np.abs(aux_dat['zf'] - np.float(p_df['zi.75']))
         p_df['ctt'] = np.mean(aux_dat.loc[aux_dat['zdiff'] < 10,'ta']) - 273.15
-        p_df['ctt.25'] = np.mean(aux_dat.loc[aux_dat['zdiff.25'] < 10,'ta']) - 273.15
-        p_df['ctt.75'] = np.mean(aux_dat.loc[aux_dat['zdiff.75'] < 10,'ta']) - 273.15
+        p_df['ctt.25'] = np.min(aux_dat.loc[aux_dat['zdiff.25'] < 10,'ta']) - 273.15
+        p_df['ctt.75'] = np.max(aux_dat.loc[aux_dat['zdiff.75'] < 10,'ta']) - 273.15
     
     return p_df
 
