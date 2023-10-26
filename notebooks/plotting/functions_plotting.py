@@ -285,8 +285,8 @@ def load_kazrkollias(case='20200313',t_filter = 1.,PATH='../../data_files/',aux_
         aux_dat['zdiff.25'] = np.abs(aux_dat['zf'] - np.float(p_df['zi.25']))
         aux_dat['zdiff.75'] = np.abs(aux_dat['zf'] - np.float(p_df['zi.75']))
         p_df['ctt'] = np.mean(aux_dat.loc[aux_dat['zdiff'] < 10,'ta']) - 273.15
-        p_df['ctt.25'] = np.min(aux_dat.loc[aux_dat['zdiff.25'] < 10,'ta']) - 273.15
-        p_df['ctt.75'] = np.max(aux_dat.loc[aux_dat['zdiff.75'] < 10,'ta']) - 273.15
+        p_df['ctt.25'] = np.max(aux_dat.loc[aux_dat['zdiff.25'] < 10,'ta']) - 273.15
+        p_df['ctt.75'] = np.min(aux_dat.loc[aux_dat['zdiff.75'] < 10,'ta']) - 273.15
     
     return p_df
 
