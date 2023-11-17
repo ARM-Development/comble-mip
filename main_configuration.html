@@ -336,7 +336,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -352,6 +354,14 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notes">Notes</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -384,7 +394,7 @@ document.write(`
 <td><p>LES: according to input forcing file specifications<br>- Variable name to use: <em>zw_grid</em><br>SCM: use operational grid</p></td>
 </tr>
 <tr class="row-odd"><td><p>Domain top</p></td>
-<td><p>7 km</p></td>
+<td><p>LES: 7 km<br>SCM: use operational height</p></td>
 </tr>
 <tr class="row-even"><td><p>Start/end times</p></td>
 <td><p>22 UTC on 12 March 2020<br>18 UTC on 13 March 2020</p></td>
@@ -396,7 +406,7 @@ document.write(`
 <td><p>Theta only: 0.1 K below 250 m</p></td>
 </tr>
 <tr class="row-odd"><td><p>Surface forcing</p></td>
-<td><p>0-2 h: constant ice skin temperature (247.0 K)<br>2–20 h: specified time-varying SST<br>- Variable name to use: <em>ts</em><br>Compute surface fluxes interactively using fixed roughness lengths for the entirety of the simulation (results are relatively insensitive to reducing roughness lengths over ice)<br>- Momentum, z0m = 9.0e-4 m<br>- Temperature and moisture, z0t = z0q = 5.5e-6 m</p></td>
+<td><p>Specified time-varying skin temperature*<br>- Variable name to use: <em>ts</em><br>Compute surface fluxes interactively using fixed roughness lengths for the entirety of the simulation (results are relatively insensitive to reducing roughness lengths over ice)<br>- Momentum, z0m = 9.0e-4 m<br>- Temperature and moisture, z0t = z0q = 5.5e-6 m</p></td>
 </tr>
 <tr class="row-even"><td><p>Large-scale forcing</p></td>
 <td><p>Time- and height-varying pressure gradient forcing via the geostrophic wind<br>- Variable names to use: <em>ug</em> and <em>vg</em><br>- Assume trajectory-averaged latitude for Coriolis: 74.5 N</p></td>
@@ -418,6 +428,10 @@ document.write(`
 </tr>
 </tbody>
 </table>
+<section id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Permalink to this heading">#</a></h2>
+<p>*From 0-2h we use a constant ice skin temperature (247.0 K), and from 2–20 h we use time-varying SST from ERA5.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -474,6 +488,20 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notes">Notes</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
