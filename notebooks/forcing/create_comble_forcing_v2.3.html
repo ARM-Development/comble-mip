@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>DEPHY Forcing Derivation &#8212; COMBLE Model-Observation Intercomparison Project</title>
+    <title>Code to generate: initial and time-varying profile and surface forcing &#8212; COMBLE Model-Observation Intercomparison Project</title>
   
   
   
@@ -378,7 +378,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>DEPHY Forcing Derivation</h1>
+    <h1>Code to generate: initial and time-varying profile and surface forcing</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -395,8 +395,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-in-data-from-era5-backtrajectory-netcdf">Read in data from ERA5 backtrajectory (netCDF)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-geostrophic-wind-forcing">Get Geostrophic wind forcing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolate-profiles">Interpolate profiles</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shift-profiles-downward-according-to-anns-method">Shift profiles downward according to Ann’s method</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-1d-model-from-gunilla-svensson-approximate-deviation-from-geostrophy-and-add-offset-to-initial-geostrophic-winds-for-our-initial-wind-profile">Using 1D model from Gunilla Svensson, approximate deviation from geostrophy and add offset to initial geostrophic winds for our initial wind profile</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#smooth-initial-water-vapor-mixing-ratio-profile">Smooth initial water vapor mixing ratio profile</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#do-surface-forcing">Do surface forcing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-new-netcdf-file">Create new netcdf file</a></li>
 </ul>
@@ -410,12 +409,11 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="dephy-forcing-derivation">
-<h1>DEPHY Forcing Derivation<a class="headerlink" href="#dephy-forcing-derivation" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="code-to-generate-initial-and-time-varying-profile-and-surface-forcing">
+<h1>Code to generate: initial and time-varying profile and surface forcing<a class="headerlink" href="#code-to-generate-initial-and-time-varying-profile-and-surface-forcing" title="Permalink to this heading">#</a></h1>
 <ul class="simple">
-<li><p>Code to generate: initial and time-varying profile and surface forcing</p></li>
 <li><p>Developed by Tim Juliano (NCAR-RAL), Ann Fridlind (NASA-GISS), and Florian Tornow (NASA-GISS/Columbia Univ.) with substantial contributions by Peng Wu (PNNL), Gunilla Svensson (Stockholm Univ.), and Andy Ackerman (NASA-GISS)</p></li>
-<li><p>v2.2 created on 6/26/23</p></li>
+<li><p>v2.3 created on 11/17/23</p></li>
 <li><p>Based on ERA5 backward trajectory, beginning at Andenes, Norway (03/13/20 at 18 UTC)</p></li>
 <li><p>We have the option of starting as far as 28 hours before arriving at Andenes (03/12/20 at 14 UTC)</p></li>
 </ul>
@@ -551,8 +549,7 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">do_geo</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="k">if</span> <span class="n">do_geo</span><span class="p">:</span>
-    <span class="c1">#fname_era5_geo = &#39;/glade/scratch/tjuliano/doe_comble/wrf_asr_cao/WRF-ASR-CAO/scripts/era5/era5_mar13_case_larger.nc&#39;</span>
-    <span class="n">fname_era5_geo</span> <span class="o">=</span> <span class="s1">&#39;/data/home/floriantornow/era5_mar13_case_larger.nc&#39;</span>
+    <span class="n">fname_era5_geo</span> <span class="o">=</span> <span class="s1">&#39;/glade/scratch/tjuliano/doe_comble/wrf_asr_cao/WRF-ASR-CAO/scripts/era5/era5_mar13_case_larger.nc&#39;</span>
     <span class="n">min_dx</span> <span class="o">=</span> <span class="mf">20.</span>
     <span class="n">min_dy</span> <span class="o">=</span> <span class="mf">20.</span>
 </pre></div>
@@ -622,6 +619,11 @@ document.write(`
     <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">save_name</span><span class="p">):</span>
         <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">save_name</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The file &#39;</span> <span class="o">+</span> <span class="n">save_name</span> <span class="o">+</span> <span class="s1">&#39; has been deleted successfully&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The file COMBLE_INTERCOMPARISON_FORCING_V2.3.nc has been deleted successfully
 </pre></div>
 </div>
 </div>
@@ -832,7 +834,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 640x480 with 0 Axes&gt;
 </pre></div>
 </div>
-<img alt="../../_images/fdd81a33c95faca7bed7615da9ca60190757d73fdef1326d7ba5d545496904fd.png" src="../../_images/fdd81a33c95faca7bed7615da9ca60190757d73fdef1326d7ba5d545496904fd.png" />
+<img alt="../../_images/00f750941ff50712364eedcb817e252b2af38889467df0454c53ee5e2a52dab1.png" src="../../_images/00f750941ff50712364eedcb817e252b2af38889467df0454c53ee5e2a52dab1.png" />
 </div>
 </div>
 </section>
@@ -1084,7 +1086,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 640x480 with 0 Axes&gt;
 </pre></div>
 </div>
-<img alt="../../_images/1ef9fc7d7783c62188acdfc95e0e279c27a3a455ea523d0f877b1f8061c509f4.png" src="../../_images/1ef9fc7d7783c62188acdfc95e0e279c27a3a455ea523d0f877b1f8061c509f4.png" />
+<img alt="../../_images/8e32984723c5b3a3ebff0707a92fccf057cf4234473db7e55ed0672daa62ca37.png" src="../../_images/8e32984723c5b3a3ebff0707a92fccf057cf4234473db7e55ed0672daa62ca37.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1098,6 +1100,10 @@ document.write(`
 <span class="n">uwnd_t0i</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">zgeoi</span><span class="p">)</span>
 <span class="n">f</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">hgt_t0</span><span class="p">,</span> <span class="n">vwnd_t0</span><span class="p">)</span>
 <span class="n">vwnd_t0i</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">zgeoi</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">zgeoi</span><span class="p">,</span> <span class="n">ugeoi</span><span class="p">[</span><span class="mi">0</span><span class="p">,:])</span>
+<span class="n">ugeoi_t0i</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">zgeoi</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">zgeoi</span><span class="p">,</span> <span class="n">vgeoi</span><span class="p">[</span><span class="mi">0</span><span class="p">,:])</span>
+<span class="n">vgeoi_t0i</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">zgeoi</span><span class="p">)</span>
 <span class="n">f</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">hgt_t0</span><span class="p">,</span> <span class="n">wwnd_t0</span><span class="p">)</span>
 <span class="n">wwnd_t0i</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">zgeoi</span><span class="p">)</span>
 <span class="n">f</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">hgt_t0</span><span class="p">,</span> <span class="n">temp_t0</span><span class="p">)</span>
@@ -1187,36 +1193,13 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/60ad0c373945620a4e99a304d821c04bbdc5d6f7de1b2f50bd5eb791fc4c8a9e.png" src="../../_images/60ad0c373945620a4e99a304d821c04bbdc5d6f7de1b2f50bd5eb791fc4c8a9e.png" />
+<img alt="../../_images/49aae2893181c4e4ae6448c9af7483e6f872c83f33db202855e352c3b998ee43.png" src="../../_images/49aae2893181c4e4ae6448c9af7483e6f872c83f33db202855e352c3b998ee43.png" />
 </div>
 </div>
-</section>
-<section id="shift-profiles-downward-according-to-anns-method">
-<h2>Shift profiles downward according to Ann’s method<a class="headerlink" href="#shift-profiles-downward-according-to-anns-method" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Adjusted height</span>
-<span class="n">zgeoi_shift</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">zgeoi</span><span class="p">))</span>
-<span class="n">zgeoi_shift</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">zgeoi</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-
-<span class="n">zmid_idx</span> <span class="o">=</span> <span class="mi">17</span> <span class="c1"># ~middle of inversion</span>
-<span class="n">zgeoi_shift</span><span class="p">[</span><span class="n">zmid_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">zgeoi</span><span class="p">[</span><span class="n">zmid_idx</span><span class="p">]</span><span class="o">/</span><span class="mf">1.</span>
-<span class="n">zstop_idx</span> <span class="o">=</span> <span class="mi">33</span>
-<span class="n">zstop</span> <span class="o">=</span> <span class="mf">3000.</span> <span class="c1"># m, where we want to stop loop</span>
-
-<span class="n">zgeoi_shift</span><span class="p">[</span><span class="n">zstop_idx</span><span class="p">:]</span> <span class="o">=</span> <span class="n">zgeoi</span><span class="p">[</span><span class="n">zstop_idx</span><span class="p">:]</span>
-
-<span class="n">count</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="k">while</span> <span class="n">zgeoi</span><span class="p">[</span><span class="n">count</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">zstop</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">count</span> <span class="o">&lt;</span> <span class="n">zmid_idx</span><span class="p">:</span>
-        <span class="n">zgeoi_shift</span><span class="p">[</span><span class="n">count</span><span class="p">]</span> <span class="o">=</span> <span class="n">zgeoi</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">((</span><span class="n">zgeoi</span><span class="p">[</span><span class="n">count</span><span class="p">]</span> <span class="o">-</span> <span class="n">zgeoi</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">zgeoi</span><span class="p">[</span><span class="n">zmid_idx</span><span class="p">]</span> <span class="o">-</span> <span class="n">zgeoi</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span> <span class="o">*</span> <span class="p">(</span><span class="n">zgeoi_shift</span><span class="p">[</span><span class="n">zmid_idx</span><span class="p">]</span> <span class="o">-</span> <span class="n">zgeoi</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="k">elif</span> <span class="n">count</span> <span class="o">&gt;</span> <span class="n">zmid_idx</span><span class="p">:</span>
-        <span class="n">zgeoi_shift</span><span class="p">[</span><span class="n">count</span><span class="p">]</span> <span class="o">=</span> <span class="n">zgeoi_shift</span><span class="p">[</span><span class="n">zmid_idx</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">zgeoi</span><span class="p">[</span><span class="n">count</span><span class="p">]</span> <span class="o">-</span> <span class="n">zgeoi</span><span class="p">[</span><span class="n">zmid_idx</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">zgeoi</span><span class="p">[</span><span class="n">zstop_idx</span><span class="p">]</span> <span class="o">-</span> <span class="n">zgeoi</span><span class="p">[</span><span class="n">zmid_idx</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">zgeoi_shift</span><span class="p">[</span><span class="n">zstop_idx</span><span class="p">]</span> <span class="o">-</span> <span class="n">zgeoi_shift</span><span class="p">[</span><span class="n">zmid_idx</span><span class="p">])</span>
-    <span class="n">count</span><span class="o">+=</span><span class="mi">1</span>
-    
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">theta_t0i</span><span class="p">,</span><span class="n">zgeoi</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Original&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">theta_t0i</span><span class="p">,</span><span class="n">zgeoi_shift</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Shift&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3500</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">245</span><span class="p">,</span><span class="mi">280</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
@@ -1224,15 +1207,15 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f2df0d1e140&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x14b8d6149f40&gt;
 </pre></div>
 </div>
-<img alt="../../_images/9e453b2c5777208b6e285bda74a181b4ee965a96bfc10154de713025ac71daa3.png" src="../../_images/9e453b2c5777208b6e285bda74a181b4ee965a96bfc10154de713025ac71daa3.png" />
+<img alt="../../_images/1c76593cbbeac04fc9135269de8e087f0a8edeef2fd30d495ae926e0f19e5f6e.png" src="../../_images/1c76593cbbeac04fc9135269de8e087f0a8edeef2fd30d495ae926e0f19e5f6e.png" />
 </div>
 </div>
-<ul class="simple">
-<li><p>Smooth shifted initial water vapor mixing ratio profile</p></li>
-</ul>
+</section>
+<section id="smooth-initial-water-vapor-mixing-ratio-profile">
+<h2>Smooth initial water vapor mixing ratio profile<a class="headerlink" href="#smooth-initial-water-vapor-mixing-ratio-profile" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qv_t0i_mod</span> <span class="o">=</span> <span class="n">qv_t0i</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -1240,8 +1223,7 @@ document.write(`
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">qv_t0i</span><span class="o">*</span><span class="mf">1e3</span><span class="p">,</span><span class="n">zgeoi</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Original&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">qv_t0i</span><span class="o">*</span><span class="mf">1e3</span><span class="p">,</span><span class="n">zgeoi_shift</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Shift&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">qv_t0i_mod</span><span class="o">*</span><span class="mf">1e3</span><span class="p">,</span><span class="n">zgeoi_shift</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Shift+Smooth&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">qv_t0i_mod</span><span class="o">*</span><span class="mf">1e3</span><span class="p">,</span><span class="n">zgeoi</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Smooth&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3500</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
@@ -1249,46 +1231,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f2deae4aa10&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x14b8d6057a60&gt;
 </pre></div>
 </div>
-<img alt="../../_images/97b6abba8117ce4110de60a4fed9be4ff5f075245a132b36c5e2a318c3d6ed52.png" src="../../_images/97b6abba8117ce4110de60a4fed9be4ff5f075245a132b36c5e2a318c3d6ed52.png" />
-</div>
-</div>
-</section>
-<section id="using-1d-model-from-gunilla-svensson-approximate-deviation-from-geostrophy-and-add-offset-to-initial-geostrophic-winds-for-our-initial-wind-profile">
-<h2>Using 1D model from Gunilla Svensson, approximate deviation from geostrophy and add offset to initial geostrophic winds for our initial wind profile<a class="headerlink" href="#using-1d-model-from-gunilla-svensson-approximate-deviation-from-geostrophy-and-add-offset-to-initial-geostrophic-winds-for-our-initial-wind-profile" title="Permalink to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">do_geo</span><span class="p">:</span>
-    <span class="n">gunilla_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="n">profiles_1d_model</span><span class="p">)</span>
-    <span class="n">gunilla_u</span> <span class="o">=</span> <span class="n">gunilla_data</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span>
-    <span class="n">gunilla_v</span> <span class="o">=</span> <span class="n">gunilla_data</span><span class="p">[</span><span class="mi">1</span><span class="p">,:]</span>
-    <span class="n">gunilla_th</span> <span class="o">=</span> <span class="n">gunilla_data</span><span class="p">[</span><span class="mi">2</span><span class="p">,:]</span>
-    <span class="n">gunilla_z</span> <span class="o">=</span> <span class="n">gunilla_data</span><span class="p">[</span><span class="mi">3</span><span class="p">,:]</span>
-
-    <span class="c1"># express the winds as offsets from geostrophic</span>
-    <span class="n">gunilla_du</span> <span class="o">=</span> <span class="n">gunilla_u</span> <span class="o">-</span> <span class="n">gunilla_u</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">gunilla_dv</span> <span class="o">=</span> <span class="n">gunilla_v</span> <span class="o">-</span> <span class="n">gunilla_v</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-
-    <span class="c1"># add offsets to the initial profile</span>
-    <span class="n">du</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">zgeoi_shift</span><span class="p">,</span><span class="n">gunilla_z</span><span class="p">,</span><span class="n">gunilla_du</span><span class="p">)</span>
-    <span class="n">dv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">zgeoi_shift</span><span class="p">,</span><span class="n">gunilla_z</span><span class="p">,</span><span class="n">gunilla_dv</span><span class="p">)</span>
-    <span class="n">ugeoi_t0i_mod</span> <span class="o">=</span> <span class="n">ugeoi</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span> <span class="o">+</span> <span class="n">du</span>
-    <span class="n">vgeoi_t0i_mod</span> <span class="o">=</span> <span class="n">vgeoi</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span> <span class="o">+</span> <span class="n">dv</span>
-
-    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ugeoi</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span><span class="n">zgeoi_shift</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Original U$_</span><span class="si">{g}</span><span class="s1">$&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">vgeoi</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span><span class="n">zgeoi_shift</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Original V$_</span><span class="si">{g}</span><span class="s1">$&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ugeoi_t0i_mod</span><span class="p">,</span><span class="n">zgeoi_shift</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Modified U$_</span><span class="si">{g}</span><span class="s1">$&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">vgeoi_t0i_mod</span><span class="p">,</span><span class="n">zgeoi_shift</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Modified V$_</span><span class="si">{g}</span><span class="s1">$&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/b53c1d8cb4088272fa7631442aad4390111270ff461891e260b782182b67392c.png" src="../../_images/b53c1d8cb4088272fa7631442aad4390111270ff461891e260b782182b67392c.png" />
+<img alt="../../_images/02d63d2bc31bddb44bb1042fba4739e9a71217cb8f5d2629e353cef88f82ee53.png" src="../../_images/02d63d2bc31bddb44bb1042fba4739e9a71217cb8f5d2629e353cef88f82ee53.png" />
 </div>
 </div>
 </section>
@@ -1391,7 +1337,6 @@ document.write(`
 <span class="n">ncfile</span><span class="o">.</span><span class="n">version</span><span class="o">=</span><span class="s1">&#39;Created on &#39;</span> <span class="o">+</span> <span class="n">dt</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="n">ncfile</span><span class="o">.</span><span class="n">format_version</span><span class="o">=</span><span class="s1">&#39;DEPHY SCM format version 2.0&#39;</span>
 <span class="n">ncfile</span><span class="o">.</span><span class="n">script</span><span class="o">=</span><span class="n">script_name</span>
-<span class="n">ncfile</span><span class="o">.</span><span class="n">comment</span><span class="o">=</span><span class="s1">&#39;Simulations beginning prior to the ice edge set z0=0.001 m over ice then compute z0 using Charnock.&#39;</span>
 <span class="n">ncfile</span><span class="o">.</span><span class="n">startDate</span><span class="o">=</span><span class="n">start_time</span>
 <span class="n">ncfile</span><span class="o">.</span><span class="n">endDate</span><span class="o">=</span><span class="s1">&#39;2020-03-13 18:00:00&#39;</span>
 <span class="k">if</span> <span class="n">do_geo</span><span class="p">:</span>
@@ -1595,11 +1540,11 @@ document.write(`
 <span class="n">longitude</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">les_lon_mid</span>
 <span class="n">latitude_arr</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">les_lat2</span>
 <span class="n">longitude_arr</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">les_lon2</span>
-<span class="n">lev</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">zgeoi_shift</span>
+<span class="n">lev</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">zgeoi</span>
 <span class="n">zw_grid</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">z_grid</span>
 <span class="n">pressure</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">pres_t0i</span>
-<span class="n">u</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">ugeoi_t0i_mod</span>
-<span class="n">v</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">vgeoi_t0i_mod</span>
+<span class="n">u</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">ugeoi_t0i</span>
+<span class="n">v</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">vgeoi_t0i</span>
 <span class="n">temperature</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">temp_t0i</span>
 <span class="n">ptemperature</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">theta_t0i</span>
 <span class="n">qvapor</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">qv_t0i_mod</span>
@@ -1673,10 +1618,9 @@ root group (NETCDF3_CLASSIC data model, file format NETCDF3):
     title: Forcing and initial conditions for 13 March 2020 COMBLE intercomparison case
     reference: https://arm-development.github.io/comble-mip/
     authors: Timothy W. Juliano (NCAR/RAL, tjuliano@ucar.edu); Florian Tornow (NASA/GISS, ft2544@columbia.edu); Ann M. Fridlind (NASA/GISS, ann.fridlind@nasa.gov)
-    version: Created on 2023-10-26
+    version: Created on 2023-11-17
     format_version: DEPHY SCM format version 2.0
     script: create_comble_forcing_v2.3.ipynb
-    comment: Simulations beginning prior to the ice edge set z0=0.001 m over ice then compute z0 using Charnock.
     startDate: 2020-03-12 22:00:00
     endDate: 2020-03-13 18:00:00
     forc_geo: 1
@@ -1757,8 +1701,7 @@ Dataset is closed!
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-in-data-from-era5-backtrajectory-netcdf">Read in data from ERA5 backtrajectory (netCDF)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-geostrophic-wind-forcing">Get Geostrophic wind forcing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolate-profiles">Interpolate profiles</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shift-profiles-downward-according-to-anns-method">Shift profiles downward according to Ann’s method</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-1d-model-from-gunilla-svensson-approximate-deviation-from-geostrophy-and-add-offset-to-initial-geostrophic-winds-for-our-initial-wind-profile">Using 1D model from Gunilla Svensson, approximate deviation from geostrophy and add offset to initial geostrophic winds for our initial wind profile</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#smooth-initial-water-vapor-mixing-ratio-profile">Smooth initial water vapor mixing ratio profile</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#do-surface-forcing">Do surface forcing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-new-netcdf-file">Create new netcdf file</a></li>
 </ul>
