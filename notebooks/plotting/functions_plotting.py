@@ -75,6 +75,10 @@ def load_calipso(case='20200313',t_filter = 1.,PATH='../../data_files/'):
     data['zi.25'] = data['cth.25']*1000
     data['zi.75'] = data['cth.75']*1000
     
+    data['cth'] = data['cth']*1000
+    data['cth.25'] = data['cth.25']*1000
+    data['cth.75'] = data['cth.75']*1000
+    
     data['iwp'] = data['iwp']/1000
     data['iwp.25'] = data['iwp.25']/1000
     data['iwp.75'] = data['iwp.75']/1000
@@ -271,9 +275,13 @@ def load_kazrkollias(case='20200313',t_filter = 1.,PATH='../../data_files/',aux_
     data = pd.read_csv(PATH + file)
     
     p_df = pd.DataFrame({"class": ['Bulk'], "time":[t_off*3600]}, index=[t_off])
+    ## here equating inversion height and cloud-top height
     p_df['zi.25'] = np.quantile(data.loc[(abs(data['trel']) <= t_filter) & (data['cth']>0),'cth'],0.25)
     p_df['zi']    = np.quantile(data.loc[(abs(data['trel']) <= t_filter) & (data['cth']>0),'cth'],0.50)
     p_df['zi.75'] = np.quantile(data.loc[(abs(data['trel']) <= t_filter) & (data['cth']>0),'cth'],0.75)
+    p_df['cth.25'] = np.quantile(data.loc[(abs(data['trel']) <= t_filter) & (data['cth']>0),'cth'],0.25)
+    p_df['cth']    = np.quantile(data.loc[(abs(data['trel']) <= t_filter) & (data['cth']>0),'cth'],0.50)
+    p_df['cth.75'] = np.quantile(data.loc[(abs(data['trel']) <= t_filter) & (data['cth']>0),'cth'],0.75)
     p_df['lwp_bu.25'] = np.quantile(data.loc[(abs(data['trel']) <= t_filter) & (data['lwp']>=0),'lwp'],0.25)/1000
     p_df['lwp_bu']    = np.quantile(data.loc[(abs(data['trel']) <= t_filter) & (data['lwp']>=0),'lwp'],0.50)/1000
     p_df['lwp_bu.75'] = np.quantile(data.loc[(abs(data['trel']) <= t_filter) & (data['lwp']>=0),'lwp'],0.75)/1000
@@ -549,7 +557,7 @@ def load_real_wrf(PATH='../../data_files/'):
     return p_df,df_col2 
 
 
-def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,drop_t0=True,diag_zi_ctt=False):
+def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,drop_t0=True,diag_zi_ctt=False,QTHRES=1.0e-5):
     
     ## load ERA5 data along trajectory
     ## __input__
@@ -646,10 +654,11 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
     
     ## a simple inversion height and corresponding cloud-top temperature
     if(diag_zi_ctt):
-        print('computing inversion height and cloud-top temperature')
+        print('computing inversion height, cloud-top height, and cloud-top temperature')
         if(('qlc' in df_col2.columns) & ('qic' in df_col2.columns)):  
             print('using liquid(-ice) potential temperature')
         df_col['zi'] = np.nan
+        df_col['cth'] = np.nan
         df_col['ctt'] = np.nan
         for cc in np.unique(df_col['class']):
             df_sub  = df_col.loc[df_col['class']==cc]
@@ -664,15 +673,20 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
                         theta_step['qis'] = theta_step['qis'].fillna(0)
                         theta_step['qig'] = theta_step['qig'].fillna(0)
                         theta_step['theta'] = theta_step['theta'] - lv/cp*(theta_step['qlc'] + theta_step['qlr']) - li/cp*(theta_step['qic']+theta_step['qis']+theta_step['qig'])
+                        theta_step['qcond_tot'] = theta_step['qlc'] + theta_step['qlr'] + theta_step['qic']+theta_step['qis']+theta_step['qig']
                     elif(('qlc' in df_col2.columns) & ('qlr' in df_col2.columns)):                          
                         theta_step = df_sub2.loc[df_sub2['time'] == tt,['zf','theta','qlc','qlr']]
                         theta_step['theta'] = theta_step['theta'] - lv/cp*(theta_step['qlc'] + theta_step['qlr']) 
+                        theta_step['qcond_tot'] = theta_step['qlc'] + theta_step['qlr']
                     else:
                         theta_step = df_sub2.loc[df_sub2['time'] == tt,['zf','theta']]
+                        theta_step['qcond_tot'] = 0
+                    cth = np.max(theta_step.loc[theta_step['qcond_tot'] > QTHRES]['zf'])
                     zi_step = zi_diagnose(theta_step)
                     ## obtaining corresponding temperature at that level
                     ta_step = df_sub2.loc[df_sub2['time'] == tt,['zf','ta']]
-                    ta_step['zf_diff'] = np.abs(ta_step['zf'] - zi_step)
+                    ta_step['zf_diff'] = np.abs(ta_step['zf'] - cth) #zi_step)
+                    df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'cth'] = cth
                     df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'zi'] = zi_step
                     df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'ctt'] = min(ta_step.loc[ta_step.zf_diff == ta_step.zf_diff.min(),'ta'], default=np.NAN) - 273.15
     
