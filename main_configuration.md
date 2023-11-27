@@ -1,7 +1,7 @@
 # Main Model Configuration
 
 ```{attention}
-The most up-to-date DEPHY forcing file (V2.2) may be found [here](https://github.com/ARM-Development/comble-mip/blob/main/notebooks/forcing/COMBLE_INTERCOMPARISON_FORCING_V2.2.nc).
+The most up-to-date DEPHY forcing file (V2.3) may be found [here](https://github.com/ARM-Development/comble-mip/blob/main/notebooks/forcing/COMBLE_INTERCOMPARISON_FORCING_V2.3.nc).
 ```
 
 | Model component                      | Setting                                                                                                                                                                                         |
