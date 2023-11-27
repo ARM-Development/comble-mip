@@ -426,6 +426,9 @@ document.write(`
 <span class="n">radflux_dat</span> <span class="o">=</span> <span class="n">load_radflux</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">6.</span><span class="p">)</span>
 <span class="n">srfflux_dat</span> <span class="o">=</span> <span class="n">load_flux</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">6.</span><span class="p">)</span>
 
+<span class="c1">## load CARRA surface fluxes</span>
+<span class="n">carra_dat</span> <span class="o">=</span> <span class="n">load_carraflux</span><span class="p">()</span>
+
 <span class="c1">## load MAC-LWP</span>
 <span class="n">maclwp_dat</span> <span class="o">=</span> <span class="n">load_maclwp</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">)</span> 
 <span class="n">gongiwp_dat</span> <span class="o">=</span> <span class="n">load_iwpgong</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">)</span>
@@ -477,12 +480,18 @@ Loading variables: f(time,height)
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## plot variables that have only time dependence</span>
-<span class="n">plot_1d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_1d</span><span class="p">,</span><span class="n">era5_1d</span><span class="p">,</span><span class="n">srfflux_dat</span><span class="p">]),</span><span class="n">var_vec_1d</span><span class="p">)</span>
+<span class="n">plot_1d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_1d</span><span class="p">,</span><span class="n">era5_1d</span><span class="p">,</span><span class="n">carra_dat</span><span class="p">,</span><span class="n">srfflux_dat</span><span class="p">]),</span><span class="n">var_vec_1d</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/db5893d79c0297a5768818c4c6eee219f823e871ea5128b8932bc39fb384b868.png" src="../../_images/db5893d79c0297a5768818c4c6eee219f823e871ea5128b8932bc39fb384b868.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/conda/lib/python3.10/site-packages/matplotlib/axes/_axes.py:1185: RuntimeWarning: All-NaN axis encountered
+  miny = np.nanmin(masked_verts[..., 1])
+/opt/conda/lib/python3.10/site-packages/matplotlib/axes/_axes.py:1186: RuntimeWarning: All-NaN axis encountered
+  maxy = np.nanmax(masked_verts[..., 1])
+</pre></div>
+</div>
+<img alt="../../_images/9c371fd1922cb072d51adf2506ce74ed6a84e7147e579febca62c9464eec8f75.png" src="../../_images/9c371fd1922cb072d51adf2506ce74ed6a84e7147e579febca62c9464eec8f75.png" />
 </div>
 </div>
 <div class="cell docutils container">
