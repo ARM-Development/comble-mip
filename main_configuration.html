@@ -391,7 +391,7 @@ document.write(`
 <td><p>LES: Dx=Dy=100 m<br>SCM: use operational spacing</p></td>
 </tr>
 <tr class="row-odd"><td><p>Horizontal domain dimensions/size</p></td>
-<td><p>Preliminary: Nx=Ny=256; Lx=Ly=25.6 km (required)<br>Production: Nx=Ny=1280; Lx=Ly=128 km (desired but not required)<br>- Note: if you are unable to perform the “Production”-sized domain, then we will accept smaller domain configurations</p></td>
+<td><p>Small-domain LES: Nx=Ny=256; Lx=Ly=25.6 km (required)<br>Large-domain LES: Nx=Ny=1280; Lx=Ly=128 km (desired but not required)<br>- Note: if you are unable to perform a Large-domain simulation, then we will accept smaller domain configurations<br>- File naming conventions may be found on <a class="reference external" href="https://arm-development.github.io/comble-mip/timeline.html">this page</a>.</p></td>
 </tr>
 <tr class="row-even"><td><p>Vertical grid</p></td>
 <td><p>LES: according to input forcing file specifications<br>- Variable name to use: <em>zw_grid</em><br>SCM: use operational grid</p></td>
@@ -409,7 +409,7 @@ document.write(`
 <td><p>Theta only: 0.1 K below 250 m</p></td>
 </tr>
 <tr class="row-odd"><td><p>Surface forcing</p></td>
-<td><p>Specified time-varying skin temperature*<br>- Variable name to use: <em>ts</em><br>Compute surface fluxes interactively using fixed roughness lengths for the entirety of the simulation (results are relatively insensitive to reducing roughness lengths over ice)<br>- Momentum, z0m = 9.0e-4 m<br>- Temperature and moisture, z0t = z0q = 5.5e-6 m</p></td>
+<td><p>Specified time-varying skin temperature*<br>- Variable name to use: <em>ts</em><br>Compute surface fluxes interactively using fixed roughness lengths for the entirety of the simulation (results are relatively insensitive to reducing roughness lengths over ice)<br>- Momentum, z0m = 9.0e-4 m<br>- Temperature and moisture, z0t = z0q = 5.5e-6 m<br>- A brief highlight on sensitivity to roughness lengths may be found on <a class="reference external" href="https://arm-development.github.io/comble-mip/notebooks/plotting/example_plotting_z0_tests.html">this page</a>.</p></td>
 </tr>
 <tr class="row-even"><td><p>Large-scale forcing</p></td>
 <td><p>Time- and height-varying pressure gradient forcing via the geostrophic wind<br>- Variable names to use: <em>ug</em> and <em>vg</em><br>- Assume trajectory-averaged latitude for Coriolis: 74.5 N</p></td>
@@ -423,11 +423,11 @@ document.write(`
 <tr class="row-odd"><td><p>Radiation</p></td>
 <td><p>Only interactive longwave<br>- Ozone sounding specified in input file<br>- CO2 = 420 ppm<br>- No solar radiation (results are relatively insensitive)</p></td>
 </tr>
-<tr class="row-even"><td><p>Aerosol &amp; microphysics: Phase I</p></td>
+<tr class="row-even"><td><p>Aerosol &amp; microphysics: Part I</p></td>
 <td><p>(i) Liquid only<br>- Nd = 20/cm3 (fixed)<br>- No ice<br>(ii) Diagnostic droplet and ice formation<br>- Nd = 20/cm3 (fixed)<br>- Ni = 25/L (minimum total) where qc+qr&gt;1e-6 kg/kg and T&lt;268.15 K<br>- Only other ice crystal formation mechanism active is homogeneous drop freezing</p></td>
 </tr>
-<tr class="row-odd"><td><p>Aerosol &amp; microphysics: Phase II</p></td>
-<td><p>See <a class="reference external" href="https://arm-development.github.io/comble-mip/notebooks/setup/aerosol-specification.html">Aerosol specification</a> and <a class="reference external" href="https://arm-development.github.io/comble-mip/notebooks/setup/aerosol-inp-closure.html">Aerosol-Ice Nucleating Particle Closure</a> pages for detailed information</p></td>
+<tr class="row-odd"><td><p>Aerosol &amp; microphysics: Part II</p></td>
+<td><p>See our pages covering <a class="reference external" href="https://arm-development.github.io/comble-mip/notebooks/setup/aerosol-specification.html">Aerosol specification</a>, <a class="reference external" href="https://arm-development.github.io/comble-mip/notebooks/setup/aerosol-surface.html">Specifying Surface Aerosol Emissions for Simulations with Multi-Modal Aerosol</a>, and <a class="reference external" href="https://arm-development.github.io/comble-mip/notebooks/setup/aerosol-inp-closure.html">Aerosol-Ice Nucleating Particle Closure</a> for detailed information</p></td>
 </tr>
 </tbody>
 </table>
