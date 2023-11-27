@@ -360,6 +360,25 @@ def load_aeri(case='20200313',t_filter = 1.,PATH='../../data_files/'):
     
     return data
 
+def load_carraflux(case='20200313',PATH='../../data_files/'):
+
+    ## load CARRA surface fluxes
+    if case == '20200313':
+        fn = 'CARRA_SHF_LHF_along_trajectory_end_2020-03-13-18.nc'
+        time_offset = 18.
+    
+    ds = nc.Dataset(PATH + fn)
+    time = ds.variables['Time'][:] + time_offset
+    lhf = ds.variables['LHF'][:]
+    shf = ds.variables['SHF'][:]
+    
+    p_df = pd.DataFrame({"class": ['CARRA']*len(time), "time":time*3600}, index=time)
+    ## stick to sign convention of LES
+    p_df['hfls']    = -lhf
+    p_df['hfss']    = -shf
+    
+    return p_df
+    
 def load_flux(case='20200313',t_filter = 1.,PATH='../../data_files/'):
     
     ## load ECOR and Bulk surface turbulent fluxes, obtained near Andenenes
@@ -775,11 +794,11 @@ def plot_1d(df_col,var_vec,**kwargs):
                 obj = axs
             else:
                 obj = axs[ii]
-            if (label=='MAC-LWP') | (label=='MODIS') | (label=='VIIRS') | (label=='CERES') | (label=='SENTINEL') | (label=='KAZR (Kollias)')| (label=='KAZR (Clough)')| (label=='CALIOP')| (label=='ATMS')| (label=='RADFLUX') | (label=='Bulk')| (label=='ECOR'):
+            if (label=='MAC-LWP') | (label=='MODIS') | (label=='VIIRS') | (label=='CERES') | (label=='SENTINEL') | (label=='KAZR (Kollias)')| (label=='KAZR (Clough)')| (label=='CALIOP')| (label=='ATMS')| (label=='RADFLUX') | (label=='Bulk') | (label=='ECOR')| (label=='CARRA'):
                 obj.scatter(df.time/3600,df[var_vec[ii]],label=label,c='k',marker=plot_symbol[counter_symbol])
                 #print(label)
                 #print(df[var_vec[ii]])
-                if (label=='MAC-LWP') | (label=='VIIRS') | (label=='MODIS') | (label=='CERES')| (label=='SENTINEL') | (label=='KAZR (Kollias)')| (label=='KAZR (Clough)')| (label=='CALIOP')| (label=='RADFLUX')| (label=='Bulk')| (label=='ECOR'):
+                if (label=='MAC-LWP') | (label=='VIIRS') | (label=='MODIS') | (label=='CERES')| (label=='SENTINEL') | (label=='KAZR (Kollias)')| (label=='KAZR (Clough)')| (label=='CALIOP')| (label=='RADFLUX')| (label=='Bulk') | (label=='ECOR') | (label=='CARRA'):
                     if np.count_nonzero(np.isnan(df[var_vec[ii]])) < len(df[var_vec[ii]]):
                         error_1 = np.abs(df[var_vec[ii]] - df[var_vec[ii]+'.25'])
                         error_2 = np.abs(df[var_vec[ii]+'.75'] - df[var_vec[ii]])
@@ -806,7 +825,7 @@ def plot_1d(df_col,var_vec,**kwargs):
                     obj.text(.01, .99, longnames[ii]+unit_str, ha='left', va='top', transform=obj.transAxes)
         counter +=1
         if not df['colflag'].unique() == 'gray':  counter_plot +=1
-        if (label=='MAC-LWP') | (label=='MODIS') | (label=='VIIRS') | (label=='CERES') | (label=='SENTINEL') | (label=='KAZR (Kollias)')| (label=='KAZR (Clough)')| (label=='CALIOP')| (label=='ATMS')| (label=='RADFLUX')| (label=='Bulk')| (label=='ECOR'): counter_plot -=1    
+        if (label=='MAC-LWP') | (label=='MODIS') | (label=='VIIRS') | (label=='CERES') | (label=='SENTINEL') | (label=='KAZR (Kollias)')| (label=='KAZR (Clough)')| (label=='CALIOP')| (label=='ATMS')| (label=='RADFLUX')| (label=='Bulk') | (label=='ECOR') | (label=='CARRA'): counter_plot -=1    
     i_count = 0
 
     if len(var_vec) > 1:
