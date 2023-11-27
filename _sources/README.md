@@ -17,7 +17,7 @@ We welcome you to explore the website to learn more about the COMBLE-MIP project
 
 ## Model Inputs
 
-A [file](https://github.com/ARM-Development/comble-mip/blob/main/notebooks/forcing/COMBLE_INTERCOMPARISON_FORCING_V2.2.nc) containing model intialization and forcing information is provided in the [DEPHY-SCM standard format](https://github.com/GdR-DEPHY/DEPHY-SCM), suitable for application to both LES and SCM setups. The most recent version of the DEPHY standards may be found [here](https://docs.google.com/document/d/1eAWY-ELL5Ua6a9WIsv4ODHmLXvfgla5TNQAuAwNASo0).
+A [file](https://github.com/ARM-Development/comble-mip/blob/main/notebooks/forcing/COMBLE_INTERCOMPARISON_FORCING_V2.3.nc) containing model intialization and forcing information is provided in the [DEPHY-SCM standard format](https://github.com/GdR-DEPHY/DEPHY-SCM), suitable for application to both LES and SCM setups. The most recent version of the DEPHY standards may be found [here](https://docs.google.com/document/d/1eAWY-ELL5Ua6a9WIsv4ODHmLXvfgla5TNQAuAwNASo0).
 
 Detailed information about our requested model configuration may be found [here](https://arm-development.github.io/comble-mip/main_configuration.html).
 
