@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -38,9 +38,9 @@
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
-  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
@@ -140,6 +140,7 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../../README.html">
@@ -350,6 +351,7 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -359,6 +361,7 @@ document.write(`
   </button>
 `);
 </script>
+
 
 <script>
 document.write(`
@@ -403,7 +406,7 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> functions_plotting.py 
 
 <span class="c1">## select simulations to plot</span>
-<span class="n">sim_keyword</span> <span class="o">=</span> <span class="s1">&#39;FixN_def&#39;</span> 
+<span class="n">sim_keyword</span> <span class="o">=</span> <span class="s1">&#39;dx200_FixN_spec&#39;</span> 
 </pre></div>
 </div>
 </div>
@@ -462,15 +465,11 @@ KAZR (Kollias): here using auxiliary field to estimate cloud-top temperature
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time)
-../../output_les/dharma/sandbox/DHARMA_Lx25km_dx200_FixN_def_z0.nc
-../../output_les/dharma/sandbox/DHARMA_Lx25km_dx200_FixN_def_z0_def_zi.nc
-../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi.nc
-../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_z0.nc
+../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
+../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0_nudged.nc
 Loading variables: f(time,height)
-../../output_les/dharma/sandbox/DHARMA_Lx25km_dx200_FixN_def_z0.nc
-../../output_les/dharma/sandbox/DHARMA_Lx25km_dx200_FixN_def_z0_def_zi.nc
-../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi.nc
-../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_z0.nc
+../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
+../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0_nudged.nc
 </pre></div>
 </div>
 </div>
@@ -483,7 +482,7 @@ Loading variables: f(time,height)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/dca4c5eaccbaa5423d9437c5510a1e286840c7ff8e2841a0168895a138b8b352.png" src="../../_images/dca4c5eaccbaa5423d9437c5510a1e286840c7ff8e2841a0168895a138b8b352.png" />
+<img alt="../../_images/db5893d79c0297a5768818c4c6eee219f823e871ea5128b8932bc39fb384b868.png" src="../../_images/db5893d79c0297a5768818c4c6eee219f823e871ea5128b8932bc39fb384b868.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -497,15 +496,11 @@ Loading variables: f(time,height)
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time)
-../../output_les/dharma/sandbox/DHARMA_Lx25km_dx200_FixN_def_z0.nc
-../../output_les/dharma/sandbox/DHARMA_Lx25km_dx200_FixN_def_z0_def_zi.nc
-../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi.nc
-../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_z0.nc
+../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
+../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0_nudged.nc
 Loading variables: f(time,height)
-../../output_les/dharma/sandbox/DHARMA_Lx25km_dx200_FixN_def_z0.nc
-../../output_les/dharma/sandbox/DHARMA_Lx25km_dx200_FixN_def_z0_def_zi.nc
-../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi.nc
-../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_z0.nc
+../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
+../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0_nudged.nc
 computing inversion height and cloud-top temperature
 using liquid(-ice) potential temperature
 </pre></div>
@@ -530,7 +525,7 @@ using liquid(-ice) potential temperature
   maxy = np.nanmax(masked_verts[..., 1])
 </pre></div>
 </div>
-<img alt="../../_images/1c06ccf8f8cde6d3455e34aa7fe0b0721a72d827501b5fcf094e8e69ef63b1e6.png" src="../../_images/1c06ccf8f8cde6d3455e34aa7fe0b0721a72d827501b5fcf094e8e69ef63b1e6.png" />
+<img alt="../../_images/577b1184fc5302d704c3b5ad1be86f7db444b0e3daee5b97c2adf722a77b145e.png" src="../../_images/577b1184fc5302d704c3b5ad1be86f7db444b0e3daee5b97c2adf722a77b145e.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -548,7 +543,7 @@ using liquid(-ice) potential temperature
 Computing wind direction
 </pre></div>
 </div>
-<img alt="../../_images/c3536701b3dc7d3ed29ac66403c164add6029a15136fd33674d43d42925f8b24.png" src="../../_images/c3536701b3dc7d3ed29ac66403c164add6029a15136fd33674d43d42925f8b24.png" />
+<img alt="../../_images/e9bc9a91fd3efab624e3ef77d1122ad871c72a94d77094d3982d3622797216ce.png" src="../../_images/e9bc9a91fd3efab624e3ef77d1122ad871c72a94d77094d3982d3622797216ce.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x600 with 0 Axes&gt;
 </pre></div>
 </div>
@@ -584,7 +579,7 @@ Computing wind direction
               
               
                 <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="check_scm.html"
@@ -627,6 +622,7 @@ By ARM Development Team
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2023.
@@ -653,8 +649,8 @@ By ARM Development Team
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
 
   <footer class="bd-footer">
   </footer>

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -38,9 +38,9 @@
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
-  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
@@ -140,6 +140,7 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../../README.html">
@@ -350,6 +351,7 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -359,6 +361,7 @@ document.write(`
   </button>
 `);
 </script>
+
 
 <script>
 document.write(`
@@ -404,10 +407,10 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> functions_plotting.py
 
 <span class="c1">## select (grayed out) simulations to plot</span>
-<span class="n">sim_keyword_gray</span> <span class="o">=</span> <span class="s1">&#39;dharma/sandbox/DHARMA_Lx25km_dx200_FixN_def_z0_def_zi&#39;</span>
+<span class="n">sim_keyword_gray</span> <span class="o">=</span> <span class="s1">&#39;dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0&#39;</span>
 
 <span class="c1">## select LES run(s) of interest</span>
-<span class="n">sim_keyword_col_les</span> <span class="o">=</span> <span class="s1">&#39;WRF_Lx25_dx100_FixN_def_zi&#39;</span>
+<span class="n">sim_keyword_col_les</span> <span class="o">=</span> <span class="s1">&#39;WRF_Lx25_dx100_FixN_def_zi_twj&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -443,13 +446,15 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time)
-../../output_les/dharma/sandbox/DHARMA_Lx25km_dx200_FixN_def_z0_def_zi.nc
+../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
+../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0_nudged.nc
 Loading variables: f(time,height)
-../../output_les/dharma/sandbox/DHARMA_Lx25km_dx200_FixN_def_z0_def_zi.nc
+../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
+../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0_nudged.nc
 Loading variables: f(time)
-../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi.nc
+../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi_twj.nc
 Loading variables: f(time,height)
-../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi.nc
+../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi_twj.nc
 </pre></div>
 </div>
 </div>
@@ -462,18 +467,18 @@ Loading variables: f(time,height)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/a119a785c129ecdd2b35f261634f89afe78a33febace7a0aa30eda9840448efa.png" src="../../_images/a119a785c129ecdd2b35f261634f89afe78a33febace7a0aa30eda9840448efa.png" />
+<img alt="../../_images/68857ad1f895289025da246f894ff679b8498e759ec2688868e1d7104c0fc4b6.png" src="../../_images/68857ad1f895289025da246f894ff679b8498e759ec2688868e1d7104c0fc4b6.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## example where ERA5 and radiosonde are included</span>
-<span class="n">plot_2d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_gray_2d</span><span class="p">,</span><span class="n">df_col_2d_les</span><span class="p">]),</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">18</span><span class="p">],</span><span class="n">z_max</span><span class="o">=</span><span class="mi">6000</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="n">var_vec_2d_units</span><span class="p">)</span>
+<span class="n">plot_2d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_gray_2d</span><span class="p">,</span><span class="n">df_col_2d_les</span><span class="p">]),</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">18</span><span class="p">],</span><span class="n">z_max</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="n">var_vec_2d_units</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/8b69fca04f2c1cb051319d39dada026eeee9c0fe357e8b75c4d6a0076a347fe2.png" src="../../_images/8b69fca04f2c1cb051319d39dada026eeee9c0fe357e8b75c4d6a0076a347fe2.png" />
+<img alt="../../_images/c04b5a7464dd875726749cce581fcd2b37806c4c76fcccb6c515ac2750ea0183.png" src="../../_images/c04b5a7464dd875726749cce581fcd2b37806c4c76fcccb6c515ac2750ea0183.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x600 with 0 Axes&gt;
 </pre></div>
 </div>
@@ -509,7 +514,7 @@ Loading variables: f(time,height)
               
               
                 <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="../conversion_output/convert_WRF_LES_output_to_dephy_format.html"
@@ -552,6 +557,7 @@ By ARM Development Team
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2023.
@@ -578,8 +584,8 @@ By ARM Development Team
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
 
   <footer class="bd-footer">
   </footer>
