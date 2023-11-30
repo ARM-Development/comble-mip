@@ -1,0 +1,6 @@
+numpy
+xarray
+pandas
+matplotlib
+pint
+flake8
