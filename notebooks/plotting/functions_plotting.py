@@ -858,17 +858,18 @@ def plot_1d(df_col,var_vec,**kwargs):
     # Add a legend
     handles, labels = plt.gca().get_legend_handles_labels()
     by_label = dict(zip(labels, handles))
-    fig.legend(by_label.values(), by_label.keys(),loc='upper center',ncol=2)
-
+    frac = 0.4/len(var_vec)
+    fig.legend(by_label.values(), by_label.keys(),loc='upper center',ncol=2, bbox_to_anchor=(0.5, 1.0 + frac))
+    
     fig.tight_layout()
     
     w1 = 1/abs(1.01 - len(var_vec))
     w2 = 1/abs(18.01 - len(var_vec))
     ww1 = w1/(w1 + w2)
     ww2 = w2/(w1 + w2)
-    top_offset = -0.2*ww1 + 0.12*ww2
+    top_offset = -0.2*ww1 + 0.20*ww2
         
-    fig.subplots_adjust(top=0.85 + top_offset) #base + top_offset)
+    #fig.subplots_adjust(top=0.85 + top_offset) #base + top_offset)
     
     plt.show()
 
@@ -996,18 +997,10 @@ def plot_2d(df_col2,var_vec,times,**kwargs):
                 
     handles, labels = plt.gca().get_legend_handles_labels()
     by_label = dict(zip(labels, handles))
-    fig.legend(by_label.values(), by_label.keys(),loc='upper center',bbox_to_anchor=(0.5, 1.1),ncol=2)
+    frac = 0.4/len(var_vec)
+    fig.legend(handles, labels, loc = 'upper center', bbox_to_anchor=(0.5, 1.0 + frac))
     
     fig.tight_layout()
     
-    w1 = 1/abs(1.01 - len(var_vec))
-    w2 = 1/abs(40.01 - len(var_vec))
-    ww1 = w1/(w1 + w2)
-    ww2 = w2/(w1 + w2)
-    top_offset = -0.2*ww1 + 0.19*ww2
-        
-    fig.subplots_adjust(top=0.9 + top_offset)
-    
     plt.figure(figsize=(10,6))
     plt.show()
-
