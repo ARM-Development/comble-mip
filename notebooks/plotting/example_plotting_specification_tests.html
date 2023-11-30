@@ -1,0 +1,652 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Sensitivity to solar radiation, subsidence and treatment of ice surface &#8212; COMBLE Model-Observation Intercomparison Project</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/plotting/example_plotting_specification_tests';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../README.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/arm_logo.png" class="logo__image only-light" alt="COMBLE Model-Observation Intercomparison Project - Home"/>
+    <script>document.write(`<img src="../../_static/arm_logo.png" class="logo__image only-dark" alt="COMBLE Model-Observation Intercomparison Project - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../README.html">
+                    COMBLE Model-Observation Intercomparison Project Cookbook
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Project Information</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../goals_hypotheses.html">Goals and Hypotheses</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Participants</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../participants/participants_list.html">List of Planned Participants</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">How-To</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../howto/workbench_instructions.html">Apply for Elevated JupyterHub Access</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CONTRIBUTING.html">Contributers Guide</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Settings &amp; Logistics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../main_configuration.html">Main Model Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../output/output_list.html">Requested Model Outputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../timeline.html">Timeline &amp; File Naming Convention</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Input Conversion Notebooks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../conversion/convert_comble_dephy_forcing_to_DHARMA_LES_and_ModelE3_SCM_forcing.html">Example: convert DEPHY forcing to DHARMA LES and ModelE3 SCM formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../conversion/convert_comble_dephy_forcing_to_WRF_LES_forcing.html">Example: convert DEPHY forcing to WRF-LES forcing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Output Conversion Notebooks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../conversion_output/convert_DHARMA_LES_output_to_dephy_format.html">Example: convert DHARMA LES output to DEPHY format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../conversion_output/convert_ModelE3_SCM_output_to_dephy_format.html">Example: convert ModelE3 SCM output to DEPHY format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../conversion_output/convert_WRF_LES_output_to_dephy_format.html">Example: convert WRF-LES output to DEPHY format</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Plotting and Analysis</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="check_les.html">Check my LES run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="check_scm.html">Check my SCM run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example_plotting.html">Evaluation of LES against satellite and ground-based observations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../emc2.html">The Earth Model Column Collaboratory (EMC<sup>2</sup>)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Supporting Materials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../forcing/create_comble_forcing_v2.2.html">DEPHY Forcing Derivation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example_plotting_z0_tests.html">Sensitivity to roughness lengths</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../setup/aerosol-specification.html">Aerosol specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../setup/aerosol-inp-closure.html">Aerosol-Ice Nucleating Particle Closure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../setup/aerosol-surface.html">Specifying Surface Aerosol Emissions for Simulations with Multi-Modal Aerosol</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://jupyterhub.arm.gov/hub/user-redirect/git-pull?repo=https%3A//github.com/ARM-Development/comble-mip&urlpath=lab/tree/comble-mip/../user-data-home/comble-mip/notebooks/plotting/example_plotting_specification_tests.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onJupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/notebooks/plotting/example_plotting_specification_tests.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Sensitivity to solar radiation, subsidence and treatment of ice surface</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="sensitivity-to-solar-radiation-subsidence-and-treatment-of-ice-surface">
+<h1>Sensitivity to solar radiation, subsidence and treatment of ice surface<a class="headerlink" href="#sensitivity-to-solar-radiation-subsidence-and-treatment-of-ice-surface" title="Permalink to this heading">#</a></h1>
+<p>The notebook below compares selected simulations against observational targets that were collected from satellite and ground-based retrievals:<br />
+*</p>
+<ul class="simple">
+<li><p>run 2</p></li>
+</ul>
+<p>Source: Ann Fridlind (ann.fridlind&#64;nasa.gov) and Florian Tornow (ft2544&#64;columbia.edu)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> functions_plotting.py 
+ 
+<span class="c1">## select simulations to plot</span>
+<span class="n">sim_keyword</span> <span class="o">=</span> <span class="s1">&#39;MIZ-RAD&#39;</span>  
+
+<span class="c1">## load ERA5 fields</span>
+<span class="n">era5_1d</span><span class="p">,</span> <span class="n">era5_2d</span> <span class="o">=</span> <span class="n">load_era5</span><span class="p">(</span><span class="n">PATH</span><span class="o">=</span><span class="s1">&#39;../../data_files/&#39;</span><span class="p">)</span>
+
+<span class="c1">## load radiosondes</span>
+<span class="n">rs_dat</span> <span class="o">=</span> <span class="n">load_rs</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">7.</span><span class="p">)</span>
+
+<span class="c1">## load DOE ARM site statistics</span>
+<span class="n">kazrkollias_dat</span> <span class="o">=</span> <span class="n">load_kazrkollias</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">6.</span><span class="p">,</span><span class="n">aux_dat</span><span class="o">=</span><span class="n">rs_dat</span><span class="p">)</span> <span class="c1">## here using radiosonde profiles to estimate CTT</span>
+<span class="n">kazrclough_dat</span> <span class="o">=</span> <span class="n">load_kazrclough</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">6.</span><span class="p">)</span> 
+<span class="n">aeri_dat</span> <span class="o">=</span> <span class="n">load_aeri</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="n">radflux_dat</span> <span class="o">=</span> <span class="n">load_radflux</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">6.</span><span class="p">)</span>
+<span class="n">srfflux_dat</span> <span class="o">=</span> <span class="n">load_flux</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">6.</span><span class="p">)</span>
+
+<span class="c1">## load CARRA surface fluxes</span>
+<span class="n">carra_dat</span> <span class="o">=</span> <span class="n">load_carraflux</span><span class="p">()</span>
+
+<span class="c1">## load MAC-LWP</span>
+<span class="n">maclwp_dat</span> <span class="o">=</span> <span class="n">load_maclwp</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">)</span> 
+<span class="n">gongiwp_dat</span> <span class="o">=</span> <span class="n">load_iwpgong</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">)</span>
+
+<span class="c1">## load MODIS, VIIRS, and SENTINEL retrievals</span>
+<span class="n">modis_dat</span>    <span class="o">=</span> <span class="n">load_modis</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">,</span><span class="n">sza_filter</span> <span class="o">=</span> <span class="mf">65.</span><span class="p">)</span>
+<span class="n">viirs_dat</span>    <span class="o">=</span> <span class="n">load_viirs</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">,</span><span class="n">sza_filter</span> <span class="o">=</span> <span class="mf">65.</span><span class="p">)</span>
+<span class="n">sentinel_dat</span> <span class="o">=</span> <span class="n">load_sentinel</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">,</span><span class="n">sza_filter</span> <span class="o">=</span> <span class="mf">65.</span><span class="p">)</span>
+
+<span class="c1">## load CERES retrievals</span>
+<span class="n">ceres_dat</span> <span class="o">=</span> <span class="n">load_ceres</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">)</span>
+
+<span class="c1">## load CALIPSO retrievals (note the increased time window)</span>
+<span class="n">calipso_dat</span> <span class="o">=</span> <span class="n">load_calipso</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">3.</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>../../data_files/theta_temp_rh_sh_uvw_sst_along_trajectory_era5ml_28h_end_2020-03-13-18.nc
+../../data_files/anxsondewnpnM1.b1.20200313.112600.cdf
+../../data_files/anxsondewnpnM1.b1.20200313.052700.cdf
+../../data_files/anxsondewnpnM1.b1.20200313.232200.cdf
+../../data_files/anxsondewnpnM1.b1.20200313.172600.cdf
+KAZR (Kollias): here using auxiliary field to estimate cloud-top temperature
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## load all simulations located in subfolders of the given directory</span>
+<span class="n">var_vec_1d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hfss&#39;</span><span class="p">,</span><span class="s1">&#39;hfls&#39;</span><span class="p">,</span><span class="s1">&#39;ts&#39;</span><span class="p">]</span> <span class="c1"># variables with ERA5 (longer time axis)</span>
+<span class="n">var_vec_2d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;theta&#39;</span><span class="p">,</span><span class="s1">&#39;qv&#39;</span><span class="p">,</span><span class="s1">&#39;ua&#39;</span><span class="p">,</span><span class="s1">&#39;va&#39;</span><span class="p">]</span>
+<span class="n">df_col_1d</span><span class="p">,</span><span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time)
+../../output_les/dharma/devel/DHARMA-MIZ-RAD_Lx25km_dx200_FixN_SWoff.nc
+../../output_les/dharma/devel/DHARMA-MIZ-RAD_Lx25km_dx200_FixN_SWoff_Wsub.nc
+../../output_les/dharma/devel/DHARMA-MIZ-RAD_Lx25km_dx200_FixN_noMIZ.nc
+../../output_les/dharma/devel/DHARMA-MIZ-RAD_Lx25km_dx200.nc
+Loading variables: f(time,height)
+../../output_les/dharma/devel/DHARMA-MIZ-RAD_Lx25km_dx200_FixN_SWoff.nc
+../../output_les/dharma/devel/DHARMA-MIZ-RAD_Lx25km_dx200_FixN_SWoff_Wsub.nc
+../../output_les/dharma/devel/DHARMA-MIZ-RAD_Lx25km_dx200_FixN_noMIZ.nc
+../../output_les/dharma/devel/DHARMA-MIZ-RAD_Lx25km_dx200.nc
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## plot variables that have only time dependence</span>
+<span class="n">plot_1d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_1d</span><span class="p">,</span><span class="n">era5_1d</span><span class="p">,</span><span class="n">carra_dat</span><span class="p">,</span><span class="n">srfflux_dat</span><span class="p">]),</span><span class="n">var_vec_1d</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/conda/lib/python3.10/site-packages/matplotlib/axes/_axes.py:1185: RuntimeWarning: All-NaN axis encountered
+  miny = np.nanmin(masked_verts[..., 1])
+/opt/conda/lib/python3.10/site-packages/matplotlib/axes/_axes.py:1186: RuntimeWarning: All-NaN axis encountered
+  maxy = np.nanmax(masked_verts[..., 1])
+</pre></div>
+</div>
+<img alt="../../_images/dc5da4bbfe67308209f6fae6e66f06296eb12cda948fd2ddc19eddac0dd80071.png" src="../../_images/dc5da4bbfe67308209f6fae6e66f06296eb12cda948fd2ddc19eddac0dd80071.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## load all simulations located in subfolders of the given directory</span>
+<span class="n">var_vec_1d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;lwpr&#39;</span><span class="p">,</span><span class="s1">&#39;lwpc&#39;</span><span class="p">,</span><span class="s1">&#39;iwp&#39;</span><span class="p">,</span><span class="s1">&#39;od&#39;</span><span class="p">]</span> <span class="c1"># variables without ERA5 (shorter time axis)</span>
+<span class="n">var_vec_2d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;theta&#39;</span><span class="p">,</span><span class="s1">&#39;qv&#39;</span><span class="p">,</span><span class="s1">&#39;qlc&#39;</span><span class="p">,</span><span class="s1">&#39;qlr&#39;</span><span class="p">,</span><span class="s1">&#39;qic&#39;</span><span class="p">,</span><span class="s1">&#39;qis&#39;</span><span class="p">,</span><span class="s1">&#39;qig&#39;</span><span class="p">,</span><span class="s1">&#39;ua&#39;</span><span class="p">,</span><span class="s1">&#39;va&#39;</span><span class="p">,</span><span class="s1">&#39;ta&#39;</span><span class="p">]</span>
+<span class="n">df_col_1d</span><span class="p">,</span><span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword</span><span class="p">,</span><span class="n">diag_zi_ctt</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time)
+../../output_les/dharma/devel/DHARMA-MIZ-RAD_Lx25km_dx200_FixN_SWoff.nc
+../../output_les/dharma/devel/DHARMA-MIZ-RAD_Lx25km_dx200_FixN_SWoff_Wsub.nc
+../../output_les/dharma/devel/DHARMA-MIZ-RAD_Lx25km_dx200_FixN_noMIZ.nc
+../../output_les/dharma/devel/DHARMA-MIZ-RAD_Lx25km_dx200.nc
+Loading variables: f(time,height)
+../../output_les/dharma/devel/DHARMA-MIZ-RAD_Lx25km_dx200_FixN_SWoff.nc
+../../output_les/dharma/devel/DHARMA-MIZ-RAD_Lx25km_dx200_FixN_SWoff_Wsub.nc
+../../output_les/dharma/devel/DHARMA-MIZ-RAD_Lx25km_dx200_FixN_noMIZ.nc
+../../output_les/dharma/devel/DHARMA-MIZ-RAD_Lx25km_dx200.nc
+computing inversion height, cloud-top height, and cloud-top temperature
+using liquid(-ice) potential temperature
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## plot variables that have only time dependence</span>
+<span class="c1">#plot_1d(pd.concat([df_col_1d,maclwp_dat,modis_dat,viirs_dat,sentinel_dat,kazrkollias_dat,kazrclough_dat,calipso_dat,radflux_dat]),[&#39;zi&#39;,&#39;od&#39;,&#39;lwp&#39;,&#39;iwp&#39;,&#39;ctt&#39;])</span>
+<span class="n">plot_1d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_1d</span><span class="p">,</span><span class="n">maclwp_dat</span><span class="p">,</span><span class="n">kazrkollias_dat</span><span class="p">,</span><span class="n">kazrclough_dat</span><span class="p">,</span><span class="n">calipso_dat</span><span class="p">,</span><span class="n">radflux_dat</span><span class="p">]),[</span><span class="s1">&#39;cth&#39;</span><span class="p">,</span><span class="s1">&#39;od&#39;</span><span class="p">,</span><span class="s1">&#39;lwp&#39;</span><span class="p">,</span><span class="s1">&#39;iwp&#39;</span><span class="p">,</span><span class="s1">&#39;ctt&#39;</span><span class="p">])</span>
+
+<span class="c1">## plot variables that have only time dependence (for now excluding imager retrievals that are mostly SZA &gt; 70)</span>
+<span class="c1">#plot_1d(pd.concat([df_col_1d,maclwp_dat,kazrkollias_dat,kazrclough_dat,calipso_dat,gongiwp_dat,radflux_dat]),[&#39;od&#39;,&#39;lwp&#39;,&#39;iwp&#39;]) #&#39;zi&#39;,&#39;od&#39;,&#39;lwp&#39;,&#39;iwp</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/conda/lib/python3.10/site-packages/matplotlib/axes/_axes.py:1185: RuntimeWarning: All-NaN axis encountered
+  miny = np.nanmin(masked_verts[..., 1])
+/opt/conda/lib/python3.10/site-packages/matplotlib/axes/_axes.py:1186: RuntimeWarning: All-NaN axis encountered
+  maxy = np.nanmax(masked_verts[..., 1])
+</pre></div>
+</div>
+<img alt="../../_images/b156ebc8b68590403ae6734edb32ede69dc9423db0ec986244064d0deee9bb06.png" src="../../_images/b156ebc8b68590403ae6734edb32ede69dc9423db0ec986244064d0deee9bb06.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## plot all variables that have time and height dependence</span>
+<span class="c1">#plot_2d(df_col_2d,var_vec_2d,[0,3,6,9,12,15,18],z_max=6000)</span>
+
+<span class="c1">## example where ERA5 and radiosonde are included</span>
+<span class="n">plot_2d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_2d</span><span class="p">]),</span><span class="n">var_vec</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ta&#39;</span><span class="p">,</span><span class="s1">&#39;theta&#39;</span><span class="p">,</span><span class="s1">&#39;qv&#39;</span><span class="p">,</span><span class="s1">&#39;ws&#39;</span><span class="p">,</span><span class="s1">&#39;wd&#39;</span><span class="p">],</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">18</span><span class="p">],</span><span class="n">z_max</span><span class="o">=</span><span class="mi">6000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computing wind speed
+Computing wind direction
+</pre></div>
+</div>
+<img alt="../../_images/6a8377f31f15919fb4679d9e2fb5aa0766447755b6cb508f3e595a51d78ec3d1.png" src="../../_images/6a8377f31f15919fb4679d9e2fb5aa0766447755b6cb508f3e595a51d78ec3d1.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x600 with 0 Axes&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks/plotting"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By ARM Development Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
