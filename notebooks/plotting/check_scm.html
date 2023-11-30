@@ -555,25 +555,19 @@ Loading variables: f(time,height)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## plot variables that have only time dependence</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot variables that have only time dependence</span>
 <span class="n">plot_1d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_gray_1d</span><span class="p">,</span><span class="n">df_col_1d_scm</span><span class="p">,</span><span class="n">df_col_1d_les</span><span class="p">]),</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">longnames</span><span class="o">=</span><span class="n">var_vec_1d_long</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="n">var_vec_1d_units</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/c55afa31f9b4a917ff8a652a35fbadf7719cc9f82e090fbd335185131fe8910d.png" src="../../_images/c55afa31f9b4a917ff8a652a35fbadf7719cc9f82e090fbd335185131fe8910d.png" />
+<img alt="../../_images/f008d4586c67b110665c3f17c78c23ebccbfc09baa8fb793bc78ba86ce880aae.png" src="../../_images/f008d4586c67b110665c3f17c78c23ebccbfc09baa8fb793bc78ba86ce880aae.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## example where ERA5 and radiosonde are included</span>
-<span class="n">plot_2d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_gray_2d</span><span class="p">,</span><span class="n">df_col_2d_scm</span><span class="p">,</span><span class="n">df_col_2d_les</span><span class="p">]),</span><span class="n">var_vec</span> <span class="o">=</span> <span class="n">var_vec_2d</span><span class="p">,</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">18</span><span class="p">],</span><span class="n">z_max</span><span class="o">=</span><span class="mi">6000</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="n">var_vec_2d_units</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/86be245d1ba516ca1e19c9d212a8788b1897000219efb40c8f1050eaa04b0a36.png" src="../../_images/86be245d1ba516ca1e19c9d212a8788b1897000219efb40c8f1050eaa04b0a36.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x600 with 0 Axes&gt;
+<span class="n">plot_2d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_gray_2d</span><span class="p">,</span><span class="n">df_col_2d_scm</span><span class="p">,</span><span class="n">df_col_2d_les</span><span class="p">]),</span><span class="n">var_vec</span> <span class="o">=</span> <span class="n">var_vec_2d</span><span class="p">,</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">18</span><span class="p">],</span><span class="n">z_max</span><span class="o">=</span><span class="mi">6000</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="n">var_vec_2d_units</span><span class="p">)</span><span class="c1">## example where ERA5 and radiosonde are included</span>
 </pre></div>
 </div>
 </div>
