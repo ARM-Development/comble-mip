@@ -415,12 +415,14 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="requested-model-outputs">
 <h1>Requested Model Outputs<a class="headerlink" href="#requested-model-outputs" title="Permalink to this heading">#</a></h1>
-<p>Output variables are requested in three categories for LES:</p>
+<p>Output variables are requested in three categories for LES: <br />
+-&gt; for any vertical profile information, report at height at specified mid-level points</p>
 <p>(1) domain-mean quantities and statistics every 10 minutes (time-averages reported at the end of each period) <br />
 (2) 2D quantities every 10 minutes (instantaneous) <br />
 (3) 3D variables every 1 hour (instantaneous) for comparison with satellite and ground-based observations</p>
-<p>For SCM, output variables are requested in one category:</p>
-<p>(4) quantities and statistics reported at end of each model physics time step \</p>
+<p>For SCM, output variables are requested in one category: <br />
+-&gt; for any vertical profile information, report at pressure at mid-level points (native model levels if fixed, otherwise interpolated to fixed grid of choice)</p>
+<p>(4) quantities and statistics reported at end of each model physics time step</p>
 <section id="imports">
 <h2>Imports<a class="headerlink" href="#imports" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
@@ -491,6 +493,14 @@ document.write(`
     </tr>
     <tr>
       <th>2</th>
+      <td>layer_top_height</td>
+      <td>ze</td>
+      <td>m</td>
+      <td>–</td>
+      <td>altitude of layer top points above sea surface (used for vertical integrations)</td>
+    </tr>
+    <tr>
+      <th>3</th>
       <td>surface_pressure</td>
       <td>ps</td>
       <td>Pa</td>
@@ -498,7 +508,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>3</th>
+      <th>4</th>
       <td>surface_temperature</td>
       <td>ts</td>
       <td>K</td>
@@ -506,7 +516,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>4</th>
+      <th>5</th>
       <td>surface_friction_velocity</td>
       <td>ustar</td>
       <td>m s-1</td>
@@ -514,7 +524,31 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>5</th>
+      <th>6</th>
+      <td>surface_roughness_length_for_momentum_in_air</td>
+      <td>z0</td>
+      <td>m</td>
+      <td>time</td>
+      <td>–</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>surface_roughness_length_for_heat_in_air</td>
+      <td>z0h</td>
+      <td>m</td>
+      <td>time</td>
+      <td>–</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>surface_roughness_length_for_humidity_in_air</td>
+      <td>z0q</td>
+      <td>m</td>
+      <td>time</td>
+      <td>–</td>
+    </tr>
+    <tr>
+      <th>9</th>
       <td>surface_upward_sensible_heat_flux</td>
       <td>hfss</td>
       <td>W m-2</td>
@@ -522,7 +556,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>6</th>
+      <th>10</th>
       <td>surface_upward_latent_heat_flux</td>
       <td>hfls</td>
       <td>W m-2</td>
@@ -530,7 +564,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>7</th>
+      <th>11</th>
       <td>obukhov_length</td>
       <td>ol</td>
       <td>m</td>
@@ -538,7 +572,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>8</th>
+      <th>12</th>
       <td>atmosphere_mass_content_of_liquid_cloud_water</td>
       <td>lwpc</td>
       <td>kg m-2</td>
@@ -546,7 +580,7 @@ document.write(`
       <td>default breakdown to cloud water and rain in a bulk scheme or radius separated at 40 micrometers in a bin scheme; if additional categories are used in a bulk scheme (e.g., a drizzle class), provide additional standard_name variable_id (e.g., lwpd); all lwp* variables will be summed to obtain total liquid water path</td>
     </tr>
     <tr>
-      <th>9</th>
+      <th>13</th>
       <td>atmosphere_mass_content_of_rain_water</td>
       <td>lwpr</td>
       <td>kg m-2</td>
@@ -554,7 +588,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>10</th>
+      <th>14</th>
       <td>atmosphere_mass_content_of_ice_water</td>
       <td>iwp</td>
       <td>kg m-2</td>
@@ -562,7 +596,7 @@ document.write(`
       <td>all ice-phase hydrometeors</td>
     </tr>
     <tr>
-      <th>11</th>
+      <th>15</th>
       <td>cloud_area_fraction</td>
       <td>clt</td>
       <td>1</td>
@@ -570,7 +604,7 @@ document.write(`
       <td>fraction of atmospheric columns with total hydrometeor optical thickness &gt; 2; may assume geometric scatterers; to be compared with satellite measurements</td>
     </tr>
     <tr>
-      <th>12</th>
+      <th>16</th>
       <td>optical_depth</td>
       <td>od</td>
       <td>1</td>
@@ -578,7 +612,7 @@ document.write(`
       <td>scene (all sky); mid-visible, all hydrometeors</td>
     </tr>
     <tr>
-      <th>13</th>
+      <th>17</th>
       <td>optical_depth_of_liquid_cloud</td>
       <td>odlc</td>
       <td>1</td>
@@ -586,7 +620,7 @@ document.write(`
       <td>as for optical_depth but cloud droplets only</td>
     </tr>
     <tr>
-      <th>14</th>
+      <th>18</th>
       <td>precipitation_flux_at_surface</td>
       <td>pr</td>
       <td>kg m-2 s-1</td>
@@ -594,7 +628,7 @@ document.write(`
       <td>liquid and ice phase, all hydrometeors</td>
     </tr>
     <tr>
-      <th>15</th>
+      <th>19</th>
       <td>precipitation_flux_at_surface_in_ice_phase</td>
       <td>pri</td>
       <td>kg m-2 s-1</td>
@@ -602,7 +636,7 @@ document.write(`
       <td>ice phase hydrometeors only</td>
     </tr>
     <tr>
-      <th>16</th>
+      <th>20</th>
       <td>toa_outgoing_longwave_flux</td>
       <td>rlut</td>
       <td>W m-2</td>
@@ -610,7 +644,7 @@ document.write(`
       <td>at top of atmosphere</td>
     </tr>
     <tr>
-      <th>17</th>
+      <th>21</th>
       <td>surface_downwelling_longwave_flux</td>
       <td>rlds</td>
       <td>W m-2</td>
@@ -618,7 +652,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>18</th>
+      <th>22</th>
       <td>surface_upwelling_longwave_flux</td>
       <td>rlus</td>
       <td>W m-2</td>
@@ -626,7 +660,15 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>19</th>
+      <th>23</th>
+      <td>surface_sea_spray_number_flux</td>
+      <td>ssaf</td>
+      <td>m-2 s-1</td>
+      <td>time</td>
+      <td>when using prognostic aerosol; emission only (not including dry or wet deposition); total over all aerosol modes</td>
+    </tr>
+    <tr>
+      <th>24</th>
       <td>air_pressure</td>
       <td>pa</td>
       <td>Pa</td>
@@ -634,7 +676,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>20</th>
+      <th>25</th>
       <td>eastward_wind</td>
       <td>ua</td>
       <td>m s-1</td>
@@ -642,7 +684,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>21</th>
+      <th>26</th>
       <td>northward_wind</td>
       <td>va</td>
       <td>m s-1</td>
@@ -650,7 +692,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>22</th>
+      <th>27</th>
       <td>air_dry_density</td>
       <td>rhoa</td>
       <td>kg m-3</td>
@@ -658,7 +700,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>23</th>
+      <th>28</th>
       <td>air_temperature</td>
       <td>ta</td>
       <td>K</td>
@@ -666,7 +708,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>24</th>
+      <th>29</th>
       <td>water_vapor_mixing_ratio</td>
       <td>qv</td>
       <td>kg kg-1</td>
@@ -674,7 +716,7 @@ document.write(`
       <td>per kg dry air</td>
     </tr>
     <tr>
-      <th>25</th>
+      <th>30</th>
       <td>relative_humidity</td>
       <td>hur</td>
       <td>1</td>
@@ -682,7 +724,7 @@ document.write(`
       <td>relative to liquid</td>
     </tr>
     <tr>
-      <th>26</th>
+      <th>31</th>
       <td>relative_humidity_over_ice</td>
       <td>huri</td>
       <td>1</td>
@@ -690,7 +732,7 @@ document.write(`
       <td>relative to ice</td>
     </tr>
     <tr>
-      <th>27</th>
+      <th>32</th>
       <td>air_potential_temperature</td>
       <td>theta</td>
       <td>K</td>
@@ -698,7 +740,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>28</th>
+      <th>33</th>
       <td>specific_turbulent_kinetic_energy_resolved</td>
       <td>tke_res</td>
       <td>m2 s-2</td>
@@ -706,7 +748,7 @@ document.write(`
       <td>resolved only</td>
     </tr>
     <tr>
-      <th>29</th>
+      <th>34</th>
       <td>specific_turbulent_kinetic_energy_sgs</td>
       <td>tke_sgs</td>
       <td>m2 s-2</td>
@@ -714,7 +756,7 @@ document.write(`
       <td>SGS only</td>
     </tr>
     <tr>
-      <th>30</th>
+      <th>35</th>
       <td>mass_mixing_ratio_of_cloud_liquid_water_in_air</td>
       <td>qlc</td>
       <td>kg kg-1</td>
@@ -722,7 +764,7 @@ document.write(`
       <td>scene (all sky) per kg dry air; default breakdown to cloud water and rain in a bulk scheme or radius separated at 40 micrometers in a bin scheme; if additional categories are used in a bulk scheme (e.g., a drizzle class), provide additional standard_name variable_id (e.g., qld); all ql* variables will be summed to obtain total liquid mixing ratio</td>
     </tr>
     <tr>
-      <th>31</th>
+      <th>36</th>
       <td>mass_mixing_ratio_of_rain_water_in_air</td>
       <td>qlr</td>
       <td>kg kg-1</td>
@@ -730,7 +772,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>32</th>
+      <th>37</th>
       <td>mass_mixing_ratio_of_cloud_ice_in_air</td>
       <td>qic</td>
       <td>kg kg-1</td>
@@ -738,7 +780,7 @@ document.write(`
       <td>default breakdown to cloud_ice, snow and graupel; if other categories are used, provide additional standard_name and qiX variable_id; all qi* variables will be summed to obtain total ice mixing ratio</td>
     </tr>
     <tr>
-      <th>33</th>
+      <th>38</th>
       <td>mass_mixing_ratio_of_snow_in_air</td>
       <td>qis</td>
       <td>kg kg-1</td>
@@ -746,7 +788,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>34</th>
+      <th>39</th>
       <td>mass_mixing_ratio_of_graupel_in_air</td>
       <td>qig</td>
       <td>kg kg-1</td>
@@ -754,7 +796,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>35</th>
+      <th>40</th>
       <td>number_of_liquid_cloud_droplets_in_air</td>
       <td>nlc</td>
       <td>kg-1</td>
@@ -762,7 +804,7 @@ document.write(`
       <td>scene (all sky) per kg dry air; default breakdown to cloud water and rain; if other categories are used, provide additional standard_name and nl* variable_id</td>
     </tr>
     <tr>
-      <th>36</th>
+      <th>41</th>
       <td>number_of_rain_drops_in_air</td>
       <td>nlr</td>
       <td>kg-1</td>
@@ -770,7 +812,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>37</th>
+      <th>42</th>
       <td>number_of_cloud_ice_crystals_in_air</td>
       <td>nic</td>
       <td>kg-1</td>
@@ -778,7 +820,7 @@ document.write(`
       <td>default breakdown to cloud_ice, snow and graupel; if other categories are used, provide additional standard_name and niX variable_id; all ni* variables will be summed to obtain total ice number mixing ratio</td>
     </tr>
     <tr>
-      <th>38</th>
+      <th>43</th>
       <td>number_of_snow_crystals_in_air</td>
       <td>nis</td>
       <td>kg-1</td>
@@ -786,7 +828,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>39</th>
+      <th>44</th>
       <td>number_of_graupel_crystals_in_air</td>
       <td>nig</td>
       <td>kg-1</td>
@@ -794,7 +836,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>40</th>
+      <th>45</th>
       <td>number_of_total_aerosol_mode1</td>
       <td>na1</td>
       <td>kg-1</td>
@@ -802,7 +844,7 @@ document.write(`
       <td>when using prognostic aerosol; scene (all sky); activated + unactivated: Aitken mode</td>
     </tr>
     <tr>
-      <th>41</th>
+      <th>46</th>
       <td>number_of_total_aerosol_mode2</td>
       <td>na2</td>
       <td>kg-1</td>
@@ -810,7 +852,7 @@ document.write(`
       <td>accumulation mode</td>
     </tr>
     <tr>
-      <th>42</th>
+      <th>47</th>
       <td>number_of_total_aerosol_mode3</td>
       <td>na3</td>
       <td>kg-1</td>
@@ -818,7 +860,7 @@ document.write(`
       <td>sea spray mode</td>
     </tr>
     <tr>
-      <th>43</th>
+      <th>48</th>
       <td>number_of_liquid_cloud_droplets_in_cloud</td>
       <td>nlcic</td>
       <td>kg-1</td>
@@ -826,7 +868,7 @@ document.write(`
       <td>per kg dry air where cloud water &gt; 0.01 g/kg; breakdown to cloud water and rain in a bulk scheme or radius separated at 40 micrometers in a bin scheme</td>
     </tr>
     <tr>
-      <th>44</th>
+      <th>49</th>
       <td>number_of_ice_crystals_in_cloud</td>
       <td>niic</td>
       <td>kg-1</td>
@@ -834,15 +876,15 @@ document.write(`
       <td>total ice hydrometeors per kg dry air where cloud water &gt; 0.01 g/kg; within liquid cloud boundaries in order to check immersion freezing</td>
     </tr>
     <tr>
-      <th>45</th>
+      <th>50</th>
       <td>disspation_rate_of_turbulent_kinetic_energy</td>
       <td>eps</td>
       <td>m2 s-3</td>
       <td>time, height</td>
-      <td>including numerical diffusion contributions if relevant</td>
+      <td>total (including numerical diffusion contributions if relevant); report as negative</td>
     </tr>
     <tr>
-      <th>46</th>
+      <th>51</th>
       <td>zonal_momentum_flux</td>
       <td>uw</td>
       <td>m2 s-2</td>
@@ -850,7 +892,7 @@ document.write(`
       <td>total (resolved plus SGS)</td>
     </tr>
     <tr>
-      <th>47</th>
+      <th>52</th>
       <td>meridional_momentum_flux</td>
       <td>vw</td>
       <td>m2 s-2</td>
@@ -858,7 +900,7 @@ document.write(`
       <td>total (resolved plus SGS)</td>
     </tr>
     <tr>
-      <th>48</th>
+      <th>53</th>
       <td>variance_of_upward_air_velocity</td>
       <td>w2</td>
       <td>m2 s-2</td>
@@ -866,7 +908,7 @@ document.write(`
       <td>total (resolved plus SGS)</td>
     </tr>
     <tr>
-      <th>49</th>
+      <th>54</th>
       <td>vertical_flux_potential_temperature</td>
       <td>wth</td>
       <td>K m s-1</td>
@@ -874,15 +916,15 @@ document.write(`
       <td>total (resolved plus SGS)</td>
     </tr>
     <tr>
-      <th>50</th>
+      <th>55</th>
       <td>vertical_flux_liquid_ice_water_potential_temperature</td>
-      <td>wthli</td>
+      <td>vf_thli</td>
       <td>K m s-1</td>
       <td>time, height</td>
       <td>total (resolved plus SGS); include sedimentation fluxes</td>
     </tr>
     <tr>
-      <th>51</th>
+      <th>56</th>
       <td>vertical_flux_water_vapor</td>
       <td>wqv</td>
       <td>kg kg-1 m s-1</td>
@@ -890,15 +932,15 @@ document.write(`
       <td>total (resolved plus SGS)</td>
     </tr>
     <tr>
-      <th>52</th>
+      <th>57</th>
       <td>vertical_flux_total_water</td>
-      <td>wqt</td>
+      <td>vf_qt</td>
       <td>kg kg-1 m s-1</td>
       <td>time, height</td>
       <td>total (resolved plus SGS); vapor+all liquid+all ice; include sedimentation fluxes</td>
     </tr>
     <tr>
-      <th>53</th>
+      <th>58</th>
       <td>area_fraction_of_liquid_cloud</td>
       <td>flc</td>
       <td>1</td>
@@ -906,7 +948,7 @@ document.write(`
       <td>fraction of cells with cloud water threshold of 0.01 g/kg, not including rain class</td>
     </tr>
     <tr>
-      <th>54</th>
+      <th>59</th>
       <td>precipitation_flux_in_air</td>
       <td>prf</td>
       <td>kg m-2 s-1</td>
@@ -914,7 +956,7 @@ document.write(`
       <td>liquid and ice phase, all hydrometeors</td>
     </tr>
     <tr>
-      <th>55</th>
+      <th>60</th>
       <td>precipitation_flux_in_air_in_ice_phase</td>
       <td>prfi</td>
       <td>kg m-2 s-1</td>
@@ -922,7 +964,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>56</th>
+      <th>61</th>
       <td>downwelling_longwave_flux_in_air</td>
       <td>rld</td>
       <td>W m-2</td>
@@ -930,7 +972,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>57</th>
+      <th>62</th>
       <td>upwelling_longwave_flux_in_air</td>
       <td>rlu</td>
       <td>W m-2</td>
@@ -938,7 +980,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>58</th>
+      <th>63</th>
       <td>tendency_of_air_potential_temperature_due_to_radiative_heating</td>
       <td>dth_rad</td>
       <td>K s-1</td>
@@ -946,7 +988,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>59</th>
+      <th>64</th>
       <td>tendency_of_air_potential_temperature_due_to_microphysics</td>
       <td>dth_micro</td>
       <td>K s-1</td>
@@ -954,7 +996,7 @@ document.write(`
       <td>including net condensation and precipitation</td>
     </tr>
     <tr>
-      <th>60</th>
+      <th>65</th>
       <td>tendency_of_air_potential_temperature_due_to_mixing</td>
       <td>dth_turb</td>
       <td>K s-1</td>
@@ -962,7 +1004,7 @@ document.write(`
       <td>including surface fluxes</td>
     </tr>
     <tr>
-      <th>61</th>
+      <th>66</th>
       <td>tendency_of_water_vapor_mixing_ratio_due_to_microphysics</td>
       <td>dq_micro</td>
       <td>kg kg-1 s-1</td>
@@ -970,12 +1012,60 @@ document.write(`
       <td>including net condensation and precipitation</td>
     </tr>
     <tr>
-      <th>62</th>
+      <th>67</th>
       <td>tendency_of_water_vapor_mixing_ratio_due_to_mixing</td>
       <td>dq_turb</td>
       <td>kg kg-1 s-1</td>
       <td>time, height</td>
       <td>including surface fluxes</td>
+    </tr>
+    <tr>
+      <th>68</th>
+      <td>tendency_of_aerosol_number_due_to_warm_microphysics</td>
+      <td>dna_micro_warm</td>
+      <td>kg-1 s-1</td>
+      <td>time, height</td>
+      <td>activated and unactivated aerosol (sum over all modes); losses to liquid-liquid hydrometeor collisions + any other liquid-phase sources/sinks that may be accounted for (e.g., from drop breakup); this quantity accounts for all microphysical aerosol source terms in a liquid-only simulation</td>
+    </tr>
+    <tr>
+      <th>69</th>
+      <td>tendency_of_aerosol_number_due_to_cold_microphysics</td>
+      <td>dna_micro_cold</td>
+      <td>kg-1 s-1</td>
+      <td>time, height</td>
+      <td>activated and unactivated aerosol (sum over all modes); losses to liquid-ice hydrometeor collisions + any other ice-associated sources/sinks that may occur (e.g., drop homogeneous freezing); this quantity is zero in a liquid-only simulation, and when added to dna_micro_warm accounts for all microphysical aerosol source terms in a mixed-phase simulation</td>
+    </tr>
+    <tr>
+      <th>70</th>
+      <td>tendency_of_aerosol_number_due_to_mixing</td>
+      <td>dna_turb</td>
+      <td>kg-1 s-1</td>
+      <td>time, height</td>
+      <td>activated and unactivated aerosol (sum over all modes); including surface fluxes (sea spray, dry deposition if included, etc.)</td>
+    </tr>
+    <tr>
+      <th>71</th>
+      <td>tendency_of_ice_number_due_to_heterogeneous_freezing</td>
+      <td>dni_het</td>
+      <td>kg-1 s-1</td>
+      <td>time, height</td>
+      <td>sum of primary ice nucleation due to activation of heterogeneous INP; also, in a diagnostic run, the ice crystals introduced to meet the diagnostic target</td>
+    </tr>
+    <tr>
+      <th>72</th>
+      <td>tendency_of_ice_number_due_to_secondary_ice_production</td>
+      <td>dni_sip</td>
+      <td>kg-1 s-1</td>
+      <td>time, height</td>
+      <td>sum of secondary ice formation processes (e.g., Hallet-Mossop plus any others)</td>
+    </tr>
+    <tr>
+      <th>73</th>
+      <td>tendency_of_ice_number_due_to_homogeneous_freezing</td>
+      <td>dni_hom</td>
+      <td>kg-1 s-1</td>
+      <td>time, height</td>
+      <td>ice nucleation source due to homogoeneous freezing</td>
     </tr>
   </tbody>
 </table>
@@ -1357,46 +1447,46 @@ document.write(`
       <td>eps</td>
       <td>m2 s-3</td>
       <td>time, height, x, y</td>
-      <td>including numerical diffusion contributions if relevant</td>
+      <td>including numerical diffusion contributions if relevant; report as negative</td>
     </tr>
     <tr>
       <th>23</th>
       <td>mass_weighted_fall_speed_of_liquid_cloud_water</td>
       <td>vmlc</td>
-      <td>kg kg-1</td>
-      <td>time, pressure</td>
+      <td>m s-1</td>
+      <td>time, height, x, y</td>
       <td>EMC2 uses mass-weighted fall-speed profiles for all hydrometeor classes and cloud types; alternatively sufficient information to calculate mass-weighted velocity per hydrometeor class (e.g., size-fall speed relationship and PSD reconstruction)</td>
     </tr>
     <tr>
       <th>24</th>
       <td>mass_weighted_fall_speed_of_rain</td>
       <td>vmlr</td>
-      <td>kg kg-1</td>
-      <td>time, pressure</td>
+      <td>m s-1</td>
+      <td>time, height, x, y</td>
       <td>–</td>
     </tr>
     <tr>
       <th>25</th>
       <td>mass_weighted_fall_speed_of_ice_cloud</td>
       <td>vmic</td>
-      <td>kg kg-1</td>
-      <td>time, pressure</td>
+      <td>m s-1</td>
+      <td>time, height, x, y</td>
       <td>if other ice-phase categories are used, provide additional standard_name and vmi* variable_id</td>
     </tr>
     <tr>
       <th>26</th>
       <td>mass_weighted_fall_speed_of_snow</td>
       <td>vmis</td>
-      <td>kg kg-1</td>
-      <td>time, pressure</td>
+      <td>m s-1</td>
+      <td>time, height, x, y</td>
       <td>–</td>
     </tr>
     <tr>
       <th>27</th>
       <td>mass_weighted_fall_speed_of_graupel</td>
       <td>vmig</td>
-      <td>kg kg-1</td>
-      <td>time, pressure</td>
+      <td>m s-1</td>
+      <td>time, height, x, y</td>
       <td>–</td>
     </tr>
     <tr>
@@ -1480,10 +1570,18 @@ document.write(`
       <td>pa</td>
       <td>Pa</td>
       <td>–</td>
-      <td>dimension, pressure at model mid-level points</td>
+      <td>dimension, pressure at mid-level points (native model levels if fixed, otherwise interpolated to fixed grid of choice)</td>
     </tr>
     <tr>
       <th>2</th>
+      <td>layer_top_height</td>
+      <td>pe</td>
+      <td>Pa</td>
+      <td>–</td>
+      <td>pressure at layer top points (used for vertical integrations)</td>
+    </tr>
+    <tr>
+      <th>3</th>
       <td>surface_pressure</td>
       <td>ps</td>
       <td>Pa</td>
@@ -1491,7 +1589,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>3</th>
+      <th>4</th>
       <td>surface_temperature</td>
       <td>ts</td>
       <td>K</td>
@@ -1499,7 +1597,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>4</th>
+      <th>5</th>
       <td>surface_friction_velocity</td>
       <td>ustar</td>
       <td>m s-1</td>
@@ -1507,7 +1605,31 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>5</th>
+      <th>6</th>
+      <td>surface_roughness_length_for_momentum_in_air</td>
+      <td>z0</td>
+      <td>m</td>
+      <td>time</td>
+      <td>–</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>surface_roughness_length_for_heat_in_air</td>
+      <td>z0h</td>
+      <td>m</td>
+      <td>time</td>
+      <td>–</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>surface_roughness_length_for_humidity_in_air</td>
+      <td>z0q</td>
+      <td>m</td>
+      <td>time</td>
+      <td>–</td>
+    </tr>
+    <tr>
+      <th>9</th>
       <td>surface_upward_sensible_heat_flux</td>
       <td>hfss</td>
       <td>W m-2</td>
@@ -1515,7 +1637,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>6</th>
+      <th>10</th>
       <td>surface_upward_latent_heat_flux</td>
       <td>hfls</td>
       <td>W m-2</td>
@@ -1523,7 +1645,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>7</th>
+      <th>11</th>
       <td>obukhov_length</td>
       <td>ol</td>
       <td>m</td>
@@ -1531,7 +1653,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>8</th>
+      <th>12</th>
       <td>pbl_height</td>
       <td>pblh</td>
       <td>m</td>
@@ -1539,7 +1661,7 @@ document.write(`
       <td>PBL scheme layer thickness (if available)</td>
     </tr>
     <tr>
-      <th>9</th>
+      <th>13</th>
       <td>inversion_height</td>
       <td>zi</td>
       <td>m</td>
@@ -1547,7 +1669,7 @@ document.write(`
       <td>sharpest vertical gradient in air_potential_temperature (below 400 hPa)</td>
     </tr>
     <tr>
-      <th>10</th>
+      <th>14</th>
       <td>atmosphere_mass_content_of_liquid_cloud_water</td>
       <td>lwpc</td>
       <td>kg m-2</td>
@@ -1555,7 +1677,7 @@ document.write(`
       <td>scene (all sky); cloud water path in all classes (e.g., convective and stratiform)</td>
     </tr>
     <tr>
-      <th>11</th>
+      <th>15</th>
       <td>atmosphere_mass_content_of_rain_water</td>
       <td>lwpr</td>
       <td>kg m-2</td>
@@ -1563,7 +1685,7 @@ document.write(`
       <td>scene (all sky); rain water path in all classes (e.g., convective and stratiform)</td>
     </tr>
     <tr>
-      <th>12</th>
+      <th>16</th>
       <td>atmosphere_mass_content_of_ice_water</td>
       <td>iwp</td>
       <td>kg m-2</td>
@@ -1571,7 +1693,7 @@ document.write(`
       <td>scene (all sky); all ice-phase hydrometeors in all classes</td>
     </tr>
     <tr>
-      <th>13</th>
+      <th>17</th>
       <td>area_fraction_cover_of_hydrometeors</td>
       <td>cf</td>
       <td>1</td>
@@ -1579,7 +1701,7 @@ document.write(`
       <td>all hydrometeors and cloud types (e.g., all phase in stratiform and convective)</td>
     </tr>
     <tr>
-      <th>14</th>
+      <th>18</th>
       <td>area_fraction_cover_of_liquid_cloud</td>
       <td>cflc</td>
       <td>1</td>
@@ -1587,7 +1709,7 @@ document.write(`
       <td>liquid cloud cover without precipitation, including all cloud types (e.g., stratiform and convective)</td>
     </tr>
     <tr>
-      <th>15</th>
+      <th>19</th>
       <td>area_fraction_cover_of_convective_hydrometeors</td>
       <td>cfc</td>
       <td>1</td>
@@ -1595,7 +1717,7 @@ document.write(`
       <td>all hydrometeors, default breakdown into convective versus non-convective (stratiform) coverage; if other or additional categories are used, provide additional standard_name and fc* variable_id</td>
     </tr>
     <tr>
-      <th>16</th>
+      <th>20</th>
       <td>optical_depth</td>
       <td>od</td>
       <td>1</td>
@@ -1603,7 +1725,7 @@ document.write(`
       <td>scene (all sky); mid-visible, all hydrometeors and classes, may assume geometric scatterers</td>
     </tr>
     <tr>
-      <th>17</th>
+      <th>21</th>
       <td>optical_depth_of_liquid_cloud</td>
       <td>odlc</td>
       <td>1</td>
@@ -1611,7 +1733,7 @@ document.write(`
       <td>scene (all sky); mid-visible, cloud liquid only</td>
     </tr>
     <tr>
-      <th>18</th>
+      <th>22</th>
       <td>precipitation_flux_at_surface</td>
       <td>pr</td>
       <td>kg m-2 s-1</td>
@@ -1619,7 +1741,7 @@ document.write(`
       <td>scene (all sky); all hydrometeors</td>
     </tr>
     <tr>
-      <th>19</th>
+      <th>23</th>
       <td>precipitation_flux_of_ice_at_surface</td>
       <td>pri</td>
       <td>kg m-2 s-1</td>
@@ -1627,7 +1749,7 @@ document.write(`
       <td>scene (all sky); all ice phase hydrometeors</td>
     </tr>
     <tr>
-      <th>20</th>
+      <th>24</th>
       <td>toa_outgoing_longwave_flux</td>
       <td>rlut</td>
       <td>W m-2</td>
@@ -1635,7 +1757,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>21</th>
+      <th>25</th>
       <td>surface_downwelling_longwave_flux</td>
       <td>rlds</td>
       <td>W m-2</td>
@@ -1643,7 +1765,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>22</th>
+      <th>26</th>
       <td>surface_upwelling_longwave_flux</td>
       <td>rlus</td>
       <td>W m-2</td>
@@ -1651,7 +1773,15 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>23</th>
+      <th>27</th>
+      <td>surface_sea_spray_number_flux</td>
+      <td>ssaf</td>
+      <td>m-2 s-1</td>
+      <td>time</td>
+      <td>when using prognostic aerosol; emission only (not including dry or wet deposition); total over all aerosol modes</td>
+    </tr>
+    <tr>
+      <th>28</th>
       <td>height</td>
       <td>zf</td>
       <td>m</td>
@@ -1659,7 +1789,7 @@ document.write(`
       <td>altitude of mid-level points above sea surface</td>
     </tr>
     <tr>
-      <th>24</th>
+      <th>29</th>
       <td>eastward_wind</td>
       <td>ua</td>
       <td>m s-1</td>
@@ -1667,7 +1797,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>25</th>
+      <th>30</th>
       <td>northward_wind</td>
       <td>va</td>
       <td>m s-1</td>
@@ -1675,7 +1805,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>26</th>
+      <th>31</th>
       <td>air_dry_density</td>
       <td>rhoa</td>
       <td>kg m-3</td>
@@ -1683,7 +1813,7 @@ document.write(`
       <td>per kg dry air</td>
     </tr>
     <tr>
-      <th>27</th>
+      <th>32</th>
       <td>air_temperature</td>
       <td>ta</td>
       <td>K</td>
@@ -1691,7 +1821,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>28</th>
+      <th>33</th>
       <td>water_vapor_mixing_ratio</td>
       <td>qv</td>
       <td>kg kg-1</td>
@@ -1699,7 +1829,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>29</th>
+      <th>34</th>
       <td>relative_humidity</td>
       <td>hur</td>
       <td>1</td>
@@ -1707,7 +1837,7 @@ document.write(`
       <td>relative to liquid</td>
     </tr>
     <tr>
-      <th>30</th>
+      <th>35</th>
       <td>relative_humidity_over_ice</td>
       <td>huri</td>
       <td>1</td>
@@ -1715,7 +1845,7 @@ document.write(`
       <td>relative to ice</td>
     </tr>
     <tr>
-      <th>31</th>
+      <th>36</th>
       <td>air_potential_temperature</td>
       <td>theta</td>
       <td>K</td>
@@ -1723,7 +1853,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>32</th>
+      <th>37</th>
       <td>mass_mixing_ratio_of_cloud_liquid_water_in_air</td>
       <td>qlc</td>
       <td>kg kg-1</td>
@@ -1731,7 +1861,7 @@ document.write(`
       <td>scene (all sky) per kg dry air; cloud water path only in all classes (e.g., convective and stratiform)</td>
     </tr>
     <tr>
-      <th>33</th>
+      <th>38</th>
       <td>mass_mixing_ratio_of_rain_water_in_air</td>
       <td>qlr</td>
       <td>kg kg-1</td>
@@ -1739,7 +1869,7 @@ document.write(`
       <td>rain water path only in all classes (e.g., convective and stratiform)</td>
     </tr>
     <tr>
-      <th>34</th>
+      <th>39</th>
       <td>mass_mixing_ratio_of_ice_water_in_air</td>
       <td>qi</td>
       <td>kg kg-1</td>
@@ -1747,7 +1877,7 @@ document.write(`
       <td>all ice water path in all classes (e.g., convective and stratiform)</td>
     </tr>
     <tr>
-      <th>35</th>
+      <th>40</th>
       <td>area_fraction_of_hydrometeors</td>
       <td>fh</td>
       <td>1</td>
@@ -1755,7 +1885,7 @@ document.write(`
       <td>all hydrometeors and cloud types (e.g., all phase in stratiform and convective)</td>
     </tr>
     <tr>
-      <th>36</th>
+      <th>41</th>
       <td>area_fraction_of_liquid_cloud</td>
       <td>flc</td>
       <td>1</td>
@@ -1763,7 +1893,7 @@ document.write(`
       <td>liquid cloud cover without precipitation, including all cloud types (e.g., stratiform and convective)</td>
     </tr>
     <tr>
-      <th>37</th>
+      <th>42</th>
       <td>area_fraction_of_convective_hydrometeors</td>
       <td>fc</td>
       <td>1</td>
@@ -1771,7 +1901,7 @@ document.write(`
       <td>all hydrometeors, default breakdown into convective versus non-convective; if other or additional categories are used, provide additional standard_name and fc* variable_id</td>
     </tr>
     <tr>
-      <th>38</th>
+      <th>43</th>
       <td>precipitation_flux_in_air</td>
       <td>prf</td>
       <td>kg m-2 s-1</td>
@@ -1779,7 +1909,7 @@ document.write(`
       <td>scene (all sky); all hydrometeors</td>
     </tr>
     <tr>
-      <th>39</th>
+      <th>44</th>
       <td>precipitation_flux_in_air_in_ice_phase</td>
       <td>prfi</td>
       <td>kg m-2 s-1</td>
@@ -1787,7 +1917,7 @@ document.write(`
       <td>scene (all sky); all ice phase hydrometeors</td>
     </tr>
     <tr>
-      <th>40</th>
+      <th>45</th>
       <td>specific_turbulent_kinetic_energy</td>
       <td>tke</td>
       <td>m2 s-2</td>
@@ -1795,15 +1925,15 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>41</th>
+      <th>46</th>
       <td>disspation_rate_of_turbulent_kinetic_energy</td>
       <td>eps</td>
       <td>m2 s-3</td>
       <td>time, pressure</td>
-      <td>–</td>
+      <td>report as negative</td>
     </tr>
     <tr>
-      <th>42</th>
+      <th>47</th>
       <td>zonal_momentum_flux</td>
       <td>uw</td>
       <td>m2 s-2</td>
@@ -1811,7 +1941,7 @@ document.write(`
       <td>parameterized turbulent flux</td>
     </tr>
     <tr>
-      <th>43</th>
+      <th>48</th>
       <td>meridional_momentum_flux</td>
       <td>vw</td>
       <td>m2 s-2</td>
@@ -1819,7 +1949,7 @@ document.write(`
       <td>parameterized turbulent flux</td>
     </tr>
     <tr>
-      <th>44</th>
+      <th>49</th>
       <td>variance_of_upward_air_velocity</td>
       <td>w2</td>
       <td>m2 s-2</td>
@@ -1827,7 +1957,7 @@ document.write(`
       <td>parameterized turbulent flux</td>
     </tr>
     <tr>
-      <th>45</th>
+      <th>50</th>
       <td>vertical_flux_potential_temperature</td>
       <td>wth</td>
       <td>K m s-1</td>
@@ -1835,15 +1965,15 @@ document.write(`
       <td>parameterized turbulent flux</td>
     </tr>
     <tr>
-      <th>46</th>
+      <th>51</th>
       <td>vertical_flux_liquid_ice_water_potential_temperature</td>
-      <td>wthli</td>
+      <td>vf_thli</td>
       <td>K m s-1</td>
       <td>time, pressure</td>
       <td>parameterized turbulent flux; include sedimentation fluxes</td>
     </tr>
     <tr>
-      <th>47</th>
+      <th>52</th>
       <td>vertical_flux_water_vapor</td>
       <td>wqv</td>
       <td>kg kg-1 m s-1</td>
@@ -1851,15 +1981,15 @@ document.write(`
       <td>parameterized turbulent flux</td>
     </tr>
     <tr>
-      <th>48</th>
+      <th>53</th>
       <td>vertical_flux_total_water</td>
-      <td>wqt</td>
+      <td>vf_qt</td>
       <td>kg kg-1 m s-1</td>
       <td>time, pressure</td>
       <td>parameterized turbulent flux; vapor+all liquid+all ice; include sedimentation fluxes</td>
     </tr>
     <tr>
-      <th>49</th>
+      <th>54</th>
       <td>convection_updraft_mass_flux</td>
       <td>cmfu</td>
       <td>kg m-2 s-1</td>
@@ -1867,7 +1997,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>50</th>
+      <th>55</th>
       <td>convection_downdraft_mass_flux</td>
       <td>cmfd</td>
       <td>kg m-2 s-1</td>
@@ -1875,7 +2005,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>51</th>
+      <th>56</th>
       <td>downwelling_longwave_flux_in_air</td>
       <td>rld</td>
       <td>W m-2</td>
@@ -1883,7 +2013,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>52</th>
+      <th>57</th>
       <td>upwelling_longwave_flux_in_air</td>
       <td>rlu</td>
       <td>W m-2</td>
@@ -1891,7 +2021,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>53</th>
+      <th>58</th>
       <td>tendency_of_air_potential_temperature_due_to_radiative_heating</td>
       <td>dth_rad</td>
       <td>K s-1</td>
@@ -1899,7 +2029,7 @@ document.write(`
       <td>scene (all sky)</td>
     </tr>
     <tr>
-      <th>54</th>
+      <th>59</th>
       <td>tendency_of_air_potential_temperature_due_to_microphysics</td>
       <td>dth_micro</td>
       <td>K s-1</td>
@@ -1907,7 +2037,7 @@ document.write(`
       <td>including net condensation and precipitation in all classes (e.g., convective and stratiform)</td>
     </tr>
     <tr>
-      <th>55</th>
+      <th>60</th>
       <td>tendency_of_air_potential_temperature_due_to_mixing</td>
       <td>dth_turb</td>
       <td>K s-1</td>
@@ -1915,7 +2045,7 @@ document.write(`
       <td>including surface fluxes</td>
     </tr>
     <tr>
-      <th>56</th>
+      <th>61</th>
       <td>tendency_of_water_vapor_mixing_ratio_due_to_microphysics</td>
       <td>dq_micro</td>
       <td>s-1</td>
@@ -1923,7 +2053,7 @@ document.write(`
       <td>including net condensation and precipitation in all classes (e.g., convective and stratiform)</td>
     </tr>
     <tr>
-      <th>57</th>
+      <th>62</th>
       <td>tendency_of_water_vapor_mixing_ratio_due_to_mixing</td>
       <td>dq_turb</td>
       <td>s-1</td>
@@ -1931,7 +2061,7 @@ document.write(`
       <td>including surface fluxes</td>
     </tr>
     <tr>
-      <th>58</th>
+      <th>63</th>
       <td>number_of_total_aerosol_mode1</td>
       <td>na1</td>
       <td>kg-1</td>
@@ -1939,7 +2069,7 @@ document.write(`
       <td>when using prognostic aerosol; scene (all sky); activated + unactivated: Aitken mode</td>
     </tr>
     <tr>
-      <th>59</th>
+      <th>64</th>
       <td>number_of_total_aerosol_mode2</td>
       <td>na2</td>
       <td>kg-1</td>
@@ -1947,7 +2077,7 @@ document.write(`
       <td>accumulation mode</td>
     </tr>
     <tr>
-      <th>60</th>
+      <th>65</th>
       <td>number_of_total_aerosol_mode3</td>
       <td>na3</td>
       <td>kg-1</td>
@@ -1955,7 +2085,55 @@ document.write(`
       <td>sea spray mode</td>
     </tr>
     <tr>
-      <th>61</th>
+      <th>66</th>
+      <td>tendency_of_aerosol_number_due_to_warm_microphysics</td>
+      <td>dna_micro_warm</td>
+      <td>kg-1 s-1</td>
+      <td>time, pressure</td>
+      <td>activated and unactivated aerosol (sum over all modes); losses to liquid-liquid hydrometeor collisions + any other liquid-phase sources/sinks that may be accounted for (e.g., from drop breakup); this quantity accounts for all microphysical aerosol source terms in a liquid-only simulation</td>
+    </tr>
+    <tr>
+      <th>67</th>
+      <td>tendency_of_aerosol_number_due_to_cold_microphysics</td>
+      <td>dna_micro_cold</td>
+      <td>kg-1 s-1</td>
+      <td>time, pressure</td>
+      <td>activated and unactivated aerosol (sum over all modes); losses to liquid-ice hydrometeor collisions + any other ice-associated sources/sinks that may occur (e.g., drop homogeneous freezing); this quantity is zero in a liquid-only simulation, and when added to dna_micro_warm accounts for all microphysical aerosol source terms in a mixed-phase simulation</td>
+    </tr>
+    <tr>
+      <th>68</th>
+      <td>tendency_of_aerosol_number_due_to_mixing</td>
+      <td>dna_turb</td>
+      <td>kg-1 s-1</td>
+      <td>time, pressure</td>
+      <td>activated and unactivated aerosol (sum over all modes); including surface fluxes (sea spray, dry deposition if included, etc.)</td>
+    </tr>
+    <tr>
+      <th>69</th>
+      <td>tendency_of_ice_number_due_to_heterogeneous_freezing</td>
+      <td>dni_het</td>
+      <td>kg-1 s-1</td>
+      <td>time, pressure</td>
+      <td>sum of primary ice nucleation due to activation of heterogeneous INP; also, in a diagnostic run, the ice crystals introduced to meet the diagnostic target</td>
+    </tr>
+    <tr>
+      <th>70</th>
+      <td>tendency_of_ice_number_due_to_secondary_ice_production</td>
+      <td>dni_sip</td>
+      <td>kg-1 s-1</td>
+      <td>time, pressure</td>
+      <td>sum of secondary ice formation processes (e.g., Hallet-Mossop plus any others)</td>
+    </tr>
+    <tr>
+      <th>71</th>
+      <td>tendency_of_ice_number_due_to_homogeneous_freezing</td>
+      <td>dni_hom</td>
+      <td>kg-1 s-1</td>
+      <td>time, pressure</td>
+      <td>ice nucleation source due to homogoeneous freezing</td>
+    </tr>
+    <tr>
+      <th>72</th>
       <td>mass_mixing_ratio_of_liquid_cloud_water_in_air_stratiform</td>
       <td>qlcs</td>
       <td>kg kg-1</td>
@@ -1963,7 +2141,7 @@ document.write(`
       <td>scene (all sky) per kg dry air; default breakdown into cloud water and rain in stratiform and convective classes for application of EMC2 to ModelE3; if other categories are used, provide additional standard_name and ql* variable_id; all ql* variables supplied will be summed to obtain total liquid mixing ratio</td>
     </tr>
     <tr>
-      <th>62</th>
+      <th>73</th>
       <td>mass_mixing_ratio_of_rain_water_in_air_stratiform</td>
       <td>qlrs</td>
       <td>kg kg-1</td>
@@ -1971,7 +2149,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>63</th>
+      <th>74</th>
       <td>mass_mixing_ratio_of_ice_cloud_in_air_stratiform</td>
       <td>qics</td>
       <td>kg kg-1</td>
@@ -1979,7 +2157,7 @@ document.write(`
       <td>default breakdown as for liquid; if other ice-phase categories are used, provide additional standard_name and qiX variable_id; all qi* variables supplied will be summed to obtain total ice mixing ratio</td>
     </tr>
     <tr>
-      <th>64</th>
+      <th>75</th>
       <td>mass_mixing_ratio_of_ice_precipitation_in_air_stratiform</td>
       <td>qips</td>
       <td>kg kg-1</td>
@@ -1987,7 +2165,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>65</th>
+      <th>76</th>
       <td>mass_mixing_ratio_of_liquid_cloud_water_in_air_convective</td>
       <td>qlcc</td>
       <td>kg kg-1</td>
@@ -1995,7 +2173,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>66</th>
+      <th>77</th>
       <td>mass_mixing_ratio_of_rain_water_in_air_convective</td>
       <td>qlrc</td>
       <td>kg kg-1</td>
@@ -2003,7 +2181,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>67</th>
+      <th>78</th>
       <td>mass_mixing_ratio_of_ice_cloud_in_air_convective</td>
       <td>qicc</td>
       <td>kg kg-1</td>
@@ -2011,7 +2189,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>68</th>
+      <th>79</th>
       <td>mass_mixing_ratio_of_ice_precipitation_in_air_convective</td>
       <td>qipc</td>
       <td>kg kg-1</td>
@@ -2019,7 +2197,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>69</th>
+      <th>80</th>
       <td>number_of_liquid_cloud_droplets_in_air_stratiform</td>
       <td>nlcs</td>
       <td>kg-1</td>
@@ -2027,7 +2205,7 @@ document.write(`
       <td>scene (all sky) per kg dry air; if other categories are used, provide additional standard_name and nl* variable_id</td>
     </tr>
     <tr>
-      <th>70</th>
+      <th>81</th>
       <td>number_of_rain_drops_in_air_stratiform</td>
       <td>nlrs</td>
       <td>kg-1</td>
@@ -2035,7 +2213,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>71</th>
+      <th>82</th>
       <td>number_of_ice_cloud_crystals_in_air_stratiform</td>
       <td>nics</td>
       <td>kg-1</td>
@@ -2043,7 +2221,7 @@ document.write(`
       <td>if other ice-phase categories are used, provide additional standard_name and ni* variable_id; all ni* variables supplied will be summed to obtain total ice number concentration</td>
     </tr>
     <tr>
-      <th>72</th>
+      <th>83</th>
       <td>number_of_ice_precipitation_crystals_in_air_stratiform</td>
       <td>nips</td>
       <td>kg-1</td>
@@ -2051,7 +2229,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>73</th>
+      <th>84</th>
       <td>effective_radius_of_liquid_cloud_droplets_convective</td>
       <td>relcc</td>
       <td>m</td>
@@ -2059,7 +2237,7 @@ document.write(`
       <td>EMC2 uses effective radius for any hydrometeor or cloud class where number concentration is not provided</td>
     </tr>
     <tr>
-      <th>74</th>
+      <th>85</th>
       <td>effective_radius_of_rain_convective</td>
       <td>relrc</td>
       <td>m</td>
@@ -2067,7 +2245,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>75</th>
+      <th>86</th>
       <td>effective_radius_of_ice_cloud_convective</td>
       <td>reicc</td>
       <td>m</td>
@@ -2075,7 +2253,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>76</th>
+      <th>87</th>
       <td>effective_radius_of_ice_precipitation_convective</td>
       <td>reipc</td>
       <td>m</td>
@@ -2083,7 +2261,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>77</th>
+      <th>88</th>
       <td>area_fraction_of_liquid_cloud_stratiform</td>
       <td>flcs</td>
       <td>1</td>
@@ -2091,7 +2269,7 @@ document.write(`
       <td>EMC2 uses area fraction profiles for all hydrometeor classes and cloud types</td>
     </tr>
     <tr>
-      <th>78</th>
+      <th>89</th>
       <td>area_fraction_of_rain_stratiform</td>
       <td>flrs</td>
       <td>1</td>
@@ -2099,7 +2277,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>79</th>
+      <th>90</th>
       <td>area_fraction_of_ice_cloud_stratiform</td>
       <td>fics</td>
       <td>1</td>
@@ -2107,7 +2285,7 @@ document.write(`
       <td>if other ice categories are used, provide additional standard_name and fi* variable_id</td>
     </tr>
     <tr>
-      <th>80</th>
+      <th>91</th>
       <td>area_fraction_of_ice_precipitation_stratiform</td>
       <td>fips</td>
       <td>1</td>
@@ -2115,7 +2293,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>81</th>
+      <th>92</th>
       <td>area_fraction_of_liquid_cloud_convective</td>
       <td>flcc</td>
       <td>1</td>
@@ -2123,7 +2301,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>82</th>
+      <th>93</th>
       <td>area_fraction_of_rain_convective</td>
       <td>flrc</td>
       <td>1</td>
@@ -2131,7 +2309,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>83</th>
+      <th>94</th>
       <td>area_fraction_of_ice_cloud_convective</td>
       <td>ficc</td>
       <td>1</td>
@@ -2139,7 +2317,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>84</th>
+      <th>95</th>
       <td>area_fraction_of_ice_precipitation_convective</td>
       <td>fipc</td>
       <td>1</td>
@@ -2147,7 +2325,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>85</th>
+      <th>96</th>
       <td>mass_weighted_fall_speed_of_liquid_cloud_water_stratiform</td>
       <td>vmlcs</td>
       <td>m s-1</td>
@@ -2155,7 +2333,7 @@ document.write(`
       <td>EMC2 uses mass-weighted fall-speed profiles for all hydrometeor classes and cloud types</td>
     </tr>
     <tr>
-      <th>86</th>
+      <th>97</th>
       <td>mass_weighted_fall_speed_of_rain_stratiform</td>
       <td>vmlrs</td>
       <td>m s-1</td>
@@ -2163,7 +2341,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>87</th>
+      <th>98</th>
       <td>mass_weighted_fall_speed_of_ice_cloud_stratiform</td>
       <td>vmics</td>
       <td>m s-1</td>
@@ -2171,7 +2349,7 @@ document.write(`
       <td>if other ice-phase categories are used, provide additional standard_name and vmi* variable_id</td>
     </tr>
     <tr>
-      <th>88</th>
+      <th>99</th>
       <td>mass_weighted_fall_speed_of_ice_precipitation_stratiform</td>
       <td>vmips</td>
       <td>m s-1</td>
@@ -2179,7 +2357,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>89</th>
+      <th>100</th>
       <td>mass_weighted_fall_speed_of_liquid_cloud_water_convective</td>
       <td>vmlcc</td>
       <td>m s-1</td>
@@ -2187,7 +2365,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>90</th>
+      <th>101</th>
       <td>mass_weighted_fall_speed_of_rain_convective</td>
       <td>vmlrc</td>
       <td>m s-1</td>
@@ -2195,7 +2373,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>91</th>
+      <th>102</th>
       <td>mass_weighted_fall_speed_of_cloud_ice_crystals_convective</td>
       <td>vmicc</td>
       <td>m s-1</td>
@@ -2203,7 +2381,7 @@ document.write(`
       <td>–</td>
     </tr>
     <tr>
-      <th>92</th>
+      <th>103</th>
       <td>mass_weighted_fall_speed_of_ice_precipitation_convective</td>
       <td>vmipc</td>
       <td>m s-1</td>
