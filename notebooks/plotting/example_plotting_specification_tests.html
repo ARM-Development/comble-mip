@@ -371,9 +371,7 @@ document.write(`
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</label>
+
 </div></div>
       
     </div>
@@ -389,17 +387,6 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dharma-miz-rad-lx25km-dx200-fixn">DHARMA-MIZ-RAD_Lx25km_dx200_FixN:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dharma-miz-rad-lx25km-dx200-fixn-swoff">DHARMA-MIZ-RAD_Lx25km_dx200_FixN_SWoff:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dharma-miz-rad-lx25km-dx200-fixn-swoff-wsub">DHARMA-MIZ-RAD_Lx25km_dx200_FixN_SWoff_Wsub:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dharma-miz-rad-lx25km-dx200-fixn-nomiz">DHARMA-MIZ-RAD_Lx25km_dx200_FixN_noMIZ:</a></li>
-</ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -411,23 +398,18 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="sensitivity-to-solar-radiation-subsidence-and-treatment-of-ice-surface">
 <h1>Sensitivity to solar radiation, subsidence and treatment of ice surface<a class="headerlink" href="#sensitivity-to-solar-radiation-subsidence-and-treatment-of-ice-surface" title="Permalink to this heading">#</a></h1>
-<p>The notebook below shows sensitivity tests during specification development. We used 200-m resolution on a 25-km domain as an adequate set-up to evaluate sensitivity. All simulations use DHARMA’s default roughness lengths.</p>
-<section id="dharma-miz-rad-lx25km-dx200-fixn">
-<h2>DHARMA-MIZ-RAD_Lx25km_dx200_FixN:<a class="headerlink" href="#dharma-miz-rad-lx25km-dx200-fixn" title="Permalink to this heading">#</a></h2>
-<p>We started with this more complex set-up: Upstream of the ice edge, the surface was treated as an ice surface of specified temperature and a fixed roughness length of 0.0001 m. Downstream of the ice edge, Charnock’s relation was used for roughness over a water surface. Both solar and longwave radiation were included.</p>
-</section>
-<section id="dharma-miz-rad-lx25km-dx200-fixn-swoff">
-<h2>DHARMA-MIZ-RAD_Lx25km_dx200_FixN_SWoff:<a class="headerlink" href="#dharma-miz-rad-lx25km-dx200-fixn-swoff" title="Permalink to this heading">#</a></h2>
-<p>Turning off solar radiation had little effect, so that was omitted.</p>
-</section>
-<section id="dharma-miz-rad-lx25km-dx200-fixn-swoff-wsub">
-<h2>DHARMA-MIZ-RAD_Lx25km_dx200_FixN_SWoff_Wsub:<a class="headerlink" href="#dharma-miz-rad-lx25km-dx200-fixn-swoff-wsub" title="Permalink to this heading">#</a></h2>
-<p>Turning on large-scale subsidence derived from ERA5 had little effect, so that was omitted. This avoided the need for offsetting specifications to avoid spurious thermodynamic evolution owing to disconinuity at domain top. Omitting subsidence also greatly simplifies analyses for process understanding.</p>
-</section>
-<section id="dharma-miz-rad-lx25km-dx200-fixn-nomiz">
-<h2>DHARMA-MIZ-RAD_Lx25km_dx200_FixN_noMIZ:<a class="headerlink" href="#dharma-miz-rad-lx25km-dx200-fixn-nomiz" title="Permalink to this heading">#</a></h2>
-<p>Treating the ice surface as a water surface that is supercooled enough to match ice surface surface fluxes also had little effect. This greatly simplifies the setup especially for Earth system model codes run in single-column model mode. Since it also had negligible effect that we could identify in LES, this was adopted as a helpful simplification. Thanks to Mikhail Ovchinnikov and Peng Wu for sharing this approach.</p>
-<p>We consider the differences between all of the simulations shown below to be well within the uncertainty of the specification derivation. We then proceeded to test sensitivity to roughness lengths in both DHARMA and WRF.</p>
+<p>The notebook below shows sensitivity tests during specification development. We used 200-m resolution on a 25-km domain as an adequate setup to evaluate sensitivity. All simulations use DHARMA’s default roughness lengths.</p>
+<ul class="simple">
+<li><p><strong>DHARMA-MIZ-RAD_Lx25km_dx200_FixN -</strong>
+We started with this more complex set-up: Upstream of the ice edge, the surface was treated as an ice surface of specified temperature and a fixed roughness length of 0.0001 m. Downstream of the ice edge, Charnock’s relation was used for roughness over a water surface. Both solar and longwave radiation were included.</p></li>
+<li><p><strong>DHARMA-MIZ-RAD_Lx25km_dx200_FixN_SWoff -</strong>
+Turning off solar radiation had little effect, so that was omitted.</p></li>
+<li><p><strong>DHARMA-MIZ-RAD_Lx25km_dx200_FixN_SWoff_Wsub -</strong>
+Turning on large-scale subsidence derived from ERA5 had little effect, so that was omitted. This avoided the need for offsetting specifications to avoid spurious thermodynamic evolution owing to disconinuity at domain top. Omitting subsidence also greatly simplifies analyses for process understanding.</p></li>
+<li><p><strong>DHARMA-MIZ-RAD_Lx25km_dx200_FixN_noMIZ -</strong>
+Treating the ice surface as a water surface that is supercooled enough to match ice surface surface fluxes also had little effect. This greatly simplifies the setup especially for Earth system model codes run in single-column model mode. Since it also had negligible effect that we could identify in LES, this was adopted as a helpful simplification. Thanks to Mikhail Ovchinnikov and Peng Wu for sharing this approach.</p></li>
+</ul>
+<p>We consider the differences between all of the simulations shown below to be within the uncertainty of the specification derivation. We then proceeded to test sensitivity to roughness lengths in both DHARMA and WRF.</p>
 <p>Source: Ann Fridlind (ann.fridlind&#64;nasa.gov), Andrew Ackerman (andrew.ackerman&#64;nasa.gov), and Florian Tornow (ft2544&#64;columbia.edu)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -495,7 +477,6 @@ Computing wind direction
 </div>
 </div>
 </section>
-</section>
 
     <script type="text/x-thebe-config">
     {
@@ -551,23 +532,6 @@ Computing wind direction
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dharma-miz-rad-lx25km-dx200-fixn">DHARMA-MIZ-RAD_Lx25km_dx200_FixN:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dharma-miz-rad-lx25km-dx200-fixn-swoff">DHARMA-MIZ-RAD_Lx25km_dx200_FixN_SWoff:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dharma-miz-rad-lx25km-dx200-fixn-swoff-wsub">DHARMA-MIZ-RAD_Lx25km_dx200_FixN_SWoff_Wsub:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dharma-miz-rad-lx25km-dx200-fixn-nomiz">DHARMA-MIZ-RAD_Lx25km_dx200_FixN_noMIZ:</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
               
             
           </div>
