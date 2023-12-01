@@ -31,8 +31,8 @@ parts:
 - caption: Supporting Materials
   chapters:
     - file: notebooks/forcing/create_comble_forcing_v2.2.ipynb
-    - file: notebooks/plotting/example_plotting_z0_tests.ipynb
     - file: notebooks/plotting/example_plotting_specification_tests.ipynb
+    - file: notebooks/plotting/example_plotting_z0_tests.ipynb
     - file: notebooks/setup/aerosol-specification.ipynb
     - file: notebooks/setup/aerosol-inp-closure.ipynb
     - file: notebooks/setup/aerosol-surface.ipynb
