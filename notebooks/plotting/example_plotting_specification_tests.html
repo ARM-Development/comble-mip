@@ -368,7 +368,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -384,6 +386,17 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dharma-miz-rad-lx25km-dx200-fixn">DHARMA-MIZ-RAD_Lx25km_dx200_FixN:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dharma-miz-rad-lx25km-dx200-fixn-swoff">DHARMA-MIZ-RAD_Lx25km_dx200_FixN_SWoff:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dharma-miz-rad-lx25km-dx200-fixn-swoff-wsub">DHARMA-MIZ-RAD_Lx25km_dx200_FixN_SWoff_Wsub:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dharma-miz-rad-lx25km-dx200-fixn-nomiz">DHARMA-MIZ-RAD_Lx25km_dx200_FixN_noMIZ:</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -395,59 +408,30 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="sensitivity-to-solar-radiation-subsidence-and-treatment-of-ice-surface">
 <h1>Sensitivity to solar radiation, subsidence and treatment of ice surface<a class="headerlink" href="#sensitivity-to-solar-radiation-subsidence-and-treatment-of-ice-surface" title="Permalink to this heading">#</a></h1>
-<p>The notebook below compares selected simulations against observational targets that were collected from satellite and ground-based retrievals:<br />
-*</p>
-<ul class="simple">
-<li><p>run 2</p></li>
-</ul>
-<p>Source: Ann Fridlind (ann.fridlind&#64;nasa.gov) and Florian Tornow (ft2544&#64;columbia.edu)</p>
+<p>The notebook below shows sensitivity tests during specification development. We used 200-m resolution on a 25-km domain as an adequate set-up to evaluate sensitivity. All simulations use DHARMA’s default roughness lengths.</p>
+<section id="dharma-miz-rad-lx25km-dx200-fixn">
+<h2>DHARMA-MIZ-RAD_Lx25km_dx200_FixN:<a class="headerlink" href="#dharma-miz-rad-lx25km-dx200-fixn" title="Permalink to this heading">#</a></h2>
+<p>We started with this more complex set-up: Upstream of the ice edge, the surface was treated as an ice surface of specified temperature and a fixed roughness length of 0.0001 m. Downstream of the ice edge, Charnock’s relation was used for roughness over a water surface. Both solar and longwave radiation were included.</p>
+</section>
+<section id="dharma-miz-rad-lx25km-dx200-fixn-swoff">
+<h2>DHARMA-MIZ-RAD_Lx25km_dx200_FixN_SWoff:<a class="headerlink" href="#dharma-miz-rad-lx25km-dx200-fixn-swoff" title="Permalink to this heading">#</a></h2>
+<p>Turning off solar radiation had little effect, so that was omitted.</p>
+</section>
+<section id="dharma-miz-rad-lx25km-dx200-fixn-swoff-wsub">
+<h2>DHARMA-MIZ-RAD_Lx25km_dx200_FixN_SWoff_Wsub:<a class="headerlink" href="#dharma-miz-rad-lx25km-dx200-fixn-swoff-wsub" title="Permalink to this heading">#</a></h2>
+<p>Turning on large-scale subsidence derived from ERA5 had little effect, so that was omitted. This avoided the need for offsetting specifications to avoid spurious thermodynamic evolution owing to disconinuity at domain top. Omitting subsidence also greatly simplifies analyses for process understanding.</p>
+</section>
+<section id="dharma-miz-rad-lx25km-dx200-fixn-nomiz">
+<h2>DHARMA-MIZ-RAD_Lx25km_dx200_FixN_noMIZ:<a class="headerlink" href="#dharma-miz-rad-lx25km-dx200-fixn-nomiz" title="Permalink to this heading">#</a></h2>
+<p>Treating the ice surface as a water surface that is supercooled enough to match ice surface surface fluxes also had little effect. This greatly simplifies the setup especially for Earth system model codes run in single-column model mode. Since it also had negligible effect that we could identify in LES, this was adopted as a helpful simplification. Thanks to Mikhail Ovchinnikov and Peng Wu for sharing this approach.</p>
+<p>We consider the differences between all of the simulations shown below to be well within the uncertainty of the specification derivation. We then proceeded to test sensitivity to roughness lengths in both DHARMA and WRF.</p>
+<p>Source: Ann Fridlind (ann.fridlind&#64;nasa.gov), Andrew Ackerman (andrew.ackerman&#64;nasa.gov), and Florian Tornow (ft2544&#64;columbia.edu)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> functions_plotting.py 
  
 <span class="c1">## select simulations to plot</span>
-<span class="n">sim_keyword</span> <span class="o">=</span> <span class="s1">&#39;MIZ-RAD&#39;</span>  
-
-<span class="c1">## load ERA5 fields</span>
-<span class="n">era5_1d</span><span class="p">,</span> <span class="n">era5_2d</span> <span class="o">=</span> <span class="n">load_era5</span><span class="p">(</span><span class="n">PATH</span><span class="o">=</span><span class="s1">&#39;../../data_files/&#39;</span><span class="p">)</span>
-
-<span class="c1">## load radiosondes</span>
-<span class="n">rs_dat</span> <span class="o">=</span> <span class="n">load_rs</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">7.</span><span class="p">)</span>
-
-<span class="c1">## load DOE ARM site statistics</span>
-<span class="n">kazrkollias_dat</span> <span class="o">=</span> <span class="n">load_kazrkollias</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">6.</span><span class="p">,</span><span class="n">aux_dat</span><span class="o">=</span><span class="n">rs_dat</span><span class="p">)</span> <span class="c1">## here using radiosonde profiles to estimate CTT</span>
-<span class="n">kazrclough_dat</span> <span class="o">=</span> <span class="n">load_kazrclough</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">6.</span><span class="p">)</span> 
-<span class="n">aeri_dat</span> <span class="o">=</span> <span class="n">load_aeri</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">)</span>
-<span class="n">radflux_dat</span> <span class="o">=</span> <span class="n">load_radflux</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">6.</span><span class="p">)</span>
-<span class="n">srfflux_dat</span> <span class="o">=</span> <span class="n">load_flux</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">6.</span><span class="p">)</span>
-
-<span class="c1">## load CARRA surface fluxes</span>
-<span class="n">carra_dat</span> <span class="o">=</span> <span class="n">load_carraflux</span><span class="p">()</span>
-
-<span class="c1">## load MAC-LWP</span>
-<span class="n">maclwp_dat</span> <span class="o">=</span> <span class="n">load_maclwp</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">)</span> 
-<span class="n">gongiwp_dat</span> <span class="o">=</span> <span class="n">load_iwpgong</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">)</span>
-
-<span class="c1">## load MODIS, VIIRS, and SENTINEL retrievals</span>
-<span class="n">modis_dat</span>    <span class="o">=</span> <span class="n">load_modis</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">,</span><span class="n">sza_filter</span> <span class="o">=</span> <span class="mf">65.</span><span class="p">)</span>
-<span class="n">viirs_dat</span>    <span class="o">=</span> <span class="n">load_viirs</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">,</span><span class="n">sza_filter</span> <span class="o">=</span> <span class="mf">65.</span><span class="p">)</span>
-<span class="n">sentinel_dat</span> <span class="o">=</span> <span class="n">load_sentinel</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">,</span><span class="n">sza_filter</span> <span class="o">=</span> <span class="mf">65.</span><span class="p">)</span>
-
-<span class="c1">## load CERES retrievals</span>
-<span class="n">ceres_dat</span> <span class="o">=</span> <span class="n">load_ceres</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">)</span>
-
-<span class="c1">## load CALIPSO retrievals (note the increased time window)</span>
-<span class="n">calipso_dat</span> <span class="o">=</span> <span class="n">load_calipso</span><span class="p">(</span><span class="n">t_filter</span> <span class="o">=</span> <span class="mf">3.</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>../../data_files/theta_temp_rh_sh_uvw_sst_along_trajectory_era5ml_28h_end_2020-03-13-18.nc
-../../data_files/anxsondewnpnM1.b1.20200313.112600.cdf
-../../data_files/anxsondewnpnM1.b1.20200313.052700.cdf
-../../data_files/anxsondewnpnM1.b1.20200313.232200.cdf
-../../data_files/anxsondewnpnM1.b1.20200313.172600.cdf
-KAZR (Kollias): here using auxiliary field to estimate cloud-top temperature
+<span class="n">sim_keyword</span> <span class="o">=</span> <span class="s1">&#39;MIZ-RAD&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -455,48 +439,7 @@ KAZR (Kollias): here using auxiliary field to estimate cloud-top temperature
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## load all simulations located in subfolders of the given directory</span>
-<span class="n">var_vec_1d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hfss&#39;</span><span class="p">,</span><span class="s1">&#39;hfls&#39;</span><span class="p">,</span><span class="s1">&#39;ts&#39;</span><span class="p">]</span> <span class="c1"># variables with ERA5 (longer time axis)</span>
-<span class="n">var_vec_2d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;theta&#39;</span><span class="p">,</span><span class="s1">&#39;qv&#39;</span><span class="p">,</span><span class="s1">&#39;ua&#39;</span><span class="p">,</span><span class="s1">&#39;va&#39;</span><span class="p">]</span>
-<span class="n">df_col_1d</span><span class="p">,</span><span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time)
-../../output_les/dharma/devel/DHARMA-MIZ-RAD_Lx25km_dx200_FixN_SWoff.nc
-../../output_les/dharma/devel/DHARMA-MIZ-RAD_Lx25km_dx200_FixN_SWoff_Wsub.nc
-../../output_les/dharma/devel/DHARMA-MIZ-RAD_Lx25km_dx200_FixN_noMIZ.nc
-../../output_les/dharma/devel/DHARMA-MIZ-RAD_Lx25km_dx200.nc
-Loading variables: f(time,height)
-../../output_les/dharma/devel/DHARMA-MIZ-RAD_Lx25km_dx200_FixN_SWoff.nc
-../../output_les/dharma/devel/DHARMA-MIZ-RAD_Lx25km_dx200_FixN_SWoff_Wsub.nc
-../../output_les/dharma/devel/DHARMA-MIZ-RAD_Lx25km_dx200_FixN_noMIZ.nc
-../../output_les/dharma/devel/DHARMA-MIZ-RAD_Lx25km_dx200.nc
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## plot variables that have only time dependence</span>
-<span class="n">plot_1d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_1d</span><span class="p">,</span><span class="n">era5_1d</span><span class="p">,</span><span class="n">carra_dat</span><span class="p">,</span><span class="n">srfflux_dat</span><span class="p">]),</span><span class="n">var_vec_1d</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/conda/lib/python3.10/site-packages/matplotlib/axes/_axes.py:1185: RuntimeWarning: All-NaN axis encountered
-  miny = np.nanmin(masked_verts[..., 1])
-/opt/conda/lib/python3.10/site-packages/matplotlib/axes/_axes.py:1186: RuntimeWarning: All-NaN axis encountered
-  maxy = np.nanmax(masked_verts[..., 1])
-</pre></div>
-</div>
-<img alt="../../_images/dc5da4bbfe67308209f6fae6e66f06296eb12cda948fd2ddc19eddac0dd80071.png" src="../../_images/dc5da4bbfe67308209f6fae6e66f06296eb12cda948fd2ddc19eddac0dd80071.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## load all simulations located in subfolders of the given directory</span>
-<span class="n">var_vec_1d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;lwpr&#39;</span><span class="p">,</span><span class="s1">&#39;lwpc&#39;</span><span class="p">,</span><span class="s1">&#39;iwp&#39;</span><span class="p">,</span><span class="s1">&#39;od&#39;</span><span class="p">]</span> <span class="c1"># variables without ERA5 (shorter time axis)</span>
+<span class="n">var_vec_1d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hfss&#39;</span><span class="p">,</span><span class="s1">&#39;hfls&#39;</span><span class="p">,</span><span class="s1">&#39;ts&#39;</span><span class="p">,</span><span class="s1">&#39;lwpr&#39;</span><span class="p">,</span><span class="s1">&#39;lwpc&#39;</span><span class="p">,</span><span class="s1">&#39;iwp&#39;</span><span class="p">,</span><span class="s1">&#39;od&#39;</span><span class="p">]</span>
 <span class="n">var_vec_2d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;theta&#39;</span><span class="p">,</span><span class="s1">&#39;qv&#39;</span><span class="p">,</span><span class="s1">&#39;qlc&#39;</span><span class="p">,</span><span class="s1">&#39;qlr&#39;</span><span class="p">,</span><span class="s1">&#39;qic&#39;</span><span class="p">,</span><span class="s1">&#39;qis&#39;</span><span class="p">,</span><span class="s1">&#39;qig&#39;</span><span class="p">,</span><span class="s1">&#39;ua&#39;</span><span class="p">,</span><span class="s1">&#39;va&#39;</span><span class="p">,</span><span class="s1">&#39;ta&#39;</span><span class="p">]</span>
 <span class="n">df_col_1d</span><span class="p">,</span><span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword</span><span class="p">,</span><span class="n">diag_zi_ctt</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
@@ -504,15 +447,15 @@ Loading variables: f(time,height)
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time)
+../../output_les/dharma/devel/DHARMA-MIZ-RAD_Lx25km_dx200_FixN.nc
 ../../output_les/dharma/devel/DHARMA-MIZ-RAD_Lx25km_dx200_FixN_SWoff.nc
 ../../output_les/dharma/devel/DHARMA-MIZ-RAD_Lx25km_dx200_FixN_SWoff_Wsub.nc
 ../../output_les/dharma/devel/DHARMA-MIZ-RAD_Lx25km_dx200_FixN_noMIZ.nc
-../../output_les/dharma/devel/DHARMA-MIZ-RAD_Lx25km_dx200.nc
 Loading variables: f(time,height)
+../../output_les/dharma/devel/DHARMA-MIZ-RAD_Lx25km_dx200_FixN.nc
 ../../output_les/dharma/devel/DHARMA-MIZ-RAD_Lx25km_dx200_FixN_SWoff.nc
 ../../output_les/dharma/devel/DHARMA-MIZ-RAD_Lx25km_dx200_FixN_SWoff_Wsub.nc
 ../../output_les/dharma/devel/DHARMA-MIZ-RAD_Lx25km_dx200_FixN_noMIZ.nc
-../../output_les/dharma/devel/DHARMA-MIZ-RAD_Lx25km_dx200.nc
 computing inversion height, cloud-top height, and cloud-top temperature
 using liquid(-ice) potential temperature
 </pre></div>
@@ -522,30 +465,17 @@ using liquid(-ice) potential temperature
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## plot variables that have only time dependence</span>
-<span class="c1">#plot_1d(pd.concat([df_col_1d,maclwp_dat,modis_dat,viirs_dat,sentinel_dat,kazrkollias_dat,kazrclough_dat,calipso_dat,radflux_dat]),[&#39;zi&#39;,&#39;od&#39;,&#39;lwp&#39;,&#39;iwp&#39;,&#39;ctt&#39;])</span>
-<span class="n">plot_1d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_1d</span><span class="p">,</span><span class="n">maclwp_dat</span><span class="p">,</span><span class="n">kazrkollias_dat</span><span class="p">,</span><span class="n">kazrclough_dat</span><span class="p">,</span><span class="n">calipso_dat</span><span class="p">,</span><span class="n">radflux_dat</span><span class="p">]),[</span><span class="s1">&#39;cth&#39;</span><span class="p">,</span><span class="s1">&#39;od&#39;</span><span class="p">,</span><span class="s1">&#39;lwp&#39;</span><span class="p">,</span><span class="s1">&#39;iwp&#39;</span><span class="p">,</span><span class="s1">&#39;ctt&#39;</span><span class="p">])</span>
-
-<span class="c1">## plot variables that have only time dependence (for now excluding imager retrievals that are mostly SZA &gt; 70)</span>
-<span class="c1">#plot_1d(pd.concat([df_col_1d,maclwp_dat,kazrkollias_dat,kazrclough_dat,calipso_dat,gongiwp_dat,radflux_dat]),[&#39;od&#39;,&#39;lwp&#39;,&#39;iwp&#39;]) #&#39;zi&#39;,&#39;od&#39;,&#39;lwp&#39;,&#39;iwp</span>
+<span class="n">plot_1d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_1d</span><span class="p">]),[</span><span class="s1">&#39;hfss&#39;</span><span class="p">,</span><span class="s1">&#39;hfls&#39;</span><span class="p">,</span><span class="s1">&#39;ts&#39;</span><span class="p">,</span><span class="s1">&#39;cth&#39;</span><span class="p">,</span><span class="s1">&#39;od&#39;</span><span class="p">,</span><span class="s1">&#39;lwp&#39;</span><span class="p">,</span><span class="s1">&#39;iwp&#39;</span><span class="p">,</span><span class="s1">&#39;ctt&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/conda/lib/python3.10/site-packages/matplotlib/axes/_axes.py:1185: RuntimeWarning: All-NaN axis encountered
-  miny = np.nanmin(masked_verts[..., 1])
-/opt/conda/lib/python3.10/site-packages/matplotlib/axes/_axes.py:1186: RuntimeWarning: All-NaN axis encountered
-  maxy = np.nanmax(masked_verts[..., 1])
-</pre></div>
-</div>
-<img alt="../../_images/b156ebc8b68590403ae6734edb32ede69dc9423db0ec986244064d0deee9bb06.png" src="../../_images/b156ebc8b68590403ae6734edb32ede69dc9423db0ec986244064d0deee9bb06.png" />
+<img alt="../../_images/1a57fbdf20d3c6a5ac29ae839146fc2d9f4f81b642b5d24f7af4a8659bef312c.png" src="../../_images/1a57fbdf20d3c6a5ac29ae839146fc2d9f4f81b642b5d24f7af4a8659bef312c.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## plot all variables that have time and height dependence</span>
-<span class="c1">#plot_2d(df_col_2d,var_vec_2d,[0,3,6,9,12,15,18],z_max=6000)</span>
-
-<span class="c1">## example where ERA5 and radiosonde are included</span>
 <span class="n">plot_2d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_2d</span><span class="p">]),</span><span class="n">var_vec</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ta&#39;</span><span class="p">,</span><span class="s1">&#39;theta&#39;</span><span class="p">,</span><span class="s1">&#39;qv&#39;</span><span class="p">,</span><span class="s1">&#39;ws&#39;</span><span class="p">,</span><span class="s1">&#39;wd&#39;</span><span class="p">],</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">18</span><span class="p">],</span><span class="n">z_max</span><span class="o">=</span><span class="mi">6000</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -555,12 +485,13 @@ using liquid(-ice) potential temperature
 Computing wind direction
 </pre></div>
 </div>
-<img alt="../../_images/6a8377f31f15919fb4679d9e2fb5aa0766447755b6cb508f3e595a51d78ec3d1.png" src="../../_images/6a8377f31f15919fb4679d9e2fb5aa0766447755b6cb508f3e595a51d78ec3d1.png" />
+<img alt="../../_images/b200eafbf880027b4ff9fd5015fa5668f9a1867ca323de5aff212808851aff5e.png" src="../../_images/b200eafbf880027b4ff9fd5015fa5668f9a1867ca323de5aff212808851aff5e.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x600 with 0 Axes&gt;
 </pre></div>
 </div>
 </div>
 </div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -599,6 +530,23 @@ Computing wind direction
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dharma-miz-rad-lx25km-dx200-fixn">DHARMA-MIZ-RAD_Lx25km_dx200_FixN:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dharma-miz-rad-lx25km-dx200-fixn-swoff">DHARMA-MIZ-RAD_Lx25km_dx200_FixN_SWoff:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dharma-miz-rad-lx25km-dx200-fixn-swoff-wsub">DHARMA-MIZ-RAD_Lx25km_dx200_FixN_SWoff_Wsub:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dharma-miz-rad-lx25km-dx200-fixn-nomiz">DHARMA-MIZ-RAD_Lx25km_dx200_FixN_noMIZ:</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
