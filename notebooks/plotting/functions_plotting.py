@@ -998,7 +998,7 @@ def plot_2d(df_col2,var_vec,times,**kwargs):
     handles, labels = plt.gca().get_legend_handles_labels()
     by_label = dict(zip(labels, handles))
     frac = 0.4/len(var_vec)
-    fig.legend(handles, labels, loc = 'upper center', bbox_to_anchor=(0.5, 1.0 + frac))
+    fig.legend(handles, labels, loc = 'upper center', ncol=2,bbox_to_anchor=(0.5, 1.0 + frac))
     
     fig.tight_layout()
     
