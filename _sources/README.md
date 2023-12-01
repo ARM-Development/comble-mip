@@ -60,7 +60,7 @@ Abigail Williams, Lynn Russell, Yijia Sun, Daniel Knopf - Aerosol analysis
 
 Max Grover, Scott Collis, Kyle Dumas, Monica Ihli - Infrastructure development
 
-Please contact Tim Juliano: tjuliano ((at)) ucar.edu OR Florian Tornow: ft2544 ((at)) columbia.edu for comments or questions about the model intercomparison project.
+Please contact Tim Juliano (tjuliano@ucar.edu) and Florian Tornow (ft2544@columbia.edu) for comments or questions about the model intercomparison project.
 
 ```{attention}
 If you are interested in participating in the LES/SCM COMBLE intercomparison, then please [sign up here](https://docs.google.com/spreadsheets/d/1h0BDDCCJTfIsdvHHNFyA17bpsNAL7405GG69IkC8qJs/edit?usp=sharing).
