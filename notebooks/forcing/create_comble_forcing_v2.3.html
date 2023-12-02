@@ -1220,7 +1220,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x148720bf7a30&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x148720d309a0&gt;
 </pre></div>
 </div>
 <img alt="../../_images/02d63d2bc31bddb44bb1042fba4739e9a71217cb8f5d2629e353cef88f82ee53.png" src="../../_images/02d63d2bc31bddb44bb1042fba4739e9a71217cb8f5d2629e353cef88f82ee53.png" />
@@ -1343,6 +1343,11 @@ document.write(`
 <span class="n">ncfile</span><span class="o">.</span><span class="n">surface_forcing_wind</span><span class="o">=</span><span class="s1">&#39;z0&#39;</span>
 <span class="n">ncfile</span><span class="o">.</span><span class="n">z0</span><span class="o">=</span><span class="s1">&#39;9.0e-4 m&#39;</span>
 <span class="n">ncfile</span><span class="o">.</span><span class="n">lat</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">les_lat_mid</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; deg N&#39;</span>
+<span class="n">ncfile</span><span class="o">.</span><span class="n">droplet_activation_diagnostic</span><span class="o">=</span><span class="s1">&#39;droplet number concentration fixed to 20 cm-3&#39;</span>
+<span class="n">ncfile</span><span class="o">.</span><span class="n">ice_nucleation_diagnostic</span><span class="o">=</span><span class="s1">&#39;total ice number concentration fixed to 25 L-1 where qc+qr&gt;1e-6 kg/kg and T&lt;268.15 K&#39;</span>
+<span class="n">ncfile</span><span class="o">.</span><span class="n">droplet_activation_prognostic</span><span class="o">=</span><span class="s1">&#39;time and space varying aerosol initialized from na1, na2 and na3, which are uniform initial profiles to be affected by collision-coalescence processes, sea spray source, and mixing&#39;</span>
+<span class="n">ncfile</span><span class="o">.</span><span class="n">aerosol_surface_source</span><span class="o">=</span><span class="s1">&#39;modal emissions based on Jaegle et al. (2011)</span><span class="se">\&#39;</span><span class="s1">s size-resolved surface source fluxes (equation 4) that vary as a function of wind speed and SST; from size-integrated fluxes we determine proportional attribution to the two larger modes via modal geometric mean and standard deviation of the accumulation mode (na2); for the configuration here: 98.5% (accumulation mode, na2) and 1.5% (sea spray mode, na3)&#39;</span>
+<span class="n">ncfile</span><span class="o">.</span><span class="n">ice_nucleation_prognostic</span><span class="o">=</span><span class="s1">&#39;assume that all sea spray mode and half of internally mixed accumulation mode aerosols behave as ice nucleating particles in the immersion mode, and apply parameterization of choice&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -1621,6 +1626,11 @@ root group (NETCDF3_CLASSIC data model, file format NETCDF3):
     surface_forcing_wind: z0
     z0: 9.0e-4 m
     lat: 74.5 deg N
+    droplet_activation_diagnostic: droplet number concentration fixed to 20 cm-3
+    ice_nucleation_diagnostic: total ice number concentration fixed to 25 L-1 where qc+qr&gt;1e-6 kg/kg and T&lt;268.15 K
+    droplet_activation_prognostic: time and space varying aerosol initialized from na1, na2 and na3, which are uniform initial profiles to be affected by collision-coalescence processes, sea spray source, and mixing
+    aerosol_surface_source: modal emissions based on Jaegle et al. (2011)&#39;s size-resolved surface source fluxes (equation 4) that vary as a function of wind speed and SST; from size-integrated fluxes we determine proportional attribution to the two larger modes via modal geometric mean and standard deviation of the accumulation mode (na2); for the configuration here: 98.5% (accumulation mode, na2) and 1.5% (sea spray mode, na3)
+    ice_nucleation_prognostic: assume that all sea spray mode and half of internally mixed accumulation mode aerosols behave as ice nucleating particles in the immersion mode, and apply parameterization of choice
     dimensions(sizes): t0(1), lat(1), lon(1), lev(136), zw_grid(160), time(21)
     variables(dimensions): float32 t0(t0), float32 lat(lat), float32 lon(lon), float64 time(time), float64 lev(lev), float64 pressure(t0, lev, lat, lon), float64 u(t0, lev, lat, lon), float64 v(t0, lev, lat, lon), float64 temp(t0, lev, lat, lon), float64 theta(t0, lev, lat, lon), float64 qv(t0, lev, lat, lon), float64 o3(t0, lev, lat, lon), float64 ps(t0, lat, lon), float64 thetas(t0, lat, lon), float64 ug(time, lev), float64 vg(time, lev), float64 u_nudging(time, lev), float64 v_nudging(time, lev), float64 theta_nudging(time, lev), float64 qv_nudging(time, lev), float64 w_nudging(time, lev), float64 ts(time), float32 lat_ref(time), float32 lon_ref(time), float64 zw_grid(zw_grid)
     groups: 
