@@ -408,11 +408,11 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> functions_plotting.py
 
 <span class="c1">## select (grayed out) simulations to plot</span>
-<span class="n">sim_keyword_gray</span> <span class="o">=</span> <span class="s1">&#39;dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.&#39;</span>
+<span class="n">sim_keyword_gray</span> <span class="o">=</span> <span class="s1">&#39;dharma/sandbox/DHARMA_Lx25_dx200_FixN.&#39;</span>
 
 <span class="c1">## select LES run(s) of interest</span>
-<span class="n">sim_keyword_col_les</span> <span class="o">=</span> <span class="s1">&#39;WRF_Lx25_dx100_FixN_def_zi_twj.&#39;</span>
-<span class="n">sim_keyword_col_scm</span> <span class="o">=</span> <span class="s1">&#39;ModelE3-Phys_FixN.&#39;</span>
+<span class="n">sim_keyword_col_les</span> <span class="o">=</span> <span class="s1">&#39;WRF_Lx25_dx100_FixN.&#39;</span>
+<span class="n">sim_keyword_col_scm</span> <span class="o">=</span> <span class="s1">&#39;ModelE3-Phys_FixN_def_z0.&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -453,103 +453,117 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time)
-../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
-pblh not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
-zi not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
-cf not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
-cflc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
-cfc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
+../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+pblh not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+zi not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+cf not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+cflc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+cfc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+ssaf not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
 Loading variables: f(time,height)
-../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
-qi not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
-fh not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
-fc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
-tke not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
-cmfu not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
-cmfd not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
-qlcs not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
-qlrs not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
-qics not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
-qips not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
-qlcc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
-qlrc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
-qicc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
-qipc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
-nlcs not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
-nlrs not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
-nics not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
-nips not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
-relcc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
-relrc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
-reicc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
-reipc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
-flcs not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
-flrs not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
-fics not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
-fips not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
-flcc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
-flrc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
-ficc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
-fipc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
-vmlcs not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
-vmlrs not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
-vmics not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
-vmips not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
-vmlcc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
-vmlrc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
-vmicc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
-vmipc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
+../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+qi not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+fh not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+fc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+tke not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+cmfu not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+cmfd not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+dna_micro_warm not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+dna_micro_cold not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+dna_turb not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+dni_het not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+dni_sip not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+dni_hom not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+qlcs not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+qlrs not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+qics not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+qips not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+qlcc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+qlrc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+qicc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+qipc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+nlcs not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+nlrs not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+nics not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+nips not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+relcc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+relrc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+reicc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+reipc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+flcs not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+flrs not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+fics not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+fips not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+flcc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+flrc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+ficc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+fipc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+vmlcs not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+vmlrs not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+vmics not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+vmips not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+vmlcc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+vmlrc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+vmicc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+vmipc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
 Loading variables: f(time)
-../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi_twj.nc
-pblh not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi_twj.nc
-zi not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi_twj.nc
-cf not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi_twj.nc
-cflc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi_twj.nc
-cfc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi_twj.nc
+../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+pblh not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+zi not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+cf not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+cflc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+cfc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
 Loading variables: f(time,height)
-../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi_twj.nc
-qi not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi_twj.nc
-fh not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi_twj.nc
-fc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi_twj.nc
-tke not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi_twj.nc
-cmfu not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi_twj.nc
-cmfd not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi_twj.nc
-qlcs not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi_twj.nc
-qlrs not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi_twj.nc
-qics not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi_twj.nc
-qips not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi_twj.nc
-qlcc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi_twj.nc
-qlrc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi_twj.nc
-qicc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi_twj.nc
-qipc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi_twj.nc
-nlcs not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi_twj.nc
-nlrs not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi_twj.nc
-nics not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi_twj.nc
-nips not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi_twj.nc
-relcc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi_twj.nc
-relrc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi_twj.nc
-reicc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi_twj.nc
-reipc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi_twj.nc
-flcs not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi_twj.nc
-flrs not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi_twj.nc
-fics not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi_twj.nc
-fips not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi_twj.nc
-flcc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi_twj.nc
-flrc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi_twj.nc
-ficc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi_twj.nc
-fipc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi_twj.nc
-vmlcs not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi_twj.nc
-vmlrs not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi_twj.nc
-vmics not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi_twj.nc
-vmips not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi_twj.nc
-vmlcc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi_twj.nc
-vmlrc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi_twj.nc
-vmicc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi_twj.nc
-vmipc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_zi_twj.nc
+../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+qi not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+fh not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+fc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+tke not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+cmfu not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+cmfd not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+qlcs not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+qlrs not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+qics not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+qips not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+qlcc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+qlrc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+qicc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+qipc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+nlcs not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+nlrs not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+nics not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+nips not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+relcc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+relrc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+reicc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+reipc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+flcs not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+flrs not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+fics not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+fips not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+flcc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+flrc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+ficc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+fipc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+vmlcs not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+vmlrs not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+vmics not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+vmips not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+vmlcc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+vmlrc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+vmicc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+vmipc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
 Loading variables: f(time)
-../../output_scm/modelE/sandbox/ModelE3-Phys_FixN.nc
+../../output_scm/modelE/sandbox/ModelE3-Phys_FixN_def_z0.nc
+ssaf not found in ../../output_scm/modelE/sandbox/ModelE3-Phys_FixN_def_z0.nc
 Loading variables: f(time,height)
-../../output_scm/modelE/sandbox/ModelE3-Phys_FixN.nc
+../../output_scm/modelE/sandbox/ModelE3-Phys_FixN_def_z0.nc
+dna_micro_warm not found in ../../output_scm/modelE/sandbox/ModelE3-Phys_FixN_def_z0.nc
+dna_micro_cold not found in ../../output_scm/modelE/sandbox/ModelE3-Phys_FixN_def_z0.nc
+dna_turb not found in ../../output_scm/modelE/sandbox/ModelE3-Phys_FixN_def_z0.nc
+dni_het not found in ../../output_scm/modelE/sandbox/ModelE3-Phys_FixN_def_z0.nc
+dni_sip not found in ../../output_scm/modelE/sandbox/ModelE3-Phys_FixN_def_z0.nc
+dni_hom not found in ../../output_scm/modelE/sandbox/ModelE3-Phys_FixN_def_z0.nc
 </pre></div>
 </div>
 </div>
@@ -562,18 +576,18 @@ Loading variables: f(time,height)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/f008d4586c67b110665c3f17c78c23ebccbfc09baa8fb793bc78ba86ce880aae.png" src="../../_images/f008d4586c67b110665c3f17c78c23ebccbfc09baa8fb793bc78ba86ce880aae.png" />
+<img alt="../../_images/16c6cf2a0e7d8ceaf447c2da2d5f00539f846d2658cedab755aa524a4db83eb3.png" src="../../_images/16c6cf2a0e7d8ceaf447c2da2d5f00539f846d2658cedab755aa524a4db83eb3.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## example where ERA5 and radiosonde are included</span>
-<span class="n">plot_2d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_gray_2d</span><span class="p">,</span><span class="n">df_col_2d_scm</span><span class="p">,</span><span class="n">df_col_2d_les</span><span class="p">]),</span><span class="n">var_vec</span> <span class="o">=</span> <span class="n">var_vec_2d</span><span class="p">,</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">18</span><span class="p">],</span><span class="n">z_max</span><span class="o">=</span><span class="mi">6000</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="n">var_vec_2d_units</span><span class="p">)</span><span class="c1">## example where ERA5 and radiosonde are included</span>
+<span class="n">plot_2d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_gray_2d</span><span class="p">,</span><span class="n">df_col_2d_scm</span><span class="p">,</span><span class="n">df_col_2d_les</span><span class="p">]),</span><span class="n">var_vec</span> <span class="o">=</span> <span class="n">var_vec_2d</span><span class="p">,</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">18</span><span class="p">],</span><span class="n">z_max</span><span class="o">=</span><span class="mi">6000</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="n">var_vec_2d_units</span><span class="p">)</span><span class="c1">## example where ERA5 and radiosonde are included</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/2d6f6efd28152f9b60d3a91391fb2c2e86e952bb7562db9d4903c7052ef7395c.png" src="../../_images/2d6f6efd28152f9b60d3a91391fb2c2e86e952bb7562db9d4903c7052ef7395c.png" />
+<img alt="../../_images/fdb90d9294a92376540d6682e83960d7196b3c9eb11af586217ebb0ca74e3061.png" src="../../_images/fdb90d9294a92376540d6682e83960d7196b3c9eb11af586217ebb0ca74e3061.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x600 with 0 Axes&gt;
 </pre></div>
 </div>
