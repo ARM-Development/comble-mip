@@ -19,15 +19,15 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
@@ -38,9 +38,9 @@
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
-  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=bd9e20870c6007c4c509"></script>
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
@@ -77,7 +77,7 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
 
@@ -120,12 +120,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <header>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <div class="bd-header navbar navbar-expand-lg bd-navbar">
+    </div>
   
+  </header>
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -416,7 +424,7 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="aerosol-ice-nucleating-particle-closure">
 <h1>Aerosol-Ice Nucleating Particle Closure<a class="headerlink" href="#aerosol-ice-nucleating-particle-closure" title="Permalink to this heading">#</a></h1>
@@ -427,8 +435,8 @@ document.write(`
 <p>Clouds observed during the Cold-Air Outbreaks in the Marine Boundary Layer Experiment (COMBLE) are typically mixed-phase clouds where supercooled liquid droplets and ice crystals coexist. Ice-nucleating particles (INPs) from the ambient aerosol particle size distribution (PSD) can initiate ice crystal formation. The ability to predict INPs from ambient aerosol can be evaluated by conducting a so-called closure study as outlined in <a href="https://journals.ametsoc.org/view/journals/bams/102/10/BAMS-D-20-0151.1.xml"> Knopf et al. (2021)</a>. Different immersion freezing (IMF) parameterizations can be applied to derive the number concentration of predicted INPs for the COMBLE and Zeppelin observatory locations. Zeppelin is upwind and COMBLE downwind of the cold-air outbreak event.</p>
 <p>The quickcalc module, based on the simplistic 1D aerosol-cloud model (Knopf et al., 2023), allows inputting the PSD information measured at COMBLE and Zeppelin locations to derive the number concentration of INPs for different immersion freezing parameterizations. These predicted INP number concentrations are then compared to locally measured INP number concentrations, thereby manifesting a closure exercise.</p>
 <p>For this initial closure exercise, we chose Zeppelin observations at 0 UTC March 13 and COMBLE observations at 18 UTC March 13. The ambient PSD measurements are applied to derive INP number concentrations under the assumption that all aerosol particles are sea spray aerosols (SSA) while halving the number concentration of particles in the accumulation mode and neglecting particles in the Aitken mode. For this closure exercise three different IMF parameterizations were evaluated: that include two parameterizations that are singular or deterministic (no time dependence and ice nucleates on special particles or sites) and one parameterization that is based on classical nucleation theory (CNT) where ice nucleation is treated stochastically, i.e., no special particles and nucleation proceeds randomly, and is time dependent: MC2018 (singular ice nucleation active sites-based parameterization of SSA, <a href="https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2017JD028033"> McCluskey et al., 2018</a>), AL2022 (singular ice nucleation active sites-based parameterization of SSA, <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9629709/"> Alpert et al., 2022</a>) and the water-activity based immersion freezing model (ABIFM) of SSA (CNT-based parameterization, <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9629709/"> Alpert et al., 2022</a>). Typically, these IMF parameterizations are uncertain by ±1-3 orders of magnitude. The results of this closure exercise can be seen <a href="https://drive.google.com/drive/folders/1j7x0LsrWGi4Q0P6wcjGHFhQwT6iqT4Dy?usp=sharing"> here</a>.</p>
-<img alt="https://drive.google.com/uc?id=1Mm29foXFsS5HMrYgTwWpUoMB09z49DfF" src="https://drive.google.com/uc?id=1Mm29foXFsS5HMrYgTwWpUoMB09z49DfF" />
-<img alt="https://drive.google.com/uc?id=1SVtdKrBJA1R1QRoCH3n2Yl4it7xjfITO" src="https://drive.google.com/uc?id=1SVtdKrBJA1R1QRoCH3n2Yl4it7xjfITO" />
+<img alt="https://github.com/yijias33/COMBLEZeppelinfigures/blob/main/COMBLE2.png?raw=true" src="https://github.com/yijias33/COMBLEZeppelinfigures/blob/main/COMBLE2.png?raw=true" />
+<img alt="https://github.com/yijias33/COMBLEZeppelinfigures/blob/main/Zeppelin2.png?raw=true" src="https://github.com/yijias33/COMBLEZeppelinfigures/blob/main/Zeppelin2.png?raw=true" />
 </section>
 <section id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">#</a></h2>
@@ -1183,6 +1191,7 @@ Attributes:
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
@@ -1250,8 +1259,8 @@ By ARM Development Team
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509"></script>
 
   <footer class="bd-footer">
   </footer>
