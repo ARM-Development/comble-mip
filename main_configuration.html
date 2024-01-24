@@ -381,7 +381,7 @@ document.write(`
 <h1>Main Model Configuration<a class="headerlink" href="#main-model-configuration" title="Permalink to this heading">#</a></h1>
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>
-<p>The most up-to-date DEPHY forcing file (V2.3) may be found <a class="reference external" href="https://github.com/ARM-Development/comble-mip/blob/main/notebooks/forcing/COMBLE_INTERCOMPARISON_FORCING_V2.3.nc">here</a>.</p>
+<p>The most up-to-date DEPHY forcing file (V2.4) may be found <a class="reference external" href="https://github.com/ARM-Development/comble-mip/blob/main/notebooks/forcing/COMBLE_INTERCOMPARISON_FORCING_V2.4.nc">here</a>.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -418,7 +418,7 @@ document.write(`
 <tr class="row-odd"><td><p>Surface forcing</p></td>
 <td><p>Specified time-varying skin temperature*<br>- Assume the surface is always water<br>- Variable name to use: <em>ts</em><br>Compute surface fluxes interactively using fixed roughness lengths for the entirety of the simulation (results are relatively insensitive to reducing roughness lengths over ice)<br>- Momentum, z0m = 9.0e-4 m<br>- Temperature and moisture, z0t = z0q = 5.5e-6 m<br>- A brief highlight on sensitivity to roughness lengths may be found on <a class="reference external" href="https://arm-development.github.io/comble-mip/notebooks/plotting/example_plotting_z0_tests.html">this page</a>.</p></td>
 </tr>
-<tr class="row-even"><td><p>Large-scale forcing</p></td>
+<tr class="row-even"><td><p>Large-scale forcing**</p></td>
 <td><p>Time- and height-varying pressure gradient forcing via the geostrophic wind<br>- Variable names to use: <em>ug</em> and <em>vg</em><br>- Assume trajectory-averaged latitude for Coriolis: 74.5 N</p></td>
 </tr>
 <tr class="row-odd"><td><p>Nudging</p></td>
@@ -431,14 +431,15 @@ document.write(`
 <td><p>Only interactive longwave<br>- Ozone sounding specified in input file<br>- CO2 = 420 ppm<br>- No solar radiation (results are relatively insensitive)</p></td>
 </tr>
 <tr class="row-even"><td><p>Aerosol &amp; microphysics</p></td>
-<td><p><strong>Fixed droplet</strong><br>- Nd = 20/cm3<br><strong>Diagnostic ice formation</strong><br>- Ni = 25/L (minimum total) where qc+qr&gt;1e-6 kg/kg and T&lt;268.15 K<br>- Only other ice crystal formation mechanism active is homogeneous drop freezing<br><strong>Prognostic aerosol</strong>**<br>- Initialize with three lognormal modes (see <a class="reference external" href="https://arm-development.github.io/comble-mip/notebooks/setup/aerosol-specification.html#overview">aerosol specification page overview</a>), assuming vertically uniform number concentration in each mode (see table for modal parameters and kappa values); if participant is limited to one aerosol mode, please initialize with the accumulation mode only (Mode 2)<br>- Apply sea spray emissions (see <a class="reference external" href="https://arm-development.github.io/comble-mip/notebooks/setup/aerosol-surface.html#jaegle-et-al-2011-surface-particle-flux-integrated-over-all-sizes">specifying surface aerosol emissions</a>) to accumulation and sea spray modes (Modes 2 and 3) using recommended split (98.5% to Mode 2 and 1.5% to Mode 3); if participant is limited to one aerosol mode, please place 100% of emission flux into that mode (with Mode 2 characteristics)<br><strong>Prognostic ice</strong><br>- Specified to assume that the only heterogeneous ice nucleation is on sea spray aerosol, and to further assume that the accumulation mode (Mode 2) is half sea spray (at all times) and the sea spray mode is 100% sea spray (Mode 3)<br>- Participants are requested to choose their parameterization of preference; see <a class="reference external" href="https://arm-development.github.io/comble-mip/notebooks/setup/aerosol-inp-closure.html">aerosol-ice nucleating particle closure</a> for an evaluation of several schemes using in situ measurements of aerosol PSDs and INP in cloud-free air at upwind and downwind sites</p></td>
+<td><p><strong>Fixed droplet</strong><br>- Nd = 20/cm3<br><strong>Diagnostic ice formation</strong><br>- Ni = 25/L (minimum total) where qc+qr&gt;1e-6 kg/kg and T&lt;268.15 K<br>- Only other ice crystal formation mechanism active is homogeneous drop freezing<br><strong>Prognostic aerosol</strong>^<br>- Initialize with three lognormal modes (see <a class="reference external" href="https://arm-development.github.io/comble-mip/notebooks/setup/aerosol-specification.html#overview">aerosol specification page overview</a>), assuming vertically uniform number concentration in each mode (see table for modal parameters and kappa values); if participant is limited to one aerosol mode, please initialize with the accumulation mode only (Mode 2)<br>- Apply sea spray emissions (see <a class="reference external" href="https://arm-development.github.io/comble-mip/notebooks/setup/aerosol-surface.html#jaegle-et-al-2011-surface-particle-flux-integrated-over-all-sizes">specifying surface aerosol emissions</a>) to accumulation and sea spray modes (Modes 2 and 3) using recommended split (98.5% to Mode 2 and 1.5% to Mode 3); if participant is limited to one aerosol mode, please place 100% of emission flux into that mode (with Mode 2 characteristics)<br><strong>Prognostic ice</strong><br>- Specified to assume that the only heterogeneous ice nucleation is on sea spray aerosol, and to further assume that the accumulation mode (Mode 2) is half sea spray (at all times) and the sea spray mode is 100% sea spray (Mode 3)<br>- Participants are requested to choose their parameterization of preference; see <a class="reference external" href="https://arm-development.github.io/comble-mip/notebooks/setup/aerosol-inp-closure.html">aerosol-ice nucleating particle closure</a> for an evaluation of several schemes using in situ measurements of aerosol PSDs and INP in cloud-free air at upwind and downwind sites</p></td>
 </tr>
 </tbody>
 </table>
 <section id="notes">
 <h2>Notes<a class="headerlink" href="#notes" title="Permalink to this heading">#</a></h2>
 <p>*From 0-2h we use a constant ice skin temperature (247.0 K), and from 2–20 h we use time-varying SST from ERA5.<br>
-**It is anticipated that prognostic aerosol schemes will account for number losses to collision-coalescence (e.g., rain formation and riming) and potentially others (e.g., dry deposition).</p>
+**Nudging variables extracted from ERA5 along the trajectory are included in the forcing file to: (1) easily enable sensitivity tests and (2) readily plot against them as quasi-observational data.<br>
+^It is anticipated that prognostic aerosol schemes will account for number losses to collision-coalescence (e.g., rain formation and riming) and potentially others (e.g., dry deposition).</p>
 </section>
 </section>
 
