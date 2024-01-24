@@ -418,10 +418,10 @@ document.write(`
 <tr class="row-odd"><td><p>Surface forcing</p></td>
 <td><p>Specified time-varying skin temperature*<br>- Assume the surface is always water<br>- Variable name to use: <em>ts</em><br>Compute surface fluxes interactively using fixed roughness lengths for the entirety of the simulation (results are relatively insensitive to reducing roughness lengths over ice)<br>- Momentum, z0m = 9.0e-4 m<br>- Temperature and moisture, z0t = z0q = 5.5e-6 m<br>- A brief highlight on sensitivity to roughness lengths may be found on <a class="reference external" href="https://arm-development.github.io/comble-mip/notebooks/plotting/example_plotting_z0_tests.html">this page</a>.</p></td>
 </tr>
-<tr class="row-even"><td><p>Large-scale forcing**</p></td>
+<tr class="row-even"><td><p>Large-scale forcing</p></td>
 <td><p>Time- and height-varying pressure gradient forcing via the geostrophic wind<br>- Variable names to use: <em>ug</em> and <em>vg</em><br>- Assume trajectory-averaged latitude for Coriolis: 74.5 N</p></td>
 </tr>
-<tr class="row-odd"><td><p>Nudging</p></td>
+<tr class="row-odd"><td><p>Nudging**</p></td>
 <td><p>None (not required)</p></td>
 </tr>
 <tr class="row-even"><td><p>Subsidence</p></td>
@@ -438,7 +438,7 @@ document.write(`
 <section id="notes">
 <h2>Notes<a class="headerlink" href="#notes" title="Permalink to this heading">#</a></h2>
 <p>*From 0-2h we use a constant ice skin temperature (247.0 K), and from 2–20 h we use time-varying SST from ERA5.<br>
-**Nudging variables extracted from ERA5 along the trajectory are included in the forcing file to: (1) easily enable sensitivity tests and (2) readily plot against them as quasi-observational data.<br>
+**While the official specification <strong>does not</strong> call for any nudging, we include nudging variables extracted from ERA5 along the trajectory in the forcing file to: (1) easily enable sensitivity tests and (2) readily plot against them as quasi-observational data.<br>
 ^It is anticipated that prognostic aerosol schemes will account for number losses to collision-coalescence (e.g., rain formation and riming) and potentially others (e.g., dry deposition).</p>
 </section>
 </section>
