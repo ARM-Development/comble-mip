@@ -27,5 +27,5 @@ While we hope that all participants can apply the below specifications to their 
 ## Notes
 *From 0-2h we use a constant ice skin temperature (247.0 K), and from 2–20 h we use time-varying SST from ERA5.<br>
 **While the official specification **does not** call for any nudging, we include nudging variables extracted from ERA5 along the trajectory in the forcing file to: (1) easily enable sensitivity tests and (2) readily plot against them as quasi-observational data.<br>
-^It is anticipated that prognostic aerosol schemes will account for number losses to collision-coalescence (e.g., rain formation and riming) and potentially others (e.g., dry deposition).
+^It is anticipated that prognostic aerosol schemes will account for number losses to collision-coalescence (e.g., rain formation and riming) and potentially others (e.g., dry deposition).<br>
 ^^Since this is intended to represent heterogeneous ice nucleation in the immersion mode, it is anticipated that the freezing process will operate by moving droplets to an ice class.
