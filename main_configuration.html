@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Main Model Configuration &#8212; COMBLE Model-Observation Intercomparison Project</title>
   
@@ -29,40 +28,44 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'main_configuration';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -161,7 +164,18 @@ const thebe_selector_output = ".output, .cell_output"
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -378,7 +392,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="main-model-configuration">
-<h1>Main Model Configuration<a class="headerlink" href="#main-model-configuration" title="Permalink to this heading">#</a></h1>
+<h1>Main Model Configuration<a class="headerlink" href="#main-model-configuration" title="Link to this heading">#</a></h1>
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>
 <p>The most up-to-date DEPHY forcing file (V2.4) may be found <a class="reference external" href="https://github.com/ARM-Development/comble-mip/blob/main/notebooks/forcing/COMBLE_INTERCOMPARISON_FORCING_V2.4.nc">here</a>.</p>
@@ -431,15 +445,16 @@ document.write(`
 <td><p>Only interactive longwave<br>- Ozone sounding specified in input file<br>- CO2 = 420 ppm<br>- No solar radiation (results are relatively insensitive)</p></td>
 </tr>
 <tr class="row-even"><td><p>Aerosol &amp; microphysics</p></td>
-<td><p><strong>Fixed droplet</strong><br>- Nd = 20/cm3<br><strong>Diagnostic ice formation</strong><br>- Ni = 25/L (minimum total) where qc+qr&gt;1e-6 kg/kg and T&lt;268.15 K<br>- Only other ice crystal formation mechanism active is homogeneous drop freezing<br><strong>Prognostic aerosol</strong>^<br>- Initialize with three lognormal modes (see <a class="reference external" href="https://arm-development.github.io/comble-mip/notebooks/setup/aerosol-specification.html#overview">aerosol specification page overview</a>), assuming vertically uniform number concentration in each mode (see table for modal parameters and kappa values); if participant is limited to one aerosol mode, please initialize with the accumulation mode only (Mode 2)<br>- Apply sea spray emissions (see <a class="reference external" href="https://arm-development.github.io/comble-mip/notebooks/setup/aerosol-surface.html#jaegle-et-al-2011-surface-particle-flux-integrated-over-all-sizes">specifying surface aerosol emissions</a>) to accumulation and sea spray modes (Modes 2 and 3) using recommended split (98.5% to Mode 2 and 1.5% to Mode 3); if participant is limited to one aerosol mode, please place 100% of emission flux into that mode (with Mode 2 characteristics)<br><strong>Prognostic ice</strong><br>- Specified to assume that the only heterogeneous ice nucleation is on sea spray aerosol, and to further assume that the accumulation mode (Mode 2) is half sea spray (at all times) and the sea spray mode is 100% sea spray (Mode 3)<br>- Participants are requested to choose their parameterization of preference; see <a class="reference external" href="https://arm-development.github.io/comble-mip/notebooks/setup/aerosol-inp-closure.html">aerosol-ice nucleating particle closure</a> for an evaluation of several schemes using in situ measurements of aerosol PSDs and INP in cloud-free air at upwind and downwind sites</p></td>
+<td><p><strong>Fixed droplet</strong><br>- Nd = 20/cm3<br><strong>Diagnostic ice formation</strong><br>- Ni = 25/L (minimum total) where qc+qr&gt;1e-6 kg/kg and T&lt;268.15 K<br>- Only other ice crystal formation mechanism active is homogeneous drop freezing<br><strong>Prognostic aerosol</strong>^<br>- Initialize with three lognormal modes (see <a class="reference external" href="https://arm-development.github.io/comble-mip/notebooks/setup/aerosol-specification.html#overview">aerosol specification page overview</a>), assuming vertically uniform number concentration in each mode (see table for modal parameters and kappa values); if participant is limited to one aerosol mode, please initialize with the accumulation mode only (Mode 2)<br>- Apply sea spray emissions (see <a class="reference external" href="https://arm-development.github.io/comble-mip/notebooks/setup/aerosol-surface.html#jaegle-et-al-2011-surface-particle-flux-integrated-over-all-sizes">specifying surface aerosol emissions</a>) to accumulation and sea spray modes (Modes 2 and 3) using recommended split (98.5% to Mode 2 and 1.5% to Mode 3); if participant is limited to one aerosol mode, please place 100% of emission flux into that mode (with Mode 2 characteristics)<br><strong>Prognostic ice</strong>^^<br>- Specified to assume that the only heterogeneous ice nucleation is on sea spray aerosol, and to further assume that the accumulation mode (Mode 2) is half sea spray (at all times) and the sea spray mode is 100% sea spray (Mode 3)<br>- Participants are requested to choose their parameterization of preference; see <a class="reference external" href="https://arm-development.github.io/comble-mip/notebooks/setup/aerosol-inp-closure.html">aerosol-ice nucleating particle closure</a> for an evaluation of several schemes using in situ measurements of aerosol PSDs and INP in cloud-free air at upwind and downwind sites</p></td>
 </tr>
 </tbody>
 </table>
 <section id="notes">
-<h2>Notes<a class="headerlink" href="#notes" title="Permalink to this heading">#</a></h2>
+<h2>Notes<a class="headerlink" href="#notes" title="Link to this heading">#</a></h2>
 <p>*From 0-2h we use a constant ice skin temperature (247.0 K), and from 2–20 h we use time-varying SST from ERA5.<br>
 **While the official specification <strong>does not</strong> call for any nudging, we include nudging variables extracted from ERA5 along the trajectory in the forcing file to: (1) easily enable sensitivity tests and (2) readily plot against them as quasi-observational data.<br>
-^It is anticipated that prognostic aerosol schemes will account for number losses to collision-coalescence (e.g., rain formation and riming) and potentially others (e.g., dry deposition).</p>
+^It is anticipated that prognostic aerosol schemes will account for number losses to collision-coalescence (e.g., rain formation and riming) and potentially others (e.g., dry deposition).
+^^Since this is intended to represent heterogeneous ice nucleation in the immersion mode, it is anticipated that the freezing process will operate by moving droplets to an ice class.</p>
 </section>
 </section>
 

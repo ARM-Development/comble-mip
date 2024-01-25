@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Example: convert ModelE3 SCM output to DEPHY format &#8212; COMBLE Model-Observation Intercomparison Project</title>
   
@@ -29,40 +28,44 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/clipboard.min.js"></script>
-    <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../_static/design-tabs.js"></script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/conversion_output/convert_ModelE3_SCM_output_to_dephy_format';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -161,7 +164,18 @@ const thebe_selector_output = ".output, .cell_output"
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -424,11 +438,11 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="example-convert-modele3-scm-output-to-dephy-format">
-<h1>Example: convert ModelE3 SCM output to DEPHY format<a class="headerlink" href="#example-convert-modele3-scm-output-to-dephy-format" title="Permalink to this heading">#</a></h1>
+<h1>Example: convert ModelE3 SCM output to DEPHY format<a class="headerlink" href="#example-convert-modele3-scm-output-to-dephy-format" title="Link to this heading">#</a></h1>
 <p>Code to read ModelE3  output files and write to DEPHY format (NetCDF)</p>
 <p>Contributed by Ann Fridlind from NASA/GISS</p>
 <section id="import-libraries">
-<h2>Import libraries<a class="headerlink" href="#import-libraries" title="Permalink to this heading">#</a></h2>
+<h2>Import libraries<a class="headerlink" href="#import-libraries" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
@@ -446,7 +460,7 @@ document.write(`
 </div>
 </section>
 <section id="specify-directory-locations">
-<h2>Specify directory locations<a class="headerlink" href="#specify-directory-locations" title="Permalink to this heading">#</a></h2>
+<h2>Specify directory locations<a class="headerlink" href="#specify-directory-locations" title="Link to this heading">#</a></h2>
 <p>If on the ARM JupyterHub, it is recommended to create and specify a local directory that is outside of the COMBLE-MIP repository to upload raw model output files in your model’s format.</p>
 <p>Processed domain-mean outputs are invited for commit to the GitHub repository on a user-specified branch under /comble-mip/output_scm/YOUR_MODEL_NAME/sandbox/YOUR_OUTPUT_FILE_NAME. These can be committed and removed at any time.</p>
 <p>If you are able to make a run without ice, it is requested to append ‘noice’ to YOUR_OUTPUT_FILE_NAME, so that it can readily be automatically compared with the baseline and other liquid-only runs.</p>
@@ -490,9 +504,9 @@ document.write(`
 </div>
 </section>
 <section id="read-modele3-data">
-<h2>Read ModelE3 data<a class="headerlink" href="#read-modele3-data" title="Permalink to this heading">#</a></h2>
+<h2>Read ModelE3 data<a class="headerlink" href="#read-modele3-data" title="Link to this heading">#</a></h2>
 <section id="read-single-file-containing-all-output-data">
-<h3>Read single file containing all output data<a class="headerlink" href="#read-single-file-containing-all-output-data" title="Permalink to this heading">#</a></h3>
+<h3>Read single file containing all output data<a class="headerlink" href="#read-single-file-containing-all-output-data" title="Link to this heading">#</a></h3>
 <p>Note: ERROR 1: PROJ… message can be ignored here.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1069,7 +1083,7 @@ Attributes:
 </div>
 </section>
 <section id="calculate-and-append-additional-variables">
-<h3>Calculate and append additional variables<a class="headerlink" href="#calculate-and-append-additional-variables" title="Permalink to this heading">#</a></h3>
+<h3>Calculate and append additional variables<a class="headerlink" href="#calculate-and-append-additional-variables" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dummy_sca</span> <span class="o">=</span> <span class="n">modele_data</span><span class="p">[</span><span class="s1">&#39;lwp&#39;</span><span class="p">]</span><span class="o">*</span><span class="mf">0.</span>
@@ -1101,9 +1115,9 @@ Attributes:
 </section>
 </section>
 <section id="prepare-output-file-in-dephy-format">
-<h2>Prepare output file in DEPHY format<a class="headerlink" href="#prepare-output-file-in-dephy-format" title="Permalink to this heading">#</a></h2>
+<h2>Prepare output file in DEPHY format<a class="headerlink" href="#prepare-output-file-in-dephy-format" title="Link to this heading">#</a></h2>
 <section id="read-requested-variables-list">
-<h3>Read requested variables list<a class="headerlink" href="#read-requested-variables-list" title="Permalink to this heading">#</a></h3>
+<h3>Read requested variables list<a class="headerlink" href="#read-requested-variables-list" title="Link to this heading">#</a></h3>
 <p>Variable description, naming, units, and dimensions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1924,7 +1938,7 @@ Attributes:
 </div>
 </section>
 <section id="match-modele3-variables-to-requested-outputs">
-<h3>Match ModelE3 variables to requested outputs<a class="headerlink" href="#match-modele3-variables-to-requested-outputs" title="Permalink to this heading">#</a></h3>
+<h3>Match ModelE3 variables to requested outputs<a class="headerlink" href="#match-modele3-variables-to-requested-outputs" title="Link to this heading">#</a></h3>
 <p>Expand the table to include columns that indicate ModelE3 model variable names and any conversion factor.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3048,7 +3062,7 @@ Attributes:
 </section>
 </section>
 <section id="create-dephy-output-file">
-<h2>Create DEPHY output file<a class="headerlink" href="#create-dephy-output-file" title="Permalink to this heading">#</a></h2>
+<h2>Create DEPHY output file<a class="headerlink" href="#create-dephy-output-file" title="Link to this heading">#</a></h2>
 <p>Write a single file to contain all domain-mean scalar and profile outputs. This code expects the write directory to be pre-existing (already created by the user). In the case that this output will be committed to the comble-mip GitHub repository, see above “Specify directory locations”.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3146,7 +3160,7 @@ root group (NETCDF3_CLASSIC data model, file format NETCDF3):
 </div>
 </div>
 <section id="check-output-file">
-<h3>Check output file<a class="headerlink" href="#check-output-file" title="Permalink to this heading">#</a></h3>
+<h3>Check output file<a class="headerlink" href="#check-output-file" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dephy_check</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">dephy_filename</span><span class="p">)</span>

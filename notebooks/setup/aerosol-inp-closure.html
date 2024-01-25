@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Aerosol-Ice Nucleating Particle Closure &#8212; COMBLE Model-Observation Intercomparison Project</title>
   
@@ -29,40 +28,44 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/clipboard.min.js"></script>
-    <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../_static/design-tabs.js"></script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/setup/aerosol-inp-closure';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -161,7 +164,18 @@ const thebe_selector_output = ".output, .cell_output"
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -421,11 +435,11 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="aerosol-ice-nucleating-particle-closure">
-<h1>Aerosol-Ice Nucleating Particle Closure<a class="headerlink" href="#aerosol-ice-nucleating-particle-closure" title="Permalink to this heading">#</a></h1>
+<h1>Aerosol-Ice Nucleating Particle Closure<a class="headerlink" href="#aerosol-ice-nucleating-particle-closure" title="Link to this heading">#</a></h1>
 <p>Contributed by Yijia Sun and Daniel A. Knopf</p>
 <hr class="docutils" />
 <section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
 <p>Clouds observed during the Cold-Air Outbreaks in the Marine Boundary Layer Experiment (COMBLE) are typically mixed-phase clouds where supercooled liquid droplets and ice crystals coexist. Ice-nucleating particles (INPs) from the ambient aerosol particle size distribution (PSD) can initiate ice crystal formation. The ability to predict INPs from ambient aerosol can be evaluated by conducting a so-called closure study as outlined in <a href="https://journals.ametsoc.org/view/journals/bams/102/10/BAMS-D-20-0151.1.xml"> Knopf et al. (2021)</a>. Different immersion freezing (IMF) parameterizations can be applied to derive the number concentration of predicted INPs for the COMBLE and Zeppelin observatory locations. Zeppelin is upwind and COMBLE downwind of the cold-air outbreak event.</p>
 <p>The quickcalc module, based on the simplistic 1D aerosol-cloud model (Knopf et al., 2023), allows inputting the PSD information measured at COMBLE and Zeppelin locations to derive the number concentration of INPs for different immersion freezing parameterizations. These predicted INP number concentrations are then compared to locally measured INP number concentrations, thereby manifesting a closure exercise.</p>
 <p>For this initial closure exercise, we chose Zeppelin observations at 0 UTC March 13 and COMBLE observations at 18 UTC March 13. The ambient PSD measurements are applied to derive INP number concentrations under the assumption that all aerosol particles are sea spray aerosols (SSA) while halving the number concentration of particles in the accumulation mode and neglecting particles in the Aitken mode. For this closure exercise three different IMF parameterizations were evaluated: that include two parameterizations that are singular or deterministic (no time dependence and ice nucleates on special particles or sites) and one parameterization that is based on classical nucleation theory (CNT) where ice nucleation is treated stochastically, i.e., no special particles and nucleation proceeds randomly, and is time dependent: MC2018 (singular ice nucleation active sites-based parameterization of SSA, <a href="https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2017JD028033"> McCluskey et al., 2018</a>), AL2022 (singular ice nucleation active sites-based parameterization of SSA, <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9629709/"> Alpert et al., 2022</a>) and the water-activity based immersion freezing model (ABIFM) of SSA (CNT-based parameterization, <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9629709/"> Alpert et al., 2022</a>). Typically, these IMF parameterizations are uncertain by ±1-3 orders of magnitude. The results of this closure exercise can be seen <a href="https://drive.google.com/drive/folders/1j7x0LsrWGi4Q0P6wcjGHFhQwT6iqT4Dy?usp=sharing"> here</a>.</p>
@@ -433,13 +447,13 @@ document.write(`
 <img alt="https://github.com/yijias33/COMBLEZeppelinfigures/blob/main/Zeppelin2.png?raw=true" src="https://github.com/yijias33/COMBLEZeppelinfigures/blob/main/Zeppelin2.png?raw=true" />
 </section>
 <section id="prerequisites">
-<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">#</a></h2>
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading">#</a></h2>
 <p><strong>System requirements</strong>:
 Implement numpy, xarray, pandas, pint and flake8 in the python environment and run this jupyter notebook in <a href="https://drive.google.com/drive/folders/1BtyeYiqLI6PwYwGPEGPPzlN_kvh2B8jO?usp=sharing"> this folder</a>.</p>
 </section>
 <hr class="docutils" />
 <section id="imports">
-<h2>Imports<a class="headerlink" href="#imports" title="Permalink to this heading">#</a></h2>
+<h2>Imports<a class="headerlink" href="#imports" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">quickcalc</span> <span class="kn">import</span> <span class="n">quickcalc</span>
@@ -479,7 +493,7 @@ Implement numpy, xarray, pandas, pint and flake8 in the python environment and r
 </div>
 </section>
 <section id="calculate-the-predicted-inps">
-<h2>Calculate the predicted INPs<a class="headerlink" href="#calculate-the-predicted-inps" title="Permalink to this heading">#</a></h2>
+<h2>Calculate the predicted INPs<a class="headerlink" href="#calculate-the-predicted-inps" title="Link to this heading">#</a></h2>
 <p>For the time-dependent IMF parameterization (ABIFM) an ice nucleation activation time, based on the INP measurements has to be applied. The chosen activation time is 1 min following the recommendation given in <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9629709/"> Alpert et al., (2022)</a>. The implemented equations for selected SSA IMF parameterizations can be found in the file <a href="https://drive.google.com/file/d/1c0-iEJtbTOWg8Vl7_G_Iu51-8suH6vbN/view?usp=sharing"> AER.py</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -511,7 +525,7 @@ Implement numpy, xarray, pandas, pint and flake8 in the python environment and r
 </div>
 </section>
 <section id="variables-included-in-the-netcdf-output-file">
-<h2>Variables Included in the netcdf Output File<a class="headerlink" href="#variables-included-in-the-netcdf-output-file" title="Permalink to this heading">#</a></h2>
+<h2>Variables Included in the netcdf Output File<a class="headerlink" href="#variables-included-in-the-netcdf-output-file" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">COMBLEAL2022</span>
@@ -1065,9 +1079,9 @@ Attributes:
 </div>
 </section>
 <section id="export-the-datasets-of-predicted-inps">
-<h2>Export the Datasets of Predicted INPs<a class="headerlink" href="#export-the-datasets-of-predicted-inps" title="Permalink to this heading">#</a></h2>
+<h2>Export the Datasets of Predicted INPs<a class="headerlink" href="#export-the-datasets-of-predicted-inps" title="Link to this heading">#</a></h2>
 <section id="derived-closure-datasets-as-netcdf-files">
-<h3>Derived Closure Datasets as netcdf Files<a class="headerlink" href="#derived-closure-datasets-as-netcdf-files" title="Permalink to this heading">#</a></h3>
+<h3>Derived Closure Datasets as netcdf Files<a class="headerlink" href="#derived-closure-datasets-as-netcdf-files" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">COMBLEAL2022</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="s1">&#39;SSAAL2022COMBLE18UTCMarch13.nc&#39;</span><span class="p">)</span>
@@ -1082,7 +1096,7 @@ Attributes:
 </div>
 </section>
 <section id="derived-closure-datasets-as-csv-files">
-<h3>Derived Closure Datasets as csv Files<a class="headerlink" href="#derived-closure-datasets-as-csv-files" title="Permalink to this heading">#</a></h3>
+<h3>Derived Closure Datasets as csv Files<a class="headerlink" href="#derived-closure-datasets-as-csv-files" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test</span><span class="o">=</span><span class="n">COMBLEAL2022</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
@@ -1104,18 +1118,18 @@ Attributes:
 </section>
 </section>
 <section id="comparison-of-the-predicted-inps-with-observed-inps">
-<h2>Comparison of the Predicted INPs with Observed INPs<a class="headerlink" href="#comparison-of-the-predicted-inps-with-observed-inps" title="Permalink to this heading">#</a></h2>
+<h2>Comparison of the Predicted INPs with Observed INPs<a class="headerlink" href="#comparison-of-the-predicted-inps-with-observed-inps" title="Link to this heading">#</a></h2>
 <p>The observed INP number concentrations are given in a Google sheet <a href="https://docs.google.com/spreadsheets/d/1YgRghg8y4ZJVtSbtrRSNKJX_17Ppz1Xt/edit?usp=sharing&ouid=109128165079751861000&rtpof=true&sd=true"> (here)</a>. Provided <a href="https://drive.google.com/drive/folders/1dKneXq6Aa_-FSQtF-k9qJavn3wMzaSK5?usp=sharing"> matlab codes</a> named “COMBLE” and “ZEPPELIN” allow for quickly plotting the results.</p>
 </section>
 <hr class="docutils" />
 <section id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h2>
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
 <p>The aerosol-INP closure exercise at Zeppelin and COMBLE observatories is based on the assumption that all aerosol particles constitute sea spray aerosol (SSA) particles and their particle number concentration in the accumulation mode is halved and particles in the Aitken mode are neglected. In general, within the typically given uncertainties of applied IMF parameterizations, all approaches can represent observed INP number concentrations. However, there are differently achieved dgerees of closure among the INP representation:</p>
 <p>At Zeppelin observatory, which is located in a mountainous region and is upwind compared to COMBLE, i.e., the boundary layer had less interaction with open ocean surfaces that potentially serve as a source of SSA and INPs, the singular MC2018 parameterizations represents observed INPs best.</p>
 <p>At COMBLE, after the air masses travelled long distance over open ocean, the observed INP number concentrations are best represented by the SSA IMF parameterization ABIFM.</p>
 </section>
 <section id="acknowledgment-and-references">
-<h2>Acknowledgment and References<a class="headerlink" href="#acknowledgment-and-references" title="Permalink to this heading">#</a></h2>
+<h2>Acknowledgment and References<a class="headerlink" href="#acknowledgment-and-references" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>We thank Israel Silber who wrote the original version of the quickcalc module.</p></li>
 <li><p>A manuscript is currently in preparation (Sun et al., in prep). This manuscript further investigates the impacts of different types of aerosol properties, IMF parameterizations, and various model sensitivity parameters on the mixed-phase cloud processes.</p></li>

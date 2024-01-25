@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Example: convert DEPHY forcing to WRF-LES forcing &#8212; COMBLE Model-Observation Intercomparison Project</title>
   
@@ -29,40 +28,44 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/clipboard.min.js"></script>
-    <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../_static/design-tabs.js"></script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/conversion/convert_comble_dephy_forcing_to_WRF_LES_forcing';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -161,7 +164,18 @@ const thebe_selector_output = ".output, .cell_output"
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -456,11 +470,11 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="example-convert-dephy-forcing-to-wrf-les-forcing">
-<h1>Example: convert DEPHY forcing to WRF-LES forcing<a class="headerlink" href="#example-convert-dephy-forcing-to-wrf-les-forcing" title="Permalink to this heading">#</a></h1>
+<h1>Example: convert DEPHY forcing to WRF-LES forcing<a class="headerlink" href="#example-convert-dephy-forcing-to-wrf-les-forcing" title="Link to this heading">#</a></h1>
 <p>This code reads the COMBLE-MIP LES/SCM forcing file that is supplied in the DEPHY format and writes input files that are formatted for WRF-LES (ASCII and NetCDF)</p>
 <p>Contributed by Tim Juliano from NCAR, last updated on 12/1/23</p>
 <section id="import-libraries">
-<h2>Import libraries<a class="headerlink" href="#import-libraries" title="Permalink to this heading">#</a></h2>
+<h2>Import libraries<a class="headerlink" href="#import-libraries" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -475,7 +489,7 @@ document.write(`
 </div>
 </section>
 <section id="specify-local-write-directory">
-<h2>Specify local write directory<a class="headerlink" href="#specify-local-write-directory" title="Permalink to this heading">#</a></h2>
+<h2>Specify local write directory<a class="headerlink" href="#specify-local-write-directory" title="Link to this heading">#</a></h2>
 <p>If on the ARM JupyterHub, it is recommended to create and specify a local directory that is outside of the COMBLE-MIP repository to write input files in your model’s format</p>
 <p>If on the ARM JupyterHub, these files can be conveniently downloaded to your local machine and will remain when you log out</p>
 <div class="cell docutils container">
@@ -487,7 +501,7 @@ document.write(`
 </div>
 </section>
 <section id="read-the-comble-mip-forcing-file">
-<h2>Read the COMBLE-MIP forcing file<a class="headerlink" href="#read-the-comble-mip-forcing-file" title="Permalink to this heading">#</a></h2>
+<h2>Read the COMBLE-MIP forcing file<a class="headerlink" href="#read-the-comble-mip-forcing-file" title="Link to this heading">#</a></h2>
 <p>NOTE: ERROR 1 message can be ignored</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -982,10 +996,10 @@ Attributes: (12/20)
 </div>
 </section>
 <section id="create-input-files-for-wrf-les-in-ascii-or-netcdf-format">
-<h2>Create input files for WRF-LES in ASCII or NetCDF format<a class="headerlink" href="#create-input-files-for-wrf-les-in-ascii-or-netcdf-format" title="Permalink to this heading">#</a></h2>
+<h2>Create input files for WRF-LES in ASCII or NetCDF format<a class="headerlink" href="#create-input-files-for-wrf-les-in-ascii-or-netcdf-format" title="Link to this heading">#</a></h2>
 <p>Write initial sounding, ozone profile, forcing and vertical grid files</p>
 <section id="write-input-sounding-file-for-wrf-les-in-ascii-format">
-<h3>Write input sounding file for WRF LES in ASCII format<a class="headerlink" href="#write-input-sounding-file-for-wrf-les-in-ascii-format" title="Permalink to this heading">#</a></h3>
+<h3>Write input sounding file for WRF LES in ASCII format<a class="headerlink" href="#write-input-sounding-file-for-wrf-les-in-ascii-format" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># use a list to accumulate output ASCII lines</span>
@@ -1024,9 +1038,9 @@ Attributes: (12/20)
 </div>
 </section>
 <section id="write-ozone-file-for-rrtmg">
-<h3>Write ozone file for RRTMG<a class="headerlink" href="#write-ozone-file-for-rrtmg" title="Permalink to this heading">#</a></h3>
+<h3>Write ozone file for RRTMG<a class="headerlink" href="#write-ozone-file-for-rrtmg" title="Link to this heading">#</a></h3>
 <section id="pressure-file">
-<h4>Pressure file<a class="headerlink" href="#pressure-file" title="Permalink to this heading">#</a></h4>
+<h4>Pressure file<a class="headerlink" href="#pressure-file" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># use a list to accumulate output ASCII lines</span>
@@ -1052,7 +1066,7 @@ Attributes: (12/20)
 </div>
 </section>
 <section id="ozone-file">
-<h4>Ozone file<a class="headerlink" href="#ozone-file" title="Permalink to this heading">#</a></h4>
+<h4>Ozone file<a class="headerlink" href="#ozone-file" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># use a list to accumulate output ASCII lines</span>
@@ -1084,9 +1098,9 @@ Attributes: (12/20)
 </section>
 </section>
 <section id="write-forcing-file">
-<h3>Write forcing file<a class="headerlink" href="#write-forcing-file" title="Permalink to this heading">#</a></h3>
+<h3>Write forcing file<a class="headerlink" href="#write-forcing-file" title="Link to this heading">#</a></h3>
 <section id="read-forcing-winds-from-forcing-file">
-<h4>Read forcing winds from forcing file<a class="headerlink" href="#read-forcing-winds-from-forcing-file" title="Permalink to this heading">#</a></h4>
+<h4>Read forcing winds from forcing file<a class="headerlink" href="#read-forcing-winds-from-forcing-file" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u_force</span> <span class="o">=</span> <span class="n">dephy</span><span class="p">[</span><span class="s1">&#39;ug&#39;</span><span class="p">][:,:]</span><span class="o">.</span><span class="n">values</span> <span class="c1"># m/s</span>
@@ -1097,7 +1111,7 @@ Attributes: (12/20)
 </div>
 </section>
 <section id="repeat-z-ls-1d-array-to-be-2d-array-for-writing">
-<h4>Repeat z_ls 1D array to be 2D array for writing<a class="headerlink" href="#repeat-z-ls-1d-array-to-be-2d-array-for-writing" title="Permalink to this heading">#</a></h4>
+<h4>Repeat z_ls 1D array to be 2D array for writing<a class="headerlink" href="#repeat-z-ls-1d-array-to-be-2d-array-for-writing" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nhrs</span> <span class="o">=</span> <span class="n">dephy</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span>
@@ -1108,7 +1122,7 @@ Attributes: (12/20)
 </div>
 </section>
 <section id="compute-wind-forcing-tendency">
-<h4>Compute wind forcing tendency<a class="headerlink" href="#compute-wind-forcing-tendency" title="Permalink to this heading">#</a></h4>
+<h4>Compute wind forcing tendency<a class="headerlink" href="#compute-wind-forcing-tendency" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">delt</span> <span class="o">=</span> <span class="p">((</span><span class="n">dephy</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">dephy</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">seconds</span><span class="p">)</span><span class="o">.</span><span class="n">values</span> <span class="c1"># time between profiles (s)</span>
@@ -1129,7 +1143,7 @@ Attributes: (12/20)
 </div>
 </section>
 <section id="forcing-netcdf-name-and-delete-file-if-already-exists">
-<h4>Forcing NetCDF name and delete file if already exists<a class="headerlink" href="#forcing-netcdf-name-and-delete-file-if-already-exists" title="Permalink to this heading">#</a></h4>
+<h4>Forcing NetCDF name and delete file if already exists<a class="headerlink" href="#forcing-netcdf-name-and-delete-file-if-already-exists" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">savename</span> <span class="o">=</span> <span class="s1">&#39;input_ls_forcing.nc&#39;</span>
@@ -1148,7 +1162,7 @@ Attributes: (12/20)
 </div>
 </section>
 <section id="create-new-netcdf-file">
-<h4>Create new netcdf file<a class="headerlink" href="#create-new-netcdf-file" title="Permalink to this heading">#</a></h4>
+<h4>Create new netcdf file<a class="headerlink" href="#create-new-netcdf-file" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>  <span class="c1"># just to be safe, make sure dataset is not already open.</span>
@@ -1161,7 +1175,7 @@ Attributes: (12/20)
 </div>
 </section>
 <section id="create-dimensions">
-<h4>Create dimensions<a class="headerlink" href="#create-dimensions" title="Permalink to this heading">#</a></h4>
+<h4>Create dimensions<a class="headerlink" href="#create-dimensions" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">levs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">u_force</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
@@ -1174,7 +1188,7 @@ Attributes: (12/20)
 </div>
 </section>
 <section id="create-global-attributes">
-<h4>Create global attributes<a class="headerlink" href="#create-global-attributes" title="Permalink to this heading">#</a></h4>
+<h4>Create global attributes<a class="headerlink" href="#create-global-attributes" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ncfile</span><span class="o">.</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;AUXILIARY FORCING FOR CRM&#39;</span>
@@ -1184,9 +1198,9 @@ Attributes: (12/20)
 </div>
 </section>
 <section id="create-variables">
-<h4>Create variables<a class="headerlink" href="#create-variables" title="Permalink to this heading">#</a></h4>
+<h4>Create variables<a class="headerlink" href="#create-variables" title="Link to this heading">#</a></h4>
 <section id="dimensions">
-<h5>Dimensions<a class="headerlink" href="#dimensions" title="Permalink to this heading">#</a></h5>
+<h5>Dimensions<a class="headerlink" href="#dimensions" title="Link to this heading">#</a></h5>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">time</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;Times&#39;</span><span class="p">,</span> <span class="s1">&#39;S1&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">,</span><span class="s1">&#39;DateStrLen&#39;</span><span class="p">,))</span>
@@ -1198,7 +1212,7 @@ Attributes: (12/20)
 </section>
 </section>
 <section id="add-times">
-<h3>Add times<a class="headerlink" href="#add-times" title="Permalink to this heading">#</a></h3>
+<h3>Add times<a class="headerlink" href="#add-times" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dephy</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)):</span>
@@ -1215,7 +1229,7 @@ Attributes: (12/20)
 </div>
 </div>
 <section id="time-varying-wind-forcing-profiles">
-<h4>Time-varying wind forcing profiles<a class="headerlink" href="#time-varying-wind-forcing-profiles" title="Permalink to this heading">#</a></h4>
+<h4>Time-varying wind forcing profiles<a class="headerlink" href="#time-varying-wind-forcing-profiles" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u_ls</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;U_LS&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">,</span><span class="s1">&#39;force_layers&#39;</span><span class="p">,),</span><span class="n">fill_value</span><span class="o">=-</span><span class="mf">999.</span><span class="p">)</span>
@@ -1266,7 +1280,7 @@ Attributes: (12/20)
 </section>
 </section>
 <section id="write-data">
-<h3>Write data<a class="headerlink" href="#write-data" title="Permalink to this heading">#</a></h3>
+<h3>Write data<a class="headerlink" href="#write-data" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u_ls</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">u_force</span>
@@ -1281,7 +1295,7 @@ Attributes: (12/20)
 </div>
 </section>
 <section id="close-the-file">
-<h3>Close the file<a class="headerlink" href="#close-the-file" title="Permalink to this heading">#</a></h3>
+<h3>Close the file<a class="headerlink" href="#close-the-file" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># first print the Dataset object to see what we&#39;ve got</span>
@@ -1305,9 +1319,9 @@ Dataset is closed!
 </div>
 </section>
 <section id="write-surface-forcing-file-for-wrf-les-in-netcdf-format">
-<h3>Write surface forcing file for WRF LES in netCDF format<a class="headerlink" href="#write-surface-forcing-file-for-wrf-les-in-netcdf-format" title="Permalink to this heading">#</a></h3>
+<h3>Write surface forcing file for WRF LES in netCDF format<a class="headerlink" href="#write-surface-forcing-file-for-wrf-les-in-netcdf-format" title="Link to this heading">#</a></h3>
 <section id="read-skin-temperature-from-forcing-file">
-<h4>Read skin temperature from forcing file<a class="headerlink" href="#read-skin-temperature-from-forcing-file" title="Permalink to this heading">#</a></h4>
+<h4>Read skin temperature from forcing file<a class="headerlink" href="#read-skin-temperature-from-forcing-file" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ts_arr</span> <span class="o">=</span> <span class="n">dephy</span><span class="p">[</span><span class="s1">&#39;ts&#39;</span><span class="p">][:]</span><span class="o">.</span><span class="n">values</span> <span class="c1"># K</span>
@@ -1317,7 +1331,7 @@ Dataset is closed!
 </div>
 </section>
 <section id="compute-skin-temperature-tendency">
-<h4>Compute skin temperature tendency<a class="headerlink" href="#compute-skin-temperature-tendency" title="Permalink to this heading">#</a></h4>
+<h4>Compute skin temperature tendency<a class="headerlink" href="#compute-skin-temperature-tendency" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ts_tend</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nhrs</span><span class="p">)</span>
@@ -1330,7 +1344,7 @@ Dataset is closed!
 </div>
 </section>
 <section id="id1">
-<h4>Forcing NetCDF name and delete file if already exists<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h4>
+<h4>Forcing NetCDF name and delete file if already exists<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">savename</span> <span class="o">=</span> <span class="s1">&#39;input_sfc_forcing.nc&#39;</span>
@@ -1349,7 +1363,7 @@ Dataset is closed!
 </div>
 </section>
 <section id="id2">
-<h4>Create new netcdf file<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h4>
+<h4>Create new netcdf file<a class="headerlink" href="#id2" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>  <span class="c1"># just to be safe, make sure dataset is not already open.</span>
@@ -1362,7 +1376,7 @@ Dataset is closed!
 </div>
 </section>
 <section id="id3">
-<h4>Create dimensions<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h4>
+<h4>Create dimensions<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">time_dim</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>    <span class="c1"># unlimited axis (can be appended to)</span>
@@ -1373,7 +1387,7 @@ Dataset is closed!
 </div>
 </section>
 <section id="id4">
-<h4>Create global attributes<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h4>
+<h4>Create global attributes<a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ncfile</span><span class="o">.</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;AUXILIARY FORCING FOR CRM&#39;</span>
@@ -1383,10 +1397,10 @@ Dataset is closed!
 </div>
 </section>
 <section id="id5">
-<h4>Create variables<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h4>
+<h4>Create variables<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
 </section>
 <section id="id6">
-<h4>Dimensions<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h4>
+<h4>Dimensions<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">time</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;Times&#39;</span><span class="p">,</span> <span class="s1">&#39;S1&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">,</span><span class="s1">&#39;DateStrLen&#39;</span><span class="p">,))</span>
@@ -1396,7 +1410,7 @@ Dataset is closed!
 </div>
 </section>
 <section id="id7">
-<h4>Add times<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h4>
+<h4>Add times<a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dephy</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)):</span>
@@ -1414,7 +1428,7 @@ Dataset is closed!
 </div>
 </section>
 <section id="time-varying-skin-temperature">
-<h4>Time-varying skin temperature<a class="headerlink" href="#time-varying-skin-temperature" title="Permalink to this heading">#</a></h4>
+<h4>Time-varying skin temperature<a class="headerlink" href="#time-varying-skin-temperature" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pre_tsk</span> <span class="o">=</span> <span class="n">ncfile</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;PRE_TSK&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">,),</span><span class="n">fill_value</span><span class="o">=-</span><span class="mf">999.</span><span class="p">)</span>
@@ -1436,7 +1450,7 @@ Dataset is closed!
 </div>
 </section>
 <section id="id8">
-<h4>Write data<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h4>
+<h4>Write data<a class="headerlink" href="#id8" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pre_tsk</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">ts_arr</span>
@@ -1447,7 +1461,7 @@ Dataset is closed!
 </div>
 </section>
 <section id="id9">
-<h4>Close the file<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h4>
+<h4>Close the file<a class="headerlink" href="#id9" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># first print the Dataset object to see what we&#39;ve got</span>
@@ -1472,7 +1486,7 @@ Dataset is closed!
 </section>
 </section>
 <section id="write-vertical-grid-file-for-wrf-les-in-ascii-format">
-<h3>Write vertical grid file for WRF LES in ASCII format<a class="headerlink" href="#write-vertical-grid-file-for-wrf-les-in-ascii-format" title="Permalink to this heading">#</a></h3>
+<h3>Write vertical grid file for WRF LES in ASCII format<a class="headerlink" href="#write-vertical-grid-file-for-wrf-les-in-ascii-format" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create vertical grid file contents as list</span>
