@@ -12,17 +12,21 @@ Our requested prefixes for the domain size and grid cell spacing are as follows 
 * Small-domain (Lx=25.6 km, dx=100 m): ***Lx25_dx100***
 * Large-domain (Lx=128 km, dx=100 m): ***Lx125_dx100***
 
-If you have additional LES submissions that have different domain sizes and/or grid cell spacings, then we ask that you adjust your prefix information accordingly. 
+If you have additional LES submissions that have different domain sizes and/or grid cell spacings, then we ask that you adjust your prefix information accordingly.
+
+**Deviations from requested specification**: If you are unable to configure your model according to the requested specification for a particular simulation, then please append to the end of your file by including ***_alt***. We ask that you also include an ***alt*** descriptor as a global attribute to the file to explain how exactly your simulation deviates. Be as descriptive as possible! We will do our best to include deviating simulations with the official MIP results.
+
+**Sensitivity simulations**: We encourage participants to conduct their own sensitivity simulations. If you would like to contribute a sensitivity run, then please append to the end of your file by including ***_sen_x*** where *x* is a number (begin numbering at 1). We ask that you also include a ***sen*** descriptor as a global attribute to the file to explain what sensitivity you've conducted. Again, please be as descriptive as possible!
 
 ## Part 1
 | Product                                                                                                                                                      | Simulation Name                                                                        | Request Date                                                                                    |
 |--------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
-| SCM/Small-domain LES, liquid-only<br>SCM/Small-domain LES with ice<br>SCM/Small-domain LES with ice, default roughness lengths*<br>Large-domain LES with ice | *{prefix}*_FixN_noice<br>*{prefix}*_FixN<br>*{prefix}*_FixN_def_z0<br>*{prefix}*_FixN | Mar. 1, 2024<br>Mar. 1, 2024<br>Mar. 1, 2024<br><span style="color:red">**TBD**</span>** |
+| SCM/Small-domain LES, liquid-only<br>SCM/Small-domain LES with ice<br>SCM/Small-domain LES with ice, default roughness lengths*<br>Large-domain LES with ice | *{prefix}*_FixN_noice<br>*{prefix}*_FixN<br>*{prefix}*_FixN_def_z0<br>*{prefix}*_FixN | Apr. 1, 2024<br>Apr. 1, 2024<br>Apr. 1, 2024<br><span style="color:red">**TBD**</span>** |
 
 ## Part II
 | Product                                                                                                                                                      | Simulation Name                                                  | Request Date                                                                  |
 |--------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|---------------------------------------------------------------------------|
-| SCM/Small-domain LES, prognostic aerosol, diagnostic ice<br>SCM/Small-domain LES, prognostic aerosol and ice<br>Large-domain LES, prognostic aerosol and ice | *{prefix}*_ProgNa<br>*{prefix}*_ProgNaNi<br>*{prefix}*_ProgNaNi | Apr. 1, 2024<br>Apr. 1, 2024<br><span style="color:red">**TBD**</span>** |
+| SCM/Small-domain LES, prognostic aerosol, diagnostic ice<br>SCM/Small-domain LES, prognostic aerosol and ice<br>Large-domain LES, prognostic aerosol and ice | *{prefix}*_ProgNa<br>*{prefix}*_ProgNaNi<br>*{prefix}*_ProgNaNi | May 1, 2024<br>May 1, 2024<br><span style="color:red">**TBD**</span>** |
 
 ## Part II (optional; all SCM/small-domain LES)
 | Product                                                                                                                      | Simulation Name                                                                                | Request Date                                                     |
