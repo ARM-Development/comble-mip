@@ -223,6 +223,10 @@
 <li class="toctree-l1"><a class="reference internal" href="aerosol-surface.html">Specifying Surface Aerosol Emissions for Simulations with Multi-Modal Aerosol</a></li>
 
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Where are the rolls?</a></li>
+
+
+
+
 </ul>
 
     </div>
@@ -402,8 +406,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#day-night-band-imagery-of-50-km-domains-along-our-lagrangian-trajectory">Day-night band imagery of 50-km domains along our Lagrangian trajectory</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Where are the rolls?</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#properties-of-observed-cloud-streets">Properties of observed cloud streets</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#absence-of-cloud-streets-in-100-m-les-simulations">Absence of cloud streets in 100-m LES simulations</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#weak-cloud-streets-in-realistic-wrf-simulations">Weak cloud streets in realistic WRF simulations</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#emergence-of-strong-streets-in-dharma-les-of-a-northwest-atlantic-cao">Emergence of strong streets in DHARMA LES of a Northwest Atlantic CAO</a></li>
 </ul>
+
             </nav>
         </div>
     </div>
@@ -414,19 +423,38 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="where-are-the-rolls">
+  <section id="where-are-the-rolls">
 <h1>Where are the rolls?<a class="headerlink" href="#where-are-the-rolls" title="Link to this heading">#</a></h1>
-<p>A prominent feature of most cold-air outbreaks observed during COMBLE, including on 13 March, is the occurrence of prominent roll features in the cloud features nearest to the marginal ice zone. However, these proved to be difficult to reproduce at a strength similar to observations, based on comparisons of pseudo-albedo with satellite images. Below we discuss this problem, which was also encountered during the CONSTRAIN intercomparison.</p>
-<p>Source: Ann Fridlind (ann.fridlind&#64;nasa.gov), Florian Tornow (ft2544&#64;columbia.edu), and Tim Juliano (tjuliano&#64;nucar.edu)</p>
-<section id="day-night-band-imagery-of-50-km-domains-along-our-lagrangian-trajectory">
-<h2>Day-night band imagery of 50-km domains along our Lagrangian trajectory<a class="headerlink" href="#day-night-band-imagery-of-50-km-domains-along-our-lagrangian-trajectory" title="Link to this heading">#</a></h2>
-<figure class="align-default" id="id1">
-<img alt="../../_images/snapshot_comble_50_zoom.png" src="../../_images/snapshot_comble_50_zoom.png" />
-<figcaption>
-<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Visible satellite imagery over the Norwegian Sea region on 13 March 2020 is shown in 50-km domains near the ice edge. Columns indicate latitude and rows indicate hours from the start time (at top, cloud free). Green and red labels indicate the temporal distance in hours from our trajectory location.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
+<p>A prominent feature of most cold-air outbreaks observed during COMBLE via visible satellite imagery, including on 13 March, is the occurrence of prominent cloud streets assocated with boundary layer rolls issuing from the marginal ice zone. However, these have proven to be elusive in LES. Below we discuss this problem, which was also encountered in setup of the CONSTRAIN model intercomparison by <a class="reference external" href="https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2018MS001443">de Roode et al. (2019)</a>, who concluded that “the reason that no cloud streets are present in the simulations is not fully understood by the authors.”</p>
 </section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="properties-of-observed-cloud-streets">
+<h1>Properties of observed cloud streets<a class="headerlink" href="#properties-of-observed-cloud-streets" title="Link to this heading">#</a></h1>
+<p>Satellite imagery from 13 March indicates that boundary layer (BL) rolls are likely present in the clear air prior to cloud formation, and they are variable in space and time. Alignment appears primarily NNW-SSE with a less common secondary mode aligned NNE-SSW. According to the classification suggested by <a class="reference external" href="https://journals.ametsoc.org/view/journals/bams/83/7/1520-0477_2002_083_0997_rswama_2_3_co_2.xml">Young et al. (2002)</a>, these exhibit a “band of froth” appearance associated with an aspect ratio (AR) of roll wavelength on BL depth greater than 1 and multiple updrafts spanning each cloud street. At two hours from the ice edge (third row from bottom in Fig. 1), the BL height is approximately 1 km (per CALIPSO) and the roll wavelength is approximately 5 km, leading to an AR of 5 in line with marine CAOs reported by Young et al. (their Fig. 4); in the following two hours AR is similarly increasing faster than simulated BL depth (cf. their Fig. 4 with BL depth increasing).</p>
+<p><img alt="Visible satellite imagery" src="../../_images/snapshot_comble_50_zoom.png" /></p>
+<p><em>Figure 1. Visible satellite imagery over the Norwegian Sea region on 13 March 2020 in 50-km domains: columns indicate latitude and rows indicate hours from the simulation trajectory start time, from 0 h at top (over sea ice) to 6 h at bottom (4 hours from ice edge). Numbers on each panel indicate the temporal distance in hours from our trajectory location (green numbers indicate closest images).</em></p>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="absence-of-cloud-streets-in-100-m-les-simulations">
+<h1>Absence of cloud streets in 100-m LES simulations<a class="headerlink" href="#absence-of-cloud-streets-in-100-m-les-simulations" title="Link to this heading">#</a></h1>
+<p>Simulations on a 25x25-km domain might be expected to contain roughly 5 cloud streets at 4 h (two hours from ice edge; comparable to third row from the bottom in Fig. 1). We see slight evidence of rolls at 4 h in Fig. 2 (top row), but they are oriented NNE-SSW rather than NNW-SSE and are far less developed than in the satellite observations. Negligible improvement was found for sensitivity tests with horizontal winds nudged to ERA5 profiles (Fig. 2, bottom row) or other setup changes (not shown): a sharper and lower inversion over sea ice (positing that ERA5 may contain biases), changes to sea surface temperature evolution downwind of the ice edge (a weaker gradient), increase in horizontal resolution (to 25 m), increase in domain size (to 50x50-km), initialization of the Ekman spiral in the initial condition (obtained from an idealized 1D model, again positing biases in ERA5), or changes to the surface roughness specification.</p>
+<p><img alt="DHARMA geostrophic" src="../../_images/alb_comble_L25_specz0_all_20h_pseudo_albedo.png" />
+<img alt="DHARMA nudged" src="../../_images/alb_comble_L25_specz0_nudge_all_20h_pseudo_albedo.png" /></p>
+<p><em>Figure 2. Pseudo-albedo calculated from dx=100m DHARMA LES simulations begun 2 hours upwind of the ice edge and forced with geostrophic winds (top row) exhibit slightly more indication of cloud streets at 4 h (two hours downwind of ice edge) than simulations forced with nudged winds (bottom row).</em></p>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="weak-cloud-streets-in-realistic-wrf-simulations">
+<h1>Weak cloud streets in realistic WRF simulations<a class="headerlink" href="#weak-cloud-streets-in-realistic-wrf-simulations" title="Link to this heading">#</a></h1>
+<p>Simulations using WRF with a nested internal domain exhibit stronger cloud streets than LES with periodic boundary conditions, but they remain weaker than observed (Fig. 3).</p>
+<p><img alt="WRF realistic" src="../../_images/wrf_realistic_pseudo_albedo.png" /></p>
+<p><em>Figure 3. Pseudo-albedo calculated from dx=50m WRF LES simulations also exhibit notably weaker cloud streets than observed.</em></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="emergence-of-strong-streets-in-dharma-les-of-a-northwest-atlantic-cao">
+<h1>Emergence of strong streets in DHARMA LES of a Northwest Atlantic CAO<a class="headerlink" href="#emergence-of-strong-streets-in-dharma-les-of-a-northwest-atlantic-cao" title="Link to this heading">#</a></h1>
+<p>Simulations using WRF with a nested internal domain exhibit stronger cloud streets than LES with periodic boundary conditions, but they remain weaker than observed (Fig. 3).</p>
+<p><img alt="WRF realistic" src="../../_images/activate_satellite.png" /></p>
+<p><em>Figure 3. Pseudo-albedo calculated from dx=50m WRF LES simulations also exhibit notably weaker cloud streets than observed.</em></p>
+<p>Source: Ann Fridlind (ann.fridlind&#64;nasa.gov), Florian Tornow (ft2544&#64;columbia.edu), and Tim Juliano (tjuliano&#64;nucar.edu)</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -484,8 +512,13 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#day-night-band-imagery-of-50-km-domains-along-our-lagrangian-trajectory">Day-night band imagery of 50-km domains along our Lagrangian trajectory</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Where are the rolls?</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#properties-of-observed-cloud-streets">Properties of observed cloud streets</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#absence-of-cloud-streets-in-100-m-les-simulations">Absence of cloud streets in 100-m LES simulations</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#weak-cloud-streets-in-realistic-wrf-simulations">Weak cloud streets in realistic WRF simulations</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#emergence-of-strong-streets-in-dharma-les-of-a-northwest-atlantic-cao">Emergence of strong streets in DHARMA LES of a Northwest Atlantic CAO</a></li>
 </ul>
+
   </nav></div>
 
 </div></div>
