@@ -632,14 +632,15 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
             if(zf_ndim > 1):
                 zf = zf[1,:]
             for ii in range(len(zf)):
-                print('sss: ', ii, zf[ii])
+                #print('sss: ', ii, zf[ii])
                 #if(zf_ndim > 1) & (ii==0):
                 #    zf = zf[1,:]
                 p_df2 = pd.DataFrame({"class": [group]* len(time), "time":time, "zf": zf[ii]}, index=time/3600)      
                 for vv in var_vec_2d:
                     #if(ii==0): print(vv)
                     if vv in ds.variables:
-                        if(zf_ndim>1) & (vv=='pa'):
+                       #if(zf_ndim>1) & (vv=='pa'):
+                        if(zf_ndim>1) & (vv=='pa') & (len(ds.variables[vv].shape)==1):
                             p_df2[vv] = ds.variables[vv][t0:][ii]
                         else:
                             p_df2[vv] = ds.variables[vv][t0:,:][:,ii]
