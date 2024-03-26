@@ -1,6 +1,9 @@
 format: jb-book
 root: README
 parts:
+- caption: Project Information
+  chapters:
+    - file: goals_hypotheses
 - caption: Participants
   chapters:
     - glob: notebooks/participants/*
@@ -8,21 +11,29 @@ parts:
   chapters:
     - glob: notebooks/howto/*
     - file: CONTRIBUTING
-- caption: DEPHY Forcing Notebooks
+- caption: Model Settings & Logistics
   chapters:
-    - glob: notebooks/forcing/*
+    - file: main_configuration
+    - file: notebooks/output/output_list.ipynb
+    - file: timeline
 - caption: Input Conversion Notebooks
   chapters:
     - glob: notebooks/conversion/*
-- caption: Model Setup
-  chapters:
-    - glob: notebooks/setup/*
-- caption: Model Output Requested
-  chapters:
-    - glob: notebooks/output/*
 - caption: Output Conversion Notebooks
   chapters:
     - glob: notebooks/conversion_output/*
-- caption: Plot Results
+- caption: Plotting and Analysis
   chapters:
-    - glob: notebooks/plotting/*
+    - file: notebooks/plotting/check_les.ipynb
+    - file: notebooks/plotting/check_scm.ipynb
+    - file: notebooks/plotting/example_plotting.ipynb
+    - file: emc2
+- caption: Supporting Materials
+  chapters:
+    - file: notebooks/forcing/create_comble_forcing_v2.4.ipynb
+    - file: notebooks/plotting/example_plotting_specification_tests.ipynb
+    - file: notebooks/plotting/example_plotting_z0_tests.ipynb
+    - file: notebooks/setup/aerosol-specification.ipynb
+    - file: notebooks/setup/aerosol-inp-closure.ipynb
+    - file: notebooks/setup/aerosol-surface.ipynb
+    - file: notebooks/setup/where-are-the-rolls.ipynb
