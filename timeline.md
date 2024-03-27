@@ -18,10 +18,10 @@ If you have additional LES submissions that have different domain sizes and/or g
 
 **Sensitivity simulations**: We encourage participants to conduct their own sensitivity simulations. If you would like to contribute a sensitivity run, then please append to the end of your file by including ***_sen_x*** where *x* is a number (begin numbering at 1). We ask that you also include a ***sen*** descriptor as a global attribute to the file to explain what sensitivity you've conducted. Again, please be as descriptive as possible!
 
-## Part 1
+## Part I
 | Product                                                                                                                                                      | Simulation Name                                                                        | Request Date                                                                                    |
 |--------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
-| SCM/Small-domain LES, liquid-only<br>SCM/Small-domain LES with ice<br>SCM/Small-domain LES with ice, default roughness lengths*<br>Large-domain LES with ice | *{prefix}*_FixN_noice<br>*{prefix}*_FixN<br>*{prefix}*_FixN_def_z0<br>*{prefix}*_FixN | Apr. 1, 2024<br>Apr. 1, 2024<br>Apr. 1, 2024<br><span style="color:red">**TBD**</span>** |
+| SCM/Small-domain LES, liquid-only<br>SCM/Small-domain LES with diagnostic ice<br>SCM/Small-domain LES with diagnostic ice, default roughness lengths*<br>Large-domain LES with diagnostic ice | *{prefix}*_FixN_noice<br>*{prefix}*_FixN<br>*{prefix}*_FixN_def_z0<br><br>*{prefix}*_FixN | Apr. 1, 2024<br>Apr. 1, 2024<br>Apr. 1, 2024<br><br><span style="color:red">**TBD**</span>** |
 
 ## Part II
 | Product                                                                                                                                                      | Simulation Name                                                  | Request Date                                                                  |
