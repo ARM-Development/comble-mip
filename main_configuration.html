@@ -413,31 +413,34 @@ document.write(`
 <tr class="row-odd"><td><p>Domain top</p></td>
 <td><p>LES: 7 km<br>SCM: use operational height</p></td>
 </tr>
-<tr class="row-even"><td><p>Start/end times</p></td>
+<tr class="row-even"><td><p>Lateral boundary conditions</p></td>
+<td><p>Doubly periodic</p></td>
+</tr>
+<tr class="row-odd"><td><p>Start/end times</p></td>
 <td><p>22 UTC on 12 March 2020<br>18 UTC on 13 March 2020</p></td>
 </tr>
-<tr class="row-odd"><td><p>Initial profiles</p></td>
+<tr class="row-even"><td><p>Initial profiles</p></td>
 <td><p>Thermodynamic and kinematic soundings provided<br>- Variable names to use: <em>ps</em>, <em>thetas</em>, <em>lev</em>, <em>pressure</em>, <em>u</em>, <em>v</em>, <em>temp</em>, <em>theta</em>, <em>qv</em>, <em>o3</em></p></td>
 </tr>
-<tr class="row-even"><td><p>Initial perturbations for LES</p></td>
+<tr class="row-odd"><td><p>Initial perturbations for LES</p></td>
 <td><p>Theta only: 0.1 K below 250 m</p></td>
 </tr>
-<tr class="row-odd"><td><p>Surface forcing</p></td>
+<tr class="row-even"><td><p>Surface forcing</p></td>
 <td><p>Specified time-varying skin temperature*<br>- Assume the surface is always water<br>- Variable name to use: <em>ts</em><br>Compute surface fluxes interactively using fixed roughness lengths for the entirety of the simulation (results are relatively insensitive to reducing roughness lengths over ice)<br>- Momentum, z0m = 9.0e-4 m<br>- Temperature and moisture, z0t = z0q = 5.5e-6 m<br>- A brief highlight on sensitivity to roughness lengths may be found on <a class="reference external" href="https://arm-development.github.io/comble-mip/notebooks/plotting/example_plotting_z0_tests.html">this page</a>.</p></td>
 </tr>
-<tr class="row-even"><td><p>Large-scale forcing</p></td>
+<tr class="row-odd"><td><p>Large-scale forcing</p></td>
 <td><p>Time- and height-varying pressure gradient forcing via the geostrophic wind<br>- Variable names to use: <em>ug</em> and <em>vg</em><br>- Assume trajectory-averaged latitude for Coriolis: 74.5 N</p></td>
 </tr>
-<tr class="row-odd"><td><p>Nudging**</p></td>
+<tr class="row-even"><td><p>Nudging**</p></td>
 <td><p>None (not required)</p></td>
 </tr>
-<tr class="row-even"><td><p>Subsidence</p></td>
+<tr class="row-odd"><td><p>Subsidence</p></td>
 <td><p>None (results are relatively insensitive)</p></td>
 </tr>
-<tr class="row-odd"><td><p>Radiation</p></td>
+<tr class="row-even"><td><p>Radiation</p></td>
 <td><p>Only interactive longwave<br>- Ozone sounding specified in input file<br>- CO2 = 420 ppm<br>- No solar radiation (results are relatively insensitive)</p></td>
 </tr>
-<tr class="row-even"><td><p>Aerosol &amp; microphysics</p></td>
+<tr class="row-odd"><td><p>Aerosol &amp; microphysics</p></td>
 <td><p><strong>Fixed droplet</strong><br>- Nd = 20/cm3<br><strong>Diagnostic ice formation</strong><br>- Ni = 25/L (minimum total) where qc+qr&gt;1e-6 kg/kg and T&lt;268.15 K<br>- Only other ice crystal formation mechanism active is homogeneous drop freezing<br><strong>Prognostic aerosol</strong>^<br>- Initialize with three lognormal modes (see <a class="reference external" href="https://arm-development.github.io/comble-mip/notebooks/setup/aerosol-specification.html#overview">aerosol specification page overview</a>), assuming vertically uniform number concentration in each mode (see table for modal parameters and kappa values); if participant is limited to one aerosol mode, please initialize with the accumulation mode only (Mode 2)<br>- Apply sea spray emissions (see <a class="reference external" href="https://arm-development.github.io/comble-mip/notebooks/setup/aerosol-surface.html#jaegle-et-al-2011-surface-particle-flux-integrated-over-all-sizes">specifying surface aerosol emissions</a>) to accumulation and sea spray modes (Modes 2 and 3) using recommended split (98.5% to Mode 2 and 1.5% to Mode 3); if participant is limited to one aerosol mode, please place 100% of emission flux into that mode (with Mode 2 characteristics)<br><strong>Prognostic ice</strong>^^<br>- Specified to assume that the only heterogeneous ice nucleation is on sea spray aerosol, and to further assume that the accumulation mode (Mode 2) is half sea spray (at all times) and the sea spray mode is 100% sea spray (Mode 3)<br>- Participants are requested to choose their parameterization of preference; see <a class="reference external" href="https://arm-development.github.io/comble-mip/notebooks/setup/aerosol-inp-closure.html">aerosol-ice nucleating particle closure</a> for an evaluation of several schemes using in situ measurements of aerosol PSDs and INP in cloud-free air at upwind and downwind sites</p></td>
 </tr>
 </tbody>
