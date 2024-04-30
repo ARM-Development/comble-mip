@@ -473,10 +473,10 @@ document.write(`
     <span class="n">var_vec_2d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">qliq_pos</span><span class="p">,</span><span class="s1">&#39;qltot&#39;</span><span class="p">)</span>
     <span class="n">var_vec_2d_units</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">qliq_pos</span><span class="p">,</span><span class="s1">&#39;kg kg-1&#39;</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="n">diagnose_qliquid</span><span class="p">:</span>
-    <span class="n">qliq_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">var_vec_2d</span> <span class="o">==</span> <span class="s1">&#39;qic&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">var_vec_2d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">qliq_pos</span><span class="p">,</span><span class="s1">&#39;qitot&#39;</span><span class="p">)</span>
-    <span class="n">var_vec_2d_units</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">qliq_pos</span><span class="p">,</span><span class="s1">&#39;kg kg-1&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">diagnose_qfrozen</span><span class="p">:</span>
+    <span class="n">qice_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">var_vec_2d</span> <span class="o">==</span> <span class="s1">&#39;qic&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">var_vec_2d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">qice_pos</span><span class="p">,</span><span class="s1">&#39;qitot&#39;</span><span class="p">)</span>
+    <span class="n">var_vec_2d_units</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">qice_pos</span><span class="p">,</span><span class="s1">&#39;kg kg-1&#39;</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="n">diagnose_zinv</span><span class="p">:</span>    
     <span class="n">cth_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">var_vec_1d</span> <span class="o">==</span> <span class="s1">&#39;ol&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
@@ -505,6 +505,26 @@ dna_turb not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
 dni_het not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
 dni_sip not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
 dni_hom not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+computing inversion height, cloud-top height, and cloud-top temperature
+using liquid(-ice) potential temperature
+Loading variables: f(time)
+../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+Loading variables: f(time,height)
+../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+na1 shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+na2 shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+na3 shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+eps shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+rld shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+rlu shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+dna_micro_warm shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+dna_micro_cold shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+dna_turb shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+dni_het shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+dni_sip shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+dni_hom shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+computing inversion height, cloud-top height, and cloud-top temperature
+using liquid(-ice) potential temperature
 </pre></div>
 </div>
 </div>
@@ -516,11 +536,20 @@ dni_hom not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/08f46f74584187c92816d0dad4b413ecc2d74fdeb20fa6c1a1560dac4777b3f4.png" src="../../_images/08f46f74584187c92816d0dad4b413ecc2d74fdeb20fa6c1a1560dac4777b3f4.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## example where ERA5 and radiosonde are included</span>
 <span class="n">plot_2d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_gray_2d</span><span class="p">,</span><span class="n">df_col_2d_les</span><span class="p">]),</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">18</span><span class="p">],</span><span class="n">z_max</span><span class="o">=</span><span class="mi">6000</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="n">var_vec_2d_units</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/b245187085947ae4e8596058ed7b29a46494ee117f26388c0343e3fc5f7a761d.png" src="../../_images/b245187085947ae4e8596058ed7b29a46494ee117f26388c0343e3fc5f7a761d.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x600 with 0 Axes&gt;
 </pre></div>
 </div>
 </div>
