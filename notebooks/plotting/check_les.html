@@ -426,6 +426,11 @@ document.write(`
 
 <span class="c1">## select LES run(s) of interest</span>
 <span class="n">sim_keyword_col_les</span> <span class="o">=</span> <span class="s1">&#39;WRF_Lx25_dx100_FixN.&#39;</span>
+
+<span class="c1">## switches to diagnose variable</span>
+<span class="n">diagnose_zinv</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">diagnose_qliquid</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">diagnose_qfrozen</span> <span class="o">=</span> <span class="kc">True</span>
 </pre></div>
 </div>
 </div>
@@ -452,10 +457,33 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## load all simulations located in subfolders of the given directory</span>
-<span class="n">df_gray_1d</span><span class="p">,</span><span class="n">df_gray_2d</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword_gray</span><span class="p">,</span><span class="n">make_gray</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">df_gray_1d</span><span class="p">,</span><span class="n">df_gray_2d</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword_gray</span><span class="p">,</span><span class="n">make_gray</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="n">diag_zi_ctt</span><span class="o">=</span><span class="n">diagnose_zinv</span><span class="p">,</span><span class="n">diag_qltot</span><span class="o">=</span><span class="n">diagnose_qliquid</span><span class="p">,</span><span class="n">diag_qitot</span><span class="o">=</span><span class="n">diagnose_qfrozen</span><span class="p">)</span>
 
 <span class="c1">## example using LES</span>
-<span class="n">df_col_1d_les</span><span class="p">,</span><span class="n">df_col_2d_les</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword_col_les</span><span class="p">)</span>
+<span class="n">df_col_1d_les</span><span class="p">,</span><span class="n">df_col_2d_les</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword_col_les</span><span class="p">,</span><span class="n">diag_zi_ctt</span><span class="o">=</span><span class="n">diagnose_zinv</span><span class="p">,</span><span class="n">diag_qltot</span><span class="o">=</span><span class="n">diagnose_qliquid</span><span class="p">,</span><span class="n">diag_qitot</span><span class="o">=</span><span class="n">diagnose_qfrozen</span><span class="p">)</span>
+
+<span class="c1">## update plotted variables and their units accordingly</span>
+<span class="k">if</span> <span class="n">diagnose_qliquid</span><span class="p">:</span>
+    <span class="n">lwp_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">var_vec_1d</span> <span class="o">==</span> <span class="s1">&#39;ol&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">var_vec_1d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">lwp_pos</span><span class="p">,</span><span class="s1">&#39;lwp&#39;</span><span class="p">)</span>
+    <span class="n">var_vec_1d_long</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">var_vec_1d_long</span><span class="p">,</span><span class="n">lwp_pos</span><span class="p">,</span><span class="s1">&#39;atmosphere_mass_content_total_cloud_water_diagnosed&#39;</span><span class="p">)</span>
+    <span class="n">var_vec_1d_units</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">var_vec_1d_units</span><span class="p">,</span><span class="n">lwp_pos</span><span class="p">,</span><span class="s1">&#39;kg m-2&#39;</span><span class="p">)</span>
+    
+    <span class="n">qliq_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">var_vec_2d</span> <span class="o">==</span> <span class="s1">&#39;qlc&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">var_vec_2d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">qliq_pos</span><span class="p">,</span><span class="s1">&#39;qltot&#39;</span><span class="p">)</span>
+    <span class="n">var_vec_2d_units</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">qliq_pos</span><span class="p">,</span><span class="s1">&#39;kg kg-1&#39;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">diagnose_qliquid</span><span class="p">:</span>
+    <span class="n">qliq_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">var_vec_2d</span> <span class="o">==</span> <span class="s1">&#39;qic&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">var_vec_2d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">qliq_pos</span><span class="p">,</span><span class="s1">&#39;qitot&#39;</span><span class="p">)</span>
+    <span class="n">var_vec_2d_units</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">qliq_pos</span><span class="p">,</span><span class="s1">&#39;kg kg-1&#39;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">diagnose_zinv</span><span class="p">:</span>    
+    <span class="n">cth_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">var_vec_1d</span> <span class="o">==</span> <span class="s1">&#39;ol&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">var_vec_1d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">cth_pos</span><span class="p">,</span><span class="s1">&#39;cth&#39;</span><span class="p">)</span>
+    <span class="n">var_vec_1d_long</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">var_vec_1d_long</span><span class="p">,</span><span class="n">cth_pos</span><span class="p">,</span><span class="s1">&#39;diagnosed_cloud_top_height&#39;</span><span class="p">)</span>
+    <span class="n">var_vec_1d_units</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">var_vec_1d_units</span><span class="p">,</span><span class="n">cth_pos</span><span class="p">,</span><span class="s1">&#39;m&#39;</span><span class="p">)</span>
+    
 </pre></div>
 </div>
 </div>
@@ -465,16 +493,18 @@ document.write(`
 ssaf not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
 Loading variables: f(time,height)
 ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+na1 shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+na2 shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+na3 shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+nlcic shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+niic shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+eps shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
 dna_micro_warm not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
 dna_micro_cold not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
 dna_turb not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
 dni_het not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
 dni_sip not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
 dni_hom not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-Loading variables: f(time)
-../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
-Loading variables: f(time,height)
-../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
 </pre></div>
 </div>
 </div>
@@ -486,20 +516,11 @@ Loading variables: f(time,height)
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../_images/82f9d44e555985804ee11d611d5de5f9e9fa22c66402ec96712183ea701f5098.png" src="../../_images/82f9d44e555985804ee11d611d5de5f9e9fa22c66402ec96712183ea701f5098.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## example where ERA5 and radiosonde are included</span>
 <span class="n">plot_2d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_gray_2d</span><span class="p">,</span><span class="n">df_col_2d_les</span><span class="p">]),</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">18</span><span class="p">],</span><span class="n">z_max</span><span class="o">=</span><span class="mi">6000</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="n">var_vec_2d_units</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/18a62d181f5806ae762a84daf9d80d5c1317a5ede8c22e563f186d1bf2b41726.png" src="../../_images/18a62d181f5806ae762a84daf9d80d5c1317a5ede8c22e563f186d1bf2b41726.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x600 with 0 Axes&gt;
 </pre></div>
 </div>
 </div>
