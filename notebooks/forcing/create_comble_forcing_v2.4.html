@@ -858,7 +858,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 640x480 with 0 Axes&gt;
 </pre></div>
 </div>
-<img alt="../../_images/00f750941ff50712364eedcb817e252b2af38889467df0454c53ee5e2a52dab1.png" src="../../_images/00f750941ff50712364eedcb817e252b2af38889467df0454c53ee5e2a52dab1.png" />
+<img alt="../../_images/fdd81a33c95faca7bed7615da9ca60190757d73fdef1326d7ba5d545496904fd.png" src="../../_images/fdd81a33c95faca7bed7615da9ca60190757d73fdef1326d7ba5d545496904fd.png" />
 </div>
 </div>
 </section>
@@ -930,7 +930,20 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Geostrophic wind computed
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">25</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">if</span> <span class="n">do_geo</span><span class="p">:</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="c1"># Read ERA5 file</span>
+<span class="ne">----&gt; </span><span class="mi">3</span>     <span class="n">dataset</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">fname_era5_geo</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="n">zl</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;z&#39;</span><span class="p">][</span><span class="mi">24</span><span class="o">-</span><span class="n">t0_h</span><span class="p">:</span><span class="mi">43</span><span class="p">,</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,:,:]</span> <span class="c1"># time, lev, lat, lon</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="n">lonarrl</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">][:]</span>
+
+<span class="nn">File src/netCDF4/_netCDF4.pyx:2449,</span> in <span class="ni">netCDF4._netCDF4.Dataset.__init__</span><span class="nt">()</span>
+
+<span class="nn">File src/netCDF4/_netCDF4.pyx:2012,</span> in <span class="ni">netCDF4._netCDF4._ensure_nc_success</span><span class="nt">()</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;/glade/derecho/scratch/tjuliano/doe_comble/wrf_asr_cao/WRF-ASR-CAO/scripts/era5/era5_mar13_case_larger.nc&#39;
 </pre></div>
 </div>
 </div>
