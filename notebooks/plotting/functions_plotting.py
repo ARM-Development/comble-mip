@@ -557,7 +557,7 @@ def load_real_wrf(PATH='../../data_files/'):
     return p_df,df_col2 
 
 
-def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,drop_t0=True,diag_zi_ctt=False,QTHRES=1.0e-5):
+def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,drop_t0=True,diag_zi_ctt=False,diag_qltot=False,diag_qitot=False,QTHRES=1.0e-5):
     
     ## load ERA5 data along trajectory
     ## __input__
@@ -634,12 +634,13 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
                     zf = zf[1,:]
                 p_df2 = pd.DataFrame({"class": [group]* len(time), "time":time, "zf": zf[ii]}, index=time/3600)      
                 for vv in var_vec_2d:
-                    #if(ii==0): print(vv)
                     if vv in ds.variables:
                         if(zf_ndim>1) & (vv=='pa'):
                             p_df2[vv] = ds.variables[vv][t0:][ii]
                         else:
                             p_df2[vv] = ds.variables[vv][t0:,:][:,ii]
+                        #if ii==0: print(p_df2[vv])
+                        if (ii==0) & (p_df2[vv].isna().sum() > 0): print(vv + ' shows NAN values in ' + str(fn))                            
                     else:
                         if(ii==0): print(vv + ' not found in ' + str(fn))
                         p_df2[vv] = np.NAN
@@ -696,6 +697,12 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
     ## obtain lwp if lwpc and lwpr are available
     if 'lwpr' in df_col.columns and 'lwpc' in df_col.columns:
         df_col['lwp'] = df_col['lwpr'] + df_col['lwpc']
+    
+    if diag_qltot:
+        df_col2['qltot'] = df_col2['qlc'] + df_col2['qlr']
+    
+    if diag_qltot:
+        df_col2['qitot'] = df_col2['qic'] + df_col2['qis'] + df_col2['qig']
     
     if(make_gray == 1):        
         df_col['colflag']  = 'gray'
@@ -947,7 +954,9 @@ def plot_2d(df_col2,var_vec,times,**kwargs):
         counter_col = 0 
         counter_line = 0
         for label, df in df_col2.groupby('class'):
-            df = df[round(df.time) == times[tt]*3600.]
+            #df = df[round(df.time) == times[tt]*3600.]
+            ## allow wiggleroom to accomodate uneven model output (suggested by TomiRaatikainen)
+            df = df[abs(round(df.time)-times[tt]*3600.)<2.]
             #print(len(df))
             for ii in range(len(var_vec)):                
                 if len(var_vec) == 1 & len(times) == 1:
