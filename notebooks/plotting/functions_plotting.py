@@ -662,6 +662,7 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
         df_col['cth'] = np.nan
         df_col['ctt'] = np.nan
         for cc in np.unique(df_col['class']):
+            print(cc)
             df_sub  = df_col.loc[df_col['class']==cc]
             df_sub2 = df_col2.loc[df_col2['class']==cc]
             if 'ta' in df_col2.columns and 'theta' in df_col2.columns:
@@ -677,20 +678,27 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
                         theta_step['qcond_tot'] = theta_step['qlc'] + theta_step['qlr'] + theta_step['qic']+theta_step['qis']+theta_step['qig']
                     elif(('qlc' in df_col2.columns) & ('qlr' in df_col2.columns)):                          
                         theta_step = df_sub2.loc[df_sub2['time'] == tt,['zf','theta','qlc','qlr']]
-                        theta_step['theta'] = theta_step['theta'] - lv/cp*(theta_step['qlc'] + theta_step['qlr']) 
+                        if theta_step['qlr'].isna().sum() == 0:
+                            theta_step['theta'] = theta_step['theta'] - lv/cp*(theta_step['qlc'] + theta_step['qlr'])
+                        else:
+                            theta_step['theta'] = theta_step['theta'] - lv/cp*theta_step['qlc']
                         theta_step['qcond_tot'] = theta_step['qlc'] + theta_step['qlr']
                     else:
                         theta_step = df_sub2.loc[df_sub2['time'] == tt,['zf','theta']]
                         theta_step['qcond_tot'] = 0
                     cth = np.max(theta_step.loc[theta_step['qcond_tot'] > QTHRES]['zf'])
-                    zi_step = zi_diagnose(theta_step)
+                    if not theta_step.empty:
+                        zi_step = zi_diagnose(theta_step)
                     ## obtaining corresponding temperature at that level
-                    ta_step = df_sub2.loc[df_sub2['time'] == tt,['zf','ta']]
-                    ta_step['zf_diff'] = np.abs(ta_step['zf'] - cth) #zi_step)
-                    df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'cth'] = cth
-                    df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'zi'] = zi_step
-                    df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'ctt'] = min(ta_step.loc[ta_step.zf_diff == ta_step.zf_diff.min(),'ta'], default=np.NAN) - 273.15
-    
+                        ta_step = df_sub2.loc[df_sub2['time'] == tt,['zf','ta']]
+                        ta_step['zf_diff'] = np.abs(ta_step['zf'] - cth) #zi_step)
+                        df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'cth'] = cth
+                        df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'zi'] = zi_step
+                        df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'ctt'] = min(ta_step.loc[ta_step.zf_diff == ta_step.zf_diff.min(),'ta'], default=np.NAN) - 273.15
+                    else:
+                        df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'cth'] = np.nan
+                        df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'zi'] = np.nan
+                        df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'ctt'] = np.nan
     df_col['time']  = df_col['time'] + t_shift*3600.
     df_col2['time'] = df_col2['time'] + t_shift*3600.
     
@@ -727,7 +735,6 @@ def zi_diagnose(df_sub_2dd):
     deriv_vec = pd.Series(df_sub_2dd['theta']).diff() / pd.Series(df_sub_2dd['zf']).diff()
     
     return df_sub_2dd.loc[deriv_vec.idxmax(),'zfm']
-
 
 def zi_diagnose_slow(df_sub_2d):
     
@@ -781,7 +788,7 @@ def plot_1d(df_col,var_vec,**kwargs):
         units = kwargs.get('units')
     
     if 'plot_colors' not in kwargs:
-        plot_colors = ["#E69F00", "#56B4E9", "#009E73","#0072B2", "#D55E00", "#CC79A7","#F0E442"]
+        plot_colors = ["#E69F00", "#56B4E9", "#009E73","#0072B2", "#D55E00", "#CC79A7","#F0E442","#808080","#FF00FF"]
     else:
         plot_colors = kwargs.get('plot_colors')
         
@@ -905,7 +912,7 @@ def plot_2d(df_col2,var_vec,times,**kwargs):
         units = kwargs.get('units')
     
     if 'plot_colors' not in kwargs:
-        plot_colors = ["#E69F00", "#56B4E9", "#009E73","#0072B2", "#D55E00", "#CC79A7","#F0E442",'black','gray','red','green']
+        plot_colors = ["#E69F00", "#56B4E9", "#009E73","#0072B2", "#D55E00", "#CC79A7","#F0E442","#808080","#FF00FF"]
     else:
         plot_colors = kwargs.get('plot_colors')
         
