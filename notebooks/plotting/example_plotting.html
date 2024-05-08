@@ -421,7 +421,7 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> functions_plotting.py 
  
 <span class="c1">## select simulations to plot</span>
-<span class="n">sim_keyword</span> <span class="o">=</span> <span class="s1">&#39;dx200_FixN_spec&#39;</span>  
+<span class="n">sim_keyword</span> <span class="o">=</span> <span class="s1">&#39;dx100_FixN_noice&#39;</span>  
 </pre></div>
 </div>
 </div>
@@ -483,11 +483,23 @@ KAZR (Kollias): here using auxiliary field to estimate cloud-top temperature
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time)
-../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0_nudged.nc
-../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
+../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN_noice.nc
+../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
+../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_DM_Lx25_dx100_FixN_noice.nc
+../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN_noice.nc
+../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_noice.nc
+../../output_les/icon/sandbox/ICON_Lx25_dx100_FixN_noice.nc
 Loading variables: f(time,height)
-../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0_nudged.nc
-../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
+../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN_noice.nc
+../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
+../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_DM_Lx25_dx100_FixN_noice.nc
+../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN_noice.nc
+../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_noice.nc
+../../output_les/icon/sandbox/ICON_Lx25_dx100_FixN_noice.nc
 </pre></div>
 </div>
 </div>
@@ -506,27 +518,50 @@ Loading variables: f(time,height)
   maxy = np.nanmax(masked_verts[..., 1])
 </pre></div>
 </div>
-<img alt="../../_images/d4aeb5dd14ee4c806573732160071ddec122b21931f19cfe303da7a3a2bbd217.png" src="../../_images/d4aeb5dd14ee4c806573732160071ddec122b21931f19cfe303da7a3a2bbd217.png" />
+<img alt="../../_images/8bf94af8d05a3ac4b333600c9de53202dd25dae8850973b636b6da9bbe1c0496.png" src="../../_images/8bf94af8d05a3ac4b333600c9de53202dd25dae8850973b636b6da9bbe1c0496.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## load all simulations located in subfolders of the given directory</span>
 <span class="n">var_vec_1d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;lwpr&#39;</span><span class="p">,</span><span class="s1">&#39;lwpc&#39;</span><span class="p">,</span><span class="s1">&#39;iwp&#39;</span><span class="p">,</span><span class="s1">&#39;od&#39;</span><span class="p">]</span> <span class="c1"># variables without ERA5 (shorter time axis)</span>
-<span class="n">var_vec_2d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;theta&#39;</span><span class="p">,</span><span class="s1">&#39;qv&#39;</span><span class="p">,</span><span class="s1">&#39;qlc&#39;</span><span class="p">,</span><span class="s1">&#39;qlr&#39;</span><span class="p">,</span><span class="s1">&#39;qic&#39;</span><span class="p">,</span><span class="s1">&#39;qis&#39;</span><span class="p">,</span><span class="s1">&#39;qig&#39;</span><span class="p">,</span><span class="s1">&#39;ua&#39;</span><span class="p">,</span><span class="s1">&#39;va&#39;</span><span class="p">,</span><span class="s1">&#39;ta&#39;</span><span class="p">]</span>
+<span class="n">var_vec_2d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;theta&#39;</span><span class="p">,</span><span class="s1">&#39;qv&#39;</span><span class="p">,</span><span class="s1">&#39;qlc&#39;</span><span class="p">,</span><span class="s1">&#39;qlr&#39;</span><span class="p">,</span><span class="s1">&#39;ta&#39;</span><span class="p">]</span> <span class="c1">#,&#39;qic&#39;,&#39;qis&#39;,&#39;qig&#39;,&#39;ua&#39;,&#39;va&#39;,&#39;ta&#39;]</span>
 <span class="n">df_col_1d</span><span class="p">,</span><span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword</span><span class="p">,</span><span class="n">diag_zi_ctt</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time)
-../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0_nudged.nc
-../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
+../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+lwpr not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+iwp not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+od not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN_noice.nc
+../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
+../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_DM_Lx25_dx100_FixN_noice.nc
+../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN_noice.nc
+../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_noice.nc
+../../output_les/icon/sandbox/ICON_Lx25_dx100_FixN_noice.nc
 Loading variables: f(time,height)
-../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0_nudged.nc
-../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_spec_z0.nc
+../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+qlr not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN_noice.nc
+../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
+../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_DM_Lx25_dx100_FixN_noice.nc
+../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN_noice.nc
+../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_noice.nc
+../../output_les/icon/sandbox/ICON_Lx25_dx100_FixN_noice.nc
 computing inversion height, cloud-top height, and cloud-top temperature
-using liquid(-ice) potential temperature
+DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
+icon/sandbox/ICON_Lx25_dx100_FixN_noice.nc
+msu-rcc-les/sandbox/MSU_RCC_LES_DM_Lx25_dx100_FixN_noice.nc
+msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN_noice.nc
+sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_noice.nc
+uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN_noice.nc
+wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
 </pre></div>
 </div>
 </div>
@@ -549,7 +584,7 @@ using liquid(-ice) potential temperature
   maxy = np.nanmax(masked_verts[..., 1])
 </pre></div>
 </div>
-<img alt="../../_images/151c4a239278d9f5b5a318ef9c457f1706925a2d80efa5b334573e52e408332b.png" src="../../_images/151c4a239278d9f5b5a318ef9c457f1706925a2d80efa5b334573e52e408332b.png" />
+<img alt="../../_images/88613e0697bdd1798716863301d1d8277b037b281baf622e8fd996afd634a313.png" src="../../_images/88613e0697bdd1798716863301d1d8277b037b281baf622e8fd996afd634a313.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -567,7 +602,7 @@ using liquid(-ice) potential temperature
 Computing wind direction
 </pre></div>
 </div>
-<img alt="../../_images/9d0bd06c9ed6b84b794f86553182afb0e138a95a626f610488e689c7bc11c411.png" src="../../_images/9d0bd06c9ed6b84b794f86553182afb0e138a95a626f610488e689c7bc11c411.png" />
+<img alt="../../_images/f17874ce51c5db181e5ba8c327540360668de1ef140dc85d1e33565536186490.png" src="../../_images/f17874ce51c5db181e5ba8c327540360668de1ef140dc85d1e33565536186490.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x600 with 0 Axes&gt;
 </pre></div>
 </div>
