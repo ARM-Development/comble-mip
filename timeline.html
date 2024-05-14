@@ -400,7 +400,7 @@ document.write(`
 <p class="admonition-title">Attention</p>
 <p>Ready to make your model outputs accessible to other MIP participants? Please refer to <a class="reference external" href="https://arm-development.github.io/comble-mip/CONTRIBUTING.html">this page</a> to learn how to upload your model outputs to the repository.</p>
 </div>
-<p>Processed model outputs are invited for commit to the GitHub repository under <strong>/comble-mip/output_xxx/YOUR_MODEL_NAME/</strong> where <em>xxx</em> can be <em>les</em> or <em>scm</em>. Within your model’s subdirectory, you should place any intermediate or sensitivity simulations in a directory called <strong>devel</strong>. Once you are happy with your simulations for the specifications outlined in the tables below, you may host them in a directory called <strong>sandbox</strong>. While these can be committed and removed at any time, note that we expect <strong>sandbox</strong> simulations to be finalized by the dates listed below.</p>
+<p>Processed model outputs are invited for commit to the GitHub repository under <strong>/comble-mip/output_xxx/YOUR_MODEL_NAME/</strong> where <em>xxx</em> can be <em>les</em> or <em>scm</em>. Within your model’s subdirectory, you should place any sensitivity simulations in a directory called <strong>devel</strong>. Once you have preliminary results for the simulation configurations specified in the tables below, you may host them in a directory called <strong>sandbox</strong>. These files can be updated at any time. Once you are happy with your results, you should place them in a directory called <strong>staged</strong>. Any files in the <strong>staged</strong> directory will be considered final by the dates listed in the table below.</p>
 <p>We request that you name your simulations as outlined below so that they can be readily compared with other runs using the same test specification. Please add a prefix to each of the file names to distinguish between other models. For example, for the <em>SCM, liquid-only</em> specification in Part I, outputs from the ModelE3 SCM model should be named <em><strong>ModelE3_FixN_noice</strong></em>. If your submission is for an LES model, then we ask that you also include a prefix indicating the domain size (units of km) and grid cell spacing (units of m). For example, for the <em>Small-domain LES, liquid-only</em> specification in Part I, outputs from the DHARMA LES model should be named <em><strong>DHARMA_Lx25_dx100_FixN_noice</strong></em>.</p>
 <p>Our requested prefixes for the domain size and grid cell spacing are as follows for the LES runs:</p>
 <ul class="simple">
@@ -416,13 +416,15 @@ document.write(`
 <thead>
 <tr class="row-odd"><th class="head"><p>Product</p></th>
 <th class="head"><p>Simulation Name</p></th>
-<th class="head"><p>Request Date</p></th>
+<th class="head"><p>Request Date (sandbox)</p></th>
+<th class="head"><p>Request Date (staged)</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>SCM/Small-domain LES, liquid-only<br>SCM/Small-domain LES with diagnostic ice<br>SCM/Small-domain LES with diagnostic ice, default roughness lengths*<br>Large-domain LES with diagnostic ice</p></td>
 <td><p><em>{prefix}</em>_FixN_noice<br><em>{prefix}</em>_FixN<br><em>{prefix}</em>_FixN_def_z0<br><br><em>{prefix}</em>_FixN</p></td>
 <td><p>Apr. 1, 2024<br>Apr. 1, 2024<br>Apr. 1, 2024<br><br><span style="color:red"><strong>TBD</strong></span>**</p></td>
+<td><p>Jun. 1, 2024<br>Jun. 1, 2024<br>Jun. 1, 2024<br><br><span style="color:red"><strong>TBD</strong></span>**</p></td>
 </tr>
 </tbody>
 </table>
@@ -433,13 +435,15 @@ document.write(`
 <thead>
 <tr class="row-odd"><th class="head"><p>Product</p></th>
 <th class="head"><p>Simulation Name</p></th>
-<th class="head"><p>Request Date</p></th>
+<th class="head"><p>Request Date (sandbox)</p></th>
+<th class="head"><p>Request Date (staged)</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>SCM/Small-domain LES, prognostic aerosol, diagnostic ice<br>SCM/Small-domain LES, prognostic aerosol and ice<br>Large-domain LES, prognostic aerosol and ice</p></td>
 <td><p><em>{prefix}</em>_ProgNa<br><em>{prefix}</em>_ProgNaNi<br><em>{prefix}</em>_ProgNaNi</p></td>
-<td><p>May 1, 2024<br>May 1, 2024<br><span style="color:red"><strong>TBD</strong></span>**</p></td>
+<td><p>Jun. 15, 2024<br>Jun. 15, 2024<br><span style="color:red"><strong>TBD</strong></span>**</p></td>
+<td><p><span style="color:red"><strong>TBD</strong></span><strong><br><span style="color:red"><strong>TBD</strong></span></strong><br><span style="color:red"><strong>TBD</strong></span>**</p></td>
 </tr>
 </tbody>
 </table>
@@ -450,12 +454,14 @@ document.write(`
 <thead>
 <tr class="row-odd"><th class="head"><p>Product</p></th>
 <th class="head"><p>Simulation Name</p></th>
-<th class="head"><p>Request Date</p></th>
+<th class="head"><p>Request Date (sandbox)</p></th>
+<th class="head"><p>Request Date (staged)</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>Prognostic droplet, no ice<br>Prognostic droplet, diagnostic ice<br>Prognostic droplet and ice<br>Prognostic aerosol, no ice</p></td>
 <td><p><em>{prefix}</em>_ProgNc_noice<br><em>{prefix}</em>_ProgNc<br><em>{prefix}</em>_ProgNcNi<br><em>{prefix}</em>_ProgNa_noice</p></td>
+<td><p>Jun. 15, 2024<br>Jun. 15, 2024<br>Jun. 15, 2024<br>Jun. 15, 2024</p></td>
 <td><p><span style="color:red"><strong>TBD</strong></span>^<br><span style="color:red"><strong>TBD</strong></span>^<br><span style="color:red"><strong>TBD</strong></span>^<br><span style="color:red"><strong>TBD</strong></span>^</p></td>
 </tr>
 </tbody>
