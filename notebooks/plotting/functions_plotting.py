@@ -630,18 +630,34 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
             #label_items = label_items[0:(len(label_items)-1)]
             group = "/".join(label_items)
 
-            for ii in range(len(zf)):
-                if(zf_ndim > 1) & (ii==0):
-                    zf = zf[1,:]
-                p_df2 = pd.DataFrame({"class": [group]* len(time), "time":time, "zf": zf[ii]}, index=time/3600)      
+            if(zf_ndim > 1):
+                zf = zf[1,:]
+            #print(len(zf))
+            
+            for ii in range(len(zf)-1):
+                
+                p_df2 = pd.DataFrame({"class": [group]* len(time), "time":time, "zf": zf[ii]}, index=time/3600) 
+                #print(p_df2)
                 for vv in var_vec_2d:
                     if vv in ds.variables:
+                        #if ii==0: 
+                        #    print(vv)
+                        #    print(ds.variables[vv])
+                        #    print(len(ds.variables[vv][t0:][ii]))
+                        #if ii == 0:
+                        #    print(ds.variables[vv][t0:])
                         if(zf_ndim>1) & (vv=='pa'):
-                            p_df2[vv] = ds.variables[vv][t0:][ii]
+                            if(ds.variables['pa'][t0:].ndim>1): ## some report both zf and pa as 2D fields
+                                p_df2[vv] = ds.variables[vv][t0:][0][ii]
+                            else:
+                                p_df2[vv] = ds.variables[vv][t0:][ii]
                         else:
                             p_df2[vv] = ds.variables[vv][t0:,:][:,ii]
                         #if ii==0: print(p_df2[vv])
-                        if (ii==0) & (p_df2[vv].isna().sum() > 0): print(vv + ' shows NAN values in ' + str(fn))                            
+                        if (ii==0) & (p_df2[vv].isna().sum() > 0): print(vv + ' shows NAN values in ' + str(fn))   
+                        
+                        #if (ii==0):
+                        #    print(p_df2[vv])
                     else:
                         if(ii==0): print(vv + ' not found in ' + str(fn))
                         p_df2[vv] = np.NAN
