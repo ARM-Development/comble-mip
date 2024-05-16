@@ -428,7 +428,7 @@ document.write(`
 
 <span class="c1">## select LES run(s) of interest</span>
 <span class="n">sim_keyword_col_les</span> <span class="o">=</span> <span class="s1">&#39;WRF_Lx25_dx100_FixN.&#39;</span>
-<span class="n">sim_keyword_col_scm</span> <span class="o">=</span> <span class="s1">&#39;ModelE3-Phys_FixN_def_z0.&#39;</span>
+<span class="n">sim_keyword_col_scm</span> <span class="o">=</span> <span class="s1">&#39;AOSCM&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -440,7 +440,7 @@ document.write(`
 
 <span class="c1">## short names</span>
 <span class="n">var_vec_1d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">variable_id</span><span class="p">[</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">==</span> <span class="s1">&#39;time&#39;</span><span class="p">])</span>
-<span class="n">var_vec_2d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">variable_id</span><span class="p">[</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">==</span> <span class="s1">&#39;time, pressure&#39;</span><span class="p">])</span>
+<span class="n">var_vec_2d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">variable_id</span><span class="p">[</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">==</span> <span class="s1">&#39;time, layer&#39;</span><span class="p">])</span>
 
 <span class="n">var_vec_2d</span> <span class="o">=</span> <span class="n">var_vec_2d</span><span class="p">[</span><span class="n">var_vec_2d</span><span class="o">!=</span><span class="s1">&#39;zf&#39;</span><span class="p">]</span>
 
@@ -449,14 +449,16 @@ document.write(`
 
 <span class="c1">## Units</span>
 <span class="n">var_vec_1d_units</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">units</span><span class="p">[</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">==</span> <span class="s1">&#39;time&#39;</span><span class="p">])</span>
-<span class="n">var_vec_2d_units</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">units</span><span class="p">[</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">==</span> <span class="s1">&#39;time, pressure&#39;</span><span class="p">])</span>
+<span class="n">var_vec_2d_units</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">units</span><span class="p">[</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">==</span> <span class="s1">&#39;time, layer&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## load all simulations located in subfolders of the given directory</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> functions_plotting.py
+
+<span class="c1">## load all simulations located in subfolders of the given directory</span>
 <span class="n">df_gray_1d</span><span class="p">,</span><span class="n">df_gray_2d</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword_gray</span><span class="p">,</span><span class="n">make_gray</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
 
 <span class="c1">## example using LES</span>
@@ -470,6 +472,9 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time)
 ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+z0 shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+z0h shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+z0q shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
 pblh not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
 zi not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
 cf not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
@@ -478,12 +483,17 @@ cfc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
 ssaf not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
 Loading variables: f(time,height)
 ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+pe not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
 qi not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
 fh not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
 fc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
 tke not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+eps shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
 cmfu not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
 cmfd not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+na1 shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+na2 shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+na3 shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
 dna_micro_warm not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
 dna_micro_cold not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
 dna_turb not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
@@ -529,14 +539,28 @@ zi not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
 cf not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
 cflc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
 cfc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+ssaf shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
 Loading variables: f(time,height)
 ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+pe not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
 qi not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
 fh not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
 fc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
 tke not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+eps shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
 cmfu not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
 cmfd not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+rld shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+rlu shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+na1 shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+na2 shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+na3 shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+dna_micro_warm shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+dna_micro_cold shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+dna_turb shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+dni_het shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+dni_sip shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+dni_hom shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
 qlcs not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
 qlrs not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
 qics not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
@@ -570,16 +594,139 @@ vmlrc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
 vmicc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
 vmipc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
 Loading variables: f(time)
-../../output_scm/modelE/sandbox/ModelE3-Phys_FixN_def_z0.nc
-ssaf not found in ../../output_scm/modelE/sandbox/ModelE3-Phys_FixN_def_z0.nc
+../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+cflc shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+cfc shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+od shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+odlc shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+pri shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+cflc shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+cfc shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+od shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+odlc shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+pri shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
 Loading variables: f(time,height)
-../../output_scm/modelE/sandbox/ModelE3-Phys_FixN_def_z0.nc
-dna_micro_warm not found in ../../output_scm/modelE/sandbox/ModelE3-Phys_FixN_def_z0.nc
-dna_micro_cold not found in ../../output_scm/modelE/sandbox/ModelE3-Phys_FixN_def_z0.nc
-dna_turb not found in ../../output_scm/modelE/sandbox/ModelE3-Phys_FixN_def_z0.nc
-dni_het not found in ../../output_scm/modelE/sandbox/ModelE3-Phys_FixN_def_z0.nc
-dni_sip not found in ../../output_scm/modelE/sandbox/ModelE3-Phys_FixN_def_z0.nc
-dni_hom not found in ../../output_scm/modelE/sandbox/ModelE3-Phys_FixN_def_z0.nc
+../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+pe shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+huri shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+fh shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+flc shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+fc shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+prf shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+prfi shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+tke shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+eps shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+w2 shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+wth shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+vf_thli shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+cmfu shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+cmfd shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+rld shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+rlu shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+dq_micro shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+dq_turb shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+na1 shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+na2 shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+na3 shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+dna_micro_warm shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+dna_micro_cold shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+dna_turb shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+dni_het shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+dni_sip shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+dni_hom shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+qlcs shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+qlrs shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+qics shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+qips shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+qlcc shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+qlrc shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+qicc shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+qipc shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+nlcs shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+nlrs shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+nics shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+nips shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+relcc shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+relrc shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+reicc shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+reipc shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+flcs shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+flrs shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+fics shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+fips shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+flcc shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+flrc shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+ficc shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+fipc shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+vmlcs shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+vmlrs shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+vmics shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+vmips shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+vmlcc shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+vmlrc shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+vmicc shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+vmipc shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_alt.nc
+../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+pe shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+huri shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+fh shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+flc shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+fc shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+prf shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+prfi shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+tke shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+eps shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+w2 shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+wth shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+vf_thli shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+cmfu shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+cmfd shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+rld shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+rlu shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+dq_micro shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+dq_turb shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+na1 shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+na2 shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+na3 shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+dna_micro_warm shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+dna_micro_cold shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+dna_turb shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+dni_het shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+dni_sip shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+dni_hom shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+qlcs shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+qlrs shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+qics shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+qips shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+qlcc shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+qlrc shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+qicc shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+qipc shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+nlcs shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+nlrs shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+nics shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+nips shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+relcc shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+relrc shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+reicc shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+reipc shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+flcs shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+flrs shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+fics shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+fips shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+flcc shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+flrc shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+ficc shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+fipc shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+vmlcs shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+vmlrs shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+vmics shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+vmips shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+vmlcc shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+vmlrc shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+vmicc shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
+vmipc shows NAN values in ../../output_scm/AOSCM/sandbox/AOSCM_FixN_def_z0_alt.nc
 </pre></div>
 </div>
 </div>
@@ -592,7 +739,7 @@ dni_hom not found in ../../output_scm/modelE/sandbox/ModelE3-Phys_FixN_def_z0.nc
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/16c6cf2a0e7d8ceaf447c2da2d5f00539f846d2658cedab755aa524a4db83eb3.png" src="../../_images/16c6cf2a0e7d8ceaf447c2da2d5f00539f846d2658cedab755aa524a4db83eb3.png" />
+<img alt="../../_images/223bae9d7ce85414c3c238eae2ff7b8b40b7f7eb1f98e526bbde6e7c77c2cda8.png" src="../../_images/223bae9d7ce85414c3c238eae2ff7b8b40b7f7eb1f98e526bbde6e7c77c2cda8.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -603,7 +750,7 @@ dni_hom not found in ../../output_scm/modelE/sandbox/ModelE3-Phys_FixN_def_z0.nc
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/fdb90d9294a92376540d6682e83960d7196b3c9eb11af586217ebb0ca74e3061.png" src="../../_images/fdb90d9294a92376540d6682e83960d7196b3c9eb11af586217ebb0ca74e3061.png" />
+<img alt="../../_images/616933066d7f49dc7dbe06570404a0ec95f7fb472d74e8408b69e0a26690658b.png" src="../../_images/616933066d7f49dc7dbe06570404a0ec95f7fb472d74e8408b69e0a26690658b.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x600 with 0 Axes&gt;
 </pre></div>
 </div>
@@ -620,16 +767,16 @@ dni_hom not found in ../../output_scm/modelE/sandbox/ModelE3-Phys_FixN_def_z0.nc
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "conda-base-py"
         },
         kernelOptions: {
-            name: "python3",
+            name: "conda-base-py",
             path: "./notebooks/plotting"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'conda-base-py'</script>
 
                 </article>
               
