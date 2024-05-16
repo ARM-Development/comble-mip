@@ -603,6 +603,7 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
             for vv in var_vec_1d:
                 if vv in ds.variables:
                     p_df[vv] = ds.variables[vv][t0:]
+                    if p_df[vv].isna().sum() > 0: print(vv + ' shows NAN values in ' + str(fn))  
                 else:
                     print(vv + ' not found in ' + str(fn))
                     p_df[vv] = np.NAN
