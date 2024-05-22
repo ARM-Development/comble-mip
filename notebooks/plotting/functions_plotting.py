@@ -625,6 +625,7 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
             zf   = ds.variables['zf'][t0:]
             qv   = ds.variables['qv'][t0:,:]
             zf_ndim = zf.ndim
+            #print(len(zf))
 
             label_items = [x for x in fn.parts + direc.parts if x not in direc.parts]
             #label_items = label_items[0:(len(label_items)-1)]
@@ -652,7 +653,13 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
                             else:
                                 p_df2[vv] = ds.variables[vv][t0:][ii]
                         else:
-                            p_df2[vv] = ds.variables[vv][t0:,:][:,ii]
+                            #print(ds.variables[vv].shape)
+                            #p_df2[vv] = ds.variables[vv][t0:,:][ii,:]
+                            ## account for CM1 where dimensions are swapped
+                            if ds.variables[vv].shape[1] == (len(zf)+1):
+                                p_df2[vv] = ds.variables[vv][t0:,:][:,ii]
+                            else:
+                                p_df2[vv] = ds.variables[vv][:,t0:][ii,:]
                         #if ii==0: print(p_df2[vv])
                         if (ii==0) & (p_df2[vv].isna().sum() > 0): print(vv + ' shows NAN values in ' + str(fn))   
                         
