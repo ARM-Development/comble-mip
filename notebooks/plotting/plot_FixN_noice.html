@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Check my SCM run &#8212; COMBLE Model-Observation Intercomparison Project</title>
+    <title>Check ModelE against LES for the “FixN_noice” configuration &#8212; COMBLE Model-Observation Intercomparison Project</title>
   
   
   
@@ -61,6 +61,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/plotting/plot_FixN_noice';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Check all SCMs against LES for the “FixN_noice” configuration" href="plot_FixN_noice-allSCM.html" />
+    <link rel="prev" title="Check all SCMs against LES for the “FixN” configuration" href="plot_FixN-allSCM.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -121,8 +123,6 @@
     <div class="bd-container__inner bd-page-width">
       
       
-      
-        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -213,12 +213,16 @@
 <li class="toctree-l1"><a class="reference internal" href="../conversion_output/convert_WRF_LES_output_to_dephy_format.html">Example: convert WRF-LES output to DEPHY format</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Plotting and Analysis</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="plot_les_FixN_noice.html">Compare FixN_noice LES Sims</a></li>
 <li class="toctree-l1"><a class="reference internal" href="plot_les_FixN.html">Compare FixN LES Sims</a></li>
 <li class="toctree-l1"><a class="reference internal" href="plot_les_FixN_def_z0.html">Compare FixN_def_z0 LES Sims</a></li>
 <li class="toctree-l1"><a class="reference internal" href="check_scm.html">Check my SCM run</a></li>
 <li class="toctree-l1"><a class="reference internal" href="example_plotting.html">Evaluation of LES against satellite and ground-based observations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plot_FixN.html">Check ModelE output against LES for the “FixN” configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plot_FixN-allSCM.html">Check all SCMs against LES for the “FixN” configuration</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Check ModelE against LES for the “FixN_noice” configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plot_FixN_noice-allSCM.html">Check all SCMs against LES for the “FixN_noice” configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../emc2.html">The Earth Model Column Collaboratory (EMC<sup>2</sup>)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Supporting Materials</span></p>
@@ -398,7 +402,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Check my SCM run</h1>
+    <h1>Check ModelE against LES for the “FixN_noice” configuration</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -412,10 +416,10 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="check-my-scm-run">
-<h1>Check my SCM run<a class="headerlink" href="#check-my-scm-run" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="check-modele-against-les-for-the-fixn-noice-configuration">
+<h1>Check ModelE against LES for the “FixN_noice” configuration<a class="headerlink" href="#check-modele-against-les-for-the-fixn-noice-configuration" title="Link to this heading">#</a></h1>
 <ul class="simple">
-<li><p>The below notebook allows to compare a single column model simulation against a set of benchmark simulations (shown in gray).</p></li>
+<li><p>The below notebook compares single column model simulations (colors) against a set of LES benchmark simulations (shown in gray).</p></li>
 <li><p>All requested 1D and 2D variables are here read and plotted. “load_sims” reports variable that are missing. Lines will not show, if a variable is missing or if it contains missing values.</p></li>
 <li><p>In case you find inconsistencies in the benchmark set or wish to expand the code, please contact Ann Fridlind (ann.fridlind&#64;nasa.gov), Timothy Juliano (tjuliano&#64;ucar.edu), and Florian Tornow (ft2544&#64;columbia.edu).</p></li>
 </ul>
@@ -424,8 +428,8 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> functions_plotting.py
 
 <span class="c1">## select (grayed out) simulations to plot</span>
-<span class="n">sim_keyword_gray</span> <span class="o">=</span> <span class="s1">&#39;DHARMA_Lx25_dx100_FixN_noice.&#39;</span> <span class="c1">## for DHARMA only</span>
-<span class="c1">#sim_keyword_gray = &#39;Lx25_dx100_FixN_noice.&#39;       ## for all LES</span>
+<span class="n">sim_keyword_gray_1</span> <span class="o">=</span> <span class="s1">&#39;DHARMA_Lx25_dx100_FixN_noice.&#39;</span>
+<span class="n">sim_keyword_gray_2</span> <span class="o">=</span> <span class="s1">&#39;WRF_Lx25_dx100_FixN_noice.&#39;</span>
 
 <span class="c1">## select LES run(s) of interest</span>
 <span class="c1">#sim_keyword_col_les = &#39;DHARMA_Lx25_dx100_FixN_noice.&#39;</span>
@@ -457,10 +461,9 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> functions_plotting.py
-
-<span class="c1">## load all simulations located in subfolders of the given directory</span>
-<span class="n">df_gray_1d</span><span class="p">,</span><span class="n">df_gray_2d</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword_gray</span><span class="p">,</span><span class="n">make_gray</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## load all simulations located in subfolders of the given directory</span>
+<span class="n">df_gray_1d_1</span><span class="p">,</span><span class="n">df_gray_2d_1</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword_gray_1</span><span class="p">,</span><span class="n">make_gray</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">df_gray_1d_2</span><span class="p">,</span><span class="n">df_gray_2d_2</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword_gray_2</span><span class="p">,</span><span class="n">make_gray</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
 
 <span class="c1">## example using LES</span>
 <span class="c1">#df_col_1d_les,df_col_2d_les = load_sims(&#39;../../output_les/&#39;,var_vec_1d,var_vec_2d,t_shift=-2,keyword=sim_keyword_col_les)</span>
@@ -539,6 +542,68 @@ vmlcc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.
 vmlrc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
 vmicc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
 vmipc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
+Loading variables: f(time)
+../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+pblh not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+zi not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+cf not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+cflc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+cfc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+pri shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+ssaf shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+Loading variables: f(time,height)
+../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+pe not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+qi not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+fh not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+fc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+tke not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+eps shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+cmfu not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+cmfd not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+rld shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+rlu shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+na1 shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+na2 shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+na3 shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+dna_micro_warm shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+dna_micro_cold shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+dna_turb shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+dni_het shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+dni_sip shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+dni_hom shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+qlcs not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+qlrs not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+qics not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+qips not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+qlcc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+qlrc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+qicc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+qipc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+nlcs not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+nlrs not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+nics not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+nips not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+relcc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+relrc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+reicc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+reipc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+flcs not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+flrs not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+fics not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+fips not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+flcc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+flrc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+ficc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+fipc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+vmlcs not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+vmlrs not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+vmics not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+vmips not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+vmlcc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+vmlrc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+vmicc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+vmipc not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
 Loading variables: f(time)
 ../../output_scm/modelE/sandbox/ModelE3-Phys_FixN_noice_def_z0.nc
 z0 shows NAN values in ../../output_scm/modelE/sandbox/ModelE3-Phys_FixN_noice_def_z0.nc
@@ -671,23 +736,23 @@ vmipc shows NAN values in ../../output_scm/modelE/sandbox/ModelE3-Tun1_FixN_noic
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot variables that have only time dependence</span>
-<span class="n">plot_1d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_gray_1d</span><span class="p">,</span><span class="n">df_col_1d_scm</span><span class="p">]),</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">longnames</span><span class="o">=</span><span class="n">var_vec_1d_long</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="n">var_vec_1d_units</span><span class="p">)</span>
+<span class="n">plot_1d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_gray_1d_1</span><span class="p">,</span><span class="n">df_gray_1d_2</span><span class="p">,</span><span class="n">df_col_1d_scm</span><span class="p">]),</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">longnames</span><span class="o">=</span><span class="n">var_vec_1d_long</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="n">var_vec_1d_units</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/03f6f44ccafb76070299bc6dfdd29559959722ecbd04bea89aae9a5de74ccc5a.png" src="../../_images/03f6f44ccafb76070299bc6dfdd29559959722ecbd04bea89aae9a5de74ccc5a.png" />
+<img alt="../../_images/8aa2f0c16d825c8226b89feedf23c0670d6dee8e5e75dfb7e5d77a96570d8cbb.png" src="../../_images/8aa2f0c16d825c8226b89feedf23c0670d6dee8e5e75dfb7e5d77a96570d8cbb.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## example where ERA5 and radiosonde are included</span>
-<span class="n">plot_2d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_gray_2d</span><span class="p">,</span><span class="n">df_col_2d_scm</span><span class="p">]),</span><span class="n">var_vec</span> <span class="o">=</span> <span class="n">var_vec_2d</span><span class="p">,</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">18</span><span class="p">],</span><span class="n">z_max</span><span class="o">=</span><span class="mi">6000</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="n">var_vec_2d_units</span><span class="p">)</span><span class="c1">## example where ERA5 and radiosonde are included</span>
+<span class="n">plot_2d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_gray_2d_1</span><span class="p">,</span><span class="n">df_gray_2d_2</span><span class="p">,</span><span class="n">df_col_2d_scm</span><span class="p">]),</span><span class="n">var_vec</span> <span class="o">=</span> <span class="n">var_vec_2d</span><span class="p">,</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">18</span><span class="p">],</span><span class="n">z_max</span><span class="o">=</span><span class="mi">6000</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="n">var_vec_2d_units</span><span class="p">)</span><span class="c1">## example where ERA5 and radiosonde are included</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/dffe87c487ff8e45df5bb44dd859ff2b79eab1cd084a5b3ac82da5f943a6c37f.png" src="../../_images/dffe87c487ff8e45df5bb44dd859ff2b79eab1cd084a5b3ac82da5f943a6c37f.png" />
+<img alt="../../_images/2368d852b9b24f54ec61af186752b907ff741e9f80291057210ae947f986e7b2.png" src="../../_images/2368d852b9b24f54ec61af186752b907ff741e9f80291057210ae947f986e7b2.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x600 with 0 Axes&gt;
 </pre></div>
 </div>
@@ -725,6 +790,24 @@ vmipc shows NAN values in ../../output_scm/modelE/sandbox/ModelE3-Tun1_FixN_noic
                 <footer class="prev-next-footer">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="plot_FixN-allSCM.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Check all SCMs against LES for the “FixN” configuration</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="plot_FixN_noice-allSCM.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Check all SCMs against LES for the “FixN_noice” configuration</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
