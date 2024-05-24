@@ -571,13 +571,16 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
     direc = pathlib.Path(path)
     NCFILES = list(direc.rglob("*nc"))
     NCFILES_STR = [str(p) for p in pathlib.Path(path).rglob('*.nc')]
+    #print(NCFILES_STR)
     
     ## variables that only have time as dimension
     print('Loading variables: f(time)')
     df_col = pd.DataFrame()
     count = 0
     for fn in NCFILES:
+        #print(NCFILES_STR[count])
         if keyword in NCFILES_STR[count]:
+            #print('ding')
             print(fn)
             ds = nc.Dataset(fn)
             #print(ds)
@@ -610,6 +613,7 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
 
             ds.close()
             df_col = pd.concat([df_col,p_df])
+        #print(df_col)
             
         count+=1
         
@@ -647,7 +651,7 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
                         #    print(len(ds.variables[vv][t0:][ii]))
                         #if ii == 0:
                         #    print(ds.variables[vv][t0:])
-                        if(zf_ndim>1) & (vv=='pa'):
+                        if(zf_ndim>1) & ((vv=='pa') | (vv=='pe')):
                             if(ds.variables['pa'][t0:].ndim>1): ## some report both zf and pa as 2D fields
                                 p_df2[vv] = ds.variables[vv][t0:][0][ii]
                             else:
@@ -656,7 +660,7 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
                             #print(ds.variables[vv].shape)
                             #p_df2[vv] = ds.variables[vv][t0:,:][ii,:]
                             ## account for CM1 where dimensions are swapped
-                            if ds.variables[vv].shape[1] == (len(zf)+1):
+                            if ds.variables[vv].shape[0] != (len(zf)+1):
                                 p_df2[vv] = ds.variables[vv][t0:,:][:,ii]
                             else:
                                 p_df2[vv] = ds.variables[vv][:,t0:][ii,:]
