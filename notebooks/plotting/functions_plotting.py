@@ -557,7 +557,7 @@ def load_real_wrf(PATH='../../data_files/'):
     return p_df,df_col2 
 
 
-def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,drop_t0=True,diag_zi_ctt=False,diag_qltot=False,diag_qitot=False,QTHRES=1.0e-5):
+def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,drop_t0=True,diag_zi_ctt=False,diag_qltot=False,diag_qitot=False,QTHRES=1.0e-5,subfolder=''):
     
     ## load ERA5 data along trajectory
     ## __input__
@@ -579,7 +579,7 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
     count = 0
     for fn in NCFILES:
         #print(NCFILES_STR[count])
-        if keyword in NCFILES_STR[count]:
+        if (keyword in NCFILES_STR[count]) and (subfolder in NCFILES_STR[count]):
             #print('ding')
             print(fn)
             ds = nc.Dataset(fn)
@@ -622,7 +622,7 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
     df_col2 = pd.DataFrame()
     count = 0
     for fn in NCFILES:
-        if keyword in NCFILES_STR[count]:
+        if (keyword in NCFILES_STR[count]) and (subfolder in NCFILES_STR[count]):
             print(fn)
             ds = nc.Dataset(fn)
             time = ds.variables['time'][t0:]
@@ -652,7 +652,7 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
                         #if ii == 0:
                         #    print(ds.variables[vv][t0:])
                         if(zf_ndim>1) & ((vv=='pa') | (vv=='pe')):
-                            if(ds.variables['pa'][t0:].ndim>1): ## some report both zf and pa as 2D fields
+                            if(ds.variables[vv][t0:].ndim>1): ## some report both zf and pa as 2D fields
                                 p_df2[vv] = ds.variables[vv][t0:][0][ii]
                             else:
                                 p_df2[vv] = ds.variables[vv][t0:][ii]
@@ -816,7 +816,7 @@ def plot_1d(df_col,var_vec,**kwargs):
         units = kwargs.get('units')
     
     if 'plot_colors' not in kwargs:
-        plot_colors = ["#E69F00", "#56B4E9", "#009E73","#0072B2", "#D55E00", "#CC79A7","#F0E442","#808080","#FF00FF"]
+        plot_colors = ["#E69F00", "#56B4E9", "#009E73","#0072B2", "#D55E00", "#CC79A7","#F0E442","#808080","#FF00FF","#FF0000", "#00FF00", "#0000FF"]
     else:
         plot_colors = kwargs.get('plot_colors')
         
@@ -940,7 +940,7 @@ def plot_2d(df_col2,var_vec,times,**kwargs):
         units = kwargs.get('units')
     
     if 'plot_colors' not in kwargs:
-        plot_colors = ["#E69F00", "#56B4E9", "#009E73","#0072B2", "#D55E00", "#CC79A7","#F0E442","#808080","#FF00FF"]
+        plot_colors = ["#E69F00", "#56B4E9", "#009E73","#0072B2", "#D55E00", "#CC79A7","#F0E442","#808080","#FF00FF","#FF0000", "#00FF00", "#0000FF"]
     else:
         plot_colors = kwargs.get('plot_colors')
         
