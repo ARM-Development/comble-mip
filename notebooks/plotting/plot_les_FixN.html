@@ -414,7 +414,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#updated-as-of-5-14-24">Updated as of 5/14/24</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#updated-as-of-5-24-24">Updated as of 5/24/24</a></li>
 </ul>
             </nav>
         </div>
@@ -428,8 +428,8 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="compare-fixn-les-sims">
 <h1>Compare FixN LES Sims<a class="headerlink" href="#compare-fixn-les-sims" title="Link to this heading">#</a></h1>
-<section id="updated-as-of-5-14-24">
-<h2>Updated as of 5/14/24<a class="headerlink" href="#updated-as-of-5-14-24" title="Link to this heading">#</a></h2>
+<section id="updated-as-of-5-24-24">
+<h2>Updated as of 5/24/24<a class="headerlink" href="#updated-as-of-5-24-24" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>The below notebook allows one to compare large-eddy simulations.</p></li>
 <li><p>All requested 1D and 2D variables are here read and plotted. “load_sims” reports variable that are missing. Lines will not show, if a variable is missing or if it contains missing values.</p></li>
@@ -440,6 +440,7 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> functions_plotting.py
 
 <span class="n">keyword_all</span> <span class="o">=</span> <span class="s1">&#39;FixN.&#39;</span>
+<span class="n">sim_keyword_cm1</span> <span class="o">=</span> <span class="s1">&#39;cm1-p3/sandbox/CM1-P3_Lx25_dx100_&#39;</span><span class="o">+</span><span class="n">keyword_all</span>
 <span class="n">sim_keyword_dales</span> <span class="o">=</span> <span class="s1">&#39;DALES/sandbox/DALES_Lx25_dx100_&#39;</span><span class="o">+</span><span class="n">keyword_all</span>
 <span class="n">sim_keyword_dharma</span> <span class="o">=</span> <span class="s1">&#39;dharma/sandbox/DHARMA_Lx25_dx200_&#39;</span><span class="o">+</span><span class="n">keyword_all</span>
 <span class="n">sim_keyword_icon</span> <span class="o">=</span> <span class="s1">&#39;icon/sandbox/ICON_Lx25_dx100_&#39;</span><span class="o">+</span><span class="n">keyword_all</span>
@@ -472,7 +473,8 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#df_col_1d_dales,df_col_2d_dales = load_sims(&#39;../../output_les/&#39;,var_vec_1d,var_vec_2d,t_shift=-2,keyword=sim_keyword_dales) # issue with pri</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_col_1d_cm1</span><span class="p">,</span><span class="n">df_col_2d_cm1</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword_cm1</span><span class="p">)</span>
+<span class="c1">#df_col_1d_dales,df_col_2d_dales = load_sims(&#39;../../output_les/&#39;,var_vec_1d,var_vec_2d,t_shift=-2,keyword=sim_keyword_dales) # issue with pri</span>
 <span class="n">df_col_1d_dharma</span><span class="p">,</span><span class="n">df_col_2d_dharma</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword_dharma</span><span class="p">)</span>
 <span class="n">df_col_1d_icon</span><span class="p">,</span><span class="n">df_col_2d_icon</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword_icon</span><span class="p">)</span>
 <span class="n">df_col_1d_msu_sm</span><span class="p">,</span><span class="n">df_col_2d_msu_sm</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword_msu_sm</span><span class="p">)</span>
@@ -484,7 +486,43 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time)
+../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN.nc
+pri not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN.nc
+ssaf not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN.nc
+Loading variables: f(time,height)
+../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN.nc
+nlc not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN.nc
+nis not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN.nc
+nig not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN.nc
+na1 not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN.nc
+na2 not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN.nc
+na3 not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN.nc
+nlcic not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN.nc
+niic not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN.nc
+eps not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN.nc
+uw not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN.nc
+vw not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN.nc
+w2 not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN.nc
+wth not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN.nc
+vf_thli not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN.nc
+wqv not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN.nc
+vf_qt not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN.nc
+flc not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN.nc
+prf not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN.nc
+prfi not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN.nc
+rld not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN.nc
+rlu not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN.nc
+dth_rad not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN.nc
+dth_turb not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN.nc
+dq_turb not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN.nc
+dna_micro_warm not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN.nc
+dna_micro_cold not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN.nc
+dna_turb not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN.nc
+Loading variables: f(time)
 ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+z0 shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+z0h shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+z0q shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
 ssaf not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
 Loading variables: f(time,height)
 ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
@@ -502,6 +540,10 @@ dni_sip not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
 dni_hom not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
 Loading variables: f(time)
 ../../output_les/icon/sandbox/ICON_Lx25_dx100_FixN.nc
+clt shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_FixN.nc
+od shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_FixN.nc
+odlc shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_FixN.nc
+ssaf shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_FixN.nc
 Loading variables: f(time,height)
 ../../output_les/icon/sandbox/ICON_Lx25_dx100_FixN.nc
 na1 shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_FixN.nc
@@ -534,6 +576,8 @@ dni_sip shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_FixN.n
 dni_hom shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_FixN.nc
 Loading variables: f(time)
 ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN.nc
+ps shows NAN values in ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN.nc
+ssaf shows NAN values in ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN.nc
 Loading variables: f(time,height)
 ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN.nc
 nlr shows NAN values in ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN.nc
@@ -556,6 +600,8 @@ dni_sip shows NAN values in ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_SM_
 dni_hom shows NAN values in ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN.nc
 Loading variables: f(time)
 ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN.nc
+clt shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN.nc
+ssaf shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN.nc
 Loading variables: f(time,height)
 ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN.nc
 nlc shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN.nc
@@ -588,6 +634,7 @@ Loading variables: f(time,height)
 ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN.nc
 Loading variables: f(time)
 ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+ssaf shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
 Loading variables: f(time,height)
 ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
 na1 shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
@@ -609,27 +656,27 @@ dni_hom shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## plot variables that have only time dependence</span>
-<span class="n">plot_1d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_1d_dharma</span><span class="p">,</span><span class="n">df_col_1d_icon</span><span class="p">,</span><span class="n">df_col_1d_msu_sm</span><span class="p">,</span><span class="n">df_col_1d_sam</span><span class="p">,</span><span class="n">df_col_1d_ucla</span><span class="p">,</span><span class="n">df_col_1d_wrf</span><span class="p">]),</span>
+<span class="n">plot_1d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_1d_cm1</span><span class="p">,</span><span class="n">df_col_1d_dharma</span><span class="p">,</span><span class="n">df_col_1d_icon</span><span class="p">,</span><span class="n">df_col_1d_msu_sm</span><span class="p">,</span><span class="n">df_col_1d_sam</span><span class="p">,</span><span class="n">df_col_1d_ucla</span><span class="p">,</span><span class="n">df_col_1d_wrf</span><span class="p">]),</span>
                    <span class="n">var_vec_1d</span><span class="p">,</span><span class="n">longnames</span><span class="o">=</span><span class="n">var_vec_1d_long</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="n">var_vec_1d_units</span><span class="p">,</span>
-                   <span class="n">plot_colors</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="s1">&#39;g&#39;</span><span class="p">,</span><span class="s1">&#39;magenta&#39;</span><span class="p">,</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span><span class="s1">&#39;lightskyblue&#39;</span><span class="p">],</span><span class="n">plot_ls</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">])</span>
+                   <span class="n">plot_colors</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="s1">&#39;g&#39;</span><span class="p">,</span><span class="s1">&#39;magenta&#39;</span><span class="p">,</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span><span class="s1">&#39;lightskyblue&#39;</span><span class="p">],</span><span class="n">plot_ls</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/9dc6f3eb304313d65efe7d48deb81d54949ff3c20befc88e02551093df036a35.png" src="../../_images/9dc6f3eb304313d65efe7d48deb81d54949ff3c20befc88e02551093df036a35.png" />
+<img alt="../../_images/46c8c00e5dc69cc46a0d81108b54b816c2cc1bc8175386a10b0476c26a042322.png" src="../../_images/46c8c00e5dc69cc46a0d81108b54b816c2cc1bc8175386a10b0476c26a042322.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## example where ERA5 and radiosonde are included</span>
-<span class="n">plot_2d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_2d_dharma</span><span class="p">,</span><span class="n">df_col_2d_icon</span><span class="p">,</span><span class="n">df_col_2d_msu_sm</span><span class="p">,</span><span class="n">df_col_2d_sam</span><span class="p">,</span><span class="n">df_col_2d_ucla</span><span class="p">,</span><span class="n">df_col_2d_wrf</span><span class="p">]),</span>
+<span class="n">plot_2d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_2d_cm1</span><span class="p">,</span><span class="n">df_col_2d_dharma</span><span class="p">,</span><span class="n">df_col_2d_icon</span><span class="p">,</span><span class="n">df_col_2d_msu_sm</span><span class="p">,</span><span class="n">df_col_2d_sam</span><span class="p">,</span><span class="n">df_col_2d_ucla</span><span class="p">,</span><span class="n">df_col_2d_wrf</span><span class="p">]),</span>
                    <span class="n">var_vec_2d</span><span class="p">,</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">18</span><span class="p">],</span><span class="n">z_max</span><span class="o">=</span><span class="mi">6000</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="n">var_vec_2d_units</span><span class="p">,</span>
-                   <span class="n">plot_colors</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="s1">&#39;g&#39;</span><span class="p">,</span><span class="s1">&#39;magenta&#39;</span><span class="p">,</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span><span class="s1">&#39;lightskyblue&#39;</span><span class="p">])</span>
+                   <span class="n">plot_colors</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="s1">&#39;g&#39;</span><span class="p">,</span><span class="s1">&#39;magenta&#39;</span><span class="p">,</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span><span class="s1">&#39;lightskyblue&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/671268940a8febaac034028b471228afd4002bd0a40cfb770396a4d73fb5aef7.png" src="../../_images/671268940a8febaac034028b471228afd4002bd0a40cfb770396a4d73fb5aef7.png" />
+<img alt="../../_images/7786e24619dad3bdf4870a678a42bb450510c2e80349281749f245b34a561684.png" src="../../_images/7786e24619dad3bdf4870a678a42bb450510c2e80349281749f245b34a561684.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x600 with 0 Axes&gt;
 </pre></div>
 </div>
@@ -702,7 +749,7 @@ dni_hom shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#updated-as-of-5-14-24">Updated as of 5/14/24</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#updated-as-of-5-24-24">Updated as of 5/24/24</a></li>
 </ul>
   </nav></div>
 
