@@ -415,6 +415,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#note-if-a-variable-is-missing-in-your-reporting-do-not-fill-it-with-values-of-zero-999-etc-this-causes-issues-for-our-plotting-routines-instead-simply-do-not-fill-the-variable-field-or-set-the-values-to-nan">NOTE: If a variable is missing in your reporting, do not fill it with values of zero, -999, etc. This causes issues for our plotting routines. Instead, simply do not fill the variable field or set the values to NaN.</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-data-from-google-sheets">Read Data from Google Sheets</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-domain-mean-variables">(1) LES: Domain-Mean Variables</a></li>
@@ -436,6 +437,8 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="requested-model-outputs">
 <h1>Requested Model Outputs<a class="headerlink" href="#requested-model-outputs" title="Link to this heading">#</a></h1>
+<section id="note-if-a-variable-is-missing-in-your-reporting-do-not-fill-it-with-values-of-zero-999-etc-this-causes-issues-for-our-plotting-routines-instead-simply-do-not-fill-the-variable-field-or-set-the-values-to-nan">
+<h2>NOTE: If a variable is missing in your reporting, do not fill it with values of zero, -999, etc. This causes issues for our plotting routines. Instead, simply do not fill the variable field or set the values to NaN.<a class="headerlink" href="#note-if-a-variable-is-missing-in-your-reporting-do-not-fill-it-with-values-of-zero-999-etc-this-causes-issues-for-our-plotting-routines-instead-simply-do-not-fill-the-variable-field-or-set-the-values-to-nan" title="Link to this heading">#</a></h2>
 <p>Output variables are requested in three categories for LES: <br />
 -&gt; for any vertical profile information, report at height at specified mid-level points</p>
 <p>(1) domain-mean quantities and statistics every 10 minutes (time-averages reported at the end of each period) <br />
@@ -444,6 +447,7 @@ document.write(`
 <p>For SCM, output variables are requested in one category: <br />
 -&gt; for any vertical profile information, report at pressure at mid-level points (native model levels if fixed, otherwise interpolated to fixed grid of choice)</p>
 <p>(4) quantities and statistics reported at end of each model physics time step</p>
+</section>
 <section id="imports">
 <h2>Imports<a class="headerlink" href="#imports" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
@@ -2426,16 +2430,16 @@ document.write(`
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "conda-base-py"
         },
         kernelOptions: {
-            name: "python3",
+            name: "conda-base-py",
             path: "./notebooks/output"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'conda-base-py'</script>
 
                 </article>
               
@@ -2481,6 +2485,7 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#note-if-a-variable-is-missing-in-your-reporting-do-not-fill-it-with-values-of-zero-999-etc-this-causes-issues-for-our-plotting-routines-instead-simply-do-not-fill-the-variable-field-or-set-the-values-to-nan">NOTE: If a variable is missing in your reporting, do not fill it with values of zero, -999, etc. This causes issues for our plotting routines. Instead, simply do not fill the variable field or set the values to NaN.</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-data-from-google-sheets">Read Data from Google Sheets</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-domain-mean-variables">(1) LES: Domain-Mean Variables</a></li>
