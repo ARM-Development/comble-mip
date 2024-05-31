@@ -479,7 +479,6 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time)
 ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
-z0 shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
 z0h shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
 z0q shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
 pblh not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
@@ -499,7 +498,6 @@ fh not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
 fc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
 prfi shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
 tke not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
-eps shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
 vf_thli shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
 vf_qt shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
 cmfu not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
@@ -894,23 +892,23 @@ vmipc shows NAN values in ../../output_scm/E3SM/sandbox/E3SMv2-Phys_FixN_noice_d
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot variables that have only time dependence</span>
-<span class="n">plot_1d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_gray_1d_1</span><span class="p">,</span><span class="n">df_gray_1d_2</span><span class="p">,</span><span class="n">df_col_1d_scm_1</span><span class="p">]),</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">longnames</span><span class="o">=</span><span class="n">var_vec_1d_long</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="n">var_vec_1d_units</span><span class="p">)</span>
+<span class="n">plot_1d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_gray_1d_1</span><span class="p">,</span><span class="n">df_gray_1d_2</span><span class="p">,</span><span class="n">df_col_1d_scm</span><span class="p">]),</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">longnames</span><span class="o">=</span><span class="n">var_vec_1d_long</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="n">var_vec_1d_units</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/2f9c7a4f298cb49920502c14963b2ad78a971c81c2fe06e6199f18844feebe71.png" src="../../_images/2f9c7a4f298cb49920502c14963b2ad78a971c81c2fe06e6199f18844feebe71.png" />
+<img alt="../../_images/e9a2948336ce9f821eec25b99f079ccfdc9b3d3f4df3bb734a1e059088c6690f.png" src="../../_images/e9a2948336ce9f821eec25b99f079ccfdc9b3d3f4df3bb734a1e059088c6690f.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## example where ERA5 and radiosonde are included</span>
-<span class="n">plot_2d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_gray_2d_1</span><span class="p">,</span><span class="n">df_gray_2d_2</span><span class="p">,</span><span class="n">df_col_2d_scm_1</span><span class="p">]),</span><span class="n">var_vec</span> <span class="o">=</span> <span class="n">var_vec_2d</span><span class="p">,</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">18</span><span class="p">],</span><span class="n">z_max</span><span class="o">=</span><span class="mi">6000</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="n">var_vec_2d_units</span><span class="p">)</span><span class="c1">## example where ERA5 and radiosonde are included</span>
+<span class="n">plot_2d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_gray_2d_1</span><span class="p">,</span><span class="n">df_gray_2d_2</span><span class="p">,</span><span class="n">df_col_2d_scm</span><span class="p">]),</span><span class="n">var_vec</span> <span class="o">=</span> <span class="n">var_vec_2d</span><span class="p">,</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">18</span><span class="p">],</span><span class="n">z_max</span><span class="o">=</span><span class="mi">6000</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="n">var_vec_2d_units</span><span class="p">)</span><span class="c1">## example where ERA5 and radiosonde are included</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ebd305829fafc2b4ef46e501831e041e7eec25e001ee7fdab34e01ddd491b19d.png" src="../../_images/ebd305829fafc2b4ef46e501831e041e7eec25e001ee7fdab34e01ddd491b19d.png" />
+<img alt="../../_images/c7418d9cf04c30a97f7ce661696c960c0648dc9c1656cbbf8c811758eded348d.png" src="../../_images/c7418d9cf04c30a97f7ce661696c960c0648dc9c1656cbbf8c811758eded348d.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x600 with 0 Axes&gt;
 </pre></div>
 </div>
