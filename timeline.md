@@ -14,6 +14,8 @@ Our requested prefixes for the domain size and grid cell spacing are as follows 
 
 If you have additional LES submissions that have different domain sizes and/or grid cell spacings, then we ask that you adjust your prefix information accordingly.
 
+**2D and 3D conventions**: When submitting files containing 2D and 3D snapshot results, please append the below file names using the suffixes ***_2D*** and ***_3D***, respectively.
+
 **Deviations from requested specification**: If you are unable to configure your model according to the requested specification for a particular simulation, then please append to the end of your file by including ***_alt***. We ask that you also include an ***alt*** descriptor as a global attribute to the file to explain how exactly your simulation deviates. Be as descriptive as possible! We will do our best to include deviating simulations with the official MIP results.
 
 **Sensitivity simulations**: We encourage participants to conduct their own sensitivity simulations. If you would like to contribute a sensitivity run, then please append to the end of your file by including ***_sen_x*** where *x* is a number (begin numbering at 1). We ask that you also include a ***sen*** descriptor as a global attribute to the file to explain what sensitivity you've conducted. Again, please be as descriptive as possible!
