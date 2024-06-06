@@ -208,7 +208,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../conversion_output/convert_AOSCM_output_to_dephy_format.html">Example: convert AOSCM output to DEPHY format</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../conversion_output/convert_DHARMA_LES_output_to_dephy_format.html">Example: convert DHARMA LES output to DEPHY format</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../conversion_output/convert_DHARMA_LES_output_to_dephy_format_2D.html">Example: convert DHARMA LES 2D output to DEPHY format</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../conversion_output/convert_DHARMA_LES_output_to_dephy_format_3D.html">Example: convert DHARMA LES 2D output to DEPHY format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../conversion_output/convert_DHARMA_LES_output_to_dephy_format_3D.html">Example: convert DHARMA LES 3D output to DEPHY format</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../conversion_output/convert_E3SMv2_SCM_output_to_dephy_format.html">Example: convert E3SMv2 SCM output to DEPHY format</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../conversion_output/convert_E3SMv3_SCM_output_to_dephy_format.html">Example: convert E3SMv3 SCM output to DEPHY format</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../conversion_output/convert_ICON_SCM_output_to_dephy_format.html">convert ICON SCM output to DEPHY format</a></li>
@@ -515,15 +515,12 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time)
 ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
-z0h shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
-z0q shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
 ssaf shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
 Loading variables: f(time,height)
 ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
 na1 shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
 na2 shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
 na3 shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
-niic shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
 dna_micro_warm shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
 dna_micro_cold shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
 dna_turb shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
@@ -556,15 +553,13 @@ wrf/sandbox/WRF_Lx25_dx100_FixN.nc
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> functions_plotting.py
-
-<span class="c1">## plot variables that have only time dependence</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## plot variables that have only time dependence</span>
 <span class="n">plot_1d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_gray_1d</span><span class="p">,</span><span class="n">df_col_1d_les</span><span class="p">]),</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">longnames</span><span class="o">=</span><span class="n">var_vec_1d_long</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="n">var_vec_1d_units</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/61679626e9c09bc1d51596c54e7031ca2aa28efc7dfeedcbc172ce91a9409558.png" src="../../_images/61679626e9c09bc1d51596c54e7031ca2aa28efc7dfeedcbc172ce91a9409558.png" />
+<img alt="../../_images/b9d1ed984a457405f72841f9f45713e205619049b011ecbd0ca4bff651c363f6.png" src="../../_images/b9d1ed984a457405f72841f9f45713e205619049b011ecbd0ca4bff651c363f6.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -575,7 +570,7 @@ wrf/sandbox/WRF_Lx25_dx100_FixN.nc
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/f93d177e4ddde37274225910c952da95cd60caf2190f411771c69c1b02df80d8.png" src="../../_images/f93d177e4ddde37274225910c952da95cd60caf2190f411771c69c1b02df80d8.png" />
+<img alt="../../_images/3c41e013f7f6123ce4d93859a081b143e46c79aba212cbebefa50dff11054c8c.png" src="../../_images/3c41e013f7f6123ce4d93859a081b143e46c79aba212cbebefa50dff11054c8c.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x600 with 0 Axes&gt;
 </pre></div>
 </div>
@@ -583,12 +578,12 @@ wrf/sandbox/WRF_Lx25_dx100_FixN.nc
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_2d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_gray_2d</span><span class="p">,</span><span class="n">df_col_2d_les</span><span class="p">]),[</span><span class="s1">&#39;qltot&#39;</span><span class="p">,</span><span class="s1">&#39;qitot&#39;</span><span class="p">,</span><span class="s1">&#39;wth&#39;</span><span class="p">],</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">15</span><span class="p">],</span><span class="n">z_max</span><span class="o">=</span><span class="mi">6000</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="n">var_vec_2d_units</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_2d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_gray_2d</span><span class="p">,</span><span class="n">df_col_2d_les</span><span class="p">]),[</span><span class="s1">&#39;nlcic&#39;</span><span class="p">,</span><span class="s1">&#39;niic&#39;</span><span class="p">],</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">18</span><span class="p">],</span><span class="n">z_max</span><span class="o">=</span><span class="mi">6000</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="n">var_vec_2d_units</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/68f59b5e680c33ebfbc75a81cf9a2b7c3f737cafef03daeac8ac8fae62f22039.png" src="../../_images/68f59b5e680c33ebfbc75a81cf9a2b7c3f737cafef03daeac8ac8fae62f22039.png" />
+<img alt="../../_images/6cd12d728b929c8d12fbf5b9c3fc5b52442798dd81e16deee3e23f82a667146d.png" src="../../_images/6cd12d728b929c8d12fbf5b9c3fc5b52442798dd81e16deee3e23f82a667146d.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x600 with 0 Axes&gt;
 </pre></div>
 </div>
@@ -596,25 +591,12 @@ wrf/sandbox/WRF_Lx25_dx100_FixN.nc
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_2d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_gray_2d</span><span class="p">,</span><span class="n">df_col_2d_les</span><span class="p">]),[</span><span class="s1">&#39;vf_thli&#39;</span><span class="p">],</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">15</span><span class="p">],</span><span class="n">z_max</span><span class="o">=</span><span class="mi">6000</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="n">var_vec_2d_units</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_1d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_gray_1d</span><span class="p">,</span><span class="n">df_col_1d_les</span><span class="p">]),[</span><span class="s1">&#39;cth&#39;</span><span class="p">,</span><span class="s1">&#39;ctt&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/083935524ed8978adbfe2dd3f042fe5ae29f042c5bf825b7b3ed4ae6f2aecf36.png" src="../../_images/083935524ed8978adbfe2dd3f042fe5ae29f042c5bf825b7b3ed4ae6f2aecf36.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x600 with 0 Axes&gt;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_1d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_gray_1d</span><span class="p">,</span><span class="n">df_col_1d_les</span><span class="p">]),[</span><span class="s1">&#39;lwp&#39;</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/992edea7bcb1e0e826fa1e0d895a024bf772a01e2cfa8af818db1c5902fc1c1f.png" src="../../_images/992edea7bcb1e0e826fa1e0d895a024bf772a01e2cfa8af818db1c5902fc1c1f.png" />
+<img alt="../../_images/0fce014bd096905cbd1b4757db25f9dbb60bbd4c8aa5b5aaff9043a86b25d6fc.png" src="../../_images/0fce014bd096905cbd1b4757db25f9dbb60bbd4c8aa5b5aaff9043a86b25d6fc.png" />
 </div>
 </div>
 </section>

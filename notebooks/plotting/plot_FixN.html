@@ -208,7 +208,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../conversion_output/convert_AOSCM_output_to_dephy_format.html">Example: convert AOSCM output to DEPHY format</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../conversion_output/convert_DHARMA_LES_output_to_dephy_format.html">Example: convert DHARMA LES output to DEPHY format</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../conversion_output/convert_DHARMA_LES_output_to_dephy_format_2D.html">Example: convert DHARMA LES 2D output to DEPHY format</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../conversion_output/convert_DHARMA_LES_output_to_dephy_format_3D.html">Example: convert DHARMA LES 2D output to DEPHY format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../conversion_output/convert_DHARMA_LES_output_to_dephy_format_3D.html">Example: convert DHARMA LES 3D output to DEPHY format</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../conversion_output/convert_E3SMv2_SCM_output_to_dephy_format.html">Example: convert E3SMv2 SCM output to DEPHY format</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../conversion_output/convert_E3SMv3_SCM_output_to_dephy_format.html">Example: convert E3SMv3 SCM output to DEPHY format</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../conversion_output/convert_ICON_SCM_output_to_dephy_format.html">convert ICON SCM output to DEPHY format</a></li>
@@ -497,8 +497,6 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time)
 ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
-z0h shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
-z0q shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
 pblh not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
 zi not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
 cf not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
@@ -699,7 +697,7 @@ reipc shows NAN values in ../../output_scm/modelE/sandbox/ModelE3-Tun2_FixN_def_
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/1567fe2710a342011288eaec30b7ee0bc497c4df38f8abad3e2973886b9fe8b3.png" src="../../_images/1567fe2710a342011288eaec30b7ee0bc497c4df38f8abad3e2973886b9fe8b3.png" />
+<img alt="../../_images/6521e15778e6efa6b7e46f84fff9163eed8cae804444be3ec0d370ee704c6cc1.png" src="../../_images/6521e15778e6efa6b7e46f84fff9163eed8cae804444be3ec0d370ee704c6cc1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -710,11 +708,114 @@ reipc shows NAN values in ../../output_scm/modelE/sandbox/ModelE3-Tun2_FixN_def_
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.005194805194805195
+<img alt="../../_images/753d5c97766d8154afd0d8f3dd4d2d1401e0ccac58efbe851bf43a923e2c040f.png" src="../../_images/753d5c97766d8154afd0d8f3dd4d2d1401e0ccac58efbe851bf43a923e2c040f.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x600 with 0 Axes&gt;
 </pre></div>
 </div>
-<img alt="../../_images/9b3dda7d3c66e9b3c1d815d0ad30b74b34051d54884404587c8a75228585a7b7.png" src="../../_images/9b3dda7d3c66e9b3c1d815d0ad30b74b34051d54884404587c8a75228585a7b7.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#plot_2d(pd.concat([df_gray_2d_1,df_gray_2d_2,df_col_2d_scm]),var_vec = [&#39;pa&#39;],times=[0,3,9,18],z_max=6000)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/9c195ebcde1515bd9f20ca2bb815ccee337e57f064035e77b88efe364e25f70b.png" src="../../_images/9c195ebcde1515bd9f20ca2bb815ccee337e57f064035e77b88efe364e25f70b.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x600 with 0 Axes&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#df_col_2d_scm[df_col_2d_scm.time==3600][&#39;pa&#39;].values</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([9.90375732e+02, 9.80237183e+02, 9.70098572e+02, 9.59960022e+02,
+       9.49821472e+02, 9.39682922e+02, 9.29544373e+02, 9.19405823e+02,
+       9.09267273e+02, 8.98621765e+02, 8.86962402e+02, 8.74289246e+02,
+       8.60602173e+02, 8.45901245e+02, 8.30693420e+02, 8.15485596e+02,
+       8.00277710e+02, 7.85069885e+02, 7.69862061e+02, 7.54654236e+02,
+       7.39446350e+02, 7.24238525e+02, 7.08523743e+02, 6.91795166e+02,
+       6.74052673e+02, 6.55296326e+02, 6.35526123e+02, 6.14742126e+02,
+       5.92944214e+02, 5.70892822e+02, 5.49348389e+02, 5.28310852e+02,
+       5.07780304e+02, 4.87756653e+02, 4.68239929e+02, 4.49230103e+02,
+       4.30727234e+02, 4.12731293e+02, 3.95242279e+02, 3.78260193e+02,
+       3.61785034e+02, 3.45816803e+02, 3.30355499e+02, 3.15401123e+02,
+       3.00953674e+02, 2.87013153e+02, 2.73579590e+02, 2.60652924e+02,
+       2.48233185e+02, 2.36320374e+02, 2.24914490e+02, 2.14015533e+02,
+       2.03623520e+02, 1.93484955e+02, 1.83346405e+02, 1.73207840e+02,
+       1.63069275e+02, 1.53164993e+02, 1.43664993e+02, 1.34500000e+02,
+       1.25665001e+02, 1.17165001e+02, 1.09000000e+02, 1.01165001e+02,
+       9.36650009e+01, 8.65000000e+01, 7.96650009e+01, 7.31650009e+01,
+       6.70000000e+01, 6.11650009e+01, 5.56650009e+01, 5.05000000e+01,
+       4.56650009e+01, 4.11650009e+01, 3.70000000e+01, 3.31650009e+01,
+       2.96650009e+01, 2.65000000e+01, 2.36000004e+01, 2.08999996e+01,
+       1.83999996e+01, 1.61000004e+01, 1.40000000e+01, 1.21000004e+01,
+       1.03999996e+01, 8.89999962e+00, 7.59999990e+00, 6.50000000e+00,
+       5.55000019e+00, 4.70800018e+00, 3.95099998e+00, 3.32599998e+00,
+       2.80649996e+00, 2.36249995e+00, 1.99399996e+00, 1.66849995e+00,
+       1.39450002e+00, 1.14699996e+00, 9.31999981e-01, 7.40999997e-01,
+       5.63000023e-01, 3.95999998e-01, 2.46999994e-01, 1.38999999e-01,
+       7.80000016e-02, 4.39999998e-02, 2.50000004e-02, 1.40000004e-02,
+       7.49999983e-03, 9.90375732e+02, 9.80237183e+02, 9.70098572e+02,
+       9.59960022e+02, 9.49821472e+02, 9.39682922e+02, 9.29544373e+02,
+       9.19405823e+02, 9.09267273e+02, 8.98621765e+02, 8.86962402e+02,
+       8.74289246e+02, 8.60602173e+02, 8.45901245e+02, 8.30693420e+02,
+       8.15485596e+02, 8.00277710e+02, 7.85069885e+02, 7.69862061e+02,
+       7.54654236e+02, 7.39446350e+02, 7.24238525e+02, 7.08523743e+02,
+       6.91795166e+02, 6.74052673e+02, 6.55296326e+02, 6.35526123e+02,
+       6.14742126e+02, 5.92944214e+02, 5.70892822e+02, 5.49348389e+02,
+       5.28310852e+02, 5.07780304e+02, 4.87756653e+02, 4.68239929e+02,
+       4.49230103e+02, 4.30727234e+02, 4.12731293e+02, 3.95242279e+02,
+       3.78260193e+02, 3.61785034e+02, 3.45816803e+02, 3.30355499e+02,
+       3.15401123e+02, 3.00953674e+02, 2.87013153e+02, 2.73579590e+02,
+       2.60652924e+02, 2.48233185e+02, 2.36320374e+02, 2.24914490e+02,
+       2.14015533e+02, 2.03623520e+02, 1.93484955e+02, 1.83346405e+02,
+       1.73207840e+02, 1.63069275e+02, 1.53164993e+02, 1.43664993e+02,
+       1.34500000e+02, 1.25665001e+02, 1.17165001e+02, 1.09000000e+02,
+       1.01165001e+02, 9.36650009e+01, 8.65000000e+01, 7.96650009e+01,
+       7.31650009e+01, 6.70000000e+01, 6.11650009e+01, 5.56650009e+01,
+       5.05000000e+01, 4.56650009e+01, 4.11650009e+01, 3.70000000e+01,
+       3.31650009e+01, 2.96650009e+01, 2.65000000e+01, 2.36000004e+01,
+       2.08999996e+01, 1.83999996e+01, 1.61000004e+01, 1.40000000e+01,
+       1.21000004e+01, 1.03999996e+01, 8.89999962e+00, 7.59999990e+00,
+       6.50000000e+00, 5.55000019e+00, 4.70800018e+00, 3.95099998e+00,
+       3.32599998e+00, 2.80649996e+00, 2.36249995e+00, 1.99399996e+00,
+       1.66849995e+00, 1.39450002e+00, 1.14699996e+00, 9.31999981e-01,
+       7.40999997e-01, 5.63000023e-01, 3.95999998e-01, 2.46999994e-01,
+       1.38999999e-01, 7.80000016e-02, 4.39999998e-02, 2.50000004e-02,
+       1.40000004e-02, 7.49999983e-03, 9.90375732e+02, 9.80237183e+02,
+       9.70098572e+02, 9.59960022e+02, 9.49821472e+02, 9.39682922e+02,
+       9.29544373e+02, 9.19405823e+02, 9.09267273e+02, 8.98621765e+02,
+       8.86962402e+02, 8.74289246e+02, 8.60602173e+02, 8.45901245e+02,
+       8.30693420e+02, 8.15485596e+02, 8.00277710e+02, 7.85069885e+02,
+       7.69862061e+02, 7.54654236e+02, 7.39446350e+02, 7.24238525e+02,
+       7.08523743e+02, 6.91795166e+02, 6.74052673e+02, 6.55296326e+02,
+       6.35526123e+02, 6.14742126e+02, 5.92944214e+02, 5.70892822e+02,
+       5.49348389e+02, 5.28310852e+02, 5.07780304e+02, 4.87756653e+02,
+       4.68239929e+02, 4.49230103e+02, 4.30727234e+02, 4.12731293e+02,
+       3.95242279e+02, 3.78260193e+02, 3.61785034e+02, 3.45816803e+02,
+       3.30355499e+02, 3.15401123e+02, 3.00953674e+02, 2.87013153e+02,
+       2.73579590e+02, 2.60652924e+02, 2.48233185e+02, 2.36320374e+02,
+       2.24914490e+02, 2.14015533e+02, 2.03623520e+02, 1.93484955e+02,
+       1.83346405e+02, 1.73207840e+02, 1.63069275e+02, 1.53164993e+02,
+       1.43664993e+02, 1.34500000e+02, 1.25665001e+02, 1.17165001e+02,
+       1.09000000e+02, 1.01165001e+02, 9.36650009e+01, 8.65000000e+01,
+       7.96650009e+01, 7.31650009e+01, 6.70000000e+01, 6.11650009e+01,
+       5.56650009e+01, 5.05000000e+01, 4.56650009e+01, 4.11650009e+01,
+       3.70000000e+01, 3.31650009e+01, 2.96650009e+01, 2.65000000e+01,
+       2.36000004e+01, 2.08999996e+01, 1.83999996e+01, 1.61000004e+01,
+       1.40000000e+01, 1.21000004e+01, 1.03999996e+01, 8.89999962e+00,
+       7.59999990e+00, 6.50000000e+00, 5.55000019e+00, 4.70800018e+00,
+       3.95099998e+00, 3.32599998e+00, 2.80649996e+00, 2.36249995e+00,
+       1.99399996e+00, 1.66849995e+00, 1.39450002e+00, 1.14699996e+00,
+       9.31999981e-01, 7.40999997e-01, 5.63000023e-01, 3.95999998e-01,
+       2.46999994e-01, 1.38999999e-01, 7.80000016e-02, 4.39999998e-02,
+       2.50000004e-02, 1.40000004e-02, 7.49999983e-03])
 </pre></div>
 </div>
 </div>
