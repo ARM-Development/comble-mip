@@ -23,14 +23,18 @@ vbase = 'opd_drops'
 #INDIR  = '/data/home/floriantornow/dharma_test/'
 #OUTDIR = '/data/home/floriantornow/dharma_test/tmp/'
 
-def obtain_time(path,input_filename,type='alt_'):
+def obtain_time(path,input_filename,type='alt_0'):
     
     file = open(path + '/dharma.log', "r")
-
+    #print(str(int(input_filename.stem.split(type)[1])))#.strip("0"))
     for line in file:
-        if re.search(input_filename.stem.split(type)[1].strip("0"), line):
-            print(line, end='\n')
-            time_2d = float(line.split('|')[2])
+        #col_oi = line.split('|')[0]
+        col_oi = line.split('|')
+        if len(col_oi) > 5:
+        #    print(int(col_oi[1]))
+            if int(input_filename.stem.split(type)[1]) == int(col_oi[1]):
+                print(line, end='\n')
+                time_2d = float(line.split('|')[2])
     return time_2d
 
 def read_2d(FILE,vbase='opd_drops'):
@@ -83,6 +87,8 @@ def read_2d(FILE,vbase='opd_drops'):
     for f in files:
         os.remove(f)
     os.rmdir(OUTDIR)
+    
+    var_big = var_big.reshape(1,shape(var_big)[0],shape(var_big)[1])
     
     return var_big
 

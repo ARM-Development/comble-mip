@@ -704,8 +704,10 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
             ds = nc.Dataset(fn)
             time = ds.variables['time'][t0:]
             zf   = ds.variables['zf'][t0:]
+            pa   = ds.variables['pa'][t0:]
             qv   = ds.variables['qv'][t0:,:]
             zf_ndim = zf.ndim
+            pa_ndim = pa.ndim
             #print(len(zf))
 
             label_items = [x for x in fn.parts + direc.parts if x not in direc.parts]
@@ -714,11 +716,19 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
 
             if(zf_ndim > 1):
                 zf = zf[1,:]
-            #print(len(zf))
+            #if (zf_ndim > 1) & (pa_ndim > 1):
+            #    print('---either pa or zf should be 1-dimensional---')
             
             for ii in range(len(zf)-1):
+                if zf_ndim > 1:
+                    ## accounting for changing heights for SCMs that have constant pressure grid
+                    p_df2 = pd.DataFrame({"class": [group]* len(time), "time":time}, index=time/3600) 
+                    p_df2['zf'] = ds.variables['zf'][t0:,ii]
+                else:
+                    ## simpler treatment for LES-like constant altitude grid
+                    p_df2 = pd.DataFrame({"class": [group]* len(time), "time":time, "zf": zf[ii]}, index=time/3600) 
                 
-                p_df2 = pd.DataFrame({"class": [group]* len(time), "time":time, "zf": zf[ii]}, index=time/3600) 
+                #print(ds.variables['zf'][t0:,ii])
                 #print(p_df2)
                 for vv in var_vec_2d:
                     if vv in ds.variables:
@@ -730,7 +740,8 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
                         #    print(ds.variables[vv][t0:])
                         if(zf_ndim>1) & ((vv=='pa') | (vv=='pe')):
                             if(ds.variables[vv][t0:].ndim>1): ## some report both zf and pa as 2D fields
-                                p_df2[vv] = ds.variables[vv][t0:][0][ii]
+                                #p_df2[vv] = ds.variables[vv][t0:][0][ii]
+                                p_df2[vv] = ds.variables[vv][t0:,ii]
                             else:
                                 p_df2[vv] = ds.variables[vv][t0:][ii]
                         else:
