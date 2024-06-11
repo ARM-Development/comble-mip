@@ -23,14 +23,18 @@ vbase = 'opd_drops'
 #INDIR  = '/data/home/floriantornow/dharma_test/'
 #OUTDIR = '/data/home/floriantornow/dharma_test/tmp/'
 
-def obtain_time(path,input_filename):
+def obtain_time(path,input_filename,type='alt_0'):
     
     file = open(path + '/dharma.log', "r")
-
+    #print(str(int(input_filename.stem.split(type)[1])))#.strip("0"))
     for line in file:
-        if re.search(input_filename.stem.split('alt_')[1].strip("0"), line):
-            print(line, end='\n')
-            time_2d = float(line.split('|')[2])
+        #col_oi = line.split('|')[0]
+        col_oi = line.split('|')
+        if len(col_oi) > 5:
+        #    print(int(col_oi[1]))
+            if int(input_filename.stem.split(type)[1]) == int(col_oi[1]):
+                print(line, end='\n')
+                time_2d = float(line.split('|')[2])
     return time_2d
 
 def read_2d(FILE,vbase='opd_drops'):
@@ -83,6 +87,8 @@ def read_2d(FILE,vbase='opd_drops'):
     for f in files:
         os.remove(f)
     os.rmdir(OUTDIR)
+    
+    var_big = var_big.reshape(1,shape(var_big)[0],shape(var_big)[1])
     
     return var_big
 
@@ -271,17 +277,19 @@ def id_watershed(IMG,THRES_CLOUD,THRES_CONNECT,plotting=False):
 
     return POINT_COL
         
-def threed_loader(PLT_FILE,INDIR='/data/home/floriantornow/dharma_test/',OUTDIR='/data/home/floriantornow/dharma_test/tmp/',vbase='w'):
-    tar = tarfile.open(INDIR + PLT_FILE)
+def threed_loader(FILE,vbase='w'):
+    OUTDIR = os.path.dirname(os.path.abspath(FILE)) + '/tmp/'
+    Path(OUTDIR).mkdir(parents=True, exist_ok=True)
+    tar = tarfile.open(FILE)
     tar.extractall(OUTDIR)
     tar.close()
     
     ## gather info from first file
-    PLT_FILE_TMP = OUTDIR + Path(PLT_FILE).stem + '_0000.cdf'
+    PLT_FILE_TMP = OUTDIR + Path(FILE).stem + '_0000.cdf'
     ds = nc.Dataset(PLT_FILE_TMP)
     #for dim in ds.dimensions.items():
     #    print(dim)
-    print(ds)
+    #print(ds)
     pmap = ds.pmap
     nbox = ds.nboxes
     nx = ds.nx
@@ -295,7 +303,7 @@ def threed_loader(PLT_FILE,INDIR='/data/home/floriantornow/dharma_test/',OUTDIR=
         vname = vbase + '_' + str("%04d" % (j+1,))
         
         ib = pmap[j]
-        PLT_FILE_TMP = OUTDIR + Path(PLT_FILE).stem + '_' + str("%04d" % (ib,)) + '.cdf'
+        PLT_FILE_TMP = OUTDIR + Path(FILE).stem + '_' + str("%04d" % (ib,)) + '.cdf'
         #print(PLT_FILE_TMP)
         ds = nc.Dataset(PLT_FILE_TMP)
         varF  = ds.variables[vname]
