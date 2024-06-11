@@ -1212,9 +1212,18 @@ document.write(`
     <span class="k">elif</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;surface_roughness_length_for_momentum_in_air&#39;</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;z0m&#39;</span><span class="p">],</span><span class="s1">&#39;&#39;</span>
     <span class="k">elif</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;surface_roughness_length_for_heat_in_air&#39;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;z0t&#39;</span><span class="p">],</span><span class="s1">&#39;&#39;</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;z0t&#39;</span><span class="p">]</span><span class="o">==-</span><span class="mf">999.</span><span class="p">):</span>
+            <span class="c1"># The same value (z0m) for momentum, humidity and heat</span>
+            <span class="k">return</span> <span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;z0m&#39;</span><span class="p">],</span><span class="s1">&#39;The same as that for momentum&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;z0t&#39;</span><span class="p">],</span><span class="s1">&#39;&#39;</span>
     <span class="k">elif</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;surface_roughness_length_for_humidity_in_air&#39;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;z0t&#39;</span><span class="p">],</span><span class="s1">&#39;The same as that for heat&#39;</span> <span class="c1"># Note: the same as that for heat!</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;z0t&#39;</span><span class="p">]</span><span class="o">==-</span><span class="mf">999.</span><span class="p">):</span>
+            <span class="c1"># The same value (z0m) for momentum, humidity and heat</span>
+            <span class="k">return</span> <span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;z0m&#39;</span><span class="p">],</span><span class="s1">&#39;The same as that for momentum&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># The same as that for heat</span>
+            <span class="k">return</span> <span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;z0t&#39;</span><span class="p">],</span><span class="s1">&#39;The same as that for heat&#39;</span>
     <span class="k">elif</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;surface_upward_sensible_heat_flux&#39;</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;shf_bar&#39;</span><span class="p">],</span><span class="s1">&#39;&#39;</span>
     <span class="k">elif</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;surface_upward_latent_heat_flux&#39;</span><span class="p">:</span>
@@ -1234,20 +1243,15 @@ document.write(`
         <span class="k">return</span> <span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;rwp_bar&#39;</span><span class="p">],</span><span class="s1">&#39;&#39;</span>
     <span class="k">elif</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;atmosphere_mass_content_of_ice_water&#39;</span><span class="p">:</span>
         <span class="c1"># all ice-phase hydrometeors</span>
-        <span class="k">if</span> <span class="n">sb</span> <span class="ow">and</span> <span class="s1">&#39;hwp_bar&#39;</span> <span class="ow">in</span> <span class="n">les_ts</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-            <span class="k">return</span> <span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;iwp_bar&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;swp_bar&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;gwp_bar&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;hwp_bar&#39;</span><span class="p">],</span><span class="s1">&#39;&#39;</span>
-        <span class="k">elif</span> <span class="n">sb</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">sb</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;iwp_bar&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;swp_bar&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;gwp_bar&#39;</span><span class="p">],</span><span class="s1">&#39;&#39;</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;swp_bar&#39;</span><span class="p">],</span><span class="s1">&#39;&#39;</span>
     <span class="k">elif</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;cloud_area_fraction&#39;</span><span class="p">:</span>
         <span class="c1"># fraction of atmospheric columns with total hydrometeor mid-visible optical thickness &gt; 2;</span>
         <span class="c1"># may assume geometric scatterers; to be compared with satellite measurements</span>
-        <span class="k">if</span> <span class="n">cs</span><span class="p">:</span>
-            <span class="c1"># Find columns with hydrometeor-only tau&gt;2</span>
-            <span class="n">tmp</span><span class="o">=</span><span class="p">(</span><span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;tau_liq&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;tau_ice&#39;</span><span class="p">])</span><span class="o">&gt;</span><span class="mf">2.0</span>
-            <span class="c1"># Average over x and y gives the fraction as a function of time</span>
-            <span class="k">return</span> <span class="n">tmp</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;xt&#39;</span><span class="p">,</span><span class="s1">&#39;yt&#39;</span><span class="p">)),</span><span class="s1">&#39;Calculated from cs data&#39;</span>
+        <span class="k">if</span> <span class="s1">&#39;frac_od&#39;</span> <span class="ow">in</span> <span class="n">les_ts</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>  
+            <span class="k">return</span> <span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;frac_od&#39;</span><span class="p">],</span><span class="s1">&#39;&#39;</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;cfrac&#39;</span><span class="p">],</span><span class="s1">&#39;Based on cloud water&#39;</span> <span class="c1"># Original cloud fraction</span>
     <span class="k">elif</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;optical_depth&#39;</span><span class="p">:</span>
@@ -1260,17 +1264,13 @@ document.write(`
         <span class="c1"># liquid and ice phase, all hydrometeors</span>
         <span class="c1"># Unit conversion: W/m2/(J/kg)=kg/m2/s</span>
         <span class="c1"># Note: cloud water precipitation ignored</span>
-        <span class="k">if</span> <span class="n">sb</span> <span class="ow">and</span> <span class="s1">&#39;hprcp&#39;</span> <span class="ow">in</span> <span class="n">les_ts</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-            <span class="k">return</span> <span class="p">(</span><span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;prcp&#39;</span><span class="p">])</span><span class="o">/</span><span class="n">alvl</span><span class="o">+</span><span class="p">(</span><span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;iprcp&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;sprcp&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;gprcp&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;hprcp&#39;</span><span class="p">])</span><span class="o">/</span><span class="n">alvi</span><span class="p">,</span><span class="s1">&#39;&#39;</span>
-        <span class="k">elif</span> <span class="n">sb</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">sb</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">(</span><span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;prcp&#39;</span><span class="p">])</span><span class="o">/</span><span class="n">alvl</span><span class="o">+</span><span class="p">(</span><span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;iprcp&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;sprcp&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;gprcp&#39;</span><span class="p">])</span><span class="o">/</span><span class="n">alvi</span><span class="p">,</span><span class="s1">&#39;&#39;</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">(</span><span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;prcp&#39;</span><span class="p">])</span><span class="o">/</span><span class="n">alvl</span><span class="o">+</span><span class="p">(</span><span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;sprcp&#39;</span><span class="p">])</span><span class="o">/</span><span class="n">alvi</span><span class="p">,</span><span class="s1">&#39;&#39;</span>
     <span class="k">elif</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;precipitation_flux_at_surface_in_ice_phase&#39;</span><span class="p">:</span>
         <span class="c1"># ice phase hydrometeors only</span>
-        <span class="k">if</span> <span class="n">sb</span> <span class="ow">and</span> <span class="s1">&#39;hprcp&#39;</span> <span class="ow">in</span> <span class="n">les_ts</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-            <span class="k">return</span> <span class="p">(</span><span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;iprcp&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;sprcp&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;gprcp&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;hprcp&#39;</span><span class="p">])</span><span class="o">/</span><span class="n">alvi</span><span class="p">,</span><span class="s1">&#39;&#39;</span>
-        <span class="k">elif</span> <span class="n">sb</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">sb</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">(</span><span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;iprcp&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;sprcp&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;gprcp&#39;</span><span class="p">])</span><span class="o">/</span><span class="n">alvi</span><span class="p">,</span><span class="s1">&#39;&#39;</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">(</span><span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;sprcp&#39;</span><span class="p">])</span><span class="o">/</span><span class="n">alvi</span><span class="p">,</span><span class="s1">&#39;&#39;</span>
@@ -1315,7 +1315,7 @@ document.write(`
         <span class="k">return</span> <span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;rho_air&#39;</span><span class="p">],</span><span class="s1">&#39;For dry air&#39;</span>
     <span class="k">elif</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;air_temperature&#39;</span><span class="p">:</span>
         <span class="c1"># Calculate fron theta_L</span>
-        <span class="k">return</span> <span class="p">(</span><span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;thl&#39;</span><span class="p">]</span><span class="o">+</span><span class="p">(</span><span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;l&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;rr&#39;</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="n">alvl</span><span class="o">/</span><span class="n">cp</span><span class="p">))</span><span class="o">*</span><span class="p">(</span><span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">p00</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">Rd</span><span class="o">/</span><span class="n">cp</span><span class="p">),</span><span class="s1">&#39;&#39;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;thl&#39;</span><span class="p">]</span><span class="o">+</span><span class="p">(</span><span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;l&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;rr&#39;</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="n">alvl</span><span class="o">/</span><span class="n">cp</span><span class="p">))</span><span class="o">*</span><span class="p">(</span><span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">p00</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">Rd</span><span class="o">/</span><span class="n">cp</span><span class="p">),</span><span class="s1">&#39;Calculated from theta_L&#39;</span>
         <span class="c1">#return les_ps[&#39;T_avg&#39;],&#39;&#39;</span>
     <span class="k">elif</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;water_vapor_mixing_ratio&#39;</span><span class="p">:</span>
         <span class="c1"># per kg dry air</span>
@@ -1421,9 +1421,7 @@ document.write(`
     <span class="k">elif</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;number_of_ice_crystals_in_cloud&#39;</span><span class="p">:</span>
         <span class="c1"># total ice hydrometeors per kg dry air where cloud water &gt; 0.01 g/kg; within liquid</span>
         <span class="c1"># cloud boundaries in order to check immersion freezing</span>
-        <span class="k">if</span> <span class="n">sb</span> <span class="ow">and</span> <span class="s1">&#39;icNht&#39;</span> <span class="ow">in</span> <span class="n">les_ps</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-            <span class="k">return</span> <span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;icNit&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;icNst&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;icNgt&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;icNht&#39;</span><span class="p">],</span><span class="s1">&#39;&#39;</span>
-        <span class="k">elif</span> <span class="n">sb</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">sb</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;icNit&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;icNst&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;icNgt&#39;</span><span class="p">],</span><span class="s1">&#39;&#39;</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;icNst&#39;</span><span class="p">],</span><span class="s1">&#39;&#39;</span>
@@ -1466,16 +1464,12 @@ document.write(`
     <span class="k">elif</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;precipitation_flux_in_air&#39;</span><span class="p">:</span>
         <span class="c1"># liquid and ice phase, all hydrometeors</span>
         <span class="c1"># W/m2/(J/kg)=kg/m2/s</span>
-        <span class="k">if</span> <span class="n">sb</span> <span class="ow">and</span> <span class="s1">&#39;hrate&#39;</span> <span class="ow">in</span> <span class="n">les_ps</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-            <span class="k">return</span> <span class="p">(</span><span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;crate&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;rrate&#39;</span><span class="p">])</span><span class="o">/</span><span class="n">alvl</span><span class="o">+</span><span class="p">(</span><span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;irate&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;srate&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;grate&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;hrate&#39;</span><span class="p">])</span><span class="o">/</span><span class="n">alvi</span><span class="p">,</span><span class="s1">&#39;&#39;</span>
-        <span class="k">elif</span> <span class="n">sb</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">sb</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">(</span><span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;crate&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;rrate&#39;</span><span class="p">])</span><span class="o">/</span><span class="n">alvl</span><span class="o">+</span><span class="p">(</span><span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;irate&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;srate&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;grate&#39;</span><span class="p">])</span><span class="o">/</span><span class="n">alvi</span><span class="p">,</span><span class="s1">&#39;&#39;</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">(</span><span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;crate&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;rrate&#39;</span><span class="p">])</span><span class="o">/</span><span class="n">alvl</span><span class="o">+</span><span class="p">(</span><span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;srate&#39;</span><span class="p">])</span><span class="o">/</span><span class="n">alvi</span><span class="p">,</span><span class="s1">&#39;&#39;</span>
     <span class="k">elif</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;precipitation_flux_in_air_in_ice_phase&#39;</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">sb</span> <span class="ow">and</span> <span class="s1">&#39;hrate&#39;</span> <span class="ow">in</span> <span class="n">les_ps</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-            <span class="k">return</span> <span class="p">(</span><span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;irate&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;srate&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;grate&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;hrate&#39;</span><span class="p">])</span><span class="o">/</span><span class="n">alvi</span><span class="p">,</span><span class="s1">&#39;&#39;</span>
-        <span class="k">elif</span> <span class="n">sb</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">sb</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">(</span><span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;irate&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;srate&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;grate&#39;</span><span class="p">])</span><span class="o">/</span><span class="n">alvi</span><span class="p">,</span><span class="s1">&#39;&#39;</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;srate&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">alvi</span><span class="p">,</span><span class="s1">&#39;&#39;</span>
@@ -1529,20 +1523,10 @@ document.write(`
             <span class="k">return</span> <span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;nucf_ns&#39;</span><span class="p">],</span><span class="s1">&#39;&#39;</span>
     <span class="k">elif</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;tendency_of_ice_number_due_to_secondary_ice_production&#39;</span><span class="p">:</span>
         <span class="c1"># sum of secondary ice formation processes (e.g., Hallet-Mossop plus any others)</span>
-        <span class="k">if</span> <span class="n">sb</span><span class="p">:</span>
-            <span class="c1"># SIP is part of the coagulation</span>
-            <span class="k">return</span> <span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;coag_ni&#39;</span><span class="p">],</span><span class="s1">&#39;Ice due to coagulation and SIP&#39;</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="c1"># Hallett-Mossop only</span>
-            <span class="k">return</span> <span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;siph_ns&#39;</span><span class="p">],</span><span class="s1">&#39;Hallett-Mossop only&#39;</span>
+        <span class="k">return</span> <span class="n">tmp</span><span class="p">,</span><span class="s1">&#39;NA&#39;</span> <span class="c1"># Switched off</span>
     <span class="k">elif</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;tendency_of_ice_number_due_to_homogeneous_freezing&#39;</span><span class="p">:</span>
         <span class="c1"># ice nucleation source due to homogoeneous freezing</span>
-        <span class="k">if</span> <span class="n">sb</span><span class="p">:</span>
-            <span class="c1"># rain and cloud freezing</span>
-            <span class="k">return</span> <span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;frez_ni&#39;</span><span class="p">],</span><span class="s1">&#39;&#39;</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="c1"># modelled ice nucleation includes homogoeneous freezing</span>
-            <span class="k">return</span> <span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;nucm_ns&#39;</span><span class="p">],</span><span class="s1">&#39;&#39;</span>
+        <span class="k">return</span> <span class="n">tmp</span><span class="p">,</span><span class="s1">&#39;NA&#39;</span> <span class="c1"># Switched off</span>
     <span class="c1">#</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Undefined ps:&#39;</span><span class="o">+</span><span class="n">standard_name</span><span class="o">+</span><span class="s1">&#39;!&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">tmp</span><span class="p">,</span><span class="s1">&#39;NA&#39;</span>
@@ -1558,8 +1542,6 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Open source files</span>
 <span class="n">les_ts</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">input_filename_ts</span><span class="p">)</span>
 <span class="n">les_ps</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">input_filename_ps</span><span class="p">)</span>
-<span class="n">cs</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">input_filename_cs</span><span class="p">)</span>
-<span class="k">if</span> <span class="n">cs</span><span class="p">:</span> <span class="n">les_cs</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">input_filename_cs</span><span class="p">)</span>
 
 <span class="c1"># create DEPHY output file</span>
 <span class="n">dephy_filename</span> <span class="o">=</span> <span class="n">my_gitdir</span> <span class="o">+</span> <span class="n">my_outfile</span> <span class="o">+</span> <span class="s1">&#39;.nc&#39;</span>
@@ -1587,7 +1569,7 @@ document.write(`
 <span class="c1"># create dimensions</span>
 
 <span class="c1"># zf = dimension, altitude of mid-level points above sea surface = zf</span>
-<span class="n">nz</span> <span class="o">=</span> <span class="n">les_ps</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="s1">&#39;zt&#39;</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span>
+<span class="n">nz</span> <span class="o">=</span> <span class="n">les_ps</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="s1">&#39;zt&#39;</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span>
 <span class="n">zf</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s1">&#39;zf&#39;</span><span class="p">,</span> <span class="n">nz</span><span class="p">)</span>
 <span class="n">zf</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;zf&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;zf&#39;</span><span class="p">,))</span>
 <span class="n">zf</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;m&#39;</span>
@@ -1602,16 +1584,14 @@ document.write(`
 <span class="n">ze</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;zm&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">data</span>
 
 <span class="c1"># time = seconds since 2020-03-12 18:00:00 - Note: here the start time is 2020-03-12 22:00:00</span>
-<span class="n">nt</span> <span class="o">=</span> <span class="n">les_ps</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span>
+<span class="n">nt</span> <span class="o">=</span> <span class="n">les_ps</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span>
 <span class="n">time</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">nt</span><span class="p">)</span>
 <span class="n">time</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,))</span>
 <span class="n">time</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;seconds since &#39;</span> <span class="o">+</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">startDate</span>
 <span class="n">time</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;time&#39;</span>
-<span class="n">time</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+<span class="n">time</span><span class="p">[:]</span> <span class="o">=</span> <span class="mf">5.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">/</span><span class="mf">5.</span><span class="p">)</span> <span class="c1"># Model time may exceed target time by 1 s</span>
 
-<span class="n">ignore_missing</span><span class="o">=</span><span class="kc">False</span>
-
-<span class="c1"># create and fill variables</span>
+<span class="c1"># create variables</span>
 <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">2</span><span class="p">:]:</span>
     <span class="c1"># Output</span>
     <span class="n">std_name</span> <span class="o">=</span> <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">standard_name</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
@@ -1623,17 +1603,14 @@ document.write(`
         <span class="n">new_sca</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="n">std_name</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">out</span><span class="p">,</span><span class="n">note</span><span class="o">=</span><span class="n">calc_ts</span><span class="p">(</span><span class="n">std_name</span><span class="p">)</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">note</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span> <span class="n">new_sca</span><span class="o">.</span><span class="n">note</span><span class="o">=</span><span class="n">note</span>
-            <span class="c1"># Current ts-data is with 2 min output frequency =&gt; needs to be averaged</span>
-            <span class="k">if</span> <span class="n">note</span><span class="o">==</span><span class="s1">&#39;NA&#39;</span><span class="p">:</span>
-                <span class="c1"># No data</span>
-                <span class="n">new_sca</span><span class="p">[:]</span><span class="o">=-</span><span class="mf">999.</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="c1"># Calculate time-average</span>
+            <span class="k">if</span> <span class="n">note</span><span class="o">!=</span><span class="s1">&#39;NA&#39;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">out</span><span class="o">==-</span><span class="mf">999.</span><span class="p">):</span> <span class="c1"># No data: do not fill the variable field</span>
+                <span class="c1"># Current ts-data is with 2 min output frequency =&gt; needs to be averaged</span>
+                <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">out</span><span class="o">==-</span><span class="mf">999.</span><span class="p">):</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Warning: averaging missing values for &#39;</span><span class="p">,</span><span class="n">std_name</span><span class="p">)</span>
                 <span class="n">time0</span><span class="o">=</span><span class="n">time</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
                 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nt</span><span class="p">):</span>
-                    <span class="n">new_sca</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">out</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="n">time0</span><span class="p">,</span><span class="n">time</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
-                    <span class="n">time0</span><span class="o">=</span><span class="n">time</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="mf">1.</span>
+                    <span class="n">new_sca</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">out</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="n">time0</span><span class="p">,</span><span class="n">time</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="mf">1.5</span><span class="p">))</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+                    <span class="n">time0</span><span class="o">=</span><span class="n">time</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="mf">1.5</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">note</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span> <span class="n">new_sca</span><span class="o">.</span><span class="n">note</span><span class="o">=</span><span class="n">note</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Failed: &#39;</span><span class="o">+</span><span class="n">std_name</span><span class="p">,</span><span class="n">e</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">dimensions</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;time, height&#39;</span><span class="p">:</span>
@@ -1643,28 +1620,30 @@ document.write(`
         <span class="n">new_snd</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="n">std_name</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">arr</span><span class="p">,</span><span class="n">note</span> <span class="o">=</span> <span class="n">calc_ps</span><span class="p">(</span><span class="n">std_name</span><span class="p">)</span>
-            <span class="n">new_snd</span><span class="p">[:]</span><span class="o">=</span><span class="n">arr</span><span class="p">[:,</span><span class="mi">1</span><span class="p">:]</span> <span class="c1"># Without z&lt;0</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">note</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span> <span class="n">new_snd</span><span class="o">.</span><span class="n">note</span><span class="o">=</span><span class="n">note</span>
+            <span class="k">if</span> <span class="n">note</span><span class="o">!=</span><span class="s1">&#39;NA&#39;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">arr</span><span class="o">==-</span><span class="mf">999.</span><span class="p">):</span> <span class="c1"># No data: do not fill the variable field</span>
+                <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">arr</span><span class="o">==-</span><span class="mf">999.</span><span class="p">):</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Warning: including missing values for &#39;</span><span class="p">,</span><span class="n">std_name</span><span class="p">)</span>
+                <span class="n">new_snd</span><span class="p">[:]</span><span class="o">=</span><span class="n">arr</span><span class="p">[:,</span><span class="mi">1</span><span class="p">:]</span> <span class="c1"># Without z&lt;0</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">note</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span> <span class="n">new_snd</span><span class="o">.</span><span class="n">note</span><span class="o">=</span><span class="n">note</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-          <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Failed: &#39;</span><span class="o">+</span><span class="n">std_name</span><span class="p">,</span><span class="n">e</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Failed: &#39;</span><span class="o">+</span><span class="n">std_name</span><span class="p">,</span><span class="n">e</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">dephy_file</span><span class="p">)</span>
 
 <span class="c1"># Close all files</span>
 <span class="n">dephy_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 <span class="n">les_ts</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 <span class="n">les_ps</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-<span class="k">if</span> <span class="n">cs</span><span class="p">:</span> <span class="n">les_cs</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;netCDF4._netCDF4.Dataset&#39;&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The file ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN_def_z0.nc has been deleted successfully
+&lt;class &#39;netCDF4._netCDF4.Dataset&#39;&gt;
 root group (NETCDF3_CLASSIC data model, file format NETCDF3):
     title: UCLALES-SALSA results for COMBLE-MIP case
     reference: https://github.com/ARM-Development/comble-mip
     authors: Tomi Raatikainen (tomi.raatikainen@fmi.fi)
     source: COMBLE_SB_FixN_def_z0
-    version: 2024-03-15 10:10:25
+    version: 2024-06-11 06:41:20
     format_version: DEPHY SCM format version 1.6
     script: convert_UCLALES-SALSA_output_to_dephy_format.ipynb
     startDate: 2020-03-12T22:00:00Z
@@ -1859,19 +1838,15 @@ root group (NETCDF3_CLASSIC data model, file format NETCDF3):
         <span class="k">return</span> <span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;vs&#39;</span><span class="p">],</span><span class="s1">&#39;&#39;</span>
     <span class="k">elif</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;precipitation_flux_at_surface&#39;</span><span class="p">:</span>
         <span class="c1"># all hydrometeors</span>
-        <span class="k">if</span> <span class="n">sb</span> <span class="ow">and</span> <span class="s1">&#39;hprcp&#39;</span> <span class="ow">in</span> <span class="n">les_cs</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-            <span class="k">return</span> <span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;rprcp&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;iprcp&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;sprcp&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;gprcp&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;hprcp&#39;</span><span class="p">],</span><span class="s1">&#39;&#39;</span>
-        <span class="k">elif</span> <span class="n">sb</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;rprcp&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;iprcp&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;sprcp&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;gprcp&#39;</span><span class="p">],</span><span class="s1">&#39;&#39;</span>
+        <span class="k">if</span> <span class="n">sb</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;rprcp&#39;</span><span class="p">])</span><span class="o">/</span><span class="n">alvl</span><span class="o">+</span><span class="p">(</span><span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;iprcp&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;sprcp&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;gprcp&#39;</span><span class="p">])</span><span class="o">/</span><span class="n">alvi</span><span class="p">,</span><span class="s1">&#39;&#39;</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;rprcp&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;sprcp&#39;</span><span class="p">],</span><span class="s1">&#39;&#39;</span>
+            <span class="k">return</span> <span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;rprcp&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">alvl</span><span class="o">+</span><span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;sprcp&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">alvi</span><span class="p">,</span><span class="s1">&#39;&#39;</span>
     <span class="k">elif</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;atmosphere_mass_content_of_liquid_water&#39;</span><span class="p">:</span>
         <span class="c1"># all liquid hydrometeors</span>
         <span class="k">return</span> <span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;lwp&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;rwp&#39;</span><span class="p">],</span><span class="s1">&#39;&#39;</span>
     <span class="k">elif</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;atmosphere_mass_content_of_ice&#39;</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">sb</span> <span class="ow">and</span> <span class="s1">&#39;hwp&#39;</span> <span class="ow">in</span> <span class="n">les_cs</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-            <span class="k">return</span> <span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;iwp&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;swp&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;gwp&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;hwp&#39;</span><span class="p">],</span><span class="s1">&#39;&#39;</span>
-        <span class="k">elif</span> <span class="n">sb</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">sb</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;iwp&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;swp&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;gwp&#39;</span><span class="p">],</span><span class="s1">&#39;&#39;</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;swp&#39;</span><span class="p">],</span><span class="s1">&#39;&#39;</span>
@@ -1883,7 +1858,7 @@ root group (NETCDF3_CLASSIC data model, file format NETCDF3):
         <span class="k">return</span> <span class="p">(</span><span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;tau_liq&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;tau_ice&#39;</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;tau_liq&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;tau_ice&#39;</span><span class="p">]</span><span class="o">+</span><span class="mi">13</span><span class="p">),</span><span class="s1">&#39;&#39;</span>
     <span class="k">elif</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;toa_outgoing_longwave_flux_atmospheric_window&#39;</span><span class="p">:</span>
         <span class="c1"># flux at top-of-atmosphere in window containing 10.8 µm, please specify wavelength range</span>
-        <span class="k">return</span> <span class="n">tmp</span><span class="p">,</span><span class="s1">&#39;NA&#39;</span>
+        <span class="k">return</span> <span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;toa_lwu&#39;</span><span class="p">],</span><span class="s1">&#39;Total LW&#39;</span>
     <span class="c1">#</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Undefined cs:&#39;</span><span class="o">+</span><span class="n">standard_name</span><span class="o">+</span><span class="s1">&#39;!&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">tmp</span><span class="p">,</span><span class="s1">&#39;NA&#39;</span>
@@ -1924,14 +1899,14 @@ root group (NETCDF3_CLASSIC data model, file format NETCDF3):
 
 <span class="c1"># create dimensions</span>
 <span class="c1"># x, y</span>
-<span class="n">nx</span> <span class="o">=</span> <span class="n">les_cs</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="s1">&#39;xt&#39;</span><span class="p">]</span>
+<span class="n">nx</span> <span class="o">=</span> <span class="n">les_cs</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="s1">&#39;xt&#39;</span><span class="p">]</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">nx</span><span class="p">)</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,))</span>
 <span class="n">x</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;m&#39;</span>
 <span class="n">x</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;x&#39;</span>
 <span class="n">x</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;xt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
 
-<span class="n">ny</span> <span class="o">=</span> <span class="n">les_cs</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="s1">&#39;yt&#39;</span><span class="p">]</span>
+<span class="n">ny</span> <span class="o">=</span> <span class="n">les_cs</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="s1">&#39;yt&#39;</span><span class="p">]</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">ny</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,))</span>
 <span class="n">y</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;m&#39;</span>
@@ -1939,37 +1914,34 @@ root group (NETCDF3_CLASSIC data model, file format NETCDF3):
 <span class="n">y</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;yt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
 
 <span class="c1"># time</span>
-<span class="n">nt</span> <span class="o">=</span> <span class="n">les_cs</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span>
+<span class="n">nt</span> <span class="o">=</span> <span class="n">les_cs</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span>
 <span class="n">time</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">nt</span><span class="p">)</span>
 <span class="n">time</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,))</span>
 <span class="n">time</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;seconds since &#39;</span> <span class="o">+</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">startDate</span>
 <span class="n">time</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;time&#39;</span>
-<span class="n">time</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+<span class="n">time</span><span class="p">[:]</span> <span class="o">=</span> <span class="mf">5.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">/</span><span class="mf">5.</span><span class="p">)</span> <span class="c1"># Model time may exceed target time by 1 s</span>
 
-<span class="n">ignore_missing</span><span class="o">=</span><span class="kc">True</span>
 <span class="c1">#preci = np.float64 # Default</span>
 <span class="n">preci</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span> <span class="c1"># To save disc space</span>
 
-<span class="c1"># create and fill variables</span>
+<span class="c1"># create variables</span>
 <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">vars_2d_list</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">3</span><span class="p">:]:</span>
     <span class="c1"># Output</span>
     <span class="n">std_name</span> <span class="o">=</span> <span class="n">vars_2d_list</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">dat</span><span class="p">,</span><span class="n">note</span><span class="o">=</span><span class="n">calc_cs</span><span class="p">(</span><span class="n">std_name</span><span class="p">)</span>
-        <span class="c1"># NA means no data</span>
-        <span class="k">if</span> <span class="n">note</span><span class="o">==</span><span class="s1">&#39;NA&#39;</span> <span class="ow">and</span> <span class="n">ignore_missing</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ignoring &#39;</span><span class="o">+</span><span class="n">std_name</span><span class="o">+</span><span class="s1">&#39; (no data)&#39;</span><span class="p">)</span>
-            <span class="k">continue</span>
-    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Failed: &#39;</span><span class="o">+</span><span class="n">std_name</span><span class="p">,</span><span class="n">e</span><span class="p">)</span>
-        <span class="k">continue</span>
-    <span class="c1">#</span>
     <span class="n">var_name</span> <span class="o">=</span> <span class="n">vars_2d_list</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">new</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="n">var_name</span><span class="p">,</span> <span class="n">preci</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">))</span>
     <span class="n">new</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="n">vars_2d_list</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
     <span class="n">new</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="n">std_name</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">note</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span> <span class="n">new</span><span class="o">.</span><span class="n">note</span><span class="o">=</span><span class="n">note</span>
-    <span class="n">new</span><span class="p">[:]</span><span class="o">=</span><span class="n">dat</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">dat</span><span class="p">,</span><span class="n">note</span><span class="o">=</span><span class="n">calc_cs</span><span class="p">(</span><span class="n">std_name</span><span class="p">)</span>
+        <span class="c1"># NA means no data</span>
+        <span class="k">if</span> <span class="n">note</span><span class="o">==</span><span class="s1">&#39;NA&#39;</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ignoring &#39;</span><span class="o">+</span><span class="n">std_name</span><span class="o">+</span><span class="s1">&#39; (no data)&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">new</span><span class="p">[:]</span><span class="o">=</span><span class="n">dat</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">note</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span> <span class="n">new</span><span class="o">.</span><span class="n">note</span><span class="o">=</span><span class="n">note</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Failed: &#39;</span><span class="o">+</span><span class="n">std_name</span><span class="p">,</span><span class="n">e</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">dephy_file</span><span class="p">)</span>
 
@@ -2323,9 +2295,7 @@ root group (NETCDF3_CLASSIC data model, file format NETCDF3):
         <span class="k">return</span> <span class="n">les_an</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="n">Rd</span><span class="o">*</span><span class="n">les_an</span><span class="p">[</span><span class="s1">&#39;theta&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">les_an</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">p00</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">Rd</span><span class="o">/</span><span class="n">cp</span><span class="p">)),</span><span class="s1">&#39;Calculated&#39;</span>
     <span class="k">elif</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;water_vapor_mixing_ratio&#39;</span><span class="p">:</span>
         <span class="c1"># per kg dry air</span>
-        <span class="k">if</span> <span class="n">sb</span> <span class="ow">and</span> <span class="s1">&#39;h&#39;</span> <span class="ow">in</span> <span class="n">les_an</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-            <span class="k">return</span> <span class="n">les_an</span><span class="p">[</span><span class="s1">&#39;q&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">les_an</span><span class="p">[</span><span class="s1">&#39;l&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">les_an</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">les_an</span><span class="p">[</span><span class="s1">&#39;i&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">les_an</span><span class="p">[</span><span class="s1">&#39;s&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">les_an</span><span class="p">[</span><span class="s1">&#39;g&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">les_an</span><span class="p">[</span><span class="s1">&#39;h&#39;</span><span class="p">],</span><span class="s1">&#39;Calculated&#39;</span>
-        <span class="k">elif</span> <span class="n">sb</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">sb</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">les_an</span><span class="p">[</span><span class="s1">&#39;q&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">les_an</span><span class="p">[</span><span class="s1">&#39;l&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">les_an</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">les_an</span><span class="p">[</span><span class="s1">&#39;i&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">les_an</span><span class="p">[</span><span class="s1">&#39;s&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">les_an</span><span class="p">[</span><span class="s1">&#39;g&#39;</span><span class="p">],</span><span class="s1">&#39;Calculated&#39;</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">les_an</span><span class="p">[</span><span class="s1">&#39;q&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">les_an</span><span class="p">[</span><span class="s1">&#39;l&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">les_an</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">les_an</span><span class="p">[</span><span class="s1">&#39;s&#39;</span><span class="p">],</span><span class="s1">&#39;Calculated&#39;</span>
@@ -2417,15 +2387,16 @@ root group (NETCDF3_CLASSIC data model, file format NETCDF3):
     <span class="k">elif</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;tendency_of_deposition&#39;</span><span class="p">:</span>
         <span class="c1"># tendency of ice mixing ratio due to deposition/sublimation; sum over all</span>
         <span class="c1"># ice hydrometeor classes (+ for deposition, - for sublimation)</span>
-        <span class="k">if</span> <span class="n">sb</span> <span class="ow">and</span> <span class="s1">&#39;cond_rh&#39;</span> <span class="ow">in</span> <span class="n">les_an</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-            <span class="k">return</span> <span class="n">les_an</span><span class="p">[</span><span class="s1">&#39;cond_ri&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_an</span><span class="p">[</span><span class="s1">&#39;cond_rs&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_an</span><span class="p">[</span><span class="s1">&#39;cond_rg&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_an</span><span class="p">[</span><span class="s1">&#39;cond_rh&#39;</span><span class="p">],</span><span class="s1">&#39;&#39;</span>
-        <span class="k">elif</span> <span class="n">sb</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">sb</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">les_an</span><span class="p">[</span><span class="s1">&#39;cond_ri&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_an</span><span class="p">[</span><span class="s1">&#39;cond_rs&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_an</span><span class="p">[</span><span class="s1">&#39;cond_rg&#39;</span><span class="p">],</span><span class="s1">&#39;&#39;</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">les_an</span><span class="p">[</span><span class="s1">&#39;cond_rs&#39;</span><span class="p">],</span><span class="s1">&#39;&#39;</span>
     <span class="k">elif</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;tendency_of_riming&#39;</span><span class="p">:</span>
         <span class="c1"># tendency of ice mixing ratio due to riming; sum over all ice hydrometeor classes</span>
-        <span class="k">return</span> <span class="n">les_an</span><span class="p">[</span><span class="s1">&#39;coag_rc&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_an</span><span class="p">[</span><span class="s1">&#39;coag_rr&#39;</span><span class="p">],</span><span class="s1">&#39;Cloud and rain&#39;</span>
+        <span class="k">if</span> <span class="n">sb</span><span class="p">:</span>
+            <span class="k">return</span> <span class="o">-</span><span class="n">les_an</span><span class="p">[</span><span class="s1">&#39;rimi_rc&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">les_an</span><span class="p">[</span><span class="s1">&#39;rimi_rr&#39;</span><span class="p">],</span><span class="s1">&#39;Cloud and rain&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="o">-</span><span class="n">les_an</span><span class="p">[</span><span class="s1">&#39;coag_rc&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">les_an</span><span class="p">[</span><span class="s1">&#39;coag_rr&#39;</span><span class="p">],</span><span class="s1">&#39;Cloud and rain&#39;</span>
     <span class="c1">#</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Undefined an:&#39;</span><span class="o">+</span><span class="n">standard_name</span><span class="o">+</span><span class="s1">&#39;!&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">tmp</span><span class="p">,</span><span class="s1">&#39;NA&#39;</span>
@@ -2469,14 +2440,14 @@ root group (NETCDF3_CLASSIC data model, file format NETCDF3):
 
 <span class="c1"># create dimensions</span>
 <span class="c1"># x, y</span>
-<span class="n">nx</span> <span class="o">=</span> <span class="n">les_an</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="s1">&#39;xt&#39;</span><span class="p">]</span>
+<span class="n">nx</span> <span class="o">=</span> <span class="n">les_an</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="s1">&#39;xt&#39;</span><span class="p">]</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">nx</span><span class="p">)</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,))</span>
 <span class="n">x</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;m&#39;</span>
 <span class="n">x</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;x&#39;</span>
 <span class="n">x</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">les_an</span><span class="p">[</span><span class="s1">&#39;xt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
 
-<span class="n">ny</span> <span class="o">=</span> <span class="n">les_an</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="s1">&#39;yt&#39;</span><span class="p">]</span>
+<span class="n">ny</span> <span class="o">=</span> <span class="n">les_an</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="s1">&#39;yt&#39;</span><span class="p">]</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">ny</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,))</span>
 <span class="n">y</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;m&#39;</span>
@@ -2484,7 +2455,7 @@ root group (NETCDF3_CLASSIC data model, file format NETCDF3):
 <span class="n">y</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">les_an</span><span class="p">[</span><span class="s1">&#39;yt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
 
 <span class="c1"># zf = dimension, altitude of mid-level points above sea surface = zf</span>
-<span class="n">nz</span> <span class="o">=</span> <span class="n">les_an</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="s1">&#39;zt&#39;</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span>
+<span class="n">nz</span> <span class="o">=</span> <span class="n">les_an</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="s1">&#39;zt&#39;</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span>
 <span class="n">zf</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s1">&#39;zf&#39;</span><span class="p">,</span> <span class="n">nz</span><span class="p">)</span>
 <span class="n">zf</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;zf&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;zf&#39;</span><span class="p">,))</span>
 <span class="n">zf</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;m&#39;</span>
@@ -2492,37 +2463,34 @@ root group (NETCDF3_CLASSIC data model, file format NETCDF3):
 <span class="n">zf</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">les_an</span><span class="p">[</span><span class="s1">&#39;zt&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">data</span>
 
 <span class="c1"># time</span>
-<span class="n">nt</span> <span class="o">=</span> <span class="n">les_an</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span>
+<span class="n">nt</span> <span class="o">=</span> <span class="n">les_an</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span>
 <span class="n">time</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">nt</span><span class="p">)</span>
 <span class="n">time</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,))</span>
 <span class="n">time</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;seconds since &#39;</span> <span class="o">+</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">startDate</span>
 <span class="n">time</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;time&#39;</span>
-<span class="n">time</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">les_an</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+<span class="n">time</span><span class="p">[:]</span> <span class="o">=</span> <span class="mi">5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">les_an</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">/</span><span class="mf">5.</span><span class="p">)</span> <span class="c1"># Model time may exceed target time by 1 s</span>
 
-<span class="n">ignore_missing</span><span class="o">=</span><span class="kc">True</span>
 <span class="c1">#preci = np.float64 # Default</span>
 <span class="n">preci</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span> <span class="c1"># To save disc space</span>
 
-<span class="c1"># create and fill variables</span>
+<span class="c1"># create variables</span>
 <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">vars_3d_list</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">4</span><span class="p">:]:</span>
     <span class="c1"># Output</span>
     <span class="n">std_name</span> <span class="o">=</span> <span class="n">vars_3d_list</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">dat</span><span class="p">,</span><span class="n">note</span><span class="o">=</span><span class="n">calc_an</span><span class="p">(</span><span class="n">std_name</span><span class="p">)</span>
-        <span class="c1"># NA means no data</span>
-        <span class="k">if</span> <span class="n">note</span><span class="o">==</span><span class="s1">&#39;NA&#39;</span> <span class="ow">and</span> <span class="n">ignore_missing</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ignoring &#39;</span><span class="o">+</span><span class="n">std_name</span><span class="o">+</span><span class="s1">&#39; (no data)&#39;</span><span class="p">)</span>
-            <span class="k">continue</span>
-    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Failed: &#39;</span><span class="o">+</span><span class="n">std_name</span><span class="p">,</span><span class="n">e</span><span class="p">)</span>
-        <span class="k">continue</span>
-    <span class="c1">#</span>
     <span class="n">var_name</span> <span class="o">=</span> <span class="n">vars_3d_list</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">new</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="n">var_name</span><span class="p">,</span> <span class="n">preci</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="s1">&#39;zf&#39;</span><span class="p">),</span> <span class="n">zlib</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">new</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="n">vars_3d_list</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
     <span class="n">new</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="n">std_name</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">note</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span> <span class="n">new</span><span class="o">.</span><span class="n">note</span><span class="o">=</span><span class="n">note</span>
-    <span class="n">new</span><span class="p">[:]</span><span class="o">=</span><span class="n">dat</span><span class="p">[:,:,:,</span><span class="mi">1</span><span class="p">:]</span> <span class="c1"># Without z&lt;0</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">dat</span><span class="p">,</span><span class="n">note</span><span class="o">=</span><span class="n">calc_an</span><span class="p">(</span><span class="n">std_name</span><span class="p">)</span>
+        <span class="c1"># NA means no data</span>
+        <span class="k">if</span> <span class="n">note</span><span class="o">==</span><span class="s1">&#39;NA&#39;</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ignoring &#39;</span><span class="o">+</span><span class="n">std_name</span><span class="o">+</span><span class="s1">&#39; (no data)&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">new</span><span class="p">[:]</span><span class="o">=</span><span class="n">dat</span><span class="p">[:,:,:,</span><span class="mi">1</span><span class="p">:]</span> <span class="c1"># Without z&lt;0</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">note</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span> <span class="n">new</span><span class="o">.</span><span class="n">note</span><span class="o">=</span><span class="n">note</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Failed: &#39;</span><span class="o">+</span><span class="n">std_name</span><span class="p">,</span><span class="n">e</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">dephy_file</span><span class="p">)</span>
 
@@ -2560,16 +2528,16 @@ root group (NETCDF3_CLASSIC data model, file format NETCDF3):
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "conda-root-py"
+            mode: "conda-base-py"
         },
         kernelOptions: {
-            name: "conda-root-py",
+            name: "conda-base-py",
             path: "./notebooks/conversion_output"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'conda-root-py'</script>
+    <script>kernelName = 'conda-base-py'</script>
 
                 </article>
               
