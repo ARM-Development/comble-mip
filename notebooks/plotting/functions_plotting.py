@@ -1082,6 +1082,8 @@ def plot_2d(df_col2,var_vec,times,**kwargs):
         counter_col = 0 
         counter_line = 0
         for label, df in df_col2.groupby('class'):
+            #df = df[round(df.time) == times[tt]*3600.]
+            ## allow wiggleroom to accomodate uneven model output (suggested by TomiRaatikainen)
             df = df[abs(round(df.time)-times[tt]*3600.)<2.]
             #print(len(df))
             for ii in range(len(var_vec)):                
