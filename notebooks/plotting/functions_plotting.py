@@ -628,7 +628,7 @@ def load_sims_2d_slow(path,var_vec_2d,t_shift = 0,keyword='',subfolder=''):
     return df_col2
     
 
-def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,drop_t0=True,diag_zi_ctt=False,diag_qltot=False,diag_qitot=False,QTHRES=1.0e-6,subfolder=''):
+def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,drop_t0=True,diag_zi_ctt=False,diag_qltot=False,diag_qitot=False,QTHRES=1.0e-6,subfolder='',ignore='placeholder'):
     
     ## load ERA5 data along trajectory
     ## __input__
@@ -644,6 +644,7 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
     ## diag_qitot....diagnose total frozen water mixing ratio
     ## QTHRES........threshold to diagnose cloud-top height
     ## subfolder.....additional keyword to limit search results
+    ## ignore........additional keyword to eliminate from search results
     
     direc = pathlib.Path(path)
     NCFILES = list(direc.rglob("*nc"))
@@ -657,6 +658,9 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
     for fn in NCFILES:
         #print(NCFILES_STR[count])
         if (keyword in NCFILES_STR[count]) and (subfolder in NCFILES_STR[count]):
+            if ignore in NCFILES_STR[count]:
+                count+=1
+                continue
             #print('ding')
             print(fn)
             ds = nc.Dataset(fn)
@@ -700,6 +704,9 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
     count = 0
     for fn in NCFILES:
         if (keyword in NCFILES_STR[count]) and (subfolder in NCFILES_STR[count]):
+            if ignore in NCFILES_STR[count]:
+                count+=1
+                continue
             print(fn)
             ds = nc.Dataset(fn)
             time = ds.variables['time'][t0:]
@@ -711,7 +718,6 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
             #print(len(zf))
 
             label_items = [x for x in fn.parts + direc.parts if x not in direc.parts]
-            #label_items = label_items[0:(len(label_items)-1)]
             group = "/".join(label_items)
 
             if(zf_ndim > 1):
