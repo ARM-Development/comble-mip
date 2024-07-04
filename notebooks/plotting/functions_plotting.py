@@ -7,6 +7,7 @@ import glob
 import os
 import csv
 import scipy
+import xarray as xr
 
 ## for questions, please contact 
 ## Florian Tornow: ft2544@columbia.edu
@@ -556,8 +557,78 @@ def load_real_wrf(PATH='../../data_files/'):
 
     return p_df,df_col2 
 
+def load_sims_2d(path,var_vec_2d,t_shift = 0,keyword='',subfolder=''):
+    
+    direc = pathlib.Path(path)
+    NCFILES = list(direc.rglob("*nc"))
+    NCFILES_STR = [str(p) for p in pathlib.Path(path).rglob('*.nc')]
+    
+    ## variables that only have time as dimension
+    print('Loading variables: f(time,x,y)') 
+    df_col2 = pd.DataFrame()
+    count = 0
+    count_con = 0
+    for fn in NCFILES:
+        #print(NCFILES_STR[count])
+        if (keyword in NCFILES_STR[count]) and (subfolder in NCFILES_STR[count]):
+            
+            print(fn)
+            label_items = [x for x in fn.parts + direc.parts if x not in direc.parts]
+            group = "/".join(label_items)
 
-def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,drop_t0=True,diag_zi_ctt=False,diag_qltot=False,diag_qitot=False,QTHRES=1.0e-5):
+            ncdata = xr.open_dataset(fn)
+            ncdata['simulation']=group
+            #print(ncdata)
+            if count_con == 0:
+                df_col2 = ncdata
+            else:
+                df_col2 = xr.concat([df_col2,ncdata],dim='simulation')
+            count_con += 1
+        count+=1 
+    return df_col2
+
+            
+def load_sims_2d_slow(path,var_vec_2d,t_shift = 0,keyword='',subfolder=''):
+    
+    direc = pathlib.Path(path)
+    NCFILES = list(direc.rglob("*nc"))
+    NCFILES_STR = [str(p) for p in pathlib.Path(path).rglob('*.nc')]
+    
+    ## variables that only have time as dimension
+    print('Loading variables: f(time,x,y)') 
+    df_col2 = pd.DataFrame()
+    count = 0
+    for fn in NCFILES:
+        #print(NCFILES_STR[count])
+        if (keyword in NCFILES_STR[count]) and (subfolder in NCFILES_STR[count]):
+            
+            ds    = nc.Dataset(fn)
+            time  = ds.variables['time'][:]
+            x_vec = ds.variables['x'][:]
+            y_vec = ds.variables['y'][:]
+
+            label_items = [x for x in fn.parts + direc.parts if x not in direc.parts]
+            group = "/".join(label_items)
+
+            for xi in range(len(x_vec)-1):
+                for yi in range(len(y_vec)-1):
+                
+                    p_df2 = pd.DataFrame({"class": [group]* len(time), "time":time, "x": x_vec[xi], "y": y_vec[xi]}, index=time/3600) 
+                    #print(p_df2)
+                    for vv in var_vec_2d:
+                        if vv in ds.variables:
+                            p_df2[vv] = ds.variables[vv][:,xi,yi]                            
+                            if (xi==0) & (yi==0) & (p_df2[vv].isna().sum() > 0): print(vv + ' shows NAN values in ' + str(fn))   
+                        else:
+                            if(ii==0): print(vv + ' not found in ' + str(fn))
+                            p_df2[vv] = np.NAN
+                    df_col2 = pd.concat([df_col2,p_df2])
+            
+        count+=1 
+    return df_col2
+    
+
+def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,drop_t0=True,diag_zi_ctt=False,diag_qltot=False,diag_qitot=False,QTHRES=1.0e-6,subfolder='',ignore='placeholder'):
     
     ## load ERA5 data along trajectory
     ## __input__
@@ -566,18 +637,31 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
     ## var_vec_2d....variables with time and height dependence
     ## t_shift.......time shift prior to ice edge
     ## keyword.......search for subset of sims within path
+    ## make_gray.....flag for gray appearance in plots
     ## drop_t0.......drop first time (initialization) when variables are null
+    ## diag_zi_ctt...diagnose inversion height (zi) and cloud-top temperature (ctt)
+    ## diag_qltot....diagnose total liquid water mixing ratio
+    ## diag_qitot....diagnose total frozen water mixing ratio
+    ## QTHRES........threshold to diagnose cloud-top height
+    ## subfolder.....additional keyword to limit search results
+    ## ignore........additional keyword to eliminate from search results
     
     direc = pathlib.Path(path)
     NCFILES = list(direc.rglob("*nc"))
     NCFILES_STR = [str(p) for p in pathlib.Path(path).rglob('*.nc')]
+    #print(NCFILES_STR)
     
     ## variables that only have time as dimension
     print('Loading variables: f(time)')
     df_col = pd.DataFrame()
     count = 0
     for fn in NCFILES:
-        if keyword in NCFILES_STR[count]:
+        #print(NCFILES_STR[count])
+        if (keyword in NCFILES_STR[count]) and (subfolder in NCFILES_STR[count]):
+            if ignore in NCFILES_STR[count]:
+                count+=1
+                continue
+            #print('ding')
             print(fn)
             ds = nc.Dataset(fn)
             #print(ds)
@@ -603,12 +687,14 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
             for vv in var_vec_1d:
                 if vv in ds.variables:
                     p_df[vv] = ds.variables[vv][t0:]
+                    if p_df[vv].isna().sum() > 0: print(vv + ' shows NAN values in ' + str(fn))  
                 else:
                     print(vv + ' not found in ' + str(fn))
                     p_df[vv] = np.NAN
 
             ds.close()
             df_col = pd.concat([df_col,p_df])
+        #print(df_col)
             
         count+=1
         
@@ -617,30 +703,66 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
     df_col2 = pd.DataFrame()
     count = 0
     for fn in NCFILES:
-        if keyword in NCFILES_STR[count]:
+        if (keyword in NCFILES_STR[count]) and (subfolder in NCFILES_STR[count]):
+            if ignore in NCFILES_STR[count]:
+                count+=1
+                continue
             print(fn)
             ds = nc.Dataset(fn)
             time = ds.variables['time'][t0:]
             zf   = ds.variables['zf'][t0:]
+            pa   = ds.variables['pa'][t0:]
             qv   = ds.variables['qv'][t0:,:]
             zf_ndim = zf.ndim
+            pa_ndim = pa.ndim
+            #print(len(zf))
 
             label_items = [x for x in fn.parts + direc.parts if x not in direc.parts]
-            #label_items = label_items[0:(len(label_items)-1)]
             group = "/".join(label_items)
 
-            for ii in range(len(zf)):
-                if(zf_ndim > 1) & (ii==0):
-                    zf = zf[1,:]
-                p_df2 = pd.DataFrame({"class": [group]* len(time), "time":time, "zf": zf[ii]}, index=time/3600)      
+            if(zf_ndim > 1):
+                zf = zf[1,:]
+            #if (zf_ndim > 1) & (pa_ndim > 1):
+            #    print('---either pa or zf should be 1-dimensional---')
+            
+            for ii in range(len(zf)-1):
+                if zf_ndim > 1:
+                    ## accounting for changing heights for SCMs that have constant pressure grid
+                    p_df2 = pd.DataFrame({"class": [group]* len(time), "time":time}, index=time/3600) 
+                    p_df2['zf'] = ds.variables['zf'][t0:,ii]
+                else:
+                    ## simpler treatment for LES-like constant altitude grid
+                    p_df2 = pd.DataFrame({"class": [group]* len(time), "time":time, "zf": zf[ii]}, index=time/3600) 
+                
+                #print(ds.variables['zf'][t0:,ii])
+                #print(p_df2)
                 for vv in var_vec_2d:
                     if vv in ds.variables:
-                        if(zf_ndim>1) & (vv=='pa'):
-                            p_df2[vv] = ds.variables[vv][t0:][ii]
+                        #if ii==0: 
+                        #    print(vv)
+                        #    print(ds.variables[vv])
+                        #    print(len(ds.variables[vv][t0:][ii]))
+                        #if ii == 0:
+                        #    print(ds.variables[vv][t0:])
+                        if(zf_ndim>1) & ((vv=='pa') | (vv=='pe')):
+                            if(ds.variables[vv][t0:].ndim>1): ## some report both zf and pa as 2D fields
+                                #p_df2[vv] = ds.variables[vv][t0:][0][ii]
+                                p_df2[vv] = ds.variables[vv][t0:,ii]
+                            else:
+                                p_df2[vv] = ds.variables[vv][t0:][ii]
                         else:
-                            p_df2[vv] = ds.variables[vv][t0:,:][:,ii]
+                            #print(ds.variables[vv].shape)
+                            #p_df2[vv] = ds.variables[vv][t0:,:][ii,:]
+                            ## account for CM1 where dimensions are swapped
+                            if ds.variables[vv].shape[0] != (len(zf)+1):
+                                p_df2[vv] = ds.variables[vv][t0:,:][:,ii]
+                            else:
+                                p_df2[vv] = ds.variables[vv][:,t0:][ii,:]
                         #if ii==0: print(p_df2[vv])
-                        if (ii==0) & (p_df2[vv].isna().sum() > 0): print(vv + ' shows NAN values in ' + str(fn))                            
+                        if (ii==0) & (p_df2[vv].isna().sum() > 0): print(vv + ' shows NAN values in ' + str(fn))   
+                        
+                        #if (ii==0):
+                        #    print(p_df2[vv])
                     else:
                         if(ii==0): print(vv + ' not found in ' + str(fn))
                         p_df2[vv] = np.NAN
@@ -788,7 +910,7 @@ def plot_1d(df_col,var_vec,**kwargs):
         units = kwargs.get('units')
     
     if 'plot_colors' not in kwargs:
-        plot_colors = ["#E69F00", "#56B4E9", "#009E73","#0072B2", "#D55E00", "#CC79A7","#F0E442","#808080","#FF00FF"]
+        plot_colors = ["#E69F00", "#56B4E9", "#009E73","#0072B2", "#D55E00", "#CC79A7","#F0E442","#808080","#FF00FF","#FF0000", "#00FF00", "#0000FF"]
     else:
         plot_colors = kwargs.get('plot_colors')
         
@@ -810,7 +932,7 @@ def plot_1d(df_col,var_vec,**kwargs):
     counter_symbol = 0
     counter_plot = 0
         
-    fig, axs = plt.subplots(len(var_vec),1,figsize=(5,1 + 2*len(var_vec)))
+    fig, axs = plt.subplots(len(var_vec),1,figsize=(5.5,1 + 2*len(var_vec)))
     for label, df in df_col.groupby('class'):
         df = df[(df.time>=t0) & (df.time<=t1)]
         if (label=='MAC-LWP') | (label=='KAZR (Kollias)')| (label=='KAZR (Clough)'):
@@ -861,6 +983,7 @@ def plot_1d(df_col,var_vec,**kwargs):
             ax.set(xlabel='Time (h)', ylabel=var_vec[i_count])
             #ax.set_xlim([np.min(df_col.time)/3600 - 0.5, np.max(df_col.time)/3600 + 0.5])
             ax.set_xlim(t0/3600. - 0.5, t1/3600. + 0.5)
+            ax.ticklabel_format(axis='y', useOffset=False)
             i_count += 1
         
         # Hide x labels and tick labels for top plots and y ticks for right plots.
@@ -872,7 +995,10 @@ def plot_1d(df_col,var_vec,**kwargs):
     # Add a legend
     handles, labels = plt.gca().get_legend_handles_labels()
     by_label = dict(zip(labels, handles))
-    frac = 0.4/len(var_vec)
+    if len(df_col.groupby('class'))>7:
+        frac = 0.4*2/len(var_vec)
+    else:
+        frac = 0.4/len(var_vec)
     fig.legend(by_label.values(), by_label.keys(),loc='upper center',ncol=2, bbox_to_anchor=(0.5, 1.0 + frac))
     
     fig.tight_layout()
@@ -900,6 +1026,7 @@ def plot_2d(df_col2,var_vec,times,**kwargs):
     ## plot_colors..list of colors for line plots
     ## plot_ls......list of line styles for line plots
     
+    #print(len(df_col2.groupby('class')))
     ############################
     ######## SET KWARGS ########
     ############################
@@ -912,7 +1039,7 @@ def plot_2d(df_col2,var_vec,times,**kwargs):
         units = kwargs.get('units')
     
     if 'plot_colors' not in kwargs:
-        plot_colors = ["#E69F00", "#56B4E9", "#009E73","#0072B2", "#D55E00", "#CC79A7","#F0E442","#808080","#FF00FF"]
+        plot_colors = ["#E69F00", "#56B4E9", "#009E73","#0072B2", "#D55E00", "#CC79A7","#F0E442","#808080","#FF00FF","#FF0000", "#00FF00", "#0000FF"]
     else:
         plot_colors = kwargs.get('plot_colors')
         
@@ -1012,8 +1139,14 @@ def plot_2d(df_col2,var_vec,times,**kwargs):
             if label[0:5]=='Radio': counter_line +=1
                 
     handles, labels = plt.gca().get_legend_handles_labels()
-    by_label = dict(zip(labels, handles))
-    frac = 0.4/len(var_vec)
+    by_label = dict(zip(labels, handles))   
+    #if len(df_col2.groupby('class'))>8:
+    #    #print('here')
+    #    frac = 2*0.4/len(var_vec)
+    #else:
+    #    frac = 0.4/len(var_vec)
+    frac = np.max([0.4*len(df_col2.groupby('class'))/6/len(var_vec),0.4/len(var_vec)])
+    #print(frac)
     fig.legend(handles, labels, loc = 'upper center', ncol=2,bbox_to_anchor=(0.5, 1.0 + frac))
     
     fig.tight_layout()
