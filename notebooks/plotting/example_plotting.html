@@ -504,29 +504,29 @@ KAZR (Kollias): here using auxiliary field to estimate cloud-top temperature
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## load all simulations located in subfolders of the given directory</span>
 <span class="n">var_vec_1d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hfss&#39;</span><span class="p">,</span><span class="s1">&#39;hfls&#39;</span><span class="p">,</span><span class="s1">&#39;ts&#39;</span><span class="p">]</span> <span class="c1"># variables with ERA5 (longer time axis)</span>
 <span class="n">var_vec_2d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;theta&#39;</span><span class="p">,</span><span class="s1">&#39;qv&#39;</span><span class="p">,</span><span class="s1">&#39;ua&#39;</span><span class="p">,</span><span class="s1">&#39;va&#39;</span><span class="p">]</span>
-<span class="n">df_col_1d</span><span class="p">,</span><span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword</span><span class="p">)</span>
+<span class="n">df_col_1d</span><span class="p">,</span><span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword</span><span class="p">,</span><span class="n">subfolder</span><span class="o">=</span><span class="s1">&#39;sand&#39;</span><span class="p">,</span><span class="n">ignore</span><span class="o">=</span><span class="s1">&#39;ICON&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time)
+../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
+../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN.nc
 ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN.nc
 ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN.nc
-../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
-../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
-../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN.nc
-../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN.nc
-../../output_les/icon/sandbox/ICON_Lx25_dx100_FixN.nc
 ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN.nc
+../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_DM_Lx25_dx100_FixN.nc
+../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN.nc
 Loading variables: f(time,height)
+../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
+../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN.nc
 ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN.nc
 ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN.nc
-../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
-../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
-../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN.nc
-../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN.nc
-../../output_les/icon/sandbox/ICON_Lx25_dx100_FixN.nc
 ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN.nc
+../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_DM_Lx25_dx100_FixN.nc
+../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN.nc
 </pre></div>
 </div>
 </div>
@@ -545,45 +545,46 @@ Loading variables: f(time,height)
   maxy = np.nanmax(masked_verts[..., 1])
 </pre></div>
 </div>
-<img alt="../../_images/5564b5d406ff3b9e5279935e02649b39b8fa46e7456087e2f29d46bfd7e3f6ce.png" src="../../_images/5564b5d406ff3b9e5279935e02649b39b8fa46e7456087e2f29d46bfd7e3f6ce.png" />
+<img alt="../../_images/811a9e2fdf45eeccd5b2c1964886f48757f2dc3aff252264a7656e37b01b8186.png" src="../../_images/811a9e2fdf45eeccd5b2c1964886f48757f2dc3aff252264a7656e37b01b8186.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## load all simulations located in subfolders of the given directory</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> functions_plotting.py 
+
+<span class="c1">## load all simulations located in subfolders of the given directory</span>
 <span class="n">var_vec_1d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;lwpr&#39;</span><span class="p">,</span><span class="s1">&#39;lwpc&#39;</span><span class="p">,</span><span class="s1">&#39;iwp&#39;</span><span class="p">,</span><span class="s1">&#39;od&#39;</span><span class="p">]</span> <span class="c1"># variables without ERA5 (shorter time axis)</span>
 <span class="n">var_vec_2d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;theta&#39;</span><span class="p">,</span><span class="s1">&#39;qv&#39;</span><span class="p">,</span><span class="s1">&#39;qlc&#39;</span><span class="p">,</span><span class="s1">&#39;qlr&#39;</span><span class="p">,</span><span class="s1">&#39;ta&#39;</span><span class="p">,</span><span class="s1">&#39;ua&#39;</span><span class="p">,</span><span class="s1">&#39;va&#39;</span><span class="p">]</span> <span class="c1">#,&#39;qic&#39;,&#39;qis&#39;,&#39;qig&#39;,&#39;ua&#39;,&#39;va&#39;,&#39;ta&#39;]</span>
-<span class="n">df_col_1d</span><span class="p">,</span><span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword</span><span class="p">,</span><span class="n">diag_zi_ctt</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_col_1d</span><span class="p">,</span><span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword</span><span class="p">,</span><span class="n">diag_zi_ctt</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">subfolder</span><span class="o">=</span><span class="s1">&#39;sand&#39;</span><span class="p">,</span><span class="n">ignore</span><span class="o">=</span><span class="s1">&#39;ICON&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time)
+../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
+../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN.nc
 ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN.nc
 iwp not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN.nc
 od not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN.nc
 ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN.nc
-../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
-../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
-../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN.nc
-../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN.nc
-../../output_les/icon/sandbox/ICON_Lx25_dx100_FixN.nc
-od shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_FixN.nc
 ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN.nc
+../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_DM_Lx25_dx100_FixN.nc
+../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN.nc
 Loading variables: f(time,height)
+../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
+../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN.nc
 ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN.nc
 ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN.nc
-../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
-../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
-../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN.nc
-../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN.nc
-../../output_les/icon/sandbox/ICON_Lx25_dx100_FixN.nc
 ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN.nc
+../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_DM_Lx25_dx100_FixN.nc
+../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN.nc
 computing inversion height, cloud-top height, and cloud-top temperature
 DALES/sandbox/DALES_Lx25_dx100_FixN.nc
 cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN.nc
 dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
-icon/sandbox/ICON_Lx25_dx100_FixN.nc
+msu-rcc-les/sandbox/MSU_RCC_LES_DM_Lx25_dx100_FixN.nc
 msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN.nc
 sam-pnnl/sandbox/SAM_Lx25_dx100_FixN.nc
 uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN.nc
@@ -596,7 +597,7 @@ wrf/sandbox/WRF_Lx25_dx100_FixN.nc
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## plot variables that have only time dependence</span>
 <span class="c1">#plot_1d(pd.concat([df_col_1d,maclwp_dat,modis_dat,viirs_dat,sentinel_dat,kazrkollias_dat,kazrclough_dat,calipso_dat,radflux_dat]),[&#39;zi&#39;,&#39;od&#39;,&#39;lwp&#39;,&#39;iwp&#39;,&#39;ctt&#39;])</span>
-<span class="n">plot_1d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_1d</span><span class="p">,</span><span class="n">maclwp_dat</span><span class="p">,</span><span class="n">kazrkollias_dat</span><span class="p">,</span><span class="n">kazrclough_dat</span><span class="p">,</span><span class="n">calipso_dat</span><span class="p">,</span><span class="n">radflux_dat</span><span class="p">]),[</span><span class="s1">&#39;cth&#39;</span><span class="p">,</span><span class="s1">&#39;od&#39;</span><span class="p">,</span><span class="s1">&#39;lwp&#39;</span><span class="p">,</span><span class="s1">&#39;iwp&#39;</span><span class="p">,</span><span class="s1">&#39;ctt&#39;</span><span class="p">])</span>
+<span class="n">plot_1d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_1d</span><span class="p">,</span><span class="n">maclwp_dat</span><span class="p">,</span><span class="n">kazrkollias_dat</span><span class="p">,</span><span class="n">kazrclough_dat</span><span class="p">,</span><span class="n">calipso_dat</span><span class="p">,</span><span class="n">radflux_dat</span><span class="p">]),[</span><span class="s1">&#39;cth&#39;</span><span class="p">,</span><span class="s1">&#39;od&#39;</span><span class="p">,</span><span class="s1">&#39;lwp&#39;</span><span class="p">,</span><span class="s1">&#39;iwp&#39;</span><span class="p">,</span><span class="s1">&#39;ctt&#39;</span><span class="p">],</span><span class="n">longnames</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;cloud-top height&#39;</span><span class="p">,</span><span class="s1">&#39;cloud optical depth&#39;</span><span class="p">,</span><span class="s1">&#39;liquid water path&#39;</span><span class="p">,</span><span class="s1">&#39;ice water path&#39;</span><span class="p">,</span><span class="s1">&#39;cloud-top temperature&#39;</span><span class="p">],</span><span class="n">units</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;m&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="s1">&#39;kg m^-2&#39;</span><span class="p">,</span><span class="s1">&#39;kg m^-2&#39;</span><span class="p">,</span><span class="s1">&#39;C&#39;</span><span class="p">])</span>
 
 <span class="c1">## plot variables that have only time dependence (for now excluding imager retrievals that are mostly SZA &gt; 70)</span>
 <span class="c1">#plot_1d(pd.concat([df_col_1d,maclwp_dat,kazrkollias_dat,kazrclough_dat,calipso_dat,gongiwp_dat,radflux_dat]),[&#39;od&#39;,&#39;lwp&#39;,&#39;iwp&#39;]) #&#39;zi&#39;,&#39;od&#39;,&#39;lwp&#39;,&#39;iwp</span>
@@ -610,7 +611,7 @@ wrf/sandbox/WRF_Lx25_dx100_FixN.nc
   maxy = np.nanmax(masked_verts[..., 1])
 </pre></div>
 </div>
-<img alt="../../_images/f6df5dfc36254a749d54cbd871f3c6d97868b628bba290b53233b4a6ee8049c3.png" src="../../_images/f6df5dfc36254a749d54cbd871f3c6d97868b628bba290b53233b4a6ee8049c3.png" />
+<img alt="../../_images/ae39333ff57af7cf4f813f9ba1eff5c09b35adfb322b7210fa47961157bb1f31.png" src="../../_images/ae39333ff57af7cf4f813f9ba1eff5c09b35adfb322b7210fa47961157bb1f31.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -628,7 +629,7 @@ wrf/sandbox/WRF_Lx25_dx100_FixN.nc
 Computing wind direction
 </pre></div>
 </div>
-<img alt="../../_images/2b2777f55344f30a004c3fc64b1ad6f961305412bc171a840ee6f6a715183c9a.png" src="../../_images/2b2777f55344f30a004c3fc64b1ad6f961305412bc171a840ee6f6a715183c9a.png" />
+<img alt="../../_images/79e82defedcf47770bee6bcd555035c6915beac989948e82b3a6bfaa715cb60c.png" src="../../_images/79e82defedcf47770bee6bcd555035c6915beac989948e82b3a6bfaa715cb60c.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x600 with 0 Axes&gt;
 </pre></div>
 </div>
@@ -640,22 +641,10 @@ Computing wind direction
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_col_2d</span><span class="o">.</span><span class="n">columns</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;class&#39;, &#39;time&#39;, &#39;zf&#39;, &#39;theta&#39;, &#39;qv&#39;, &#39;qlc&#39;, &#39;qlr&#39;, &#39;ta&#39;, &#39;ua&#39;, &#39;va&#39;,
-       &#39;colflag&#39;],
-      dtype=&#39;object&#39;)
 </pre></div>
 </div>
 </div>
