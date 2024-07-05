@@ -775,6 +775,11 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
     li = 2800*1000 #J/kg
     cp = 1.006*1000#J/kg/K
     
+    ## remove duplicate values?
+    #print(df_col['time'])
+    #df_col  = df_col[~df_col.index.duplicated()]
+    #df_col2 = df_col2[~df_col2.index.duplicated()]
+    
     ## a simple inversion height and corresponding cloud-top temperature
     if(diag_zi_ctt):
         print('computing inversion height, cloud-top height, and cloud-top temperature')
@@ -814,6 +819,8 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
                     ## obtaining corresponding temperature at that level
                         ta_step = df_sub2.loc[df_sub2['time'] == tt,['zf','ta']]
                         ta_step['zf_diff'] = np.abs(ta_step['zf'] - cth) #zi_step)
+                        #print(df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),:])
+                        #print(zi_step)
                         df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'cth'] = cth
                         df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'zi'] = zi_step
                         df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'ctt'] = min(ta_step.loc[ta_step.zf_diff == ta_step.zf_diff.min(),'ta'], default=np.NAN) - 273.15
@@ -856,7 +863,7 @@ def zi_diagnose(df_sub_2dd):
     df_sub_2dd['zfm'] = df_sub_2dd['zf'] - pd.Series(df_sub_2dd['zf']).diff()/2
     deriv_vec = pd.Series(df_sub_2dd['theta']).diff() / pd.Series(df_sub_2dd['zf']).diff()
     
-    return df_sub_2dd.loc[deriv_vec.idxmax(),'zfm']
+    return np.max(df_sub_2dd.loc[deriv_vec.idxmax(),'zfm'])
 
 def zi_diagnose_slow(df_sub_2d):
     
@@ -910,12 +917,12 @@ def plot_1d(df_col,var_vec,**kwargs):
         units = kwargs.get('units')
     
     if 'plot_colors' not in kwargs:
-        plot_colors = ["#E69F00", "#56B4E9", "#009E73","#0072B2", "#D55E00", "#CC79A7","#F0E442","#808080","#FF00FF","#FF0000", "#00FF00", "#0000FF"]
+        plot_colors = ["#E69F00", "#56B4E9", "#009E73","#0072B2", "#D55E00", "#CC79A7","#F0E442","#808080","#FF00FF","#FF0000", "#00FF00", "#0000FF","#00FFFF"]
     else:
         plot_colors = kwargs.get('plot_colors')
         
     if 'plot_ls' not in kwargs:
-        plot_ls = ['-','-','-','-','-','-','-','-','-']
+        plot_ls = ['-','-','-','-','-','-','-','-','-','-','-']
     else:
         plot_ls = kwargs.get('plot_ls')
     
@@ -976,6 +983,7 @@ def plot_1d(df_col,var_vec,**kwargs):
         counter +=1
         if not df['colflag'].unique() == 'gray':  counter_plot +=1
         if (label=='MAC-LWP') | (label=='MODIS') | (label=='VIIRS') | (label=='CERES') | (label=='SENTINEL') | (label=='KAZR (Kollias)')| (label=='KAZR (Clough)')| (label=='CALIOP')| (label=='ATMS')| (label=='RADFLUX')| (label=='Bulk') | (label=='ECOR') | (label=='CARRA'): counter_plot -=1    
+        #print(counter_plot)
     i_count = 0
 
     if len(var_vec) > 1:
@@ -1113,6 +1121,7 @@ def plot_2d(df_col2,var_vec,times,**kwargs):
                     pcol = plot_colors[counter_col]
                     pline = 'solid'
                     if(label=='ERA5'): pcol='black'
+                    if(label=='AERI'): pcol='pink'
                     if(label[0:5]=='Radio'): 
                         pcol='grey'
                         pline=plot_ls[counter_line]
@@ -1135,7 +1144,7 @@ def plot_2d(df_col2,var_vec,times,**kwargs):
                     plt.setp(obj.get_yticklabels(), visible=False)
                 counter +=1
             if not df['colflag'].unique() == 'gray': counter_col +=1
-            if (label=='ERA5') or (label[0:5]=='Radio'): counter_col -=1
+            if (label=='ERA5') or (label[0:5]=='Radio') or (label[0:5]=='AERI'): counter_col -=1
             if label[0:5]=='Radio': counter_line +=1
                 
     handles, labels = plt.gca().get_legend_handles_labels()
