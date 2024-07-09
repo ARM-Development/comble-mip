@@ -796,14 +796,19 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
                 for tt in df_sub['time']:  
                     #zi_step = df_sub.loc[df_sub['time'] == tt,'zi']
                     ## diagnosing inversion height from theta profiles
-                    if(('qlc' in df_col2.columns) & ('qic' in df_col2.columns)):  
+                    if(('qlc' in df_sub2.columns) & ('qic' in df_sub2.columns)):  
                         theta_step = df_sub2.loc[df_sub2['time'] == tt,['zf','theta','qlc','qlr','qic','qis','qig']]
                         theta_step['qic'] = theta_step['qic'].fillna(0)
                         theta_step['qis'] = theta_step['qis'].fillna(0)
                         theta_step['qig'] = theta_step['qig'].fillna(0)
                         theta_step['theta'] = theta_step['theta'] - lv/cp*(theta_step['qlc'] + theta_step['qlr']) - li/cp*(theta_step['qic']+theta_step['qis']+theta_step['qig'])
                         theta_step['qcond_tot'] = theta_step['qlc'] + theta_step['qlr'] + theta_step['qic']+theta_step['qis']+theta_step['qig']
-                    elif(('qlc' in df_col2.columns) & ('qlr' in df_col2.columns)):                          
+                    elif(('qlc' in df_sub2.columns) & ('qi' in df_sub2.columns)): 
+                        theta_step = df_sub2.loc[df_sub2['time'] == tt,['zf','theta','qlc','qlr','qi']]                        
+                        theta_step['qi'] = theta_step['qi'].fillna(0)                        
+                        theta_step['theta'] = theta_step['theta'] - lv/cp*(theta_step['qlc'] + theta_step['qlr']) - li/cp*(theta_step['qi'])
+                        theta_step['qcond_tot'] = theta_step['qlc'] + theta_step['qlr'] + theta_step['qi']
+                    elif(('qlc' in df_sub2.columns) & ('qlr' in df_sub2.columns)):                          
                         theta_step = df_sub2.loc[df_sub2['time'] == tt,['zf','theta','qlc','qlr']]
                         if theta_step['qlr'].isna().sum() == 0:
                             theta_step['theta'] = theta_step['theta'] - lv/cp*(theta_step['qlc'] + theta_step['qlr'])
