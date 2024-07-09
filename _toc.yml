@@ -34,6 +34,7 @@ parts:
     - file: notebooks/plotting/plot_FixN-allSCM.ipynb  
     - file: notebooks/plotting/plot_FixN_noice.ipynb 
     - file: notebooks/plotting/plot_FixN_noice-allSCM.ipynb
+    - file: notebooks/plotting/example_plotting_2D.ipynb  
     - file: emc2
 - caption: Supporting Materials
   chapters:

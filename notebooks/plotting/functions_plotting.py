@@ -565,7 +565,7 @@ def load_sims_2d(path,var_vec_2d,t_shift = 0,keyword='',subfolder=''):
     
     ## variables that only have time as dimension
     print('Loading variables: f(time,x,y)') 
-    df_col2 = pd.DataFrame()
+    #df_col2 = pd.DataFrame()
     count = 0
     count_con = 0
     for fn in NCFILES:
@@ -575,14 +575,16 @@ def load_sims_2d(path,var_vec_2d,t_shift = 0,keyword='',subfolder=''):
             print(fn)
             label_items = [x for x in fn.parts + direc.parts if x not in direc.parts]
             group = "/".join(label_items)
+            #print(group)
 
             ncdata = xr.open_dataset(fn)
             ncdata['simulation']=group
+            ncdata = ncdata#.drop_duplicates(dim="x").drop_duplicates(dim="y")
             #print(ncdata)
             if count_con == 0:
-                df_col2 = ncdata
+                df_col2 = ncdata.copy()
             else:
-                df_col2 = xr.concat([df_col2,ncdata],dim='simulation')
+                df_col2 = xr.concat([df_col2,ncdata],dim='simulation',coords='all')
             count_con += 1
         count+=1 
     return df_col2
@@ -645,7 +647,7 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
     ## QTHRES........threshold to diagnose cloud-top height
     ## subfolder.....additional keyword to limit search results
     ## ignore........additional keyword to eliminate from search results
-    
+          
     direc = pathlib.Path(path)
     NCFILES = list(direc.rglob("*nc"))
     NCFILES_STR = [str(p) for p in pathlib.Path(path).rglob('*.nc')]
