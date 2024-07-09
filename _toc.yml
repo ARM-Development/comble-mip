@@ -29,6 +29,7 @@ parts:
     - file: notebooks/plotting/plot_les_FixN_def_z0.ipynb
     - file: notebooks/plotting/check_scm.ipynb
     - file: notebooks/plotting/example_plotting.ipynb    
+    - file: notebooks/plotting/example_plotting_progna.ipynb    
     - file: notebooks/plotting/plot_FixN.ipynb 
     - file: notebooks/plotting/plot_FixN-allSCM.ipynb  
     - file: notebooks/plotting/plot_FixN_noice.ipynb 
