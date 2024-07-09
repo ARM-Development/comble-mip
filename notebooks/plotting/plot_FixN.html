@@ -765,9 +765,11 @@ KAZR (Kollias): here using auxiliary field to estimate cloud-top temperature
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## load all simulations located in subfolders of the given directory</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> functions_plotting.py
+
+<span class="c1">## load all simulations located in subfolders of the given directory</span>
 <span class="n">var_vec_1d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;lwpr&#39;</span><span class="p">,</span><span class="s1">&#39;lwpc&#39;</span><span class="p">,</span><span class="s1">&#39;iwp&#39;</span><span class="p">,</span><span class="s1">&#39;od&#39;</span><span class="p">]</span> <span class="c1"># variables without ERA5 (shorter time axis)</span>
-<span class="n">var_vec_2d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;theta&#39;</span><span class="p">,</span><span class="s1">&#39;qv&#39;</span><span class="p">,</span><span class="s1">&#39;qlc&#39;</span><span class="p">,</span><span class="s1">&#39;qlr&#39;</span><span class="p">,</span><span class="s1">&#39;ta&#39;</span><span class="p">,</span><span class="s1">&#39;ua&#39;</span><span class="p">,</span><span class="s1">&#39;va&#39;</span><span class="p">]</span> <span class="c1">#,&#39;qic&#39;,&#39;qis&#39;,&#39;qig&#39;,&#39;ua&#39;,&#39;va&#39;,&#39;ta&#39;]</span>
+<span class="n">var_vec_2d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;theta&#39;</span><span class="p">,</span><span class="s1">&#39;qv&#39;</span><span class="p">,</span><span class="s1">&#39;qlc&#39;</span><span class="p">,</span><span class="s1">&#39;qlr&#39;</span><span class="p">,</span><span class="s1">&#39;qi&#39;</span><span class="p">,</span><span class="s1">&#39;ta&#39;</span><span class="p">,</span><span class="s1">&#39;ua&#39;</span><span class="p">,</span><span class="s1">&#39;va&#39;</span><span class="p">]</span> <span class="c1">#,&#39;qic&#39;,&#39;qis&#39;,&#39;qig&#39;,&#39;ua&#39;,&#39;va&#39;,&#39;ta&#39;]</span>
 
 
 <span class="n">df_gray_1d_1</span><span class="p">,</span><span class="n">df_gray_2d_1</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword_gray_1</span><span class="p">,</span><span class="n">make_gray</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="n">diag_zi_ctt</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -783,12 +785,14 @@ KAZR (Kollias): here using auxiliary field to estimate cloud-top temperature
 ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
 Loading variables: f(time,height)
 ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
+qi not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
 computing inversion height, cloud-top height, and cloud-top temperature
 dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
 Loading variables: f(time)
 ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
 Loading variables: f(time,height)
 ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
+qi not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
 computing inversion height, cloud-top height, and cloud-top temperature
 wrf/sandbox/WRF_Lx25_dx100_FixN.nc
 Loading variables: f(time)
@@ -820,7 +824,7 @@ ModelE3-Tun2_FixN_def_z0.nc
   maxy = np.nanmax(masked_verts[..., 1])
 </pre></div>
 </div>
-<img alt="../../_images/a9193f9df9b9a40b74d8bdcb4e26f3ef18e475d300684afc3f1deb864cbbdc89.png" src="../../_images/a9193f9df9b9a40b74d8bdcb4e26f3ef18e475d300684afc3f1deb864cbbdc89.png" />
+<img alt="../../_images/7c413590e34b2bdf77fef08f5567a9f816fac3c0ee3ceac26e664c38107301f3.png" src="../../_images/7c413590e34b2bdf77fef08f5567a9f816fac3c0ee3ceac26e664c38107301f3.png" />
 </div>
 </div>
 <div class="cell docutils container">
