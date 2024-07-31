@@ -977,7 +977,9 @@ def plot_1d(df_col,var_vec,**kwargs):
                 if(df['colflag'].unique() == 'gray'):
                     obj.plot(df.time/3600,df[var_vec[ii]],label=label,c='gray',zorder=1,linewidth=3,alpha=0.7)
                 else:
-                    obj.plot(df.time/3600,df[var_vec[ii]],label=label,c=plot_colors[counter_plot],ls=plot_ls[counter_plot],zorder=2)
+                    pcol = plot_colors[counter_plot]
+                    if(label=='ERA5'): pcol='black'
+                    obj.plot(df.time/3600,df[var_vec[ii]],label=label,c=pcol,ls=plot_ls[counter_plot],zorder=2)
             obj.grid(alpha=0.2)
             # set units string
             if 'longnames' in kwargs and 'units' in kwargs:
@@ -989,7 +991,7 @@ def plot_1d(df_col,var_vec,**kwargs):
                     obj.text(.01, .99, longnames[ii]+unit_str, ha='left', va='top', transform=obj.transAxes)
         counter +=1
         if not df['colflag'].unique() == 'gray':  counter_plot +=1
-        if (label=='MAC-LWP') | (label=='MODIS') | (label=='VIIRS') | (label=='CERES') | (label=='SENTINEL') | (label=='KAZR (Kollias)')| (label=='KAZR (Clough)')| (label=='CALIOP')| (label=='ATMS')| (label=='RADFLUX')| (label=='Bulk') | (label=='ECOR') | (label=='CARRA'): counter_plot -=1    
+        if (label=='MAC-LWP') | (label=='MODIS') | (label=='VIIRS') | (label=='CERES') | (label=='SENTINEL') | (label=='KAZR (Kollias)')| (label=='KAZR (Clough)')| (label=='CALIOP')| (label=='ATMS')| (label=='RADFLUX')| (label=='Bulk') | (label=='ECOR') | (label=='CARRA') | (label=='ERA5'): counter_plot -=1    
         #print(counter_plot)
     i_count = 0
 
