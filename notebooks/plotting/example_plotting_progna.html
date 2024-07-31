@@ -506,15 +506,19 @@ KAZR (Kollias): here using auxiliary field to estimate cloud-top temperature
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## load all simulations located in subfolders of the given directory</span>
 <span class="n">var_vec_1d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hfss&#39;</span><span class="p">,</span><span class="s1">&#39;hfls&#39;</span><span class="p">,</span><span class="s1">&#39;ts&#39;</span><span class="p">]</span> <span class="c1"># variables with ERA5 (longer time axis)</span>
 <span class="n">var_vec_2d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;theta&#39;</span><span class="p">,</span><span class="s1">&#39;qv&#39;</span><span class="p">,</span><span class="s1">&#39;ua&#39;</span><span class="p">,</span><span class="s1">&#39;va&#39;</span><span class="p">]</span>
-<span class="n">df_col_1d</span><span class="p">,</span><span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword</span><span class="p">,</span><span class="n">subfolder</span><span class="o">=</span><span class="s1">&#39;sand&#39;</span><span class="p">,</span><span class="n">ignore</span><span class="o">=</span><span class="s1">&#39;ICON&#39;</span><span class="p">)</span>
+<span class="n">df_col_1d</span><span class="p">,</span><span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword</span><span class="p">,</span><span class="n">subfolder</span><span class="o">=</span><span class="s1">&#39;sand&#39;</span><span class="p">)</span> <span class="c1">#,ignore=&#39;ICON&#39;)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time)
 ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_ProgNa.nc
+../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
+../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
 Loading variables: f(time,height)
 ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_ProgNa.nc
+../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
+../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
 </pre></div>
 </div>
 </div>
@@ -533,7 +537,7 @@ Loading variables: f(time,height)
   maxy = np.nanmax(masked_verts[..., 1])
 </pre></div>
 </div>
-<img alt="../../_images/050a592c79c9a7f0ab3438682b110c3d23b282b9b3914340f4bfe0de5d14bf91.png" src="../../_images/050a592c79c9a7f0ab3438682b110c3d23b282b9b3914340f4bfe0de5d14bf91.png" />
+<img alt="../../_images/208db4a7b5b4ac4da7437a09fd0be1603fa42b851da00b33cc431900b8a27f59.png" src="../../_images/208db4a7b5b4ac4da7437a09fd0be1603fa42b851da00b33cc431900b8a27f59.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -543,17 +547,25 @@ Loading variables: f(time,height)
 <span class="c1">## load all simulations located in subfolders of the given directory</span>
 <span class="n">var_vec_1d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;lwpr&#39;</span><span class="p">,</span><span class="s1">&#39;lwpc&#39;</span><span class="p">,</span><span class="s1">&#39;iwp&#39;</span><span class="p">,</span><span class="s1">&#39;od&#39;</span><span class="p">]</span> <span class="c1"># variables without ERA5 (shorter time axis)</span>
 <span class="n">var_vec_2d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;theta&#39;</span><span class="p">,</span><span class="s1">&#39;qv&#39;</span><span class="p">,</span><span class="s1">&#39;qlc&#39;</span><span class="p">,</span><span class="s1">&#39;qlr&#39;</span><span class="p">,</span><span class="s1">&#39;ta&#39;</span><span class="p">,</span><span class="s1">&#39;ua&#39;</span><span class="p">,</span><span class="s1">&#39;va&#39;</span><span class="p">]</span> <span class="c1">#,&#39;qic&#39;,&#39;qis&#39;,&#39;qig&#39;,&#39;ua&#39;,&#39;va&#39;,&#39;ta&#39;]</span>
-<span class="n">df_col_1d</span><span class="p">,</span><span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword</span><span class="p">,</span><span class="n">diag_zi_ctt</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">subfolder</span><span class="o">=</span><span class="s1">&#39;sand&#39;</span><span class="p">,</span><span class="n">ignore</span><span class="o">=</span><span class="s1">&#39;ICON&#39;</span><span class="p">)</span>
+<span class="n">df_col_1d</span><span class="p">,</span><span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword</span><span class="p">,</span><span class="n">diag_zi_ctt</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">subfolder</span><span class="o">=</span><span class="s1">&#39;sand&#39;</span><span class="p">)</span> <span class="c1">#,ignore=&#39;ICON&#39;)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time)
 ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_ProgNa.nc
+../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
+../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
+iwp not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
+od not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
 Loading variables: f(time,height)
 ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_ProgNa.nc
+../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
+../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
 computing inversion height, cloud-top height, and cloud-top temperature
+DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
 dharma/sandbox/DHARMA_Lx25_dx100_ProgNa.nc
+icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
 </pre></div>
 </div>
 </div>
@@ -576,7 +588,7 @@ dharma/sandbox/DHARMA_Lx25_dx100_ProgNa.nc
   maxy = np.nanmax(masked_verts[..., 1])
 </pre></div>
 </div>
-<img alt="../../_images/8de95c0f9c53aee488a76e7a7c71ae17c42cda568c83298d9ca4be20e0d10540.png" src="../../_images/8de95c0f9c53aee488a76e7a7c71ae17c42cda568c83298d9ca4be20e0d10540.png" />
+<img alt="../../_images/5ac165ac7629606eaf0bb94027444840394ba42d9b1baea97e35a61e20652e98.png" src="../../_images/5ac165ac7629606eaf0bb94027444840394ba42d9b1baea97e35a61e20652e98.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -594,7 +606,7 @@ dharma/sandbox/DHARMA_Lx25_dx100_ProgNa.nc
 Computing wind direction
 </pre></div>
 </div>
-<img alt="../../_images/c31a9867664eb92e9f035eb55d5bd71c9507a6d9a80f53c599cd37b44dc454ba.png" src="../../_images/c31a9867664eb92e9f035eb55d5bd71c9507a6d9a80f53c599cd37b44dc454ba.png" />
+<img alt="../../_images/3ba040aa180acc9f15192516423061d46b7b24967e871feaaa5c7b9c405d3885.png" src="../../_images/3ba040aa180acc9f15192516423061d46b7b24967e871feaaa5c7b9c405d3885.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x600 with 0 Axes&gt;
 </pre></div>
 </div>
@@ -615,6 +627,13 @@ Computing wind direction
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_col_2d</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;class&#39;, &#39;time&#39;, &#39;zf&#39;, &#39;theta&#39;, &#39;qv&#39;, &#39;qlc&#39;, &#39;qlr&#39;, &#39;ta&#39;, &#39;ua&#39;, &#39;va&#39;,
+       &#39;colflag&#39;],
+      dtype=&#39;object&#39;)
 </pre></div>
 </div>
 </div>
