@@ -29,15 +29,15 @@ parts:
       - file: notebooks/plotting/plot_les_FixN_noice.ipynb
       - file: notebooks/plotting/plot_les_FixN.ipynb
       - file: notebooks/plotting/plot_les_FixN_def_z0.ipynb
-    - file: notebooks/plotting/check_scm.ipynb
-    - file: notebooks/plotting/example_plotting.ipynb    
-    - file: notebooks/plotting/example_plotting_progna.ipynb    
-    - file: notebooks/plotting/plot_FixN.ipynb 
-    - file: notebooks/plotting/plot_FixN-allSCM.ipynb  
-    - file: notebooks/plotting/plot_FixN_noice.ipynb 
-    - file: notebooks/plotting/plot_FixN_noice-allSCM.ipynb
-    - file: notebooks/plotting/example_plotting_2D.ipynb  
-    - file: emc2
+      - file: notebooks/plotting/check_scm.ipynb
+      - file: notebooks/plotting/example_plotting.ipynb    
+      - file: notebooks/plotting/example_plotting_progna.ipynb    
+      - file: notebooks/plotting/plot_FixN.ipynb 
+      - file: notebooks/plotting/plot_FixN-allSCM.ipynb  
+      - file: notebooks/plotting/plot_FixN_noice.ipynb 
+      - file: notebooks/plotting/plot_FixN_noice-allSCM.ipynb
+      - file: notebooks/plotting/example_plotting_2D.ipynb  
+      - file: emc2
 - caption: Supporting Materials
   chapters:
     - file: notebooks/forcing/create_comble_forcing_v2.4.ipynb
