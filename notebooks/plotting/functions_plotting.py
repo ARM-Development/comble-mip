@@ -570,7 +570,7 @@ def load_sims_2d(path,var_vec_2d,t_shift = 0,keyword='',subfolder=''):
     count_con = 0
     for fn in NCFILES:
         #print(NCFILES_STR[count])
-        if (keyword in NCFILES_STR[count]) and (subfolder in NCFILES_STR[count]):
+        if (keyword in NCFILES_STR[count]) and ((subfolder in NCFILES_STR[count]) | ('stage' in NCFILES_STR[count])):
             
             print(fn)
             label_items = [x for x in fn.parts + direc.parts if x not in direc.parts]
