@@ -515,13 +515,14 @@ KAZR (Kollias): here using auxiliary field to estimate cloud-top temperature
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## load all simulations located in subfolders of the given directory</span>
 <span class="n">var_vec_1d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hfss&#39;</span><span class="p">,</span><span class="s1">&#39;hfls&#39;</span><span class="p">,</span><span class="s1">&#39;ts&#39;</span><span class="p">]</span> <span class="c1"># variables with ERA5 (longer time axis)</span>
 <span class="n">var_vec_2d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;theta&#39;</span><span class="p">,</span><span class="s1">&#39;qv&#39;</span><span class="p">,</span><span class="s1">&#39;ua&#39;</span><span class="p">,</span><span class="s1">&#39;va&#39;</span><span class="p">]</span>
-<span class="n">df_col_1d</span><span class="p">,</span><span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword</span><span class="p">,</span><span class="n">subfolder</span><span class="o">=</span><span class="s1">&#39;sand&#39;</span><span class="p">,</span><span class="n">ignore</span><span class="o">=</span><span class="s1">&#39;ICON&#39;</span><span class="p">)</span>
+<span class="n">df_col_1d</span><span class="p">,</span><span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword</span><span class="p">,</span><span class="n">subfolder</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time)
 ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
+../../output_les/icon/staged/ICON_Lx25_dx100_FixN.nc
 ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN.nc
 ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN.nc
 ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN.nc
@@ -531,6 +532,7 @@ KAZR (Kollias): here using auxiliary field to estimate cloud-top temperature
 ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN.nc
 Loading variables: f(time,height)
 ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
+../../output_les/icon/staged/ICON_Lx25_dx100_FixN.nc
 ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN.nc
 ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN.nc
 ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN.nc
@@ -556,7 +558,7 @@ Loading variables: f(time,height)
   maxy = np.nanmax(masked_verts[..., 1])
 </pre></div>
 </div>
-<img alt="../../_images/5691b9eea9ee830ff6ebc504a2bd7879f13bf26a70d4a298fa15edca9c353e50.png" src="../../_images/5691b9eea9ee830ff6ebc504a2bd7879f13bf26a70d4a298fa15edca9c353e50.png" />
+<img alt="../../_images/7b14043fcd8efef3ae9136cadf0cbd99d6950191fa2bf7837b0322851325f00a.png" src="../../_images/7b14043fcd8efef3ae9136cadf0cbd99d6950191fa2bf7837b0322851325f00a.png" />
 </div>
 </div>
 <div class="cell docutils container">
