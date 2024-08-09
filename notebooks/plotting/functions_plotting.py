@@ -557,7 +557,7 @@ def load_real_wrf(PATH='../../data_files/'):
 
     return p_df,df_col2 
 
-def load_sims_2d(path,var_vec_2d,t_shift = 0,keyword='',subfolder=''):
+def load_sims_2d(path,var_vec_2d,t_shift = 0,keyword='',subfolder='',ignore='placeholder'):
     
     direc = pathlib.Path(path)
     NCFILES = list(direc.rglob("*nc"))
@@ -569,6 +569,9 @@ def load_sims_2d(path,var_vec_2d,t_shift = 0,keyword='',subfolder=''):
     count = 0
     count_con = 0
     for fn in NCFILES:
+        if ignore in NCFILES_STR[count]:
+                count+=1
+                continue
         #print(NCFILES_STR[count])
         if (keyword in NCFILES_STR[count]) and ((subfolder in NCFILES_STR[count]) | ('stage' in NCFILES_STR[count])):
             
@@ -579,13 +582,24 @@ def load_sims_2d(path,var_vec_2d,t_shift = 0,keyword='',subfolder=''):
 
             ncdata = xr.open_dataset(fn)
             ncdata['simulation']=group
-            ncdata = ncdata#.drop_duplicates(dim="x").drop_duplicates(dim="y")
+            ncdata = ncdata#.isel(x=0).isel(y=0).isel(time=0)#.drop_duplicates(dim="x").drop_duplicates(dim="y")
+            ncdata = xr.concat([ncdata],dim='simulation',coords='all')
+            if 'salsa' in NCFILES_STR[count]:
+                print('...adjusting x and y values')
+                ncdata['x'] = ncdata['x'] - 50
+                ncdata['y'] = ncdata['y'] - 50
+            #rounded = [np.round(x,-2) for x in ncdata['x']]
+            #ncdata['x'] = rounded
+            #ncdata['y'] = rounded
             #print(ncdata)
             if count_con == 0:
                 df_col2 = ncdata.copy()
             else:
                 df_col2 = xr.concat([df_col2,ncdata],dim='simulation',coords='all')
+                #df_col2 = xr.combine_by_coords([df_col2,ncdata],coords='all') #,dim='simulation',coords='all')')
+                #df_col2 = xr.combine_nested([df_col2,ncdata],concat_dim=["simulation"]) #,dim='simulation',coords='all')
             count_con += 1
+            #print(df_col2)
         count+=1 
     return df_col2
 
