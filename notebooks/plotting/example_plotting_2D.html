@@ -459,7 +459,7 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> functions_plotting.py 
  
 <span class="c1">## select simulations to plot</span>
-<span class="n">sim_keyword</span> <span class="o">=</span> <span class="s1">&#39;_2D&#39;</span>  
+<span class="n">sim_keyword</span> <span class="o">=</span> <span class="s1">&#39;FixN_2D&#39;</span>  
 </pre></div>
 </div>
 </div>
@@ -471,13 +471,128 @@ document.write(`
 <span class="n">var_vec_2d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;alb&#39;</span><span class="p">]</span>
 
 <span class="c1">## load all simulations located in subfolders of the given directory</span>
-<span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">load_sims_2d</span><span class="p">(</span><span class="s1">&#39;/data/project/comble-mip/output_les/dharma/&#39;</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword</span><span class="p">)</span>
+<span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">load_sims_2d</span><span class="p">(</span><span class="s1">&#39;/data/project/comble-mip/output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time,x,y)
+/data/project/comble-mip/output_les/wrf/WRF_Lx25_dx100_FixN_2D.nc
+&lt;xarray.DataArray &#39;x&#39; ()&gt; Size: 8B
+array(-12800.)
+Coordinates:
+    x        float64 8B -1.28e+04
+Attributes:
+    units:      m
+    long_name:  x
+&lt;xarray.Dataset&gt; Size: 104MB
+Dimensions:     (x: 256, y: 256, time: 18, simulation: 1)
+Coordinates:
+  * x           (x) float64 2kB -1.28e+04 -1.27e+04 ... 1.26e+04 1.27e+04
+  * y           (y) float64 2kB -1.28e+04 -1.27e+04 ... 1.26e+04 1.27e+04
+  * time        (time) datetime64[ns] 144B 2020-03-13T01:00:00 ... 2020-03-13...
+  * simulation  (simulation) &lt;U29 116B &#39;wrf/WRF_Lx25_dx100_FixN_2D.nc&#39;
+Data variables:
+    hfss        (simulation, time, x, y) float64 9MB 617.7 663.5 ... 112.6 109.2
+    hfls        (simulation, time, x, y) float64 9MB 208.8 222.8 ... 95.52 92.41
+    ustar       (simulation, time, x, y) float64 9MB 0.7949 0.8471 ... 0.2902
+    us          (simulation, time, x, y) float64 9MB 1.849 0.2592 ... 2.511
+    vs          (simulation, time, x, y) float64 9MB -16.88 -18.25 ... -4.481
+    pr          (simulation, time, x, y) float64 9MB 9.969e+36 ... 9.969e+36
+    lwp         (simulation, time, x, y) float64 9MB 9.969e+36 ... 9.969e+36
+    iwp         (simulation, time, x, y) float64 9MB 9.969e+36 ... 9.969e+36
+    opt         (simulation, time, x, y) float64 9MB 9.969e+36 ... 9.969e+36
+    alb         (simulation, time, x, y) float64 9MB 9.969e+36 ... 9.969e+36
+    olr11       (simulation, time, x, y) float64 9MB 9.969e+36 ... 9.969e+36
+Attributes: (12/17)
+    title:           WRF LES results for COMBLE-MIP case: fixed Nd and Ni
+    reference:       https://github.com/ARM-Development/comble-mip
+    authors:         Tim Juliano (tjuliano@ucar.edu)
+    version:         2024-08-07 11:59:53
+    format_version:  DEPHY SCM format version 1.6
+    script:          convert_WRF_LES_output_to_dephy_format.ipynb
+    ...              ...
+    dx:              100.0 m
+    dy:              100.0 m
+    dz:              see ze variable
+    nx:              256
+    ny:              256
+    nz:              159
 /data/project/comble-mip/output_les/dharma/DHARMA_Lx25_dx100_FixN_2D.nc
+&lt;xarray.DataArray &#39;x&#39; ()&gt; Size: 8B
+array(-12800.)
+Coordinates:
+    x        float64 8B -1.28e+04
+Attributes:
+    units:      m
+    long_name:  x
+&lt;xarray.Dataset&gt; Size: 94MB
+Dimensions:     (x: 256, y: 256, time: 18, simulation: 1)
+Coordinates:
+  * x           (x) float64 2kB -1.28e+04 -1.27e+04 ... 1.26e+04 1.27e+04
+  * y           (y) float64 2kB -1.28e+04 -1.27e+04 ... 1.26e+04 1.27e+04
+  * time        (time) datetime64[ns] 144B 2020-03-13T01:00:00 ... 2020-03-13...
+  * simulation  (simulation) &lt;U35 140B &#39;dharma/DHARMA_Lx25_dx100_FixN_2D.nc&#39;
+Data variables:
+    hfss        (simulation, time, x, y) float64 9MB 733.3 737.2 ... 146.4 141.7
+    hfls        (simulation, time, x, y) float64 9MB 246.9 248.2 ... 177.9 174.1
+    us          (simulation, time, x, y) float64 9MB -1.263 -0.4847 ... 1.941
+    vs          (simulation, time, x, y) float64 9MB 0.2939 0.2132 ... 11.24
+    pr          (simulation, time, x, y) float64 9MB 0.0 0.0 ... 0.0 0.0
+    lwp         (simulation, time, x, y) float64 9MB 11.34 20.14 ... 7.415e-08
+    iwp         (simulation, time, x, y) float64 9MB 9.286 10.01 ... 178.4 174.9
+    opt         (simulation, time, x, y) float64 9MB 2.084 3.25 ... 2.219 2.301
+    alb         (simulation, time, x, y) float64 9MB 0.1382 0.2 ... 0.1504
+    olr11       (simulation, time, x, y) float64 9MB 37.29 30.56 ... 36.89 38.26
+Attributes:
+    title:           DHARMA LES results for COMBLE-MIP case: fixed Nd and Ni
+    reference:       https://github.com/ARM-Development/comble-mip
+    authors:         Florian Tornow (florian.tornow@nasa.gov) and Ann Fridlin...
+    version:         2024-06-11 15:28:20
+    format_version:  DEPHY-derivative
+    script:          convert_DHARMA_LES_output_to_dephy_format_2D.ipynb
+    startDate:       2020-03-12 22:00:00.0
+    force_geo:       1
+    surfaceType:     ocean (after spin-up)
+    surfaceForcing:  ts (after spin-up)
+/data/project/comble-mip/output_les/uclales-salsa/UCLALES-SALSA_Lx25_dx100_FixN_2D.nc
+&lt;xarray.DataArray &#39;x&#39; ()&gt; Size: 8B
+array(-12750.)
+Coordinates:
+    x        float64 8B -1.275e+04
+Attributes:
+    units:      m
+    long_name:  x
+adjusting x and y values
+&lt;xarray.Dataset&gt; Size: 121MB
+Dimensions:     (x: 256, y: 256, time: 21, simulation: 1)
+Coordinates:
+  * x           (x) float64 2kB -1.28e+04 -1.27e+04 ... 1.26e+04 1.27e+04
+  * y           (y) float64 2kB -1.28e+04 -1.27e+04 ... 1.26e+04 1.27e+04
+  * time        (time) datetime64[ns] 168B 2020-03-12T22:00:00 ... 2020-03-13...
+  * simulation  (simulation) &lt;U49 196B &#39;uclales-salsa/UCLALES-SALSA_Lx25_dx10...
+Data variables:
+    hfss        (simulation, time, x, y) float64 11MB -36.45 -34.37 ... 167.6
+    hfls        (simulation, time, x, y) float64 11MB 25.61 25.62 ... 164.7
+    ustar       (simulation, time, x, y) float64 11MB 1.159 1.159 ... 0.4594
+    us          (simulation, time, x, y) float64 11MB 2.769 2.768 ... 7.968
+    vs          (simulation, time, x, y) float64 11MB -26.81 -26.81 ... -6.347
+    pr          (simulation, time, x, y) float64 11MB 0.0 0.0 ... 5.878e-05
+    lwp         (simulation, time, x, y) float64 11MB 0.0 0.0 ... 9.675e-07
+    iwp         (simulation, time, x, y) float64 11MB 0.0 0.0 ... 0.6968 0.8057
+    opt         (simulation, time, x, y) float64 11MB 0.0 0.0 0.0 ... 7.164 7.41
+    alb         (simulation, time, x, y) float64 11MB 0.0 0.0 ... 0.3553 0.3631
+    olr11       (simulation, time, x, y) float64 11MB 15.88 58.2 ... 11.49 7.091
+Attributes:
+    title:           UCLALES-SALSA results for COMBLE-MIP case
+    reference:       https://github.com/ARM-Development/comble-mip
+    authors:         Tomi Raatikainen (tomi.raatikainen@fmi.fi)
+    source:          COMBLE_SB_FixN
+    version:         2024-07-29 13:31:25
+    format_version:  DEPHY SCM format version 1.6
+    script:          convert_UCLALES-SALSA_output_to_dephy_format.ipynb
+    startDate:       2020-03-12T22:00:00Z
+    note:            Without SALSA, i.e., using the 2M bulk microphysics by S...
 </pre></div>
 </div>
 </div>
@@ -485,7 +600,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## temporary double-check of loaded parameters</span>
-<span class="n">df_col_2d</span>
+<span class="n">df_col_2d</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span><span class="c1">#-50</span>
 </pre></div>
 </div>
 </div>
@@ -853,63 +968,18 @@ dl.xr-attrs {
   stroke: currentColor;
   fill: currentColor;
 }
-</style><pre class='xr-text-repr-fallback'>&lt;xarray.Dataset&gt; Size: 94MB
-Dimensions:     (x: 256, y: 256, time: 18)
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.DataArray &#x27;x&#x27; (x: 256)&gt; Size: 2kB
+array([-12800., -12700., -12600., ...,  12500.,  12600.,  12700.])
 Coordinates:
-  * x           (x) float64 2kB -1.28e+04 -1.27e+04 ... 1.26e+04 1.27e+04
-  * y           (y) float64 2kB -1.28e+04 -1.27e+04 ... 1.26e+04 1.27e+04
-  * time        (time) datetime64[ns] 144B 2020-03-13T01:00:00 ... 2020-03-13...
-Data variables:
-    hfss        (time, x, y) float64 9MB ...
-    hfls        (time, x, y) float64 9MB ...
-    us          (time, x, y) float64 9MB ...
-    vs          (time, x, y) float64 9MB ...
-    pr          (time, x, y) float64 9MB ...
-    lwp         (time, x, y) float64 9MB ...
-    iwp         (time, x, y) float64 9MB ...
-    opt         (time, x, y) float64 9MB ...
-    alb         (time, x, y) float64 9MB ...
-    olr11       (time, x, y) float64 9MB ...
-    simulation  &lt;U28 112B &#x27;DHARMA_Lx25_dx100_FixN_2D.nc&#x27;
+  * x        (x) float64 2kB -1.28e+04 -1.27e+04 -1.26e+04 ... 1.26e+04 1.27e+04
 Attributes:
-    title:           DHARMA LES results for COMBLE-MIP case: fixed Nd and Ni
-    reference:       https://github.com/ARM-Development/comble-mip
-    authors:         Florian Tornow (florian.tornow@nasa.gov) and Ann Fridlin...
-    version:         2024-06-11 15:28:20
-    format_version:  DEPHY-derivative
-    script:          convert_DHARMA_LES_output_to_dephy_format_2D.ipynb
-    startDate:       2020-03-12 22:00:00.0
-    force_geo:       1
-    surfaceType:     ocean (after spin-up)
-    surfaceForcing:  ts (after spin-up)</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-9f777362-eb13-4b3c-adb4-2827d41d0a3d' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-9f777362-eb13-4b3c-adb4-2827d41d0a3d' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>x</span>: 256</li><li><span class='xr-has-index'>y</span>: 256</li><li><span class='xr-has-index'>time</span>: 18</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-80efa7c3-d7af-4a8e-ab12-727f4142cabd' class='xr-section-summary-in' type='checkbox'  checked><label for='section-80efa7c3-d7af-4a8e-ab12-727f4142cabd' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>x</span></div><div class='xr-var-dims'>(x)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-1.28e+04 -1.27e+04 ... 1.27e+04</div><input id='attrs-c8ae425c-fb5e-4b65-94a4-033b19034a8f' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-c8ae425c-fb5e-4b65-94a4-033b19034a8f' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-0ef091b9-3fa8-41ad-beaf-ecf5a1433aa2' class='xr-var-data-in' type='checkbox'><label for='data-0ef091b9-3fa8-41ad-beaf-ecf5a1433aa2' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>m</dd><dt><span>long_name :</span></dt><dd>x</dd></dl></div><div class='xr-var-data'><pre>array([-12800., -12700., -12600., ...,  12500.,  12600.,  12700.])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>y</span></div><div class='xr-var-dims'>(y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-1.28e+04 -1.27e+04 ... 1.27e+04</div><input id='attrs-7f1f3676-9f36-42df-96d3-5e03339f3bee' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-7f1f3676-9f36-42df-96d3-5e03339f3bee' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-f07327a9-ba9c-4c2a-a53d-57b2321e6ad2' class='xr-var-data-in' type='checkbox'><label for='data-f07327a9-ba9c-4c2a-a53d-57b2321e6ad2' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>m</dd><dt><span>long_name :</span></dt><dd>y</dd></dl></div><div class='xr-var-data'><pre>array([-12800., -12700., -12600., ...,  12500.,  12600.,  12700.])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>2020-03-13T01:00:00 ... 2020-03-...</div><input id='attrs-771f42f1-bbd0-41a3-8e44-c7984f6c4840' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-771f42f1-bbd0-41a3-8e44-c7984f6c4840' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-8e52a4d2-f77a-461d-8c89-638a7ff595b1' class='xr-var-data-in' type='checkbox'><label for='data-8e52a4d2-f77a-461d-8c89-638a7ff595b1' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>time</dd></dl></div><div class='xr-var-data'><pre>array([&#x27;2020-03-13T01:00:00.000000000&#x27;, &#x27;2020-03-13T02:00:00.000000000&#x27;,
-       &#x27;2020-03-13T03:00:00.000000000&#x27;, &#x27;2020-03-13T04:00:00.000000000&#x27;,
-       &#x27;2020-03-13T05:00:00.000000000&#x27;, &#x27;2020-03-13T06:00:00.000000000&#x27;,
-       &#x27;2020-03-13T07:00:00.000000000&#x27;, &#x27;2020-03-13T08:00:00.000000000&#x27;,
-       &#x27;2020-03-13T09:00:00.000000000&#x27;, &#x27;2020-03-13T10:00:00.000000000&#x27;,
-       &#x27;2020-03-13T11:00:00.000000000&#x27;, &#x27;2020-03-13T12:00:00.000000000&#x27;,
-       &#x27;2020-03-13T13:00:00.000000000&#x27;, &#x27;2020-03-13T14:00:00.000000000&#x27;,
-       &#x27;2020-03-13T15:00:00.000000000&#x27;, &#x27;2020-03-13T16:00:00.000000000&#x27;,
-       &#x27;2020-03-13T17:00:00.000000000&#x27;, &#x27;2020-03-13T18:00:00.000000000&#x27;],
-      dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-1de900bc-845d-4866-bd58-9d6c6ca9b015' class='xr-section-summary-in' type='checkbox'  checked><label for='section-1de900bc-845d-4866-bd58-9d6c6ca9b015' class='xr-section-summary' >Data variables: <span>(11)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>hfss</span></div><div class='xr-var-dims'>(time, x, y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-f58ec621-4b15-4288-ba0a-5af7225830f3' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-f58ec621-4b15-4288-ba0a-5af7225830f3' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-deef6635-5ccf-4950-b8ff-609fd3b922da' class='xr-var-data-in' type='checkbox'><label for='data-deef6635-5ccf-4950-b8ff-609fd3b922da' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>W m-2</dd><dt><span>long_name :</span></dt><dd>surface_upward_sensible_heat_flux</dd></dl></div><div class='xr-var-data'><pre>[1179648 values with dtype=float64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>hfls</span></div><div class='xr-var-dims'>(time, x, y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-9faf7a7f-c8e5-43a5-9389-6c2084a716fe' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-9faf7a7f-c8e5-43a5-9389-6c2084a716fe' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-a6bf33aa-f59f-46d0-b179-01434aee2e5d' class='xr-var-data-in' type='checkbox'><label for='data-a6bf33aa-f59f-46d0-b179-01434aee2e5d' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>W m-2</dd><dt><span>long_name :</span></dt><dd>surface_upward_latent_heat_flux</dd></dl></div><div class='xr-var-data'><pre>[1179648 values with dtype=float64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>us</span></div><div class='xr-var-dims'>(time, x, y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-c2955fe9-1dcc-4910-bf95-3092116c74d3' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-c2955fe9-1dcc-4910-bf95-3092116c74d3' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-24d2bcf6-52d2-46bf-a535-ff3c197d46f1' class='xr-var-data-in' type='checkbox'><label for='data-24d2bcf6-52d2-46bf-a535-ff3c197d46f1' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>m s-1</dd><dt><span>long_name :</span></dt><dd>surface_eastward_wind</dd></dl></div><div class='xr-var-data'><pre>[1179648 values with dtype=float64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>vs</span></div><div class='xr-var-dims'>(time, x, y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-24fa2f0e-e6eb-4bfb-bbdf-731f156ec47e' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-24fa2f0e-e6eb-4bfb-bbdf-731f156ec47e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-15863d32-3fa6-44c2-a196-c09fc4bb29a9' class='xr-var-data-in' type='checkbox'><label for='data-15863d32-3fa6-44c2-a196-c09fc4bb29a9' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>m s-1</dd><dt><span>long_name :</span></dt><dd>surface_northward_wind</dd></dl></div><div class='xr-var-data'><pre>[1179648 values with dtype=float64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>pr</span></div><div class='xr-var-dims'>(time, x, y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-a7c6543e-a1e1-43f1-82d4-198ab8f25f14' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-a7c6543e-a1e1-43f1-82d4-198ab8f25f14' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-3e49955e-1a60-461d-8bc4-d464166297ac' class='xr-var-data-in' type='checkbox'><label for='data-3e49955e-1a60-461d-8bc4-d464166297ac' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>kg m-2 s-1</dd><dt><span>long_name :</span></dt><dd>precipitation_flux_at_surface</dd></dl></div><div class='xr-var-data'><pre>[1179648 values with dtype=float64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>lwp</span></div><div class='xr-var-dims'>(time, x, y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-1aa799d8-e157-4ab8-8ffe-eed8f357d4cb' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-1aa799d8-e157-4ab8-8ffe-eed8f357d4cb' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-4c2ca2cc-fda8-4e66-b73f-0a4cdb8d1e8c' class='xr-var-data-in' type='checkbox'><label for='data-4c2ca2cc-fda8-4e66-b73f-0a4cdb8d1e8c' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>kg m-2</dd><dt><span>long_name :</span></dt><dd>atmosphere_mass_content_of_liquid_water</dd></dl></div><div class='xr-var-data'><pre>[1179648 values with dtype=float64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>iwp</span></div><div class='xr-var-dims'>(time, x, y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-029834bf-3681-4545-8971-88f35142e3cc' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-029834bf-3681-4545-8971-88f35142e3cc' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-3aa296fb-d3b2-4377-8611-a664cdb52904' class='xr-var-data-in' type='checkbox'><label for='data-3aa296fb-d3b2-4377-8611-a664cdb52904' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>kg m-2</dd><dt><span>long_name :</span></dt><dd>atmosphere_mass_content_of_ice</dd></dl></div><div class='xr-var-data'><pre>[1179648 values with dtype=float64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>opt</span></div><div class='xr-var-dims'>(time, x, y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-4ff7cc4a-695c-4c45-b471-fa189e124823' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-4ff7cc4a-695c-4c45-b471-fa189e124823' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-16edfba4-592d-49ab-894d-97678b99d891' class='xr-var-data-in' type='checkbox'><label for='data-16edfba4-592d-49ab-894d-97678b99d891' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>1</dd><dt><span>long_name :</span></dt><dd>atmosphere_optical_thickness</dd></dl></div><div class='xr-var-data'><pre>[1179648 values with dtype=float64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>alb</span></div><div class='xr-var-dims'>(time, x, y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-819145ac-7ab9-485a-8366-6fe317e157b0' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-819145ac-7ab9-485a-8366-6fe317e157b0' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-ecb73778-4c53-43f1-9656-fb8afa1fc092' class='xr-var-data-in' type='checkbox'><label for='data-ecb73778-4c53-43f1-9656-fb8afa1fc092' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>1</dd><dt><span>long_name :</span></dt><dd>pseudo-albedo</dd></dl></div><div class='xr-var-data'><pre>[1179648 values with dtype=float64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>olr11</span></div><div class='xr-var-dims'>(time, x, y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-a59cc65f-20dc-4fc4-a662-033449e6c288' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-a59cc65f-20dc-4fc4-a662-033449e6c288' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-d06d5a32-3fba-4a70-b6a4-e7f9c751653d' class='xr-var-data-in' type='checkbox'><label for='data-d06d5a32-3fba-4a70-b6a4-e7f9c751653d' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>K</dd><dt><span>long_name :</span></dt><dd>toa_outgoing_longwave_flux_atmospheric_window</dd></dl></div><div class='xr-var-data'><pre>[1179648 values with dtype=float64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>simulation</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>&lt;U28</div><div class='xr-var-preview xr-preview'>&#x27;DHARMA_Lx25_dx100_FixN_2D.nc&#x27;</div><input id='attrs-f21afa72-f32e-44e5-a8bb-51542083218f' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-f21afa72-f32e-44e5-a8bb-51542083218f' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-a6e360cb-6aff-47ae-b1f9-2772dd5638b5' class='xr-var-data-in' type='checkbox'><label for='data-a6e360cb-6aff-47ae-b1f9-2772dd5638b5' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(&#x27;DHARMA_Lx25_dx100_FixN_2D.nc&#x27;, dtype=&#x27;&lt;U28&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-c628dee8-44c8-4bf0-a130-1b6b735fdfe0' class='xr-section-summary-in' type='checkbox'  ><label for='section-c628dee8-44c8-4bf0-a130-1b6b735fdfe0' class='xr-section-summary' >Indexes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>x</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-0fe27389-8817-4740-813f-fd46a9bcdb0f' class='xr-index-data-in' type='checkbox'/><label for='index-0fe27389-8817-4740-813f-fd46a9bcdb0f' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Float64Index([-12800.0, -12700.0, -12600.0, -12500.0, -12400.0, -12300.0,
+    units:      m
+    long_name:  x</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'x'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>x</span>: 256</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-1f88bc6e-2456-4f29-8b3d-48ab84e54458' class='xr-array-in' type='checkbox' checked><label for='section-1f88bc6e-2456-4f29-8b3d-48ab84e54458' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>-1.28e+04 -1.27e+04 -1.26e+04 -1.25e+04 ... 1.25e+04 1.26e+04 1.27e+04</span></div><div class='xr-array-data'><pre>array([-12800., -12700., -12600., ...,  12500.,  12600.,  12700.])</pre></div></div></li><li class='xr-section-item'><input id='section-813883e1-f78c-440a-86fb-bc8ead25546a' class='xr-section-summary-in' type='checkbox'  checked><label for='section-813883e1-f78c-440a-86fb-bc8ead25546a' class='xr-section-summary' >Coordinates: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>x</span></div><div class='xr-var-dims'>(x)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-1.28e+04 -1.27e+04 ... 1.27e+04</div><input id='attrs-b9416c0d-7a6f-410e-9fa6-ac11c7e3150a' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-b9416c0d-7a6f-410e-9fa6-ac11c7e3150a' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-a728023f-c0e5-4bd4-a464-7f859ddcaacd' class='xr-var-data-in' type='checkbox'><label for='data-a728023f-c0e5-4bd4-a464-7f859ddcaacd' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>m</dd><dt><span>long_name :</span></dt><dd>x</dd></dl></div><div class='xr-var-data'><pre>array([-12800., -12700., -12600., ...,  12500.,  12600.,  12700.])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-98508236-5731-40cc-99df-d5a4d3a8b4a2' class='xr-section-summary-in' type='checkbox'  ><label for='section-98508236-5731-40cc-99df-d5a4d3a8b4a2' class='xr-section-summary' >Indexes: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>x</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-bdabf3c8-76be-4340-90f6-d49b97a24257' class='xr-index-data-in' type='checkbox'/><label for='index-bdabf3c8-76be-4340-90f6-d49b97a24257' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Float64Index([-12800.0, -12700.0, -12600.0, -12500.0, -12400.0, -12300.0,
               -12200.0, -12100.0, -12000.0, -11900.0,
               ...
                11800.0,  11900.0,  12000.0,  12100.0,  12200.0,  12300.0,
                12400.0,  12500.0,  12600.0,  12700.0],
-             dtype=&#x27;float64&#x27;, name=&#x27;x&#x27;, length=256))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>y</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-c4e0cd0b-72b4-4c98-a6f1-5990131f43ff' class='xr-index-data-in' type='checkbox'/><label for='index-c4e0cd0b-72b4-4c98-a6f1-5990131f43ff' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Float64Index([-12800.0, -12700.0, -12600.0, -12500.0, -12400.0, -12300.0,
-              -12200.0, -12100.0, -12000.0, -11900.0,
-              ...
-               11800.0,  11900.0,  12000.0,  12100.0,  12200.0,  12300.0,
-               12400.0,  12500.0,  12600.0,  12700.0],
-             dtype=&#x27;float64&#x27;, name=&#x27;y&#x27;, length=256))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>time</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-91c9006f-ac5e-437a-bc20-66d8b0468aab' class='xr-index-data-in' type='checkbox'/><label for='index-91c9006f-ac5e-437a-bc20-66d8b0468aab' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(DatetimeIndex([&#x27;2020-03-13 01:00:00&#x27;, &#x27;2020-03-13 02:00:00&#x27;,
-               &#x27;2020-03-13 03:00:00&#x27;, &#x27;2020-03-13 04:00:00&#x27;,
-               &#x27;2020-03-13 05:00:00&#x27;, &#x27;2020-03-13 06:00:00&#x27;,
-               &#x27;2020-03-13 07:00:00&#x27;, &#x27;2020-03-13 08:00:00&#x27;,
-               &#x27;2020-03-13 09:00:00&#x27;, &#x27;2020-03-13 10:00:00&#x27;,
-               &#x27;2020-03-13 11:00:00&#x27;, &#x27;2020-03-13 12:00:00&#x27;,
-               &#x27;2020-03-13 13:00:00&#x27;, &#x27;2020-03-13 14:00:00&#x27;,
-               &#x27;2020-03-13 15:00:00&#x27;, &#x27;2020-03-13 16:00:00&#x27;,
-               &#x27;2020-03-13 17:00:00&#x27;, &#x27;2020-03-13 18:00:00&#x27;],
-              dtype=&#x27;datetime64[ns]&#x27;, name=&#x27;time&#x27;, freq=None))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-bac917e0-9826-4f59-b71d-8303b94d4e06' class='xr-section-summary-in' type='checkbox'  ><label for='section-bac917e0-9826-4f59-b71d-8303b94d4e06' class='xr-section-summary' >Attributes: <span>(10)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>title :</span></dt><dd>DHARMA LES results for COMBLE-MIP case: fixed Nd and Ni</dd><dt><span>reference :</span></dt><dd>https://github.com/ARM-Development/comble-mip</dd><dt><span>authors :</span></dt><dd>Florian Tornow (florian.tornow@nasa.gov) and Ann Fridlind (ann.fridlind@nasa.gov)</dd><dt><span>version :</span></dt><dd>2024-06-11 15:28:20</dd><dt><span>format_version :</span></dt><dd>DEPHY-derivative</dd><dt><span>script :</span></dt><dd>convert_DHARMA_LES_output_to_dephy_format_2D.ipynb</dd><dt><span>startDate :</span></dt><dd>2020-03-12 22:00:00.0</dd><dt><span>force_geo :</span></dt><dd>1</dd><dt><span>surfaceType :</span></dt><dd>ocean (after spin-up)</dd><dt><span>surfaceForcing :</span></dt><dd>ts (after spin-up)</dd></dl></div></li></ul></div></div></div></div>
+             dtype=&#x27;float64&#x27;, name=&#x27;x&#x27;, length=256))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-ea410ab0-0b08-488f-85e2-38bc2ac9a8d8' class='xr-section-summary-in' type='checkbox'  checked><label for='section-ea410ab0-0b08-488f-85e2-38bc2ac9a8d8' class='xr-section-summary' >Attributes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>m</dd><dt><span>long_name :</span></dt><dd>x</dd></dl></div></li></ul></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -923,15 +993,21 @@ Attributes:
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_col_2d</span><span class="p">[</span><span class="s1">&#39;alb&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">col</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="n">col_wrap</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span> <span class="c1">#,row=&#39;simulation&#39;)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_col_2d</span><span class="p">[</span><span class="s1">&#39;vs&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">col</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="n">col_wrap</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span><span class="n">row</span><span class="o">=</span><span class="s1">&#39;simulation&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">round</span><span class="p">(</span><span class="mf">1.27e4</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.plot.facetgrid.FacetGrid at 0x7f5f37dd4b20&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12700.0
 </pre></div>
 </div>
-<img alt="../../_images/e53c34b486d7aa5afb467b39ea4ce8cd25cbb2f3f77e3759175da2e097b83c62.png" src="../../_images/e53c34b486d7aa5afb467b39ea4ce8cd25cbb2f3f77e3759175da2e097b83c62.png" />
 </div>
 </div>
 </section>
