@@ -457,10 +457,12 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-output">Generate output</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-2d-and-3d-outputs-test">Generate 2d and 3d outputs - test</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d">2d</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-2d-and-3d-outputs">Generate 2D and 3D outputs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d">2D</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-outputs">Generate outputs</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3d</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3D</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Generate outputs</a></li>
 </ul>
 </li>
@@ -509,9 +511,9 @@ document.write(`
 <span class="c1"># Name of the LES simulation</span>
 <span class="c1">#exp_name = &#39;COMBLE_SB_FixN&#39;</span>
 <span class="c1">#exp_name = &#39;COMBLE_SB_FixN_noice&#39;</span>
-<span class="n">exp_name</span> <span class="o">=</span> <span class="s1">&#39;COMBLE_SB_FixN_def_z0&#39;</span>
+<span class="c1">#exp_name = &#39;COMBLE_SB_FixN_def_z0&#39;</span>
 <span class="c1">#exp_name = &#39;COMBLE_SALSA_ProgNc_noice&#39;</span>
-<span class="c1">#exp_name = &#39;COMBLE_SALSA_ProgNc&#39;</span>
+<span class="n">exp_name</span> <span class="o">=</span> <span class="s1">&#39;COMBLE_SALSA_ProgNc&#39;</span>
 <span class="c1">#exp_name = &#39;COMBLE_SALSA_ProgNcNi&#39;</span>
 
 <span class="c1"># Github scratch directory where processed model output will be committed</span>
@@ -1275,18 +1277,18 @@ document.write(`
         <span class="k">return</span> <span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;tau_liq&#39;</span><span class="p">],</span><span class="s1">&#39;No gases or vapors&#39;</span>
     <span class="k">elif</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;precipitation_flux_at_surface&#39;</span><span class="p">:</span>
         <span class="c1"># liquid and ice phase, all hydrometeors</span>
-        <span class="c1"># Unit conversion: W/m2/(J/kg)=kg/m2/s</span>
-        <span class="c1"># Note: cloud water precipitation ignored</span>
+        <span class="c1"># Unit conversion for prcp: W/m2/(J/kg)=kg/m2/s</span>
+        <span class="c1"># Note: cloud water precipitation ignored for SB</span>
         <span class="k">if</span> <span class="n">sb</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">(</span><span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;prcp&#39;</span><span class="p">])</span><span class="o">/</span><span class="n">alvl</span><span class="o">+</span><span class="p">(</span><span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;iprcp&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;sprcp&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;gprcp&#39;</span><span class="p">])</span><span class="o">/</span><span class="n">alvi</span><span class="p">,</span><span class="s1">&#39;&#39;</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="p">(</span><span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;prcp&#39;</span><span class="p">])</span><span class="o">/</span><span class="n">alvl</span><span class="o">+</span><span class="p">(</span><span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;sprcp&#39;</span><span class="p">])</span><span class="o">/</span><span class="n">alvi</span><span class="p">,</span><span class="s1">&#39;&#39;</span>
+            <span class="k">return</span> <span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;rmH2Ocl&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;rmH2Opr&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;rmH2Osn&#39;</span><span class="p">],</span><span class="s1">&#39;&#39;</span>
     <span class="k">elif</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;precipitation_flux_at_surface_in_ice_phase&#39;</span><span class="p">:</span>
         <span class="c1"># ice phase hydrometeors only</span>
         <span class="k">if</span> <span class="n">sb</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">(</span><span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;iprcp&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;sprcp&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;gprcp&#39;</span><span class="p">])</span><span class="o">/</span><span class="n">alvi</span><span class="p">,</span><span class="s1">&#39;&#39;</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="p">(</span><span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;sprcp&#39;</span><span class="p">])</span><span class="o">/</span><span class="n">alvi</span><span class="p">,</span><span class="s1">&#39;&#39;</span>
+            <span class="k">return</span> <span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;rmH2Osn&#39;</span><span class="p">],</span><span class="s1">&#39;&#39;</span>
     <span class="k">elif</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;toa_outgoing_longwave_flux&#39;</span><span class="p">:</span> 
         <span class="k">return</span> <span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;toa_lwu&#39;</span><span class="p">],</span><span class="s1">&#39;&#39;</span>
     <span class="k">elif</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;surface_downwelling_longwave_flux&#39;</span><span class="p">:</span>
@@ -1509,7 +1511,7 @@ document.write(`
         <span class="k">if</span> <span class="n">sb</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">tmp</span><span class="p">,</span><span class="s1">&#39;NA&#39;</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;advf_rv&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;srfc_rv&#39;</span><span class="p">],</span><span class="s1">&#39;&#39;</span>
+            <span class="k">return</span> <span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;advf_rv&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;diff_rv&#39;</span><span class="p">],</span><span class="s1">&#39;&#39;</span>
     <span class="k">elif</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;tendency_of_aerosol_number_due_to_warm_microphysics&#39;</span><span class="p">:</span>
         <span class="c1"># activated and unactivated aerosol (sum over all modes); losses to liquid-liquid hydrometeor collisions</span>
         <span class="c1"># + any other liquid-phase sources/sinks that may be accounted for (e.g., from drop breakup); </span>
@@ -1539,7 +1541,10 @@ document.write(`
         <span class="k">return</span> <span class="n">tmp</span><span class="p">,</span><span class="s1">&#39;NA&#39;</span> <span class="c1"># Switched off</span>
     <span class="k">elif</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;tendency_of_ice_number_due_to_homogeneous_freezing&#39;</span><span class="p">:</span>
         <span class="c1"># ice nucleation source due to homogoeneous freezing</span>
-        <span class="k">return</span> <span class="n">tmp</span><span class="p">,</span><span class="s1">&#39;NA&#39;</span> <span class="c1"># Switched off</span>
+        <span class="k">if</span> <span class="n">sb</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">tmp</span><span class="p">,</span><span class="s1">&#39;NA&#39;</span> <span class="c1"># Switched off</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;nucm_ns&#39;</span><span class="p">],</span><span class="s1">&#39;&#39;</span>
     <span class="c1">#</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Undefined ps:&#39;</span><span class="o">+</span><span class="n">standard_name</span><span class="o">+</span><span class="s1">&#39;!&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">tmp</span><span class="p">,</span><span class="s1">&#39;NA&#39;</span>
@@ -1649,18 +1654,18 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The file ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN_def_z0.nc has been deleted successfully
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The file ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_ProgNc.nc has been deleted successfully
 &lt;class &#39;netCDF4._netCDF4.Dataset&#39;&gt;
 root group (NETCDF3_CLASSIC data model, file format NETCDF3):
     title: UCLALES-SALSA results for COMBLE-MIP case
     reference: https://github.com/ARM-Development/comble-mip
     authors: Tomi Raatikainen (tomi.raatikainen@fmi.fi)
-    source: COMBLE_SB_FixN_def_z0
-    version: 2024-06-11 06:41:20
+    source: COMBLE_SALSA_ProgNc
+    version: 2024-08-07 09:02:16
     format_version: DEPHY SCM format version 1.6
     script: convert_UCLALES-SALSA_output_to_dephy_format.ipynb
     startDate: 2020-03-12T22:00:00Z
-    note: Without SALSA, i.e., using the 2M bulk microphysics by Seifert and Beheng (SB). This version has diagnostic clouds (saturation adjustment + fixed CDNC) and prognostic 2M rain, ice, snow and graupel categories.
+    note: UCLALES-SALSA with prognostic sectional aerosol, cloud and ice (called snow) categories.
     dimensions(sizes): zf(159), ze(159), time(121)
     variables(dimensions): float64 zf(zf), float64 ze(ze), float64 time(time), float64 ps(time), float64 ts(time), float64 ustar(time), float64 z0(time), float64 z0h(time), float64 z0q(time), float64 hfss(time), float64 hfls(time), float64 ol(time), float64 lwpc(time), float64 lwpr(time), float64 iwp(time), float64 clt(time), float64 od(time), float64 odlc(time), float64 pr(time), float64 pri(time), float64 rlut(time), float64 rlds(time), float64 rlus(time), float64 ssaf(time), float64 pa(time, zf), float64 ua(time, zf), float64 va(time, zf), float64 rhoa(time, zf), float64 ta(time, zf), float64 qv(time, zf), float64 hur(time, zf), float64 huri(time, zf), float64 theta(time, zf), float64 tke_res(time, zf), float64 tke_sgs(time, zf), float64 qlc(time, zf), float64 qlr(time, zf), float64 qic(time, zf), float64 qis(time, zf), float64 qig(time, zf), float64 nlc(time, zf), float64 nlr(time, zf), float64 nic(time, zf), float64 nis(time, zf), float64 nig(time, zf), float64 na1(time, zf), float64 na2(time, zf), float64 na3(time, zf), float64 nlcic(time, zf), float64 niic(time, zf), float64 eps(time, zf), float64 uw(time, zf), float64 vw(time, zf), float64 w2(time, zf), float64 wth(time, zf), float64 vf_thli(time, zf), float64 wqv(time, zf), float64 vf_qt(time, zf), float64 flc(time, zf), float64 prf(time, zf), float64 prfi(time, zf), float64 rld(time, zf), float64 rlu(time, zf), float64 dth_rad(time, zf), float64 dth_micro(time, zf), float64 dth_turb(time, zf), float64 dq_micro(time, zf), float64 dq_turb(time, zf), float64 dna_micro_warm(time, zf), float64 dna_micro_cold(time, zf), float64 dna_turb(time, zf), float64 dni_het(time, zf), float64 dni_sip(time, zf), float64 dni_hom(time, zf)
     groups: 
@@ -1670,10 +1675,10 @@ root group (NETCDF3_CLASSIC data model, file format NETCDF3):
 </div>
 </section>
 </section>
-<section id="generate-2d-and-3d-outputs-test">
-<h2>Generate 2d and 3d outputs - test<a class="headerlink" href="#generate-2d-and-3d-outputs-test" title="Link to this heading">#</a></h2>
+<section id="generate-2d-and-3d-outputs">
+<h2>Generate 2D and 3D outputs<a class="headerlink" href="#generate-2d-and-3d-outputs" title="Link to this heading">#</a></h2>
 <section id="d">
-<h3>2d<a class="headerlink" href="#d" title="Link to this heading">#</a></h3>
+<h3>2D<a class="headerlink" href="#d" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># read list of requested variables</span>
@@ -1702,7 +1707,7 @@ root group (NETCDF3_CLASSIC data model, file format NETCDF3):
     <tr style="text-align: right;">
       <th></th>
       <th>standard_name</th>
-      <th>variable id</th>
+      <th>variable_id</th>
       <th>units</th>
       <th>dimensions</th>
       <th>comment (10-min instantaneous)</th>
@@ -1854,7 +1859,7 @@ root group (NETCDF3_CLASSIC data model, file format NETCDF3):
         <span class="k">if</span> <span class="n">sb</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">(</span><span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;rprcp&#39;</span><span class="p">])</span><span class="o">/</span><span class="n">alvl</span><span class="o">+</span><span class="p">(</span><span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;iprcp&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;sprcp&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;gprcp&#39;</span><span class="p">])</span><span class="o">/</span><span class="n">alvi</span><span class="p">,</span><span class="s1">&#39;&#39;</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;rprcp&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">alvl</span><span class="o">+</span><span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;sprcp&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">alvi</span><span class="p">,</span><span class="s1">&#39;&#39;</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;cprcp&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;rprcp&#39;</span><span class="p">])</span><span class="o">/</span><span class="n">alvl</span><span class="o">+</span><span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;sprcp&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">alvi</span><span class="p">,</span><span class="s1">&#39;&#39;</span>
     <span class="k">elif</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;atmosphere_mass_content_of_liquid_water&#39;</span><span class="p">:</span>
         <span class="c1"># all liquid hydrometeors</span>
         <span class="k">return</span> <span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;lwp&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;rwp&#39;</span><span class="p">],</span><span class="s1">&#39;&#39;</span>
@@ -1888,7 +1893,7 @@ root group (NETCDF3_CLASSIC data model, file format NETCDF3):
 <span class="n">les_cs</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">input_filename_cs</span><span class="p">)</span>
 
 <span class="c1"># create DEPHY output file</span>
-<span class="n">dephy_filename</span> <span class="o">=</span> <span class="n">my_gitdir</span> <span class="o">+</span> <span class="n">my_outfile</span> <span class="o">+</span> <span class="s1">&#39;_2d.nc&#39;</span>
+<span class="n">dephy_filename</span> <span class="o">=</span> <span class="n">my_gitdir</span> <span class="o">+</span> <span class="n">my_outfile</span> <span class="o">+</span> <span class="s1">&#39;_2D.nc&#39;</span>
 <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">dephy_filename</span><span class="p">):</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">dephy_filename</span><span class="p">)</span>
@@ -1927,15 +1932,26 @@ root group (NETCDF3_CLASSIC data model, file format NETCDF3):
 <span class="n">y</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;yt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
 
 <span class="c1"># time</span>
-<span class="n">nt</span> <span class="o">=</span> <span class="n">les_cs</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span>
-<span class="n">time</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">nt</span><span class="p">)</span>
-<span class="n">time</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,))</span>
-<span class="n">time</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;seconds since &#39;</span> <span class="o">+</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">startDate</span>
-<span class="n">time</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;time&#39;</span>
-<span class="n">time</span><span class="p">[:]</span> <span class="o">=</span> <span class="mf">5.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">/</span><span class="mf">5.</span><span class="p">)</span> <span class="c1"># Model time may exceed target time by 1 s</span>
+<span class="n">t10min</span><span class="o">=</span><span class="kc">True</span> <span class="c1">#False</span>
+<span class="k">if</span> <span class="n">t10min</span><span class="p">:</span>
+    <span class="c1"># 10 min resolution</span>
+    <span class="n">nt</span> <span class="o">=</span> <span class="n">les_cs</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span>
+    <span class="n">time</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">nt</span><span class="p">)</span>
+    <span class="n">time</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,))</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;seconds since &#39;</span> <span class="o">+</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">startDate</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;time&#39;</span>
+    <span class="n">time</span><span class="p">[:]</span> <span class="o">=</span> <span class="mf">5.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">/</span><span class="mf">5.</span><span class="p">)</span> <span class="c1"># Model time may exceed target time by 1 s</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="c1"># 60 min resolution</span>
+    <span class="n">nt</span> <span class="o">=</span> <span class="p">(</span><span class="n">les_cs</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">6</span><span class="o">+</span><span class="mi">1</span>
+    <span class="n">time</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">nt</span><span class="p">)</span>
+    <span class="n">time</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,))</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;seconds since &#39;</span> <span class="o">+</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">startDate</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;time&#39;</span>
+    <span class="n">time</span><span class="p">[:]</span> <span class="o">=</span> <span class="mf">5.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">][::</span><span class="mi">6</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">/</span><span class="mf">5.</span><span class="p">)</span> <span class="c1"># Model time may exceed target time by 1 s</span>
 
-<span class="c1">#preci = np.float64 # Default</span>
-<span class="n">preci</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span> <span class="c1"># To save disc space</span>
+<span class="n">preci</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span> <span class="c1"># Default</span>
+<span class="c1">#preci = np.float32 # To save disc space</span>
 
 <span class="c1"># create variables</span>
 <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">vars_2d_list</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">3</span><span class="p">:]:</span>
@@ -1951,7 +1967,10 @@ root group (NETCDF3_CLASSIC data model, file format NETCDF3):
         <span class="k">if</span> <span class="n">note</span><span class="o">==</span><span class="s1">&#39;NA&#39;</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ignoring &#39;</span><span class="o">+</span><span class="n">std_name</span><span class="o">+</span><span class="s1">&#39; (no data)&#39;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">new</span><span class="p">[:]</span><span class="o">=</span><span class="n">dat</span>
+            <span class="k">if</span> <span class="n">t10min</span><span class="p">:</span>
+                <span class="n">new</span><span class="p">[:]</span><span class="o">=</span><span class="n">dat</span> <span class="c1"># 10 min resolution</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">new</span><span class="p">[:]</span><span class="o">=</span><span class="n">dat</span><span class="p">[::</span><span class="mi">6</span><span class="p">,:,:]</span> <span class="c1"># 60 min resolution</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">note</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span> <span class="n">new</span><span class="o">.</span><span class="n">note</span><span class="o">=</span><span class="n">note</span>
     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Failed: &#39;</span><span class="o">+</span><span class="n">std_name</span><span class="p">,</span><span class="n">e</span><span class="p">)</span>
@@ -1985,8 +2004,9 @@ root group (NETCDF3_CLASSIC data model, file format NETCDF3):
 </div>
 </div>
 </section>
+</section>
 <section id="id1">
-<h4>3d<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
+<h3>3D<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># read list of requested variables</span>
@@ -2015,7 +2035,7 @@ root group (NETCDF3_CLASSIC data model, file format NETCDF3):
     <tr style="text-align: right;">
       <th></th>
       <th>standard_name</th>
-      <th>variable id</th>
+      <th>variable_id</th>
       <th>units</th>
       <th>dimensions</th>
       <th>comment (60-min instantaneous, red=required for EMC2)</th>
@@ -2409,7 +2429,7 @@ root group (NETCDF3_CLASSIC data model, file format NETCDF3):
         <span class="k">if</span> <span class="n">sb</span><span class="p">:</span>
             <span class="k">return</span> <span class="o">-</span><span class="n">les_an</span><span class="p">[</span><span class="s1">&#39;rimi_rc&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">les_an</span><span class="p">[</span><span class="s1">&#39;rimi_rr&#39;</span><span class="p">],</span><span class="s1">&#39;Cloud and rain&#39;</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="o">-</span><span class="n">les_an</span><span class="p">[</span><span class="s1">&#39;coag_rc&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">les_an</span><span class="p">[</span><span class="s1">&#39;coag_rr&#39;</span><span class="p">],</span><span class="s1">&#39;Cloud and rain&#39;</span>
+            <span class="k">return</span> <span class="n">les_an</span><span class="p">[</span><span class="s1">&#39;coag_rs&#39;</span><span class="p">],</span><span class="s1">&#39;&#39;</span>
     <span class="c1">#</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Undefined an:&#39;</span><span class="o">+</span><span class="n">standard_name</span><span class="o">+</span><span class="s1">&#39;!&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">tmp</span><span class="p">,</span><span class="s1">&#39;NA&#39;</span>
@@ -2417,7 +2437,6 @@ root group (NETCDF3_CLASSIC data model, file format NETCDF3):
 </div>
 </div>
 </div>
-</section>
 <section id="id2">
 <h4>Generate outputs<a class="headerlink" href="#id2" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
@@ -2427,7 +2446,7 @@ root group (NETCDF3_CLASSIC data model, file format NETCDF3):
 <span class="n">les_an</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">input_filename_an</span><span class="p">)</span>
 
 <span class="c1"># create DEPHY output file</span>
-<span class="n">dephy_filename</span> <span class="o">=</span> <span class="n">my_gitdir</span> <span class="o">+</span> <span class="n">my_outfile</span> <span class="o">+</span> <span class="s1">&#39;_3d.nc&#39;</span>
+<span class="n">dephy_filename</span> <span class="o">=</span> <span class="n">my_gitdir</span> <span class="o">+</span> <span class="n">my_outfile</span> <span class="o">+</span> <span class="s1">&#39;_3D.nc&#39;</span>
 <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">dephy_filename</span><span class="p">):</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">dephy_filename</span><span class="p">)</span>
@@ -2483,8 +2502,8 @@ root group (NETCDF3_CLASSIC data model, file format NETCDF3):
 <span class="n">time</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;time&#39;</span>
 <span class="n">time</span><span class="p">[:]</span> <span class="o">=</span> <span class="mi">5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">les_an</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">/</span><span class="mf">5.</span><span class="p">)</span> <span class="c1"># Model time may exceed target time by 1 s</span>
 
-<span class="c1">#preci = np.float64 # Default</span>
-<span class="n">preci</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span> <span class="c1"># To save disc space</span>
+<span class="n">preci</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span> <span class="c1"># Default</span>
+<span class="c1">#preci = np.float32 # To save disc space</span>
 
 <span class="c1"># create variables</span>
 <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">vars_3d_list</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">4</span><span class="p">:]:</span>
@@ -2607,10 +2626,12 @@ root group (NETCDF3_CLASSIC data model, file format NETCDF3):
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-output">Generate output</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-2d-and-3d-outputs-test">Generate 2d and 3d outputs - test</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d">2d</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-2d-and-3d-outputs">Generate 2D and 3D outputs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d">2D</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-outputs">Generate outputs</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3d</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3D</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Generate outputs</a></li>
 </ul>
 </li>
