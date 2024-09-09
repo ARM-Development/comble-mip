@@ -1119,7 +1119,7 @@ def plot_2d(df_col2,var_vec,times,**kwargs):
     ############################
     
     if t_ave > 0.:
-        print('temporal averaging over ' + str(t_ave) + ' h interval')
+        print('temporal averaging over ' + str(t_ave) + ' h interval (only applied to fields with steady vertical grid)')
     counter = 0
     fig, axs = plt.subplots(len(var_vec),len(times),figsize=(2*len(times),2 + 2*len(var_vec)))
     for tt in range(len(times)):
@@ -1127,10 +1127,11 @@ def plot_2d(df_col2,var_vec,times,**kwargs):
         counter_col = 0 
         counter_line = 0
         for label, df in df_col2.groupby('class'):
-            if t_ave > 0.0:
+            if (t_ave > 0.0) & (label not in ['ERA5']) & (len(df['zf']) < 200):
                 df = df[(round(df.time) >= (times[tt]-t_ave)*3600.) & (round(df.time) <= times[tt]*3600.)]
                 df_ave = df.groupby('zf').mean(numeric_only=True)
-                df_ave['colflag'] = df['colflag'].unique()[0]
+                if 'colflag' in set(df_ave):
+                    df_ave['colflag'] = df['colflag'].unique()[0]
                 df_ave['zf'] = df_ave.index
                 df = df_ave.copy()
             else:                        
