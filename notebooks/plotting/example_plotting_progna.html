@@ -54,6 +54,7 @@
     <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script data-domain="my-domain" defer="defer" src="https://plausible.io/js/script.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
@@ -602,6 +603,192 @@ icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">era5_2d</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>class</th>
+      <th>time</th>
+      <th>pf</th>
+      <th>ua</th>
+      <th>va</th>
+      <th>w</th>
+      <th>theta</th>
+      <th>qv</th>
+      <th>zf</th>
+      <th>ta</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>18.0</th>
+      <td>ERA5</td>
+      <td>64800.0</td>
+      <td>1012.049377</td>
+      <td>3.761155</td>
+      <td>-8.429794</td>
+      <td>-0.027666</td>
+      <td>270.269867</td>
+      <td>0.002308</td>
+      <td>18.167820</td>
+      <td>271.197296</td>
+    </tr>
+    <tr>
+      <th>17.0</th>
+      <td>ERA5</td>
+      <td>61200.0</td>
+      <td>1012.049377</td>
+      <td>3.726061</td>
+      <td>-11.233538</td>
+      <td>0.034034</td>
+      <td>270.648346</td>
+      <td>0.002132</td>
+      <td>13.275071</td>
+      <td>271.577057</td>
+    </tr>
+    <tr>
+      <th>16.0</th>
+      <td>ERA5</td>
+      <td>57600.0</td>
+      <td>1012.049377</td>
+      <td>4.188862</td>
+      <td>-11.726610</td>
+      <td>0.019582</td>
+      <td>270.504089</td>
+      <td>0.002079</td>
+      <td>8.482681</td>
+      <td>271.432312</td>
+    </tr>
+    <tr>
+      <th>15.0</th>
+      <td>ERA5</td>
+      <td>54000.0</td>
+      <td>1012.049377</td>
+      <td>3.789669</td>
+      <td>-12.985072</td>
+      <td>0.001795</td>
+      <td>270.084229</td>
+      <td>0.001972</td>
+      <td>8.890698</td>
+      <td>271.011017</td>
+    </tr>
+    <tr>
+      <th>14.0</th>
+      <td>ERA5</td>
+      <td>50400.0</td>
+      <td>1012.049377</td>
+      <td>3.932238</td>
+      <td>-14.237088</td>
+      <td>0.017544</td>
+      <td>269.661469</td>
+      <td>0.001863</td>
+      <td>9.654793</td>
+      <td>270.586792</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>-6.0</th>
+      <td>ERA5</td>
+      <td>-21600.0</td>
+      <td>0.010000</td>
+      <td>6.649825</td>
+      <td>-22.005390</td>
+      <td>-0.000058</td>
+      <td>5420.681152</td>
+      <td>0.000001</td>
+      <td>76277.929688</td>
+      <td>201.397369</td>
+    </tr>
+    <tr>
+      <th>-7.0</th>
+      <td>ERA5</td>
+      <td>-25200.0</td>
+      <td>0.010000</td>
+      <td>2.635956</td>
+      <td>-17.873898</td>
+      <td>-0.000058</td>
+      <td>5438.761230</td>
+      <td>0.000001</td>
+      <td>76239.414062</td>
+      <td>202.069107</td>
+    </tr>
+    <tr>
+      <th>-8.0</th>
+      <td>ERA5</td>
+      <td>-28800.0</td>
+      <td>0.010000</td>
+      <td>-1.987671</td>
+      <td>-13.578048</td>
+      <td>-0.000058</td>
+      <td>5432.479492</td>
+      <td>0.000001</td>
+      <td>76177.406250</td>
+      <td>201.835709</td>
+    </tr>
+    <tr>
+      <th>-9.0</th>
+      <td>ERA5</td>
+      <td>-32400.0</td>
+      <td>0.010000</td>
+      <td>-6.703418</td>
+      <td>-13.392743</td>
+      <td>-0.000058</td>
+      <td>5469.329102</td>
+      <td>0.000001</td>
+      <td>76284.093750</td>
+      <td>203.204803</td>
+    </tr>
+    <tr>
+      <th>-10.0</th>
+      <td>ERA5</td>
+      <td>-36000.0</td>
+      <td>0.010000</td>
+      <td>-15.424261</td>
+      <td>-10.653453</td>
+      <td>-0.000058</td>
+      <td>5540.691895</td>
+      <td>0.000001</td>
+      <td>76272.406250</td>
+      <td>205.856186</td>
+    </tr>
+  </tbody>
+</table>
+<p>3973 rows × 10 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## plot all variables that have time and height dependence</span>
 <span class="c1">#plot_2d(df_col_2d,var_vec_2d,[0,3,6,9,12,15,18],z_max=6000)</span>
 
@@ -613,9 +800,10 @@ icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computing wind speed
 Computing wind direction
+temporal averaging over 1.0 h interval
 </pre></div>
 </div>
-<img alt="../../_images/3ba040aa180acc9f15192516423061d46b7b24967e871feaaa5c7b9c405d3885.png" src="../../_images/3ba040aa180acc9f15192516423061d46b7b24967e871feaaa5c7b9c405d3885.png" />
+<img alt="../../_images/3feaf2275af6e6c9f726e921c62e31a137eb6e53dd8f31bc4aa6750e6206bb11.png" src="../../_images/3feaf2275af6e6c9f726e921c62e31a137eb6e53dd8f31bc4aa6750e6206bb11.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x600 with 0 Axes&gt;
 </pre></div>
 </div>
@@ -627,22 +815,10 @@ Computing wind direction
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_col_2d</span><span class="o">.</span><span class="n">columns</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;class&#39;, &#39;time&#39;, &#39;zf&#39;, &#39;theta&#39;, &#39;qv&#39;, &#39;qlc&#39;, &#39;qlr&#39;, &#39;ta&#39;, &#39;ua&#39;, &#39;va&#39;,
-       &#39;colflag&#39;],
-      dtype=&#39;object&#39;)
 </pre></div>
 </div>
 </div>
