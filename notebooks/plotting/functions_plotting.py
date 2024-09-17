@@ -8,11 +8,19 @@ import os
 import csv
 import scipy
 import xarray as xr
+from math import log10, floor, isnan
 
 ## for questions, please contact 
 ## Florian Tornow: ft2544@columbia.edu
 ## Tim Juliano: tjuliano@ucar.edu
 ## Ann Fridlind: ann.fridlind@nasa.gov
+
+def round_sig(x, sig=2):
+    x_r = x.copy()
+    for ii in range(len(x)):
+        if not isnan(x[ii]): #.isnan():
+            x_r[ii] = round(x[ii], sig-int(floor(log10(abs(x[ii]))))-1)
+    return x_r
 
 def sat_pres(x):
     
@@ -728,7 +736,11 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
             p_df = pd.DataFrame({"class": [group]* len(time), "time":time}, index=time/3600)
             for vv in var_vec_1d:
                 if vv in ds.variables:
-                    p_df[vv] = ds.variables[vv][t0:]
+                    if vv in ['z0','z0h','z0q']:
+                        #print('rounding ' + vv)
+                        p_df[vv] = round_sig(ds.variables[vv][t0:].tolist(),1)
+                    else:
+                        p_df[vv] = ds.variables[vv][t0:]
                     if p_df[vv].isna().sum() > 0: print(vv + ' shows NAN values in ' + str(fn))  
                 else:
                     print(vv + ' not found in ' + str(fn))
@@ -1041,7 +1053,10 @@ def plot_1d(df_col,var_vec,**kwargs):
             #ax.set_xlim([np.min(df_col.time)/3600 - 0.5, np.max(df_col.time)/3600 + 0.5])
             ax.set_xlim(t0/3600. - 0.5, t1/3600. + 0.5)
             ax.ticklabel_format(axis='y', useOffset=False)
+            #if var_vec[i_count] in ['ol','z0','z0h','z0q']:
+            #    ax.set_yscale('log')
             i_count += 1
+            
         
         # Hide x labels and tick labels for top plots and y ticks for right plots.
         for ax in axs.flat:
@@ -1109,6 +1124,10 @@ def plot_2d(df_col2,var_vec,times,**kwargs):
         plot_ls = ['solid','dotted','dashed','dashdot']
     else:
         plot_ls = kwargs.get('plot_ls')
+    
+    if 'longnames' in kwargs and 'units' in kwargs:
+        longnames = kwargs.get('longnames')
+        units = kwargs.get('units')
     
     ###################################
     ######## COMPUTE WINDSPEED ########
@@ -1206,21 +1225,29 @@ def plot_2d(df_col2,var_vec,times,**kwargs):
                     obj.set_title(str(times[tt])+'h')
                 # set units string
                 if 'units' in kwargs:
-                    if units[ii] == 1:
+                    if units[ii] == 2:
                         unit_str = " [-]"
                     else:
                         unit_str = " [" + str(units[ii]) + "]"
                 else:
                     unit_str = ''
-                if tt==0:
-                    obj.set(ylabel='Altitude (m)', xlabel=var_vec[ii] + unit_str)
-                else:
-                    plt.setp(obj.get_yticklabels(), visible=False)
+                if 'longnames' in kwargs and 'units' in kwargs:                    
+                    if tt==min([1,len(times)-1]):
+                        obj.set(ylabel='Altitude (m)', xlabel=longnames[ii] + unit_str)
+                    else:
+                        plt.setp(obj.get_yticklabels(), visible=False)
+                else:                  
+                    if tt==0:
+                        obj.set(ylabel='Altitude (m)', xlabel=var_vec[ii] + unit_str)
+                    else:
+                        plt.setp(obj.get_yticklabels(), visible=False)
                 counter +=1
             if not df['colflag'].unique() == 'gray': counter_col +=1
             if (label=='ERA5') or (label[0:5]=='Radio') or (label[0:5]=='AERI'): counter_col -=1
             if label[0:5]=='Radio': counter_line +=1
-                
+    
+    
+    #fig.text(0.5, 0.04, 'common X', ha='center')
     handles, labels = plt.gca().get_legend_handles_labels()
     by_label = dict(zip(labels, handles))   
     #if len(df_col2.groupby('class'))>8:
