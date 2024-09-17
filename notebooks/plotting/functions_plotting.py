@@ -557,7 +557,7 @@ def load_real_wrf(PATH='../../data_files/'):
 
     return p_df,df_col2 
 
-def load_sims_2d(path,var_vec_2d,t_shift = 0,keyword='',subfolder='',ignore='placeholder',times=[]):
+def load_sims_2d(path,var_vec_2d,t_shift = 0,keyword='',subfolder='',ignore='placeholder',times=[],coarsen=False):
     
     direc = pathlib.Path(path)
     NCFILES = list(direc.rglob("*nc"))
@@ -581,9 +581,9 @@ def load_sims_2d(path,var_vec_2d,t_shift = 0,keyword='',subfolder='',ignore='pla
             #print(group)
 
             ncdata = xr.open_dataset(fn)
-            ncdata['simulation']=group
+            ncdata['Source']=group
             ncdata = ncdata#.isel(x=0).isel(y=0).isel(time=0)#.drop_duplicates(dim="x").drop_duplicates(dim="y")
-            ncdata = xr.concat([ncdata],dim='simulation',coords='all')
+            ncdata = xr.concat([ncdata],dim='Source',coords='all')
             if 'salsa' in NCFILES_STR[count]:
                 print('...adjusting x and y values')
                 ncdata['x'] = ncdata['x'] - 50
@@ -603,14 +603,29 @@ def load_sims_2d(path,var_vec_2d,t_shift = 0,keyword='',subfolder='',ignore='pla
             ## eliminate missing values
             ncdata = ncdata.where(ncdata < 1.0e25)
             
+            ## if wanted, coarsen to 1km resolution
+            if coarsen:
+                ncdata['x_round'] = np.round(ncdata['x']/1000)
+                ncdata['y_round'] = np.round(ncdata['y']/1000)
+                 
+                counter_y = 0
+                for yy in np.unique(ncdata['y_round']):
+                    ncdata_sub = ncdata.where(ncdata.y_round == yy,drop=True).drop('y_round')
+                    ncdata_stat = ncdata_sub.groupby('x_round').mean() 
+                    ncdata_stat['y_round'] = np.float64(yy)
+                    ncdata_stat = xr.concat([ncdata_stat],dim='y_round')
+                    if counter_y == 0: 
+                        ncdata_stat_stack = ncdata_stat.copy() 
+                    else:
+                        ncdata_stat_stack = xr.concat([ncdata_stat_stack,ncdata_stat],dim='y_round',coords='all')
+                    counter_y += 1
+                ncdata= ncdata_stat_stack
+            
             if count_con == 0:
                 df_col2 = ncdata.copy()
             else:
-                df_col2 = xr.concat([df_col2,ncdata],dim='simulation',coords='all')
-                #df_col2 = xr.combine_by_coords([df_col2,ncdata],coords='all') #,dim='simulation',coords='all')')
-                #df_col2 = xr.combine_nested([df_col2,ncdata],concat_dim=["simulation"]) #,dim='simulation',coords='all')
+                df_col2 = xr.concat([df_col2,ncdata],dim='Source',coords='all')
             count_con += 1
-            #print(df_col2)
         count+=1 
     return df_col2
 
