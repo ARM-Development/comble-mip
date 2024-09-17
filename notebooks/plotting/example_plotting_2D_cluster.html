@@ -457,12 +457,16 @@ document.write(`
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">glob</span><span class="o">,</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">geopy</span>
+<span class="kn">import</span> <span class="nn">geopy.distance</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/data/project/comble-mip/satellite_imagery/viirs&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/data/home/floriantornow/comble-mip/notebooks/plotting&#39;
 </pre></div>
 </div>
 </div>
@@ -510,10 +514,6 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## load satellite imagery</span>
 
-<span class="kn">import</span> <span class="nn">glob</span><span class="o">,</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">geopy</span>
-<span class="kn">import</span> <span class="nn">geopy.distance</span>
-
 <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s2">&quot;/data/project/comble-mip/satellite_imagery/viirs/&quot;</span><span class="p">)</span>
 <span class="n">counter_dat</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*03DNB*.nc&quot;</span><span class="p">):</span>
@@ -529,7 +529,10 @@ document.write(`
     <span class="c1">## time</span>
     <span class="n">file_time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="s1">&#39;2020-01-01&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">file_sp</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">5</span><span class="p">:</span><span class="mi">8</span><span class="p">])</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;D&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">file_sp</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]),</span><span class="s1">&#39;h&#39;</span><span class="p">)</span><span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">file_sp</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">]),</span><span class="s1">&#39;m&#39;</span><span class="p">)</span>
     
-    <span class="c1">## for each requested model timestep, check if image cover right place at right time</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">file_img</span><span class="p">)</span>    
+    
+    <span class="c1">## for each requested model timestep, check if image covers right place at right time</span>
     <span class="n">counter_time</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">Time_OI</span> <span class="ow">in</span> <span class="n">tprop</span><span class="p">:</span>
         <span class="n">diff_time</span> <span class="o">=</span> <span class="p">(</span><span class="n">file_time</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="n">Time_OI</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">)</span><span class="o">/</span><span class="mi">3600</span>
@@ -570,6 +573,7 @@ document.write(`
                                                                    <span class="p">(</span><span class="n">ds_geo</span><span class="p">[</span><span class="s1">&#39;geolocation_data/longitude&#39;</span><span class="p">][:]</span> <span class="o">&gt;</span> <span class="n">LON_MIN</span><span class="p">)</span><span class="o">&amp;</span> 
                                                                    <span class="p">(</span><span class="n">ds_geo</span><span class="p">[</span><span class="s1">&#39;geolocation_data/longitude&#39;</span><span class="p">][:]</span> <span class="o">&lt;</span> <span class="n">LON_MAX</span><span class="p">)]</span>
                 <span class="n">da</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span>
+                    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;alb&#39;</span><span class="p">,</span>
                     <span class="n">data</span> <span class="o">=</span> <span class="n">ds_sub</span><span class="p">,</span>
                     <span class="n">dims</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pixel&#39;</span><span class="p">],</span>
                     <span class="n">coords</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
@@ -593,17 +597,17 @@ document.write(`
                 <span class="c1">## normalize radiance values to resemble LES pseudo-albedo</span>
                 <span class="n">da</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">((</span><span class="n">da</span><span class="o">.</span><span class="n">data</span> <span class="o">-</span> <span class="n">da</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">min</span><span class="p">())</span><span class="o">/</span><span class="p">(</span><span class="n">da</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">da</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">min</span><span class="p">()))</span><span class="o">*</span><span class="mf">0.8</span>
                     
-                <span class="n">da</span><span class="p">[</span><span class="s1">&#39;x_dist_round&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">da</span><span class="p">[</span><span class="s1">&#39;x_dist&#39;</span><span class="p">])</span>
-                <span class="n">da</span><span class="p">[</span><span class="s1">&#39;y_dist_round&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">da</span><span class="p">[</span><span class="s1">&#39;y_dist&#39;</span><span class="p">])</span>
+                <span class="n">da</span><span class="p">[</span><span class="s1">&#39;x_round&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">da</span><span class="p">[</span><span class="s1">&#39;x_dist&#39;</span><span class="p">])</span>
+                <span class="n">da</span><span class="p">[</span><span class="s1">&#39;y_round&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">da</span><span class="p">[</span><span class="s1">&#39;y_dist&#39;</span><span class="p">])</span>
                 
-                <span class="k">for</span> <span class="n">yy</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">da</span><span class="p">[</span><span class="s1">&#39;y_dist_round&#39;</span><span class="p">]):</span>
-                    <span class="n">da_sub</span> <span class="o">=</span> <span class="n">da</span><span class="p">[</span><span class="n">da</span><span class="p">[</span><span class="s1">&#39;y_dist_round&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">yy</span><span class="p">]</span>
-                    <span class="n">da_stat</span> <span class="o">=</span> <span class="n">da_sub</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;x_dist_round&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> 
-                    <span class="n">da_stat</span><span class="p">[</span><span class="s1">&#39;y_dist_round&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">yy</span> 
-                    <span class="k">if</span> <span class="n">yy</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">da</span><span class="p">[</span><span class="s1">&#39;y_dist_round&#39;</span><span class="p">])[</span><span class="mi">0</span><span class="p">]:</span>
-                        <span class="n">da_stat_stack</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">da_stat</span><span class="p">],</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;y_dist_round&#39;</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">yy</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">da</span><span class="p">[</span><span class="s1">&#39;y_round&#39;</span><span class="p">]):</span>
+                    <span class="n">da_sub</span> <span class="o">=</span> <span class="n">da</span><span class="p">[</span><span class="n">da</span><span class="p">[</span><span class="s1">&#39;y_round&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">yy</span><span class="p">]</span>
+                    <span class="n">da_stat</span> <span class="o">=</span> <span class="n">da_sub</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;x_round&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> 
+                    <span class="n">da_stat</span><span class="p">[</span><span class="s1">&#39;y_round&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">(</span><span class="n">yy</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">yy</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">da</span><span class="p">[</span><span class="s1">&#39;y_round&#39;</span><span class="p">])[</span><span class="mi">0</span><span class="p">]:</span>
+                        <span class="n">da_stat_stack</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">da_stat</span><span class="p">],</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;y_round&#39;</span><span class="p">)</span>
                     <span class="k">else</span><span class="p">:</span>
-                        <span class="n">da_stat_stack</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">da_stat_stack</span><span class="p">,</span><span class="n">da_stat</span><span class="p">],</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;y_dist_round&#39;</span><span class="p">)</span>
+                        <span class="n">da_stat_stack</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">da_stat_stack</span><span class="p">,</span><span class="n">da_stat</span><span class="p">],</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;y_round&#39;</span><span class="p">)</span>
                 
                 <span class="n">da_stat_stack</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Time_OI</span>
                 <span class="n">da_stat_stack</span><span class="p">[</span><span class="s1">&#39;time_diff&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">diff_time</span>
@@ -613,19 +617,19 @@ document.write(`
                     <span class="n">da_stat_stst</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">da_stat_stst</span><span class="p">,</span><span class="n">da_stat_stack</span><span class="p">],</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
                 <span class="n">counter_time</span> <span class="o">+=</span> <span class="mi">1</span>
                 
-    <span class="n">da_stat_stst</span><span class="p">[</span><span class="s1">&#39;satellite&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">file_sp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;.&#39;</span><span class="o">+</span><span class="n">file_sp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;.&#39;</span><span class="o">+</span><span class="n">file_sp</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">da_stat_stst</span><span class="p">[</span><span class="s1">&#39;Source&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">file_sp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;.&#39;</span><span class="o">+</span><span class="n">file_sp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;.&#39;</span><span class="o">+</span><span class="n">file_sp</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">counter_dat</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">da_stat_ststst</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">da_stat_stst</span><span class="p">],</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;satellite&#39;</span><span class="p">)</span>
+        <span class="n">da_stat_ststst</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">da_stat_stst</span><span class="p">],</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;Source&#39;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">da_stat_ststst</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">da_stat_ststst</span><span class="p">,</span><span class="n">da_stat_stst</span><span class="p">],</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;satellite&#39;</span><span class="p">)</span>
+        <span class="n">da_stat_ststst</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">da_stat_ststst</span><span class="p">,</span><span class="n">da_stat_stst</span><span class="p">],</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;Source&#39;</span><span class="p">)</span>
     <span class="n">counter_dat</span> <span class="o">+=</span> <span class="mi">1</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">file_img</span><span class="p">)</span>    
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2020-03-13T00:00:00
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>VNP03DNB.A2020073.1306.002.2021125004801.nc
+VNP02DNB.A2020073.1306.002.2021126174604.nc
+2020-03-13T00:00:00
 25855
 2020-03-13T01:00:00
 25659
@@ -639,8 +643,8 @@ document.write(`
 0
 2020-03-13T18:00:00
 0
-VNP03DNB.A2020073.1306.002.2021125004801.nc
-VNP02DNB.A2020073.1306.002.2021126174604.nc
+VJ103DNB.A2020073.1212.002.2020073175644.nc
+VJ102DNB.A2020073.1212.002.2020073182754.nc
 2020-03-13T00:00:00
 26080
 2020-03-13T01:00:00
@@ -655,52 +659,44 @@ VNP02DNB.A2020073.1306.002.2021126174604.nc
 26211
 2020-03-13T18:00:00
 26395
-VJ103DNB.A2020073.1212.002.2020073175644.nc
-VJ102DNB.A2020073.1212.002.2020073182754.nc
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">da_stat_ststst</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s1">&#39;satellite&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">da_stat_ststst</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s1">&#39;Source&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.plot.facetgrid.FacetGrid at 0x7fd80a9b6440&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.plot.facetgrid.FacetGrid at 0x7f58e9013a60&gt;
 </pre></div>
 </div>
-<img alt="../../_images/16e66aed989421a4f7382910e42dbcbcb17a90efebf773c24889440a772af29b.png" src="../../_images/16e66aed989421a4f7382910e42dbcbcb17a90efebf773c24889440a772af29b.png" />
+<img alt="../../_images/08fbfdde4b4831f151661443b0e48effac62fafd2da936fad3a1bda3063f21bf.png" src="../../_images/08fbfdde4b4831f151661443b0e48effac62fafd2da936fad3a1bda3063f21bf.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">Time_Vec</span> <span class="k">if</span> <span class="n">t</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.0, 2.0, 6.0, 10.0, 14.0, 18.0]
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#%run functions_plotting.py </span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s2">&quot;/user-data-home/comble-mip/notebooks/plotting/&quot;</span><span class="p">)</span>
+<span class="o">%</span><span class="k">run</span> functions_plotting.py 
 
 <span class="n">var_vec_2d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;alb&#39;</span><span class="p">]</span>
 
 <span class="c1">## load all simulations located in subfolders of the given directory</span>
-<span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">load_sims_2d</span><span class="p">(</span><span class="s1">&#39;/data/project/comble-mip/output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword</span><span class="p">,</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">Time_Vec</span> <span class="k">if</span> <span class="n">t</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">load_sims_2d</span><span class="p">(</span><span class="s1">&#39;/data/project/comble-mip/output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword</span><span class="p">,</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">Time_Vec</span> <span class="k">if</span> <span class="n">t</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">],</span><span class="n">coarsen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time,x,y)
 /data/project/comble-mip/output_les/wrf/WRF_Lx25_dx100_FixN_2D.nc
-/data/project/comble-mip/output_les/dharma/DHARMA_Lx25_dx100_FixN_2D.nc
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR 1: PROJ: proj_create_from_database: Open of /opt/conda/share/proj failed
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/data/project/comble-mip/output_les/dharma/DHARMA_Lx25_dx100_FixN_2D.nc
 /data/project/comble-mip/output_les/uclales-salsa/UCLALES-SALSA_Lx25_dx100_FixN_2D.nc
 ...adjusting x and y values
 </pre></div>
@@ -709,7 +705,7 @@ VJ102DNB.A2020073.1212.002.2020073182754.nc
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_col_2d</span><span class="p">[</span><span class="s1">&#39;alb&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="n">col_wrap</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s1">&#39;simulation&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_col_2d</span><span class="p">[</span><span class="s1">&#39;alb&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="n">col_wrap</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s1">&#39;Source&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -718,10 +714,27 @@ VJ102DNB.A2020073.1212.002.2020073182754.nc
   warnings.warn(&quot;Ignoring col_wrap since both col and row were passed&quot;)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.plot.facetgrid.FacetGrid at 0x7fd8095437c0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.plot.facetgrid.FacetGrid at 0x7f58df3baa10&gt;
 </pre></div>
 </div>
-<img alt="../../_images/ea8dbc22926322575937eb5a2aaaa92ff3888e4acd1ff7d66e3a249b619de370.png" src="../../_images/ea8dbc22926322575937eb5a2aaaa92ff3888e4acd1ff7d66e3a249b619de370.png" />
+<img alt="../../_images/b2bb8a362a18b9dc486f3773d2db11f0f80e7f9a5f368c6e81326a1f59b079a0.png" src="../../_images/b2bb8a362a18b9dc486f3773d2db11f0f80e7f9a5f368c6e81326a1f59b079a0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xr</span><span class="o">.</span><span class="n">merge</span><span class="p">([</span><span class="n">df_col_2d</span><span class="p">[</span><span class="s1">&#39;alb&#39;</span><span class="p">],</span><span class="n">da_stat_ststst</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;time_diff&#39;</span><span class="p">)])[</span><span class="s1">&#39;alb&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s1">&#39;Source&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_173/3852338689.py:1: DeprecationWarning: dropping variables using `drop` is deprecated; use drop_vars.
+  xr.merge([df_col_2d[&#39;alb&#39;],da_stat_ststst.drop(&#39;time_diff&#39;)])[&#39;alb&#39;].plot(row=&#39;time&#39;,col=&#39;Source&#39;)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.plot.facetgrid.FacetGrid at 0x7f58d2e98b50&gt;
+</pre></div>
+</div>
+<img alt="../../_images/84462a3a8ae01be973e6f4e4cbd3cb135a9c24ce0eb7613d04d776b5dacdd953.png" src="../../_images/84462a3a8ae01be973e6f4e4cbd3cb135a9c24ce0eb7613d04d776b5dacdd953.png" />
 </div>
 </div>
 </section>
