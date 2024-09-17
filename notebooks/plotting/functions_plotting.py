@@ -557,7 +557,7 @@ def load_real_wrf(PATH='../../data_files/'):
 
     return p_df,df_col2 
 
-def load_sims_2d(path,var_vec_2d,t_shift = 0,keyword='',subfolder='',ignore='placeholder'):
+def load_sims_2d(path,var_vec_2d,t_shift = 0,keyword='',subfolder='',ignore='placeholder',times=[]):
     
     direc = pathlib.Path(path)
     NCFILES = list(direc.rglob("*nc"))
@@ -592,6 +592,17 @@ def load_sims_2d(path,var_vec_2d,t_shift = 0,keyword='',subfolder='',ignore='pla
             #ncdata['x'] = rounded
             #ncdata['y'] = rounded
             #print(ncdata)
+            
+            ## scan for times
+            if len(times)>0:
+                tprop = []
+                for toi in times:
+                    tprop.append(np.datetime64('2020-03-13T00:00:00') + np.timedelta64(int(toi),'h'))
+                ncdata = ncdata.sel(time = tprop)
+
+            ## eliminate missing values
+            ncdata = ncdata.where(ncdata < 1.0e25)
+            
             if count_con == 0:
                 df_col2 = ncdata.copy()
             else:
