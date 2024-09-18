@@ -225,6 +225,7 @@
 <li class="toctree-l2"><a class="reference internal" href="plot_les_FixN_noice.html">Compare FixN_noice LES Sims</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Compare FixN LES Sims</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_les_FixN_def_z0.html">Compare FixN_def_z0 LES Sims</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_les_ProgNa.html">Compare ProgNa LES Sims</a></li>
 <li class="toctree-l2"><a class="reference internal" href="example_plotting.html">Evaluation of LES against satellite and ground-based observations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="example_plotting_progna.html">Evaluation of LES against satellite and ground-based observations (ProgNa)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="example_plotting_2D.html">2D plotting of LES output</a></li>
@@ -554,27 +555,16 @@ dna_micro_cold not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_Fi
 dna_turb not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN.nc
 Loading variables: f(time)
 ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
-z0h shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
-z0q shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
 ssaf shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
 Loading variables: f(time,height)
 ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
 na1 shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
 na2 shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
 na3 shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
-niic shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
 dna_micro_warm shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
 dna_micro_cold shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
 dna_turb shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/data/home/floriantornow/comble-mip/notebooks/plotting/functions_plotting.py:21: UserWarning: Warning: converting a masked element to nan.
-  if not isnan(x[ii]): #.isnan():
-/data/home/floriantornow/comble-mip/notebooks/plotting/functions_plotting.py:21: UserWarning: Warning: converting a masked element to nan.
-  if not isnan(x[ii]): #.isnan():
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time)
+Loading variables: f(time)
 ../../output_les/icon/staged/ICON_Lx25_dx100_FixN.nc
 ssaf shows NAN values in ../../output_les/icon/staged/ICON_Lx25_dx100_FixN.nc
 Loading variables: f(time,height)
@@ -714,7 +704,7 @@ dni_hom shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/0f29b99faf93bcd26cf58ac7f66d25f106b6a26d0142e9b91d1ee7e980ba455b.png" src="../../_images/0f29b99faf93bcd26cf58ac7f66d25f106b6a26d0142e9b91d1ee7e980ba455b.png" />
+<img alt="../../_images/dfb0c3cb44b40df940c65851657e825afee1054b9cf0a23c08f285776636a713.png" src="../../_images/dfb0c3cb44b40df940c65851657e825afee1054b9cf0a23c08f285776636a713.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -723,7 +713,7 @@ dni_hom shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
 
 <span class="c1">## example where ERA5 and radiosonde are included</span>
 <span class="n">plot_2d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_2d_cm1</span><span class="p">,</span><span class="n">df_col_2d_dharma</span><span class="p">,</span><span class="n">df_col_2d_icon</span><span class="p">,</span><span class="n">df_col_2d_msu_sm</span><span class="p">,</span><span class="n">df_col_2d_sam</span><span class="p">,</span><span class="n">df_col_2d_ucla</span><span class="p">,</span><span class="n">df_col_2d_wrf</span><span class="p">]),</span>
-                   <span class="n">var_vec_2d</span><span class="p">,</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">18</span><span class="p">],</span><span class="n">z_max</span><span class="o">=</span><span class="mi">6000</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="n">var_vec_2d_units</span><span class="p">,</span><span class="n">longnames</span><span class="o">=</span><span class="n">var_vec_2d_long</span><span class="p">,</span>
+                   <span class="n">var_vec_2d</span><span class="p">,</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">17</span><span class="p">,</span><span class="mi">18</span><span class="p">],</span><span class="n">z_max</span><span class="o">=</span><span class="mi">6000</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="n">var_vec_2d_units</span><span class="p">,</span><span class="n">longnames</span><span class="o">=</span><span class="n">var_vec_2d_long</span><span class="p">,</span>
                    <span class="n">plot_colors</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="s1">&#39;g&#39;</span><span class="p">,</span><span class="s1">&#39;magenta&#39;</span><span class="p">,</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span><span class="s1">&#39;lightskyblue&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -732,7 +722,7 @@ dni_hom shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>temporal averaging over 1.0 h interval
 </pre></div>
 </div>
-<img alt="../../_images/f25f936ec50fb5d1c5eabd0cc1c35910aaf9f0018d459eaeb89893aebde70cfd.png" src="../../_images/f25f936ec50fb5d1c5eabd0cc1c35910aaf9f0018d459eaeb89893aebde70cfd.png" />
+<img alt="../../_images/27bbe4bd12559abc84046033ac7df5d9daac72385fae74de24d1116c1045e6f9.png" src="../../_images/27bbe4bd12559abc84046033ac7df5d9daac72385fae74de24d1116c1045e6f9.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x600 with 0 Axes&gt;
 </pre></div>
 </div>
