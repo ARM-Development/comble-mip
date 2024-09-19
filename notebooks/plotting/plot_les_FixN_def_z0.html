@@ -474,7 +474,7 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> functions_plotting.py
 
 <span class="n">keyword_all</span> <span class="o">=</span> <span class="s1">&#39;FixN_def_z0.&#39;</span>
-<span class="n">sim_keyword_dharma</span> <span class="o">=</span> <span class="s1">&#39;dharma/sandbox/DHARMA_Lx25_dx200_&#39;</span><span class="o">+</span><span class="n">keyword_all</span>
+<span class="n">sim_keyword_dharma</span> <span class="o">=</span> <span class="s1">&#39;dharma/sandbox/DHARMA_Lx25_dx100_&#39;</span><span class="o">+</span><span class="n">keyword_all</span>
 <span class="n">sim_keyword_icon</span> <span class="o">=</span> <span class="s1">&#39;icon/staged/ICON_Lx25_dx100_&#39;</span><span class="o">+</span><span class="n">keyword_all</span>
 <span class="n">sim_keyword_sam</span> <span class="o">=</span> <span class="s1">&#39;sam-pnnl/sandbox/SAM_Lx25_dx100_&#39;</span><span class="o">+</span><span class="n">keyword_all</span>
 <span class="n">sim_keyword_ucla</span> <span class="o">=</span> <span class="s1">&#39;uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_&#39;</span><span class="o">+</span><span class="n">keyword_all</span>
@@ -494,6 +494,7 @@ document.write(`
 
 <span class="c1">## long names</span>
 <span class="n">var_vec_1d_long</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">standard_name</span><span class="p">[</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">==</span> <span class="s1">&#39;time&#39;</span><span class="p">])</span>
+<span class="n">var_vec_2d_long</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">standard_name</span><span class="p">[</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">==</span> <span class="s1">&#39;time, height&#39;</span><span class="p">])</span>
 
 <span class="c1">## Units</span>
 <span class="n">var_vec_1d_units</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">units</span><span class="p">[</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">==</span> <span class="s1">&#39;time&#39;</span><span class="p">])</span>
@@ -514,27 +515,16 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time)
-../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_def_z0.nc
-z0 not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_def_z0.nc
-z0h not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_def_z0.nc
-z0q not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_def_z0.nc
-ssaf not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_def_z0.nc
+../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_def_z0.nc
+ssaf shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_def_z0.nc
 Loading variables: f(time,height)
-../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_def_z0.nc
-na1 shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_def_z0.nc
-na2 shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_def_z0.nc
-na3 shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_def_z0.nc
-nlcic shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_def_z0.nc
-niic shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_def_z0.nc
-eps shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_def_z0.nc
-vf_thli not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_def_z0.nc
-vf_qt not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_def_z0.nc
-dna_micro_warm not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_def_z0.nc
-dna_micro_cold not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_def_z0.nc
-dna_turb not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_def_z0.nc
-dni_het not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_def_z0.nc
-dni_sip not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_def_z0.nc
-dni_hom not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN_def_z0.nc
+../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_def_z0.nc
+na1 shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_def_z0.nc
+na2 shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_def_z0.nc
+na3 shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_def_z0.nc
+dna_micro_warm shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_def_z0.nc
+dna_micro_cold shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_def_z0.nc
+dna_turb shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_def_z0.nc
 Loading variables: f(time)
 ../../output_les/icon/staged/ICON_Lx25_dx100_FixN_def_z0.nc
 ssaf shows NAN values in ../../output_les/icon/staged/ICON_Lx25_dx100_FixN_def_z0.nc
@@ -652,14 +642,14 @@ dni_hom shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/0398559168be63a43b8b1eb73169799f03b6859f89ac167d2c9bbf015d50b749.png" src="../../_images/0398559168be63a43b8b1eb73169799f03b6859f89ac167d2c9bbf015d50b749.png" />
+<img alt="../../_images/6f77fc3d70900852765def56868583773aeb98597504374eb2693997930f8de3.png" src="../../_images/6f77fc3d70900852765def56868583773aeb98597504374eb2693997930f8de3.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## example where ERA5 and radiosonde are included</span>
 <span class="n">plot_2d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_2d_dharma</span><span class="p">,</span><span class="n">df_col_2d_icon</span><span class="p">,</span><span class="n">df_col_2d_sam</span><span class="p">,</span><span class="n">df_col_2d_ucla</span><span class="p">,</span><span class="n">df_col_2d_wrf</span><span class="p">]),</span>
-                   <span class="n">var_vec_2d</span><span class="p">,</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">18</span><span class="p">],</span><span class="n">z_max</span><span class="o">=</span><span class="mi">6000</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="n">var_vec_2d_units</span><span class="p">,</span>
+                   <span class="n">var_vec_2d</span><span class="p">,</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">18</span><span class="p">],</span><span class="n">z_max</span><span class="o">=</span><span class="mi">6000</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="n">var_vec_2d_units</span><span class="p">,</span><span class="n">longnames</span><span class="o">=</span><span class="n">var_vec_2d_long</span><span class="p">,</span>
                    <span class="n">plot_colors</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="s1">&#39;magenta&#39;</span><span class="p">,</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span><span class="s1">&#39;lightskyblue&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -668,7 +658,7 @@ dni_hom shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>temporal averaging over 1.0 h interval
 </pre></div>
 </div>
-<img alt="../../_images/afacd3fba926aab34c035d2761404d5f6ba816506401ed5c3619721a85a0b585.png" src="../../_images/afacd3fba926aab34c035d2761404d5f6ba816506401ed5c3619721a85a0b585.png" />
+<img alt="../../_images/b26c34f301ebd75c4862f93e2dfd640ceb7c8a8e48dd3f86e459a5602eeb3ff2.png" src="../../_images/b26c34f301ebd75c4862f93e2dfd640ceb7c8a8e48dd3f86e459a5602eeb3ff2.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x600 with 0 Axes&gt;
 </pre></div>
 </div>
