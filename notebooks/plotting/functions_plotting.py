@@ -8,6 +8,8 @@ import os
 import csv
 import scipy
 import xarray as xr
+import types
+
 from math import log10, floor, isnan
 
 ## for questions, please contact 
@@ -18,8 +20,10 @@ from math import log10, floor, isnan
 def round_sig(x, sig=2):
     x_r = x.copy()
     for ii in range(len(x)):
-        if not isnan(x[ii]): #.isnan():
+        if (not isnan(x[ii])) & (x[ii]!=0.0): #.isna(): #.isnan():
             x_r[ii] = round(x[ii], sig-int(floor(log10(abs(x[ii]))))-1)
+        else:
+            x_r[ii] = x[ii]
     return x_r
 
 def sat_pres(x):
@@ -736,11 +740,10 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
             p_df = pd.DataFrame({"class": [group]* len(time), "time":time}, index=time/3600)
             for vv in var_vec_1d:
                 if vv in ds.variables:
+                    p_df[vv] = ds.variables[vv][t0:]
                     if vv in ['z0','z0h','z0q']:
-                        #print('rounding ' + vv)
-                        p_df[vv] = round_sig(ds.variables[vv][t0:].tolist(),1)
-                    else:
-                        p_df[vv] = ds.variables[vv][t0:]
+                        if p_df[vv].isna().sum() == 0:
+                            p_df[vv] = round_sig(ds.variables[vv][t0:].tolist(),1)  
                     if p_df[vv].isna().sum() > 0: print(vv + ' shows NAN values in ' + str(fn))  
                 else:
                     print(vv + ' not found in ' + str(fn))
@@ -1221,6 +1224,15 @@ def plot_2d(df_col2,var_vec,times,**kwargs):
                     obj.plot(df[var_vec[ii]],df.zf,label=label,c=pcol,ls=pline,zorder=2)
                 obj.grid(alpha=0.2)
                 obj.set_ylim([0, z_max])
+                
+                pad = plt.rcParams["xtick.major.size"] + plt.rcParams["xtick.major.pad"]
+                def bottom_offset(self, bboxes, bboxes2):
+                    bottom = self.axes.bbox.ymin
+                    self.offsetText.set(va="top", ha="left") 
+                    oy = bottom - pad * self.figure.dpi / 72.0
+                    self.offsetText.set_position((0.97, oy))
+                axs[ii,tt].xaxis._update_offset_text_position = types.MethodType(bottom_offset, axs[ii,tt].xaxis)
+ 
                 if ii==0:
                     obj.set_title(str(times[tt])+'h')
                 # set units string
@@ -1231,16 +1243,17 @@ def plot_2d(df_col2,var_vec,times,**kwargs):
                         unit_str = " [" + str(units[ii]) + "]"
                 else:
                     unit_str = ''
+                if tt==0:
+                    obj.set(ylabel='Altitude (m)')
+                else:
+                    plt.setp(obj.get_yticklabels(), visible=False)
                 if 'longnames' in kwargs and 'units' in kwargs:                    
                     if tt==min([1,len(times)-1]):
-                        obj.set(ylabel='Altitude (m)', xlabel=longnames[ii] + unit_str)
-                    else:
-                        plt.setp(obj.get_yticklabels(), visible=False)
+                        obj.set(xlabel=longnames[ii] + unit_str)
                 else:                  
                     if tt==0:
-                        obj.set(ylabel='Altitude (m)', xlabel=var_vec[ii] + unit_str)
-                    else:
-                        plt.setp(obj.get_yticklabels(), visible=False)
+                        obj.set(xlabel=var_vec[ii] + unit_str)
+                
                 counter +=1
             if not df['colflag'].unique() == 'gray': counter_col +=1
             if (label=='ERA5') or (label[0:5]=='Radio') or (label[0:5]=='AERI'): counter_col -=1
