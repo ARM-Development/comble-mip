@@ -33,6 +33,8 @@ parts:
         - file: notebooks/plotting/example_plotting.ipynb
         - file: notebooks/plotting/example_plotting_progna.ipynb
         - file: notebooks/plotting/example_plotting_2D.ipynb
+        - file: notebooks/plotting/check_les_2d.ipynb
+        - file: notebooks/plotting/check_les_3d.ipynb
     - file: scm_plotting_index
       sections:
         - file: notebooks/plotting/check_scm.ipynb

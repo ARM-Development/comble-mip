@@ -569,6 +569,92 @@ def load_real_wrf(PATH='../../data_files/'):
 
     return p_df,df_col2 
 
+def load_sims_3d(path,var_vec_3d,t_shift = 0,keyword='',subfolder='',ignore='placeholder',xsel=[],ysel=[],times=[],coarsen=False):
+    
+    direc = pathlib.Path(path)
+    NCFILES = list(direc.rglob("*nc"))
+    NCFILES_STR = [str(p) for p in pathlib.Path(path).rglob('*.nc')]
+    
+    ## variables that only have time as dimension
+    print('Loading variables: f(time,height,x,y)') 
+    count = 0
+    count_con = 0
+    for fn in NCFILES:
+        if ignore in NCFILES_STR[count]:
+                count+=1
+                continue
+        if (keyword in NCFILES_STR[count]) and ((subfolder in NCFILES_STR[count]) | ('stage' in NCFILES_STR[count])):
+            
+            print(fn)
+            label_items = [x for x in fn.parts + direc.parts if x not in direc.parts]
+            group = "/".join(label_items)
+
+            ncdata = xr.open_dataset(fn)
+            ncdata['Source']=group
+            ncdata = ncdata
+            ncdata = xr.concat([ncdata],dim='Source',coords='all')
+            if 'salsa' in NCFILES_STR[count]:
+                print('...adjusting x and y values')
+                ncdata['x'] = ncdata['x'] - 50
+                ncdata['y'] = ncdata['y'] - 50
+            
+            ## scan for unconventional height variables
+            if 'zf' in ncdata.keys():
+                print('Finding "zf" instead of "height"')
+                ncdata = ncdata.rename({'zf': 'height'})
+            
+            ## scan for times
+            if len(times)>0:
+                tprop = []
+                for toi in times:
+                    tprop.append(np.datetime64('2020-03-13T00:00:00') + np.timedelta64(int(toi),'h'))
+                ncdata = ncdata.sel(time = tprop)
+
+            ## report missing values
+            for vv in var_vec_3d:
+                if vv in ncdata.keys():
+                    if np.sum(ncdata[vv] > 1.0e25) > 0:
+                        print('NaN values in ' + vv)
+                        #print(np.sum(ncdata[vv] > 1.0e25))
+                else:
+                    print('No field for ' + vv)
+        
+            ## reduce to x or y slices
+            if len(xsel)>0:
+                ncdata = ncdata.sel(x=xsel)
+            if len(ysel)>0:
+                ncdata = ncdata.sel(y=ysel)
+    
+            ## eliminate missing values
+            ncdata = ncdata.where(ncdata < 1.0e25)
+            
+            ## if wanted, coarsen to 1km resolution
+            if coarsen:
+                ncdata['x_round'] = np.round(ncdata['x']/1000)
+                ncdata['y_round'] = np.round(ncdata['y']/1000)
+                 
+                counter_y = 0
+                for yy in np.unique(ncdata['y_round']):
+                    ncdata_sub = ncdata.where(ncdata.y_round == yy,drop=True).drop('y_round')
+                    ncdata_stat = ncdata_sub.groupby('x_round').mean() 
+                    ncdata_stat['y_round'] = np.float64(yy)
+                    ncdata_stat = xr.concat([ncdata_stat],dim='y_round')
+                    if counter_y == 0: 
+                        ncdata_stat_stack = ncdata_stat.copy() 
+                    else:
+                        ncdata_stat_stack = xr.concat([ncdata_stat_stack,ncdata_stat],dim='y_round',coords='all')
+                    counter_y += 1
+                ncdata= ncdata_stat_stack
+            
+            if count_con == 0:
+                df_col3 = ncdata.copy()
+            else:
+                df_col3 = xr.concat([df_col3,ncdata],dim='Source',coords='all')
+            count_con += 1
+        count+=1 
+    return df_col3
+
+
 def load_sims_2d(path,var_vec_2d,t_shift = 0,keyword='',subfolder='',ignore='placeholder',times=[],coarsen=False):
     
     direc = pathlib.Path(path)
@@ -612,6 +698,14 @@ def load_sims_2d(path,var_vec_2d,t_shift = 0,keyword='',subfolder='',ignore='pla
                     tprop.append(np.datetime64('2020-03-13T00:00:00') + np.timedelta64(int(toi),'h'))
                 ncdata = ncdata.sel(time = tprop)
 
+            ## report missing values
+            for vv in var_vec_2d:
+                if vv in ncdata.keys():
+                    if np.sum(ncdata[vv] > 1.0e25) > 0:
+                        print('NaN values in ' + vv)
+                else:
+                    print('No field for ' + vv)
+    
             ## eliminate missing values
             ncdata = ncdata.where(ncdata < 1.0e25)
             
@@ -1088,7 +1182,64 @@ def plot_1d(df_col,var_vec,**kwargs):
     
     plt.show()
 
+def plot_2d_map(df_col2,var_vec,times,**kwargs):
 
+    ############################
+    ######## SET KWARGS ########
+    ############################
+    if 't_ave' not in kwargs:
+        t_ave = 1.
+    else:
+        t_ave = kwargs.get('t_ave')
+        
+    if 'z_max' not in kwargs:
+        z_max = 6000.
+    else:
+        z_max = kwargs.get('z_max')
+    
+    if 'units' in kwargs:
+        units = kwargs.get('units')
+    
+    if 'plot_colors' not in kwargs:
+        plot_colors = ["#E69F00", "#56B4E9", "#009E73","#0072B2", "#D55E00", "#CC79A7","#F0E442","#808080","#FF00FF","#FF0000", "#00FF00", "#0000FF"]
+    else:
+        plot_colors = kwargs.get('plot_colors')
+        
+    if 'plot_ls' not in kwargs:
+        plot_ls = ['solid','dotted','dashed','dashdot']
+    else:
+        plot_ls = kwargs.get('plot_ls')
+    
+    if 'longnames' in kwargs and 'units' in kwargs:
+        longnames = kwargs.get('longnames')
+        units = kwargs.get('units')
+    
+    ###################################
+    
+    counter = 0
+    #fig, axs = plt.subplots(len(var_vec),figsize=(2*len(np.unique(df_col2['Source'])),2 + 2*len(var_vec)))
+    for tt in range(len(times)):   
+        counter_col = 0 
+        counter_line = 0
+        for ii in range(len(var_vec)): 
+            vv = var_vec[ii]
+            #if len(var_vec) == 1 & len(times) == 1:
+            #    obj = axs
+            #elif len(var_vec) == 1:
+            #    axs = axs.flatten()
+            #    obj = axs[tt]
+            #elif len(times) == 1:
+            #    obj = axs[ii]
+            df_col2[vv].plot(row='time',col='Source') #,ax=obj)
+            
+    #fig.tight_layout()
+    
+    plt.figure(figsize=(10,6))
+    plt.show()
+
+    
+    
+    
 def plot_2d(df_col2,var_vec,times,**kwargs):
     
     ## plot variables with time and height dependence
