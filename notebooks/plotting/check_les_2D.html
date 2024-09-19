@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Compare ProgNa LES Sims &#8212; COMBLE Model-Observation Intercomparison Project</title>
+    <title>Check my LES run - 2D output &#8212; COMBLE Model-Observation Intercomparison Project</title>
   
   
   
@@ -59,11 +59,9 @@
     <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/plotting/plot_les_ProgNa';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/plotting/check_les_2D';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Evaluation of LES against satellite and ground-based observations" href="example_plotting.html" />
-    <link rel="prev" title="Compare FixN_def_z0 LES Sims" href="plot_les_FixN_def_z0.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -125,6 +123,8 @@
     <div class="bd-container__inner bd-page-width">
       
       
+      
+        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -220,12 +220,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../conversion_output/convert_WRF_LES_output_to_dephy_format.html">Example: convert WRF-LES output to DEPHY format</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Plotting and Analysis</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../les_plotting_index.html">LES</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../les_plotting_index.html">LES</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="plot_les_FixN_noice.html">Compare FixN_noice LES Sims</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_les_FixN.html">Compare FixN LES Sims</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_les_FixN_def_z0.html">Compare FixN_def_z0 LES Sims</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Compare ProgNa LES Sims</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_les_ProgNa.html">Compare ProgNa LES Sims</a></li>
 <li class="toctree-l2"><a class="reference internal" href="example_plotting.html">Evaluation of LES against satellite and ground-based observations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="example_plotting_progna.html">Evaluation of LES against satellite and ground-based observations (ProgNa)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="example_plotting_2D.html">2D plotting of LES output</a></li>
@@ -308,7 +308,7 @@
       
       
       
-      <li><a href="https://jupyterhub.arm.gov/hub/user-redirect/git-pull?repo=https%3A//github.com/ARM-Development/comble-mip&urlpath=lab/tree/comble-mip/../user-data-home/comble-mip/notebooks/plotting/plot_les_ProgNa.ipynb&branch=main" target="_blank"
+      <li><a href="https://jupyterhub.arm.gov/hub/user-redirect/git-pull?repo=https%3A//github.com/ARM-Development/comble-mip&urlpath=lab/tree/comble-mip/../user-data-home/comble-mip/notebooks/plotting/check_les_2D.ipynb&branch=main" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch on JupyterHub"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -354,7 +354,7 @@
       
       
       
-      <li><a href="../../_sources/notebooks/plotting/plot_les_ProgNa.ipynb" target="_blank"
+      <li><a href="../../_sources/notebooks/plotting/check_les_2D.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -425,9 +425,7 @@ document.write(`
   </button>
 `);
 </script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
+
 </div></div>
       
     </div>
@@ -438,19 +436,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Compare ProgNa LES Sims</h1>
+    <h1>Check my LES run - 2D output</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#updated-as-of-5-24-24">Updated as of 5/24/24</a></li>
-</ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -460,149 +450,483 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="compare-progna-les-sims">
-<h1>Compare ProgNa LES Sims<a class="headerlink" href="#compare-progna-les-sims" title="Link to this heading">#</a></h1>
-<section id="updated-as-of-5-24-24">
-<h2>Updated as of 5/24/24<a class="headerlink" href="#updated-as-of-5-24-24" title="Link to this heading">#</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="check-my-les-run-2d-output">
+<h1>Check my LES run - 2D output<a class="headerlink" href="#check-my-les-run-2d-output" title="Link to this heading">#</a></h1>
 <ul class="simple">
-<li><p>The below notebook allows one to compare large-eddy simulations.</p></li>
-<li><p>All requested 1D and 2D variables are here read and plotted. “load_sims” reports variable that are missing. Lines will not show, if a variable is missing or if it contains missing values.</p></li>
+<li><p>The below notebook allows to compare a selected set of large-eddy simulation.</p></li>
+<li><p>All requested 2D variables are here read and plotted. “load_sims_2d” reports variable that are missing. Maps will not show, if a variable is missing or if it contains missing values.</p></li>
 <li><p>In case you find inconsistencies in the benchmark set or wish to expand the code, please contact Ann Fridlind (ann.fridlind&#64;nasa.gov), Timothy Juliano (tjuliano&#64;ucar.edu), and Florian Tornow (ft2544&#64;columbia.edu).</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> functions_plotting.py
 
-<span class="c1">## select simulations to plot</span>
-<span class="n">sim_keyword</span> <span class="o">=</span> <span class="s1">&#39;dx100_ProgNa.&#39;</span>  
+<span class="c1">## select LES run(s) of interest</span>
+<span class="n">sim_keyword</span> <span class="o">=</span> <span class="s1">&#39;FixN_2D&#39;</span>  
+
+<span class="c1">## select specfic time</span>
+<span class="n">time_vec</span> <span class="o">=</span> <span class="p">[</span><span class="mf">18.0</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vars_mean_list</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;https://docs.google.com/spreadsheets/d/1Vl8jYGviet7EtXZuQiitrx4NSkV1x27aJAhxxjBb9zI/export?gid=0&amp;format=xlsx&#39;</span><span class="p">,</span>
-                              <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Mean&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vars_mean_list</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;https://docs.google.com/spreadsheets/d/1Vl8jYGviet7EtXZuQiitrx4NSkV1x27aJAhxxjBb9zI/export?gid=1756539842&amp;format=xlsx&#39;</span><span class="p">,</span>
+                              <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;2D&#39;</span><span class="p">)</span>
+
+
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_rows&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">vars_mean_list</span>
 
 <span class="c1">## short names</span>
-<span class="n">var_vec_1d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">variable_id</span><span class="p">[</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">==</span> <span class="s1">&#39;time&#39;</span><span class="p">])</span>
-<span class="n">var_vec_2d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">variable_id</span><span class="p">[</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">==</span> <span class="s1">&#39;time, height&#39;</span><span class="p">])</span>
+<span class="n">var_vec_2d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">variable_id</span><span class="p">[</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">==</span> <span class="s1">&#39;time, x, y&#39;</span><span class="p">])</span>
 
 <span class="c1">## long names</span>
-<span class="n">var_vec_1d_long</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">standard_name</span><span class="p">[</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">==</span> <span class="s1">&#39;time&#39;</span><span class="p">])</span>
-<span class="n">var_vec_2d_long</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">standard_name</span><span class="p">[</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">==</span> <span class="s1">&#39;time, height&#39;</span><span class="p">])</span>
+<span class="n">var_vec_2d_long</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">standard_name</span><span class="p">[</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">==</span> <span class="s1">&#39;time, x, y&#39;</span><span class="p">])</span>
 
-<span class="c1">## Units</span>
-<span class="n">var_vec_1d_units</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">units</span><span class="p">[</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">==</span> <span class="s1">&#39;time&#39;</span><span class="p">])</span>
-<span class="n">var_vec_2d_units</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">units</span><span class="p">[</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">==</span> <span class="s1">&#39;time, height&#39;</span><span class="p">])</span>
+<span class="c1">## units</span>
+<span class="n">var_vec_2d_units</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">units</span><span class="p">[</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">==</span> <span class="s1">&#39;time, x, y&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_col_1d</span><span class="p">,</span><span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword</span><span class="p">,</span><span class="n">subfolder</span><span class="o">=</span><span class="s1">&#39;sand&#39;</span><span class="p">)</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## load all simulations located in subfolders of the given directory</span>
+<span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">load_sims_2d</span><span class="p">(</span><span class="s1">&#39;/data/project/comble-mip/output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">times</span><span class="o">=</span><span class="n">time_vec</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time)
-../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_ProgNa.nc
-../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
-ssaf shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
-../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
-iwp not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
-od not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
-odlc not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
-ssaf not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
-Loading variables: f(time,height)
-../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_ProgNa.nc
-../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
-na1 shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
-na3 shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
-niic shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
-eps shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
-uw shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
-vw shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
-w2 shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
-wth shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
-vf_thli shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
-wqv shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
-vf_qt shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
-flc shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
-prf shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
-prfi shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
-rld shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
-rlu shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
-dth_rad shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
-dth_micro shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
-dth_turb shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
-dq_micro shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
-dq_turb shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
-dna_micro_warm shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
-dna_micro_cold shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
-dna_turb shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
-dni_het shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
-dni_sip shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
-dni_hom shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
-../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
-nlcic not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
-niic not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
-eps not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
-w2 shows NAN values in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
-wth not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
-vf_thli not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
-wqv not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
-vf_qt not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
-flc not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
-prf not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
-prfi not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
-dth_micro not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
-dth_turb not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
-dq_micro not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
-dq_turb not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
-dna_micro_warm not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
-dna_micro_cold not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
-dna_turb not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time,x,y)
+/data/project/comble-mip/output_les/wrf/WRF_Lx25_dx100_FixN_2D.nc
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR 1: PROJ: proj_create_from_database: Open of /opt/conda/share/proj failed
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NaN values in pr
+NaN values in lwp
+NaN values in iwp
+NaN values in opt
+NaN values in alb
+NaN values in olr11
+/data/project/comble-mip/output_les/dharma/DHARMA_Lx25_dx100_FixN_2D.nc
+No field for ustar
+/data/project/comble-mip/output_les/uclales-salsa/UCLALES-SALSA_Lx25_dx100_FixN_2D.nc
+...adjusting x and y values
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## plot variables that have only time dependence</span>
-<span class="n">plot_1d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_1d</span><span class="p">]),</span>
-                   <span class="n">var_vec_1d</span><span class="p">,</span><span class="n">longnames</span><span class="o">=</span><span class="n">var_vec_1d_long</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="n">var_vec_1d_units</span><span class="p">,</span>
-                   <span class="n">plot_colors</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="s1">&#39;g&#39;</span><span class="p">,</span><span class="s1">&#39;magenta&#39;</span><span class="p">,</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span><span class="s1">&#39;lightskyblue&#39;</span><span class="p">],</span><span class="n">plot_ls</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_col_2d</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">][:]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/f47413e294466dde79af0d5cc6345e57f8198c5cf7ffb64c0549abe299e2eada.png" src="../../_images/f47413e294466dde79af0d5cc6345e57f8198c5cf7ffb64c0549abe299e2eada.png" />
-</div>
+<div class="output text_html"><div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme=dark],
+body[data-theme=dark],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1F1F1F;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block !important;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 20px 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: none;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: '►';
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: '▼';
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: '(';
+}
+
+.xr-dim-list:after {
+  content: ')';
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ',';
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-index-name div,
+.xr-index-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2,
+.xr-no-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.DataArray &#x27;x&#x27; (x: 256)&gt; Size: 2kB
+array([-12800., -12700., -12600., ...,  12500.,  12600.,  12700.])
+Coordinates:
+  * x        (x) float64 2kB -1.28e+04 -1.27e+04 -1.26e+04 ... 1.26e+04 1.27e+04
+Attributes:
+    units:      m
+    long_name:  x</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'x'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>x</span>: 256</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-3a0121de-bc0e-4068-a4a4-3bf92e57f0be' class='xr-array-in' type='checkbox' checked><label for='section-3a0121de-bc0e-4068-a4a4-3bf92e57f0be' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>-1.28e+04 -1.27e+04 -1.26e+04 -1.25e+04 ... 1.25e+04 1.26e+04 1.27e+04</span></div><div class='xr-array-data'><pre>array([-12800., -12700., -12600., ...,  12500.,  12600.,  12700.])</pre></div></div></li><li class='xr-section-item'><input id='section-e27a6311-349b-4c0f-8a51-df470af1c0e1' class='xr-section-summary-in' type='checkbox'  checked><label for='section-e27a6311-349b-4c0f-8a51-df470af1c0e1' class='xr-section-summary' >Coordinates: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>x</span></div><div class='xr-var-dims'>(x)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-1.28e+04 -1.27e+04 ... 1.27e+04</div><input id='attrs-ca108e71-607c-4486-80e0-27b8cbc37fdc' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-ca108e71-607c-4486-80e0-27b8cbc37fdc' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-7faa8a06-a45b-44fc-bd40-92f225becc78' class='xr-var-data-in' type='checkbox'><label for='data-7faa8a06-a45b-44fc-bd40-92f225becc78' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>m</dd><dt><span>long_name :</span></dt><dd>x</dd></dl></div><div class='xr-var-data'><pre>array([-12800., -12700., -12600., ...,  12500.,  12600.,  12700.])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-b28d724e-7f78-467b-962d-ef87395738b6' class='xr-section-summary-in' type='checkbox'  ><label for='section-b28d724e-7f78-467b-962d-ef87395738b6' class='xr-section-summary' >Indexes: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>x</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-9893a8f7-b115-47c0-8c9e-ea3f2c83963e' class='xr-index-data-in' type='checkbox'/><label for='index-9893a8f7-b115-47c0-8c9e-ea3f2c83963e' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Float64Index([-12800.0, -12700.0, -12600.0, -12500.0, -12400.0, -12300.0,
+              -12200.0, -12100.0, -12000.0, -11900.0,
+              ...
+               11800.0,  11900.0,  12000.0,  12100.0,  12200.0,  12300.0,
+               12400.0,  12500.0,  12600.0,  12700.0],
+             dtype=&#x27;float64&#x27;, name=&#x27;x&#x27;, length=256))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-eab06a9c-e44e-4c06-a035-5cd60ab6dd86' class='xr-section-summary-in' type='checkbox'  checked><label for='section-eab06a9c-e44e-4c06-a035-5cd60ab6dd86' class='xr-section-summary' >Attributes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>m</dd><dt><span>long_name :</span></dt><dd>x</dd></dl></div></li></ul></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> functions_plotting.py
-
-<span class="c1">## example where ERA5 and radiosonde are included</span>
-<span class="n">plot_2d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_2d</span><span class="p">]),</span>
-                   <span class="n">var_vec_2d</span><span class="p">,</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">18</span><span class="p">],</span><span class="n">z_max</span><span class="o">=</span><span class="mi">6000</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="n">var_vec_2d_units</span><span class="p">,</span><span class="n">longnames</span><span class="o">=</span><span class="n">var_vec_2d_long</span><span class="p">,</span>
-                   <span class="n">plot_colors</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="s1">&#39;g&#39;</span><span class="p">,</span><span class="s1">&#39;magenta&#39;</span><span class="p">,</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span><span class="s1">&#39;lightskyblue&#39;</span><span class="p">])</span>
+<span class="n">plot_2d_map</span><span class="p">(</span><span class="n">df_col_2d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">times</span><span class="o">=</span><span class="n">time_vec</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>temporal averaging over 1.0 h interval
-</pre></div>
-</div>
-<img alt="../../_images/e6b0e15588f5d2b49436df066f8af8475849517bdb2bf6db0457072755a259af.png" src="../../_images/e6b0e15588f5d2b49436df066f8af8475849517bdb2bf6db0457072755a259af.png" />
+<img alt="../../_images/20339aa955e204df2433e0f885b67b159692650ff47199f3e6a24486aaa833a8.png" src="../../_images/20339aa955e204df2433e0f885b67b159692650ff47199f3e6a24486aaa833a8.png" />
+<img alt="../../_images/d7c790e213a0862a8c1dc8fb1100854281b7e20828909eb44af4f5ddedbc56a1.png" src="../../_images/d7c790e213a0862a8c1dc8fb1100854281b7e20828909eb44af4f5ddedbc56a1.png" />
+<img alt="../../_images/a47c2275e45b0a169132c40f0669a784f63b4f2fa4083709f2e1e505d1e075bf.png" src="../../_images/a47c2275e45b0a169132c40f0669a784f63b4f2fa4083709f2e1e505d1e075bf.png" />
+<img alt="../../_images/61898e452c9c5c84c17230453c0817749d6014862fea97a51431d02ac6be0471.png" src="../../_images/61898e452c9c5c84c17230453c0817749d6014862fea97a51431d02ac6be0471.png" />
+<img alt="../../_images/b1e158298698ee2c6e4b6980f5cc18c26fe710f3bb2d26f9260d3c3b31cc8a73.png" src="../../_images/b1e158298698ee2c6e4b6980f5cc18c26fe710f3bb2d26f9260d3c3b31cc8a73.png" />
+<img alt="../../_images/2130137ae042ea7ece109989a5b74827532a60dbba157287571ec4ff1f2ca50f.png" src="../../_images/2130137ae042ea7ece109989a5b74827532a60dbba157287571ec4ff1f2ca50f.png" />
+<img alt="../../_images/0e5eb9d8b81b8afd11d052a5c03798a2c24ece695bcd2744cd3bc93fa9f8e292.png" src="../../_images/0e5eb9d8b81b8afd11d052a5c03798a2c24ece695bcd2744cd3bc93fa9f8e292.png" />
+<img alt="../../_images/c2ea6459a77ebdf47737e6eec145c6eb6e8ee20ed5a62ad29bc4bef26f73ae96.png" src="../../_images/c2ea6459a77ebdf47737e6eec145c6eb6e8ee20ed5a62ad29bc4bef26f73ae96.png" />
+<img alt="../../_images/6fa80257116f35f35b073adf0300fb8ee962306e831b0efdc74a843c808d82ad.png" src="../../_images/6fa80257116f35f35b073adf0300fb8ee962306e831b0efdc74a843c808d82ad.png" />
+<img alt="../../_images/18adc6eaf90d4fff2c18b41e8689d4d74f9070f9937c003b920ac83a3e57f2da.png" src="../../_images/18adc6eaf90d4fff2c18b41e8689d4d74f9070f9937c003b920ac83a3e57f2da.png" />
+<img alt="../../_images/6a7eb7ba54120cc46592f5b4ec735583e67dcd19a31837e0ecbff337110a6b20.png" src="../../_images/6a7eb7ba54120cc46592f5b4ec735583e67dcd19a31837e0ecbff337110a6b20.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x600 with 0 Axes&gt;
 </pre></div>
 </div>
 </div>
 </div>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -635,45 +959,12 @@ dna_turb not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="plot_les_FixN_def_z0.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Compare FixN_def_z0 LES Sims</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="example_plotting.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Evaluation of LES against satellite and ground-based observations</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#updated-as-of-5-24-24">Updated as of 5/24/24</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
               
             
           </div>
