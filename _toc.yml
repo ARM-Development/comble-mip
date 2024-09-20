@@ -26,6 +26,8 @@ parts:
   chapters:
     - file: les_plotting_index
       sections:
+        - file: notebooks/plotting/check_les_2d.ipynb
+        - file: notebooks/plotting/check_les_3d.ipynb
         - file: notebooks/plotting/plot_les_FixN_noice.ipynb
         - file: notebooks/plotting/plot_les_FixN.ipynb
         - file: notebooks/plotting/plot_les_FixN_def_z0.ipynb
@@ -33,8 +35,6 @@ parts:
         - file: notebooks/plotting/example_plotting.ipynb
         - file: notebooks/plotting/example_plotting_progna.ipynb
         - file: notebooks/plotting/example_plotting_2D.ipynb
-        - file: notebooks/plotting/check_les_2d.ipynb
-        - file: notebooks/plotting/check_les_3d.ipynb
     - file: scm_plotting_index
       sections:
         - file: notebooks/plotting/check_scm.ipynb
