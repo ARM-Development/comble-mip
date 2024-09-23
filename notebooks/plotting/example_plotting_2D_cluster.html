@@ -467,7 +467,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/data/home/floriantornow/comble-mip/notebooks/plotting&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/user-data-home/comble-mip/notebooks/plotting&#39;
 </pre></div>
 </div>
 </div>
@@ -636,32 +636,77 @@ VNP02DNB.A2020073.1306.002.2021126174604.nc
 25855
 2020-03-13T01:00:00
 25659
-2020-03-13T02:00:00
-25653
-2020-03-13T06:00:00
-25511
-2020-03-13T10:00:00
-0
-2020-03-13T14:00:00
-0
-2020-03-13T18:00:00
-0
-VJ103DNB.A2020073.1212.002.2020073175644.nc
-VJ102DNB.A2020073.1212.002.2020073182754.nc
-2020-03-13T00:00:00
-26080
-2020-03-13T01:00:00
-26047
-2020-03-13T02:00:00
-26107
-2020-03-13T06:00:00
-26105
-2020-03-13T10:00:00
-26252
-2020-03-13T14:00:00
-26211
-2020-03-13T18:00:00
-26395
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">74</span>
+<span class="g g-Whitespace">     </span><span class="mi">72</span> <span class="n">da</span><span class="p">[</span><span class="s1">&#39;y_dist&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="o">*</span><span class="n">da</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">]</span>
+<span class="g g-Whitespace">     </span><span class="mi">73</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ds_sub</span><span class="p">)):</span>
+<span class="ne">---&gt; </span><span class="mi">74</span>     <span class="n">da</span><span class="p">[</span><span class="s1">&#39;x_dist&#39;</span><span class="p">][</span><span class="n">ii</span><span class="p">]</span> <span class="o">=</span> <span class="n">geopy</span><span class="o">.</span><span class="n">distance</span><span class="o">.</span><span class="n">geodesic</span><span class="p">((</span><span class="n">da</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">][</span><span class="n">ii</span><span class="p">],</span><span class="n">da</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">][</span><span class="n">ii</span><span class="p">]),</span> 
+<span class="g g-Whitespace">     </span><span class="mi">75</span>                                                <span class="p">(</span><span class="n">da</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">][</span><span class="n">ii</span><span class="p">],</span><span class="n">Lon_OI</span><span class="p">))</span><span class="o">.</span><span class="n">km</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">((</span><span class="n">da</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">][</span><span class="n">ii</span><span class="p">]</span><span class="o">.</span><span class="n">data</span> <span class="o">-</span> <span class="n">Lon_OI</span><span class="p">))</span>
+<span class="g g-Whitespace">     </span><span class="mi">76</span>     <span class="n">da</span><span class="p">[</span><span class="s1">&#39;y_dist&#39;</span><span class="p">][</span><span class="n">ii</span><span class="p">]</span> <span class="o">=</span> <span class="n">geopy</span><span class="o">.</span><span class="n">distance</span><span class="o">.</span><span class="n">geodesic</span><span class="p">((</span><span class="n">da</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">][</span><span class="n">ii</span><span class="p">],</span><span class="n">da</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">][</span><span class="n">ii</span><span class="p">]),</span> 
+<span class="g g-Whitespace">     </span><span class="mi">77</span>                                                <span class="p">(</span><span class="n">Lat_OI</span><span class="p">,</span><span class="n">da</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">][</span><span class="n">ii</span><span class="p">]))</span><span class="o">.</span><span class="n">km</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">((</span><span class="n">da</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">][</span><span class="n">ii</span><span class="p">]</span><span class="o">.</span><span class="n">data</span> <span class="o">-</span> <span class="n">Lat_OI</span><span class="p">))</span> 
+<span class="g g-Whitespace">     </span><span class="mi">79</span> <span class="c1">## limit to requested size</span>
+
+<span class="nn">File /opt/conda/lib/python3.10/site-packages/xarray/core/dataarray.py:874,</span> in <span class="ni">DataArray.__getitem__</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">    </span><span class="mi">871</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getitem_coord</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">872</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">873</span>     <span class="c1"># xarray-style array indexing</span>
+<span class="ne">--&gt; </span><span class="mi">874</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">indexers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_item_key_to_dict</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
+
+<span class="nn">File /opt/conda/lib/python3.10/site-packages/xarray/core/dataarray.py:1505,</span> in <span class="ni">DataArray.isel</span><span class="nt">(self, indexers, drop, missing_dims, **indexers_kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1501</span> <span class="n">coord_indexers</span> <span class="o">=</span> <span class="p">{</span>
+<span class="g g-Whitespace">   </span><span class="mi">1502</span>     <span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">indexers</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">coord_value</span><span class="o">.</span><span class="n">dims</span>
+<span class="g g-Whitespace">   </span><span class="mi">1503</span> <span class="p">}</span>
+<span class="g g-Whitespace">   </span><span class="mi">1504</span> <span class="k">if</span> <span class="n">coord_indexers</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1505</span>     <span class="n">coord_value</span> <span class="o">=</span> <span class="n">coord_value</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">coord_indexers</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1506</span>     <span class="k">if</span> <span class="n">drop</span> <span class="ow">and</span> <span class="n">coord_value</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1507</span>         <span class="k">continue</span>
+
+<span class="nn">File /opt/conda/lib/python3.10/site-packages/xarray/core/variable.py:1018,</span> in <span class="ni">Variable.isel</span><span class="nt">(self, indexers, missing_dims, **indexers_kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1015</span> <span class="n">indexers</span> <span class="o">=</span> <span class="n">drop_dims_from_indexers</span><span class="p">(</span><span class="n">indexers</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dims</span><span class="p">,</span> <span class="n">missing_dims</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1017</span> <span class="n">key</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">indexers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">dim</span><span class="p">,</span> <span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">))</span> <span class="k">for</span> <span class="n">dim</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dims</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1018</span> <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+
+<span class="nn">File /opt/conda/lib/python3.10/site-packages/xarray/core/variable.py:782,</span> in <span class="ni">Variable.__getitem__</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">    </span><span class="mi">769</span> <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">770</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Return a new Variable object whose contents are consistent with</span>
+<span class="g g-Whitespace">    </span><span class="mi">771</span><span class="sd">     getting the provided key from the underlying data.</span>
+<span class="g g-Whitespace">    </span><span class="mi">772</span><span class="sd"> </span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">780</span><span class="sd">     array `x.values` directly.</span>
+<span class="g g-Whitespace">    </span><span class="mi">781</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">782</span>     <span class="n">dims</span><span class="p">,</span> <span class="n">indexer</span><span class="p">,</span> <span class="n">new_order</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_broadcast_indexes</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">783</span>     <span class="n">indexable</span> <span class="o">=</span> <span class="n">as_indexable</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">785</span>     <span class="n">data</span> <span class="o">=</span> <span class="n">indexing</span><span class="o">.</span><span class="n">apply_indexer</span><span class="p">(</span><span class="n">indexable</span><span class="p">,</span> <span class="n">indexer</span><span class="p">)</span>
+
+<span class="nn">File /opt/conda/lib/python3.10/site-packages/xarray/core/variable.py:620,</span> in <span class="ni">Variable._broadcast_indexes</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">    </span><span class="mi">615</span> <span class="n">key</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">616</span>     <span class="n">k</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="ow">and</span> <span class="n">k</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">key</span>
+<span class="g g-Whitespace">    </span><span class="mi">617</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">619</span> <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">BASIC_INDEXING_TYPES</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">key</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">620</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_broadcast_indexes_basic</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">622</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_indexers</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">623</span> <span class="c1"># Detect it can be mapped as an outer indexer</span>
+<span class="g g-Whitespace">    </span><span class="mi">624</span> <span class="c1"># If all key is unlabeled, or</span>
+<span class="g g-Whitespace">    </span><span class="mi">625</span> <span class="c1"># key can be mapped as an OuterIndexer.</span>
+
+<span class="nn">File /opt/conda/lib/python3.10/site-packages/xarray/core/variable.py:648,</span> in <span class="ni">Variable._broadcast_indexes_basic</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">    </span><span class="mi">644</span> <span class="k">def</span> <span class="nf">_broadcast_indexes_basic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">645</span>     <span class="n">dims</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span>
+<span class="nn">    646         dim for k, dim</span> in <span class="ni">zip(key, self.dims) if not isinstance</span><span class="nt">(k, integer_types)</span>
+<span class="g g-Whitespace">    </span><span class="mi">647</span>     <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">648</span>     <span class="k">return</span> <span class="n">dims</span><span class="p">,</span> <span class="n">BasicIndexer</span><span class="p">(</span><span class="n">key</span><span class="p">),</span> <span class="kc">None</span>
+
+<span class="nn">File /opt/conda/lib/python3.10/site-packages/xarray/core/indexing.py:378,</span> in <span class="ni">BasicIndexer.__init__</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">    </span><span class="mi">373</span>         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">374</span>             <span class="sa">f</span><span class="s2">&quot;unexpected indexer type for </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">k</span><span class="si">!r}</span><span class="s2">&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">375</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">376</span>     <span class="n">new_key</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">378</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">new_key</span><span class="p">))</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
 </div>
@@ -672,19 +717,13 @@ VJ102DNB.A2020073.1212.002.2020073182754.nc
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.plot.facetgrid.FacetGrid at 0x7f58e9013a60&gt;
-</pre></div>
-</div>
-<img alt="../../_images/08fbfdde4b4831f151661443b0e48effac62fafd2da936fad3a1bda3063f21bf.png" src="../../_images/08fbfdde4b4831f151661443b0e48effac62fafd2da936fad3a1bda3063f21bf.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s2">&quot;/user-data-home/comble-mip/notebooks/plotting/&quot;</span><span class="p">)</span>
 <span class="o">%</span><span class="k">run</span> functions_plotting.py 
 
-<span class="n">var_vec_2d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;alb&#39;</span><span class="p">]</span>
+<span class="n">var_vec_2d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;alb&#39;</span><span class="p">,</span><span class="s1">&#39;opt&#39;</span><span class="p">]</span>
 
 <span class="c1">## load all simulations located in subfolders of the given directory</span>
 <span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">load_sims_2d</span><span class="p">(</span><span class="s1">&#39;/data/project/comble-mip/output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword</span><span class="p">,</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">Time_Vec</span> <span class="k">if</span> <span class="n">t</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">],</span><span class="n">coarsen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -694,12 +733,9 @@ VJ102DNB.A2020073.1212.002.2020073182754.nc
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time,x,y)
 /data/project/comble-mip/output_les/wrf/WRF_Lx25_dx100_FixN_2D.nc
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR 1: PROJ: proj_create_from_database: Open of /opt/conda/share/proj failed
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/data/project/comble-mip/output_les/dharma/DHARMA_Lx25_dx100_FixN_2D.nc
+NaN values in alb
+NaN values in opt
+/data/project/comble-mip/output_les/dharma/DHARMA_Lx25_dx100_FixN_2D.nc
 /data/project/comble-mip/output_les/uclales-salsa/UCLALES-SALSA_Lx25_dx100_FixN_2D.nc
 ...adjusting x and y values
 </pre></div>
@@ -717,7 +753,7 @@ VJ102DNB.A2020073.1212.002.2020073182754.nc
   warnings.warn(&quot;Ignoring col_wrap since both col and row were passed&quot;)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.plot.facetgrid.FacetGrid at 0x7f58df3baa10&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.plot.facetgrid.FacetGrid at 0x7f24897fa350&gt;
 </pre></div>
 </div>
 <img alt="../../_images/b2bb8a362a18b9dc486f3773d2db11f0f80e7f9a5f368c6e81326a1f59b079a0.png" src="../../_images/b2bb8a362a18b9dc486f3773d2db11f0f80e7f9a5f368c6e81326a1f59b079a0.png" />
@@ -742,15 +778,847 @@ VJ102DNB.A2020073.1212.002.2020073182754.nc
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">round</span><span class="p">(</span><span class="mf">123400.0</span><span class="p">,</span><span class="o">-</span><span class="mi">4</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_col_2d</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">tt</span><span class="p">)</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">Source</span><span class="o">=</span><span class="n">ss</span><span class="p">)[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>120000.0
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array(&#39;2020-03-13T18:00:00.000000000&#39;, dtype=&#39;datetime64[ns]&#39;)
 </pre></div>
 </div>
 </div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">tarfile</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span> <span class="nn">netCDF4</span> <span class="k">as</span> <span class="nn">nc</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="c1">## test to apply clustering algorithm ###</span>
+
+<span class="c1">## certain properties</span>
+<span class="n">RES_ORG</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">RES_CLA</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+<span class="c1">## certain thresholds</span>
+<span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">ss</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">ss</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">tt</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">5</span><span class="p">]:</span>
+        <span class="n">pseudo_alb</span> <span class="o">=</span> <span class="n">df_col_2d</span><span class="p">[</span><span class="s1">&#39;alb&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">tt</span><span class="p">)</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">Source</span><span class="o">=</span><span class="n">ss</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">opd_cloud</span>  <span class="o">=</span> <span class="n">df_col_2d</span><span class="p">[</span><span class="s1">&#39;opt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">tt</span><span class="p">)</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">Source</span><span class="o">=</span><span class="n">ss</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
+
+        <span class="n">THRES_CONNECT</span> <span class="o">=</span> <span class="n">quantile</span><span class="p">(</span><span class="n">pseudo_alb</span><span class="p">[(</span><span class="n">opd_cloud</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">5.0</span><span class="p">],</span><span class="mf">0.50</span><span class="p">)</span>
+        <span class="n">THRES_CLOUD</span>   <span class="o">=</span> <span class="n">quantile</span><span class="p">(</span><span class="n">pseudo_alb</span><span class="p">[(</span><span class="n">opd_cloud</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">5.0</span><span class="p">],</span><span class="mf">0.50</span><span class="p">)</span>
+    
+        <span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="n">pseudo_alb</span> <span class="o">&gt;</span> <span class="n">THRES_CLOUD</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">CLUST_COORDS</span> <span class="o">=</span> <span class="n">id_watershed</span><span class="p">(</span><span class="n">pseudo_alb</span><span class="p">,</span><span class="n">THRES_CLOUD</span><span class="p">,</span><span class="n">THRES_CONNECT</span><span class="p">,</span><span class="n">plotting</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">CLUST_GEOM</span> <span class="o">=</span> <span class="n">cluster_geometry</span><span class="p">(</span><span class="n">CLUST_COORDS_BIG</span><span class="p">,</span><span class="n">total</span><span class="o">=</span><span class="p">[(</span><span class="n">shape</span><span class="p">(</span><span class="n">pseudo_alb</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">shape</span><span class="p">(</span><span class="n">pseudo_alb</span><span class="p">)[</span><span class="mi">1</span><span class="p">])])</span>
+            <span class="n">CLUST_GEOM</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_col_2d</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">tt</span><span class="p">)</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">Source</span><span class="o">=</span><span class="n">ss</span><span class="p">)[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+            <span class="n">CLUST_GEOM</span><span class="p">[</span><span class="s1">&#39;Source&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_col_2d</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">tt</span><span class="p">)</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">Source</span><span class="o">=</span><span class="n">ss</span><span class="p">)[</span><span class="s1">&#39;Source&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">CLUST_GEOM</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">counter</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">CLUST_GEOM_COL</span> <span class="o">=</span> <span class="n">CLUST_GEOM</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">CLUST_GEOM_COL</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">CLUST_GEOM_COL</span><span class="p">,</span><span class="n">CLUST_GEOM</span><span class="p">])</span>
+            <span class="n">counter</span> <span class="o">+=</span><span class="mi">1</span>
+    
+<span class="c1">## coarsen field</span>
+<span class="c1">#var_coarse = coarsen_2d(pseudo_alb,RES_CLA=RES_CLA,RES_ORG=RES_ORG)</span>
+<span class="c1">#nx_coa = var_coarse.shape[0]</span>
+
+
+<span class="c1">#plt.imshow(df_col_2d[&#39;alb&#39;].isel(time=3).isel(Source=1).data)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/308e4862e58712b6f39c6de373eedbb31322d597bd95a60abe8411d191ee8d36.png" src="../../_images/308e4862e58712b6f39c6de373eedbb31322d597bd95a60abe8411d191ee8d36.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>14_14
+1_1
+2_2
+3_3
+4_4
+5_5
+6_6
+7_7
+8_8
+9_9
+10_10
+11_11
+                slope   intercept      area                time  \
+cluster                                                           
+1       -1.932360e-01  226.028547  0.161866 2020-03-13 18:00:00   
+2        4.971098e-01  184.228324  0.024691 2020-03-13 18:00:00   
+3       -1.233184e-01   69.539238  0.017833 2020-03-13 18:00:00   
+4        1.394882e-16    7.000000  0.005487 2020-03-13 18:00:00   
+
+                                                    Source  
+cluster                                                     
+1        uclales-salsa/UCLALES-SALSA_Lx25_dx100_FixN_2D.nc  
+2        uclales-salsa/UCLALES-SALSA_Lx25_dx100_FixN_2D.nc  
+3        uclales-salsa/UCLALES-SALSA_Lx25_dx100_FixN_2D.nc  
+4        uclales-salsa/UCLALES-SALSA_Lx25_dx100_FixN_2D.nc  
+</pre></div>
+</div>
+<img alt="../../_images/bf0c625ada029207c37ff9c61f522d27a30e15316c50a96d971ed61ff9ac2f4c.png" src="../../_images/bf0c625ada029207c37ff9c61f522d27a30e15316c50a96d971ed61ff9ac2f4c.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">CLUST_GEOM_COL</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>slope</th>
+      <th>intercept</th>
+      <th>area</th>
+      <th>time</th>
+      <th>Source</th>
+    </tr>
+    <tr>
+      <th>cluster</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>-1.932360e-01</td>
+      <td>226.028547</td>
+      <td>0.161866</td>
+      <td>2020-03-13 18:00:00</td>
+      <td>dharma/DHARMA_Lx25_dx100_FixN_2D.nc</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4.971098e-01</td>
+      <td>184.228324</td>
+      <td>0.024691</td>
+      <td>2020-03-13 18:00:00</td>
+      <td>dharma/DHARMA_Lx25_dx100_FixN_2D.nc</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-1.233184e-01</td>
+      <td>69.539238</td>
+      <td>0.017833</td>
+      <td>2020-03-13 18:00:00</td>
+      <td>dharma/DHARMA_Lx25_dx100_FixN_2D.nc</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1.394882e-16</td>
+      <td>7.000000</td>
+      <td>0.005487</td>
+      <td>2020-03-13 18:00:00</td>
+      <td>dharma/DHARMA_Lx25_dx100_FixN_2D.nc</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-1.932360e-01</td>
+      <td>226.028547</td>
+      <td>0.161866</td>
+      <td>2020-03-13 18:00:00</td>
+      <td>uclales-salsa/UCLALES-SALSA_Lx25_dx100_FixN_2D.nc</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4.971098e-01</td>
+      <td>184.228324</td>
+      <td>0.024691</td>
+      <td>2020-03-13 18:00:00</td>
+      <td>uclales-salsa/UCLALES-SALSA_Lx25_dx100_FixN_2D.nc</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-1.233184e-01</td>
+      <td>69.539238</td>
+      <td>0.017833</td>
+      <td>2020-03-13 18:00:00</td>
+      <td>uclales-salsa/UCLALES-SALSA_Lx25_dx100_FixN_2D.nc</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1.394882e-16</td>
+      <td>7.000000</td>
+      <td>0.005487</td>
+      <td>2020-03-13 18:00:00</td>
+      <td>uclales-salsa/UCLALES-SALSA_Lx25_dx100_FixN_2D.nc</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> function_plotting_2d.py
+<span class="o">%</span><span class="k">matplotlib</span> inline
+
+    
+
+<span class="c1">#CLUST_COORDS = id_watershed(pseudo_alb,THRES_CLOUD,THRES_CONNECT,plotting=True)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 640x480 with 0 Axes&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">CLUST_COORDS_BIG</span> <span class="o">=</span> <span class="n">CLUST_COORDS</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+
+<span class="n">CLUST_COORDS_BIG</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">CLUST_COORDS</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">RES_CLA</span><span class="o">/</span><span class="n">RES_ORG</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">RES_CLA</span><span class="o">/</span><span class="n">RES_ORG</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+<span class="n">CLUST_COORDS_BIG</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">CLUST_COORDS</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">RES_CLA</span><span class="o">/</span><span class="n">RES_ORG</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">RES_CLA</span><span class="o">/</span><span class="n">RES_ORG</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+
+    
+<span class="n">CLUST_GEOM</span> <span class="o">=</span> <span class="n">cluster_geometry</span><span class="p">(</span><span class="n">CLUST_COORDS_BIG</span><span class="p">,</span><span class="n">total</span><span class="o">=</span><span class="p">[(</span><span class="n">shape</span><span class="p">(</span><span class="n">pseudo_alb</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">shape</span><span class="p">(</span><span class="n">pseudo_alb</span><span class="p">)[</span><span class="mi">1</span><span class="p">])])</span>
+<span class="n">CLUST_GEOM</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">CLUST_GEOM</span><span class="p">,</span><span class="n">CLUST_GEOM</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>slope</th>
+      <th>intercept</th>
+      <th>area</th>
+      <th>time</th>
+    </tr>
+    <tr>
+      <th>cluster</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>-1.932360e-01</td>
+      <td>226.028547</td>
+      <td>0.161866</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4.971098e-01</td>
+      <td>184.228324</td>
+      <td>0.024691</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-1.233184e-01</td>
+      <td>69.539238</td>
+      <td>0.017833</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1.394882e-16</td>
+      <td>7.000000</td>
+      <td>0.005487</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-1.932360e-01</td>
+      <td>226.028547</td>
+      <td>0.161866</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4.971098e-01</td>
+      <td>184.228324</td>
+      <td>0.024691</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-1.233184e-01</td>
+      <td>69.539238</td>
+      <td>0.017833</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1.394882e-16</td>
+      <td>7.000000</td>
+      <td>0.005487</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">CLUST_GEOM</span><span class="o">.</span><span class="n">index</span><span class="p">,</span><span class="n">CLUST_GEOM</span><span class="o">.</span><span class="n">area</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x7f2481a1d2d0&gt;
+</pre></div>
+</div>
+<img alt="../../_images/6d54621193cc57375eb71ffea1284e5b2b0943d94285ac5f8a9ad2c43a8d17c7.png" src="../../_images/6d54621193cc57375eb71ffea1284e5b2b0943d94285ac5f8a9ad2c43a8d17c7.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## select simulations to plot</span>
+<span class="n">sim_keyword</span> <span class="o">=</span> <span class="s1">&#39;DHARMA_Lx25_dx100_FixN_2D&#39;</span> <span class="c1">#UCLALES-SALSA_Lx25_dx100_FixN_2D&#39;  </span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s2">&quot;/user-data-home/comble-mip/notebooks/plotting/&quot;</span><span class="p">)</span>
+<span class="o">%</span><span class="k">run</span> functions_plotting.py 
+
+<span class="c1">## load all simulations located in subfolders of the given directory</span>
+<span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">load_sims_2d</span><span class="p">(</span><span class="s1">&#39;/data/project/comble-mip/output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword</span><span class="p">,</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">Time_Vec</span> <span class="k">if</span> <span class="n">t</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">],</span><span class="n">coarsen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">var_vec_2d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;olr11&#39;</span><span class="p">]</span>
+
+<span class="n">df_col_2d</span><span class="p">[</span><span class="s1">&#39;olr11&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="n">col_wrap</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s1">&#39;Source&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time,x,y)
+/data/project/comble-mip/output_les/dharma/DHARMA_Lx25_dx100_FixN_2D.nc
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/conda/lib/python3.10/site-packages/xarray/plot/facetgrid.py:187: UserWarning: Ignoring col_wrap since both col and row were passed
+  warnings.warn(&quot;Ignoring col_wrap since both col and row were passed&quot;)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.plot.facetgrid.FacetGrid at 0x7f2481738940&gt;
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 640x480 with 0 Axes&gt;
+</pre></div>
+</div>
+<img alt="../../_images/3644d6ae2848fddfa30c06f10096690de3be733179650091547bf427d2004ac1.png" src="../../_images/3644d6ae2848fddfa30c06f10096690de3be733179650091547bf427d2004ac1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_col_2d</span><span class="p">[</span><span class="s1">&#39;olr11&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme=dark],
+body[data-theme=dark],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1F1F1F;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block !important;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 20px 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: none;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: '►';
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: '▼';
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: '(';
+}
+
+.xr-dim-list:after {
+  content: ')';
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ',';
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-index-name div,
+.xr-index-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2,
+.xr-no-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.DataArray &#x27;olr11&#x27; (y_round: 27, x_round: 27, Source: 1)&gt; Size: 6kB
+array([[[253.00684018],
+        [200.21166835],
+        [206.45327519],
+        [153.97733599],
+        [171.14216755],
+        [195.42908044],
+        [149.08899954],
+        [160.87667474],
+        [218.32370182],
+        [154.16340798],
+        [209.84226114],
+        [197.32282561],
+        [238.65942104],
+        [190.59523385],
+        [180.03509762],
+        [220.60162296],
+        [161.73777538],
+        [145.71087655],
+        [211.15829711],
+        [180.70734946],
+...
+        [176.44625696],
+        [122.48134703],
+        [165.932213  ],
+        [186.16640133],
+        [199.90881729],
+        [163.75942924],
+        [205.4833733 ],
+        [194.84073024],
+        [176.71741949],
+        [156.71006944],
+        [236.82649673],
+        [202.74368832],
+        [228.14344887],
+        [189.11293434],
+        [180.53850425],
+        [183.38523854],
+        [180.08531414],
+        [198.1234666 ],
+        [154.10369175],
+        [180.1776824 ]]])
+Coordinates:
+  * x_round  (x_round) float64 216B -13.0 -12.0 -11.0 -10.0 ... 11.0 12.0 13.0
+    time     datetime64[ns] 8B 2020-03-13T01:00:00
+  * Source   (Source) &lt;U49 196B &#x27;uclales-salsa/UCLALES-SALSA_Lx25_dx100_FixN_...
+  * y_round  (y_round) float64 216B -13.0 -12.0 -11.0 -10.0 ... 11.0 12.0 13.0
+Attributes:
+    units:      K
+    long_name:  toa_outgoing_longwave_flux_atmospheric_window
+    note:       Total LW</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'olr11'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>y_round</span>: 27</li><li><span class='xr-has-index'>x_round</span>: 27</li><li><span class='xr-has-index'>Source</span>: 1</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-86c90c42-866d-4b18-8a3f-6f8667a8f60f' class='xr-array-in' type='checkbox' checked><label for='section-86c90c42-866d-4b18-8a3f-6f8667a8f60f' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>253.0 200.2 206.5 154.0 171.1 195.4 ... 183.4 180.1 198.1 154.1 180.2</span></div><div class='xr-array-data'><pre>array([[[253.00684018],
+        [200.21166835],
+        [206.45327519],
+        [153.97733599],
+        [171.14216755],
+        [195.42908044],
+        [149.08899954],
+        [160.87667474],
+        [218.32370182],
+        [154.16340798],
+        [209.84226114],
+        [197.32282561],
+        [238.65942104],
+        [190.59523385],
+        [180.03509762],
+        [220.60162296],
+        [161.73777538],
+        [145.71087655],
+        [211.15829711],
+        [180.70734946],
+...
+        [176.44625696],
+        [122.48134703],
+        [165.932213  ],
+        [186.16640133],
+        [199.90881729],
+        [163.75942924],
+        [205.4833733 ],
+        [194.84073024],
+        [176.71741949],
+        [156.71006944],
+        [236.82649673],
+        [202.74368832],
+        [228.14344887],
+        [189.11293434],
+        [180.53850425],
+        [183.38523854],
+        [180.08531414],
+        [198.1234666 ],
+        [154.10369175],
+        [180.1776824 ]]])</pre></div></div></li><li class='xr-section-item'><input id='section-0e4ddcf2-78ea-4d6a-9cdf-4d888a50d591' class='xr-section-summary-in' type='checkbox'  checked><label for='section-0e4ddcf2-78ea-4d6a-9cdf-4d888a50d591' class='xr-section-summary' >Coordinates: <span>(4)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>x_round</span></div><div class='xr-var-dims'>(x_round)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-13.0 -12.0 -11.0 ... 12.0 13.0</div><input id='attrs-b3b616c4-06ae-4f44-b385-039da9ad539e' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-b3b616c4-06ae-4f44-b385-039da9ad539e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-29270301-2192-497a-bc77-204358d54a13' class='xr-var-data-in' type='checkbox'><label for='data-29270301-2192-497a-bc77-204358d54a13' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([-13., -12., -11., -10.,  -9.,  -8.,  -7.,  -6.,  -5.,  -4.,  -3.,  -2.,
+        -1.,  -0.,   1.,   2.,   3.,   4.,   5.,   6.,   7.,   8.,   9.,  10.,
+        11.,  12.,  13.])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>time</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>2020-03-13T01:00:00</div><input id='attrs-bacedffd-13b3-406a-9a40-6613c753061e' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-bacedffd-13b3-406a-9a40-6613c753061e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-a33800e3-bd57-4a1e-abc3-5ee2145785e9' class='xr-var-data-in' type='checkbox'><label for='data-a33800e3-bd57-4a1e-abc3-5ee2145785e9' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>time</dd></dl></div><div class='xr-var-data'><pre>array(&#x27;2020-03-13T01:00:00.000000000&#x27;, dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>Source</span></div><div class='xr-var-dims'>(Source)</div><div class='xr-var-dtype'>&lt;U49</div><div class='xr-var-preview xr-preview'>&#x27;uclales-salsa/UCLALES-SALSA_Lx2...</div><input id='attrs-acf35239-2c57-4b3e-8fbc-853cea94d2c7' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-acf35239-2c57-4b3e-8fbc-853cea94d2c7' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-7b831d91-cd14-4e7d-9535-368932fa0fc6' class='xr-var-data-in' type='checkbox'><label for='data-7b831d91-cd14-4e7d-9535-368932fa0fc6' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;uclales-salsa/UCLALES-SALSA_Lx25_dx100_FixN_2D.nc&#x27;], dtype=&#x27;&lt;U49&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>y_round</span></div><div class='xr-var-dims'>(y_round)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-13.0 -12.0 -11.0 ... 12.0 13.0</div><input id='attrs-24575778-c582-4685-b3af-c9fc74702b0a' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-24575778-c582-4685-b3af-c9fc74702b0a' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-6a08378b-3881-45e1-8214-5f8c0ddf384a' class='xr-var-data-in' type='checkbox'><label for='data-6a08378b-3881-45e1-8214-5f8c0ddf384a' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([-13., -12., -11., -10.,  -9.,  -8.,  -7.,  -6.,  -5.,  -4.,  -3.,  -2.,
+        -1.,   0.,   1.,   2.,   3.,   4.,   5.,   6.,   7.,   8.,   9.,  10.,
+        11.,  12.,  13.])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-e4ae13d6-3203-46bd-bba3-9c1461762649' class='xr-section-summary-in' type='checkbox'  ><label for='section-e4ae13d6-3203-46bd-bba3-9c1461762649' class='xr-section-summary' >Indexes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>x_round</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-845e1dbc-c3b9-4f45-a004-9234373919b2' class='xr-index-data-in' type='checkbox'/><label for='index-845e1dbc-c3b9-4f45-a004-9234373919b2' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Float64Index([-13.0, -12.0, -11.0, -10.0,  -9.0,  -8.0,  -7.0,  -6.0,  -5.0,
+               -4.0,  -3.0,  -2.0,  -1.0,  -0.0,   1.0,   2.0,   3.0,   4.0,
+                5.0,   6.0,   7.0,   8.0,   9.0,  10.0,  11.0,  12.0,  13.0],
+             dtype=&#x27;float64&#x27;, name=&#x27;x_round&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>Source</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-98d66f5e-e138-45bd-81f1-4ed1f575972d' class='xr-index-data-in' type='checkbox'/><label for='index-98d66f5e-e138-45bd-81f1-4ed1f575972d' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;uclales-salsa/UCLALES-SALSA_Lx25_dx100_FixN_2D.nc&#x27;], dtype=&#x27;object&#x27;, name=&#x27;Source&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>y_round</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-db4c0b07-3226-4c9d-9ad4-e63d7d8b5857' class='xr-index-data-in' type='checkbox'/><label for='index-db4c0b07-3226-4c9d-9ad4-e63d7d8b5857' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Float64Index([-13.0, -12.0, -11.0, -10.0,  -9.0,  -8.0,  -7.0,  -6.0,  -5.0,
+               -4.0,  -3.0,  -2.0,  -1.0,   0.0,   1.0,   2.0,   3.0,   4.0,
+                5.0,   6.0,   7.0,   8.0,   9.0,  10.0,  11.0,  12.0,  13.0],
+             dtype=&#x27;float64&#x27;, name=&#x27;y_round&#x27;))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-b6776d4a-1081-4f68-9d47-457e4c1a2768' class='xr-section-summary-in' type='checkbox'  checked><label for='section-b6776d4a-1081-4f68-9d47-457e4c1a2768' class='xr-section-summary' >Attributes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>K</dd><dt><span>long_name :</span></dt><dd>toa_outgoing_longwave_flux_atmospheric_window</dd><dt><span>note :</span></dt><dd>Total LW</dd></dl></div></li></ul></div></div></div></div>
 </div>
 </section>
 
