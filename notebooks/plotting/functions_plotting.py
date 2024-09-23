@@ -938,6 +938,7 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
             print('using liquid(-ice) potential temperature')
         df_col['zi'] = np.nan
         df_col['cth'] = np.nan
+        df_col['cbh'] = np.nan
         df_col['ctt'] = np.nan
         for cc in np.unique(df_col['class']):
             print(cc)
@@ -969,6 +970,7 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
                     else:
                         theta_step = df_sub2.loc[df_sub2['time'] == tt,['zf','theta']]
                         theta_step['qcond_tot'] = 0
+                    cbh = np.min(theta_step.loc[theta_step['qlc'] > 10.*QTHRES]['zf'])
                     cth = np.max(theta_step.loc[theta_step['qcond_tot'] > QTHRES]['zf'])
                     if not theta_step.empty:
                         zi_step = zi_diagnose(theta_step)
@@ -978,10 +980,12 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
                         #print(df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),:])
                         #print(zi_step)
                         df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'cth'] = cth
+                        df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'cbh'] = cbh
                         df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'zi'] = zi_step
                         df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'ctt'] = min(ta_step.loc[ta_step.zf_diff == ta_step.zf_diff.min(),'ta'], default=np.NAN) - 273.15
                     else:
                         df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'cth'] = np.nan
+                        df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'cbh'] = np.nan
                         df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'zi'] = np.nan
                         df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'ctt'] = np.nan
     df_col['time']  = df_col['time'] + t_shift*3600.
