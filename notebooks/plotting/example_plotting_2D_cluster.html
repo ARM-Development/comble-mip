@@ -229,6 +229,8 @@
 <li class="toctree-l2"><a class="reference internal" href="example_plotting.html">Evaluation of LES against satellite and ground-based observations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="example_plotting_progna.html">Evaluation of LES against satellite and ground-based observations (ProgNa)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="example_plotting_2D.html">2D plotting of LES output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="check_les_2D.html">Check my LES run - 2D output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="check_les_3D.html">Check my LES run - 3D output</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../scm_plotting_index.html">SCM</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -484,6 +486,11 @@ document.write(`
     
 <span class="c1">## select simulations to plot</span>
 <span class="n">sim_keyword</span> <span class="o">=</span> <span class="s1">&#39;FixN_2D&#39;</span>  
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 640x480 with 0 Axes&gt;
 </pre></div>
 </div>
 </div>
@@ -753,7 +760,7 @@ NaN values in opt
   warnings.warn(&quot;Ignoring col_wrap since both col and row were passed&quot;)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.plot.facetgrid.FacetGrid at 0x7f24897fa350&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.plot.facetgrid.FacetGrid at 0x7f248086a5c0&gt;
 </pre></div>
 </div>
 <img alt="../../_images/b2bb8a362a18b9dc486f3773d2db11f0f80e7f9a5f368c6e81326a1f59b079a0.png" src="../../_images/b2bb8a362a18b9dc486f3773d2db11f0f80e7f9a5f368c6e81326a1f59b079a0.png" />
@@ -778,12 +785,12 @@ NaN values in opt
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_col_2d</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">tt</span><span class="p">)</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">Source</span><span class="o">=</span><span class="n">ss</span><span class="p">)[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_col_2d</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">Source</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="s1">&#39;Source&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array(&#39;2020-03-13T18:00:00.000000000&#39;, dtype=&#39;datetime64[ns]&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array(&#39;dharma/DHARMA_Lx25_dx100_FixN_2D.nc&#39;, dtype=&#39;&lt;U49&#39;)
 </pre></div>
 </div>
 </div>
@@ -805,23 +812,23 @@ NaN values in opt
 
 <span class="c1">## certain thresholds</span>
 <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="k">for</span> <span class="n">ss</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]:</span>
+<span class="k">for</span> <span class="n">ss</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">ss</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">tt</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">5</span><span class="p">]:</span>
         <span class="n">pseudo_alb</span> <span class="o">=</span> <span class="n">df_col_2d</span><span class="p">[</span><span class="s1">&#39;alb&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">tt</span><span class="p">)</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">Source</span><span class="o">=</span><span class="n">ss</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
         <span class="n">opd_cloud</span>  <span class="o">=</span> <span class="n">df_col_2d</span><span class="p">[</span><span class="s1">&#39;opt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">tt</span><span class="p">)</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">Source</span><span class="o">=</span><span class="n">ss</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
 
-        <span class="n">THRES_CONNECT</span> <span class="o">=</span> <span class="n">quantile</span><span class="p">(</span><span class="n">pseudo_alb</span><span class="p">[(</span><span class="n">opd_cloud</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">5.0</span><span class="p">],</span><span class="mf">0.50</span><span class="p">)</span>
-        <span class="n">THRES_CLOUD</span>   <span class="o">=</span> <span class="n">quantile</span><span class="p">(</span><span class="n">pseudo_alb</span><span class="p">[(</span><span class="n">opd_cloud</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">5.0</span><span class="p">],</span><span class="mf">0.50</span><span class="p">)</span>
+        <span class="n">THRES_CONNECT</span> <span class="o">=</span> <span class="n">quantile</span><span class="p">(</span><span class="n">pseudo_alb</span><span class="p">[(</span><span class="n">opd_cloud</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">2.0</span><span class="p">],</span><span class="mf">0.50</span><span class="p">)</span>
+        <span class="n">THRES_CLOUD</span>   <span class="o">=</span> <span class="n">quantile</span><span class="p">(</span><span class="n">pseudo_alb</span><span class="p">[(</span><span class="n">opd_cloud</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">2.0</span><span class="p">],</span><span class="mf">0.50</span><span class="p">)</span>
     
         <span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="n">pseudo_alb</span> <span class="o">&gt;</span> <span class="n">THRES_CLOUD</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
             <span class="n">CLUST_COORDS</span> <span class="o">=</span> <span class="n">id_watershed</span><span class="p">(</span><span class="n">pseudo_alb</span><span class="p">,</span><span class="n">THRES_CLOUD</span><span class="p">,</span><span class="n">THRES_CONNECT</span><span class="p">,</span><span class="n">plotting</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
             <span class="n">CLUST_GEOM</span> <span class="o">=</span> <span class="n">cluster_geometry</span><span class="p">(</span><span class="n">CLUST_COORDS_BIG</span><span class="p">,</span><span class="n">total</span><span class="o">=</span><span class="p">[(</span><span class="n">shape</span><span class="p">(</span><span class="n">pseudo_alb</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">shape</span><span class="p">(</span><span class="n">pseudo_alb</span><span class="p">)[</span><span class="mi">1</span><span class="p">])])</span>
-            <span class="n">CLUST_GEOM</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_col_2d</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">tt</span><span class="p">)</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">Source</span><span class="o">=</span><span class="n">ss</span><span class="p">)[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+            <span class="n">CLUST_GEOM</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span>   <span class="o">=</span> <span class="n">df_col_2d</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">tt</span><span class="p">)</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">Source</span><span class="o">=</span><span class="n">ss</span><span class="p">)[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
             <span class="n">CLUST_GEOM</span><span class="p">[</span><span class="s1">&#39;Source&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_col_2d</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">tt</span><span class="p">)</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">Source</span><span class="o">=</span><span class="n">ss</span><span class="p">)[</span><span class="s1">&#39;Source&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
             <span class="nb">print</span><span class="p">(</span><span class="n">CLUST_GEOM</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">counter</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">CLUST_GEOM_COL</span> <span class="o">=</span> <span class="n">CLUST_GEOM</span>
+                <span class="n">CLUST_GEOM_COL</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">CLUST_GEOM</span><span class="p">])</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">CLUST_GEOM_COL</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">CLUST_GEOM_COL</span><span class="p">,</span><span class="n">CLUST_GEOM</span><span class="p">])</span>
             <span class="n">counter</span> <span class="o">+=</span><span class="mi">1</span>
@@ -836,8 +843,8 @@ NaN values in opt
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/308e4862e58712b6f39c6de373eedbb31322d597bd95a60abe8411d191ee8d36.png" src="../../_images/308e4862e58712b6f39c6de373eedbb31322d597bd95a60abe8411d191ee8d36.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>14_14
+<img alt="../../_images/a0b979e0f1b017e4921d4abfb989a63115f87092f0e3e18642d488b5c61c8a2e.png" src="../../_images/a0b979e0f1b017e4921d4abfb989a63115f87092f0e3e18642d488b5c61c8a2e.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8_8
 1_1
 2_2
 3_3
@@ -846,25 +853,24 @@ NaN values in opt
 6_6
 7_7
 8_8
-9_9
-10_10
-11_11
                 slope   intercept      area                time  \
 cluster                                                           
-1       -1.932360e-01  226.028547  0.161866 2020-03-13 18:00:00   
-2        4.971098e-01  184.228324  0.024691 2020-03-13 18:00:00   
-3       -1.233184e-01   69.539238  0.017833 2020-03-13 18:00:00   
-4        1.394882e-16    7.000000  0.005487 2020-03-13 18:00:00   
+1       -1.216006e-01  213.132625  0.190672 2020-03-13 18:00:00   
+2       -8.306709e-02  190.784345  0.042524 2020-03-13 18:00:00   
+3        4.962095e-01  -58.787388  0.027435 2020-03-13 18:00:00   
+4       -4.085708e-17   14.500000  0.002743 2020-03-13 18:00:00   
+5        9.654905e-17   34.500000  0.002743 2020-03-13 18:00:00   
 
-                                                    Source  
-cluster                                                     
-1        uclales-salsa/UCLALES-SALSA_Lx25_dx100_FixN_2D.nc  
-2        uclales-salsa/UCLALES-SALSA_Lx25_dx100_FixN_2D.nc  
-3        uclales-salsa/UCLALES-SALSA_Lx25_dx100_FixN_2D.nc  
-4        uclales-salsa/UCLALES-SALSA_Lx25_dx100_FixN_2D.nc  
+                                      Source  
+cluster                                       
+1        dharma/DHARMA_Lx25_dx100_FixN_2D.nc  
+2        dharma/DHARMA_Lx25_dx100_FixN_2D.nc  
+3        dharma/DHARMA_Lx25_dx100_FixN_2D.nc  
+4        dharma/DHARMA_Lx25_dx100_FixN_2D.nc  
+5        dharma/DHARMA_Lx25_dx100_FixN_2D.nc  
 </pre></div>
 </div>
-<img alt="../../_images/bf0c625ada029207c37ff9c61f522d27a30e15316c50a96d971ed61ff9ac2f4c.png" src="../../_images/bf0c625ada029207c37ff9c61f522d27a30e15316c50a96d971ed61ff9ac2f4c.png" />
+<img alt="../../_images/f1c2fa45acb53edae1b167f497eab1b635eae6704611de06ea3017367449b347.png" src="../../_images/f1c2fa45acb53edae1b167f497eab1b635eae6704611de06ea3017367449b347.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -910,88 +916,87 @@ cluster
   <tbody>
     <tr>
       <th>1</th>
-      <td>-1.932360e-01</td>
-      <td>226.028547</td>
-      <td>0.161866</td>
+      <td>-1.216006e-01</td>
+      <td>213.132625</td>
+      <td>0.190672</td>
       <td>2020-03-13 18:00:00</td>
-      <td>dharma/DHARMA_Lx25_dx100_FixN_2D.nc</td>
+      <td>uclales-salsa/UCLALES-SALSA_Lx25_dx100_FixN_2D.nc</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>4.971098e-01</td>
-      <td>184.228324</td>
-      <td>0.024691</td>
+      <td>-8.306709e-02</td>
+      <td>190.784345</td>
+      <td>0.042524</td>
       <td>2020-03-13 18:00:00</td>
-      <td>dharma/DHARMA_Lx25_dx100_FixN_2D.nc</td>
+      <td>uclales-salsa/UCLALES-SALSA_Lx25_dx100_FixN_2D.nc</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>-1.233184e-01</td>
-      <td>69.539238</td>
-      <td>0.017833</td>
+      <td>4.962095e-01</td>
+      <td>-58.787388</td>
+      <td>0.027435</td>
       <td>2020-03-13 18:00:00</td>
-      <td>dharma/DHARMA_Lx25_dx100_FixN_2D.nc</td>
+      <td>uclales-salsa/UCLALES-SALSA_Lx25_dx100_FixN_2D.nc</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>1.394882e-16</td>
-      <td>7.000000</td>
-      <td>0.005487</td>
+      <td>-4.085708e-17</td>
+      <td>14.500000</td>
+      <td>0.002743</td>
       <td>2020-03-13 18:00:00</td>
-      <td>dharma/DHARMA_Lx25_dx100_FixN_2D.nc</td>
+      <td>uclales-salsa/UCLALES-SALSA_Lx25_dx100_FixN_2D.nc</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>9.654905e-17</td>
+      <td>34.500000</td>
+      <td>0.002743</td>
+      <td>2020-03-13 18:00:00</td>
+      <td>uclales-salsa/UCLALES-SALSA_Lx25_dx100_FixN_2D.nc</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>-1.932360e-01</td>
-      <td>226.028547</td>
-      <td>0.161866</td>
+      <td>-1.216006e-01</td>
+      <td>213.132625</td>
+      <td>0.190672</td>
       <td>2020-03-13 18:00:00</td>
-      <td>uclales-salsa/UCLALES-SALSA_Lx25_dx100_FixN_2D.nc</td>
+      <td>dharma/DHARMA_Lx25_dx100_FixN_2D.nc</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>4.971098e-01</td>
-      <td>184.228324</td>
-      <td>0.024691</td>
+      <td>-8.306709e-02</td>
+      <td>190.784345</td>
+      <td>0.042524</td>
       <td>2020-03-13 18:00:00</td>
-      <td>uclales-salsa/UCLALES-SALSA_Lx25_dx100_FixN_2D.nc</td>
+      <td>dharma/DHARMA_Lx25_dx100_FixN_2D.nc</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>-1.233184e-01</td>
-      <td>69.539238</td>
-      <td>0.017833</td>
+      <td>4.962095e-01</td>
+      <td>-58.787388</td>
+      <td>0.027435</td>
       <td>2020-03-13 18:00:00</td>
-      <td>uclales-salsa/UCLALES-SALSA_Lx25_dx100_FixN_2D.nc</td>
+      <td>dharma/DHARMA_Lx25_dx100_FixN_2D.nc</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>1.394882e-16</td>
-      <td>7.000000</td>
-      <td>0.005487</td>
+      <td>-4.085708e-17</td>
+      <td>14.500000</td>
+      <td>0.002743</td>
       <td>2020-03-13 18:00:00</td>
-      <td>uclales-salsa/UCLALES-SALSA_Lx25_dx100_FixN_2D.nc</td>
+      <td>dharma/DHARMA_Lx25_dx100_FixN_2D.nc</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>9.654905e-17</td>
+      <td>34.500000</td>
+      <td>0.002743</td>
+      <td>2020-03-13 18:00:00</td>
+      <td>dharma/DHARMA_Lx25_dx100_FixN_2D.nc</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> function_plotting_2d.py
-<span class="o">%</span><span class="k">matplotlib</span> inline
-
-    
-
-<span class="c1">#CLUST_COORDS = id_watershed(pseudo_alb,THRES_CLOUD,THRES_CONNECT,plotting=True)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 640x480 with 0 Axes&gt;
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1043,58 +1048,72 @@ cluster
   <tbody>
     <tr>
       <th>1</th>
-      <td>-1.932360e-01</td>
-      <td>226.028547</td>
-      <td>0.161866</td>
+      <td>-1.216006e-01</td>
+      <td>213.132625</td>
+      <td>0.190672</td>
       <td>1</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>4.971098e-01</td>
-      <td>184.228324</td>
-      <td>0.024691</td>
+      <td>-8.306709e-02</td>
+      <td>190.784345</td>
+      <td>0.042524</td>
       <td>1</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>-1.233184e-01</td>
-      <td>69.539238</td>
-      <td>0.017833</td>
+      <td>4.962095e-01</td>
+      <td>-58.787388</td>
+      <td>0.027435</td>
       <td>1</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>1.394882e-16</td>
-      <td>7.000000</td>
-      <td>0.005487</td>
+      <td>-4.085708e-17</td>
+      <td>14.500000</td>
+      <td>0.002743</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>9.654905e-17</td>
+      <td>34.500000</td>
+      <td>0.002743</td>
       <td>1</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>-1.932360e-01</td>
-      <td>226.028547</td>
-      <td>0.161866</td>
+      <td>-1.216006e-01</td>
+      <td>213.132625</td>
+      <td>0.190672</td>
       <td>1</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>4.971098e-01</td>
-      <td>184.228324</td>
-      <td>0.024691</td>
+      <td>-8.306709e-02</td>
+      <td>190.784345</td>
+      <td>0.042524</td>
       <td>1</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>-1.233184e-01</td>
-      <td>69.539238</td>
-      <td>0.017833</td>
+      <td>4.962095e-01</td>
+      <td>-58.787388</td>
+      <td>0.027435</td>
       <td>1</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>1.394882e-16</td>
-      <td>7.000000</td>
-      <td>0.005487</td>
+      <td>-4.085708e-17</td>
+      <td>14.500000</td>
+      <td>0.002743</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>9.654905e-17</td>
+      <td>34.500000</td>
+      <td>0.002743</td>
       <td>1</td>
     </tr>
   </tbody>
@@ -1108,10 +1127,10 @@ cluster
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x7f2481a1d2d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x7f247c3f3ee0&gt;
 </pre></div>
 </div>
-<img alt="../../_images/6d54621193cc57375eb71ffea1284e5b2b0943d94285ac5f8a9ad2c43a8d17c7.png" src="../../_images/6d54621193cc57375eb71ffea1284e5b2b0943d94285ac5f8a9ad2c43a8d17c7.png" />
+<img alt="../../_images/caa1d5b61654e954832edff4c267def3846a4a41ef8f3ed79b6f36546ed6f648.png" src="../../_images/caa1d5b61654e954832edff4c267def3846a4a41ef8f3ed79b6f36546ed6f648.png" />
 </div>
 </div>
 <div class="cell docutils container">
