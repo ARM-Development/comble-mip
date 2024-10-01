@@ -35,6 +35,7 @@ parts:
         - file: notebooks/plotting/example_plotting_2D.ipynb
         - file: notebooks/plotting/check_les_2D.ipynb
         - file: notebooks/plotting/check_les_3D.ipynb
+        - file: notebooks/plotting/example_plotting_2D_cluster.ipynb
     - file: scm_plotting_index
       sections:
         - file: notebooks/plotting/check_scm.ipynb
