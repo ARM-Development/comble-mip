@@ -302,9 +302,9 @@ def load_kazrkollias(case='20200313',t_filter = 1.,PATH='../../data_files/',aux_
     
     if aux_dat.shape[0] > 0:
         print('KAZR (Kollias): here using auxiliary field to estimate cloud-top temperature')
-        aux_dat['zdiff'] = np.abs(aux_dat['zf'] - np.float(p_df['zi']))
-        aux_dat['zdiff.25'] = np.abs(aux_dat['zf'] - np.float(p_df['zi.25']))
-        aux_dat['zdiff.75'] = np.abs(aux_dat['zf'] - np.float(p_df['zi.75']))
+        aux_dat['zdiff'] = np.abs(aux_dat['zf'] - np.float64(p_df['zi']))
+        aux_dat['zdiff.25'] = np.abs(aux_dat['zf'] - np.float64(p_df['zi.25']))
+        aux_dat['zdiff.75'] = np.abs(aux_dat['zf'] - np.float64(p_df['zi.75']))
         p_df['ctt'] = np.mean(aux_dat.loc[aux_dat['zdiff'] < 10,'ta']) - 273.15
         p_df['ctt.25'] = np.max(aux_dat.loc[aux_dat['zdiff.25'] < 10,'ta']) - 273.15
         p_df['ctt.75'] = np.min(aux_dat.loc[aux_dat['zdiff.75'] < 10,'ta']) - 273.15
@@ -1345,7 +1345,8 @@ def plot_2d(df_col2,var_vec,times,**kwargs):
                 else:
                     df_ave = df.groupby('zf').mean(numeric_only=True)
                     df_ave['zf'] = df_ave.index
-                if 'colflag' in set(df_ave):
+                #print(df_ave)
+                if 'colflag' in set(df):
                     df_ave['colflag'] = df['colflag'].unique()[0]
                 df = df_ave.copy()
             else:                        
