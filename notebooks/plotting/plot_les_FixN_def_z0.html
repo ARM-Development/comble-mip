@@ -476,10 +476,8 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> functions_plotting.py
 
 <span class="n">keyword_all</span> <span class="o">=</span> <span class="s1">&#39;FixN_def_z0.&#39;</span>
-<span class="n">sim_keyword_dharma</span> <span class="o">=</span> <span class="s1">&#39;dharma/sandbox/DHARMA_Lx25_dx200_&#39;</span><span class="o">+</span><span class="n">keyword_all</span>
-<span class="n">sim_keyword_icon</span> <span class="o">=</span> <span class="s1">&#39;icon/sandbox/ICON_Lx25_dx100_&#39;</span><span class="o">+</span><span class="n">keyword_all</span>
-<span class="n">sim_keyword_msu_sm</span> <span class="o">=</span> <span class="s1">&#39;icon/sandbox/MSU_RCC_LES_SM_Lx25_dx100_&#39;</span><span class="o">+</span><span class="n">keyword_all</span>
-<span class="n">sim_keyword_msu_dm</span> <span class="o">=</span> <span class="s1">&#39;icon/sandbox/MSU_RCC_LES_DM_Lx25_dx100_&#39;</span><span class="o">+</span><span class="n">keyword_all</span>
+<span class="n">sim_keyword_dharma</span> <span class="o">=</span> <span class="s1">&#39;dharma/sandbox/DHARMA_Lx25_dx100_&#39;</span><span class="o">+</span><span class="n">keyword_all</span>
+<span class="n">sim_keyword_icon</span> <span class="o">=</span> <span class="s1">&#39;icon/staged/ICON_Lx25_dx100_&#39;</span><span class="o">+</span><span class="n">keyword_all</span>
 <span class="n">sim_keyword_sam</span> <span class="o">=</span> <span class="s1">&#39;sam-pnnl/sandbox/SAM_Lx25_dx100_&#39;</span><span class="o">+</span><span class="n">keyword_all</span>
 <span class="n">sim_keyword_ucla</span> <span class="o">=</span> <span class="s1">&#39;uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_&#39;</span><span class="o">+</span><span class="n">keyword_all</span>
 <span class="n">sim_keyword_wrf</span> <span class="o">=</span> <span class="s1">&#39;wrf/sandbox/WRF_Lx25_dx100_&#39;</span><span class="o">+</span><span class="n">keyword_all</span>
@@ -511,8 +509,6 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_col_1d_dharma</span><span class="p">,</span><span class="n">df_col_2d_dharma</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword_dharma</span><span class="p">)</span>
 <span class="n">df_col_1d_icon</span><span class="p">,</span><span class="n">df_col_2d_icon</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword_icon</span><span class="p">)</span>
-<span class="n">df_col_1d_msu_sm</span><span class="p">,</span><span class="n">df_col_2d_msu_sm</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword_msu_sm</span><span class="p">)</span>
-<span class="n">df_col_1d_msu_dm</span><span class="p">,</span><span class="n">df_col_2d_msu_dm</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword_msu_dm</span><span class="p">)</span>
 <span class="n">df_col_1d_sam</span><span class="p">,</span><span class="n">df_col_2d_sam</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword_sam</span><span class="p">)</span>
 <span class="n">df_col_1d_ucla</span><span class="p">,</span><span class="n">df_col_2d_ucla</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword_ucla</span><span class="p">)</span>
 <span class="n">df_col_1d_wrf</span><span class="p">,</span><span class="n">df_col_2d_wrf</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword_wrf</span><span class="p">)</span>
@@ -565,61 +561,75 @@ dni_het shows NAN values in ../../output_les/icon/staged/ICON_Lx25_dx100_FixN_de
 dni_sip shows NAN values in ../../output_les/icon/staged/ICON_Lx25_dx100_FixN_def_z0.nc
 dni_hom shows NAN values in ../../output_les/icon/staged/ICON_Lx25_dx100_FixN_def_z0.nc
 Loading variables: f(time)
+../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_def_z0.nc
+ustar shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_def_z0.nc
+clt shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_def_z0.nc
+ssaf shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_def_z0.nc
 Loading variables: f(time,height)
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
-<span class="nn">File /opt/conda/lib/python3.10/site-packages/pandas/core/indexes/base.py:3802,</span> in <span class="ni">Index.get_loc</span><span class="nt">(self, key, method, tolerance)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3801</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">3802</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">casted_key</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3803</span> <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
-
-<span class="nn">File /opt/conda/lib/python3.10/site-packages/pandas/_libs/index.pyx:138,</span> in <span class="ni">pandas._libs.index.IndexEngine.get_loc</span><span class="nt">()</span>
-
-<span class="nn">File /opt/conda/lib/python3.10/site-packages/pandas/_libs/index.pyx:165,</span> in <span class="ni">pandas._libs.index.IndexEngine.get_loc</span><span class="nt">()</span>
-
-<span class="nn">File pandas/_libs/hashtable_class_helper.pxi:5745,</span> in <span class="ni">pandas._libs.hashtable.PyObjectHashTable.get_item</span><span class="nt">()</span>
-
-<span class="nn">File pandas/_libs/hashtable_class_helper.pxi:5753,</span> in <span class="ni">pandas._libs.hashtable.PyObjectHashTable.get_item</span><span class="nt">()</span>
-
-<span class="ne">KeyError</span>: &#39;time&#39;
-
-<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
-
-<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">df_col_1d_dharma</span><span class="p">,</span><span class="n">df_col_2d_dharma</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword_dharma</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">df_col_1d_icon</span><span class="p">,</span><span class="n">df_col_2d_icon</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword_icon</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">df_col_1d_msu_sm</span><span class="p">,</span><span class="n">df_col_2d_msu_sm</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword_msu_sm</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">df_col_1d_msu_dm</span><span class="p">,</span><span class="n">df_col_2d_msu_dm</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword_msu_dm</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">df_col_1d_sam</span><span class="p">,</span><span class="n">df_col_2d_sam</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword_sam</span><span class="p">)</span>
-
-<span class="nn">File /user-data-home/comble-mip/notebooks/plotting/functions_plotting.py:818,</span> in <span class="ni">load_sims</span><span class="nt">(path, var_vec_1d, var_vec_2d, t_shift, keyword, make_gray, drop_t0, diag_zi_ctt, diag_qltot, diag_qitot, QTHRES, subfolder)</span>
-<span class="g g-Whitespace">    </span><span class="mi">816</span>                     <span class="n">df_col</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df_col</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">cc</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df_col</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">tt</span><span class="p">),</span><span class="s1">&#39;zi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
-<span class="g g-Whitespace">    </span><span class="mi">817</span>                     <span class="n">df_col</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df_col</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">cc</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df_col</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">tt</span><span class="p">),</span><span class="s1">&#39;ctt&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
-<span class="ne">--&gt; </span><span class="mi">818</span> <span class="n">df_col</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span>  <span class="o">=</span> <span class="n">df_col</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">t_shift</span><span class="o">*</span><span class="mf">3600.</span>
-<span class="g g-Whitespace">    </span><span class="mi">819</span> <span class="n">df_col2</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_col2</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">t_shift</span><span class="o">*</span><span class="mf">3600.</span>
-<span class="g g-Whitespace">    </span><span class="mi">821</span> <span class="c1">## obtain lwp if lwpc and lwpr are available</span>
-
-<span class="nn">File /opt/conda/lib/python3.10/site-packages/pandas/core/frame.py:3807,</span> in <span class="ni">DataFrame.__getitem__</span><span class="nt">(self, key)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3805</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">nlevels</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">3806</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getitem_multilevel</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">3807</span> <span class="n">indexer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3808</span> <span class="k">if</span> <span class="n">is_integer</span><span class="p">(</span><span class="n">indexer</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">3809</span>     <span class="n">indexer</span> <span class="o">=</span> <span class="p">[</span><span class="n">indexer</span><span class="p">]</span>
-
-<span class="nn">File /opt/conda/lib/python3.10/site-packages/pandas/core/indexes/base.py:3804,</span> in <span class="ni">Index.get_loc</span><span class="nt">(self, key, method, tolerance)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3802</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">casted_key</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3803</span> <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">3804</span>     <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">err</span>
-<span class="g g-Whitespace">   </span><span class="mi">3805</span> <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">3806</span>     <span class="c1"># If we have a listlike key, _check_indexing_error will raise</span>
-<span class="g g-Whitespace">   </span><span class="mi">3807</span>     <span class="c1">#  InvalidIndexError. Otherwise we fall through and re-raise</span>
-<span class="g g-Whitespace">   </span><span class="mi">3808</span>     <span class="c1">#  the TypeError.</span>
-<span class="g g-Whitespace">   </span><span class="mi">3809</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_check_indexing_error</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-
-<span class="ne">KeyError</span>: &#39;time&#39;
+../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_def_z0.nc
+nlc shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_def_z0.nc
+na1 shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_def_z0.nc
+na2 shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_def_z0.nc
+na3 shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_def_z0.nc
+nlcic shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_def_z0.nc
+niic shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_def_z0.nc
+eps shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_def_z0.nc
+wth shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_def_z0.nc
+vf_thli shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_def_z0.nc
+wqv shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_def_z0.nc
+vf_qt shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_def_z0.nc
+flc shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_def_z0.nc
+prf shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_def_z0.nc
+prfi shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_def_z0.nc
+dth_rad shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_def_z0.nc
+dth_micro shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_def_z0.nc
+dth_turb shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_def_z0.nc
+dq_micro shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_def_z0.nc
+dq_turb shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_def_z0.nc
+dna_micro_warm shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_def_z0.nc
+dna_micro_cold shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_def_z0.nc
+dna_turb shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_def_z0.nc
+dni_het shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_def_z0.nc
+dni_sip shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_def_z0.nc
+dni_hom shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_def_z0.nc
+Loading variables: f(time)
+../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN_def_z0.nc
+ssaf shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN_def_z0.nc
+Loading variables: f(time,height)
+../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN_def_z0.nc
+na1 shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN_def_z0.nc
+na2 shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN_def_z0.nc
+na3 shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN_def_z0.nc
+wth shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN_def_z0.nc
+vf_thli shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN_def_z0.nc
+wqv shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN_def_z0.nc
+dth_rad shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN_def_z0.nc
+dth_micro shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN_def_z0.nc
+dth_turb shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN_def_z0.nc
+dq_micro shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN_def_z0.nc
+dq_turb shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN_def_z0.nc
+dna_micro_warm shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN_def_z0.nc
+dna_micro_cold shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN_def_z0.nc
+dna_turb shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN_def_z0.nc
+dni_sip shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN_def_z0.nc
+dni_hom shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN_def_z0.nc
+Loading variables: f(time)
+../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_z0.nc
+ssaf shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_z0.nc
+Loading variables: f(time,height)
+../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_z0.nc
+na1 shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_z0.nc
+na2 shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_z0.nc
+na3 shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_z0.nc
+eps shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_z0.nc
+rld shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_z0.nc
+rlu shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_z0.nc
+dna_micro_warm shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_z0.nc
+dna_micro_cold shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_z0.nc
+dna_turb shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_z0.nc
+dni_het shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_z0.nc
+dni_sip shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_z0.nc
+dni_hom shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_def_z0.nc
 </pre></div>
 </div>
 </div>
