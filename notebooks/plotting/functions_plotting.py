@@ -9,6 +9,7 @@ import csv
 import scipy
 import xarray as xr
 import types
+from tqdm import tqdm
 
 from math import log10, floor, isnan
 
