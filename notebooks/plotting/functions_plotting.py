@@ -940,6 +940,8 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
         df_col['cth'] = np.nan
         df_col['cbh'] = np.nan
         df_col['ctt'] = np.nan
+        df_col['pr_cb'] = np.nan
+        df_col['delta'] = np.nan
         for cc in np.unique(df_col['class']):
             print(cc)
             df_sub  = df_col.loc[df_col['class']==cc]
@@ -949,17 +951,19 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
                     #zi_step = df_sub.loc[df_sub['time'] == tt,'zi']
                     ## diagnosing inversion height from theta profiles
                     if(('qlc' in df_sub2.columns) & ('qic' in df_sub2.columns)):  
-                        theta_step = df_sub2.loc[df_sub2['time'] == tt,['zf','theta','qlc','qlr','qic','qis','qig']]
+                        theta_step = df_sub2.loc[df_sub2['time'] == tt,['zf','theta','qlc','qlr','qic','qis','qig','qv']]
                         theta_step['qic'] = theta_step['qic'].fillna(0)
                         theta_step['qis'] = theta_step['qis'].fillna(0)
                         theta_step['qig'] = theta_step['qig'].fillna(0)
                         theta_step['theta'] = theta_step['theta'] - lv/cp*(theta_step['qlc'] + theta_step['qlr']) - li/cp*(theta_step['qic']+theta_step['qis']+theta_step['qig'])
                         theta_step['qcond_tot'] = theta_step['qlc'] + theta_step['qlr'] + theta_step['qic']+theta_step['qis']+theta_step['qig']
+                        theta_step['q_tot'] = theta_step['qlc'] + theta_step['qlr'] + theta_step['qic']+theta_step['qis']+theta_step['qig']+theta_step['qv']
                     elif(('qlc' in df_sub2.columns) & ('qi' in df_sub2.columns)): 
                         theta_step = df_sub2.loc[df_sub2['time'] == tt,['zf','theta','qlc','qlr','qi']]                        
                         theta_step['qi'] = theta_step['qi'].fillna(0)                        
                         theta_step['theta'] = theta_step['theta'] - lv/cp*(theta_step['qlc'] + theta_step['qlr']) - li/cp*(theta_step['qi'])
                         theta_step['qcond_tot'] = theta_step['qlc'] + theta_step['qlr'] + theta_step['qi']
+                        theta_step['q_tot'] = theta_step['qlc'] + theta_step['qlr'] + theta_step['qi'] + theta_step['qv']
                     elif(('qlc' in df_sub2.columns) & ('qlr' in df_sub2.columns)):                          
                         theta_step = df_sub2.loc[df_sub2['time'] == tt,['zf','theta','qlc','qlr']]
                         if theta_step['qlr'].isna().sum() == 0:
@@ -967,9 +971,11 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
                         else:
                             theta_step['theta'] = theta_step['theta'] - lv/cp*theta_step['qlc']
                         theta_step['qcond_tot'] = theta_step['qlc'] + theta_step['qlr']
+                        theta_step['q_tot'] = theta_step['qlc'] + theta_step['qlr'] + theta_step['qv']
                     else:
                         theta_step = df_sub2.loc[df_sub2['time'] == tt,['zf','theta']]
                         theta_step['qcond_tot'] = 0
+                        theta_step['q_tot'] = theta_step['qv']
                     cbh = np.min(theta_step.loc[theta_step['qlc'] > 10.*QTHRES]['zf'])
                     cth = np.max(theta_step.loc[theta_step['qcond_tot'] > QTHRES]['zf'])
                     if not theta_step.empty:
@@ -977,17 +983,29 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
                     ## obtaining corresponding temperature at that level
                         ta_step = df_sub2.loc[df_sub2['time'] == tt,['zf','ta']]
                         ta_step['zf_diff'] = np.abs(ta_step['zf'] - cth) #zi_step)
+                        tb_step = df_sub2.loc[df_sub2['time'] == tt,['zf','prf']]
+                        tb_step['zf_diff'] = np.abs(tb_step['zf'] - cbh) #
+                        tc_step = theta_step.loc[:,['zf','q_tot']]
+                        tc_step['zf_diff_14'] = np.abs(tc_step['zf'] - (cth/4)) #
+                        tc_step['zf_diff_34'] = np.abs(tc_step['zf'] - (cth*3/4)) #
+                        #print(cth)
+                        #print(tc_step)
                         #print(df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),:])
                         #print(zi_step)
                         df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'cth'] = cth
                         df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'cbh'] = cbh
                         df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'zi'] = zi_step
                         df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'ctt'] = min(ta_step.loc[ta_step.zf_diff == ta_step.zf_diff.min(),'ta'], default=np.NAN) - 273.15
+                        df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'pr_cb'] = min(tb_step.loc[tb_step.zf_diff == tb_step.zf_diff.min(),'prf'], default=np.NAN) 
+                        if cth > 0:
+                            df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'delta'] = min(tc_step.loc[tc_step.zf_diff_14 == tc_step.zf_diff_14.min(),'q_tot'], default=np.NAN) - min(tc_step.loc[tc_step.zf_diff_34 == tc_step.zf_diff_34.min(),'q_tot'], default=np.NAN) 
                     else:
                         df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'cth'] = np.nan
                         df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'cbh'] = np.nan
                         df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'zi'] = np.nan
                         df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'ctt'] = np.nan
+                        df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'pr_cb'] = np.nan
+                        df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'delta'] = np.nan
     df_col['time']  = df_col['time'] + t_shift*3600.
     df_col2['time'] = df_col2['time'] + t_shift*3600.
     
