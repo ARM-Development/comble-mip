@@ -582,10 +582,6 @@ document.write(`
                     <span class="n">coords</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
                         <span class="n">lon</span> <span class="o">=</span> <span class="p">([</span><span class="s1">&#39;y_dist&#39;</span><span class="p">,</span><span class="s1">&#39;x_dist&#39;</span><span class="p">],</span><span class="n">ds_lon</span><span class="o">.</span><span class="n">data</span><span class="p">),</span>
                         <span class="n">lat</span> <span class="o">=</span> <span class="p">([</span><span class="s1">&#39;y_dist&#39;</span><span class="p">,</span><span class="s1">&#39;x_dist&#39;</span><span class="p">],</span><span class="n">ds_lat</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
-                    <span class="c1">#dims = [&#39;y&#39;,&#39;x&#39;],</span>
-                    <span class="c1">#coords = dict(</span>
-                    <span class="c1">#    lon = ([&#39;y&#39;,&#39;x&#39;],ds_lon.data),</span>
-                    <span class="c1">#    lat = ([&#39;y&#39;,&#39;x&#39;],ds_lat.data)</span>
                     <span class="p">))</span>
             
                 <span class="c1">## compute meridional and latitudal distance to center</span>
@@ -602,38 +598,25 @@ document.write(`
                 <span class="c1">## limit to requested size</span>
                 <span class="n">da</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">da</span><span class="p">[</span><span class="s1">&#39;y_dist&#39;</span><span class="p">][:,:])</span> <span class="o">&lt;=</span> <span class="n">Spat_Window</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">da</span><span class="p">[</span><span class="s1">&#39;x_dist&#39;</span><span class="p">][:,:])</span> <span class="o">&lt;=</span> <span class="n">Spat_Window</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
                 
+                <span class="c1">## consolidate data by rounding x and y dimensions</span>
                 <span class="n">da</span><span class="p">[</span><span class="s1">&#39;x_round&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">da</span><span class="p">[</span><span class="s1">&#39;x_dist&#39;</span><span class="p">])</span>
                 <span class="n">da</span><span class="p">[</span><span class="s1">&#39;y_round&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">da</span><span class="p">[</span><span class="s1">&#39;y_dist&#39;</span><span class="p">])</span>
                 
+                <span class="c1">## create new data array that we&#39;re going to fill</span>
                 <span class="n">da_stat_stack</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;wspd&#39;</span><span class="p">,</span><span class="n">coords</span><span class="o">=</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">da</span><span class="p">[</span><span class="s1">&#39;y_round&#39;</span><span class="p">]),</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">da</span><span class="p">[</span><span class="s1">&#39;x_round&#39;</span><span class="p">])))</span>
                 <span class="n">da_stat_stack</span> <span class="o">=</span> <span class="n">da_stat_stack</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="s1">&#39;dim_0&#39;</span><span class="p">:</span> <span class="s1">&#39;y_round&#39;</span><span class="p">,</span><span class="s1">&#39;dim_1&#39;</span><span class="p">:</span> <span class="s1">&#39;x_round&#39;</span><span class="p">})</span>
                 
+                <span class="c1">## loop through each 2D grid cell and compute mean</span>
                 <span class="n">countyy</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
                 <span class="k">for</span> <span class="n">yy</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">da</span><span class="p">[</span><span class="s1">&#39;y_round&#39;</span><span class="p">])):</span>
                     <span class="n">countxx</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
                     <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">da</span><span class="p">[</span><span class="s1">&#39;x_round&#39;</span><span class="p">]):</span>
-                        <span class="c1">#print (da.where(da[&#39;x_round&#39;]==xx, drop=True).squeeze())</span>
-                        <span class="c1">#sys.exit()</span>
-                        <span class="c1">#print (da.where(da[&#39;x_round&#39;]==xx))</span>
-                        <span class="c1">#da_sub = da[da[&#39;y_round&#39;] == yy]</span>
-                        <span class="c1">#da_stat = da_sub.groupby(&#39;x_round&#39;).mean() </span>
-                        <span class="c1">#da_stat[&#39;y_round&#39;] = np.float64(yy)</span>
-
                         <span class="n">da_sub</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">da</span><span class="p">[</span><span class="s1">&#39;y_round&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">yy</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">da</span><span class="p">[</span><span class="s1">&#39;x_round&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">xx</span><span class="p">),</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
                         <span class="n">da_stat</span> <span class="o">=</span> <span class="n">da_sub</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
                         <span class="n">da_stat</span><span class="p">[</span><span class="s1">&#39;y_round&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">(</span><span class="n">yy</span><span class="p">)</span>
                         <span class="n">da_stat</span><span class="p">[</span><span class="s1">&#39;x_round&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">(</span><span class="n">xx</span><span class="p">)</span>
-                        <span class="c1">#print (da_stat)</span>
 
                         <span class="n">da_stat_stack</span><span class="p">[</span><span class="n">countyy</span><span class="p">,</span><span class="n">countxx</span><span class="p">]</span> <span class="o">=</span> <span class="n">da_stat</span>
-
-                        <span class="c1">#if (yy == np.unique(da[&#39;y_round&#39;])[0] and xx == np.unique(da[&#39;x_round&#39;])[0]):</span>
-                        <span class="c1">#    #da_stat_stack = xr.concat([da_stat],dim=[&#39;x_round&#39;,&#39;y_round&#39;])</span>
-                        <span class="c1">#    da_stat_stack = da_stat</span>
-                        <span class="c1">#else:</span>
-                        <span class="c1">#    print (da_stat_stack)</span>
-                        <span class="c1">#    print (da_stat)</span>
-                        <span class="c1">#    da_stat_stack = xr.concat([da_stat_stack,da_stat],dim=[&#39;y_round&#39;])</span>
 
                         <span class="n">countxx</span><span class="o">+=-</span><span class="mi">1</span>
 
@@ -657,15 +640,12 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR 1: PROJ: proj_create_from_database: Open of /opt/conda/share/proj failed
-</pre></div>
-</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2020-03-13T02:00:00
 (308, 310)
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 308/308 [01:17&lt;00:00,  3.96it/s]
-100%|██████████| 168/168 [01:14&lt;00:00,  2.27it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 308/308 [01:19&lt;00:00,  3.90it/s]
+100%|██████████| 168/168 [01:12&lt;00:00,  2.32it/s]
 </pre></div>
 </div>
 </div>
@@ -713,10 +693,26 @@ document.write(`
   ds_merge = xr.merge([df_col_2d[&#39;wspd&#39;],da_stat_ststst.drop(&#39;time_diff&#39;)])[&#39;wspd&#39;]
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.plot.facetgrid.FacetGrid at 0x7f5c30848a00&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.plot.facetgrid.FacetGrid at 0x7f5c32b88130&gt;
 </pre></div>
 </div>
 <img alt="../../_images/be5b0937c359d9d65d94e657e1e247c39143a607cd59a23ddb8ba71b2d64b0b1.png" src="../../_images/be5b0937c359d9d65d94e657e1e247c39143a607cd59a23ddb8ba71b2d64b0b1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SAR&#39;</span><span class="p">,</span><span class="s1">&#39;DHARMA&#39;</span><span class="p">,</span><span class="s1">&#39;UCLALES-SALSA&#39;</span><span class="p">,</span><span class="s1">&#39;WRF&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">ds_merge</span><span class="p">)[</span><span class="mi">2</span><span class="p">]):</span>
+    <span class="n">xr</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">ds_merge</span><span class="p">[:,:,</span><span class="n">ii</span><span class="p">,:],</span><span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;step&#39;</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mf">2.</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="n">plt_labels</span><span class="p">[</span><span class="n">ii</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f5c20b3fe50&gt;
+</pre></div>
+</div>
+<img alt="../../_images/4adef6b34b8c7da144b0ae36252343fbff6556c7ab44d0ef0d021314fd1e0929.png" src="../../_images/4adef6b34b8c7da144b0ae36252343fbff6556c7ab44d0ef0d021314fd1e0929.png" />
 </div>
 </div>
 </section>
