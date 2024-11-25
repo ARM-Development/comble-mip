@@ -26,6 +26,7 @@ vbase = 'opd_drops'
 def obtain_time(path,input_filename,type='alt_0'):
     
     file = open(path + '/dharma.log', "r")
+    #print(input_filename)
     #print(str(int(input_filename.stem.split(type)[1])))#.strip("0"))
     for line in file:
         #col_oi = line.split('|')[0]
@@ -37,13 +38,14 @@ def obtain_time(path,input_filename,type='alt_0'):
                 time_2d = float(line.split('|')[2])
     return time_2d
 
-def read_2d(FILE,vbase='opd_drops'):
+def read_2d(FILE,vbase='opd_drops',retain=False,there=False):
     
     OUTDIR = os.path.dirname(os.path.abspath(FILE)) + '/tmp/'
-    Path(OUTDIR).mkdir(parents=True, exist_ok=True)
-    tar = tarfile.open(FILE)
-    tar.extractall(OUTDIR)
-    tar.close()
+    if not there:
+        Path(OUTDIR).mkdir(parents=True, exist_ok=True)
+        tar = tarfile.open(FILE)
+        tar.extractall(OUTDIR)
+        tar.close()
     
     ## gather info from first file
     ALT_FILE_TMP = OUTDIR + Path(FILE).stem + '_0000.cdf'
@@ -84,9 +86,10 @@ def read_2d(FILE,vbase='opd_drops'):
     
         ## tidy up
     files = glob.glob(OUTDIR + '/*cdf')
-    for f in files:
-        os.remove(f)
-    os.rmdir(OUTDIR)
+    if not retain:
+        for f in files:
+            os.remove(f)
+        os.rmdir(OUTDIR)
     
     var_big = var_big.reshape(1,shape(var_big)[0],shape(var_big)[1])
     
