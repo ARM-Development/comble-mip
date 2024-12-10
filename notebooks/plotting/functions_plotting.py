@@ -727,7 +727,10 @@ def load_sims_2d(path,var_vec_2d,t_shift = 0,keyword='',subfolder='',ignore='pla
                         ncdata_stat_stack = xr.concat([ncdata_stat_stack,ncdata_stat],dim='y_round',coords='all')
                     counter_y += 1
                 ncdata= ncdata_stat_stack
-            
+            else:
+                ncdata['x_round_ph'] = ncdata['x']/1000.0
+                ncdata['y_round_ph'] = ncdata['y']/1000.0
+                    
             if count_con == 0:
                 df_col2 = ncdata.copy()
             else:
