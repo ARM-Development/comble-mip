@@ -482,6 +482,9 @@
 
 <span class="c1">## set domain to be extracted</span>
 <span class="n">Spat_Window</span> <span class="o">=</span> <span class="mf">125.0</span> <span class="c1">## km</span>
+
+<span class="c1">## downscale (default or upscale)</span>
+<span class="n">upscale</span> <span class="o">=</span> <span class="kc">True</span>
 </pre></div>
 </div>
 </div>
@@ -493,6 +496,25 @@
 <span class="k">for</span> <span class="n">toi</span> <span class="ow">in</span> <span class="n">Time_Vec</span><span class="p">:</span>
     <span class="n">tprop</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="s1">&#39;2020-03-13T00:00:00&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">toi</span><span class="p">),</span><span class="s1">&#39;h&#39;</span><span class="p">))</span>
            
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s2">&quot;/user-data-home/comble-mip/notebooks/plotting/&quot;</span><span class="p">)</span>
+<span class="o">%</span><span class="k">run</span> functions_plotting.py 
+
+<span class="n">var_vec_2d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;alb&#39;</span><span class="p">,</span><span class="s1">&#39;opt&#39;</span><span class="p">]</span>
+
+<span class="c1">## load all simulations located in subfolders of the given directory</span>
+<span class="k">if</span> <span class="n">upscale</span><span class="p">:</span>
+    <span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">load_sims_2d</span><span class="p">(</span><span class="s1">&#39;/data/project/comble-mip/output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword</span><span class="p">,</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">Time_Vec</span> <span class="k">if</span> <span class="n">t</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">],</span><span class="n">coarsen</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">df_col_2d</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">df_col_2d</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">df_col_2d</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">df_col_2d</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">df_col_2d</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="s1">&#39;y&#39;</span><span class="p">:</span><span class="s1">&#39;y_round&#39;</span><span class="p">,</span><span class="s1">&#39;x&#39;</span><span class="p">:</span><span class="s1">&#39;x_round&#39;</span><span class="p">})</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">load_sims_2d</span><span class="p">(</span><span class="s1">&#39;/data/project/comble-mip/output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword</span><span class="p">,</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">Time_Vec</span> <span class="k">if</span> <span class="n">t</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">],</span><span class="n">coarsen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -582,7 +604,11 @@
                 <span class="n">da</span> <span class="o">=</span> <span class="n">da</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">da</span><span class="p">[</span><span class="s1">&#39;y_dist&#39;</span><span class="p">])</span> <span class="o">&lt;=</span> <span class="n">Spat_Window</span><span class="o">/</span><span class="mi">2</span><span class="p">]</span>
                 
                 <span class="c1">## normalize radiance values to resemble LES pseudo-albedo</span>
-                <span class="n">da</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">((</span><span class="n">da</span><span class="o">.</span><span class="n">data</span> <span class="o">-</span> <span class="n">da</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">min</span><span class="p">())</span><span class="o">/</span><span class="p">(</span><span class="n">da</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">da</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">min</span><span class="p">()))</span><span class="o">*</span><span class="mf">0.8</span>
+                <span class="c1">## (using quantiles to avoid dominance of few bright pixels)</span>
+                <span class="n">fact</span> <span class="o">=</span> <span class="mf">0.9</span>
+                <span class="k">if</span> <span class="n">Time_OI</span> <span class="ow">in</span> <span class="n">df_col_2d</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]:</span>
+                    <span class="n">fact</span> <span class="o">=</span> <span class="n">df_col_2d</span><span class="p">[</span><span class="s1">&#39;alb&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">Time_OI</span><span class="p">)</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
+                <span class="n">da</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">((</span><span class="n">da</span><span class="o">.</span><span class="n">data</span> <span class="o">-</span> <span class="n">da</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">min</span><span class="p">())</span><span class="o">/</span><span class="p">(</span><span class="n">da</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span><span class="o">.</span><span class="n">data</span> <span class="o">-</span> <span class="n">da</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">min</span><span class="p">()))</span><span class="o">*</span><span class="n">fact</span>
                     
                 <span class="n">da</span><span class="p">[</span><span class="s1">&#39;x_round&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">da</span><span class="p">[</span><span class="s1">&#39;x_dist&#39;</span><span class="p">])</span>
                 <span class="n">da</span><span class="p">[</span><span class="s1">&#39;y_round&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">da</span><span class="p">[</span><span class="s1">&#39;y_dist&#39;</span><span class="p">])</span>
@@ -595,7 +621,12 @@
                         <span class="n">da_stat_stack</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">da_stat</span><span class="p">],</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;y_round&#39;</span><span class="p">)</span>
                     <span class="k">else</span><span class="p">:</span>
                         <span class="n">da_stat_stack</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">da_stat_stack</span><span class="p">,</span><span class="n">da_stat</span><span class="p">],</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;y_round&#39;</span><span class="p">)</span>
-                
+                    
+                <span class="k">if</span> <span class="n">upscale</span><span class="p">:</span>
+                    <span class="n">x_round_new</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">da_stat_stack</span><span class="o">.</span><span class="n">x_round</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">da_stat_stack</span><span class="o">.</span><span class="n">x_round</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">10</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">da_stat_stack</span><span class="p">[</span><span class="s1">&#39;x_round&#39;</span><span class="p">])</span><span class="o">-</span><span class="mi">9</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># da_stat_stack[&quot;x_round&quot;] * 4)</span>
+                    <span class="n">y_round_new</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">da_stat_stack</span><span class="o">.</span><span class="n">y_round</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">da_stat_stack</span><span class="o">.</span><span class="n">y_round</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">10</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">da_stat_stack</span><span class="p">[</span><span class="s1">&#39;y_round&#39;</span><span class="p">])</span><span class="o">-</span><span class="mi">9</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># da_stat_stack[&quot;x_round&quot;] * 4)</span>
+                    <span class="n">da_stat_stack</span> <span class="o">=</span> <span class="n">da_stat_stack</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">x_round</span><span class="o">=</span><span class="n">x_round_new</span><span class="p">,</span><span class="n">y_round</span><span class="o">=</span><span class="n">y_round_new</span><span class="p">)</span>
+                                        
                 <span class="n">da_stat_stack</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Time_OI</span>
                 <span class="n">da_stat_stack</span><span class="p">[</span><span class="s1">&#39;time_diff&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">diff_time</span>
                 <span class="k">if</span> <span class="n">counter_time</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -657,59 +688,27 @@ VJ102DNB.A2020073.1212.002.2020073182754.nc
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.plot.facetgrid.FacetGrid at 0x7f48614e2290&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.plot.facetgrid.FacetGrid at 0x7fa59cf90f70&gt;
 </pre></div>
 </div>
-<img alt="../../_images/b3fafaf25b2d840636f0e3dbcaff6aee1e6e362b27a3a0e99d1c3d3e5cd1c992.png" src="../../_images/b3fafaf25b2d840636f0e3dbcaff6aee1e6e362b27a3a0e99d1c3d3e5cd1c992.png" />
+<img alt="../../_images/4b8273ac6bf53652c5c4162e2816ec0dfc3459b40e0bd5714556b5f7c9b76775.png" src="../../_images/4b8273ac6bf53652c5c4162e2816ec0dfc3459b40e0bd5714556b5f7c9b76775.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s2">&quot;/user-data-home/comble-mip/notebooks/plotting/&quot;</span><span class="p">)</span>
-<span class="o">%</span><span class="k">run</span> functions_plotting.py 
-
-<span class="n">var_vec_2d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;alb&#39;</span><span class="p">,</span><span class="s1">&#39;opt&#39;</span><span class="p">]</span>
-
-<span class="c1">## load all simulations located in subfolders of the given directory</span>
-<span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">load_sims_2d</span><span class="p">(</span><span class="s1">&#39;/data/project/comble-mip/output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword</span><span class="p">,</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">Time_Vec</span> <span class="k">if</span> <span class="n">t</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">],</span><span class="n">coarsen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xr</span><span class="o">.</span><span class="n">merge</span><span class="p">([</span><span class="n">df_col_2d</span><span class="p">[</span><span class="s1">&#39;alb&#39;</span><span class="p">],</span><span class="n">da_stat_ststst</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;time_diff&#39;</span><span class="p">)])[</span><span class="s1">&#39;alb&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;x_round&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;y_round&#39;</span><span class="p">,</span><span class="n">row</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s1">&#39;Source&#39;</span><span class="p">,</span><span class="n">robust</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time,x,y)
-/data/project/comble-mip/output_les/wrf/WRF_Lx25_dx100_FixN_2D.nc
-NaN values in alb
-NaN values in opt
-/data/project/comble-mip/output_les/dharma/DHARMA_Lx125_dx100_FixN_2D.nc
-/data/project/comble-mip/output_les/dharma/DHARMA_Lx25_dx100_FixN_2D.nc
-/data/project/comble-mip/output_les/uclales-salsa/UCLALES-SALSA_Lx25_dx100_FixN_2D.nc
-...adjusting x and y values
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_140/2479718957.py:1: DeprecationWarning: dropping variables using `drop` is deprecated; use drop_vars.
+  xr.merge([df_col_2d[&#39;alb&#39;],da_stat_ststst.drop(&#39;time_diff&#39;)])[&#39;alb&#39;].plot(x=&#39;x_round&#39;,y=&#39;y_round&#39;,row=&#39;time&#39;,col=&#39;Source&#39;,robust=True)
 </pre></div>
 </div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#df_col_2d[&#39;alb&#39;].plot(row=&#39;time&#39;,col_wrap=7,col=&#39;Source&#39;)</span>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.plot.facetgrid.FacetGrid at 0x7fa51d2191b0&gt;
 </pre></div>
 </div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xr</span><span class="o">.</span><span class="n">merge</span><span class="p">([</span><span class="n">df_col_2d</span><span class="p">[</span><span class="s1">&#39;alb&#39;</span><span class="p">],</span><span class="n">da_stat_ststst</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;time_diff&#39;</span><span class="p">)])[</span><span class="s1">&#39;alb&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s1">&#39;Source&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_392/3852338689.py:1: DeprecationWarning: dropping variables using `drop` is deprecated; use drop_vars.
-  xr.merge([df_col_2d[&#39;alb&#39;],da_stat_ststst.drop(&#39;time_diff&#39;)])[&#39;alb&#39;].plot(row=&#39;time&#39;,col=&#39;Source&#39;)
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.plot.facetgrid.FacetGrid at 0x7f48606cee60&gt;
-</pre></div>
-</div>
-<img alt="../../_images/096b2d0e2f6e230e519648252f6f9f3ef14ea2e938e1c8390f5cb5f6dd82029e.png" src="../../_images/096b2d0e2f6e230e519648252f6f9f3ef14ea2e938e1c8390f5cb5f6dd82029e.png" />
+<img alt="../../_images/db55bc6a7dd0e6e2ba4bc363ae80097541771c0cbb99c8522def7c882cc238e3.png" src="../../_images/db55bc6a7dd0e6e2ba4bc363ae80097541771c0cbb99c8522def7c882cc238e3.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1171,23 +1170,6 @@ Attributes:
                55.0,  56.0,  57.0,  58.0,  59.0,  60.0,  61.0,  62.0,  63.0,
                64.0],
              dtype=&#x27;float64&#x27;, name=&#x27;y_round&#x27;, length=129))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-69e03c7e-c3ba-41fe-9142-3d722911d35f' class='xr-section-summary-in' type='checkbox'  checked><label for='section-69e03c7e-c3ba-41fe-9142-3d722911d35f' class='xr-section-summary' >Attributes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>1</dd><dt><span>long_name :</span></dt><dd>pseudo-albedo</dd></dl></div></li></ul></div></div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_col_2d_tot</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">Source</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df_col_2d_tot</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">Source</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;df_col_2d_tot&#39; is not defined
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
