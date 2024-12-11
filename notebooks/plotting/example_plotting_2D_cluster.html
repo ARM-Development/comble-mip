@@ -483,11 +483,11 @@
 <span class="c1">## set domain to be extracted</span>
 <span class="n">Spat_Window</span> <span class="o">=</span> <span class="mf">125.0</span> <span class="c1">## km</span>
 
-<span class="c1">## downscale to 1 km resolution (default or else upscale)</span>
+<span class="c1">## downscale to 1 km resolution (default: True)</span>
 <span class="n">upscale</span> <span class="o">=</span> <span class="kc">True</span>
 
-<span class="c1">## repeat small domain output to match large domain</span>
-<span class="n">tiling</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="c1">## repeat small domain output to match large domain (default: False)</span>
+<span class="n">tiling</span> <span class="o">=</span> <span class="kc">False</span> 
 </pre></div>
 </div>
 </div>
@@ -792,14 +792,14 @@ VJ102DNB.A2020073.1212.002.2020073182754.nc
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_225/2479718957.py:1: DeprecationWarning: dropping variables using `drop` is deprecated; use drop_vars.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_127/2479718957.py:1: DeprecationWarning: dropping variables using `drop` is deprecated; use drop_vars.
   xr.merge([df_col_2d[&#39;alb&#39;],da_stat_ststst.drop(&#39;time_diff&#39;)])[&#39;alb&#39;].plot(x=&#39;x_round&#39;,y=&#39;y_round&#39;,row=&#39;time&#39;,col=&#39;Source&#39;,robust=True)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.plot.facetgrid.FacetGrid at 0x7fd814faadd0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.plot.facetgrid.FacetGrid at 0x7f1707673040&gt;
 </pre></div>
 </div>
-<img alt="../../_images/e50a91ebc60708735f988337a7ac8331149d6e7757f1da5e9fd14f50c6b73209.png" src="../../_images/e50a91ebc60708735f988337a7ac8331149d6e7757f1da5e9fd14f50c6b73209.png" />
+<img alt="../../_images/db55bc6a7dd0e6e2ba4bc363ae80097541771c0cbb99c8522def7c882cc238e3.png" src="../../_images/db55bc6a7dd0e6e2ba4bc363ae80097541771c0cbb99c8522def7c882cc238e3.png" />
 </div>
 </div>
 <div class="cell docutils container">
