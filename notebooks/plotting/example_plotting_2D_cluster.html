@@ -483,8 +483,11 @@
 <span class="c1">## set domain to be extracted</span>
 <span class="n">Spat_Window</span> <span class="o">=</span> <span class="mf">125.0</span> <span class="c1">## km</span>
 
-<span class="c1">## downscale (default or upscale)</span>
+<span class="c1">## downscale to 1 km resolution (default or else upscale)</span>
 <span class="n">upscale</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="c1">## repeat small domain output to match large domain</span>
+<span class="n">tiling</span> <span class="o">=</span> <span class="kc">True</span>
 </pre></div>
 </div>
 </div>
@@ -502,12 +505,13 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s2">&quot;/user-data-home/comble-mip/notebooks/plotting/&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## load all simulations located in subfolders of the given directory</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s2">&quot;/user-data-home/comble-mip/notebooks/plotting/&quot;</span><span class="p">)</span>
 <span class="o">%</span><span class="k">run</span> functions_plotting.py 
 
 <span class="n">var_vec_2d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;alb&#39;</span><span class="p">,</span><span class="s1">&#39;opt&#39;</span><span class="p">]</span>
 
-<span class="c1">## load all simulations located in subfolders of the given directory</span>
 <span class="k">if</span> <span class="n">upscale</span><span class="p">:</span>
     <span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">load_sims_2d</span><span class="p">(</span><span class="s1">&#39;/data/project/comble-mip/output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword</span><span class="p">,</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">Time_Vec</span> <span class="k">if</span> <span class="n">t</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">],</span><span class="n">coarsen</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="n">df_col_2d</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">df_col_2d</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
@@ -515,6 +519,93 @@
     <span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">df_col_2d</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="s1">&#39;y&#39;</span><span class="p">:</span><span class="s1">&#39;y_round&#39;</span><span class="p">,</span><span class="s1">&#39;x&#39;</span><span class="p">:</span><span class="s1">&#39;x_round&#39;</span><span class="p">})</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">load_sims_2d</span><span class="p">(</span><span class="s1">&#39;/data/project/comble-mip/output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword</span><span class="p">,</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">Time_Vec</span> <span class="k">if</span> <span class="n">t</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">],</span><span class="n">coarsen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time,x,y)
+/data/project/comble-mip/output_les/wrf/WRF_Lx25_dx100_FixN_2D.nc
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR 1: PROJ: proj_create_from_database: Open of /opt/conda/share/proj failed
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NaN values in alb
+NaN values in opt
+/data/project/comble-mip/output_les/dharma/DHARMA_Lx125_dx100_FixN_2D.nc
+/data/project/comble-mip/output_les/dharma/DHARMA_Lx25_dx100_FixN_2D.nc
+/data/project/comble-mip/output_les/uclales-salsa/UCLALES-SALSA_Lx25_dx100_FixN_2D.nc
+...adjusting x and y values
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## for small domain simulations, repeat 2D output to match large domain (so-called &quot;tiling&quot;)</span>
+
+<span class="k">for</span> <span class="n">si</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_col_2d</span><span class="p">[</span><span class="s1">&#39;Source&#39;</span><span class="p">])):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">df_col_2d</span><span class="p">[</span><span class="s1">&#39;Source&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">si</span><span class="p">])</span>
+    <span class="n">x_act</span> <span class="o">=</span> <span class="n">df_col_2d</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">Source</span><span class="o">=</span><span class="n">si</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;x_round&#39;</span><span class="p">,</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">)[</span><span class="s1">&#39;x_round&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x_act</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+    <span class="k">if</span> <span class="n">x_act</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">:</span>  <span class="c1">## nothing to be done, simply copy</span>
+        <span class="n">df_sim</span> <span class="o">=</span> <span class="n">df_col_2d</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">Source</span><span class="o">=</span><span class="n">si</span><span class="p">)</span><span class="o">.</span><span class="n">drop_vars</span><span class="p">(</span><span class="s1">&#39;Source&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>                 <span class="c1">## tile</span>
+        <span class="k">for</span> <span class="n">ti</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_col_2d</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">])):</span>
+            <span class="n">df_core</span> <span class="o">=</span> <span class="n">df_col_2d</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">Source</span><span class="o">=</span><span class="n">si</span><span class="p">)</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">ti</span><span class="p">)</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">x_round</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">x_act</span><span class="p">),</span><span class="nb">max</span><span class="p">(</span><span class="n">x_act</span><span class="p">)))</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">y_round</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">x_act</span><span class="p">),</span><span class="nb">max</span><span class="p">(</span><span class="n">x_act</span><span class="p">)))</span><span class="o">.</span><span class="n">drop_vars</span><span class="p">([</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="s1">&#39;Source&#39;</span><span class="p">])</span>
+                    
+            <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">xri</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span>        
+                <span class="n">df_copy</span> <span class="o">=</span> <span class="n">df_core</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                <span class="n">df_copy</span><span class="p">[</span><span class="s1">&#39;x_round&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">df_core</span><span class="p">[</span><span class="s1">&#39;x_round&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">xri</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_act</span><span class="p">)</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+                
+                <span class="k">if</span> <span class="n">count</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">df_sim_tiled</span> <span class="o">=</span> <span class="n">df_copy</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">df_sim_tiled</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_sim_tiled</span><span class="p">,</span><span class="n">df_copy</span><span class="p">],</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;x_round&#39;</span><span class="p">,</span><span class="n">coords</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+                <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+                
+            <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">yri</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span>   
+                <span class="n">df_copy</span> <span class="o">=</span> <span class="n">df_sim_tiled</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                <span class="n">df_copy</span><span class="p">[</span><span class="s1">&#39;y_round&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">df_core</span><span class="p">[</span><span class="s1">&#39;y_round&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">yri</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_act</span><span class="p">)</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+                    
+                <span class="k">if</span> <span class="n">count</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">df_sim_tiled_2</span> <span class="o">=</span> <span class="n">df_copy</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">df_sim_tiled_2</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_sim_tiled_2</span><span class="p">,</span><span class="n">df_copy</span><span class="p">],</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;y_round&#39;</span><span class="p">,</span><span class="n">coords</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+                <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+                
+            <span class="n">df_sim_tiled_2</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_col_2d</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ti</span><span class="p">]</span>
+            <span class="n">df_sim_tiled_2</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_sim_tiled_2</span><span class="p">],</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="n">coords</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">ti</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">df_sim_tcol</span> <span class="o">=</span> <span class="n">df_sim_tiled_2</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">df_sim_tcol</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_sim_tcol</span><span class="p">,</span><span class="n">df_sim_tiled_2</span><span class="p">],</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="n">coords</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+                
+        <span class="n">df_sim</span> <span class="o">=</span> <span class="n">df_sim_tcol</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="n">df_sim</span><span class="p">[</span><span class="s1">&#39;Source&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_col_2d</span><span class="p">[</span><span class="s1">&#39;Source&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">si</span><span class="p">]</span>
+    <span class="n">df_sim</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_sim</span><span class="p">],</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;Source&#39;</span><span class="p">,</span><span class="n">coords</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">si</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">df_sim_scol</span> <span class="o">=</span> <span class="n">df_sim</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">df_sim_scol</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_sim_scol</span><span class="p">,</span><span class="n">df_sim</span><span class="p">],</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;Source&#39;</span><span class="p">,</span><span class="n">coords</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+        
+<span class="k">if</span> <span class="n">tiling</span><span class="p">:</span>
+    <span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">df_sim_scol</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>wrf/WRF_Lx25_dx100_FixN_2D.nc
+12.7
+dharma/DHARMA_Lx125_dx100_FixN_2D.nc
+63.9
+dharma/DHARMA_Lx25_dx100_FixN_2D.nc
+12.7
+uclales-salsa/UCLALES-SALSA_Lx25_dx100_FixN_2D.nc
+12.7
 </pre></div>
 </div>
 </div>
@@ -701,14 +792,14 @@ VJ102DNB.A2020073.1212.002.2020073182754.nc
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_140/2479718957.py:1: DeprecationWarning: dropping variables using `drop` is deprecated; use drop_vars.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_225/2479718957.py:1: DeprecationWarning: dropping variables using `drop` is deprecated; use drop_vars.
   xr.merge([df_col_2d[&#39;alb&#39;],da_stat_ststst.drop(&#39;time_diff&#39;)])[&#39;alb&#39;].plot(x=&#39;x_round&#39;,y=&#39;y_round&#39;,row=&#39;time&#39;,col=&#39;Source&#39;,robust=True)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.plot.facetgrid.FacetGrid at 0x7fa51d2191b0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.plot.facetgrid.FacetGrid at 0x7fd814faadd0&gt;
 </pre></div>
 </div>
-<img alt="../../_images/db55bc6a7dd0e6e2ba4bc363ae80097541771c0cbb99c8522def7c882cc238e3.png" src="../../_images/db55bc6a7dd0e6e2ba4bc363ae80097541771c0cbb99c8522def7c882cc238e3.png" />
+<img alt="../../_images/e50a91ebc60708735f988337a7ac8331149d6e7757f1da5e9fd14f50c6b73209.png" src="../../_images/e50a91ebc60708735f988337a7ac8331149d6e7757f1da5e9fd14f50c6b73209.png" />
 </div>
 </div>
 <div class="cell docutils container">
