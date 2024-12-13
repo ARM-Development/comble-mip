@@ -963,13 +963,13 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
                         theta_step['qcond_tot'] = theta_step['qlc'] + theta_step['qlr'] + theta_step['qic']+theta_step['qis']+theta_step['qig']
                         theta_step['q_tot'] = theta_step['qlc'] + theta_step['qlr'] + theta_step['qic']+theta_step['qis']+theta_step['qig']+theta_step['qv']
                     elif(('qlc' in df_sub2.columns) & ('qi' in df_sub2.columns)): 
-                        theta_step = df_sub2.loc[df_sub2['time'] == tt,['zf','theta','qlc','qlr','qi']]                        
+                        theta_step = df_sub2.loc[df_sub2['time'] == tt,['zf','theta','qlc','qlr','qi','qv']]                        
                         theta_step['qi'] = theta_step['qi'].fillna(0)                        
                         theta_step['theta'] = theta_step['theta'] - lv/cp*(theta_step['qlc'] + theta_step['qlr']) - li/cp*(theta_step['qi'])
                         theta_step['qcond_tot'] = theta_step['qlc'] + theta_step['qlr'] + theta_step['qi']
                         theta_step['q_tot'] = theta_step['qlc'] + theta_step['qlr'] + theta_step['qi'] + theta_step['qv']
                     elif(('qlc' in df_sub2.columns) & ('qlr' in df_sub2.columns)):                          
-                        theta_step = df_sub2.loc[df_sub2['time'] == tt,['zf','theta','qlc','qlr']]
+                        theta_step = df_sub2.loc[df_sub2['time'] == tt,['zf','theta','qlc','qlr','qv']]
                         if theta_step['qlr'].isna().sum() == 0:
                             theta_step['theta'] = theta_step['theta'] - lv/cp*(theta_step['qlc'] + theta_step['qlr'])
                         else:
@@ -977,7 +977,7 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
                         theta_step['qcond_tot'] = theta_step['qlc'] + theta_step['qlr']
                         theta_step['q_tot'] = theta_step['qlc'] + theta_step['qlr'] + theta_step['qv']
                     else:
-                        theta_step = df_sub2.loc[df_sub2['time'] == tt,['zf','theta']]
+                        theta_step = df_sub2.loc[df_sub2['time'] == tt,['zf','theta','qlc','qv']]
                         theta_step['qcond_tot'] = 0
                         theta_step['q_tot'] = theta_step['qv']
                     cbh = np.min(theta_step.loc[theta_step['qlc'] > 10.*QTHRES]['zf'])
