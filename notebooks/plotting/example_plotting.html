@@ -16,8 +16,8 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
+  <!--
+    this give us a css class that will be invisible only if js is disabled
   -->
   <noscript>
     <style>
@@ -27,8 +27,8 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
@@ -39,10 +39,10 @@
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- So that users can add custom icons -->
-  <script src="../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
@@ -253,9 +253,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -518,9 +523,9 @@ dtype: float32
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_124/1032936237.py:1: FutureWarning: The default value of numeric_only in DataFrame.mean is deprecated. In a future version, it will default to False. In addition, specifying &#39;numeric_only=None&#39; is deprecated. Select only valid columns or specify the value of numeric_only to silence this warning.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_1376/1032936237.py:1: FutureWarning: The default value of numeric_only in DataFrame.mean is deprecated. In a future version, it will default to False. In addition, specifying &#39;numeric_only=None&#39; is deprecated. Select only valid columns or specify the value of numeric_only to silence this warning.
   np.sqrt(rs_dat[rs_dat[&#39;zf&#39;] &lt; 500].mean()[&#39;ua&#39;]**2 + rs_dat[rs_dat[&#39;zf&#39;] &lt; 500].mean()[&#39;va&#39;]**2)
-/tmp/ipykernel_124/1032936237.py:1: FutureWarning: The default value of numeric_only in DataFrame.mean is deprecated. In a future version, it will default to False. In addition, specifying &#39;numeric_only=None&#39; is deprecated. Select only valid columns or specify the value of numeric_only to silence this warning.
+/tmp/ipykernel_1376/1032936237.py:1: FutureWarning: The default value of numeric_only in DataFrame.mean is deprecated. In a future version, it will default to False. In addition, specifying &#39;numeric_only=None&#39; is deprecated. Select only valid columns or specify the value of numeric_only to silence this warning.
   np.sqrt(rs_dat[rs_dat[&#39;zf&#39;] &lt; 500].mean()[&#39;ua&#39;]**2 + rs_dat[rs_dat[&#39;zf&#39;] &lt; 500].mean()[&#39;va&#39;]**2)
 </pre></div>
 </div>
@@ -540,6 +545,7 @@ dtype: float32
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time)
+../../output_les/dharma/sandbox/DHARMA_Lx125_dx100_FixN.nc
 ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
 ../../output_les/icon/staged/ICON_Lx25_dx100_FixN.nc
 ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN.nc
@@ -550,6 +556,7 @@ dtype: float32
 ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_DM_Lx25_dx100_FixN.nc
 ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN.nc
 Loading variables: f(time,height)
+../../output_les/dharma/sandbox/DHARMA_Lx125_dx100_FixN.nc
 ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
 ../../output_les/icon/staged/ICON_Lx25_dx100_FixN.nc
 ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN.nc
@@ -577,7 +584,7 @@ Loading variables: f(time,height)
   maxy = np.nanmax(masked_verts[..., 1])
 </pre></div>
 </div>
-<img alt="../../_images/bf161c33ecde1ae984adbbcd4936a1286d6355141938410587ec89ae555dcb56.png" src="../../_images/bf161c33ecde1ae984adbbcd4936a1286d6355141938410587ec89ae555dcb56.png" />
+<img alt="../../_images/639a5d81431e5b9712e0bde787fa61b32046549a56fdc510ba4583aaa79df418.png" src="../../_images/639a5d81431e5b9712e0bde787fa61b32046549a56fdc510ba4583aaa79df418.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -593,6 +600,7 @@ Loading variables: f(time,height)
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time)
+../../output_les/dharma/sandbox/DHARMA_Lx125_dx100_FixN.nc
 ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
 ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN.nc
 ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN.nc
@@ -604,6 +612,7 @@ od not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN.nc
 ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_DM_Lx25_dx100_FixN.nc
 ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN.nc
 Loading variables: f(time,height)
+../../output_les/dharma/sandbox/DHARMA_Lx125_dx100_FixN.nc
 ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
 ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN.nc
 prf shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN.nc
@@ -619,6 +628,7 @@ computing inversion height, cloud-top height, and cloud-top temperature
 using liquid(-ice) potential temperature
 DALES/sandbox/DALES_Lx25_dx100_FixN.nc
 cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN.nc
+dharma/sandbox/DHARMA_Lx125_dx100_FixN.nc
 dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
 msu-rcc-les/sandbox/MSU_RCC_LES_DM_Lx25_dx100_FixN.nc
 msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN.nc
@@ -647,7 +657,7 @@ wrf/sandbox/WRF_Lx25_dx100_FixN.nc
   maxy = np.nanmax(masked_verts[..., 1])
 </pre></div>
 </div>
-<img alt="../../_images/fcc1773f7018e15b1e053333138dce77782153ae2370bc33f403c7ef31535dc0.png" src="../../_images/fcc1773f7018e15b1e053333138dce77782153ae2370bc33f403c7ef31535dc0.png" />
+<img alt="../../_images/5ceeaf38e33eee859d44e38efa837ca50815eb96e03add5f109d05ab08524893.png" src="../../_images/5ceeaf38e33eee859d44e38efa837ca50815eb96e03add5f109d05ab08524893.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -800,8 +810,8 @@ By ARM Development Team
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>
