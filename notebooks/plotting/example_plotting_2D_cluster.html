@@ -455,7 +455,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/user-data-home/comble-mip/notebooks/plotting&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/data/home/floriantornow/comble-mip/notebooks/plotting&#39;
 </pre></div>
 </div>
 </div>
@@ -472,7 +472,7 @@
 <span class="n">les_time</span> <span class="o">=</span> <span class="mf">18.</span> <span class="o">+</span> <span class="n">ds</span><span class="p">[</span><span class="s1">&#39;Time&#39;</span><span class="p">][:]</span>
     
 <span class="c1">## select simulations to plot</span>
-<span class="n">sim_keyword</span> <span class="o">=</span> <span class="s1">&#39;FixN_2D&#39;</span>  
+<span class="n">sim_keyword</span> <span class="o">=</span> <span class="s1">&#39;_2D&#39;</span>  
 </pre></div>
 </div>
 </div>
@@ -530,16 +530,16 @@
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time,x,y)
 /data/project/comble-mip/output_les/wrf/WRF_Lx25_dx100_FixN_2D.nc
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR 1: PROJ: proj_create_from_database: Open of /opt/conda/share/proj failed
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NaN values in alb
+NaN values in alb
 NaN values in opt
+/data/project/comble-mip/output_les/dharma/DHARMA_Lx25_dx100_FixN_noice_2D.nc
 /data/project/comble-mip/output_les/dharma/DHARMA_Lx125_dx100_FixN_2D.nc
 /data/project/comble-mip/output_les/dharma/DHARMA_Lx25_dx100_FixN_2D.nc
 /data/project/comble-mip/output_les/uclales-salsa/UCLALES-SALSA_Lx25_dx100_FixN_2D.nc
+...adjusting x and y values
+/data/project/comble-mip/output_les/uclales-salsa/UCLALES-SALSA_Lx25_dx100_FixN_def_z0_2D.nc
+...adjusting x and y values
+/data/project/comble-mip/output_les/uclales-salsa/UCLALES-SALSA_Lx25_dx100_FixN_noice_2D.nc
 ...adjusting x and y values
 </pre></div>
 </div>
@@ -797,14 +797,14 @@ VJ102DNB.A2020073.1212.002.2020073182754.nc
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_127/2479718957.py:1: DeprecationWarning: dropping variables using `drop` is deprecated; use drop_vars.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_1643/2479718957.py:1: DeprecationWarning: dropping variables using `drop` is deprecated; use drop_vars.
   xr.merge([df_col_2d[&#39;alb&#39;],da_stat_ststst.drop(&#39;time_diff&#39;)])[&#39;alb&#39;].plot(x=&#39;x_round&#39;,y=&#39;y_round&#39;,row=&#39;time&#39;,col=&#39;Source&#39;,robust=True)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.plot.facetgrid.FacetGrid at 0x7f1707673040&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.plot.facetgrid.FacetGrid at 0x7efcd9df0ee0&gt;
 </pre></div>
 </div>
-<img alt="../../_images/db55bc6a7dd0e6e2ba4bc363ae80097541771c0cbb99c8522def7c882cc238e3.png" src="../../_images/db55bc6a7dd0e6e2ba4bc363ae80097541771c0cbb99c8522def7c882cc238e3.png" />
+<img alt="../../_images/25455d1197108a938d5fd6acb4f2904ff7ced66a7c0d9363142a38a58c110a41.png" src="../../_images/25455d1197108a938d5fd6acb4f2904ff7ced66a7c0d9363142a38a58c110a41.png" />
 </div>
 </div>
 <div class="cell docutils container">
