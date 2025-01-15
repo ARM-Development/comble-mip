@@ -30,7 +30,7 @@
   <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -467,15 +467,15 @@
 <h2>Import libraries<a class="headerlink" href="#import-libraries" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">csv</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">netCDF4</span>
-<span class="kn">import</span> <span class="nn">datetime</span> <span class="k">as</span> <span class="nn">dt</span>
-<span class="kn">from</span> <span class="nn">netCDF4</span> <span class="kn">import</span> <span class="n">Dataset</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">netCDF4</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">netCDF4</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span>
 </pre></div>
 </div>
 </div>
@@ -489,7 +489,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">intialise_sizeDistri</span><span class="p">():</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">intialise_sizeDistri</span><span class="p">():</span>
     <span class="k">global</span> <span class="n">a_CD</span><span class="p">,</span><span class="n">b_CD</span><span class="p">,</span><span class="n">nuCD</span><span class="p">,</span><span class="n">muCD</span><span class="p">,</span><span class="n">a_RD</span><span class="p">,</span><span class="n">b_RD</span><span class="p">,</span><span class="n">nuRD</span><span class="p">,</span><span class="n">muRD</span><span class="p">,</span><span class="n">a_ID</span><span class="p">,</span><span class="n">b_ID</span><span class="p">,</span><span class="n">nuID</span><span class="p">,</span><span class="n">muID</span><span class="p">,</span><span class="n">a_SD</span><span class="p">,</span><span class="n">b_SD</span><span class="p">,</span><span class="n">nuSD</span><span class="p">,</span><span class="n">muSD</span>
     <span class="k">global</span> <span class="n">a_GD</span><span class="p">,</span><span class="n">b_GD</span><span class="p">,</span><span class="n">nuGD</span><span class="p">,</span><span class="n">muGD</span><span class="p">,</span><span class="n">xxCD</span><span class="p">,</span><span class="n">xxRD</span><span class="p">,</span><span class="n">xxID</span><span class="p">,</span><span class="n">xxSD</span><span class="p">,</span><span class="n">xxGD</span><span class="p">,</span><span class="n">ddCD</span><span class="p">,</span><span class="n">ddRD</span><span class="p">,</span><span class="n">ddID</span><span class="p">,</span><span class="n">ddSD</span><span class="p">,</span><span class="n">ddGD</span>
 
@@ -537,10 +537,10 @@
     <span class="n">ddSD</span> <span class="o">=</span> <span class="n">a_SD</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">xxSD</span><span class="p">)</span><span class="o">**</span><span class="n">b_SD</span>
     <span class="n">ddGD</span> <span class="o">=</span> <span class="n">a_GD</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">xxGD</span><span class="p">)</span><span class="o">**</span><span class="n">b_GD</span>
 
-<span class="k">def</span> <span class="nf">gamma_dist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">nu</span><span class="p">,</span> <span class="n">ll</span><span class="p">,</span> <span class="n">mu</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">gamma_dist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">nu</span><span class="p">,</span> <span class="n">ll</span><span class="p">,</span> <span class="n">mu</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">A</span><span class="p">[</span><span class="kc">None</span><span class="p">,:,:]</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="n">nu</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">ll</span><span class="p">[</span><span class="kc">None</span><span class="p">,:,:]</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="n">mu</span><span class="p">))</span>
 
-<span class="k">def</span> <span class="nf">transform_x2r</span><span class="p">(</span><span class="n">a_CD</span><span class="p">,</span><span class="n">b_CD</span><span class="p">,</span><span class="n">nuCD</span><span class="p">,</span><span class="n">muCD</span><span class="p">,</span><span class="n">qc</span><span class="p">,</span><span class="n">nc</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">transform_x2r</span><span class="p">(</span><span class="n">a_CD</span><span class="p">,</span><span class="n">b_CD</span><span class="p">,</span><span class="n">nuCD</span><span class="p">,</span><span class="n">muCD</span><span class="p">,</span><span class="n">qc</span><span class="p">,</span><span class="n">nc</span><span class="p">):</span>
     <span class="n">xmCD</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">(</span><span class="n">nc</span><span class="p">)</span>
     <span class="n">dmCD</span> <span class="o">=</span> <span class="n">a_CD</span><span class="o">*</span><span class="n">xmCD</span><span class="o">**</span><span class="n">b_CD</span>
     <span class="c1">#lambda and A of size distribution (Seifert &amp; Beheng 2006)</span>
@@ -553,7 +553,7 @@
     <span class="n">xiCD</span> <span class="o">=</span> <span class="n">muCD</span><span class="o">/</span><span class="n">b_CD</span>
     <span class="k">return</span> <span class="n">Kcd</span><span class="p">,</span><span class="n">dltCD</span><span class="p">,</span><span class="n">psiCD</span><span class="p">,</span><span class="n">xiCD</span>
 
-<span class="k">def</span> <span class="nf">Ap_r</span><span class="p">(</span><span class="n">Dlim</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">psi</span><span class="p">,</span> <span class="n">dlt</span><span class="p">,</span> <span class="n">xi</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">Ap_r</span><span class="p">(</span><span class="n">Dlim</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">psi</span><span class="p">,</span> <span class="n">dlt</span><span class="p">,</span> <span class="n">xi</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
     <span class="n">r_bounds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">*</span><span class="n">Dlim</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
     <span class="n">r_diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">r_bounds</span><span class="p">)</span>
     <span class="n">r_bin</span> <span class="o">=</span> <span class="p">(</span><span class="n">r_bounds</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">r_bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span> <span class="o">/</span> <span class="mi">2</span>
@@ -574,13 +574,13 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#calculate vapour pressure</span>
-<span class="k">def</span> <span class="nf">calc_e</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">q</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">calc_e</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">q</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">q</span><span class="o">*</span><span class="n">p</span><span class="o">/</span><span class="p">(</span><span class="mf">0.622</span> <span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mf">0.622</span><span class="p">)</span><span class="o">*</span><span class="n">q</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">calc_e_is</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">calc_e_is</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
      <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">9.550426</span> <span class="o">-</span> <span class="p">(</span><span class="mf">5723.265</span> <span class="o">/</span> <span class="n">T</span><span class="p">)</span> <span class="o">+</span> <span class="mf">3.53068</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">T</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.00728332</span> <span class="o">*</span> <span class="n">T</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">potential_temperature</span><span class="p">(</span><span class="n">temperature</span><span class="p">,</span> <span class="n">pressure</span><span class="p">,</span> <span class="n">reference_pressure</span><span class="o">=</span><span class="mi">100000</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">potential_temperature</span><span class="p">(</span><span class="n">temperature</span><span class="p">,</span> <span class="n">pressure</span><span class="p">,</span> <span class="n">reference_pressure</span><span class="o">=</span><span class="mi">100000</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calculate potential temperature from temperature and pressure.</span>
 <span class="sd">    </span>

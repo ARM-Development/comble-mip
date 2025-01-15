@@ -30,7 +30,7 @@
   <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -477,12 +477,12 @@
 <h2>Import libraries<a class="headerlink" href="#import-libraries" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">datetime</span> <span class="k">as</span> <span class="nn">dt</span>
-<span class="kn">from</span> <span class="nn">netCDF4</span> <span class="kn">import</span> <span class="n">Dataset</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">netCDF4</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span>
 </pre></div>
 </div>
 </div>
@@ -1203,7 +1203,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Time variable conversions</span>
-<span class="k">def</span> <span class="nf">calc_ts</span><span class="p">(</span><span class="n">standard_name</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">calc_ts</span><span class="p">(</span><span class="n">standard_name</span><span class="p">):</span>
     <span class="c1"># Return -999 if no data</span>
     <span class="n">tmp</span><span class="o">=</span><span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">les_ts</span><span class="p">[</span><span class="s1">&#39;psrf&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span><span class="o">*-</span><span class="mf">999.</span>
     <span class="c1">#</span>
@@ -1301,7 +1301,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Profile variable conversions</span>
-<span class="k">def</span> <span class="nf">calc_ps</span><span class="p">(</span><span class="n">standard_name</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">calc_ps</span><span class="p">(</span><span class="n">standard_name</span><span class="p">):</span>
     <span class="c1"># Return -999 if no data</span>
     <span class="n">tmp</span><span class="o">=</span><span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">les_ps</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span><span class="o">*-</span><span class="mf">999.</span>
     <span class="c1">#</span>
@@ -1829,7 +1829,7 @@ root group (NETCDF3_CLASSIC data model, file format NETCDF3):
 <span class="c1"># x, x (m)</span>
 <span class="c1"># y, y (m)</span>
 
-<span class="k">def</span> <span class="nf">calc_cs</span><span class="p">(</span><span class="n">standard_name</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">calc_cs</span><span class="p">(</span><span class="n">standard_name</span><span class="p">):</span>
     <span class="c1"># Return -999 if no data</span>
     <span class="n">tmp</span><span class="o">=</span><span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">les_cs</span><span class="p">[</span><span class="s1">&#39;shf_bar&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span><span class="o">*-</span><span class="mf">999.</span>
     <span class="c1">#</span>
@@ -2294,7 +2294,7 @@ root group (NETCDF3_CLASSIC data model, file format NETCDF3):
 <span class="c1"># y, y (m)</span>
 <span class="c1"># height, zf (m), altitude of mid-level points above sea surface</span>
 
-<span class="k">def</span> <span class="nf">calc_an</span><span class="p">(</span><span class="n">standard_name</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">calc_an</span><span class="p">(</span><span class="n">standard_name</span><span class="p">):</span>
     <span class="c1"># Return -999 if no data</span>
     <span class="n">tmp</span><span class="o">=</span><span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">les_an</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span><span class="o">*-</span><span class="mf">999.</span>
     <span class="c1">#</span>
