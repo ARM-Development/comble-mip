@@ -16,6 +16,7 @@ parse:
     - smartquotes
     - substitution
 html:
+  use_repository_button: true
   comments:
     hypothesis: true
 repository:
