@@ -45,7 +45,8 @@ def load_ceres(case='20200313',t_filter = 1.,PATH='../../data_files/'):
     ## PATH........directory
     
     if case == '20200313':
-        file = 'viirs_2020-03-13_satdat.csv'
+        #file = 'viirs_2020-03-13_satdat.csv'
+        file = 'ceres_2020-03-13_satdat.csv'
         t_off = 18.
     
     data = pd.read_csv(PATH + file)
