@@ -53,6 +53,9 @@ def load_ceres(case='20200313',t_filter = 1.,PATH='../../data_files/'):
     if case == '20200425':
         file = 'ceres_2020-04-25_satdat.csv'
         t_off = 18.
+    if case == '20200512':
+        file = 'ceres_2020-05-12_satdat.csv'
+        t_off = 18.
     
     data = pd.read_csv(PATH + file)
     
@@ -86,6 +89,9 @@ def load_calipso(case='20200313',t_filter = 1.,PATH='../../data_files/'):
         t_off = 18.
     if case == '20200409':
         file = 'caliop_2020-04-09_satdat.csv'
+        t_off = 18.
+    if case == '20200512':
+        file = 'caliop_2020-05-12_satdat.csv'
         t_off = 18.
     
     data = pd.read_csv(PATH + file)
@@ -198,6 +204,9 @@ def load_viirs(case='20200313',t_filter = 1.,sza_filter = 80.,PATH='../../data_f
     if case == '20200425':
         file = 'viirs_2020-04-09_satdat.csv'
         t_off = 18.
+    if case == '20200512':
+        file = 'viirs_2020-05-12_satdat.csv'
+        t_off = 18.
     
     data = pd.read_csv(PATH + file)
     
@@ -244,7 +253,10 @@ def load_modis(case='20200313',t_filter = 1.,sza_filter = 80.,PATH='../../data_f
     if case == '20200425':
         file = 'modis_2020-04-09_satdat.csv'
         t_off = 18.
-    
+    if case == '20200512':
+        file = 'modis_2020-05-12_satdat.csv'
+        t_off = 18.
+        
     data = pd.read_csv(PATH + file)
     
     ## exclude greater temperoral offsets
@@ -286,6 +298,9 @@ def load_maclwp(case='20200313',t_filter = 1.,PATH='../../data_files/'):
     if case == '20200425':
         file = 'maclwp_2020-04-09_satdat.csv'
         t_off = 18.
+    if case == '20200512':
+        file = 'maclwp_2020-05-12_satdat.csv'
+        t_off = 18.
     
     data = pd.read_csv(PATH + file)
     data = data.loc[abs(data['tdiff']) <= t_filter]
@@ -323,6 +338,9 @@ def load_kazrkollias(case='20200313',t_filter = 1.,PATH='../../data_files/',aux_
         t_off = 18.
     if case == '20200425':
         file = 'kazr-kollias_2020-04-25_dat2.csv'
+        t_off = 18.
+    if case == '20200512':
+        file = 'kazr-kollias_2020-05-12_dat2.csv'
         t_off = 18.
         
     data = pd.read_csv(PATH + file)
@@ -368,6 +386,9 @@ def load_kazrclough(case='20200313',t_filter = 1.,PATH='../../data_files/'):
     if case == '20200425':
         file = 'kazr-clough_2020-04-25_dat2.csv'
         t_off = 18.
+    if case == '20200512':
+        file = 'kazr-clough_2020-05-12_dat2.csv'
+        t_off = 18.
     
     data = pd.read_csv(PATH + file)
     
@@ -397,6 +418,9 @@ def load_radflux(case='20200313',t_filter = 1.,PATH='../../data_files/'):
     if case == '20200425':
         file = 'radflux_2020-04-25_dat2.csv'
         t_off = 18.
+    if case == '20200512':
+        file = 'radflux_2020-05-12_dat2.csv'
+        t_off = 18.
     
     data = pd.read_csv(PATH + file)
     
@@ -420,6 +444,9 @@ def load_aeri(case='20200313',t_filter = 1.,PATH='../../data_files/'):
         time_near = 18.
     if case == '20200425':
         file = 'aeri_2020-04-25_dat.csv'
+        time_near = 18.
+    if case == '20200512':
+        file = 'aeri_2020-05-12_dat.csv'
         time_near = 18.
     
     data = pd.read_csv(PATH + file)
@@ -509,7 +536,9 @@ def load_rs(case='20200313',t_filter = 1.,PATH='../../data_files/'):
         time_near = 18.
     if case == '20200425':
         time_near = 12.
-    
+    if case == '20200512':
+        time_near = 13.
+
     NCFILES = list(direc.rglob('anx*cdf'))
     
     var_vec_1d = ['alt','pres','u_wind','v_wind','tdry','dp','rh']
