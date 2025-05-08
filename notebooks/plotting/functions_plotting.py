@@ -774,7 +774,7 @@ def load_sims_2d_slow(path,var_vec_2d,t_shift = 0,keyword='',subfolder=''):
                             if (xi==0) & (yi==0) & (p_df2[vv].isna().sum() > 0): print(vv + ' shows NAN values in ' + str(fn))   
                         else:
                             if(ii==0): print(vv + ' not found in ' + str(fn))
-                            p_df2[vv] = np.NAN
+                            p_df2[vv] = np.nan
                     df_col2 = pd.concat([df_col2,p_df2])
             
         count+=1 
@@ -846,7 +846,7 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
                     if p_df[vv].isna().sum() > 0: print(vv + ' shows NAN values in ' + str(fn))  
                 else:
                     print(vv + ' not found in ' + str(fn))
-                    p_df[vv] = np.NAN
+                    p_df[vv] = np.nan
 
             ds.close()
             df_col = pd.concat([df_col,p_df])
@@ -921,7 +921,7 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
                         #    print(p_df2[vv])
                     else:
                         if(ii==0): print(vv + ' not found in ' + str(fn))
-                        p_df2[vv] = np.NAN
+                        p_df2[vv] = np.nan
                 df_col2 = pd.concat([df_col2,p_df2])
             
         count+=1 
@@ -1000,10 +1000,10 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
                         df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'cth'] = cth
                         df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'cbh'] = cbh
                         df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'zi'] = zi_step
-                        df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'ctt'] = min(ta_step.loc[ta_step.zf_diff == ta_step.zf_diff.min(),'ta'], default=np.NAN) - 273.15
-                        #df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'pr_cb'] = min(tb_step.loc[tb_step.zf_diff == tb_step.zf_diff.min(),'prf'], default=np.NAN) 
+                        df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'ctt'] = min(ta_step.loc[ta_step.zf_diff == ta_step.zf_diff.min(),'ta'], default=np.nan) - 273.15
+                        #df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'pr_cb'] = min(tb_step.loc[tb_step.zf_diff == tb_step.zf_diff.min(),'prf'], default=np.nan) 
                         if cth > 0:
-                            df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'delta'] = min(tc_step.loc[tc_step.zf_diff_14 == tc_step.zf_diff_14.min(),'q_tot'], default=np.NAN) - min(tc_step.loc[tc_step.zf_diff_34 == tc_step.zf_diff_34.min(),'q_tot'], default=np.NAN) 
+                            df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'delta'] = min(tc_step.loc[tc_step.zf_diff_14 == tc_step.zf_diff_14.min(),'q_tot'], default=np.nan) - min(tc_step.loc[tc_step.zf_diff_34 == tc_step.zf_diff_34.min(),'q_tot'], default=np.nan) 
                     else:
                         df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'cth'] = np.nan
                         df_col.loc[(df_col['class']==cc) & (df_col['time']==tt),'cbh'] = np.nan
@@ -1330,7 +1330,7 @@ def plot_2d(df_col2,var_vec,times,**kwargs):
             df_col2['wd'] = np.arctan2(df_col2['ua']/df_col2['ws'],df_col2['va']/df_col2['ws'])*180/np.pi + 180.
             
             ## for better plotting, set values < 2 NaN
-            df_col2.loc[df_col2['wd'] < 2,'wd'] = np.NAN
+            df_col2.loc[df_col2['wd'] < 2,'wd'] = np.nan
             
             ## bring over on one side
             df_col2.loc[df_col2['wd'] < 0,'wd'] = df_col2.loc[df_col2['wd'] < 0,'wd'] + 360
