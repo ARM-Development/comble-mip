@@ -469,7 +469,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/data/home/floriantornow/comble-mip/notebooks/plotting&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/user-data-home/comble-mip/notebooks/plotting&#39;
 </pre></div>
 </div>
 </div>
@@ -486,7 +486,7 @@ document.write(`
 <span class="n">les_time</span> <span class="o">=</span> <span class="mf">18.</span> <span class="o">+</span> <span class="n">ds</span><span class="p">[</span><span class="s1">&#39;Time&#39;</span><span class="p">][:]</span>
     
 <span class="c1">## select simulations to plot</span>
-<span class="n">sim_keyword</span> <span class="o">=</span> <span class="s1">&#39;_2D&#39;</span>  
+<span class="n">sim_keyword</span> <span class="o">=</span> <span class="s1">&#39;FixN_2D&#39;</span>  
 </pre></div>
 </div>
 </div>
@@ -494,13 +494,14 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## select times</span>
-<span class="n">Time_Vec</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="mf">2.</span><span class="p">,</span><span class="mf">6.</span><span class="p">,</span><span class="mf">10.</span><span class="p">,</span><span class="mf">14.</span><span class="p">,</span><span class="mf">18.</span><span class="p">]</span> <span class="c1">## hours, where 18 h marks arrival</span>
+<span class="c1">#Time_Vec = [0.,1.,2.,6.,10.,14.,18.] ## hours, where 18 h marks arrival</span>
+<span class="n">Time_Vec</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="mf">2.</span><span class="p">,</span><span class="mf">3.</span><span class="p">,</span><span class="mf">4.</span><span class="p">,</span><span class="mf">5.</span><span class="p">,</span><span class="mf">6.</span><span class="p">,</span><span class="mf">7.</span><span class="p">,</span><span class="mf">8.</span><span class="p">,</span><span class="mf">9.</span><span class="p">,</span><span class="mf">10.</span><span class="p">,</span><span class="mf">11.</span><span class="p">,</span><span class="mf">12.</span><span class="p">,</span><span class="mf">13.</span><span class="p">,</span><span class="mf">14.</span><span class="p">,</span><span class="mf">15.</span><span class="p">,</span><span class="mf">16.</span><span class="p">,</span><span class="mf">17.</span><span class="p">,</span><span class="mf">18.</span><span class="p">]</span> <span class="c1">## hours, where 18 h marks arrival</span>
 
 <span class="c1">## select acceptable window of time</span>
 <span class="n">Time_Window</span> <span class="o">=</span> <span class="mf">15.0</span>  <span class="c1">## hours</span>
 
 <span class="c1">## set domain to be extracted</span>
-<span class="n">Spat_Window</span> <span class="o">=</span> <span class="mf">125.0</span> <span class="c1">## km</span>
+<span class="n">Spat_Window</span> <span class="o">=</span> <span class="mf">200.0</span> <span class="c1">## km</span>
 
 <span class="c1">## downscale to 1 km resolution (default: True)</span>
 <span class="n">upscale</span> <span class="o">=</span> <span class="kc">True</span>
@@ -546,14 +547,9 @@ document.write(`
 /data/project/comble-mip/output_les/wrf/WRF_Lx25_dx100_FixN_2D.nc
 NaN values in alb
 NaN values in opt
-/data/project/comble-mip/output_les/dharma/DHARMA_Lx25_dx100_FixN_noice_2D.nc
 /data/project/comble-mip/output_les/dharma/DHARMA_Lx125_dx100_FixN_2D.nc
 /data/project/comble-mip/output_les/dharma/DHARMA_Lx25_dx100_FixN_2D.nc
 /data/project/comble-mip/output_les/uclales-salsa/UCLALES-SALSA_Lx25_dx100_FixN_2D.nc
-...adjusting x and y values
-/data/project/comble-mip/output_les/uclales-salsa/UCLALES-SALSA_Lx25_dx100_FixN_def_z0_2D.nc
-...adjusting x and y values
-/data/project/comble-mip/output_les/uclales-salsa/UCLALES-SALSA_Lx25_dx100_FixN_noice_2D.nc
 ...adjusting x and y values
 </pre></div>
 </div>
@@ -613,18 +609,6 @@ NaN values in opt
         
 <span class="k">if</span> <span class="n">tiling</span><span class="p">:</span>
     <span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">df_sim_scol</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>wrf/WRF_Lx25_dx100_FixN_2D.nc
-12.7
-dharma/DHARMA_Lx125_dx100_FixN_2D.nc
-63.9
-dharma/DHARMA_Lx25_dx100_FixN_2D.nc
-12.7
-uclales-salsa/UCLALES-SALSA_Lx25_dx100_FixN_2D.nc
-12.7
 </pre></div>
 </div>
 </div>
@@ -758,35 +742,90 @@ uclales-salsa/UCLALES-SALSA_Lx25_dx100_FixN_2D.nc
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>VNP03DNB.A2020073.1306.002.2021125004801.nc
 VNP02DNB.A2020073.1306.002.2021126174604.nc
 2020-03-13T00:00:00
-40298
+102832
 2020-03-13T01:00:00
-40206
+102628
 2020-03-13T02:00:00
-40273
+102677
+2020-03-13T03:00:00
+102795
+2020-03-13T04:00:00
+102699
+2020-03-13T05:00:00
+102503
 2020-03-13T06:00:00
-39901
+92600
+2020-03-13T07:00:00
+61993
+2020-03-13T08:00:00
+33141
+2020-03-13T09:00:00
+6332
 2020-03-13T10:00:00
 0
+2020-03-13T11:00:00
+0
+2020-03-13T12:00:00
+0
+2020-03-13T13:00:00
+0
 2020-03-13T14:00:00
+0
+2020-03-13T15:00:00
+0
+2020-03-13T16:00:00
+0
+2020-03-13T17:00:00
 0
 2020-03-13T18:00:00
 0
 VJ103DNB.A2020073.1212.002.2020073175644.nc
 VJ102DNB.A2020073.1212.002.2020073182754.nc
 2020-03-13T00:00:00
-40849
+101606
 2020-03-13T01:00:00
-40721
+104534
 2020-03-13T02:00:00
-40731
+104596
+2020-03-13T03:00:00
+104610
+2020-03-13T04:00:00
+104670
+2020-03-13T05:00:00
+104702
 2020-03-13T06:00:00
-40731
+104740
+2020-03-13T07:00:00
+104729
+2020-03-13T08:00:00
+104763
+2020-03-13T09:00:00
+104789
 2020-03-13T10:00:00
-41031
+104837
+2020-03-13T11:00:00
+104876
+2020-03-13T12:00:00
+104870
+2020-03-13T13:00:00
+104819
 2020-03-13T14:00:00
-41010
+104846
+2020-03-13T15:00:00
+105014
+2020-03-13T16:00:00
+104981
+2020-03-13T17:00:00
+104953
 2020-03-13T18:00:00
-41210
+104998
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">da_stat_ststst</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="s2">&quot;/user-data-home/viirs_extracts_L200_matheou_2025-03-27.nc&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -798,10 +837,10 @@ VJ102DNB.A2020073.1212.002.2020073182754.nc
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.plot.facetgrid.FacetGrid at 0x7fa59cf90f70&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.plot.facetgrid.FacetGrid at 0x7f1d66f5b4f0&gt;
 </pre></div>
 </div>
-<img alt="../../_images/4b8273ac6bf53652c5c4162e2816ec0dfc3459b40e0bd5714556b5f7c9b76775.png" src="../../_images/4b8273ac6bf53652c5c4162e2816ec0dfc3459b40e0bd5714556b5f7c9b76775.png" />
+<img alt="../../_images/fe05ba275990ad467c06b8ac2c05de21a9278a5127626dbf2e8e48f9a42c1afb.png" src="../../_images/fe05ba275990ad467c06b8ac2c05de21a9278a5127626dbf2e8e48f9a42c1afb.png" />
 </div>
 </div>
 <div class="cell docutils container">

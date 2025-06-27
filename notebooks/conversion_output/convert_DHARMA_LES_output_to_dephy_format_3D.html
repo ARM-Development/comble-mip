@@ -520,6 +520,23 @@ document.write(`
 <span class="n">my_readdir</span> <span class="o">=</span> <span class="s1">&#39;case0313_diag_ice25_nomiz_dx100_specZ0_sbhomo&#39;</span>
 <span class="n">my_outfile</span> <span class="o">=</span> <span class="s1">&#39;DHARMA_Lx25_dx100_FixN_3D.nc&#39;</span>
 
+<span class="n">my_readdir</span> <span class="o">=</span> <span class="s1">&#39;case0313_prog_ice25_nomiz_dx100_specZ0_redo&#39;</span>
+<span class="n">my_outfile</span> <span class="o">=</span> <span class="s1">&#39;DHARMA_Lx25_dx100_ProgNa_3D_10h.nc&#39;</span>
+
+<span class="n">start_dtime</span> <span class="o">=</span> <span class="s1">&#39;2020-05-12 13:00:00.0&#39;</span>
+<span class="n">my_readdir</span> <span class="o">=</span> <span class="s1">&#39;case0512_prog_ice10_nosub&#39;</span>
+<span class="c1">#my_readdir = &#39;case0512_prog_ice10_nosub_onlysnow&#39;</span>
+<span class="c1">#my_readdir = &#39;case0512_prog_ice10_Wmerra&#39;</span>
+<span class="n">my_outfile</span> <span class="o">=</span> <span class="s1">&#39;DHARMA_Lx25_dx100_ProgNa_nosub_3D_27h.nc&#39;</span>
+
+<span class="c1">#start_dtime = &#39;2020-04-24 15:00:00.0&#39;</span>
+<span class="c1">#my_readdir = &#39;case0425_prog_ice2&#39;</span>
+<span class="c1">#my_outfile = &#39;DHARMA_Lx25_dx100_ProgNa_3D_21h.nc&#39;</span>
+
+<span class="c1">#start_dtime = &#39;2020-04-08 11:00:00.0&#39;</span>
+<span class="c1">#my_readdir = &#39;case0409_prog_ice10&#39;</span>
+<span class="c1">#my_outfile = &#39;DHARMA_Lx25_dx100_ProgNa_3D_28h.nc&#39;</span>
+
 <span class="c1"># specify local source directories (additional subdirectories if restart was required)</span>
 <span class="n">my_rundir</span> <span class="o">=</span> <span class="s1">&#39;/data/home/floriantornow/dharma/sandbox/&#39;</span> <span class="o">+</span> <span class="n">my_readdir</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span>
 
@@ -532,7 +549,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;0-20h&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;0-29h&#39;]
 </pre></div>
 </div>
 </div>
@@ -569,7 +586,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[PosixPath(&#39;/data/home/floriantornow/dharma/sandbox/case0313_diag_ice25_nomiz_dx100_specZ0_sbhomo/0-20h/dharma_PLT_029100.tgz&#39;)]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[PosixPath(&#39;/data/home/floriantornow/dharma/sandbox/case0512_prog_ice10_nosub/0-29h/dharma_PLT_038880.tgz&#39;)]
 </pre></div>
 </div>
 </div>
@@ -593,10 +610,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR 1: PROJ: proj_create_from_database: Open of /opt/conda/share/proj failed
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/data/home/floriantornow/dharma/sandbox/case0313_diag_ice25_nomiz_dx100_specZ0_sbhomo/0-20h/dharma.cdf
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/data/home/floriantornow/dharma/sandbox/case0512_prog_ice10_nosub/0-29h/dharma.cdf
 </pre></div>
 </div>
 </div>
@@ -619,7 +633,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100.0
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>200.0
 </pre></div>
 </div>
 </div>
@@ -627,19 +641,11 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## read profiles to complete pressure profile</span>
-<span class="n">var_vec_1d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;lwpc&#39;</span><span class="p">]</span> <span class="c1"># variables with ERA5 (longer time axis)</span>
-<span class="n">var_vec_2d</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;rhoa&#39;</span><span class="p">,</span><span class="s1">&#39;ta&#39;</span><span class="p">,</span><span class="s1">&#39;theta&#39;</span><span class="p">]</span>
-<span class="n">df_col_1d</span><span class="p">,</span><span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="s1">&#39;DHARMA_Lx25_dx100_FixN.&#39;</span><span class="p">)</span>
+<span class="c1">#var_vec_1d = [&#39;lwpc&#39;] # variables with ERA5 (longer time axis)</span>
+<span class="c1">#var_vec_2d = [&#39;rhoa&#39;,&#39;ta&#39;,&#39;theta&#39;]</span>
+<span class="c1">#df_col_1d,df_col_2d = load_sims(&#39;../../output_les/&#39;,var_vec_1d,var_vec_2d,t_shift=-2,keyword=&#39;DHARMA_Lx25_dx100_FixN.&#39;)</span>
 
-<span class="n">init_prof</span> <span class="o">=</span> <span class="n">df_col_2d</span><span class="p">[</span><span class="nb">abs</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">df_col_2d</span><span class="o">.</span><span class="n">time</span><span class="p">)</span><span class="o">-</span><span class="n">df_col_2d</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">())</span><span class="o">&lt;</span><span class="mf">2.</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time)
-../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
-Loading variables: f(time,height)
-../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN.nc
+<span class="c1">#init_prof = df_col_2d[abs(round(df_col_2d.time)-df_col_2d[&#39;time&#39;].min())&lt;2.]</span>
 </pre></div>
 </div>
 </div>
@@ -755,7 +761,7 @@ Loading variables: f(time,height)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|  29100 |   72000.0 |      0.8 | 0.4401E-07 | 0.4925E-08 | 0.0455 | 0.5321 |
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|  38880 |   97200.0 |      0.3 | 0.4361E-09 | 0.6474E-11 | 0.2426 | 0.6000 |
 </pre></div>
 </div>
 </div>
@@ -767,6 +773,157 @@ Loading variables: f(time,height)
 <section id="read-requested-variables-list">
 <h3>Read requested variables list<a class="headerlink" href="#read-requested-variables-list" title="Link to this heading">#</a></h3>
 <p>Variable description, naming, units, and dimensions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create DEPHY output file</span>
+<span class="n">dephy_filename</span> <span class="o">=</span> <span class="s1">&#39;./&#39;</span> <span class="o">+</span> <span class="n">my_gitdir</span> <span class="o">+</span> <span class="n">my_outfile</span>
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">dephy_filename</span><span class="p">):</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">dephy_filename</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The file &#39;</span> <span class="o">+</span> <span class="n">dephy_filename</span> <span class="o">+</span> <span class="s1">&#39; has been deleted successfully&#39;</span><span class="p">)</span>    
+<span class="n">dephy_file</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">dephy_filename</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span><span class="nb">format</span><span class="o">=</span><span class="s1">&#39;NETCDF3_CLASSIC&#39;</span><span class="p">)</span>
+<span class="c1">#dephy_file = Dataset(dephy_filename,mode=&#39;w&#39;,format=&#39;NETCDF3_64BIT_OFFSET&#39;)</span>
+
+<span class="c1"># create global attributes</span>
+<span class="n">dephy_file</span><span class="o">.</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;DHARMA LES results for COMBLE-MIP case: fixed Nd and Ni&#39;</span>
+<span class="n">dephy_file</span><span class="o">.</span><span class="n">reference</span><span class="o">=</span><span class="s1">&#39;https://github.com/ARM-Development/comble-mip&#39;</span>
+<span class="n">dephy_file</span><span class="o">.</span><span class="n">authors</span><span class="o">=</span><span class="s1">&#39;Florian Tornow (florian.tornow@nasa.gov) and Ann Fridlind (ann.fridlind@nasa.gov)&#39;</span>
+<span class="c1">#dephy_file.source=input_filename</span>
+<span class="n">dephy_file</span><span class="o">.</span><span class="n">version</span><span class="o">=</span><span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">)</span>
+<span class="n">dephy_file</span><span class="o">.</span><span class="n">format_version</span><span class="o">=</span><span class="s1">&#39;DEPHY-derivative&#39;</span>
+<span class="n">dephy_file</span><span class="o">.</span><span class="n">script</span><span class="o">=</span><span class="s1">&#39;convert_DHARMA_LES_output_to_dephy_format_3D.ipynb&#39;</span>
+<span class="n">dephy_file</span><span class="o">.</span><span class="n">startDate</span><span class="o">=</span><span class="n">start_dtime</span>
+<span class="n">dephy_file</span><span class="o">.</span><span class="n">force_geo</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">dephy_file</span><span class="o">.</span><span class="n">surfaceType</span><span class="o">=</span><span class="s1">&#39;ocean (after spin-up)&#39;</span>
+<span class="n">dephy_file</span><span class="o">.</span><span class="n">surfaceForcing</span><span class="o">=</span><span class="s1">&#39;ts (after spin-up)&#39;</span>
+<span class="c1">#dephy_file.lat=str(dharma_params[&#39;Coriolis&#39;].lat) + &#39; deg N&#39;</span>
+<span class="c1">#dephy_file.dx=str(dharma_params[&#39;geometry&#39;].L_x/dharma_params[&#39;geometry&#39;].nx) + &#39; m&#39;</span>
+<span class="c1">#dephy_file.dy=str(dharma_params[&#39;geometry&#39;].L_y/dharma_params[&#39;geometry&#39;].ny) + &#39; m&#39;</span>
+<span class="c1">#dephy_file.dz=&#39;see zf variable&#39;</span>
+<span class="c1">#dephy_file.nx=dharma_params[&#39;geometry&#39;].nx</span>
+<span class="c1">#dephy_file.ny=dharma_params[&#39;geometry&#39;].ny</span>
+<span class="c1">#dephy_file.nz=dharma_params[&#39;geometry&#39;].nz</span>
+
+<span class="c1"># create dimensions</span>
+<span class="n">xvec</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">nx</span><span class="p">)</span>
+<span class="n">xvec</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,))</span>
+<span class="n">xvec</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;m&#39;</span>
+<span class="n">xvec</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;x&#39;</span>
+<span class="n">xvec</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">x_vec</span>
+
+<span class="n">yvec</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">nx</span><span class="p">)</span>
+<span class="n">yvec</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,))</span>
+<span class="n">yvec</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;m&#39;</span>
+<span class="n">yvec</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;y&#39;</span>
+<span class="n">yvec</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">y_vec</span>
+
+<span class="n">zvec</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="n">nz</span><span class="p">)</span>
+<span class="n">zvec</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,))</span>
+<span class="n">zvec</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;m&#39;</span>
+<span class="n">zvec</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;y&#39;</span>
+<span class="n">zvec</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">z_vec</span>
+
+<span class="n">nt</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">time_vec</span><span class="p">)</span><span class="c1">#len(input_filenames)</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">nt</span><span class="p">)</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,))</span>
+<span class="n">time</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;seconds since &#39;</span> <span class="o">+</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">startDate</span>
+<span class="n">time</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;time&#39;</span>
+<span class="n">time</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">time_vec</span><span class="p">[:]</span>
+
+<span class="c1"># create and fill variables</span>
+<span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">4</span><span class="p">:]:</span>
+    <span class="n">std_name</span> <span class="o">=</span> <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">standard_name</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+    <span class="n">var_name</span> <span class="o">=</span> <span class="n">vars_mean_list</span><span class="p">[</span><span class="s1">&#39;variable_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;ta&#39;</span><span class="p">:</span>
+        <span class="n">mod_field</span> <span class="o">=</span> <span class="n">ta_col</span>
+    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;pa&#39;</span><span class="p">:</span>
+        <span class="n">mod_field</span> <span class="o">=</span> <span class="n">pa_col</span>
+    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;rhoa&#39;</span><span class="p">:</span>
+        <span class="n">mod_field</span> <span class="o">=</span> <span class="n">rhoa_col</span>
+    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;ua&#39;</span><span class="p">:</span>
+        <span class="n">mod_field</span> <span class="o">=</span> <span class="n">ua_col</span>
+    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;va&#39;</span><span class="p">:</span>
+        <span class="n">mod_field</span> <span class="o">=</span> <span class="n">va_col</span>
+    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;wa&#39;</span><span class="p">:</span>
+        <span class="n">mod_field</span> <span class="o">=</span> <span class="n">wa_col</span>
+    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;qv&#39;</span><span class="p">:</span>
+        <span class="n">mod_field</span> <span class="o">=</span> <span class="n">qv_col</span>
+    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;qlc&#39;</span><span class="p">:</span>
+        <span class="n">mod_field</span> <span class="o">=</span> <span class="n">qlc_col</span>
+    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;qlr&#39;</span><span class="p">:</span>
+        <span class="n">mod_field</span> <span class="o">=</span> <span class="n">qlr_col</span>
+    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;qic&#39;</span><span class="p">:</span>
+        <span class="n">mod_field</span> <span class="o">=</span> <span class="n">qic_col</span>
+    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;qis&#39;</span><span class="p">:</span>
+        <span class="n">mod_field</span> <span class="o">=</span> <span class="n">qis_col</span>
+    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;qig&#39;</span><span class="p">:</span>
+        <span class="n">mod_field</span> <span class="o">=</span> <span class="n">qig_col</span>
+    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;nlc&#39;</span><span class="p">:</span>
+        <span class="n">mod_field</span> <span class="o">=</span> <span class="n">nlc_col</span>
+    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;nlr&#39;</span><span class="p">:</span>
+        <span class="n">mod_field</span> <span class="o">=</span> <span class="n">nlr_col</span>
+    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;nic&#39;</span><span class="p">:</span>
+        <span class="n">mod_field</span> <span class="o">=</span> <span class="n">nic_col</span>
+    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;nis&#39;</span><span class="p">:</span>
+        <span class="n">mod_field</span> <span class="o">=</span> <span class="n">nis_col</span>
+    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;nig&#39;</span><span class="p">:</span>
+        <span class="n">mod_field</span> <span class="o">=</span> <span class="n">nig_col</span>
+    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;eps&#39;</span><span class="p">:</span>
+        <span class="n">mod_field</span> <span class="o">=</span> <span class="n">eps_col</span>
+    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;tend_cond&#39;</span><span class="p">:</span>
+        <span class="n">mod_field</span> <span class="o">=</span> <span class="n">tend_cond_col</span>
+    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;tend_dep&#39;</span><span class="p">:</span>
+        <span class="n">mod_field</span> <span class="o">=</span> <span class="n">tend_dep_col</span>
+    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;tend_rim&#39;</span><span class="p">:</span>
+        <span class="n">mod_field</span> <span class="o">=</span> <span class="n">tend_rim_col</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">var_name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;na&#39;</span><span class="p">,</span><span class="s1">&#39;vmlc&#39;</span><span class="p">,</span><span class="s1">&#39;vmlr&#39;</span><span class="p">,</span><span class="s1">&#39;vmic&#39;</span><span class="p">,</span><span class="s1">&#39;vmis&#39;</span><span class="p">,</span><span class="s1">&#39;vmig&#39;</span><span class="p">]):</span>
+        <span class="k">continue</span>
+    
+    <span class="k">if</span> <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">dimensions</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;time, height&#39;</span><span class="p">:</span>
+        <span class="n">new_snd</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="n">var_name</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="s1">&#39;height&#39;</span><span class="p">))</span>
+        <span class="n">new_snd</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+        <span class="n">new_snd</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="n">std_name</span>
+        <span class="n">new_snd</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">mod_field</span>
+        
+    <span class="k">if</span> <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">dimensions</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;time, height, x, y&#39;</span><span class="p">:</span>
+        <span class="n">new_snd</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="n">var_name</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="s1">&#39;height&#39;</span><span class="p">,</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">))</span>
+        <span class="n">new_snd</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+        <span class="n">new_snd</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="n">std_name</span>
+        <span class="n">new_snd</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">mod_field</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">dephy_file</span><span class="p">)</span>
+<span class="n">dephy_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The file ./../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_ProgNa_nosub_3D_27h.nc has been deleted successfully
+&lt;class &#39;netCDF4._netCDF4.Dataset&#39;&gt;
+root group (NETCDF3_64BIT_OFFSET data model, file format NETCDF3):
+    title: DHARMA LES results for COMBLE-MIP case: fixed Nd and Ni
+    reference: https://github.com/ARM-Development/comble-mip
+    authors: Florian Tornow (florian.tornow@nasa.gov) and Ann Fridlind (ann.fridlind@nasa.gov)
+    version: 2025-05-15 19:52:30
+    format_version: DEPHY-derivative
+    script: convert_DHARMA_LES_output_to_dephy_format_3D.ipynb
+    startDate: 2020-05-12 13:00:00.0
+    force_geo: 1
+    surfaceType: ocean (after spin-up)
+    surfaceForcing: ts (after spin-up)
+    dimensions(sizes): x(128), y(128), height(159), time(1)
+    variables(dimensions): float64 x(x), float64 y(y), float64 height(height), float64 time(time), float64 pa(time, height), float64 ua(time, height, x, y), float64 va(time, height, x, y), float64 wa(time, height, x, y), float64 ta(time, height, x, y), float64 rhoa(time, height, x, y), float64 qv(time, height, x, y), float64 qlc(time, height, x, y), float64 qlr(time, height, x, y), float64 qic(time, height, x, y), float64 qis(time, height, x, y), float64 qig(time, height, x, y), float64 nlc(time, height, x, y), float64 nlr(time, height, x, y), float64 nic(time, height, x, y), float64 nis(time, height, x, y), float64 nig(time, height, x, y), float64 eps(time, height, x, y), float64 tend_cond(time, height, x, y), float64 tend_dep(time, height, x, y), float64 tend_rim(time, height, x, y)
+    groups: 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create DEPHY output file</span>
+<span class="n">dephy_filename</span> <span class="o">=</span> <span class="s1">&#39;./&#39;</span> <span class="o">+</span> <span class="n">my_gitdir</span> <span class="o">+</span> <span class="n">my_outfile</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># read list of requested variables</span>
@@ -811,7 +968,7 @@ Loading variables: f(time,height)
       <td>time</td>
       <td>s</td>
       <td>–</td>
-      <td>dimension, seconds since 2020-03-12 18:00:00</td>
+      <td>dimension, seconds since 2020-03-12 22:00:00</td>
     </tr>
     <tr>
       <th>1</th>
@@ -991,46 +1148,6 @@ Loading variables: f(time,height)
     </tr>
     <tr>
       <th>23</th>
-      <td>mass_weighted_fall_speed_of_liquid_cloud_water</td>
-      <td>vmlc</td>
-      <td>m s-1</td>
-      <td>time, height, x, y</td>
-      <td>EMC2 uses mass-weighted fall-speed profiles fo...</td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td>mass_weighted_fall_speed_of_rain</td>
-      <td>vmlr</td>
-      <td>m s-1</td>
-      <td>time, height, x, y</td>
-      <td>–</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td>mass_weighted_fall_speed_of_ice_cloud</td>
-      <td>vmic</td>
-      <td>m s-1</td>
-      <td>time, height, x, y</td>
-      <td>if other ice-phase categories are used, provid...</td>
-    </tr>
-    <tr>
-      <th>26</th>
-      <td>mass_weighted_fall_speed_of_snow</td>
-      <td>vmis</td>
-      <td>m s-1</td>
-      <td>time, height, x, y</td>
-      <td>–</td>
-    </tr>
-    <tr>
-      <th>27</th>
-      <td>mass_weighted_fall_speed_of_graupel</td>
-      <td>vmig</td>
-      <td>m s-1</td>
-      <td>time, height, x, y</td>
-      <td>–</td>
-    </tr>
-    <tr>
-      <th>28</th>
       <td>tendency_of_condensation</td>
       <td>tend_cond</td>
       <td>s-1</td>
@@ -1038,7 +1155,7 @@ Loading variables: f(time,height)
       <td>combined tendencies of cloud liquid and rain w...</td>
     </tr>
     <tr>
-      <th>29</th>
+      <th>24</th>
       <td>tendency_of_deposition</td>
       <td>tend_dep</td>
       <td>s-1</td>
@@ -1046,7 +1163,7 @@ Loading variables: f(time,height)
       <td>tendency of ice mixing ratio due to deposition...</td>
     </tr>
     <tr>
-      <th>30</th>
+      <th>25</th>
       <td>tendency_of_riming</td>
       <td>tend_rim</td>
       <td>s-1</td>
@@ -1059,150 +1176,8 @@ Loading variables: f(time,height)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create DEPHY output file</span>
-<span class="n">dephy_filename</span> <span class="o">=</span> <span class="s1">&#39;./&#39;</span> <span class="o">+</span> <span class="n">my_gitdir</span> <span class="o">+</span> <span class="n">my_outfile</span>
-<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">dephy_filename</span><span class="p">):</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">dephy_filename</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The file &#39;</span> <span class="o">+</span> <span class="n">dephy_filename</span> <span class="o">+</span> <span class="s1">&#39; has been deleted successfully&#39;</span><span class="p">)</span>    
-<span class="n">dephy_file</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">dephy_filename</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span><span class="nb">format</span><span class="o">=</span><span class="s1">&#39;NETCDF3_CLASSIC&#39;</span><span class="p">)</span>
-
-<span class="c1"># create global attributes</span>
-<span class="n">dephy_file</span><span class="o">.</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;DHARMA LES results for COMBLE-MIP case: fixed Nd and Ni&#39;</span>
-<span class="n">dephy_file</span><span class="o">.</span><span class="n">reference</span><span class="o">=</span><span class="s1">&#39;https://github.com/ARM-Development/comble-mip&#39;</span>
-<span class="n">dephy_file</span><span class="o">.</span><span class="n">authors</span><span class="o">=</span><span class="s1">&#39;Florian Tornow (florian.tornow@nasa.gov) and Ann Fridlind (ann.fridlind@nasa.gov)&#39;</span>
-<span class="c1">#dephy_file.source=input_filename</span>
-<span class="n">dephy_file</span><span class="o">.</span><span class="n">version</span><span class="o">=</span><span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">)</span>
-<span class="n">dephy_file</span><span class="o">.</span><span class="n">format_version</span><span class="o">=</span><span class="s1">&#39;DEPHY-derivative&#39;</span>
-<span class="n">dephy_file</span><span class="o">.</span><span class="n">script</span><span class="o">=</span><span class="s1">&#39;convert_DHARMA_LES_output_to_dephy_format_3D.ipynb&#39;</span>
-<span class="n">dephy_file</span><span class="o">.</span><span class="n">startDate</span><span class="o">=</span><span class="n">start_dtime</span>
-<span class="n">dephy_file</span><span class="o">.</span><span class="n">force_geo</span><span class="o">=</span><span class="mi">1</span>
-<span class="n">dephy_file</span><span class="o">.</span><span class="n">surfaceType</span><span class="o">=</span><span class="s1">&#39;ocean (after spin-up)&#39;</span>
-<span class="n">dephy_file</span><span class="o">.</span><span class="n">surfaceForcing</span><span class="o">=</span><span class="s1">&#39;ts (after spin-up)&#39;</span>
-<span class="c1">#dephy_file.lat=str(dharma_params[&#39;Coriolis&#39;].lat) + &#39; deg N&#39;</span>
-<span class="c1">#dephy_file.dx=str(dharma_params[&#39;geometry&#39;].L_x/dharma_params[&#39;geometry&#39;].nx) + &#39; m&#39;</span>
-<span class="c1">#dephy_file.dy=str(dharma_params[&#39;geometry&#39;].L_y/dharma_params[&#39;geometry&#39;].ny) + &#39; m&#39;</span>
-<span class="c1">#dephy_file.dz=&#39;see zf variable&#39;</span>
-<span class="c1">#dephy_file.nx=dharma_params[&#39;geometry&#39;].nx</span>
-<span class="c1">#dephy_file.ny=dharma_params[&#39;geometry&#39;].ny</span>
-<span class="c1">#dephy_file.nz=dharma_params[&#39;geometry&#39;].nz</span>
-
-<span class="c1"># create dimensions</span>
-<span class="n">xvec</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">nx</span><span class="p">)</span>
-<span class="n">xvec</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,))</span>
-<span class="n">xvec</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;m&#39;</span>
-<span class="n">xvec</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;x&#39;</span>
-<span class="n">xvec</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">x_vec</span>
-
-<span class="n">yvec</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">nx</span><span class="p">)</span>
-<span class="n">yvec</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,))</span>
-<span class="n">yvec</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;m&#39;</span>
-<span class="n">yvec</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;y&#39;</span>
-<span class="n">yvec</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">y_vec</span>
-
-<span class="n">zvec</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="n">nz</span><span class="p">)</span>
-<span class="n">zvec</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,))</span>
-<span class="n">zvec</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;m&#39;</span>
-<span class="n">zvec</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;y&#39;</span>
-<span class="n">zvec</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">z_vec</span>
-
-<span class="n">nt</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">time_vec</span><span class="p">)</span><span class="c1">#len(input_filenames)</span>
-<span class="n">time</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">nt</span><span class="p">)</span>
-<span class="n">time</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,))</span>
-<span class="n">time</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;seconds since &#39;</span> <span class="o">+</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">startDate</span>
-<span class="n">time</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;time&#39;</span>
-<span class="n">time</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">time_vec</span><span class="p">[:]</span>
-
-<span class="c1"># create and fill variables</span>
-<span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">4</span><span class="p">:]:</span>
-    <span class="n">std_name</span> <span class="o">=</span> <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">standard_name</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
-    <span class="n">var_name</span> <span class="o">=</span> <span class="n">vars_mean_list</span><span class="p">[</span><span class="s1">&#39;variable_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
-    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;ta&#39;</span><span class="p">:</span>
-        <span class="n">mod_field</span> <span class="o">=</span> <span class="n">ta_col</span>
-    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;pa&#39;</span><span class="p">:</span>
-        <span class="n">mod_field</span> <span class="o">=</span> <span class="n">pa_col</span>
-    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;rhoa&#39;</span><span class="p">:</span>
-        <span class="n">mod_field</span> <span class="o">=</span> <span class="n">rhoa_col</span>
-    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;ua&#39;</span><span class="p">:</span>
-        <span class="n">mod_field</span> <span class="o">=</span> <span class="n">ua_col</span>
-    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;va&#39;</span><span class="p">:</span>
-        <span class="n">mod_field</span> <span class="o">=</span> <span class="n">va_col</span>
-    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;wa&#39;</span><span class="p">:</span>
-        <span class="n">mod_field</span> <span class="o">=</span> <span class="n">wa_col</span>
-    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;qv&#39;</span><span class="p">:</span>
-        <span class="n">mod_field</span> <span class="o">=</span> <span class="n">qv_col</span>
-    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;qlc&#39;</span><span class="p">:</span>
-        <span class="n">mod_field</span> <span class="o">=</span> <span class="n">qlc_col</span>
-    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;qlr&#39;</span><span class="p">:</span>
-        <span class="n">mod_field</span> <span class="o">=</span> <span class="n">qlr_col</span>
-    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;qic&#39;</span><span class="p">:</span>
-        <span class="n">mod_field</span> <span class="o">=</span> <span class="n">qic_col</span>
-    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;qis&#39;</span><span class="p">:</span>
-        <span class="n">mod_field</span> <span class="o">=</span> <span class="n">qis_col</span>
-    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;qig&#39;</span><span class="p">:</span>
-        <span class="n">mod_field</span> <span class="o">=</span> <span class="n">qig_col</span>
-    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;nlc&#39;</span><span class="p">:</span>
-        <span class="n">mod_field</span> <span class="o">=</span> <span class="n">nlc_col</span>
-    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;nlr&#39;</span><span class="p">:</span>
-        <span class="n">mod_field</span> <span class="o">=</span> <span class="n">nlr_col</span>
-    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;nic&#39;</span><span class="p">:</span>
-        <span class="n">mod_field</span> <span class="o">=</span> <span class="n">nic_col</span>
-    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;nis&#39;</span><span class="p">:</span>
-        <span class="n">mod_field</span> <span class="o">=</span> <span class="n">nis_col</span>
-    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;nig&#39;</span><span class="p">:</span>
-        <span class="n">mod_field</span> <span class="o">=</span> <span class="n">nig_col</span>
-    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;eps&#39;</span><span class="p">:</span>
-        <span class="n">mod_field</span> <span class="o">=</span> <span class="n">eps_col</span>
-    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;tend_cond&#39;</span><span class="p">:</span>
-        <span class="n">mod_field</span> <span class="o">=</span> <span class="n">tend_cond_col</span>
-    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;tend_dep&#39;</span><span class="p">:</span>
-        <span class="n">mod_field</span> <span class="o">=</span> <span class="n">tend_dep_col</span>
-    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;tend_rim&#39;</span><span class="p">:</span>
-        <span class="n">mod_field</span> <span class="o">=</span> <span class="n">tend_rim_col</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">var_name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;na&#39;</span><span class="p">,</span><span class="s1">&#39;vmlc&#39;</span><span class="p">,</span><span class="s1">&#39;vmlr&#39;</span><span class="p">,</span><span class="s1">&#39;vmic&#39;</span><span class="p">,</span><span class="s1">&#39;vmis&#39;</span><span class="p">,</span><span class="s1">&#39;vmig&#39;</span><span class="p">]):</span>
-        <span class="k">continue</span>
-    
-    <span class="k">if</span> <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">dimensions</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;time, height&#39;</span><span class="p">:</span>
-        <span class="n">new_snd</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="n">var_name</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="s1">&#39;height&#39;</span><span class="p">))</span>
-        <span class="n">new_snd</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
-        <span class="n">new_snd</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="n">std_name</span>
-        <span class="n">new_snd</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">mod_field</span>
-        
-    <span class="k">if</span> <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">dimensions</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;time, height, x, y&#39;</span><span class="p">:</span>
-        <span class="n">new_snd</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="n">var_name</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="s1">&#39;height&#39;</span><span class="p">,</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">))</span>
-        <span class="n">new_snd</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
-        <span class="n">new_snd</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="n">std_name</span>
-        <span class="n">new_snd</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">mod_field</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">dephy_file</span><span class="p">)</span>
-<span class="n">dephy_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The file ./../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_3D.nc has been deleted successfully
-&lt;class &#39;netCDF4._netCDF4.Dataset&#39;&gt;
-root group (NETCDF3_CLASSIC data model, file format NETCDF3):
-    title: DHARMA LES results for COMBLE-MIP case: fixed Nd and Ni
-    reference: https://github.com/ARM-Development/comble-mip
-    authors: Florian Tornow (florian.tornow@nasa.gov) and Ann Fridlind (ann.fridlind@nasa.gov)
-    version: 2024-09-25 16:28:30
-    format_version: DEPHY-derivative
-    script: convert_DHARMA_LES_output_to_dephy_format_3D.ipynb
-    startDate: 2020-03-12 22:00:00.0
-    force_geo: 1
-    surfaceType: ocean (after spin-up)
-    surfaceForcing: ts (after spin-up)
-    dimensions(sizes): x(256), y(256), height(159), time(1)
-    variables(dimensions): float64 x(x), float64 y(y), float64 height(height), float64 time(time), float64 pa(time, height), float64 ua(time, height, x, y), float64 va(time, height, x, y), float64 wa(time, height, x, y), float64 ta(time, height, x, y), float64 rhoa(time, height, x, y), float64 qv(time, height, x, y), float64 qlc(time, height, x, y), float64 qlr(time, height, x, y), float64 qic(time, height, x, y), float64 qis(time, height, x, y), float64 qig(time, height, x, y), float64 nlc(time, height, x, y), float64 nlr(time, height, x, y), float64 nic(time, height, x, y), float64 nis(time, height, x, y), float64 nig(time, height, x, y), float64 eps(time, height, x, y), float64 tend_cond(time, height, x, y), float64 tend_dep(time, height, x, y), float64 tend_rim(time, height, x, y)
-    groups: 
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dephy_check</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">dephy_filename</span><span class="p">)</span>
-<span class="n">dephy_check</span>
+<span class="n">dephy_check</span><span class="o">.</span><span class="n">qis</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1570,76 +1545,20 @@ dl.xr-attrs {
   stroke: currentColor;
   fill: currentColor;
 }
-</style><pre class='xr-text-repr-fallback'>&lt;xarray.Dataset&gt; Size: 2GB
-Dimensions:    (x: 256, y: 256, height: 159, time: 1)
-Coordinates:
-  * x          (x) float64 2kB -1.28e+04 -1.27e+04 ... 1.26e+04 1.27e+04
-  * y          (y) float64 2kB -1.28e+04 -1.27e+04 ... 1.26e+04 1.27e+04
-  * height     (height) float64 1kB 10.0 32.5 60.0 ... 6.92e+03 6.975e+03
-  * time       (time) datetime64[ns] 8B 2020-03-13T18:00:00
-Data variables: (12/21)
-    pa         (time, height) float64 1kB ...
-    ua         (time, height, x, y) float64 83MB ...
-    va         (time, height, x, y) float64 83MB ...
-    wa         (time, height, x, y) float64 83MB ...
-    ta         (time, height, x, y) float64 83MB ...
-    rhoa       (time, height, x, y) float64 83MB ...
-    ...         ...
-    nis        (time, height, x, y) float64 83MB ...
-    nig        (time, height, x, y) float64 83MB ...
-    eps        (time, height, x, y) float64 83MB ...
-    tend_cond  (time, height, x, y) float64 83MB ...
-    tend_dep   (time, height, x, y) float64 83MB ...
-    tend_rim   (time, height, x, y) float64 83MB ...
-Attributes:
-    title:           DHARMA LES results for COMBLE-MIP case: fixed Nd and Ni
-    reference:       https://github.com/ARM-Development/comble-mip
-    authors:         Florian Tornow (florian.tornow@nasa.gov) and Ann Fridlin...
-    version:         2024-09-25 16:28:30
-    format_version:  DEPHY-derivative
-    script:          convert_DHARMA_LES_output_to_dephy_format_3D.ipynb
-    startDate:       2020-03-12 22:00:00.0
-    force_geo:       1
-    surfaceType:     ocean (after spin-up)
-    surfaceForcing:  ts (after spin-up)</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-0feca2bb-6acb-44a9-a673-944caa819e24' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-0feca2bb-6acb-44a9-a673-944caa819e24' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>x</span>: 256</li><li><span class='xr-has-index'>y</span>: 256</li><li><span class='xr-has-index'>height</span>: 159</li><li><span class='xr-has-index'>time</span>: 1</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-0766a975-a8f7-4424-bd53-cbf765f308f5' class='xr-section-summary-in' type='checkbox'  checked><label for='section-0766a975-a8f7-4424-bd53-cbf765f308f5' class='xr-section-summary' >Coordinates: <span>(4)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>x</span></div><div class='xr-var-dims'>(x)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-1.28e+04 -1.27e+04 ... 1.27e+04</div><input id='attrs-e898a868-806d-4f58-a6ab-60c3967b3c75' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-e898a868-806d-4f58-a6ab-60c3967b3c75' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-431a0fb4-9487-42fb-aae2-4c7580481115' class='xr-var-data-in' type='checkbox'><label for='data-431a0fb4-9487-42fb-aae2-4c7580481115' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>m</dd><dt><span>long_name :</span></dt><dd>x</dd></dl></div><div class='xr-var-data'><pre>array([-12800., -12700., -12600., ...,  12500.,  12600.,  12700.])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>y</span></div><div class='xr-var-dims'>(y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-1.28e+04 -1.27e+04 ... 1.27e+04</div><input id='attrs-815f539e-9f9e-4db9-9a3d-3ea579b0f8d7' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-815f539e-9f9e-4db9-9a3d-3ea579b0f8d7' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-9750afa2-5ea2-4b4e-8539-df0543e74406' class='xr-var-data-in' type='checkbox'><label for='data-9750afa2-5ea2-4b4e-8539-df0543e74406' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>m</dd><dt><span>long_name :</span></dt><dd>y</dd></dl></div><div class='xr-var-data'><pre>array([-12800., -12700., -12600., ...,  12500.,  12600.,  12700.])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>height</span></div><div class='xr-var-dims'>(height)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>10.0 32.5 ... 6.92e+03 6.975e+03</div><input id='attrs-f4cb0fcc-200c-419c-881e-19b00ffd3cce' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-f4cb0fcc-200c-419c-881e-19b00ffd3cce' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-130061a3-5a71-4498-ad29-9e1892e81458' class='xr-var-data-in' type='checkbox'><label for='data-130061a3-5a71-4498-ad29-9e1892e81458' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>m</dd><dt><span>long_name :</span></dt><dd>y</dd></dl></div><div class='xr-var-data'><pre>array([  10. ,   32.5,   60. ,   92.5,  130. ,  170. ,  210. ,  250. ,  290. ,
-        330. ,  370. ,  410. ,  450. ,  490. ,  530. ,  570. ,  610. ,  650. ,
-        690. ,  730. ,  770. ,  810. ,  850. ,  890. ,  930. ,  970. , 1010. ,
-       1050. , 1090. , 1130. , 1170. , 1210. , 1250. , 1290. , 1330. , 1370. ,
-       1410. , 1450. , 1490. , 1530. , 1570. , 1610. , 1650. , 1690. , 1730. ,
-       1770. , 1810. , 1850. , 1890. , 1930. , 1970. , 2010. , 2050. , 2090. ,
-       2130. , 2170. , 2210. , 2250. , 2290. , 2330. , 2370. , 2410. , 2450. ,
-       2490. , 2530. , 2570. , 2610. , 2650. , 2690. , 2730. , 2770. , 2810. ,
-       2850. , 2890. , 2930. , 2970. , 3010. , 3050. , 3090. , 3130. , 3170. ,
-       3210. , 3250. , 3290. , 3330. , 3370. , 3410. , 3450. , 3490. , 3530. ,
-       3570. , 3610. , 3650. , 3690. , 3730. , 3770. , 3810. , 3850. , 3890. ,
-       3930. , 3970. , 4010. , 4050. , 4090. , 4130. , 4170. , 4210. , 4250. ,
-       4290. , 4330. , 4370. , 4410. , 4450. , 4490. , 4530. , 4570. , 4610. ,
-       4650. , 4690. , 4730. , 4770. , 4810. , 4850. , 4890. , 4930. , 4970. ,
-       5010. , 5050. , 5090. , 5130. , 5170. , 5210. , 5250. , 5290. , 5330. ,
-       5370. , 5410. , 5450. , 5490. , 5530. , 5580. , 5650. , 5730. , 5810. ,
-       5890. , 5970. , 6050. , 6130. , 6210. , 6290. , 6370. , 6450. , 6530. ,
-       6610. , 6690. , 6770. , 6850. , 6920. , 6975. ])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>2020-03-13T18:00:00</div><input id='attrs-b118d0d7-7a28-4f01-ba3b-d816d1ef4a4a' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-b118d0d7-7a28-4f01-ba3b-d816d1ef4a4a' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-8bfca908-f9ec-4a13-bba2-3d0facab14cc' class='xr-var-data-in' type='checkbox'><label for='data-8bfca908-f9ec-4a13-bba2-3d0facab14cc' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>time</dd></dl></div><div class='xr-var-data'><pre>array([&#x27;2020-03-13T18:00:00.000000000&#x27;], dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-e33d0ae2-d71a-4795-bc4f-e694595d4876' class='xr-section-summary-in' type='checkbox'  ><label for='section-e33d0ae2-d71a-4795-bc4f-e694595d4876' class='xr-section-summary' >Data variables: <span>(21)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>pa</span></div><div class='xr-var-dims'>(time, height)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-e8c44a85-28f9-4e69-9451-99777c3511b2' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-e8c44a85-28f9-4e69-9451-99777c3511b2' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-cbf2aaba-84fe-4705-80a4-03d6d9213108' class='xr-var-data-in' type='checkbox'><label for='data-cbf2aaba-84fe-4705-80a4-03d6d9213108' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>Pa</dd><dt><span>long_name :</span></dt><dd>air_pressure</dd></dl></div><div class='xr-var-data'><pre>[159 values with dtype=float64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>ua</span></div><div class='xr-var-dims'>(time, height, x, y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-b4e00b5b-b87a-4b2f-87bb-558dcd181199' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-b4e00b5b-b87a-4b2f-87bb-558dcd181199' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-ecdde950-b4d7-47b1-8842-bdaaf447d8f8' class='xr-var-data-in' type='checkbox'><label for='data-ecdde950-b4d7-47b1-8842-bdaaf447d8f8' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>m s-1</dd><dt><span>long_name :</span></dt><dd>eastward_wind</dd></dl></div><div class='xr-var-data'><pre>[10420224 values with dtype=float64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>va</span></div><div class='xr-var-dims'>(time, height, x, y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-acce70f8-e458-4850-b2f7-f23e6d6899c3' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-acce70f8-e458-4850-b2f7-f23e6d6899c3' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-3032fd48-ac1f-4a8e-ac02-89da876689e9' class='xr-var-data-in' type='checkbox'><label for='data-3032fd48-ac1f-4a8e-ac02-89da876689e9' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>m s-1</dd><dt><span>long_name :</span></dt><dd>northward_wind</dd></dl></div><div class='xr-var-data'><pre>[10420224 values with dtype=float64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>wa</span></div><div class='xr-var-dims'>(time, height, x, y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-66482f33-c729-4aa3-b96c-70d8e5a15c93' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-66482f33-c729-4aa3-b96c-70d8e5a15c93' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-eb419665-32f6-4d37-852c-dff607885c16' class='xr-var-data-in' type='checkbox'><label for='data-eb419665-32f6-4d37-852c-dff607885c16' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>m s-1</dd><dt><span>long_name :</span></dt><dd>upward_air_velocity</dd></dl></div><div class='xr-var-data'><pre>[10420224 values with dtype=float64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>ta</span></div><div class='xr-var-dims'>(time, height, x, y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-104c5dc9-4a8f-436c-af68-5bce061564b5' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-104c5dc9-4a8f-436c-af68-5bce061564b5' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-beb41f91-9ad6-41d0-81a4-27d68c71861f' class='xr-var-data-in' type='checkbox'><label for='data-beb41f91-9ad6-41d0-81a4-27d68c71861f' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>K</dd><dt><span>long_name :</span></dt><dd>air_temperature</dd></dl></div><div class='xr-var-data'><pre>[10420224 values with dtype=float64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>rhoa</span></div><div class='xr-var-dims'>(time, height, x, y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-f6348386-ad88-4d34-8615-a37e1569a401' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-f6348386-ad88-4d34-8615-a37e1569a401' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-0f99165b-8fa0-4678-af1f-114fdf5845cb' class='xr-var-data-in' type='checkbox'><label for='data-0f99165b-8fa0-4678-af1f-114fdf5845cb' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>kg m-3</dd><dt><span>long_name :</span></dt><dd>air_dry_density</dd></dl></div><div class='xr-var-data'><pre>[10420224 values with dtype=float64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>qv</span></div><div class='xr-var-dims'>(time, height, x, y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-b14cba51-2452-426f-8d98-a0bfac902a77' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-b14cba51-2452-426f-8d98-a0bfac902a77' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-f41a9814-6ef8-4048-bc61-f1833195e088' class='xr-var-data-in' type='checkbox'><label for='data-f41a9814-6ef8-4048-bc61-f1833195e088' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>kg kg-1</dd><dt><span>long_name :</span></dt><dd>water_vapor_mixing_ratio</dd></dl></div><div class='xr-var-data'><pre>[10420224 values with dtype=float64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>qlc</span></div><div class='xr-var-dims'>(time, height, x, y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-d0414d18-7b9b-4bca-b848-ebd175f3b6ec' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-d0414d18-7b9b-4bca-b848-ebd175f3b6ec' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-70ea1933-2685-45cf-8902-c1ba02464402' class='xr-var-data-in' type='checkbox'><label for='data-70ea1933-2685-45cf-8902-c1ba02464402' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>kg kg-1</dd><dt><span>long_name :</span></dt><dd>mass_mixing_ratio_of_cloud_liquid_water_in_air</dd></dl></div><div class='xr-var-data'><pre>[10420224 values with dtype=float64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>qlr</span></div><div class='xr-var-dims'>(time, height, x, y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-6e73be7c-b3a9-47bd-abe5-8e77c571093b' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-6e73be7c-b3a9-47bd-abe5-8e77c571093b' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-d459231b-3686-479b-bbc3-2157d2e8a4b4' class='xr-var-data-in' type='checkbox'><label for='data-d459231b-3686-479b-bbc3-2157d2e8a4b4' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>kg kg-1</dd><dt><span>long_name :</span></dt><dd>mass_mixing_ratio_of_rain_water_in_air</dd></dl></div><div class='xr-var-data'><pre>[10420224 values with dtype=float64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>qic</span></div><div class='xr-var-dims'>(time, height, x, y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-799fd7aa-4978-4151-9f75-7b44958555a8' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-799fd7aa-4978-4151-9f75-7b44958555a8' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-32ed019c-cbb3-4dee-83a7-42de15cf53c8' class='xr-var-data-in' type='checkbox'><label for='data-32ed019c-cbb3-4dee-83a7-42de15cf53c8' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>kg kg-1</dd><dt><span>long_name :</span></dt><dd>mass_mixing_ratio_of_cloud_ice_in_air</dd></dl></div><div class='xr-var-data'><pre>[10420224 values with dtype=float64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>qis</span></div><div class='xr-var-dims'>(time, height, x, y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-cfa3e360-2201-4708-b222-785c8babcbb2' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-cfa3e360-2201-4708-b222-785c8babcbb2' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-a7d1615c-002c-4239-91ef-21fa6e3553d7' class='xr-var-data-in' type='checkbox'><label for='data-a7d1615c-002c-4239-91ef-21fa6e3553d7' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>kg kg-1</dd><dt><span>long_name :</span></dt><dd>mass_mixing_ratio_of_snow_in_air</dd></dl></div><div class='xr-var-data'><pre>[10420224 values with dtype=float64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>qig</span></div><div class='xr-var-dims'>(time, height, x, y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-6e36c2db-1a51-4197-af8e-5bf1b22f5245' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-6e36c2db-1a51-4197-af8e-5bf1b22f5245' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-10ba8e7c-9728-4039-9625-708847f89de5' class='xr-var-data-in' type='checkbox'><label for='data-10ba8e7c-9728-4039-9625-708847f89de5' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>kg kg-1</dd><dt><span>long_name :</span></dt><dd>mass_mixing_ratio_of_graupel_in_air</dd></dl></div><div class='xr-var-data'><pre>[10420224 values with dtype=float64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>nlc</span></div><div class='xr-var-dims'>(time, height, x, y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-ef43912d-17d4-4f1b-a12f-392528d650db' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-ef43912d-17d4-4f1b-a12f-392528d650db' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-ce0cc60b-be2c-4305-9bd4-fe3bada0a9ca' class='xr-var-data-in' type='checkbox'><label for='data-ce0cc60b-be2c-4305-9bd4-fe3bada0a9ca' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>kg-1</dd><dt><span>long_name :</span></dt><dd>number_of_cloud_droplets_in_air</dd></dl></div><div class='xr-var-data'><pre>[10420224 values with dtype=float64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>nlr</span></div><div class='xr-var-dims'>(time, height, x, y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-e2129537-fbdb-471d-93e6-78fb81e3b9c9' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-e2129537-fbdb-471d-93e6-78fb81e3b9c9' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-978f613d-0a7f-4f98-87d9-51fc4523a2d5' class='xr-var-data-in' type='checkbox'><label for='data-978f613d-0a7f-4f98-87d9-51fc4523a2d5' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>kg-1</dd><dt><span>long_name :</span></dt><dd>number_of_rain_droplets_in_air</dd></dl></div><div class='xr-var-data'><pre>[10420224 values with dtype=float64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>nic</span></div><div class='xr-var-dims'>(time, height, x, y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-bec36ab8-d51e-4fc9-bade-7679f8ee6660' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-bec36ab8-d51e-4fc9-bade-7679f8ee6660' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-183edeb9-1c6f-421f-8d63-ff10ca605a9f' class='xr-var-data-in' type='checkbox'><label for='data-183edeb9-1c6f-421f-8d63-ff10ca605a9f' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>kg-1</dd><dt><span>long_name :</span></dt><dd>number_of_cloud_ice_crystals_in_air</dd></dl></div><div class='xr-var-data'><pre>[10420224 values with dtype=float64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>nis</span></div><div class='xr-var-dims'>(time, height, x, y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-36a73251-0e91-4540-90da-f2d4119318d1' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-36a73251-0e91-4540-90da-f2d4119318d1' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-1c106bf5-cd9f-4ac4-a62c-feeedd82a8e0' class='xr-var-data-in' type='checkbox'><label for='data-1c106bf5-cd9f-4ac4-a62c-feeedd82a8e0' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>kg-1</dd><dt><span>long_name :</span></dt><dd>number_of_snow_crystals_in_air</dd></dl></div><div class='xr-var-data'><pre>[10420224 values with dtype=float64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>nig</span></div><div class='xr-var-dims'>(time, height, x, y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-58fb2cc3-ab73-44ee-aa10-6c8a7b7c8a27' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-58fb2cc3-ab73-44ee-aa10-6c8a7b7c8a27' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-8d093414-6d84-43ed-a407-a196ba2074ee' class='xr-var-data-in' type='checkbox'><label for='data-8d093414-6d84-43ed-a407-a196ba2074ee' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>kg-1</dd><dt><span>long_name :</span></dt><dd>number_of_graupel_crystals_in_air</dd></dl></div><div class='xr-var-data'><pre>[10420224 values with dtype=float64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>eps</span></div><div class='xr-var-dims'>(time, height, x, y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-e526d750-d08c-4c9f-8155-3f119a496323' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-e526d750-d08c-4c9f-8155-3f119a496323' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-b5a65cc3-4578-4536-a19d-3bf6f3f54729' class='xr-var-data-in' type='checkbox'><label for='data-b5a65cc3-4578-4536-a19d-3bf6f3f54729' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>m2 s-3</dd><dt><span>long_name :</span></dt><dd>dissipation_rate_of_turbulent_kinetic_energy</dd></dl></div><div class='xr-var-data'><pre>[10420224 values with dtype=float64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>tend_cond</span></div><div class='xr-var-dims'>(time, height, x, y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-d9ea92d8-3f95-45ed-8da7-e5f6b7676f01' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-d9ea92d8-3f95-45ed-8da7-e5f6b7676f01' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-536bc36e-6554-4df9-843c-ea4c4070e14b' class='xr-var-data-in' type='checkbox'><label for='data-536bc36e-6554-4df9-843c-ea4c4070e14b' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>s-1</dd><dt><span>long_name :</span></dt><dd>tendency_of_condensation</dd></dl></div><div class='xr-var-data'><pre>[10420224 values with dtype=float64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>tend_dep</span></div><div class='xr-var-dims'>(time, height, x, y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-c7ee9028-1b30-4a32-a4d0-24f1e3361590' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-c7ee9028-1b30-4a32-a4d0-24f1e3361590' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-26a88982-c217-42e9-bc21-eff58676b37b' class='xr-var-data-in' type='checkbox'><label for='data-26a88982-c217-42e9-bc21-eff58676b37b' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>s-1</dd><dt><span>long_name :</span></dt><dd>tendency_of_deposition</dd></dl></div><div class='xr-var-data'><pre>[10420224 values with dtype=float64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>tend_rim</span></div><div class='xr-var-dims'>(time, height, x, y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-22d58481-47fc-4811-8080-97820693fae2' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-22d58481-47fc-4811-8080-97820693fae2' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-8239a46d-9f96-4903-83a9-3b4ac173b8cd' class='xr-var-data-in' type='checkbox'><label for='data-8239a46d-9f96-4903-83a9-3b4ac173b8cd' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>s-1</dd><dt><span>long_name :</span></dt><dd>tendency_of_riming</dd></dl></div><div class='xr-var-data'><pre>[10420224 values with dtype=float64]</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-31732c9d-45fa-4af7-bf9b-68e67b149b13' class='xr-section-summary-in' type='checkbox'  ><label for='section-31732c9d-45fa-4af7-bf9b-68e67b149b13' class='xr-section-summary' >Indexes: <span>(4)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>x</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-d38d5c51-0d9b-44ef-a02e-8c7617f8fa9d' class='xr-index-data-in' type='checkbox'/><label for='index-d38d5c51-0d9b-44ef-a02e-8c7617f8fa9d' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Float64Index([-12800.0, -12700.0, -12600.0, -12500.0, -12400.0, -12300.0,
-              -12200.0, -12100.0, -12000.0, -11900.0,
-              ...
-               11800.0,  11900.0,  12000.0,  12100.0,  12200.0,  12300.0,
-               12400.0,  12500.0,  12600.0,  12700.0],
-             dtype=&#x27;float64&#x27;, name=&#x27;x&#x27;, length=256))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>y</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-4c6d29e8-5047-4975-909a-9e36c2220d9a' class='xr-index-data-in' type='checkbox'/><label for='index-4c6d29e8-5047-4975-909a-9e36c2220d9a' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Float64Index([-12800.0, -12700.0, -12600.0, -12500.0, -12400.0, -12300.0,
-              -12200.0, -12100.0, -12000.0, -11900.0,
-              ...
-               11800.0,  11900.0,  12000.0,  12100.0,  12200.0,  12300.0,
-               12400.0,  12500.0,  12600.0,  12700.0],
-             dtype=&#x27;float64&#x27;, name=&#x27;y&#x27;, length=256))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>height</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-921417a4-492f-40b6-8eed-4681bfe23ec9' class='xr-index-data-in' type='checkbox'/><label for='index-921417a4-492f-40b6-8eed-4681bfe23ec9' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Float64Index([  10.0,   32.5,   60.0,   92.5,  130.0,  170.0,  210.0,  250.0,
-               290.0,  330.0,
-              ...
-              6290.0, 6370.0, 6450.0, 6530.0, 6610.0, 6690.0, 6770.0, 6850.0,
-              6920.0, 6975.0],
-             dtype=&#x27;float64&#x27;, name=&#x27;height&#x27;, length=159))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>time</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-268f5d96-12cd-4932-a261-5e92ae8366be' class='xr-index-data-in' type='checkbox'/><label for='index-268f5d96-12cd-4932-a261-5e92ae8366be' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(DatetimeIndex([&#x27;2020-03-13 18:00:00&#x27;], dtype=&#x27;datetime64[ns]&#x27;, name=&#x27;time&#x27;, freq=None))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-26c19161-79e9-43bb-af33-da595475ef69' class='xr-section-summary-in' type='checkbox'  ><label for='section-26c19161-79e9-43bb-af33-da595475ef69' class='xr-section-summary' >Attributes: <span>(10)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>title :</span></dt><dd>DHARMA LES results for COMBLE-MIP case: fixed Nd and Ni</dd><dt><span>reference :</span></dt><dd>https://github.com/ARM-Development/comble-mip</dd><dt><span>authors :</span></dt><dd>Florian Tornow (florian.tornow@nasa.gov) and Ann Fridlind (ann.fridlind@nasa.gov)</dd><dt><span>version :</span></dt><dd>2024-09-25 16:28:30</dd><dt><span>format_version :</span></dt><dd>DEPHY-derivative</dd><dt><span>script :</span></dt><dd>convert_DHARMA_LES_output_to_dephy_format_3D.ipynb</dd><dt><span>startDate :</span></dt><dd>2020-03-12 22:00:00.0</dd><dt><span>force_geo :</span></dt><dd>1</dd><dt><span>surfaceType :</span></dt><dd>ocean (after spin-up)</dd><dt><span>surfaceForcing :</span></dt><dd>ts (after spin-up)</dd></dl></div></li></ul></div></div></div></div>
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.DataArray &#x27;qis&#x27; ()&gt; Size: 8B
+array(0.0008962)</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'qis'</div></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-a826e381-5888-4107-85f8-f1cb8de09330' class='xr-array-in' type='checkbox' checked><label for='section-a826e381-5888-4107-85f8-f1cb8de09330' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>0.0008962</span></div><div class='xr-array-data'><pre>array(0.0008962)</pre></div></div></li><li class='xr-section-item'><input id='section-ddcc6b60-3fc4-4d96-9d61-41168ccb024a' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-ddcc6b60-3fc4-4d96-9d61-41168ccb024a' class='xr-section-summary'  title='Expand/collapse section'>Coordinates: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'></ul></div></li><li class='xr-section-item'><input id='section-a9e4e112-75c9-4b11-9a9e-608e9233557f' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-a9e4e112-75c9-4b11-9a9e-608e9233557f' class='xr-section-summary'  title='Expand/collapse section'>Indexes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'></ul></div></li><li class='xr-section-item'><input id='section-cb62de31-9d04-41e2-b9ce-56df0b4fb8f8' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-cb62de31-9d04-41e2-b9ce-56df0b4fb8f8' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">dephy_check</span><span class="p">[</span><span class="s1">&#39;ua&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">])</span><span class="o">-</span><span class="n">dharma_params</span><span class="p">[</span><span class="s1">&#39;translate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">u</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fe2ef9e5ba0&gt;]
+</pre></div>
+</div>
+<img alt="../../_images/f2f2ea34c9cc3cb72e8766d374ebbeb94d3a399218a9e7b03134b9dd81413bbc.png" src="../../_images/f2f2ea34c9cc3cb72e8766d374ebbeb94d3a399218a9e7b03134b9dd81413bbc.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1648,64 +1567,22 @@ Attributes:
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-12.87
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qlr_3d</span>
-<span class="n">nlr_3d</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#qlr_3d</span>
+<span class="c1">#nlr_3d</span>
+<span class="n">nis_3d</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[0., 0., 0., ..., 0., 0., 0.],
-        [0., 0., 0., ..., 0., 0., 0.],
-        [0., 0., 0., ..., 0., 0., 0.],
-        ...,
-        [0., 0., 0., ..., 0., 0., 0.],
-        [0., 0., 0., ..., 0., 0., 0.],
-        [0., 0., 0., ..., 0., 0., 0.]],
-
-       [[0., 0., 0., ..., 0., 0., 0.],
-        [0., 0., 0., ..., 0., 0., 0.],
-        [0., 0., 0., ..., 0., 0., 0.],
-        ...,
-        [0., 0., 0., ..., 0., 0., 0.],
-        [0., 0., 0., ..., 0., 0., 0.],
-        [0., 0., 0., ..., 0., 0., 0.]],
-
-       [[0., 0., 0., ..., 0., 0., 0.],
-        [0., 0., 0., ..., 0., 0., 0.],
-        [0., 0., 0., ..., 0., 0., 0.],
-        ...,
-        [0., 0., 0., ..., 0., 0., 0.],
-        [0., 0., 0., ..., 0., 0., 0.],
-        [0., 0., 0., ..., 0., 0., 0.]],
-
-       ...,
-
-       [[0., 0., 0., ..., 0., 0., 0.],
-        [0., 0., 0., ..., 0., 0., 0.],
-        [0., 0., 0., ..., 0., 0., 0.],
-        ...,
-        [0., 0., 0., ..., 0., 0., 0.],
-        [0., 0., 0., ..., 0., 0., 0.],
-        [0., 0., 0., ..., 0., 0., 0.]],
-
-       [[0., 0., 0., ..., 0., 0., 0.],
-        [0., 0., 0., ..., 0., 0., 0.],
-        [0., 0., 0., ..., 0., 0., 0.],
-        ...,
-        [0., 0., 0., ..., 0., 0., 0.],
-        [0., 0., 0., ..., 0., 0., 0.],
-        [0., 0., 0., ..., 0., 0., 0.]],
-
-       [[0., 0., 0., ..., 0., 0., 0.],
-        [0., 0., 0., ..., 0., 0., 0.],
-        [0., 0., 0., ..., 0., 0., 0.],
-        ...,
-        [0., 0., 0., ..., 0., 0., 0.],
-        [0., 0., 0., ..., 0., 0., 0.],
-        [0., 0., 0., ..., 0., 0., 0.]]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9008.464288115672
 </pre></div>
 </div>
 </div>
@@ -1728,7 +1605,7 @@ Attributes:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">145</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
     <span class="n">N_icef</span><span class="p">(</span><span class="n">ix</span><span class="p">,</span><span class="n">iy</span><span class="p">,</span><span class="n">iz</span><span class="p">)</span> <span class="o">=</span> <span class="n">num_s</span><span class="o">*</span><span class="mf">1e-3</span>      <span class="c1"># m-3*1e-3 --&gt; L-1</span>
     <span class="o">^</span>
 <span class="ne">SyntaxError</span>: cannot assign to function call here. Maybe you meant &#39;==&#39; instead of &#39;=&#39;?
@@ -1786,16 +1663,6 @@ Attributes:
 <span class="n">vname</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">&#39;qr&#39;</span><span class="p">,</span> <span class="s1">&#39;nr&#39;</span> <span class="p">]</span>
 <span class="n">i_qr</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">i_nr</span> <span class="o">=</span> <span class="mi">1</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">gamma</span>
-
-<span class="ne">NameError</span>: name &#39;gamma&#39; is not defined
 </pre></div>
 </div>
 </div>
