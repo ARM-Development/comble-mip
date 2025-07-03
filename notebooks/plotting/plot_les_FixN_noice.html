@@ -452,7 +452,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#updated-as-of-5-24-24">Updated as of 5/24/24</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#updated-as-of-7-2-25">Updated as of 7/2/25</a></li>
 </ul>
             </nav>
         </div>
@@ -466,8 +466,8 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="compare-fixn-noice-les-sims">
 <h1>Compare FixN_noice LES Sims<a class="headerlink" href="#compare-fixn-noice-les-sims" title="Link to this heading">#</a></h1>
-<section id="updated-as-of-5-24-24">
-<h2>Updated as of 5/24/24<a class="headerlink" href="#updated-as-of-5-24-24" title="Link to this heading">#</a></h2>
+<section id="updated-as-of-7-2-25">
+<h2>Updated as of 7/2/25<a class="headerlink" href="#updated-as-of-7-2-25" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>The below notebook allows one to compare large-eddy simulations.</p></li>
 <li><p>All requested 1D and 2D variables are here read and plotted. “load_sims” reports variable that are missing. Lines will not show, if a variable is missing or if it contains missing values.</p></li>
@@ -507,6 +507,329 @@ document.write(`
 <span class="c1">## Units</span>
 <span class="n">var_vec_1d_units</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">units</span><span class="p">[</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">==</span> <span class="s1">&#39;time&#39;</span><span class="p">])</span>
 <span class="n">var_vec_2d_units</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">units</span><span class="p">[</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">==</span> <span class="s1">&#39;time, height&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> functions_plotting.py
+
+<span class="n">df_col_1d</span><span class="p">,</span><span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">keyword_all</span><span class="p">,</span><span class="n">subfolder</span><span class="o">=</span><span class="s1">&#39;sand&#39;</span><span class="p">,</span><span class="n">diag_zi_ctt</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1">#,ignore=&#39;MSU_RCC_LES_SM&#39;)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time)
+../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
+z0h shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
+z0q shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
+iwp shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
+pri shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
+ssaf shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
+../../output_les/mimica/sandbox/MIMICA_Lx25_dx100_FixN_noice.nc
+z0q not found in ../../output_les/mimica/sandbox/MIMICA_Lx25_dx100_FixN_noice.nc
+ssaf not found in ../../output_les/mimica/sandbox/MIMICA_Lx25_dx100_FixN_noice.nc
+../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_noice.nc
+iwp shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_noice.nc
+pri shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_noice.nc
+ssaf shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_noice.nc
+../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+lwpr not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+iwp not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+pr not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+pri not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+ssaf not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN_noice.nc
+ssaf shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN_noice.nc
+../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN_noice.nc
+iwp not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN_noice.nc
+pri not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN_noice.nc
+ssaf not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN_noice.nc
+../../output_les/scale-sdm/sandbox/scale-sn14_Lx25_dx100_FixN_noice.nc
+od not found in ../../output_les/scale-sdm/sandbox/scale-sn14_Lx25_dx100_FixN_noice.nc
+ssaf not found in ../../output_les/scale-sdm/sandbox/scale-sn14_Lx25_dx100_FixN_noice.nc
+../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+pri shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+ssaf shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN_noice.nc
+ps shows NAN values in ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN_noice.nc
+ssaf shows NAN values in ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN_noice.nc
+../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_DM_Lx25_dx100_FixN_noice.nc
+ps shows NAN values in ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_DM_Lx25_dx100_FixN_noice.nc
+ssaf shows NAN values in ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_DM_Lx25_dx100_FixN_noice.nc
+Loading variables: f(time,height)
+../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
+huri shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
+qic shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
+qis shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
+qig shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
+nic shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
+nis shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
+nig shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
+na1 shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
+na2 shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
+na3 shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
+niic shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
+vf_thli shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
+vf_qt shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
+prfi shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
+dna_micro_warm shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
+dna_micro_cold shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
+dna_turb shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
+dni_het shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
+dni_sip shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
+dni_hom shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
+../../output_les/mimica/sandbox/MIMICA_Lx25_dx100_FixN_noice.nc
+qic not found in ../../output_les/mimica/sandbox/MIMICA_Lx25_dx100_FixN_noice.nc
+qis not found in ../../output_les/mimica/sandbox/MIMICA_Lx25_dx100_FixN_noice.nc
+qig not found in ../../output_les/mimica/sandbox/MIMICA_Lx25_dx100_FixN_noice.nc
+nic not found in ../../output_les/mimica/sandbox/MIMICA_Lx25_dx100_FixN_noice.nc
+nis not found in ../../output_les/mimica/sandbox/MIMICA_Lx25_dx100_FixN_noice.nc
+nig not found in ../../output_les/mimica/sandbox/MIMICA_Lx25_dx100_FixN_noice.nc
+na1 not found in ../../output_les/mimica/sandbox/MIMICA_Lx25_dx100_FixN_noice.nc
+na2 not found in ../../output_les/mimica/sandbox/MIMICA_Lx25_dx100_FixN_noice.nc
+na3 not found in ../../output_les/mimica/sandbox/MIMICA_Lx25_dx100_FixN_noice.nc
+niic not found in ../../output_les/mimica/sandbox/MIMICA_Lx25_dx100_FixN_noice.nc
+eps not found in ../../output_les/mimica/sandbox/MIMICA_Lx25_dx100_FixN_noice.nc
+uw not found in ../../output_les/mimica/sandbox/MIMICA_Lx25_dx100_FixN_noice.nc
+vw not found in ../../output_les/mimica/sandbox/MIMICA_Lx25_dx100_FixN_noice.nc
+w2 not found in ../../output_les/mimica/sandbox/MIMICA_Lx25_dx100_FixN_noice.nc
+wth not found in ../../output_les/mimica/sandbox/MIMICA_Lx25_dx100_FixN_noice.nc
+vf_thli not found in ../../output_les/mimica/sandbox/MIMICA_Lx25_dx100_FixN_noice.nc
+wqv not found in ../../output_les/mimica/sandbox/MIMICA_Lx25_dx100_FixN_noice.nc
+vf_qt not found in ../../output_les/mimica/sandbox/MIMICA_Lx25_dx100_FixN_noice.nc
+flc not found in ../../output_les/mimica/sandbox/MIMICA_Lx25_dx100_FixN_noice.nc
+prf not found in ../../output_les/mimica/sandbox/MIMICA_Lx25_dx100_FixN_noice.nc
+prfi not found in ../../output_les/mimica/sandbox/MIMICA_Lx25_dx100_FixN_noice.nc
+rld not found in ../../output_les/mimica/sandbox/MIMICA_Lx25_dx100_FixN_noice.nc
+rlu not found in ../../output_les/mimica/sandbox/MIMICA_Lx25_dx100_FixN_noice.nc
+dth_rad not found in ../../output_les/mimica/sandbox/MIMICA_Lx25_dx100_FixN_noice.nc
+dth_micro not found in ../../output_les/mimica/sandbox/MIMICA_Lx25_dx100_FixN_noice.nc
+dth_turb not found in ../../output_les/mimica/sandbox/MIMICA_Lx25_dx100_FixN_noice.nc
+dq_micro not found in ../../output_les/mimica/sandbox/MIMICA_Lx25_dx100_FixN_noice.nc
+dq_turb not found in ../../output_les/mimica/sandbox/MIMICA_Lx25_dx100_FixN_noice.nc
+dna_micro_warm not found in ../../output_les/mimica/sandbox/MIMICA_Lx25_dx100_FixN_noice.nc
+dna_micro_cold not found in ../../output_les/mimica/sandbox/MIMICA_Lx25_dx100_FixN_noice.nc
+dna_turb not found in ../../output_les/mimica/sandbox/MIMICA_Lx25_dx100_FixN_noice.nc
+dni_het not found in ../../output_les/mimica/sandbox/MIMICA_Lx25_dx100_FixN_noice.nc
+dni_sip not found in ../../output_les/mimica/sandbox/MIMICA_Lx25_dx100_FixN_noice.nc
+dni_hom not found in ../../output_les/mimica/sandbox/MIMICA_Lx25_dx100_FixN_noice.nc
+../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_noice.nc
+qic shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_noice.nc
+qis shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_noice.nc
+qig shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_noice.nc
+nlc shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_noice.nc
+nic shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_noice.nc
+nis shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_noice.nc
+nig shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_noice.nc
+na1 shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_noice.nc
+na2 shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_noice.nc
+na3 shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_noice.nc
+nlcic shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_noice.nc
+niic shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_noice.nc
+eps shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_noice.nc
+wth shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_noice.nc
+vf_thli shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_noice.nc
+wqv shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_noice.nc
+vf_qt shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_noice.nc
+flc shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_noice.nc
+prf shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_noice.nc
+prfi shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_noice.nc
+dth_rad shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_noice.nc
+dth_micro shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_noice.nc
+dth_turb shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_noice.nc
+dq_micro shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_noice.nc
+dq_turb shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_noice.nc
+dna_micro_warm shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_noice.nc
+dna_micro_cold shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_noice.nc
+dna_turb shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_noice.nc
+dni_het shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_noice.nc
+dni_sip shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_noice.nc
+dni_hom shows NAN values in ../../output_les/sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_noice.nc
+../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+huri not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+qlr not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+qic not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+qis not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+qig not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+nlc not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+nlr not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+nic not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+nis not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+nig not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+na1 not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+na2 not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+na3 not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+nlcic not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+niic not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+eps not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+w2 shows NAN values in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+wth not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+vf_thli not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+wqv not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+vf_qt not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+flc not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+prf not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+prfi not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+dth_micro not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+dth_turb not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+dq_micro not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+dq_turb not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+dna_micro_warm not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+dna_micro_cold not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+dna_turb not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+dni_het not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+dni_sip not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+dni_hom not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN_noice.nc
+na1 shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN_noice.nc
+na2 shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN_noice.nc
+na3 shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN_noice.nc
+wth shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN_noice.nc
+vf_thli shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN_noice.nc
+wqv shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN_noice.nc
+dth_rad shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN_noice.nc
+dth_micro shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN_noice.nc
+dth_turb shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN_noice.nc
+dq_micro shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN_noice.nc
+dq_turb shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN_noice.nc
+dna_micro_warm shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN_noice.nc
+dna_micro_cold shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN_noice.nc
+dna_turb shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN_noice.nc
+dni_sip shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN_noice.nc
+dni_hom shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN_noice.nc
+../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN_noice.nc
+qic not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN_noice.nc
+qis not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN_noice.nc
+qig not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN_noice.nc
+nlc not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN_noice.nc
+nic not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN_noice.nc
+nis not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN_noice.nc
+nig not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN_noice.nc
+na1 not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN_noice.nc
+na2 not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN_noice.nc
+na3 not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN_noice.nc
+nlcic not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN_noice.nc
+niic not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN_noice.nc
+eps not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN_noice.nc
+uw not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN_noice.nc
+vw not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN_noice.nc
+w2 not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN_noice.nc
+wth not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN_noice.nc
+vf_thli not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN_noice.nc
+wqv not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN_noice.nc
+vf_qt not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN_noice.nc
+flc not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN_noice.nc
+prf not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN_noice.nc
+prfi not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN_noice.nc
+rld not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN_noice.nc
+rlu not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN_noice.nc
+dth_rad not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN_noice.nc
+dth_turb not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN_noice.nc
+dq_turb not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN_noice.nc
+dna_micro_warm not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN_noice.nc
+dna_micro_cold not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN_noice.nc
+dna_turb not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN_noice.nc
+dni_het not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN_noice.nc
+dni_sip not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN_noice.nc
+dni_hom not found in ../../output_les/cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN_noice.nc
+../../output_les/scale-sdm/sandbox/scale-sn14_Lx25_dx100_FixN_noice.nc
+na1 not found in ../../output_les/scale-sdm/sandbox/scale-sn14_Lx25_dx100_FixN_noice.nc
+na2 not found in ../../output_les/scale-sdm/sandbox/scale-sn14_Lx25_dx100_FixN_noice.nc
+na3 not found in ../../output_les/scale-sdm/sandbox/scale-sn14_Lx25_dx100_FixN_noice.nc
+eps not found in ../../output_les/scale-sdm/sandbox/scale-sn14_Lx25_dx100_FixN_noice.nc
+uw not found in ../../output_les/scale-sdm/sandbox/scale-sn14_Lx25_dx100_FixN_noice.nc
+vw not found in ../../output_les/scale-sdm/sandbox/scale-sn14_Lx25_dx100_FixN_noice.nc
+w2 not found in ../../output_les/scale-sdm/sandbox/scale-sn14_Lx25_dx100_FixN_noice.nc
+wth not found in ../../output_les/scale-sdm/sandbox/scale-sn14_Lx25_dx100_FixN_noice.nc
+vf_thli not found in ../../output_les/scale-sdm/sandbox/scale-sn14_Lx25_dx100_FixN_noice.nc
+wqv not found in ../../output_les/scale-sdm/sandbox/scale-sn14_Lx25_dx100_FixN_noice.nc
+vf_qt not found in ../../output_les/scale-sdm/sandbox/scale-sn14_Lx25_dx100_FixN_noice.nc
+flc not found in ../../output_les/scale-sdm/sandbox/scale-sn14_Lx25_dx100_FixN_noice.nc
+prf not found in ../../output_les/scale-sdm/sandbox/scale-sn14_Lx25_dx100_FixN_noice.nc
+prfi not found in ../../output_les/scale-sdm/sandbox/scale-sn14_Lx25_dx100_FixN_noice.nc
+rld not found in ../../output_les/scale-sdm/sandbox/scale-sn14_Lx25_dx100_FixN_noice.nc
+rlu not found in ../../output_les/scale-sdm/sandbox/scale-sn14_Lx25_dx100_FixN_noice.nc
+dth_rad not found in ../../output_les/scale-sdm/sandbox/scale-sn14_Lx25_dx100_FixN_noice.nc
+dth_micro not found in ../../output_les/scale-sdm/sandbox/scale-sn14_Lx25_dx100_FixN_noice.nc
+dth_turb not found in ../../output_les/scale-sdm/sandbox/scale-sn14_Lx25_dx100_FixN_noice.nc
+dq_micro not found in ../../output_les/scale-sdm/sandbox/scale-sn14_Lx25_dx100_FixN_noice.nc
+dq_turb not found in ../../output_les/scale-sdm/sandbox/scale-sn14_Lx25_dx100_FixN_noice.nc
+dna_micro_warm not found in ../../output_les/scale-sdm/sandbox/scale-sn14_Lx25_dx100_FixN_noice.nc
+dna_micro_cold not found in ../../output_les/scale-sdm/sandbox/scale-sn14_Lx25_dx100_FixN_noice.nc
+dna_turb not found in ../../output_les/scale-sdm/sandbox/scale-sn14_Lx25_dx100_FixN_noice.nc
+dni_het not found in ../../output_les/scale-sdm/sandbox/scale-sn14_Lx25_dx100_FixN_noice.nc
+dni_sip not found in ../../output_les/scale-sdm/sandbox/scale-sn14_Lx25_dx100_FixN_noice.nc
+dni_hom not found in ../../output_les/scale-sdm/sandbox/scale-sn14_Lx25_dx100_FixN_noice.nc
+../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+qic shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+qis shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+qig shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+nic shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+nis shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+nig shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+na1 shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+na2 shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+na3 shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+eps shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+rld shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+rlu shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+dna_micro_warm shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+dna_micro_cold shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+dna_turb shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+dni_het shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+dni_sip shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+dni_hom shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
+../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN_noice.nc
+nlr shows NAN values in ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN_noice.nc
+nic shows NAN values in ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN_noice.nc
+nis shows NAN values in ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN_noice.nc
+nig shows NAN values in ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN_noice.nc
+na1 shows NAN values in ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN_noice.nc
+na2 shows NAN values in ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN_noice.nc
+na3 shows NAN values in ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN_noice.nc
+niic shows NAN values in ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN_noice.nc
+wth shows NAN values in ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN_noice.nc
+dth_micro shows NAN values in ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN_noice.nc
+dth_turb shows NAN values in ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN_noice.nc
+dq_turb shows NAN values in ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN_noice.nc
+dna_micro_warm shows NAN values in ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN_noice.nc
+dna_micro_cold shows NAN values in ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN_noice.nc
+dna_turb shows NAN values in ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN_noice.nc
+dni_het shows NAN values in ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN_noice.nc
+dni_sip shows NAN values in ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN_noice.nc
+dni_hom shows NAN values in ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN_noice.nc
+../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_DM_Lx25_dx100_FixN_noice.nc
+nic shows NAN values in ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_DM_Lx25_dx100_FixN_noice.nc
+nis shows NAN values in ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_DM_Lx25_dx100_FixN_noice.nc
+nig shows NAN values in ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_DM_Lx25_dx100_FixN_noice.nc
+na1 shows NAN values in ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_DM_Lx25_dx100_FixN_noice.nc
+na2 shows NAN values in ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_DM_Lx25_dx100_FixN_noice.nc
+na3 shows NAN values in ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_DM_Lx25_dx100_FixN_noice.nc
+niic shows NAN values in ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_DM_Lx25_dx100_FixN_noice.nc
+wth shows NAN values in ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_DM_Lx25_dx100_FixN_noice.nc
+dth_micro shows NAN values in ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_DM_Lx25_dx100_FixN_noice.nc
+dth_turb shows NAN values in ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_DM_Lx25_dx100_FixN_noice.nc
+dq_turb shows NAN values in ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_DM_Lx25_dx100_FixN_noice.nc
+dna_micro_warm shows NAN values in ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_DM_Lx25_dx100_FixN_noice.nc
+dna_micro_cold shows NAN values in ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_DM_Lx25_dx100_FixN_noice.nc
+dna_turb shows NAN values in ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_DM_Lx25_dx100_FixN_noice.nc
+dni_het shows NAN values in ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_DM_Lx25_dx100_FixN_noice.nc
+dni_sip shows NAN values in ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_DM_Lx25_dx100_FixN_noice.nc
+dni_hom shows NAN values in ../../output_les/msu-rcc-les/sandbox/MSU_RCC_LES_DM_Lx25_dx100_FixN_noice.nc
+computing inversion height, cloud-top height, and cloud-top temperature
+using liquid(-ice) potential temperature
+DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc
+cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN_noice.nc
+dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc
+mimica/sandbox/MIMICA_Lx25_dx100_FixN_noice.nc
+msu-rcc-les/sandbox/MSU_RCC_LES_DM_Lx25_dx100_FixN_noice.nc
+msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN_noice.nc
+sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_noice.nc
+scale-sdm/sandbox/scale-sn14_Lx25_dx100_FixN_noice.nc
+uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN_noice.nc
+wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc
 </pre></div>
 </div>
 </div>
@@ -821,23 +1144,49 @@ dni_hom shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noi
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## plot variables that have only time dependence</span>
-<span class="n">plot_1d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_1d_cm1</span><span class="p">,</span><span class="n">df_col_1d_dales</span><span class="p">,</span><span class="n">df_col_1d_dharma</span><span class="p">,</span><span class="n">df_col_1d_icon</span><span class="p">,</span><span class="n">df_col_1d_msu_sm</span><span class="p">,</span><span class="n">df_col_1d_msu_dm</span><span class="p">,</span><span class="n">df_col_1d_sam</span><span class="p">,</span><span class="n">df_col_1d_ucla</span><span class="p">,</span><span class="n">df_col_1d_wrf</span><span class="p">]),</span>
-                   <span class="n">var_vec_1d</span><span class="p">,</span><span class="n">longnames</span><span class="o">=</span><span class="n">var_vec_1d_long</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="n">var_vec_1d_units</span><span class="p">,</span>
-                   <span class="n">plot_colors</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;g&#39;</span><span class="p">,</span><span class="s1">&#39;magenta&#39;</span><span class="p">,</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span><span class="s1">&#39;lightskyblue&#39;</span><span class="p">],</span><span class="n">plot_ls</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_col_1d</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/890d94460633a5eb6a7e443182d714973e4056f608bffa9cb0355ceb4711d9d6.png" src="../../_images/890d94460633a5eb6a7e443182d714973e4056f608bffa9cb0355ceb4711d9d6.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;dharma/sandbox/DHARMA_Lx25_dx100_FixN_noice.nc&#39;,
+       &#39;mimica/sandbox/MIMICA_Lx25_dx100_FixN_noice.nc&#39;,
+       &#39;sam-pnnl/sandbox/SAM_Lx25_dx100_FixN_noice.nc&#39;,
+       &#39;DALES/sandbox/DALES_Lx25_dx100_FixN_noice.nc&#39;,
+       &#39;uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_FixN_noice.nc&#39;,
+       &#39;cm1-p3/sandbox/CM1-P3_Lx25_dx100_FixN_noice.nc&#39;,
+       &#39;scale-sdm/sandbox/scale-sn14_Lx25_dx100_FixN_noice.nc&#39;,
+       &#39;wrf/sandbox/WRF_Lx25_dx100_FixN_noice.nc&#39;,
+       &#39;msu-rcc-les/sandbox/MSU_RCC_LES_SM_Lx25_dx100_FixN_noice.nc&#39;,
+       &#39;msu-rcc-les/sandbox/MSU_RCC_LES_DM_Lx25_dx100_FixN_noice.nc&#39;],
+      dtype=object)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> functions_plotting.py
+
+<span class="c1">## plot variables that have only time dependence</span>
+<span class="n">plot_1d</span><span class="p">(</span><span class="n">df_col_1d</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">longnames</span><span class="o">=</span><span class="n">var_vec_1d_long</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="n">var_vec_1d_units</span><span class="p">,</span>
+        <span class="n">plot_colors</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;g&#39;</span><span class="p">,</span><span class="s1">&#39;magenta&#39;</span><span class="p">,</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span><span class="s1">&#39;lightskyblue&#39;</span><span class="p">,</span><span class="s1">&#39;grey&#39;</span><span class="p">],</span><span class="n">plot_ls</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;:&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">])</span>
+<span class="c1">#plot_1d(pd.concat([df_col_1d_cm1,df_col_1d_dales,df_col_1d_dharma,df_col_1d_icon,df_col_1d_msu_sm,df_col_1d_msu_dm,df_col_1d_sam,df_col_1d_ucla,df_col_1d_wrf]),</span>
+<span class="c1">#                   var_vec_1d,longnames=var_vec_1d_long,units=var_vec_1d_units,</span>
+<span class="c1">#                   plot_colors=[&#39;orange&#39;,&#39;gray&#39;,&#39;k&#39;,&#39;r&#39;,&#39;b&#39;,&#39;g&#39;,&#39;magenta&#39;,&#39;gold&#39;,&#39;lightskyblue&#39;],plot_ls=[&#39;-&#39;,&#39;-&#39;,&#39;-&#39;,&#39;-&#39;,&#39;-&#39;,&#39;-&#39;,&#39;-&#39;,&#39;-&#39;,&#39;-&#39;])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/c61c9e8d799014c314ba24d520eccc2cbed5c615df8739a42a23ba95426f10ae.png" src="../../_images/c61c9e8d799014c314ba24d520eccc2cbed5c615df8739a42a23ba95426f10ae.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## example where ERA5 and radiosonde are included</span>
-<span class="n">plot_2d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_2d_cm1</span><span class="p">,</span><span class="n">df_col_2d_dales</span><span class="p">,</span><span class="n">df_col_2d_dharma</span><span class="p">,</span><span class="n">df_col_2d_icon</span><span class="p">,</span><span class="n">df_col_2d_msu_sm</span><span class="p">,</span><span class="n">df_col_2d_msu_dm</span><span class="p">,</span><span class="n">df_col_2d_sam</span><span class="p">,</span><span class="n">df_col_2d_ucla</span><span class="p">,</span><span class="n">df_col_2d_wrf</span><span class="p">]),</span>
-                   <span class="n">var_vec_2d</span><span class="p">,</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">18</span><span class="p">],</span><span class="n">z_max</span><span class="o">=</span><span class="mi">6000</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="n">var_vec_2d_units</span><span class="p">,</span><span class="n">longnames</span><span class="o">=</span><span class="n">var_vec_2d_long</span><span class="p">,</span>
-                   <span class="n">plot_colors</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;g&#39;</span><span class="p">,</span><span class="s1">&#39;magenta&#39;</span><span class="p">,</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span><span class="s1">&#39;lightskyblue&#39;</span><span class="p">])</span>
+<span class="c1">#plot_2d(pd.concat([df_col_2d_cm1,df_col_2d_dales,df_col_2d_dharma,df_col_2d_icon,df_col_2d_msu_sm,df_col_2d_msu_dm,df_col_2d_sam,df_col_2d_ucla,df_col_2d_wrf]),</span>
+<span class="n">plot_2d</span><span class="p">(</span><span class="n">df_col_2d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">18</span><span class="p">],</span><span class="n">z_max</span><span class="o">=</span><span class="mi">6000</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="n">var_vec_2d_units</span><span class="p">,</span><span class="n">longnames</span><span class="o">=</span><span class="n">var_vec_2d_long</span><span class="p">,</span>
+                   <span class="n">plot_colors</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;g&#39;</span><span class="p">,</span><span class="s1">&#39;magenta&#39;</span><span class="p">,</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span><span class="s1">&#39;lightskyblue&#39;</span><span class="p">,</span><span class="s1">&#39;grey&#39;</span><span class="p">],</span><span class="n">plot_ls</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;:&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -845,7 +1194,7 @@ dni_hom shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noi
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>temporal averaging over 1.0 h interval
 </pre></div>
 </div>
-<img alt="../../_images/1884ae0aea88dbe68034bb39d2a516aa8e96908efb5d684194097d57f06571ee.png" src="../../_images/1884ae0aea88dbe68034bb39d2a516aa8e96908efb5d684194097d57f06571ee.png" />
+<img alt="../../_images/eb457460782d4e7ad404ba35a4b360ff11c2c72d86ff2a5d678464dc143762ce.png" src="../../_images/eb457460782d4e7ad404ba35a4b360ff11c2c72d86ff2a5d678464dc143762ce.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x600 with 0 Axes&gt;
 </pre></div>
 </div>
@@ -918,7 +1267,7 @@ dni_hom shows NAN values in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN_noi
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#updated-as-of-5-24-24">Updated as of 5/24/24</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#updated-as-of-7-2-25">Updated as of 7/2/25</a></li>
 </ul>
   </nav></div>
 
