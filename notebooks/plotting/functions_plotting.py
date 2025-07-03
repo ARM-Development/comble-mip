@@ -1418,11 +1418,13 @@ def plot_2d(df_col2,var_vec,times,**kwargs):
         plot_colors = ["#E69F00", "#56B4E9", "#009E73","#0072B2", "#D55E00", "#CC79A7","#F0E442","#808080","#FF00FF","#FF0000", "#00FF00", "#0000FF"]
     else:
         plot_colors = kwargs.get('plot_colors')
-        
+    
     if 'plot_ls' not in kwargs:
         plot_ls = ['solid','dotted','dashed','dashdot']
+        change_ls = 0
     else:
         plot_ls = kwargs.get('plot_ls')
+        change_ls = 1
     
     if 'longnames' in kwargs and 'units' in kwargs:
         longnames = kwargs.get('longnames')
@@ -1512,7 +1514,10 @@ def plot_2d(df_col2,var_vec,times,**kwargs):
                     obj.plot(df[var_vec[ii]],df.zf,label=label,c='gray',zorder=1,linewidth=3,alpha=0.7)
                 else:
                     pcol = plot_colors[counter_col]
-                    pline = 'solid'
+                    if change_ls==1:
+                        pline=plot_ls[counter_line]
+                    else:
+                        pline = 'solid'
                     if(label=='ERA5'): pcol='black'
                     if(label=='AERI'): pcol='pink'
                     if(label[0:5]=='Radio'): 
@@ -1554,6 +1559,7 @@ def plot_2d(df_col2,var_vec,times,**kwargs):
                 counter +=1
             if not df['colflag'].unique() == 'gray': counter_col +=1
             if (label=='ERA5') or (label[0:5]=='Radio') or (label[0:5]=='AERI'): counter_col -=1
+            if (not df['colflag'].unique() == 'gray') and (change_ls == 1): counter_line +=1
             if label[0:5]=='Radio': counter_line +=1
     
     
