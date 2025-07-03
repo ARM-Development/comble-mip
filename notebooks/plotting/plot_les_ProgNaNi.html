@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Compare ProgNa LES Sims &#8212; COMBLE Model-Observation Intercomparison Project</title>
+    <title>Compare ProgNaNi LES Sims &#8212; COMBLE Model-Observation Intercomparison Project</title>
   
   
   
@@ -61,6 +61,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/plotting/plot_les_ProgNaNi';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Evaluation of LES against satellite and ground-based observations" href="example_plotting.html" />
+    <link rel="prev" title="Compare ProgNa LES Sims" href="plot_les_ProgNa.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -122,8 +124,6 @@
     <div class="bd-container__inner bd-page-width">
       
       
-      
-        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -219,14 +219,16 @@
 <li class="toctree-l1"><a class="reference internal" href="../conversion_output/convert_WRF_LES_output_to_dephy_format.html">Example: convert WRF-LES output to DEPHY format</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Plotting and Analysis</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../les_plotting_index.html">LES</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../les_plotting_index.html">LES</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="plot_les_FixN_noice.html">Compare FixN_noice LES Sims</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_les_FixN.html">Compare FixN LES Sims</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_les_FixN_def_z0.html">Compare FixN_def_z0 LES Sims</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_les_ProgNa.html">Compare ProgNa LES Sims</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Compare ProgNaNi LES Sims</a></li>
 <li class="toctree-l2"><a class="reference internal" href="example_plotting.html">Evaluation of LES against satellite and ground-based observations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="example_plotting_progna.html">Evaluation of LES against satellite and ground-based observations (ProgNa)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example_plotting_prognani.html">Evaluation of LES against satellite and ground-based observations (ProgNaNi)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="example_plotting_2D.html">2D plotting of LES output</a></li>
 <li class="toctree-l2"><a class="reference internal" href="check_les_2D.html">Check my LES run - 2D output</a></li>
 <li class="toctree-l2"><a class="reference internal" href="check_les_3D.html">Check my LES run - 3D output</a></li>
@@ -440,7 +442,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Compare ProgNa LES Sims</h1>
+    <h1>Compare ProgNaNi LES Sims</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -462,14 +464,14 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="compare-progna-les-sims">
-<h1>Compare ProgNa LES Sims<a class="headerlink" href="#compare-progna-les-sims" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="compare-prognani-les-sims">
+<h1>Compare ProgNaNi LES Sims<a class="headerlink" href="#compare-prognani-les-sims" title="Link to this heading">#</a></h1>
 <section id="updated-as-of-5-24-24">
 <h2>Updated as of 5/24/24<a class="headerlink" href="#updated-as-of-5-24-24" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>The below notebook allows one to compare large-eddy simulations.</p></li>
 <li><p>All requested 1D and 2D variables are here read and plotted. “load_sims” reports variable that are missing. Lines will not show, if a variable is missing or if it contains missing values.</p></li>
-<li><p>In case you find inconsistencies in the benchmark set or wish to expand the code, please contact Ann Fridlind (ann.fridlind&#64;nasa.gov), Timothy Juliano (tjuliano&#64;ucar.edu), and Florian Tornow (ft2544&#64;columbia.edu).</p></li>
+<li><p>In case you find inconsistencies in the benchmark set or wish to expand the code, please contact Ann Fridlind (ann.fridlind&#64;nasa.gov) and Florian Tornow (ft2544&#64;columbia.edu).</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -626,6 +628,24 @@ dni_sip shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="plot_les_ProgNa.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Compare ProgNa LES Sims</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="example_plotting.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Evaluation of LES against satellite and ground-based observations</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
