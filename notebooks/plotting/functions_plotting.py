@@ -1101,7 +1101,10 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
                         theta_step['q_tot'] = theta_step['qv']
                     cbh = np.min(theta_step.loc[theta_step['qlc'] > 10.*QTHRES]['zf'])
                     cth = np.max(theta_step.loc[theta_step['qcond_tot'] > QTHRES]['zf'])
+                    theta_step = theta_step.dropna(subset=['theta'])
                     if not theta_step.empty:
+                        #theta_step = theta_step[(not theta_step['theta'].isna()),]
+                        #print(theta_step)
                         zi_step = zi_diagnose(theta_step)
                     ## obtaining corresponding temperature at that level
                         ta_step = df_sub2.loc[df_sub2['time'] == tt,['zf','ta']]
@@ -1242,6 +1245,7 @@ def plot_1d(df_col,var_vec,**kwargs):
         
     fig, axs = plt.subplots(len(var_vec),1,figsize=(5.5,1 + 2*len(var_vec)))
     for label, df in df_col.groupby('class'):
+        #print(label)
         df = df[(df.time>=t0) & (df.time<=t1)]
         if (label=='MAC-LWP') | (label=='KAZR (Kollias)')| (label=='KAZR (Clough)'):
             df['lwp'] = df['lwp_bu']
@@ -1272,6 +1276,7 @@ def plot_1d(df_col,var_vec,**kwargs):
                     obj.plot(df.time/3600,df[var_vec[ii]],label=label,c='gray',zorder=1,linewidth=3,alpha=0.7)
                 else:
                     pcol = plot_colors[counter_plot]
+                    #print(pcol)
                     if(label=='ERA5'): pcol='black'
                     obj.plot(df.time/3600,df[var_vec[ii]],label=label,c=pcol,ls=plot_ls[counter_plot],zorder=2)
             obj.grid(alpha=0.2)
