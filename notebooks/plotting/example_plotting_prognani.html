@@ -58,11 +58,9 @@
     <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/plotting/example_plotting_progna';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/plotting/example_plotting_prognani';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="2D plotting of LES output" href="example_plotting_2D.html" />
-    <link rel="prev" title="Evaluation of LES against satellite and ground-based observations" href="example_plotting.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -124,6 +122,8 @@
     <div class="bd-container__inner bd-page-width">
       
       
+      
+        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -219,14 +219,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../conversion_output/convert_WRF_LES_output_to_dephy_format.html">Example: convert WRF-LES output to DEPHY format</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Plotting and Analysis</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../les_plotting_index.html">LES</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../les_plotting_index.html">LES</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="plot_les_FixN_noice.html">Compare FixN_noice LES Sims</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_les_FixN.html">Compare FixN LES Sims</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_les_FixN_def_z0.html">Compare FixN_def_z0 LES Sims</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_les_ProgNa.html">Compare ProgNa LES Sims</a></li>
 <li class="toctree-l2"><a class="reference internal" href="example_plotting.html">Evaluation of LES against satellite and ground-based observations</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Evaluation of LES against satellite and ground-based observations (ProgNa)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example_plotting_progna.html">Evaluation of LES against satellite and ground-based observations (ProgNa)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="example_plotting_2D.html">2D plotting of LES output</a></li>
 <li class="toctree-l2"><a class="reference internal" href="check_les_2D.html">Check my LES run - 2D output</a></li>
 <li class="toctree-l2"><a class="reference internal" href="check_les_3D.html">Check my LES run - 3D output</a></li>
@@ -310,7 +310,7 @@
       
       
       
-      <li><a href="https://jupyterhub.arm.gov/hub/user-redirect/git-pull?repo=https%3A//github.com/ARM-Development/comble-mip&urlpath=lab/tree/comble-mip/../user-data-home/comble-mip/notebooks/plotting/example_plotting_progna.ipynb&branch=main" target="_blank"
+      <li><a href="https://jupyterhub.arm.gov/hub/user-redirect/git-pull?repo=https%3A//github.com/ARM-Development/comble-mip&urlpath=lab/tree/comble-mip/../user-data-home/comble-mip/notebooks/plotting/example_plotting_prognani.ipynb&branch=main" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch on JupyterHub"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -356,7 +356,7 @@
       
       
       
-      <li><a href="../../_sources/notebooks/plotting/example_plotting_progna.ipynb" target="_blank"
+      <li><a href="../../_sources/notebooks/plotting/example_plotting_prognani.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -463,7 +463,7 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> functions_plotting.py 
  
 <span class="c1">## select simulations to plot</span>
-<span class="n">sim_keyword</span> <span class="o">=</span> <span class="s1">&#39;dx100_ProgNa.&#39;</span>  
+<span class="n">sim_keyword</span> <span class="o">=</span> <span class="s1">&#39;dx100_ProgNaNi.&#39;</span>  
 </pre></div>
 </div>
 </div>
@@ -525,15 +525,11 @@ KAZR (Kollias): here using auxiliary field to estimate cloud-top temperature
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time)
-../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_ProgNa.nc
-../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
-../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
-../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_ProgNa.nc
+../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNaNi.nc
+../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_ProgNaNi.nc
 Loading variables: f(time,height)
-../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_ProgNa.nc
-../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
-../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
-../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_ProgNa.nc
+../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNaNi.nc
+../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_ProgNaNi.nc
 </pre></div>
 </div>
 </div>
@@ -552,7 +548,7 @@ Loading variables: f(time,height)
   maxy = np.nanmax(masked_verts[..., 1])
 </pre></div>
 </div>
-<img alt="../../_images/c093989652d00f38e7e5214e2d70ec63e40ced8498ccf61ff91aa2df0099bbc0.png" src="../../_images/c093989652d00f38e7e5214e2d70ec63e40ced8498ccf61ff91aa2df0099bbc0.png" />
+<img alt="../../_images/0d6aa11a7a99da5fc7f5e3e55ceafd5d409960413b6a0c393059d2fac91b5dd5.png" src="../../_images/0d6aa11a7a99da5fc7f5e3e55ceafd5d409960413b6a0c393059d2fac91b5dd5.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -568,24 +564,15 @@ Loading variables: f(time,height)
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time)
-../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_ProgNa.nc
-../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
-../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
-iwp not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
-od not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
-../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_ProgNa.nc
+../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNaNi.nc
+../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_ProgNaNi.nc
 Loading variables: f(time,height)
-../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_ProgNa.nc
-../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
-prf shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
-../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
-prf not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
-../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_ProgNa.nc
+../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNaNi.nc
+prf shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNaNi.nc
+../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_ProgNaNi.nc
 computing inversion height, cloud-top height, and cloud-top temperature
-DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
-dharma/sandbox/DHARMA_Lx25_dx100_ProgNa.nc
-icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
-uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_ProgNa.nc
+icon/sandbox/ICON_Lx25_dx100_ProgNaNi.nc
+uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_ProgNaNi.nc
 </pre></div>
 </div>
 </div>
@@ -602,7 +589,7 @@ uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_ProgNa.nc
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/e13e3cb4f675a85e6d4b808d159ade654af1581a9adb6b7b1a79dbf4135bcaee.png" src="../../_images/e13e3cb4f675a85e6d4b808d159ade654af1581a9adb6b7b1a79dbf4135bcaee.png" />
+<img alt="../../_images/1bc161ef0510366e3ca83ccb904fa38d833845e0dbe09202b2338628f6e31bbd.png" src="../../_images/1bc161ef0510366e3ca83ccb904fa38d833845e0dbe09202b2338628f6e31bbd.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -621,7 +608,7 @@ Computing wind direction
 temporal averaging over 1.0 h interval
 </pre></div>
 </div>
-<img alt="../../_images/e625b8ffe929d43edeb2ea8cbdd8a048b1e5f45a5c089ff558d7183e4267cd7f.png" src="../../_images/e625b8ffe929d43edeb2ea8cbdd8a048b1e5f45a5c089ff558d7183e4267cd7f.png" />
+<img alt="../../_images/94a16ab7714a9bff70e0c2a1831b2eb82fbcffa650f4e15276d9b6c005f84e60.png" src="../../_images/94a16ab7714a9bff70e0c2a1831b2eb82fbcffa650f4e15276d9b6c005f84e60.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x600 with 0 Axes&gt;
 </pre></div>
 </div>
@@ -659,24 +646,6 @@ temporal averaging over 1.0 h interval
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="example_plotting.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Evaluation of LES against satellite and ground-based observations</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="example_plotting_2D.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">2D plotting of LES output</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
