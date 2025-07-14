@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -471,7 +471,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/user-data-home/comble-mip/notebooks/plotting&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/data/project/comble-mip/satellite_imagery/viirs&#39;
 </pre></div>
 </div>
 </div>
@@ -488,7 +488,7 @@ document.write(`
 <span class="n">les_time</span> <span class="o">=</span> <span class="mf">18.</span> <span class="o">+</span> <span class="n">ds</span><span class="p">[</span><span class="s1">&#39;Time&#39;</span><span class="p">][:]</span>
     
 <span class="c1">## select simulations to plot</span>
-<span class="n">sim_keyword</span> <span class="o">=</span> <span class="s1">&#39;FixN_2D&#39;</span>  
+<span class="n">sim_keyword</span> <span class="o">=</span> <span class="s1">&#39;FixN_2&#39;</span>  
 </pre></div>
 </div>
 </div>
@@ -547,8 +547,15 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time,x,y)
 /data/project/comble-mip/output_les/wrf/WRF_Lx25_dx100_FixN_2D.nc
-NaN values in alb
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR 1: PROJ: proj_create_from_database: Open of /opt/conda/share/proj failed
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NaN values in alb
 NaN values in opt
+/data/project/comble-mip/output_les/scale-sdm/scale-sn14_Lx25_dx100_FixN_2d.nc
+...adjusting x and y values
 /data/project/comble-mip/output_les/dharma/DHARMA_Lx125_dx100_FixN_2D.nc
 /data/project/comble-mip/output_les/dharma/DHARMA_Lx25_dx100_FixN_2D.nc
 /data/project/comble-mip/output_les/uclales-salsa/UCLALES-SALSA_Lx25_dx100_FixN_2D.nc
@@ -611,6 +618,20 @@ NaN values in opt
         
 <span class="k">if</span> <span class="n">tiling</span><span class="p">:</span>
     <span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">df_sim_scol</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>wrf/WRF_Lx25_dx100_FixN_2D.nc
+12.7
+scale-sdm/scale-sn14_Lx25_dx100_FixN_2d.nc
+12.7
+dharma/DHARMA_Lx125_dx100_FixN_2D.nc
+63.9
+dharma/DHARMA_Lx25_dx100_FixN_2D.nc
+12.7
+uclales-salsa/UCLALES-SALSA_Lx25_dx100_FixN_2D.nc
+12.7
 </pre></div>
 </div>
 </div>
@@ -827,39 +848,32 @@ VJ102DNB.A2020073.1212.002.2020073182754.nc
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">da_stat_ststst</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="s2">&quot;/user-data-home/viirs_extracts_L200_matheou_2025-03-27.nc&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">da_stat_ststst</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s1">&#39;Source&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.plot.facetgrid.FacetGrid at 0x7f1d66f5b4f0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.plot.facetgrid.FacetGrid at 0x7f9e87fce860&gt;
 </pre></div>
 </div>
-<img alt="../../_images/fe05ba275990ad467c06b8ac2c05de21a9278a5127626dbf2e8e48f9a42c1afb.png" src="../../_images/fe05ba275990ad467c06b8ac2c05de21a9278a5127626dbf2e8e48f9a42c1afb.png" />
+<img alt="../../_images/e90020761f95e37f60f583901f6ce9787bb5b5267af33a2bac839a55195d6f04.png" src="../../_images/e90020761f95e37f60f583901f6ce9787bb5b5267af33a2bac839a55195d6f04.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xr</span><span class="o">.</span><span class="n">merge</span><span class="p">([</span><span class="n">df_col_2d</span><span class="p">[</span><span class="s1">&#39;alb&#39;</span><span class="p">],</span><span class="n">da_stat_ststst</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;time_diff&#39;</span><span class="p">)])[</span><span class="s1">&#39;alb&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;x_round&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;y_round&#39;</span><span class="p">,</span><span class="n">row</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s1">&#39;Source&#39;</span><span class="p">,</span><span class="n">robust</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xr</span><span class="o">.</span><span class="n">merge</span><span class="p">([</span><span class="n">df_col_2d</span><span class="p">[</span><span class="s1">&#39;alb&#39;</span><span class="p">],</span><span class="n">da_stat_ststst</span><span class="o">.</span><span class="n">drop_vars</span><span class="p">(</span><span class="s1">&#39;time_diff&#39;</span><span class="p">)])[</span><span class="s1">&#39;alb&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;x_round&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;y_round&#39;</span><span class="p">,</span><span class="n">row</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s1">&#39;Source&#39;</span><span class="p">,</span><span class="n">robust</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_1643/2479718957.py:1: DeprecationWarning: dropping variables using `drop` is deprecated; use drop_vars.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_525/2479718957.py:1: DeprecationWarning: dropping variables using `drop` is deprecated; use drop_vars.
   xr.merge([df_col_2d[&#39;alb&#39;],da_stat_ststst.drop(&#39;time_diff&#39;)])[&#39;alb&#39;].plot(x=&#39;x_round&#39;,y=&#39;y_round&#39;,row=&#39;time&#39;,col=&#39;Source&#39;,robust=True)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.plot.facetgrid.FacetGrid at 0x7efcd9df0ee0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.plot.facetgrid.FacetGrid at 0x7f9e85cef5b0&gt;
 </pre></div>
 </div>
-<img alt="../../_images/25455d1197108a938d5fd6acb4f2904ff7ced66a7c0d9363142a38a58c110a41.png" src="../../_images/25455d1197108a938d5fd6acb4f2904ff7ced66a7c0d9363142a38a58c110a41.png" />
+<img alt="../../_images/7f6d2a45eaf122df635c14073645637f1932fdc6afca930d4d774e7a6ad9c95c.png" src="../../_images/7f6d2a45eaf122df635c14073645637f1932fdc6afca930d4d774e7a6ad9c95c.png" />
 </div>
 </div>
 <div class="cell docutils container">
