@@ -806,6 +806,10 @@ def load_sims_2d(path,var_vec_2d,t_shift = 0,keyword='',subfolder='',ignore='pla
                 print('...adjusting x and y values')
                 ncdata['x'] = ncdata['x'] - 50
                 ncdata['y'] = ncdata['y'] - 50
+            if 'scale' in NCFILES_STR[count]:
+                print('...adjusting x and y values')
+                ncdata['x'] = ncdata['x'] - 12850
+                ncdata['y'] = ncdata['y'] - 12850
             #rounded = [np.round(x,-2) for x in ncdata['x']]
             #ncdata['x'] = rounded
             #ncdata['y'] = rounded
@@ -849,7 +853,16 @@ def load_sims_2d(path,var_vec_2d,t_shift = 0,keyword='',subfolder='',ignore='pla
             else:
                 ncdata['x_round_ph'] = ncdata['x']/1000.0
                 ncdata['y_round_ph'] = ncdata['y']/1000.0
-                    
+            if 'lon' in ncdata.keys():
+                ncdata = ncdata.drop_vars('lon')
+            if 'lat' in ncdata.keys():
+                ncdata = ncdata.drop_vars('lat')
+            if 'z' in ncdata.keys():
+                ncdata = ncdata.drop_vars('z')
+            if 'height' in ncdata.keys():
+                ncdata = ncdata.drop_vars('height')
+            #print(ncdata.x)
+            
             if count_con == 0:
                 df_col2 = ncdata.copy()
             else:
