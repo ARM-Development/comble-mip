@@ -17,7 +17,7 @@ from math import log10, floor, isnan
 ## Florian Tornow: ft2544@columbia.edu
 ## Tim Juliano: tjuliano@ucar.edu
 ## Ann Fridlind: ann.fridlind@nasa.gov
-
+ 
 def round_sig(x, sig=2):
     x_r = x.copy()
     for ii in range(len(x)):
@@ -1491,6 +1491,7 @@ def plot_2d(df_col2,var_vec,times,**kwargs):
         counter_col = 0 
         counter_line = 0
         for label, df in df_col2.groupby('class'):
+            #print(df)
             if (t_ave > 0.0) & (label[0:4] not in ['ERA5','Radi','AERI']):
                 #if tt==0:
                 #    print(label)
@@ -1508,7 +1509,10 @@ def plot_2d(df_col2,var_vec,times,**kwargs):
                     df_ave['zf'] = df_ave.index
                 #print(df_ave)
                 if 'colflag' in set(df):
-                    df_ave['colflag'] = df['colflag'].unique()[0]
+                    colval = df['colflag'].unique()
+                    if len(colval)==0:
+                        colval = ['col']
+                    df_ave['colflag'] = colval[0]
                 df = df_ave.copy()
             else:                        
                 ## allow wiggleroom to accomodate uneven model output (suggested by TomiRaatikainen)
