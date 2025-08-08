@@ -535,6 +535,7 @@ document.write(`
                         <span class="s1">&#39;1q4YkJc5dF-ZOIx-xWU_IkmTYCUPoM0kODj5ro_7Vg_c&#39;</span> <span class="o">+</span>
                         <span class="s1">&#39;/export?gid=0&amp;format=xlsx&#39;</span><span class="p">,</span>
                         <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;PSD&#39;</span><span class="p">)</span>
+<span class="n">PSD_zsm</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;D_g&#39;</span><span class="p">:</span><span class="s1">&#39;D_g (um)&#39;</span><span class="p">},</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">PSD_zsm</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;N_a&#39;</span><span class="p">:</span><span class="s1">&#39;N_a (cm^-3)&#39;</span><span class="p">},</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">PSD_zsm</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;N_a (mg^-1)&#39;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">PSD_zsm</span><span class="p">[</span><span class="s1">&#39;N_a (cm^-3)&#39;</span><span class="p">]</span><span class="o">/</span><span class="mf">1.27</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
 <span class="n">PSD_zsm</span>
@@ -563,7 +564,7 @@ document.write(`
       <th>Mode</th>
       <th>N_a (cm^-3)</th>
       <th>N_a (mg^-1)</th>
-      <th>D_g</th>
+      <th>D_g (um)</th>
       <th>sigma_g</th>
       <th>kappa</th>
     </tr>
