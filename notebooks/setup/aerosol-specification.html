@@ -535,6 +535,8 @@ document.write(`
                         <span class="s1">&#39;1q4YkJc5dF-ZOIx-xWU_IkmTYCUPoM0kODj5ro_7Vg_c&#39;</span> <span class="o">+</span>
                         <span class="s1">&#39;/export?gid=0&amp;format=xlsx&#39;</span><span class="p">,</span>
                         <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;PSD&#39;</span><span class="p">)</span>
+<span class="n">PSD_zsm</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;N_a&#39;</span><span class="p">:</span><span class="s1">&#39;N_a (cm^-3)&#39;</span><span class="p">},</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">PSD_zsm</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;N_a (mg^-1)&#39;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">PSD_zsm</span><span class="p">[</span><span class="s1">&#39;N_a (cm^-3)&#39;</span><span class="p">]</span><span class="o">/</span><span class="mf">1.27</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
 <span class="n">PSD_zsm</span>
 </pre></div>
 </div>
@@ -559,7 +561,8 @@ document.write(`
     <tr style="text-align: right;">
       <th></th>
       <th>Mode</th>
-      <th>N_a</th>
+      <th>N_a (cm^-3)</th>
+      <th>N_a (mg^-1)</th>
       <th>D_g</th>
       <th>sigma_g</th>
       <th>kappa</th>
@@ -570,6 +573,7 @@ document.write(`
       <th>0</th>
       <td>Aitken</td>
       <td>58</td>
+      <td>45.7</td>
       <td>0.04</td>
       <td>1.7</td>
       <td>0.3</td>
@@ -578,6 +582,7 @@ document.write(`
       <th>1</th>
       <td>Accumulation</td>
       <td>134</td>
+      <td>105.5</td>
       <td>0.14</td>
       <td>1.6</td>
       <td>0.5</td>
@@ -586,6 +591,7 @@ document.write(`
       <th>2</th>
       <td>Sea Spray</td>
       <td>2</td>
+      <td>1.6</td>
       <td>0.50</td>
       <td>1.7</td>
       <td>0.9</td>
