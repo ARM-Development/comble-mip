@@ -994,21 +994,23 @@ def load_sims(path,var_vec_1d,var_vec_2d,t_shift = 0,keyword='',make_gray = 0,dr
             if ignore in NCFILES_STR[count]:
                 count+=1
                 continue
-            print(fn)
+            print(fn) 
             ds = nc.Dataset(fn)
             time = ds.variables['time'][t0:]
-            zf   = ds.variables['zf'][t0:]
-            pa   = ds.variables['pa'][t0:]
+            #zf   = ds.variables['zf'] #[t0:]
+            #pa   = ds.variables['pa'][t0:]
             qv   = ds.variables['qv'][t0:,:]
-            zf_ndim = zf.ndim
-            pa_ndim = pa.ndim
+            zf_ndim = ds.variables['zf'].ndim
+            pa_ndim = ds.variables['pa'].ndim
             #print(len(zf))
 
             label_items = [x for x in fn.parts + direc.parts if x not in direc.parts]
             group = "/".join(label_items)
 
             if(zf_ndim > 1):
-                zf = zf[1,:]
+                zf = ds.variables['zf'][1,:]
+            else:
+                zf   = ds.variables['zf'][t0:]
             #if (zf_ndim > 1) & (pa_ndim > 1):
             #    print('---either pa or zf should be 1-dimensional---')
             
@@ -1242,6 +1244,11 @@ def plot_1d(df_col,var_vec,**kwargs):
         plot_ls = ['-','-','-','-','-','-','-','-','-','-','-']
     else:
         plot_ls = kwargs.get('plot_ls')
+        
+    if 'savepng' not in kwargs:
+        pngsave = False
+    else:
+        pngsave = kwargs.get('savepng')
     
     ############################
     ######## MAKE PLOTS ########
@@ -1342,8 +1349,11 @@ def plot_1d(df_col,var_vec,**kwargs):
     top_offset = -0.2*ww1 + 0.20*ww2
         
     #fig.subplots_adjust(top=0.85 + top_offset) #base + top_offset)
-    
-    plt.show()
+    if pngsave:
+        plt.savefig('./test.png',dpi=600,bbox_inches='tight')
+        plt.close()
+    else:
+        plt.show()
 
 def plot_2d_map(df_col2,var_vec,times,**kwargs):
 
