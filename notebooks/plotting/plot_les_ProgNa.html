@@ -1,0 +1,746 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Compare ProgNa LES Sims &#8212; COMBLE Model-Observation Intercomparison Project</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/plotting/plot_les_ProgNa';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Compare ProgNaNi LES Sims" href="plot_les_ProgNaNi.html" />
+    <link rel="prev" title="Compare FixN_def_z0 LES Sims" href="plot_les_FixN_def_z0.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../README.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/arm_logo.png" class="logo__image only-light" alt="COMBLE Model-Observation Intercomparison Project - Home"/>
+    <script>document.write(`<img src="../../_static/arm_logo.png" class="logo__image only-dark" alt="COMBLE Model-Observation Intercomparison Project - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../README.html">
+                    COMBLE Model-Observation Intercomparison Project Cookbook
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Project Information</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../goals_hypotheses.html">Goals and Hypotheses</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Participants</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../participants/participants_list.html">List of Planned Participants</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">How-To</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../howto/workbench_instructions.html">Apply for Elevated JupyterHub Access</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CONTRIBUTING.html">Contributers Guide</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Settings &amp; Logistics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../main_configuration.html">Main Model Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../output/output_list.html">Requested Model Outputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../timeline.html">Timeline &amp; File Naming Convention</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Input Conversion Notebooks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../conversion/convert_comble_dephy_forcing_to_DHARMA_LES_and_ModelE3_SCM_forcing.html">Example: convert DEPHY forcing to DHARMA LES and ModelE3 SCM formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../conversion/convert_comble_dephy_forcing_to_UCLALES-SALSA_forcing.html">Convert DEPHY forcing to UCLALES-SALSA forcing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../conversion/convert_comble_dephy_forcing_to_WRF_LES_forcing.html">Example: convert DEPHY forcing to WRF-LES forcing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Output Conversion Notebooks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../conversion_output/convert_AOSCM_output_to_dephy_format.html">Example: convert AOSCM output to DEPHY format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../conversion_output/convert_DHARMA_LES_output_to_dephy_format.html">Example: convert DHARMA LES output to DEPHY format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../conversion_output/convert_DHARMA_LES_output_to_dephy_format_2D.html">Example: convert DHARMA LES 2D output to DEPHY format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../conversion_output/convert_DHARMA_LES_output_to_dephy_format_3D.html">Example: convert DHARMA LES 3D output to DEPHY format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../conversion_output/convert_E3SMv2_SCM_output_to_dephy_format.html">Example: convert E3SMv2 SCM output to DEPHY format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../conversion_output/convert_E3SMv3_SCM_output_to_dephy_format.html">Example: convert E3SMv3 SCM output to DEPHY format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../conversion_output/convert_ICON_SCM_output_to_dephy_format.html">convert ICON SCM output to DEPHY format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../conversion_output/convert_ModelE3_SCM_output_to_dephy_format.html">Example: convert ModelE3 SCM output to DEPHY format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../conversion_output/convert_UCLALES-SALSA_output_to_dephy_format.html">Convert UCLALES-SALSA output to DEPHY format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../conversion_output/convert_WRF_LES_output_to_dephy_format.html">Example: convert WRF-LES output to DEPHY format</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Plotting and Analysis</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../les_plotting_index.html">LES</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="plot_les_FixN_noice.html">Compare FixN_noice LES Sims</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_les_FixN.html">Compare FixN LES Sims</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_les_FixN_def_z0.html">Compare FixN_def_z0 LES Sims</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Compare ProgNa LES Sims</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_les_ProgNaNi.html">Compare ProgNaNi LES Sims</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example_plotting.html">Evaluation of LES against satellite and ground-based observations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example_plotting_progna.html">Evaluation of LES against satellite and ground-based observations (ProgNa)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example_plotting_prognani.html">Evaluation of LES against satellite and ground-based observations (ProgNaNi)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example_plotting_2D.html">2D plotting of LES output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="check_les_2D.html">Check my LES run - 2D output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="check_les_3D.html">Check my LES run - 3D output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example_plotting_2D_cluster.html">2D plotting of LES output vs. satellite imagery (work in progress)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../scm_plotting_index.html">SCM</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="check_scm.html">Check my SCM run</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../les_scm_plotting_index.html">LES &amp; SCM</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="plot_FixN.html">Check ModelE output against LES for the “FixN” configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_FixN-allSCM.html">Check all SCMs against LES for the “FixN” configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_FixN_noice.html">Check ModelE against LES for the “FixN_noice” configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_FixN_noice-allSCM.html">Check all SCMs against LES for the “FixN_noice” configuration</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../emc2.html">The Earth Model Column Collaboratory (EMC<sup>2</sup>)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Supporting Materials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../forcing/create_comble_forcing_v2.4.html">DEPHY Forcing Derivation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example_plotting_specification_tests.html">Sensitivity to solar radiation, subsidence and treatment of ice surface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example_plotting_z0_tests.html">Sensitivity to roughness lengths</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../setup/aerosol-specification.html">Aerosol specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../setup/aerosol-inp-closure.html">Aerosol-Ice Nucleating Particle Closure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../setup/aerosol-surface.html">Specifying Surface Aerosol Emissions for Simulations with Multi-Modal Aerosol</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../setup/where-are-the-rolls.html">Where are the rolls?</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://jupyterhub.arm.gov/hub/user-redirect/git-pull?repo=https%3A//github.com/ARM-Development/comble-mip&urlpath=lab/tree/comble-mip/../user-data-home/comble-mip/notebooks/plotting/plot_les_ProgNa.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on JupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="JupyterHub logo" src="../../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+<a href="https://github.com/ARM-Development/comble-mip" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/notebooks/plotting/plot_les_ProgNa.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Compare ProgNa LES Sims</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#updated-as-of-7-2-25">Updated as of 7/2/25</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="compare-progna-les-sims">
+<h1>Compare ProgNa LES Sims<a class="headerlink" href="#compare-progna-les-sims" title="Link to this heading">#</a></h1>
+<section id="updated-as-of-7-2-25">
+<h2>Updated as of 7/2/25<a class="headerlink" href="#updated-as-of-7-2-25" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>The below notebook allows one to compare large-eddy simulations.</p></li>
+<li><p>All requested 1D and 2D variables are here read and plotted. “load_sims” reports variable that are missing. Lines will not show, if a variable is missing or if it contains missing values.</p></li>
+<li><p>In case you find inconsistencies in the benchmark set or wish to expand the code, please contact Ann Fridlind (ann.fridlind&#64;nasa.gov) and Florian Tornow (ft2544&#64;columbia.edu).</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> functions_plotting.py
+
+<span class="c1">## select simulations to plot</span>
+<span class="n">sim_keyword</span> <span class="o">=</span> <span class="s1">&#39;dx100_ProgNa.&#39;</span>  
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vars_mean_list</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;https://docs.google.com/spreadsheets/d/1Vl8jYGviet7EtXZuQiitrx4NSkV1x27aJAhxxjBb9zI/export?gid=0&amp;format=xlsx&#39;</span><span class="p">,</span>
+                              <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Mean&#39;</span><span class="p">)</span>
+
+<span class="c1">## short names</span>
+<span class="n">var_vec_1d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">variable_id</span><span class="p">[</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">==</span> <span class="s1">&#39;time&#39;</span><span class="p">])</span>
+<span class="n">var_vec_2d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">variable_id</span><span class="p">[</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">==</span> <span class="s1">&#39;time, height&#39;</span><span class="p">])</span>
+
+<span class="c1">## long names</span>
+<span class="n">var_vec_1d_long</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">standard_name</span><span class="p">[</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">==</span> <span class="s1">&#39;time&#39;</span><span class="p">])</span>
+<span class="n">var_vec_2d_long</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">standard_name</span><span class="p">[</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">==</span> <span class="s1">&#39;time, height&#39;</span><span class="p">])</span>
+
+<span class="c1">## Units</span>
+<span class="n">var_vec_1d_units</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">units</span><span class="p">[</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">==</span> <span class="s1">&#39;time&#39;</span><span class="p">])</span>
+<span class="n">var_vec_2d_units</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">units</span><span class="p">[</span><span class="n">vars_mean_list</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">==</span> <span class="s1">&#39;time, height&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_col_1d</span><span class="p">,</span><span class="n">df_col_2d</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword</span><span class="p">,</span><span class="n">subfolder</span><span class="o">=</span><span class="s1">&#39;sand&#39;</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time)
+../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_ProgNa.nc
+../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
+ssaf shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
+../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
+iwp not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
+od not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
+odlc not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
+ssaf not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
+../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_ProgNa.nc
+Loading variables: f(time,height)
+../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_ProgNa.nc
+../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
+na1 shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
+na3 shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
+niic shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
+eps shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
+uw shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
+vw shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
+w2 shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
+wth shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
+vf_thli shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
+wqv shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
+vf_qt shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
+flc shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
+prf shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
+prfi shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
+rld shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
+rlu shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
+dth_rad shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
+dth_micro shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
+dth_turb shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
+dq_micro shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
+dq_turb shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
+dna_micro_warm shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
+dna_micro_cold shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
+dna_turb shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
+dni_het shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
+dni_sip shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
+dni_hom shows NAN values in ../../output_les/icon/sandbox/ICON_Lx25_dx100_ProgNa.nc
+../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
+nlcic not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
+niic not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
+eps not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
+w2 shows NAN values in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
+wth not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
+vf_thli not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
+wqv not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
+vf_qt not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
+flc not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
+prf not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
+prfi not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
+dth_micro not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
+dth_turb not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
+dq_micro not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
+dq_turb not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
+dna_micro_warm not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
+dna_micro_cold not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
+dna_turb not found in ../../output_les/DALES/sandbox/DALES_Lx25_dx100_ProgNa.nc
+../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_ProgNa.nc
+qis shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_ProgNa.nc
+qig shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_ProgNa.nc
+nis shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_ProgNa.nc
+nig shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_ProgNa.nc
+wth shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_ProgNa.nc
+vf_thli shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_ProgNa.nc
+vf_qt shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_ProgNa.nc
+dth_rad shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_ProgNa.nc
+dth_micro shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_ProgNa.nc
+dth_turb shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_ProgNa.nc
+dna_micro_warm shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_ProgNa.nc
+dna_micro_cold shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_ProgNa.nc
+dni_sip shows NAN values in ../../output_les/uclales-salsa/sandbox/UCLALES-SALSA_Lx25_dx100_ProgNa.nc
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## plot variables that have only time dependence</span>
+<span class="n">plot_1d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_1d</span><span class="p">]),</span>
+                   <span class="n">var_vec_1d</span><span class="p">,</span><span class="n">longnames</span><span class="o">=</span><span class="n">var_vec_1d_long</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="n">var_vec_1d_units</span><span class="p">,</span>
+                   <span class="n">plot_colors</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="s1">&#39;g&#39;</span><span class="p">,</span><span class="s1">&#39;magenta&#39;</span><span class="p">,</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span><span class="s1">&#39;lightskyblue&#39;</span><span class="p">],</span><span class="n">plot_ls</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ff3235756315ff7b62c41e42d7564fb183d08e8e0d199127066965d4ad307399.png" src="../../_images/ff3235756315ff7b62c41e42d7564fb183d08e8e0d199127066965d4ad307399.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> functions_plotting.py
+
+<span class="c1">## example where ERA5 and radiosonde are included</span>
+<span class="n">plot_2d</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_col_2d</span><span class="p">]),</span>
+                   <span class="n">var_vec_2d</span><span class="p">,</span><span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">18</span><span class="p">],</span><span class="n">z_max</span><span class="o">=</span><span class="mi">6000</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="n">var_vec_2d_units</span><span class="p">,</span><span class="n">longnames</span><span class="o">=</span><span class="n">var_vec_2d_long</span><span class="p">,</span>
+                   <span class="n">plot_colors</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="s1">&#39;g&#39;</span><span class="p">,</span><span class="s1">&#39;magenta&#39;</span><span class="p">,</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span><span class="s1">&#39;lightskyblue&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>temporal averaging over 1.0 h interval
+</pre></div>
+</div>
+<img alt="../../_images/0e877d2efd69c6d1bbb4a0b1367f7aa50ecc70d01e66cd0d4a0f458d50859fc9.png" src="../../_images/0e877d2efd69c6d1bbb4a0b1367f7aa50ecc70d01e66cd0d4a0f458d50859fc9.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x600 with 0 Axes&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "conda-base-py"
+        },
+        kernelOptions: {
+            name: "conda-base-py",
+            path: "./notebooks/plotting"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'conda-base-py'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="plot_les_FixN_def_z0.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Compare FixN_def_z0 LES Sims</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="plot_les_ProgNaNi.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Compare ProgNaNi LES Sims</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#updated-as-of-7-2-25">Updated as of 7/2/25</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By ARM Development Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
