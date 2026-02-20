@@ -30,7 +30,7 @@
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
@@ -50,7 +50,7 @@
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../_static/togglebutton.js?v=1ae7504c"></script>
     <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
@@ -466,9 +466,9 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> functions_plotting.py
 
 <span class="c1">## select (grayed out) simulations to plot</span>
-<span class="n">sim_keyword_gray</span> <span class="o">=</span> <span class="s1">&#39;dharma/sandbox/DHARMA_Lx25_dx200_FixN.&#39;</span>
+<span class="n">sim_keyword_gray</span> <span class="o">=</span> <span class="s1">&#39;LMDZ/staged/LMDZ_FixN.&#39;</span>
 
-<span class="c1">## select LES run(s) of interest</span>
+<span class="c1">## select LES and SCM run(s) of interest</span>
 <span class="n">sim_keyword_col_les</span> <span class="o">=</span> <span class="s1">&#39;WRF_Lx25_dx100_FixN.&#39;</span>
 <span class="n">sim_keyword_col_scm</span> <span class="o">=</span> <span class="s1">&#39;ModelE&#39;</span>
 </pre></div>
@@ -499,7 +499,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## load all simulations located in subfolders of the given directory</span>
-<span class="n">df_gray_1d</span><span class="p">,</span><span class="n">df_gray_2d</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword_gray</span><span class="p">,</span><span class="n">make_gray</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">df_gray_1d</span><span class="p">,</span><span class="n">df_gray_2d</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_scm/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">17</span><span class="p">],</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword_gray</span><span class="p">,</span><span class="n">make_gray</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
 
 <span class="c1">## example using LES</span>
 <span class="n">df_col_1d_les</span><span class="p">,</span><span class="n">df_col_2d_les</span> <span class="o">=</span> <span class="n">load_sims</span><span class="p">(</span><span class="s1">&#39;../../output_les/&#39;</span><span class="p">,</span><span class="n">var_vec_1d</span><span class="p">,</span><span class="n">var_vec_2d</span><span class="p">,</span><span class="n">t_shift</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span><span class="n">keyword</span><span class="o">=</span><span class="n">sim_keyword_col_les</span><span class="p">)</span>
@@ -511,65 +511,64 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading variables: f(time)
-../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-z0h shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-z0q shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-pblh not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-zi not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-cf not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-cflc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-cfc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-ssaf shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+ol not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+zi not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+lwpr not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+cf not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+cflc not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+cfc not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
 Loading variables: f(time,height)
-../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-pe not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-qi not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-fh not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-fc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-tke not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-cmfu not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-cmfd not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-na1 shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-na2 shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-na3 shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-dna_micro_warm shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-dna_micro_cold shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-dna_turb shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-dni_het shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-dni_sip shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-dni_hom shows NAN values in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-qlcs not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-qlrs not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-qics not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-qips not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-qlcc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-qlrc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-qicc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-qipc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-nlcs not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-nlrs not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-nics not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-nips not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-relcc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-relrc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-reicc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-reipc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-flcs not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-flrs not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-fics not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-fips not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-flcc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-flrc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-ficc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-fipc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-vmlcs not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-vmlrs not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-vmics not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-vmips not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-vmlcc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-vmlrc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-vmicc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
-vmipc not found in ../../output_les/dharma/sandbox/DHARMA_Lx25_dx200_FixN.nc
+../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+pe not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+fc not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+uw not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+vw not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+w2 not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+wth not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+vf_thli not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+wqv not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+vf_qt not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+cmfd not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+na1 not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+na2 not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+na3 not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+dna_micro_warm not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+dna_micro_cold not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+dna_turb not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+dni_het not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+dni_sip not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+dni_hom not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+qlcs not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+qlrs not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+qics not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+qlcc not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+qlrc not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+qicc not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+qipc not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+nlcs not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+nlrs not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+nics not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+nips not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+relcc not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+relrc not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+reicc not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+reipc not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+flcs not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+fics not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+fips not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+flcc not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+flrc not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+ficc not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+fipc not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+vmlcs not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+vmlrs not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+vmics not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+vmips not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+vmlcc not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+vmlrc not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+vmicc not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
+vmipc not found in ../../output_scm/LMDZ/staged/LMDZ_FixN.nc
 Loading variables: f(time)
 ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
 pblh not found in ../../output_les/wrf/sandbox/WRF_Lx25_dx100_FixN.nc
@@ -840,7 +839,7 @@ vmipc shows NAN values in ../../output_scm/modelE/sandbox/ModelE3-Phys_FixN_noic
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/adcd784e65af6b2d6a9fafbf142a572b99680c6285ff05f6d94fddc0d4b6f83f.png" src="../../_images/adcd784e65af6b2d6a9fafbf142a572b99680c6285ff05f6d94fddc0d4b6f83f.png" />
+<img alt="../../_images/eb29968b15866d2e613cb402409ac33bc74f560eef9dcd90ea7dcea6c740a27d.png" src="../../_images/eb29968b15866d2e613cb402409ac33bc74f560eef9dcd90ea7dcea6c740a27d.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -856,7 +855,7 @@ vmipc shows NAN values in ../../output_scm/modelE/sandbox/ModelE3-Phys_FixN_noic
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>temporal averaging over 1.0 h interval
 </pre></div>
 </div>
-<img alt="../../_images/5102d609e7f00df4f8d7e76aac634ba70b9e6e302c47cd6d961cb64ae846ae73.png" src="../../_images/5102d609e7f00df4f8d7e76aac634ba70b9e6e302c47cd6d961cb64ae846ae73.png" />
+<img alt="../../_images/fc64ca9495c8fdd17eb3e04fe502774f6d14fa9b3e370930cb941cdf7e4ea4e1.png" src="../../_images/fc64ca9495c8fdd17eb3e04fe502774f6d14fa9b3e370930cb941cdf7e4ea4e1.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x600 with 0 Axes&gt;
 </pre></div>
 </div>
