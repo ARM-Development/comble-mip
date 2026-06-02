@@ -223,7 +223,7 @@ def load_viirs(case='20200313',t_filter = 1.,sza_filter = 80.,PATH='../../data_f
     data = data.loc[abs(data['tdiff']) <= t_filter]
     
     ## exclude bispectral retrievals under high SZA
-    data.loc[data['sza'] > sza_filter,['cod','cod.25','cod.75']] = np.nan 
+    data.loc[data['sza'] > sza_filter,['cc','cc.025','cc.975','cod','cod.25','cod.75']] = np.nan 
     
     ## exclude values obtained during high-cloud influence
     data.loc[(data['time.rel'] + t_off) < 3,['ctt','cth']] = np.nan 
@@ -240,6 +240,10 @@ def load_viirs(case='20200313',t_filter = 1.,sza_filter = 80.,PATH='../../data_f
     data['od'] = data['cod']
     data['od.25'] = data['cod.25']
     data['od.75'] = data['cod.75']
+    data['clt'] = data['cc']
+    data['clt.25'] = data['cc.025']
+    data['clt.75'] = data['cc.975']
+     
     data.index = data['time']
      
     data['class'] = data['sat']
@@ -275,7 +279,7 @@ def load_modis(case='20200313',t_filter = 1.,sza_filter = 80.,PATH='../../data_f
     data = data.loc[abs(data['tdiff']) <= t_filter]
     
     ## exclude bispectral retrievals under high SZA
-    data.loc[data['sza'] > sza_filter,['cod','cod.25','cod.75']] = np.nan 
+    data.loc[data['sza'] > sza_filter,['cc','cc.025','cc.975','cod','cod.25','cod.75']] = np.nan 
     
     ## exclude values obtained during high-cloud influence
     data.loc[(data['time.rel'] + t_off) < 3,['ctt','cth']] = np.nan 
@@ -289,6 +293,10 @@ def load_modis(case='20200313',t_filter = 1.,sza_filter = 80.,PATH='../../data_f
     data['od'] = data['cod']
     data['od.25'] = data['cod.25']
     data['od.75'] = data['cod.75']
+    
+    data['clt'] = data['cc']
+    data['clt.25'] = data['cc.025']
+    data['clt.75'] = data['cc.975']
      
     data['class'] = data['sat']
     return data
@@ -810,6 +818,12 @@ def load_sims_2d(path,var_vec_2d,t_shift = 0,keyword='',subfolder='',ignore='pla
                 print('...adjusting x and y values')
                 ncdata['x'] = ncdata['x'] - 12850
                 ncdata['y'] = ncdata['y'] - 12850
+            if 'mimica2' in NCFILES_STR[count]:
+                print('...renaming variables')
+                ncdata = ncdata.rename({'Y':'y','X':'x'})
+                print('...adjusting x and y values')
+                ncdata['x'] = ncdata['x'] - 12850 + 50
+                ncdata['y'] = ncdata['x'] - 12850 + 50
             #rounded = [np.round(x,-2) for x in ncdata['x']]
             #ncdata['x'] = rounded
             #ncdata['y'] = rounded
@@ -835,9 +849,13 @@ def load_sims_2d(path,var_vec_2d,t_shift = 0,keyword='',subfolder='',ignore='pla
             
             ## if wanted, coarsen to 1km resolution
             if coarsen:
-                ncdata['x_round'] = np.round(ncdata['x']/1000)
-                ncdata['y_round'] = np.round(ncdata['y']/1000)
-                 
+                if 'mimica2' in NCFILES_STR[count]:
+                    ncdata['x_round'] = np.round(ncdata['X']/1000)
+                    ncdata['y_round'] = np.round(ncdata['Y']/1000)
+                else:
+                    ncdata['x_round'] = np.round(ncdata['x']/1000)
+                    ncdata['y_round'] = np.round(ncdata['y']/1000)
+                         
                 counter_y = 0
                 for yy in np.unique(ncdata['y_round']):
                     ncdata_sub = ncdata.where(ncdata.y_round == yy,drop=True).drop('y_round')
