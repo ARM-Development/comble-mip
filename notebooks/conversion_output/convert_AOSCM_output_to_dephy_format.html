@@ -516,22 +516,22 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># specify input and output file names: versions of ModelE3 with and without ice</span>
 
 <span class="c1"># Phys</span>
-<span class="n">my_input_suffix</span> <span class="o">=</span> <span class="s1">&#39;COMBLE_scm_in.nc&#39;</span>
-<span class="n">my_prog_suffix</span> <span class="o">=</span> <span class="s1">&#39;progvar.nc&#39;</span>
-<span class="n">my_diag_suffix</span> <span class="o">=</span> <span class="s1">&#39;diagvar.nc&#39;</span>
-<span class="n">my_diag2_suffix</span> <span class="o">=</span> <span class="s1">&#39;diagvar2.nc&#39;</span>
-<span class="n">my_merged_suffix</span> <span class="o">=</span> <span class="s1">&#39;aoscm.nc&#39;</span>
+<span class="n">my_input_suffix</span> <span class="o">=</span> <span class="s1">'COMBLE_scm_in.nc'</span>
+<span class="n">my_prog_suffix</span> <span class="o">=</span> <span class="s1">'progvar.nc'</span>
+<span class="n">my_diag_suffix</span> <span class="o">=</span> <span class="s1">'diagvar.nc'</span>
+<span class="n">my_diag2_suffix</span> <span class="o">=</span> <span class="s1">'diagvar2.nc'</span>
+<span class="n">my_merged_suffix</span> <span class="o">=</span> <span class="s1">'aoscm.nc'</span>
 
 <span class="c1"># Phys without ice</span>
-<span class="c1"># my_input_suffix = &#39;entppe_noice.nc&#39;</span>
-<span class="n">exper</span> <span class="o">=</span> <span class="s1">&#39;FixN_def_z0&#39;</span>
-<span class="n">my_output_suffix</span> <span class="o">=</span> <span class="s1">&#39;AOSCM_&#39;</span><span class="o">+</span><span class="n">exper</span><span class="o">+</span><span class="s1">&#39;_alt.nc&#39;</span>
+<span class="c1"># my_input_suffix = 'entppe_noice.nc'</span>
+<span class="n">exper</span> <span class="o">=</span> <span class="s1">'FixN_def_z0'</span>
+<span class="n">my_output_suffix</span> <span class="o">=</span> <span class="s1">'AOSCM_'</span><span class="o">+</span><span class="n">exper</span><span class="o">+</span><span class="s1">'_alt.nc'</span>
 
 
 
 <span class="c1"># specify local source directories (with subdirectories for spin up over ice and restart over water)</span>
-<span class="c1"># my_input_dir = &#39;/data/home/fridlind/modelE3/&#39;</span>
-<span class="n">my_input_dir</span> <span class="o">=</span> <span class="s1">&#39;~/AOSCM_Karalis/&#39;</span><span class="o">+</span><span class="n">exper</span><span class="o">+</span><span class="s1">&#39;/&#39;</span>
+<span class="c1"># my_input_dir = '/data/home/fridlind/modelE3/'</span>
+<span class="n">my_input_dir</span> <span class="o">=</span> <span class="s1">'~/AOSCM_Karalis/'</span><span class="o">+</span><span class="n">exper</span><span class="o">+</span><span class="s1">'/'</span>
 <span class="n">dsprog</span><span class="o">=</span><span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">my_input_dir</span> <span class="o">+</span> <span class="n">my_prog_suffix</span><span class="p">,</span><span class="n">decode_times</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">dsdiag</span><span class="o">=</span><span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">my_input_dir</span> <span class="o">+</span> <span class="n">my_diag_suffix</span><span class="p">,</span><span class="n">decode_times</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">dsdiag2</span><span class="o">=</span><span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">my_input_dir</span> <span class="o">+</span> <span class="n">my_diag2_suffix</span><span class="p">,</span><span class="n">decode_times</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -540,9 +540,9 @@ document.write(`
 <span class="n">output</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">merge</span><span class="p">([</span><span class="n">dsprog</span><span class="p">,</span> <span class="n">dsdiag</span><span class="p">,</span> <span class="n">dsdiag2</span><span class="p">])</span>
 <span class="n">output</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="n">my_input_dir</span> <span class="o">+</span> <span class="n">my_merged_suffix</span><span class="p">)</span>
 <span class="c1"># specify Github scratch directory where processed model output will be committed (automate later)</span>
-<span class="n">my_output_filename</span> <span class="o">=</span>  <span class="s1">&#39;aoscm.nc&#39;</span>
-<span class="n">my_gitdir</span> <span class="o">=</span> <span class="s1">&#39;../../output_scm/AOSCM/sandbox/&#39;</span>
-<span class="c1"># my_gitdir = &#39;dephy/&#39;</span>
+<span class="n">my_output_filename</span> <span class="o">=</span>  <span class="s1">'aoscm.nc'</span>
+<span class="n">my_gitdir</span> <span class="o">=</span> <span class="s1">'../../output_scm/AOSCM/sandbox/'</span>
+<span class="c1"># my_gitdir = 'dephy/'</span>
 </pre></div>
 </div>
 </div>
@@ -566,8 +566,8 @@ document.write(`
 <span class="n">modele_data</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">input_filename</span><span class="p">,</span><span class="n">decode_times</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="c1"># check if the run contains ice variables</span>
-<span class="n">do_ice</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">modele_data</span><span class="p">[</span><span class="s1">&#39;ice_wat_path&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="o">&gt;</span><span class="mf">0.</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;do_ice = &#39;</span><span class="p">,</span><span class="n">do_ice</span><span class="p">)</span>
+<span class="n">do_ice</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">modele_data</span><span class="p">[</span><span class="s1">'ice_wat_path'</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="o">&gt;</span><span class="mf">0.</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'do_ice = '</span><span class="p">,</span><span class="n">do_ice</span><span class="p">)</span>
 
 <span class="c1"># full parameter list</span>
 
@@ -1099,10 +1099,10 @@ Attributes:
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">modele_data</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">&gt;</span><span class="mi">1</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">modele_data</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">137</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">tt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">modele_data</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
-                <span class="n">modele_data</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">tt</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">modele_data</span><span class="p">[</span><span class="s1">&#39;pressure_f&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span> <span class="n">modele_data</span><span class="p">[</span><span class="s1">&#39;pressure_f&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">tt</span><span class="p">,:],</span> <span class="n">modele_data</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">tt</span><span class="p">,:])</span>
+                <span class="n">modele_data</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">tt</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">modele_data</span><span class="p">[</span><span class="s1">'pressure_f'</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span> <span class="n">modele_data</span><span class="p">[</span><span class="s1">'pressure_f'</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">tt</span><span class="p">,:],</span> <span class="n">modele_data</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">tt</span><span class="p">,:])</span>
         <span class="k">elif</span> <span class="n">modele_data</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">138</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">tt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">modele_data</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
-                <span class="n">modele_data</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">tt</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">modele_data</span><span class="p">[</span><span class="s1">&#39;pressure_h&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span> <span class="n">modele_data</span><span class="p">[</span><span class="s1">&#39;pressure_h&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">tt</span><span class="p">,:],</span> <span class="n">modele_data</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">tt</span><span class="p">,:])</span>
+                <span class="n">modele_data</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">tt</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">modele_data</span><span class="p">[</span><span class="s1">'pressure_h'</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span> <span class="n">modele_data</span><span class="p">[</span><span class="s1">'pressure_h'</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">tt</span><span class="p">,:],</span> <span class="n">modele_data</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">tt</span><span class="p">,:])</span>
 </pre></div>
 </div>
 </div>
@@ -1112,25 +1112,25 @@ Attributes:
 <h3>Calculate and append additional variables<a class="headerlink" href="#calculate-and-append-additional-variables" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">additional_var_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;surface_pressure&#39;</span><span class="p">,</span> <span class="s1">&#39;surface_friction_velocity&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;obukhov_length&#39;</span><span class="p">,</span> <span class="s1">&#39;inversion_height&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;mass_mixing_ratio_of_cloud_liquid_water_in_air&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;mass_mixing_ratio_of_ice_water_in_air&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;mass_mixing_ratio_of_rain_water_in_air&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;tendency_of_air_potential_temperature_due_to_radiative_heating&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;tendency_of_air_potential_temperature_due_to_microphysics&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;tendency_of_air_potential_temperature_due_to_mixing&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;atmosphere_mass_content_of_rain_water&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;air_dry_density&#39;</span><span class="p">,</span> 
-                        <span class="s1">&#39;surface_upwelling_longwave_flux&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;surface_sea_spray_number_flux&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;precipitation_flux_at_surface&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;precipitation_flux_of_ice_at_surface&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;vertical_flux_total_water&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;vertical_flux_water_vapor&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;zonal_momentum_flux&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;meridional_momentum_flux&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;water_vapor_mixing_ratio&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">additional_var_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'surface_pressure'</span><span class="p">,</span> <span class="s1">'surface_friction_velocity'</span><span class="p">,</span>
+                        <span class="s1">'obukhov_length'</span><span class="p">,</span> <span class="s1">'inversion_height'</span><span class="p">,</span>
+                        <span class="s1">'mass_mixing_ratio_of_cloud_liquid_water_in_air'</span><span class="p">,</span>
+                        <span class="s1">'mass_mixing_ratio_of_ice_water_in_air'</span><span class="p">,</span>
+                        <span class="s1">'mass_mixing_ratio_of_rain_water_in_air'</span><span class="p">,</span>
+                        <span class="s1">'tendency_of_air_potential_temperature_due_to_radiative_heating'</span><span class="p">,</span>
+                        <span class="s1">'tendency_of_air_potential_temperature_due_to_microphysics'</span><span class="p">,</span>
+                        <span class="s1">'tendency_of_air_potential_temperature_due_to_mixing'</span><span class="p">,</span>
+                        <span class="s1">'atmosphere_mass_content_of_rain_water'</span><span class="p">,</span>
+                        <span class="s1">'air_dry_density'</span><span class="p">,</span> 
+                        <span class="s1">'surface_upwelling_longwave_flux'</span><span class="p">,</span>
+                        <span class="s1">'surface_sea_spray_number_flux'</span><span class="p">,</span>
+                        <span class="s1">'precipitation_flux_at_surface'</span><span class="p">,</span>
+                        <span class="s1">'precipitation_flux_of_ice_at_surface'</span><span class="p">,</span>
+                        <span class="s1">'vertical_flux_total_water'</span><span class="p">,</span>
+                        <span class="s1">'vertical_flux_water_vapor'</span><span class="p">,</span>
+                        <span class="s1">'zonal_momentum_flux'</span><span class="p">,</span>
+                        <span class="s1">'meridional_momentum_flux'</span><span class="p">,</span>
+                        <span class="s1">'water_vapor_mixing_ratio'</span><span class="p">]</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">additional_variables</span><span class="p">(</span><span class="n">var_name</span><span class="p">):</span>
@@ -1270,45 +1270,45 @@ Attributes:
     <span class="n">L_star</span> <span class="o">=</span> <span class="p">(</span><span class="n">u_star</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="p">((</span><span class="n">kappa</span><span class="o">*</span><span class="n">g</span><span class="o">/</span><span class="n">modele_data</span><span class="o">.</span><span class="n">pot_temperature</span><span class="o">.</span><span class="n">data</span><span class="p">[:,</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="n">modele_data</span><span class="o">.</span><span class="n">sfc_sen_flx</span><span class="o">.</span><span class="n">data</span><span class="o">/</span><span class="p">(</span><span class="n">Cp</span><span class="o">*</span><span class="n">rho</span><span class="p">[:,</span><span class="o">-</span><span class="mi">1</span><span class="p">])))</span>
 
 
-    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;surface_pressure&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">'surface_pressure'</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">ps</span>
-    <span class="k">elif</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;surface_friction_velocity&#39;</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">'surface_friction_velocity'</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">u_star</span>
-    <span class="k">elif</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;obukhov_length&#39;</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">'obukhov_length'</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">L_star</span>
-    <span class="k">elif</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;inversion_height&#39;</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">'inversion_height'</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">inv_height</span>
-    <span class="k">elif</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;water_vapor_mixing_ratio&#39;</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">'water_vapor_mixing_ratio'</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">w</span>
-    <span class="k">elif</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;mass_mixing_ratio_of_cloud_liquid_water_in_air&#39;</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">'mass_mixing_ratio_of_cloud_liquid_water_in_air'</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">w_l</span>
-    <span class="k">elif</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;mass_mixing_ratio_of_ice_water_in_air&#39;</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">'mass_mixing_ratio_of_ice_water_in_air'</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">w_i</span> <span class="o">+</span> <span class="n">w_sn</span>
-    <span class="k">elif</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;mass_mixing_ratio_of_rain_water_in_air&#39;</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">'mass_mixing_ratio_of_rain_water_in_air'</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">w_r</span>
-    <span class="k">elif</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;tendency_of_air_potential_temperature_due_to_radiative_heating&#39;</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">'tendency_of_air_potential_temperature_due_to_radiative_heating'</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">theta_rad_dot</span>
-    <span class="k">elif</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;tendency_of_air_potential_temperature_due_to_microphysics&#39;</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">'tendency_of_air_potential_temperature_due_to_microphysics'</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">theta_micro_dot</span>
-    <span class="k">elif</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;tendency_of_air_potential_temperature_due_to_mixing&#39;</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">'tendency_of_air_potential_temperature_due_to_mixing'</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">theta_turb_dot</span>
-    <span class="k">elif</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;atmosphere_mass_content_of_rain_water&#39;</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">'atmosphere_mass_content_of_rain_water'</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">rain_wat_path</span>
-    <span class="k">elif</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;air_dry_density&#39;</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">'air_dry_density'</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">rho</span>
-    <span class="k">elif</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;surface_upwelling_longwave_flux&#39;</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">'surface_upwelling_longwave_flux'</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">lwu</span>
-    <span class="k">elif</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;surface_sea_spray_number_flux&#39;</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">'surface_sea_spray_number_flux'</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">sspray</span>
-    <span class="k">elif</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;precipitation_flux_at_surface&#39;</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">'precipitation_flux_at_surface'</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">prec</span>
-    <span class="k">elif</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;vertical_flux_total_water&#39;</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">'vertical_flux_total_water'</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">turb_tot_water_full</span>
-    <span class="k">elif</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;vertical_flux_water_vapor&#39;</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">'vertical_flux_water_vapor'</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">turb_tot_wv_full</span>
-    <span class="k">elif</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;zonal_momentum_flux&#39;</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">'zonal_momentum_flux'</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">wu_flux</span>
-    <span class="k">elif</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;meridional_momentum_flux&#39;</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">'meridional_momentum_flux'</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">wv_flux</span>   
 </pre></div>
 </div>
@@ -1324,9 +1324,9 @@ Attributes:
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># read list of requested variables</span>
-<span class="n">vars_mean_list</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;https://docs.google.com/spreadsheets/d/1Vl8jYGviet7EtXZuQiitrx4NSkV1x27aJAhxxjBb9zI/export?gid=1026157027&amp;format=xlsx&#39;</span><span class="p">,</span>
-                              <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;SCM&#39;</span><span class="p">)</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_rows&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">vars_mean_list</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">'https://docs.google.com/spreadsheets/d/1Vl8jYGviet7EtXZuQiitrx4NSkV1x27aJAhxxjBb9zI/export?gid=1026157027&amp;format=xlsx'</span><span class="p">,</span>
+                              <span class="n">sheet_name</span><span class="o">=</span><span class="s1">'SCM'</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">'display.max_rows'</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 <span class="n">vars_mean_list</span>
 </pre></div>
 </div>
@@ -2209,10 +2209,10 @@ Attributes:
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># drop comments</span>
-<span class="n">vars_mean_list</span> <span class="o">=</span> <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">&#39;comment (reported at end of each model physics time step, green=minimum, red=granularity enabling EMC2)&#39;</span><span class="p">)</span>
+<span class="n">vars_mean_list</span> <span class="o">=</span> <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">'comment (reported at end of each model physics time step, green=minimum, red=granularity enabling EMC2)'</span><span class="p">)</span>
 
 <span class="c1"># add columns to contain model output name and units conversion factors</span>
-<span class="n">vars_mean_list</span> <span class="o">=</span> <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">model_name</span><span class="o">=</span><span class="s1">&#39;missing data&#39;</span><span class="p">,</span><span class="n">conv_factor</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">vars_mean_list</span> <span class="o">=</span> <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">model_name</span><span class="o">=</span><span class="s1">'missing data'</span><span class="p">,</span><span class="n">conv_factor</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2224,68 +2224,68 @@ Attributes:
     <span class="n">standard_name</span> <span class="o">=</span> <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">standard_name</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
     
 
-    <span class="k">if</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;surface_temperature&#39;</span><span class="p">:</span>                                     <span class="c1">#done</span>
-        <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">model_name</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;t_skin&#39;</span>
+    <span class="k">if</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">'surface_temperature'</span><span class="p">:</span>                                     <span class="c1">#done</span>
+        <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">model_name</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'t_skin'</span>
 
 
-    <span class="k">if</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;surface_roughness_length_for_momentum_in_air&#39;</span><span class="p">:</span>             <span class="c1">#done</span>
-        <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">model_name</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;rough_len_mom&#39;</span>
-    <span class="k">if</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;surface_roughness_length_for_heat_in_air&#39;</span><span class="p">:</span>                 <span class="c1">#done</span>
-        <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">model_name</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;rough_len_heat&#39;</span>
+    <span class="k">if</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">'surface_roughness_length_for_momentum_in_air'</span><span class="p">:</span>             <span class="c1">#done</span>
+        <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">model_name</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'rough_len_mom'</span>
+    <span class="k">if</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">'surface_roughness_length_for_heat_in_air'</span><span class="p">:</span>                 <span class="c1">#done</span>
+        <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">model_name</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'rough_len_heat'</span>
         
-    <span class="k">if</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;surface_roughness_length_for_humidity_in_air&#39;</span><span class="p">:</span>           <span class="c1">#to_do </span>
-        <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">model_name</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;rough_len_heat&#39;</span>
+    <span class="k">if</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">'surface_roughness_length_for_humidity_in_air'</span><span class="p">:</span>           <span class="c1">#to_do </span>
+        <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">model_name</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'rough_len_heat'</span>
 
-    <span class="k">if</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;surface_upward_sensible_heat_flux&#39;</span><span class="p">:</span>                        <span class="c1">#done</span>
-        <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">model_name</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;sfc_sen_flx&#39;</span>
+    <span class="k">if</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">'surface_upward_sensible_heat_flux'</span><span class="p">:</span>                        <span class="c1">#done</span>
+        <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">model_name</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'sfc_sen_flx'</span>
         <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">conv_factor</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.</span>
-    <span class="k">if</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;surface_upward_latent_heat_flux&#39;</span><span class="p">:</span>                          <span class="c1">#done</span>
-        <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">model_name</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;sfc_lat_flx&#39;</span> 
+    <span class="k">if</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">'surface_upward_latent_heat_flux'</span><span class="p">:</span>                          <span class="c1">#done</span>
+        <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">model_name</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'sfc_lat_flx'</span> 
         <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">conv_factor</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.</span>
         
         
-    <span class="k">if</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;pbl_height&#39;</span><span class="p">:</span>                                               <span class="c1">#done</span>
-        <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">model_name</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;pbl_height&#39;</span>     
+    <span class="k">if</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">'pbl_height'</span><span class="p">:</span>                                               <span class="c1">#done</span>
+        <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">model_name</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'pbl_height'</span>     
 
 
-    <span class="k">if</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;atmosphere_mass_content_of_liquid_cloud_water&#39;</span><span class="p">:</span>            <span class="c1">#done</span>
-        <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">model_name</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;liq_wat_path&#39;</span>                     
+    <span class="k">if</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">'atmosphere_mass_content_of_liquid_cloud_water'</span><span class="p">:</span>            <span class="c1">#done</span>
+        <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">model_name</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'liq_wat_path'</span>                     
         <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">conv_factor</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
         
 
     <span class="k">if</span> <span class="n">do_ice</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;atmosphere_mass_content_of_ice_water&#39;</span><span class="p">:</span>                  <span class="c1">#done</span>
-            <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">model_name</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;ice_wat_path&#39;</span>
+        <span class="k">if</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">'atmosphere_mass_content_of_ice_water'</span><span class="p">:</span>                  <span class="c1">#done</span>
+            <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">model_name</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'ice_wat_path'</span>
             <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">conv_factor</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="k">if</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;area_fraction_cover_of_hydrometeors&#39;</span><span class="p">:</span>                        <span class="c1">##done</span>
-        <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">model_name</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;total_cloud&#39;</span>
+    <span class="k">if</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">'area_fraction_cover_of_hydrometeors'</span><span class="p">:</span>                        <span class="c1">##done</span>
+        <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">model_name</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'total_cloud'</span>
         
         
-    <span class="k">if</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;toa_outgoing_longwave_flux&#39;</span><span class="p">:</span>                                <span class="c1">#done</span>
-        <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">model_name</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;top_lwrad&#39;</span>
+    <span class="k">if</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">'toa_outgoing_longwave_flux'</span><span class="p">:</span>                                <span class="c1">#done</span>
+        <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">model_name</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'top_lwrad'</span>
         <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">conv_factor</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-    <span class="k">if</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;surface_downwelling_longwave_flux&#39;</span><span class="p">:</span>                         <span class="c1">#done</span>
-        <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">model_name</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;sfc_lwrad_down&#39;</span>  
+    <span class="k">if</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">'surface_downwelling_longwave_flux'</span><span class="p">:</span>                         <span class="c1">#done</span>
+        <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">model_name</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'sfc_lwrad_down'</span>  
         <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">conv_factor</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
 
-    <span class="k">if</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;height&#39;</span><span class="p">:</span>                                                     <span class="c1">#done</span>
-        <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">model_name</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;height_f&#39;</span>          
+    <span class="k">if</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">'height'</span><span class="p">:</span>                                                     <span class="c1">#done</span>
+        <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">model_name</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'height_f'</span>          
 
-    <span class="k">if</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;eastward_wind&#39;</span><span class="p">:</span>                                              <span class="c1">#done</span>
-        <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">model_name</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;u&#39;</span>
-    <span class="k">if</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;northward_wind&#39;</span><span class="p">:</span>                                             <span class="c1">#done</span>
-        <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">model_name</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;v&#39;</span>
+    <span class="k">if</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">'eastward_wind'</span><span class="p">:</span>                                              <span class="c1">#done</span>
+        <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">model_name</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'u'</span>
+    <span class="k">if</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">'northward_wind'</span><span class="p">:</span>                                             <span class="c1">#done</span>
+        <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">model_name</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'v'</span>
 
-    <span class="k">if</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;air_temperature&#39;</span><span class="p">:</span>                                             <span class="c1">#done</span>
-        <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">model_name</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;t&#39;</span>
+    <span class="k">if</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">'air_temperature'</span><span class="p">:</span>                                             <span class="c1">#done</span>
+        <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">model_name</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'t'</span>
 
-    <span class="k">if</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;relative_humidity&#39;</span><span class="p">:</span>                                            <span class="c1">#done</span>
-        <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">model_name</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;relative_humidity&#39;</span>
+    <span class="k">if</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">'relative_humidity'</span><span class="p">:</span>                                            <span class="c1">#done</span>
+        <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">model_name</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'relative_humidity'</span>
         <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">conv_factor</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
 
 
-    <span class="k">if</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">&#39;air_potential_temperature&#39;</span><span class="p">:</span>                                   <span class="c1">#done</span>
-        <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">model_name</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;pot_temperature&#39;</span>
+    <span class="k">if</span> <span class="n">standard_name</span><span class="o">==</span><span class="s1">'air_potential_temperature'</span><span class="p">:</span>                                   <span class="c1">#done</span>
+        <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">model_name</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'pot_temperature'</span>
         
         
 
@@ -3264,55 +3264,55 @@ Attributes:
 <span class="n">dephy_filename</span> <span class="o">=</span> <span class="n">my_gitdir</span> <span class="o">+</span> <span class="n">my_output_suffix</span>
 <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">dephy_filename</span><span class="p">):</span>
     <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">dephy_filename</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The file &#39;</span> <span class="o">+</span> <span class="n">dephy_filename</span> <span class="o">+</span> <span class="s1">&#39; has been deleted successfully&#39;</span><span class="p">)</span>    
-<span class="n">dephy_file</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">dephy_filename</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span><span class="nb">format</span><span class="o">=</span><span class="s1">&#39;NETCDF3_CLASSIC&#39;</span><span class="p">)</span>
-<span class="n">start_date</span> <span class="o">=</span> <span class="s1">&#39;2020-03-12T22:00:00Z&#39;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'The file '</span> <span class="o">+</span> <span class="n">dephy_filename</span> <span class="o">+</span> <span class="s1">' has been deleted successfully'</span><span class="p">)</span>    
+<span class="n">dephy_file</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">dephy_filename</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s1">'w'</span><span class="p">,</span><span class="nb">format</span><span class="o">=</span><span class="s1">'NETCDF3_CLASSIC'</span><span class="p">)</span>
+<span class="n">start_date</span> <span class="o">=</span> <span class="s1">'2020-03-12T22:00:00Z'</span>
 
 <span class="c1"># create global attributes</span>
-<span class="n">dephy_file</span><span class="o">.</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;AOSCM results for COMBLE-MIP case: fixed stratiform Nd&#39;</span>
-<span class="n">dephy_file</span><span class="o">.</span><span class="n">reference</span><span class="o">=</span><span class="s1">&#39;https://github.com/ARM-Development/comble-mip&#39;</span>
-<span class="n">dephy_file</span><span class="o">.</span><span class="n">authors</span><span class="o">=</span><span class="s1">&#39;Michail Karalis (michail.karalis@misu.su.se), Gunilla Svensson (gunilla@misu.su.se)&#39;</span>
+<span class="n">dephy_file</span><span class="o">.</span><span class="n">title</span><span class="o">=</span><span class="s1">'AOSCM results for COMBLE-MIP case: fixed stratiform Nd'</span>
+<span class="n">dephy_file</span><span class="o">.</span><span class="n">reference</span><span class="o">=</span><span class="s1">'https://github.com/ARM-Development/comble-mip'</span>
+<span class="n">dephy_file</span><span class="o">.</span><span class="n">authors</span><span class="o">=</span><span class="s1">'Michail Karalis (michail.karalis@misu.su.se), Gunilla Svensson (gunilla@misu.su.se)'</span>
 <span class="n">dephy_file</span><span class="o">.</span><span class="n">source</span><span class="o">=</span><span class="n">input_filename</span>
-<span class="n">dephy_file</span><span class="o">.</span><span class="n">version</span><span class="o">=</span><span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">)</span>
-<span class="n">dephy_file</span><span class="o">.</span><span class="n">format_version</span><span class="o">=</span><span class="s1">&#39;DEPHY SCM format version 1.6&#39;</span>
-<span class="n">dephy_file</span><span class="o">.</span><span class="n">script</span><span class="o">=</span><span class="s1">&#39;convert_AOSCM_output_to_dephy_format.ipynb&#39;</span>
+<span class="n">dephy_file</span><span class="o">.</span><span class="n">version</span><span class="o">=</span><span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">'%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S'</span><span class="p">)</span>
+<span class="n">dephy_file</span><span class="o">.</span><span class="n">format_version</span><span class="o">=</span><span class="s1">'DEPHY SCM format version 1.6'</span>
+<span class="n">dephy_file</span><span class="o">.</span><span class="n">script</span><span class="o">=</span><span class="s1">'convert_AOSCM_output_to_dephy_format.ipynb'</span>
 <span class="n">dephy_file</span><span class="o">.</span><span class="n">startDate</span><span class="o">=</span><span class="n">start_date</span>
 <span class="n">dephy_file</span><span class="o">.</span><span class="n">force_geo</span><span class="o">=</span><span class="mi">1</span>
-<span class="n">dephy_file</span><span class="o">.</span><span class="n">surfaceType</span><span class="o">=</span><span class="s1">&#39;ocean&#39;</span>
-<span class="n">dephy_file</span><span class="o">.</span><span class="n">surfaceForcing</span><span class="o">=</span><span class="s1">&#39;ts&#39;</span>
-<span class="n">dephy_file</span><span class="o">.</span><span class="n">lat</span><span class="o">=</span><span class="s1">&#39;74.5 deg N&#39;</span>
-<span class="n">dephy_file</span><span class="o">.</span><span class="n">dp</span><span class="o">=</span><span class="s1">&#39;see pressure variable&#39;</span>
-<span class="n">dephy_file</span><span class="o">.</span><span class="n">np</span><span class="o">=</span><span class="n">modele_data</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="s1">&#39;nlev&#39;</span><span class="p">]</span>
-<span class="n">dephy_file</span><span class="o">.</span><span class="n">alt</span><span class="o">=</span><span class="s1">&#39;Nd = 50 cm-3 over the ocean and diagnostic Ni&#39;</span>
+<span class="n">dephy_file</span><span class="o">.</span><span class="n">surfaceType</span><span class="o">=</span><span class="s1">'ocean'</span>
+<span class="n">dephy_file</span><span class="o">.</span><span class="n">surfaceForcing</span><span class="o">=</span><span class="s1">'ts'</span>
+<span class="n">dephy_file</span><span class="o">.</span><span class="n">lat</span><span class="o">=</span><span class="s1">'74.5 deg N'</span>
+<span class="n">dephy_file</span><span class="o">.</span><span class="n">dp</span><span class="o">=</span><span class="s1">'see pressure variable'</span>
+<span class="n">dephy_file</span><span class="o">.</span><span class="n">np</span><span class="o">=</span><span class="n">modele_data</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="s1">'nlev'</span><span class="p">]</span>
+<span class="n">dephy_file</span><span class="o">.</span><span class="n">alt</span><span class="o">=</span><span class="s1">'Nd = 50 cm-3 over the ocean and diagnostic Ni'</span>
 
 <span class="c1"># create dimensions</span>
-<span class="n">nt</span> <span class="o">=</span> <span class="n">modele_data</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span>
-<span class="n">time</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">nt</span><span class="p">)</span>
-<span class="n">time</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,))</span>
-<span class="n">time</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;seconds since &#39;</span> <span class="o">+</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">startDate</span>
-<span class="n">time</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;time&#39;</span>
+<span class="n">nt</span> <span class="o">=</span> <span class="n">modele_data</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="s1">'time'</span><span class="p">]</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s1">'time'</span><span class="p">,</span> <span class="n">nt</span><span class="p">)</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">'time'</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">'time'</span><span class="p">,))</span>
+<span class="n">time</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">'seconds since '</span> <span class="o">+</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">startDate</span>
+<span class="n">time</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">'time'</span>
 <span class="c1"># find time step and build time in seconds</span>
-<span class="c1"># time1 = dt.datetime.strptime(str(modele_data[&#39;time&#39;].data[0]),&#39;%Y-%m-%d %H:%M:%S&#39;)</span>
-<span class="c1"># time2 = dt.datetime.strptime(str(modele_data[&#39;time&#39;].data[1]),&#39;%Y-%m-%d %H:%M:%S&#39;)</span>
+<span class="c1"># time1 = dt.datetime.strptime(str(modele_data['time'].data[0]),'%Y-%m-%d %H:%M:%S')</span>
+<span class="c1"># time2 = dt.datetime.strptime(str(modele_data['time'].data[1]),'%Y-%m-%d %H:%M:%S')</span>
 <span class="c1"># delta_t = (time2-time1).total_seconds()</span>
 
 
-<span class="n">delta_t</span> <span class="o">=</span> <span class="n">modele_data</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">delta_t</span> <span class="o">=</span> <span class="n">modele_data</span><span class="p">[</span><span class="s1">'time'</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 <span class="c1"># time[:] = (np.arange(nt)+1.)*delta_t</span>
-<span class="n">time</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">modele_data</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+<span class="n">time</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">modele_data</span><span class="p">[</span><span class="s1">'time'</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
 
-<span class="n">nl</span> <span class="o">=</span> <span class="n">modele_data</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="s1">&#39;nlev&#39;</span><span class="p">]</span>
-<span class="c1"># pa = dephy_file.createDimension(&#39;pressure&#39;, nl)</span>
-<span class="c1"># pa = dephy_file.createVariable(&#39;pressure&#39;, np.float64, (&#39;pressure&#39;,))</span>
-<span class="c1"># pa.units = &#39;Pa&#39;</span>
-<span class="c1"># pa.long_name = &#39;pressure&#39;</span>
-<span class="c1"># pa[:] = modele_data[&#39;pressure_f&#39;].data[0,:]*100.</span>
+<span class="n">nl</span> <span class="o">=</span> <span class="n">modele_data</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="s1">'nlev'</span><span class="p">]</span>
+<span class="c1"># pa = dephy_file.createDimension('pressure', nl)</span>
+<span class="c1"># pa = dephy_file.createVariable('pressure', np.float64, ('pressure',))</span>
+<span class="c1"># pa.units = 'Pa'</span>
+<span class="c1"># pa.long_name = 'pressure'</span>
+<span class="c1"># pa[:] = modele_data['pressure_f'].data[0,:]*100.</span>
 
-<span class="n">lvl</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s1">&#39;pa&#39;</span><span class="p">,</span> <span class="n">nl</span><span class="p">)</span>
-<span class="n">pa</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;pa&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;pa&#39;</span><span class="p">,))</span>
-<span class="n">pa</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;Pa&#39;</span>
-<span class="n">pa</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;pressure&#39;</span>
-<span class="n">pa</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">modele_data</span><span class="p">[</span><span class="s1">&#39;pressure_f&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span>
+<span class="n">lvl</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s1">'pa'</span><span class="p">,</span> <span class="n">nl</span><span class="p">)</span>
+<span class="n">pa</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">'pa'</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">'pa'</span><span class="p">,))</span>
+<span class="n">pa</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">'Pa'</span>
+<span class="n">pa</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">'pressure'</span>
+<span class="n">pa</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">modele_data</span><span class="p">[</span><span class="s1">'pressure_f'</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span>
 
 
 <span class="c1"># create and fill variables</span>
@@ -3323,19 +3323,19 @@ Attributes:
     <span class="n">var_name</span> <span class="o">=</span> <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">variable_id</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
     <span class="n">mod_name</span> <span class="o">=</span> <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">model_name</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
     <span class="n">c_factor</span> <span class="o">=</span> <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">conv_factor</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
-    <span class="k">if</span> <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">dimensions</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;time&#39;</span><span class="p">:</span>
-        <span class="n">new_sca</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="n">var_name</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">dimensions</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">==</span><span class="s1">'time'</span><span class="p">:</span>
+        <span class="n">new_sca</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="n">var_name</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">'time'</span><span class="p">))</span>
         <span class="n">new_sca</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
         <span class="n">new_sca</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="n">std_name</span>
-        <span class="k">if</span> <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">model_name</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">!=</span><span class="s1">&#39;missing data&#39;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">model_name</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">!=</span><span class="s1">'missing data'</span><span class="p">:</span>
             <span class="n">new_sca</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">modele_data</span><span class="p">[</span><span class="n">mod_name</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">*</span><span class="n">c_factor</span>
         <span class="k">elif</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">additional_var_list</span><span class="p">)</span> <span class="o">==</span> <span class="n">std_name</span><span class="p">)</span> <span class="p">:</span>
             <span class="n">new_sca</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">additional_variables</span><span class="p">(</span><span class="n">std_name</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">dimensions</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;time, layer&#39;</span><span class="p">:</span>
-        <span class="n">new_snd</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="n">var_name</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="s1">&#39;pa&#39;</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">dimensions</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">==</span><span class="s1">'time, layer'</span><span class="p">:</span>
+        <span class="n">new_snd</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="n">var_name</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">'time'</span><span class="p">,</span><span class="s1">'pa'</span><span class="p">))</span>
         <span class="n">new_snd</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
         <span class="n">new_snd</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="n">std_name</span>
-        <span class="k">if</span> <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">model_name</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">!=</span><span class="s1">&#39;missing data&#39;</span><span class="p">:</span> 
+        <span class="k">if</span> <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">model_name</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">!=</span><span class="s1">'missing data'</span><span class="p">:</span> 
             <span class="n">new_snd</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">modele_data</span><span class="p">[</span><span class="n">mod_name</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">*</span><span class="n">c_factor</span>
         <span class="k">elif</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">additional_var_list</span><span class="p">)</span> <span class="o">==</span> <span class="n">std_name</span><span class="p">)</span> <span class="p">:</span>
             <span class="n">new_snd</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">additional_variables</span><span class="p">(</span><span class="n">std_name</span><span class="p">)</span>

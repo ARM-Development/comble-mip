@@ -514,35 +514,35 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># specify start time of simulation and simulation name</span>
-<span class="n">start_dtime</span> <span class="o">=</span> <span class="s1">&#39;2020-03-12 22:00:00.0&#39;</span>
+<span class="n">start_dtime</span> <span class="o">=</span> <span class="s1">'2020-03-12 22:00:00.0'</span>
 
 <span class="c1"># specify input data directory name, traceable to source machine, and</span>
 <span class="c1"># specify output file name (see file naming convention in TOC)</span>
 
 <span class="c1"># ProgNa with ice test</span>
-<span class="n">my_readdir</span> <span class="o">=</span> <span class="s1">&#39;case0313_diag_ice25_nomiz_dx100_specZ0_hm_largedomain&#39;</span>
-<span class="n">my_outfile</span> <span class="o">=</span> <span class="s1">&#39;DHARMA_Lx25_dx100_FixN_2D_large.nc&#39;</span>
+<span class="n">my_readdir</span> <span class="o">=</span> <span class="s1">'case0313_diag_ice25_nomiz_dx100_specZ0_hm_largedomain'</span>
+<span class="n">my_outfile</span> <span class="o">=</span> <span class="s1">'DHARMA_Lx25_dx100_FixN_2D_large.nc'</span>
 
 <span class="c1"># FixN with no ice test</span>
-<span class="n">my_readdir</span> <span class="o">=</span> <span class="s1">&#39;case0313_diag_ice0_nomiz_dx100_specZ0&#39;</span>
-<span class="n">my_outfile</span> <span class="o">=</span> <span class="s1">&#39;DHARMA_Lx25_dx100_FixN_noice_2D.nc&#39;</span>
+<span class="n">my_readdir</span> <span class="o">=</span> <span class="s1">'case0313_diag_ice0_nomiz_dx100_specZ0'</span>
+<span class="n">my_outfile</span> <span class="o">=</span> <span class="s1">'DHARMA_Lx25_dx100_FixN_noice_2D.nc'</span>
 
-<span class="n">my_readdir</span> <span class="o">=</span> <span class="s1">&#39;case0313_prog_ice25_nomiz_dx100_specZ0_redo&#39;</span>
-<span class="n">my_outfile</span> <span class="o">=</span> <span class="s1">&#39;DHARMA_Lx25_dx100_ProgNa_2D.nc&#39;</span>
+<span class="n">my_readdir</span> <span class="o">=</span> <span class="s1">'case0313_prog_ice25_nomiz_dx100_specZ0_redo'</span>
+<span class="n">my_outfile</span> <span class="o">=</span> <span class="s1">'DHARMA_Lx25_dx100_ProgNa_2D.nc'</span>
 
 <span class="c1"># specify local source directories (additional subdirectories if restart was required)</span>
-<span class="n">my_rundir</span> <span class="o">=</span> <span class="s1">&#39;/data/home/floriantornow/dharma/sandbox/&#39;</span> <span class="o">+</span> <span class="n">my_readdir</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span>
+<span class="n">my_rundir</span> <span class="o">=</span> <span class="s1">'/data/home/floriantornow/dharma/sandbox/'</span> <span class="o">+</span> <span class="n">my_readdir</span> <span class="o">+</span> <span class="s1">'/'</span>
 
-<span class="n">my_outdirs</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">([</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">my_rundir</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">f</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)],</span> <span class="n">key</span><span class="o">=</span><span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">)</span>
+<span class="n">my_outdirs</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">([</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">my_rundir</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">f</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">'.'</span><span class="p">)],</span> <span class="n">key</span><span class="o">=</span><span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">my_outdirs</span><span class="p">)</span>
 
 <span class="c1"># specify Github scratch directory where processed model output will be committed</span>
-<span class="n">my_gitdir</span> <span class="o">=</span> <span class="s1">&#39;../../output_les/dharma/sandbox/&#39;</span>
+<span class="n">my_gitdir</span> <span class="o">=</span> <span class="s1">'../../output_les/dharma/sandbox/'</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;0-20h&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>['0-20h']
 </pre></div>
 </div>
 </div>
@@ -557,15 +557,15 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## locate all files that have the expected filename (*.tgz)</span>
 <span class="n">path</span> <span class="o">=</span> <span class="n">my_rundir</span> <span class="o">+</span> <span class="n">my_outdirs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">direc</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
-<span class="n">NCFILES</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">direc</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="s2">&quot;*tgz&quot;</span><span class="p">))</span>
-<span class="n">NCFILES_STR</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="s1">&#39;*.tgz&#39;</span><span class="p">)]</span>
+<span class="n">NCFILES</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">direc</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="s2">"*tgz"</span><span class="p">))</span>
+<span class="n">NCFILES_STR</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="s1">'*.tgz'</span><span class="p">)]</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">NCFILES_STR</span><span class="p">)</span>
 
 <span class="n">input_filenames</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">NCFILES</span><span class="p">:</span> 
-    <span class="k">if</span> <span class="p">(</span><span class="s1">&#39;alt_0&#39;</span> <span class="ow">in</span> <span class="n">NCFILES_STR</span><span class="p">[</span><span class="n">count</span><span class="p">]):</span>
+    <span class="k">if</span> <span class="p">(</span><span class="s1">'alt_0'</span> <span class="ow">in</span> <span class="n">NCFILES_STR</span><span class="p">[</span><span class="n">count</span><span class="p">]):</span>
         <span class="n">input_filenames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
     <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
     
@@ -574,7 +574,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;/data/home/floriantornow/dharma/sandbox/case0313_prog_ice25_nomiz_dx100_specZ0_redo/0-20h/dharma_PLT_007200.tgz&#39;, &#39;/data/home/floriantornow/dharma/sandbox/case0313_prog_ice25_nomiz_dx100_specZ0_redo/0-20h/dharma_alt_3d_011524.tgz&#39;, &#39;/data/home/floriantornow/dharma/sandbox/case0313_prog_ice25_nomiz_dx100_specZ0_redo/0-20h/dharma_alt_011524.tgz&#39;, &#39;/data/home/floriantornow/dharma/sandbox/case0313_prog_ice25_nomiz_dx100_specZ0_redo/0-20h/dharma_PLT_011524.tgz&#39;, &#39;/data/home/floriantornow/dharma/sandbox/case0313_prog_ice25_nomiz_dx100_specZ0_redo/0-20h/dharma_alt_3d_007200.tgz&#39;, &#39;/data/home/floriantornow/dharma/sandbox/case0313_prog_ice25_nomiz_dx100_specZ0_redo/0-20h/dharma_alt_007200.tgz&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>['/data/home/floriantornow/dharma/sandbox/case0313_prog_ice25_nomiz_dx100_specZ0_redo/0-20h/dharma_PLT_007200.tgz', '/data/home/floriantornow/dharma/sandbox/case0313_prog_ice25_nomiz_dx100_specZ0_redo/0-20h/dharma_alt_3d_011524.tgz', '/data/home/floriantornow/dharma/sandbox/case0313_prog_ice25_nomiz_dx100_specZ0_redo/0-20h/dharma_alt_011524.tgz', '/data/home/floriantornow/dharma/sandbox/case0313_prog_ice25_nomiz_dx100_specZ0_redo/0-20h/dharma_PLT_011524.tgz', '/data/home/floriantornow/dharma/sandbox/case0313_prog_ice25_nomiz_dx100_specZ0_redo/0-20h/dharma_alt_3d_007200.tgz', '/data/home/floriantornow/dharma/sandbox/case0313_prog_ice25_nomiz_dx100_specZ0_redo/0-20h/dharma_alt_007200.tgz']
 </pre></div>
 </div>
 </div>
@@ -585,12 +585,12 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## obtain model horizontal resolution</span>
-<span class="n">input_filename</span> <span class="o">=</span> <span class="n">my_rundir</span> <span class="o">+</span> <span class="n">my_outdirs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/dharma.cdf&#39;</span>
+<span class="n">input_filename</span> <span class="o">=</span> <span class="n">my_rundir</span> <span class="o">+</span> <span class="n">my_outdirs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">'/dharma.cdf'</span>
 <span class="n">dharma_params</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">input_filename</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">input_filename</span><span class="p">)</span>
 
-<span class="n">nx</span> <span class="o">=</span> <span class="n">dharma_params</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nx</span>
-<span class="n">Lx</span> <span class="o">=</span> <span class="n">dharma_params</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">L_x</span>
+<span class="n">nx</span> <span class="o">=</span> <span class="n">dharma_params</span><span class="p">[</span><span class="s1">'geometry'</span><span class="p">]</span><span class="o">.</span><span class="n">nx</span>
+<span class="n">Lx</span> <span class="o">=</span> <span class="n">dharma_params</span><span class="p">[</span><span class="s1">'geometry'</span><span class="p">]</span><span class="o">.</span><span class="n">L_x</span>
 </pre></div>
 </div>
 </div>
@@ -633,19 +633,19 @@ document.write(`
     <span class="n">y_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">Lx</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">Lx</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">xy_res</span><span class="p">)</span>
         
     <span class="c1">## unpack tgz and extract relevant fields </span>
-    <span class="n">opd_cloud</span> <span class="o">=</span> <span class="n">read_2d</span><span class="p">(</span><span class="n">FILE</span><span class="o">=</span><span class="n">input_filename</span><span class="p">,</span><span class="n">vbase</span> <span class="o">=</span> <span class="s1">&#39;opd_drops&#39;</span><span class="p">,</span><span class="n">retain</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">opd_ice</span>   <span class="o">=</span> <span class="n">read_2d</span><span class="p">(</span><span class="n">FILE</span><span class="o">=</span><span class="n">input_filename</span><span class="p">,</span><span class="n">vbase</span> <span class="o">=</span> <span class="s1">&#39;opd_ice&#39;</span><span class="p">,</span><span class="n">retain</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">there</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">opd_cloud</span> <span class="o">=</span> <span class="n">read_2d</span><span class="p">(</span><span class="n">FILE</span><span class="o">=</span><span class="n">input_filename</span><span class="p">,</span><span class="n">vbase</span> <span class="o">=</span> <span class="s1">'opd_drops'</span><span class="p">,</span><span class="n">retain</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">opd_ice</span>   <span class="o">=</span> <span class="n">read_2d</span><span class="p">(</span><span class="n">FILE</span><span class="o">=</span><span class="n">input_filename</span><span class="p">,</span><span class="n">vbase</span> <span class="o">=</span> <span class="s1">'opd_ice'</span><span class="p">,</span><span class="n">retain</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">there</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">alb</span>       <span class="o">=</span> <span class="p">(</span><span class="n">opd_cloud</span> <span class="o">+</span> <span class="n">opd_ice</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">13</span> <span class="o">+</span> <span class="n">opd_cloud</span> <span class="o">+</span> <span class="n">opd_ice</span><span class="p">)</span>
     <span class="n">opd</span>       <span class="o">=</span> <span class="n">opd_cloud</span> <span class="o">+</span> <span class="n">opd_ice</span>
     
-    <span class="n">lwp</span>       <span class="o">=</span> <span class="n">read_2d</span><span class="p">(</span><span class="n">FILE</span><span class="o">=</span><span class="n">input_filename</span><span class="p">,</span><span class="n">vbase</span> <span class="o">=</span> <span class="s1">&#39;lwp&#39;</span><span class="p">,</span><span class="n">retain</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">there</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">/</span><span class="mi">1000</span>
-    <span class="n">iwp</span>       <span class="o">=</span> <span class="n">read_2d</span><span class="p">(</span><span class="n">FILE</span><span class="o">=</span><span class="n">input_filename</span><span class="p">,</span><span class="n">vbase</span> <span class="o">=</span> <span class="s1">&#39;iwp&#39;</span><span class="p">,</span><span class="n">retain</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">there</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">/</span><span class="mi">1000</span>
-    <span class="n">pflux</span>     <span class="o">=</span> <span class="n">read_2d</span><span class="p">(</span><span class="n">FILE</span><span class="o">=</span><span class="n">input_filename</span><span class="p">,</span><span class="n">vbase</span> <span class="o">=</span> <span class="s1">&#39;pflux&#39;</span><span class="p">,</span><span class="n">retain</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">there</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">sfcTflx</span>   <span class="o">=</span> <span class="n">read_2d</span><span class="p">(</span><span class="n">FILE</span><span class="o">=</span><span class="n">input_filename</span><span class="p">,</span><span class="n">vbase</span> <span class="o">=</span> <span class="s1">&#39;sfc_T_flx&#39;</span><span class="p">,</span><span class="n">retain</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">there</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">sfcQflx</span>   <span class="o">=</span> <span class="n">read_2d</span><span class="p">(</span><span class="n">FILE</span><span class="o">=</span><span class="n">input_filename</span><span class="p">,</span><span class="n">vbase</span> <span class="o">=</span> <span class="s1">&#39;sfc_qv_flx&#39;</span><span class="p">,</span><span class="n">retain</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">there</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">u10m</span>      <span class="o">=</span> <span class="n">read_2d</span><span class="p">(</span><span class="n">FILE</span><span class="o">=</span><span class="n">input_filename</span><span class="p">,</span><span class="n">vbase</span> <span class="o">=</span> <span class="s1">&#39;u_layer1&#39;</span><span class="p">,</span><span class="n">retain</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">there</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">+</span> <span class="n">dharma_params</span><span class="p">[</span><span class="s1">&#39;translate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">u</span>
-    <span class="n">v10m</span>      <span class="o">=</span> <span class="n">read_2d</span><span class="p">(</span><span class="n">FILE</span><span class="o">=</span><span class="n">input_filename</span><span class="p">,</span><span class="n">vbase</span> <span class="o">=</span> <span class="s1">&#39;v_layer1&#39;</span><span class="p">,</span><span class="n">retain</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">there</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">+</span> <span class="n">dharma_params</span><span class="p">[</span><span class="s1">&#39;translate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">v</span>
-    <span class="n">LWup</span>      <span class="o">=</span> <span class="n">read_2d</span><span class="p">(</span><span class="n">FILE</span><span class="o">=</span><span class="n">input_filename</span><span class="p">,</span><span class="n">vbase</span> <span class="o">=</span> <span class="s1">&#39;Fup_toa_10um&#39;</span><span class="p">,</span><span class="n">there</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">lwp</span>       <span class="o">=</span> <span class="n">read_2d</span><span class="p">(</span><span class="n">FILE</span><span class="o">=</span><span class="n">input_filename</span><span class="p">,</span><span class="n">vbase</span> <span class="o">=</span> <span class="s1">'lwp'</span><span class="p">,</span><span class="n">retain</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">there</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">/</span><span class="mi">1000</span>
+    <span class="n">iwp</span>       <span class="o">=</span> <span class="n">read_2d</span><span class="p">(</span><span class="n">FILE</span><span class="o">=</span><span class="n">input_filename</span><span class="p">,</span><span class="n">vbase</span> <span class="o">=</span> <span class="s1">'iwp'</span><span class="p">,</span><span class="n">retain</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">there</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">/</span><span class="mi">1000</span>
+    <span class="n">pflux</span>     <span class="o">=</span> <span class="n">read_2d</span><span class="p">(</span><span class="n">FILE</span><span class="o">=</span><span class="n">input_filename</span><span class="p">,</span><span class="n">vbase</span> <span class="o">=</span> <span class="s1">'pflux'</span><span class="p">,</span><span class="n">retain</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">there</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">sfcTflx</span>   <span class="o">=</span> <span class="n">read_2d</span><span class="p">(</span><span class="n">FILE</span><span class="o">=</span><span class="n">input_filename</span><span class="p">,</span><span class="n">vbase</span> <span class="o">=</span> <span class="s1">'sfc_T_flx'</span><span class="p">,</span><span class="n">retain</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">there</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">sfcQflx</span>   <span class="o">=</span> <span class="n">read_2d</span><span class="p">(</span><span class="n">FILE</span><span class="o">=</span><span class="n">input_filename</span><span class="p">,</span><span class="n">vbase</span> <span class="o">=</span> <span class="s1">'sfc_qv_flx'</span><span class="p">,</span><span class="n">retain</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">there</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">u10m</span>      <span class="o">=</span> <span class="n">read_2d</span><span class="p">(</span><span class="n">FILE</span><span class="o">=</span><span class="n">input_filename</span><span class="p">,</span><span class="n">vbase</span> <span class="o">=</span> <span class="s1">'u_layer1'</span><span class="p">,</span><span class="n">retain</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">there</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">+</span> <span class="n">dharma_params</span><span class="p">[</span><span class="s1">'translate'</span><span class="p">]</span><span class="o">.</span><span class="n">u</span>
+    <span class="n">v10m</span>      <span class="o">=</span> <span class="n">read_2d</span><span class="p">(</span><span class="n">FILE</span><span class="o">=</span><span class="n">input_filename</span><span class="p">,</span><span class="n">vbase</span> <span class="o">=</span> <span class="s1">'v_layer1'</span><span class="p">,</span><span class="n">retain</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">there</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">+</span> <span class="n">dharma_params</span><span class="p">[</span><span class="s1">'translate'</span><span class="p">]</span><span class="o">.</span><span class="n">v</span>
+    <span class="n">LWup</span>      <span class="o">=</span> <span class="n">read_2d</span><span class="p">(</span><span class="n">FILE</span><span class="o">=</span><span class="n">input_filename</span><span class="p">,</span><span class="n">vbase</span> <span class="o">=</span> <span class="s1">'Fup_toa_10um'</span><span class="p">,</span><span class="n">there</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     
     <span class="c1">## accumulate</span>
     <span class="k">if</span> <span class="n">counter</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -710,10 +710,10 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># read list of requested variables</span>
-<span class="n">vars_mean_list</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;https://docs.google.com/spreadsheets/d/1Vl8jYGviet7EtXZuQiitrx4NSkV1x27aJAhxxjBb9zI/export?gid=1756539842&amp;format=xlsx&#39;</span><span class="p">,</span>
-                              <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;2D&#39;</span><span class="p">)</span>
+<span class="n">vars_mean_list</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">'https://docs.google.com/spreadsheets/d/1Vl8jYGviet7EtXZuQiitrx4NSkV1x27aJAhxxjBb9zI/export?gid=1756539842&amp;format=xlsx'</span><span class="p">,</span>
+                              <span class="n">sheet_name</span><span class="o">=</span><span class="s1">'2D'</span><span class="p">)</span>
 
-<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_rows&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">'display.max_rows'</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 <span class="n">vars_mean_list</span>
 </pre></div>
 </div>
@@ -877,87 +877,87 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create DEPHY output file</span>
-<span class="n">dephy_filename</span> <span class="o">=</span> <span class="s1">&#39;./&#39;</span> <span class="o">+</span> <span class="n">my_gitdir</span> <span class="o">+</span> <span class="n">my_outfile</span>
+<span class="n">dephy_filename</span> <span class="o">=</span> <span class="s1">'./'</span> <span class="o">+</span> <span class="n">my_gitdir</span> <span class="o">+</span> <span class="n">my_outfile</span>
 <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">dephy_filename</span><span class="p">):</span>
     <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">dephy_filename</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The file &#39;</span> <span class="o">+</span> <span class="n">dephy_filename</span> <span class="o">+</span> <span class="s1">&#39; has been deleted successfully&#39;</span><span class="p">)</span>    
-<span class="n">dephy_file</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">dephy_filename</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span><span class="nb">format</span><span class="o">=</span><span class="s1">&#39;NETCDF3_CLASSIC&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'The file '</span> <span class="o">+</span> <span class="n">dephy_filename</span> <span class="o">+</span> <span class="s1">' has been deleted successfully'</span><span class="p">)</span>    
+<span class="n">dephy_file</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">dephy_filename</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s1">'w'</span><span class="p">,</span><span class="nb">format</span><span class="o">=</span><span class="s1">'NETCDF3_CLASSIC'</span><span class="p">)</span>
 
 <span class="c1"># create global attributes</span>
-<span class="n">dephy_file</span><span class="o">.</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;DHARMA LES results for COMBLE-MIP case: fixed Nd and Ni&#39;</span>
-<span class="n">dephy_file</span><span class="o">.</span><span class="n">reference</span><span class="o">=</span><span class="s1">&#39;https://github.com/ARM-Development/comble-mip&#39;</span>
-<span class="n">dephy_file</span><span class="o">.</span><span class="n">authors</span><span class="o">=</span><span class="s1">&#39;Florian Tornow (florian.tornow@nasa.gov) and Ann Fridlind (ann.fridlind@nasa.gov)&#39;</span>
+<span class="n">dephy_file</span><span class="o">.</span><span class="n">title</span><span class="o">=</span><span class="s1">'DHARMA LES results for COMBLE-MIP case: fixed Nd and Ni'</span>
+<span class="n">dephy_file</span><span class="o">.</span><span class="n">reference</span><span class="o">=</span><span class="s1">'https://github.com/ARM-Development/comble-mip'</span>
+<span class="n">dephy_file</span><span class="o">.</span><span class="n">authors</span><span class="o">=</span><span class="s1">'Florian Tornow (florian.tornow@nasa.gov) and Ann Fridlind (ann.fridlind@nasa.gov)'</span>
 <span class="c1">#dephy_file.source=input_filename</span>
-<span class="n">dephy_file</span><span class="o">.</span><span class="n">version</span><span class="o">=</span><span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">)</span>
-<span class="n">dephy_file</span><span class="o">.</span><span class="n">format_version</span><span class="o">=</span><span class="s1">&#39;DEPHY-derivative&#39;</span>
-<span class="n">dephy_file</span><span class="o">.</span><span class="n">script</span><span class="o">=</span><span class="s1">&#39;convert_DHARMA_LES_output_to_dephy_format_2D.ipynb&#39;</span>
+<span class="n">dephy_file</span><span class="o">.</span><span class="n">version</span><span class="o">=</span><span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">'%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S'</span><span class="p">)</span>
+<span class="n">dephy_file</span><span class="o">.</span><span class="n">format_version</span><span class="o">=</span><span class="s1">'DEPHY-derivative'</span>
+<span class="n">dephy_file</span><span class="o">.</span><span class="n">script</span><span class="o">=</span><span class="s1">'convert_DHARMA_LES_output_to_dephy_format_2D.ipynb'</span>
 <span class="n">dephy_file</span><span class="o">.</span><span class="n">startDate</span><span class="o">=</span><span class="n">start_dtime</span>
 <span class="n">dephy_file</span><span class="o">.</span><span class="n">force_geo</span><span class="o">=</span><span class="mi">1</span>
-<span class="n">dephy_file</span><span class="o">.</span><span class="n">surfaceType</span><span class="o">=</span><span class="s1">&#39;ocean (after spin-up)&#39;</span>
-<span class="n">dephy_file</span><span class="o">.</span><span class="n">surfaceForcing</span><span class="o">=</span><span class="s1">&#39;ts (after spin-up)&#39;</span>
-<span class="c1">#dephy_file.lat=str(dharma_params[&#39;Coriolis&#39;].lat) + &#39; deg N&#39;</span>
-<span class="c1">#dephy_file.dx=str(dharma_params[&#39;geometry&#39;].L_x/dharma_params[&#39;geometry&#39;].nx) + &#39; m&#39;</span>
-<span class="c1">#dephy_file.dy=str(dharma_params[&#39;geometry&#39;].L_y/dharma_params[&#39;geometry&#39;].ny) + &#39; m&#39;</span>
-<span class="c1">#dephy_file.dz=&#39;see zf variable&#39;</span>
-<span class="c1">#dephy_file.nx=dharma_params[&#39;geometry&#39;].nx</span>
-<span class="c1">#dephy_file.ny=dharma_params[&#39;geometry&#39;].ny</span>
-<span class="c1">#dephy_file.nz=dharma_params[&#39;geometry&#39;].nz</span>
+<span class="n">dephy_file</span><span class="o">.</span><span class="n">surfaceType</span><span class="o">=</span><span class="s1">'ocean (after spin-up)'</span>
+<span class="n">dephy_file</span><span class="o">.</span><span class="n">surfaceForcing</span><span class="o">=</span><span class="s1">'ts (after spin-up)'</span>
+<span class="c1">#dephy_file.lat=str(dharma_params['Coriolis'].lat) + ' deg N'</span>
+<span class="c1">#dephy_file.dx=str(dharma_params['geometry'].L_x/dharma_params['geometry'].nx) + ' m'</span>
+<span class="c1">#dephy_file.dy=str(dharma_params['geometry'].L_y/dharma_params['geometry'].ny) + ' m'</span>
+<span class="c1">#dephy_file.dz='see zf variable'</span>
+<span class="c1">#dephy_file.nx=dharma_params['geometry'].nx</span>
+<span class="c1">#dephy_file.ny=dharma_params['geometry'].ny</span>
+<span class="c1">#dephy_file.nz=dharma_params['geometry'].nz</span>
 
 <span class="c1"># create dimensions</span>
-<span class="n">xvec</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">nx</span><span class="p">)</span>
-<span class="n">xvec</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,))</span>
-<span class="n">xvec</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;m&#39;</span>
-<span class="n">xvec</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;x&#39;</span>
+<span class="n">xvec</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s1">'x'</span><span class="p">,</span> <span class="n">nx</span><span class="p">)</span>
+<span class="n">xvec</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">'x'</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">'x'</span><span class="p">,))</span>
+<span class="n">xvec</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">'m'</span>
+<span class="n">xvec</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">'x'</span>
 <span class="n">xvec</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">x_vec</span>
 
-<span class="n">yvec</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">nx</span><span class="p">)</span>
-<span class="n">yvec</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,))</span>
-<span class="n">yvec</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;m&#39;</span>
-<span class="n">yvec</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;y&#39;</span>
+<span class="n">yvec</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s1">'y'</span><span class="p">,</span> <span class="n">nx</span><span class="p">)</span>
+<span class="n">yvec</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">'y'</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">'y'</span><span class="p">,))</span>
+<span class="n">yvec</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">'m'</span>
+<span class="n">yvec</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">'y'</span>
 <span class="n">yvec</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">y_vec</span>
 
 <span class="n">nt</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">input_filenames</span><span class="p">)</span>
-<span class="n">time</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">nt</span><span class="p">)</span>
-<span class="n">time</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,))</span>
-<span class="n">time</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;seconds since &#39;</span> <span class="o">+</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">startDate</span>
-<span class="n">time</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;time&#39;</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createDimension</span><span class="p">(</span><span class="s1">'time'</span><span class="p">,</span> <span class="n">nt</span><span class="p">)</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">'time'</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">'time'</span><span class="p">,))</span>
+<span class="n">time</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">'seconds since '</span> <span class="o">+</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">startDate</span>
+<span class="n">time</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="s1">'time'</span>
 <span class="n">time</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">time_vec</span><span class="p">[:]</span>
 
 <span class="c1"># create and fill variables</span>
 <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">3</span><span class="p">:]:</span>
     <span class="n">std_name</span> <span class="o">=</span> <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">standard_name</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
-    <span class="n">var_name</span> <span class="o">=</span> <span class="n">vars_mean_list</span><span class="p">[</span><span class="s1">&#39;variable_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+    <span class="n">var_name</span> <span class="o">=</span> <span class="n">vars_mean_list</span><span class="p">[</span><span class="s1">'variable_id'</span><span class="p">]</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
     <span class="c1">#print(var_name)</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;hfss&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;hfls&#39;</span><span class="p">):</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">var_name</span> <span class="o">==</span> <span class="s1">'hfss'</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">var_name</span> <span class="o">==</span> <span class="s1">'hfls'</span><span class="p">):</span>
         <span class="k">continue</span>
-    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;hfss&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">'hfss'</span><span class="p">:</span>
         <span class="n">mod_field</span> <span class="o">=</span> <span class="n">sfcTflx_col</span>
-    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;hfls&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">'hfls'</span><span class="p">:</span>
         <span class="n">mod_field</span> <span class="o">=</span> <span class="n">sfcQflx_col</span>
-    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;us&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">'us'</span><span class="p">:</span>
         <span class="n">mod_field</span> <span class="o">=</span> <span class="n">u10m_col</span>
-    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;vs&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">'vs'</span><span class="p">:</span>
         <span class="n">mod_field</span> <span class="o">=</span> <span class="n">v10m_col</span>
-    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;pr&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">'pr'</span><span class="p">:</span>
         <span class="n">mod_field</span> <span class="o">=</span> <span class="n">pflux_col</span>
-    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;lwp&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">'lwp'</span><span class="p">:</span>
         <span class="n">mod_field</span> <span class="o">=</span> <span class="n">lwp_col</span>
-    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;iwp&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">'iwp'</span><span class="p">:</span>
         <span class="n">mod_field</span> <span class="o">=</span> <span class="n">iwp_col</span>
-    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;opt&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">'opt'</span><span class="p">:</span>
         <span class="n">mod_field</span> <span class="o">=</span> <span class="n">opd_col</span>
-    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;alb&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">'alb'</span><span class="p">:</span>
         <span class="n">mod_field</span> <span class="o">=</span> <span class="n">alb_col</span>
-    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;olr11&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">'olr11'</span><span class="p">:</span>
         <span class="n">mod_field</span> <span class="o">=</span> <span class="n">BT_col</span><span class="c1">#LWup_col</span>
-    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">&#39;ustar&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="s1">'ustar'</span><span class="p">:</span>
         <span class="k">continue</span>
     
-    <span class="k">if</span> <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">dimensions</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;time, x, y&#39;</span><span class="p">:</span>
-        <span class="n">new_snd</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="n">var_name</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">dimensions</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">==</span><span class="s1">'time, x, y'</span><span class="p">:</span>
+        <span class="n">new_snd</span> <span class="o">=</span> <span class="n">dephy_file</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="n">var_name</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="p">(</span><span class="s1">'time'</span><span class="p">,</span><span class="s1">'x'</span><span class="p">,</span><span class="s1">'y'</span><span class="p">))</span>
         <span class="n">new_snd</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="n">vars_mean_list</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
         <span class="n">new_snd</span><span class="o">.</span><span class="n">long_name</span> <span class="o">=</span> <span class="n">std_name</span>
-        <span class="c1">#if vars_mean_list.model_name.iat[index]!=&#39;missing data&#39;: #and mod_name in dharma_snds: </span>
+        <span class="c1">#if vars_mean_list.model_name.iat[index]!='missing data': #and mod_name in dharma_snds: </span>
         <span class="n">new_snd</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">mod_field</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">dephy_file</span><span class="p">)</span>
@@ -966,7 +966,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;netCDF4._netCDF4.Dataset&#39;&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class 'netCDF4._netCDF4.Dataset'&gt;
 root group (NETCDF3_CLASSIC data model, file format NETCDF3):
     title: DHARMA LES results for COMBLE-MIP case: fixed Nd and Ni
     reference: https://github.com/ARM-Development/comble-mip
@@ -1401,15 +1401,15 @@ Attributes:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;./../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_ProgNa_2D.nc&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'./../../output_les/dharma/sandbox/DHARMA_Lx25_dx100_ProgNa_2D.nc'
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#dephy_check[&#39;olr11&#39;].plot(row=&#39;time&#39;)</span>
-<span class="n">dephy_check</span><span class="p">[</span><span class="s1">&#39;alb&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="n">col_wrap</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#dephy_check['olr11'].plot(row='time')</span>
+<span class="n">dephy_check</span><span class="p">[</span><span class="s1">'alb'</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="s1">'time'</span><span class="p">,</span><span class="n">col_wrap</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
