@@ -535,17 +535,19 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## partition into two groups and integrate over size</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">split_flux</span><span class="p">(</span><span class="n">DAT</span><span class="p">,</span><span class="n">D_s</span><span class="p">,</span><span class="n">STEP</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s1">'number'</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">mode</span><span class="o">==</span><span class="s1">'number'</span><span class="p">:</span>
-        <span class="n">num_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">DAT</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">DAT</span><span class="p">[</span><span class="s1">'Dp'</span><span class="p">]</span> <span class="o">&lt;</span>  <span class="n">D_s</span> <span class="o">-</span> <span class="n">STEP</span><span class="o">/</span><span class="mi">2</span><span class="p">][</span><span class="s1">'FN'</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">((</span><span class="n">DAT</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">DAT</span><span class="p">[</span><span class="s1">'Dp'</span><span class="p">]</span> <span class="o">&lt;</span>  <span class="n">D_s</span> <span class="o">-</span> <span class="n">STEP</span><span class="o">/</span><span class="mi">2</span><span class="p">][</span><span class="s1">'Dp'</span><span class="p">]</span><span class="o">+</span><span class="n">STEP</span><span class="p">)</span> <span class="o">/</span> <span class="n">DAT</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">DAT</span><span class="p">[</span><span class="s1">'Dp'</span><span class="p">]</span> <span class="o">&lt;</span>  <span class="n">D_s</span><span class="o">-</span> <span class="n">STEP</span><span class="o">/</span><span class="mi">2</span><span class="p">][</span><span class="s1">'Dp'</span><span class="p">]))</span>
-        <span class="n">num_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">DAT</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">DAT</span><span class="p">[</span><span class="s1">'Dp'</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">D_s</span> <span class="o">-</span> <span class="n">STEP</span><span class="o">/</span><span class="mi">2</span><span class="p">][</span><span class="s1">'FN'</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">((</span><span class="n">DAT</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">DAT</span><span class="p">[</span><span class="s1">'Dp'</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">D_s</span> <span class="o">-</span> <span class="n">STEP</span><span class="o">/</span><span class="mi">2</span><span class="p">][</span><span class="s1">'Dp'</span><span class="p">]</span><span class="o">+</span><span class="n">STEP</span><span class="p">)</span> <span class="o">/</span> <span class="n">DAT</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">DAT</span><span class="p">[</span><span class="s1">'Dp'</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">D_s</span> <span class="o">-</span> <span class="n">STEP</span><span class="o">/</span><span class="mi">2</span><span class="p">][</span><span class="s1">'Dp'</span><span class="p">]))</span>
+        <span class="c1">#num_1 = np.sum(DAT.loc[DAT['Dp'] &lt;  D_s - STEP/2]['FN'] * np.log10((DAT.loc[DAT['Dp'] &lt;  D_s - STEP/2]['Dp']+STEP) / DAT.loc[DAT['Dp'] &lt;  D_s- STEP/2]['Dp']))</span>
+        <span class="c1">#num_2 = np.sum(DAT.loc[DAT['Dp'] &gt;= D_s - STEP/2]['FN'] * np.log10((DAT.loc[DAT['Dp'] &gt;= D_s - STEP/2]['Dp']+STEP) / DAT.loc[DAT['Dp'] &gt;= D_s - STEP/2]['Dp']))</span>
+        <span class="n">num_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">DAT</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">DAT</span><span class="p">[</span><span class="s1">'Dp'</span><span class="p">]</span> <span class="o">&lt;</span>  <span class="n">D_s</span> <span class="o">-</span> <span class="n">STEP</span><span class="o">/</span><span class="mi">2</span><span class="p">][</span><span class="s1">'FN'</span><span class="p">]</span> <span class="o">*</span> <span class="n">STEP</span><span class="p">)</span>
+        <span class="n">num_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">DAT</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">DAT</span><span class="p">[</span><span class="s1">'Dp'</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">D_s</span> <span class="o">-</span> <span class="n">STEP</span><span class="o">/</span><span class="mi">2</span><span class="p">][</span><span class="s1">'FN'</span><span class="p">]</span> <span class="o">*</span> <span class="n">STEP</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">num_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">DAT</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">DAT</span><span class="p">[</span><span class="s1">'Dp'</span><span class="p">]</span> <span class="o">&lt;</span>  <span class="n">D_s</span> <span class="o">-</span> <span class="n">STEP</span><span class="o">/</span><span class="mi">2</span><span class="p">][</span><span class="s1">'SA'</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">((</span><span class="n">DAT</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">DAT</span><span class="p">[</span><span class="s1">'Dp'</span><span class="p">]</span> <span class="o">&lt;</span>  <span class="n">D_s</span> <span class="o">-</span> <span class="n">STEP</span><span class="o">/</span><span class="mi">2</span><span class="p">][</span><span class="s1">'Dp'</span><span class="p">]</span><span class="o">+</span><span class="n">STEP</span><span class="p">)</span> <span class="o">/</span> <span class="n">DAT</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">DAT</span><span class="p">[</span><span class="s1">'Dp'</span><span class="p">]</span> <span class="o">&lt;</span>  <span class="n">D_s</span><span class="o">-</span> <span class="n">STEP</span><span class="o">/</span><span class="mi">2</span><span class="p">][</span><span class="s1">'Dp'</span><span class="p">]))</span>
-        <span class="n">num_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">DAT</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">DAT</span><span class="p">[</span><span class="s1">'Dp'</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">D_s</span> <span class="o">-</span> <span class="n">STEP</span><span class="o">/</span><span class="mi">2</span><span class="p">][</span><span class="s1">'SA'</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">((</span><span class="n">DAT</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">DAT</span><span class="p">[</span><span class="s1">'Dp'</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">D_s</span> <span class="o">-</span> <span class="n">STEP</span><span class="o">/</span><span class="mi">2</span><span class="p">][</span><span class="s1">'Dp'</span><span class="p">]</span><span class="o">+</span><span class="n">STEP</span><span class="p">)</span> <span class="o">/</span> <span class="n">DAT</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">DAT</span><span class="p">[</span><span class="s1">'Dp'</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">D_s</span> <span class="o">-</span> <span class="n">STEP</span><span class="o">/</span><span class="mi">2</span><span class="p">][</span><span class="s1">'Dp'</span><span class="p">]))</span>
+        <span class="n">num_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">DAT</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">DAT</span><span class="p">[</span><span class="s1">'Dp'</span><span class="p">]</span> <span class="o">&lt;</span>  <span class="n">D_s</span> <span class="o">-</span> <span class="n">STEP</span><span class="o">/</span><span class="mi">2</span><span class="p">][</span><span class="s1">'SA'</span><span class="p">]</span> <span class="o">*</span> <span class="n">STEP</span><span class="p">)</span>
+        <span class="n">num_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">DAT</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">DAT</span><span class="p">[</span><span class="s1">'Dp'</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">D_s</span> <span class="o">-</span> <span class="n">STEP</span><span class="o">/</span><span class="mi">2</span><span class="p">][</span><span class="s1">'SA'</span><span class="p">]</span> <span class="o">*</span> <span class="n">STEP</span><span class="p">)</span>
         
     <span class="k">return</span> <span class="p">[</span><span class="n">num_1</span><span class="o">/</span><span class="p">(</span><span class="n">num_1</span> <span class="o">+</span> <span class="n">num_2</span><span class="p">),</span><span class="n">num_2</span><span class="o">/</span><span class="p">(</span><span class="n">num_1</span> <span class="o">+</span> <span class="n">num_2</span><span class="p">)]</span>
 
 <span class="n">PARTITION_DAT</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
 <span class="c1">## loop over a range of diameters</span>
-<span class="k">for</span> <span class="n">DD_split</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">0.01</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">1.5</span><span class="p">),</span><span class="mf">0.01</span><span class="p">):</span> 
+<span class="k">for</span> <span class="n">DD_split</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">0.01</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">10.5</span><span class="p">),</span><span class="mf">0.01</span><span class="p">):</span> 
     <span class="n">TMP</span>   <span class="o">=</span> <span class="n">split_flux</span><span class="p">(</span><span class="n">JAEGLE_DAT</span><span class="p">,</span><span class="n">D_s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">DD_split</span><span class="p">),</span><span class="n">STEP</span><span class="o">=</span><span class="n">STEP</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s1">'number'</span><span class="p">)</span>
     <span class="n">TMP_2</span> <span class="o">=</span> <span class="n">split_flux</span><span class="p">(</span><span class="n">JAEGLE_DAT</span><span class="p">,</span><span class="n">D_s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">DD_split</span><span class="p">),</span><span class="n">STEP</span><span class="o">=</span><span class="n">STEP</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s1">'area'</span><span class="p">)</span>
     <span class="n">TMP_DAT</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="n">TMP</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">TMP</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">TMP_2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">TMP_2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">DD_split</span><span class="p">)]],</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'frac_1'</span><span class="p">,</span><span class="s1">'frac_2'</span><span class="p">,</span><span class="s1">'frac_area_1'</span><span class="p">,</span><span class="s1">'frac_area_2'</span><span class="p">,</span><span class="s1">'D_split'</span><span class="p">])</span>
@@ -563,7 +565,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, 'Partitioning of Surface Flux')
 </pre></div>
 </div>
-<img alt="../../_images/2a72110d3ee9238e58b107719d3b0c20604b224c8660054c5f12ac415c275379.png" src="../../_images/2a72110d3ee9238e58b107719d3b0c20604b224c8660054c5f12ac415c275379.png" />
+<img alt="../../_images/fa6723adc2fdf3f69d7d01fc6c067b0f47d5ca9c693f29a5df2a2b03c524f354.png" src="../../_images/fa6723adc2fdf3f69d7d01fc6c067b0f47d5ca9c693f29a5df2a2b03c524f354.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -576,8 +578,68 @@ document.write(`
                         <span class="s1">'/export?gid=0&amp;format=xlsx'</span><span class="p">,</span>
                         <span class="n">sheet_name</span><span class="o">=</span><span class="s1">'PSD'</span><span class="p">)</span>
 
+<span class="n">PSD_zsm</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<span class="c1">## determine where normalized middle and large mode intercept in density</span>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Mode</th>
+      <th>N_a</th>
+      <th>D_g</th>
+      <th>sigma_g</th>
+      <th>kappa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Aitken</td>
+      <td>58</td>
+      <td>0.04</td>
+      <td>1.7</td>
+      <td>0.3</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Accumulation</td>
+      <td>134</td>
+      <td>0.14</td>
+      <td>1.6</td>
+      <td>0.5</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Sea Spray</td>
+      <td>2</td>
+      <td>0.50</td>
+      <td>1.7</td>
+      <td>0.9</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## determine where normalized middle and large mode intercept in density</span>
 
 <span class="n">INTERCEPT_DAT</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">DD</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span><span class="mf">8.</span><span class="p">,</span><span class="n">STEP</span><span class="p">):</span> 
@@ -632,7 +694,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f3851a3eb90&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7ff173826fe0&gt;
 </pre></div>
 </div>
 <img alt="../../_images/eb0a6be6cd6d8e003b85515f7e290f52f4aebb061456d13dc8c6f6ca6838a13b.png" src="../../_images/eb0a6be6cd6d8e003b85515f7e290f52f4aebb061456d13dc8c6f6ca6838a13b.png" />
@@ -661,8 +723,8 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Splitting modes at 0.255 um
-Number-equivalent flux: middle mode receives 0.506 and large receives 0.494
-Area-equivalent flux: middle mode receives 0.079 and large receives 0.921
+Number-equivalent flux: middle mode receives 0.265 and large receives 0.735
+Area-equivalent flux: middle mode receives 0.01 and large receives 0.99
 </pre></div>
 </div>
 </div>
@@ -683,14 +745,14 @@ Area-equivalent flux: middle mode receives 0.079 and large receives 0.921
 <span class="n">ax1</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">D_split</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">'r'</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">'dashed'</span><span class="p">,</span><span class="n">label</span> <span class="o">=</span> <span class="s1">'Splitting point determined from prevalent aerosol modes'</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">JAEGLE_DAT</span><span class="p">[</span><span class="s1">'Dp'</span><span class="p">],</span><span class="n">JAEGLE_DAT</span><span class="p">[</span><span class="s1">'FN'</span><span class="p">])</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">'Particle Dry Diameter (micrometer)'</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'dF$_N$/dlog$_</span><span class="si">{10}</span><span class="s1">$D$_p$ (cm$^{-2}$ s$^{-1}$)'</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'dF$_N$/dD$_p$ (cm$^{-2}$ s$^{-1}$)'</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'Number'</span><span class="p">)</span>
 
 <span class="n">ax2</span><span class="o">.</span><span class="n">set_xscale</span><span class="p">(</span><span class="s1">'log'</span><span class="p">)</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">D_split</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">'r'</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">'dashed'</span><span class="p">,</span><span class="n">label</span> <span class="o">=</span> <span class="s1">'Splitting point determined from prevalent aerosol modes'</span><span class="p">)</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">JAEGLE_DAT</span><span class="p">[</span><span class="s1">'Dp'</span><span class="p">],</span><span class="n">JAEGLE_DAT</span><span class="p">[</span><span class="s1">'SA'</span><span class="p">])</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">'Particle Dry Diameter (micrometer)'</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'dF$_A$/dlog$_</span><span class="si">{10}</span><span class="s1">$D$_p$ (um$^2$ cm$^{-2}$ s$^{-1}$)'</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'dF$_A$/dD$_p$ (um$^2$ cm$^{-2}$ s$^{-1}$)'</span><span class="p">)</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'Area'</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -699,7 +761,26 @@ Area-equivalent flux: middle mode receives 0.079 and large receives 0.921
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, 'Area')
 </pre></div>
 </div>
-<img alt="../../_images/372c846b31777cfc565a52ead6eec0356f8fbdede0d86e3bda9fed9bbd63b0b8.png" src="../../_images/372c846b31777cfc565a52ead6eec0356f8fbdede0d86e3bda9fed9bbd63b0b8.png" />
+<img alt="../../_images/cc1c87908e8b86f695c5283918e36461b9926651f3df24bc33dec8bb76bcfdd9.png" src="../../_images/cc1c87908e8b86f695c5283918e36461b9926651f3df24bc33dec8bb76bcfdd9.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s1">'log'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">D_split</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">'r'</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">'dashed'</span><span class="p">,</span><span class="n">label</span> <span class="o">=</span> <span class="s1">'Splitting point determined from prevalent aerosol modes'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">JAEGLE_DAT</span><span class="p">[</span><span class="s1">'Dp'</span><span class="p">],</span><span class="n">JAEGLE_DAT</span><span class="p">[</span><span class="s1">'FN'</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Particle Dry Diameter (micrometer)'</span><span class="p">)</span>
+<span class="c1">#plt.ylabel('dF$_N$/dlog$_{10}$D$_p$ (cm$^{-2}$ s$^{-1}$)')</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'dF$_N$/dD$_p$ (cm$^{-2}$ s$^{-1}$)'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Number'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, 'Number')
+</pre></div>
+</div>
+<img alt="../../_images/a583e47904576862ad867a75c2089aa5bf04c6ee646d16619933a10c0555b041.png" src="../../_images/a583e47904576862ad867a75c2089aa5bf04c6ee646d16619933a10c0555b041.png" />
 </div>
 </div>
 </section>
@@ -713,14 +794,14 @@ Area-equivalent flux: middle mode receives 0.079 and large receives 0.921
 </ul>
 <div class="math notranslate nohighlight">
 \[
-  F_N = 0.051682 ~ v_h^{3.41} (0.3 + 0.1 ~ \text{SST} - 0.0076 ~ \text{SST}^2 + 0.00021 ~ \text{SST}^3)
+  F_N = 0.019793 ~ v_h^{3.41} (0.3 + 0.1 ~ \text{SST} - 0.0076 ~ \text{SST}^2 + 0.00021 ~ \text{SST}^3)
 \]</div>
 <div class="alert alert-block alert-info">
 <b>For MIP:</b>  Please compute interactive sea-spray fluxes using prevalent SST and 10 meter windspeed.
 </div><div class="alert alert-block alert-warning">
 <b>Update for MIP:</b>  For supercooled SST, please compute interactive sea-spray fluxes using SST = 0 °C to allow aerosol surface fluxes at all SST.
 </div><div class="alert alert-block alert-success">
-<b>Success:</b> Please note the updated surface flux fractions for middle and large aerosol modes that ensure sufficient surface area for prognostic Ni: 50.6% (middle) and 49.4% (large).
+<b>Success:</b> Please note the updated surface flux fractions for middle and large aerosol modes that ensure sufficient surface area for prognostic Ni: 26.5% (middle) and 73.5% (large).
 </div></section>
 
     <script type="text/x-thebe-config">
