@@ -498,17 +498,21 @@ document.write(`
 <span class="n">STEP</span> <span class="o">=</span> <span class="mf">0.001</span>
 
 <span class="n">JAEGLE_DAT</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">NUM_TOT</span> <span class="o">=</span> <span class="mf">0.0</span>
 <span class="c1">## loop over a range of diameters</span>
 <span class="k">for</span> <span class="n">DD</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span><span class="mf">8.</span><span class="p">,</span><span class="n">STEP</span><span class="p">):</span> 
-    <span class="n">A</span> <span class="o">=</span> <span class="mf">4.7</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">30</span> <span class="o">*</span> <span class="p">(</span><span class="n">DD</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mf">0.017</span><span class="o">*</span><span class="p">(</span><span class="n">DD</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mf">1.44</span><span class="p">))</span>
-    <span class="n">B</span> <span class="o">=</span><span class="p">(</span><span class="mf">0.433</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">DD</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span><span class="o">/</span><span class="mf">0.433</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="mf">4.7</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">30</span> <span class="o">*</span> <span class="p">(</span><span class="n">DD</span><span class="p">))</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mf">0.017</span><span class="o">*</span><span class="p">(</span><span class="n">DD</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mf">1.44</span><span class="p">))</span>
+    <span class="n">B</span> <span class="o">=</span><span class="p">(</span><span class="mf">0.433</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">DD</span><span class="p">))</span><span class="o">/</span><span class="mf">0.433</span>
     <span class="n">SST_TERM</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.3</span> <span class="o">+</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">SST</span> <span class="o">-</span> <span class="mf">0.0076</span><span class="o">*</span><span class="n">SST</span><span class="o">**</span><span class="mf">2.0</span> <span class="o">+</span> <span class="mf">0.00021</span><span class="o">*</span><span class="n">SST</span><span class="o">**</span><span class="mf">3.0</span><span class="p">)</span>
     
     <span class="c1">## number flux</span>
-    <span class="n">FN</span> <span class="o">=</span> <span class="n">SST_TERM</span><span class="o">*</span><span class="mf">1.373</span><span class="o">*</span><span class="n">vh</span><span class="o">**</span><span class="mf">3.41</span><span class="o">*</span><span class="p">(</span><span class="n">DD</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="n">A</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="mf">0.057</span><span class="o">*</span><span class="p">(</span><span class="n">DD</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mf">3.45</span><span class="p">)</span><span class="o">*</span><span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="mf">1.607</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">B</span><span class="o">**</span><span class="mf">2.0</span><span class="p">))</span> <span class="o">/</span> <span class="mi">100</span> <span class="o">/</span><span class="mi">100</span>
+    <span class="n">FN</span> <span class="o">=</span> <span class="n">SST_TERM</span><span class="o">*</span><span class="mf">1.373</span><span class="o">*</span><span class="n">vh</span><span class="o">**</span><span class="mf">3.41</span><span class="o">*</span><span class="p">(</span><span class="n">DD</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="n">A</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="mf">0.057</span><span class="o">*</span><span class="p">(</span><span class="n">DD</span><span class="p">)</span><span class="o">**</span><span class="mf">3.45</span><span class="p">)</span><span class="o">*</span><span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="mf">1.607</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">B</span><span class="o">**</span><span class="mf">2.0</span><span class="p">))</span> <span class="o">/</span> <span class="mi">100</span> <span class="o">/</span><span class="mi">100</span>
     
     <span class="c1">## associated area flux</span>
     <span class="n">SA</span> <span class="o">=</span> <span class="n">FN</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="n">DD</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    
+    <span class="c1">## compute total number</span>
+    <span class="n">NUM_TOT</span> <span class="o">+=</span> <span class="n">FN</span><span class="o">*</span><span class="n">STEP</span>
     
     <span class="c1">## store in data frame</span>
     <span class="n">TMP</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="n">DD</span><span class="p">,</span><span class="n">FN</span><span class="p">,</span><span class="n">SA</span><span class="p">,</span><span class="n">vh</span><span class="p">,</span><span class="n">SST</span><span class="p">]],</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'Dp'</span><span class="p">,</span><span class="s1">'FN'</span><span class="p">,</span><span class="s1">'SA'</span><span class="p">,</span><span class="s1">'vh'</span><span class="p">,</span><span class="s1">'SST'</span><span class="p">])</span>
@@ -520,14 +524,17 @@ document.write(`
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Particle Dry Diameter (micrometer)'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'dF/dlog10Dp (cm^-2 s^-1)'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Surface Flux according to Jaegle et al. (2011)'</span><span class="p">)</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Total number flux: '</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">NUM_TOT</span><span class="p">))</span> <span class="o">+</span> <span class="s1">' cm^-2 s^-1'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, 'Surface Flux according to Jaegle et al. (2011)')
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total number flux: 176.0 cm^-2 s^-1
 </pre></div>
 </div>
-<img alt="../../_images/8bbf7cb34def2c676ccc5eadd3cf9f4399b2df60779c282a0ef524b5e2132ac9.png" src="../../_images/8bbf7cb34def2c676ccc5eadd3cf9f4399b2df60779c282a0ef524b5e2132ac9.png" />
+<img alt="../../_images/ae703fdd53b0463bb7240a9b43f8b18398780f7bf8e096a02bc14b8841a3ca68.png" src="../../_images/ae703fdd53b0463bb7240a9b43f8b18398780f7bf8e096a02bc14b8841a3ca68.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -565,7 +572,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, 'Partitioning of Surface Flux')
 </pre></div>
 </div>
-<img alt="../../_images/fa6723adc2fdf3f69d7d01fc6c067b0f47d5ca9c693f29a5df2a2b03c524f354.png" src="../../_images/fa6723adc2fdf3f69d7d01fc6c067b0f47d5ca9c693f29a5df2a2b03c524f354.png" />
+<img alt="../../_images/52a7608f37f7ac5d29ba577f7863c5add0daaf72ced28936ad790d97c4a58fbf.png" src="../../_images/52a7608f37f7ac5d29ba577f7863c5add0daaf72ced28936ad790d97c4a58fbf.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -694,7 +701,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7ff173826fe0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fef7e1cf550&gt;
 </pre></div>
 </div>
 <img alt="../../_images/eb0a6be6cd6d8e003b85515f7e290f52f4aebb061456d13dc8c6f6ca6838a13b.png" src="../../_images/eb0a6be6cd6d8e003b85515f7e290f52f4aebb061456d13dc8c6f6ca6838a13b.png" />
@@ -723,8 +730,8 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Splitting modes at 0.255 um
-Number-equivalent flux: middle mode receives 0.265 and large receives 0.735
-Area-equivalent flux: middle mode receives 0.01 and large receives 0.99
+Number-equivalent flux: middle mode receives 0.67 and large receives 0.33
+Area-equivalent flux: middle mode receives 0.036 and large receives 0.964
 </pre></div>
 </div>
 </div>
@@ -761,7 +768,7 @@ Area-equivalent flux: middle mode receives 0.01 and large receives 0.99
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, 'Area')
 </pre></div>
 </div>
-<img alt="../../_images/cc1c87908e8b86f695c5283918e36461b9926651f3df24bc33dec8bb76bcfdd9.png" src="../../_images/cc1c87908e8b86f695c5283918e36461b9926651f3df24bc33dec8bb76bcfdd9.png" />
+<img alt="../../_images/7162718f3bec6361e258be79f18ce99e638949ff59c800019c0d62a140035af5.png" src="../../_images/7162718f3bec6361e258be79f18ce99e638949ff59c800019c0d62a140035af5.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -780,7 +787,7 @@ Area-equivalent flux: middle mode receives 0.01 and large receives 0.99
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, 'Number')
 </pre></div>
 </div>
-<img alt="../../_images/a583e47904576862ad867a75c2089aa5bf04c6ee646d16619933a10c0555b041.png" src="../../_images/a583e47904576862ad867a75c2089aa5bf04c6ee646d16619933a10c0555b041.png" />
+<img alt="../../_images/1020cb12ae13f606ebaa1875b06383ef8b9f2ee4f02d94f03febc322416c4f2c.png" src="../../_images/1020cb12ae13f606ebaa1875b06383ef8b9f2ee4f02d94f03febc322416c4f2c.png" />
 </div>
 </div>
 </section>
@@ -794,14 +801,16 @@ Area-equivalent flux: middle mode receives 0.01 and large receives 0.99
 </ul>
 <div class="math notranslate nohighlight">
 \[
-  F_N = 0.019793 ~ v_h^{3.41} (0.3 + 0.1 ~ \text{SST} - 0.0076 ~ \text{SST}^2 + 0.00021 ~ \text{SST}^3)
+  F_N = 0.010111 ~ v_h^{3.41} (0.3 + 0.1 ~ \text{SST} - 0.0076 ~ \text{SST}^2 + 0.00021 ~ \text{SST}^3)
 \]</div>
 <div class="alert alert-block alert-info">
 <b>For MIP:</b>  Please compute interactive sea-spray fluxes using prevalent SST and 10 meter windspeed.
 </div><div class="alert alert-block alert-warning">
 <b>Update for MIP:</b>  For supercooled SST, please compute interactive sea-spray fluxes using SST = 0 °C to allow aerosol surface fluxes at all SST.
 </div><div class="alert alert-block alert-success">
-<b>Success:</b> Please note the updated surface flux fractions for middle and large aerosol modes that ensure sufficient surface area for prognostic Ni: 26.5% (middle) and 73.5% (large).
+<b>Updated partitioning:</b> Please note the updated surface flux fractions for middle and large aerosol modes that ensure sufficient surface area for prognostic Ni: 67% (middle) and 33% (large).
+</div><div class="alert alert-block alert-warning">
+<b>Update on Sep 22 2026:</b>  Please note the updates to the last equation shown on this page (using 0.010111 instead of 0.051682).
 </div></section>
 
     <script type="text/x-thebe-config">
