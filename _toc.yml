@@ -55,5 +55,5 @@ parts:
     - file: notebooks/plotting/example_plotting_z0_tests.ipynb
     - file: notebooks/setup/aerosol-specification.ipynb
     - file: notebooks/setup/aerosol-inp-closure.ipynb
-    - file: notebooks/setup/aerosol-surface.ipynb
+    - file: notebooks/setup/aerosol-surface_new.ipynb
     - file: notebooks/setup/where-are-the-rolls.ipynb
