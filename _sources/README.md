@@ -1,7 +1,11 @@
 # COMBLE Model-Observation Intercomparison Project Cookbook
 
+```{note}
+The COMBLE-MIP Part 1 paper is now published in ACP and be [accessed here](https://acp.copernicus.org/articles/26/13267/2026/).
+```
+
 ```{attention}
-Our COMBLE-MIP Part 1 paper is now published and be [accessed here](https://acp.copernicus.org/articles/26/13267/2026/).
+Part 2 participants: The surface aerosol flux specification has been updated following a bug fix - access the revised version [here](https://arm-development.github.io/comble-mip/notebooks/setup/aerosol-surface_new.html).
 ```
 
 [![badge](https://img.shields.io/static/v1.svg?logo=Jupyter&label=ARM+JupyterHub&message=ACE+Environment&color=blue)](https://jupyterhub.arm.gov/hub/user-redirect/git-pull?repo=https%3A//github.com/ARM-Development/comble-mip&urlpath=lab/tree/comble-mip/../user-data-home/comble-mip/notebooks&branch=main)
