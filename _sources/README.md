@@ -1,5 +1,9 @@
 # COMBLE Model-Observation Intercomparison Project Cookbook
 
+```{attention}
+Our COMBLE-MIP Part 1 paper is now published and be [accessed here](https://acp.copernicus.org/articles/26/13267/2026/).
+```
+
 [![badge](https://img.shields.io/static/v1.svg?logo=Jupyter&label=ARM+JupyterHub&message=ACE+Environment&color=blue)](https://jupyterhub.arm.gov/hub/user-redirect/git-pull?repo=https%3A//github.com/ARM-Development/comble-mip&urlpath=lab/tree/comble-mip/../user-data-home/comble-mip/notebooks&branch=main)
 
 ```{figure} figures/13march_case_overview.png
